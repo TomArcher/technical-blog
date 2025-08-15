@@ -22,5 +22,12 @@
       <guid>http://localhost:1313/posts/rain-paradox/</guid>
       <description>&lt;p&gt;Early in my programming career, I came across a programming problem that stuck with me for many years:&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;“If it&amp;rsquo;s raining, will you stay drier by walking or running through it?”&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;At the time, I didn’t have the skills to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn’t about recursion or memory management. It was about &lt;strong&gt;getting wet&lt;/strong&gt;, and &lt;strong&gt;how fast you move through falling rain&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Tom Archer is a longtime software developer, author, and technicalist with&#xA;deep roots in Python, C++, Windows programming, and AI-driven automation. Tom&#xA;started his career coding the box-office reporting &amp;amp; itinerary systems in Amsterdam&#xA;for Holiday on Ice. Since then, he has designed and coded software for companies&#xA;like IBM, AT&amp;amp;T, and VeriSign. Tom currently builds AI tools at Microsoft that&#xA;generate technical documentation.&lt;/p&gt;&#xA;&lt;p&gt;(Add more bio content here…)&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

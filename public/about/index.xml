@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on Signal &amp; Syntax by Tom Archer</title>
+    <link>http://localhost:1313/about/</link>
+    <description>Recent content in Abouts on Signal &amp; Syntax by Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/about/</guid>
+      <description>&lt;p&gt;Tom Archer is a longtime software developer, author, and technicalist with&#xA;deep roots in Python, C++, Windows programming, and AI-driven automation. Tom&#xA;started his career coding the box-office reporting &amp;amp; itinerary systems in Amsterdam&#xA;for Holiday on Ice. Since then, he has designed and coded software for companies&#xA;like IBM, AT&amp;amp;T, and VeriSign. Tom currently builds AI tools at Microsoft that&#xA;generate technical documentation.&lt;/p&gt;&#xA;&lt;p&gt;(Add more bio content here…)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

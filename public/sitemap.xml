@@ -2,28 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/announcements/</loc>
-    <lastmod>2025-08-15T12:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/tags/3d-bin-packing/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-08-15T12:00:00+00:00</lastmod>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/rain-paradox/</loc>
-    <lastmod>2025-08-15T12:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/posts/three-d-packing/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/hugo/</loc>
-    <lastmod>2025-08-15T12:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/tags/geometry/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/logistics/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/optimization/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-08-15T12:00:00+00:00</lastmod>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/programming/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-08-15T12:00:00+00:00</lastmod>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-08-15T12:00:00+00:00</lastmod>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/thought-experiment/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/rain-paradox/</loc>
+    <lastmod>2025-08-04T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/about/</loc>
+  </url><url>
+    <loc>http://localhost:1313/categories/announcements/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/hugo/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/welcome/</loc>
-    <lastmod>2025-08-15T12:00:00+00:00</lastmod>
   </url>
 </urlset>
