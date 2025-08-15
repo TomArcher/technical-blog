@@ -95,3 +95,30 @@
 .posts-list .post__meta a:hover { text-decoration: underline; }
 
 /* Let Mainroad handle separators; no extra borders here to avoid double lines */
+/* ---- Post delimiters & spacing (accent bar) ---- */
+:root {
+  /* Pick your accent; adjust to match your widget underline */
+  --post-accent: #2b7cff; /* e.g., same blue as your READ MORE button */
+}
+
+/* Remove any theme border separators so we don't double up */
+.posts-list .post { border-top: none !important; }
+
+/* Space between posts */
+.posts-list .post {
+  margin-top: 1.25rem;   /* gap above every post */
+  padding-top: 0;        /* theme sometimes adds padding; we control it */
+}
+
+/* Add an accent bar above every post except the first */
+.posts-list .post:not(:first-child) {
+  padding-top: 1rem;     /* spacing between the bar and the title */
+}
+.posts-list .post:not(:first-child)::before {
+  content: "";
+  display: block;
+  height: 2px;
+  background: var(--post-accent);
+  border-radius: 2px;
+  margin: 0 0 1rem 0;    /* space below the bar */
+}
