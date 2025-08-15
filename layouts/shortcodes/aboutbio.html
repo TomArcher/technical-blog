@@ -1,0 +1,20 @@
+<div class="about-bio">
+  {{/* Only show avatar on About if the flag is true */}}
+  {{ if .Site.Params.aboutShowAvatar }}
+    {{- $avatarURL := "" -}}
+    {{- with site.Params.avatar -}} {{- $avatarURL = . | relURL -}} {{- end -}}
+    {{- if eq $avatarURL "" -}}
+      {{- with .Page.Resources.GetMatch "avatar.*" -}} {{- $avatarURL = .RelPermalink -}} {{- end -}}
+    {{- end -}}
+    {{- if and (eq $avatarURL "") (fileExists "static/img/avatar.jpg") -}}
+      {{- $avatarURL = (relURL "img/avatar.jpg") -}}
+    {{- end -}}
+    {{ with $avatarURL }}
+      <img class="bio-avatar bio-avatar--lg" src="{{ . }}" alt="Avatar of {{ $.Site.Title }}">
+    {{ end }}
+  {{ end }}
+
+  <div class="bio-text">
+    {{ with site.Params.bio }} {{ . | markdownify }} {{ end }}
+  </div>
+</div>

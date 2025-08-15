@@ -1,12 +1,10 @@
 ---
-title: "About"
+title: "A little about Tom"
+draft: false
 ---
 
-Tom Archer is a longtime software developer, author, and technicalist with
-deep roots in Python, C++, Windows programming, and AI-driven automation. Tom
-started his career coding the box-office reporting & itinerary systems in Amsterdam
-for Holiday on Ice. Since then, he has designed and coded software for companies
-like IBM, AT&T, and VeriSign. Tom currently builds AI tools at Microsoft that
-generate technical documentation.
+{{< aboutbio >}}
 
-(Add more bio content here…)
+Tom helped build and run *CodeGuru.com*, once the web’s largest Windows developer community. He has been recognized by Microsoft as a C++ MVP and has written a dozen technical books and hundreds of online articles.
+
+While very content in his current role at Microsoft, decades of experience have taught Tom that there's always tomorrow to plan for. If you have a cool and interesting project—especially one that blends technology, creativity, and real-world impact—he's always excited to hear about it!

@@ -1,15 +1,39 @@
 <div class="widget-bio widget">
   <h3 class="widget-title">About</h3>
-  {{ with .Site.Params.bio }}
-    {{ $bio := . | plainify }}
-    <p>{{ $bio | truncate 100 }}</p>
+
+  {{/* Resolve avatar URL: prefer params.avatar; fallback to /about bundle; final fallback to /img/avatar.jpg */}}
+  {{ $avatarURL := "" }}
+  {{ with .Site.Params.avatar }}
+    {{ $avatarURL = . | relURL }}
   {{ else }}
     {{ with site.GetPage "/about" }}
-      <p>{{ .Plain | truncate 100 }}</p>
-    {{ else }}
-      <p>Add your bio to <code>params.bio</code> or create <code>content/about/index.md</code>.</p>
+      {{ with .Resources.GetMatch "avatar.*" }}
+        {{ $avatarURL = .RelPermalink }}
+      {{ end }}
+    {{ end }}
+    {{ if and (eq $avatarURL "") (fileExists "static/img/avatar.jpg") }}
+      {{ $avatarURL = (relURL "img/avatar.jpg") }}
     {{ end }}
   {{ end }}
+
+  <!-- Put avatar and the bio paragraph(s) inside a wrapper so floats can work -->
+  <div class="bio-wrap">
+    {{ with $avatarURL }}
+      <img class="bio-avatar" src="{{ . }}" alt="Avatar of {{ $.Site.Title }}">
+    {{ end }}
+
+    {{ with .Site.Params.bio }}
+      {{ $bio := . | plainify }}
+      <p class="bio-text">{{ $bio | truncate 250 }}</p>
+    {{ else }}
+      {{ with site.GetPage "/about" }}
+        <p class="bio-text">{{ .Plain | truncate 100 }}</p>
+      {{ else }}
+        <p class="bio-text">Add your bio to <code>params.bio</code> or create <code>content/about/index.md</code>.</p>
+      {{ end }}
+    {{ end }}
+  </div>
+
   <p><a class="btn-read-more" href="{{ "/about/" | relURL }}">READ MORE</a></p>
   <hr class="widget-separator" />
 </div>

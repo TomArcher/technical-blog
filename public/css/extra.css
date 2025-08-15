@@ -1,4 +1,4 @@
-/* Sidebar "READ MORE" button */
+/* --- Buttons & separators --- */
 .btn-read-more {
   display: inline-block;
   padding: 8px 14px;
@@ -10,10 +10,88 @@
 }
 .btn-read-more:hover { background: #1d5dcc; }
 
-/* Thin separator line under custom widgets */
 .widget-separator {
   border: 0;
   height: 1px;
   background: #e4e4e4;
   margin: 14px 0 0 0;
 }
+
+/* --- Sidebar bio widget (avatar + wrapped text) --- */
+.widget-bio { display: block !important; }            /* defeat any theme flex on widgets */
+.widget-bio .bio-wrap { display: block !important; }  /* ensure floats can wrap */
+
+.widget-bio .bio-avatar {
+  float: left;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 2px 12px 6px 0;      /* space to right/bottom */
+  shape-outside: circle(50%);  /* nicer wrap (modern browsers) */
+}
+
+.widget-bio .bio-wrap .bio-text {
+  clear: none !important;
+  margin-top: 0.2rem;
+}
+
+/* Clear the float so button/HR align correctly */
+.widget-bio .bio-wrap::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* --- About page bio (same text block, no avatar) --- */
+.about-bio {
+  display: block;
+  margin-bottom: 1rem; /* space before first paragraph after the bio */
+}
+/* Hide the avatar on the About page to avoid duplication with the sidebar */
+.about-bio .bio-avatar { display: none !important; }
+.about-bio .bio-text { clear: none !important; }
+
+/* If your theme collapses margins, you can also add:
+.about-bio + p { margin-top: 1rem; }
+*/
+
+/* ——— Make HOME/SECTION list titles pop (Mainroad selectors) ——— */
+.posts-list .post-title {
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25;
+  margin: 0 0 .25rem !important;
+}
+
+.posts-list .post-title a {
+  color: #0d1a2d !important;   /* dark navy */
+  text-decoration: none !important;
+}
+.posts-list .post-title a:hover { text-decoration: underline !important; }
+
+/* Accent shape before each list title */
+.posts-list .post-title a::before {
+  content: "◆";                /* try: ▸ ■ ● */
+  display: inline-block;
+  color: #2b7cff;              /* accent */
+  font-size: .95rem;
+  margin-right: .5rem;
+  transform: translateY(-1px);
+}
+
+/* Date + tags smaller, gray, italic under title
+   (Mainroad may use .post-meta OR .post__meta depending on version) */
+.posts-list .post-meta,
+.posts-list .post__meta {
+  font-style: italic;
+  color: #6a6f77 !important;
+  font-size: .9rem;
+  margin: 0 0 .75rem !important;
+}
+.posts-list .post-meta a,
+.posts-list .post__meta a { color: inherit; text-decoration: none; }
+.posts-list .post-meta a:hover,
+.posts-list .post__meta a:hover { text-decoration: underline; }
+
+/* Let Mainroad handle separators; no extra borders here to avoid double lines */
