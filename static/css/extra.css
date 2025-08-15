@@ -1,4 +1,8 @@
-/* --- Buttons & separators --- */
+/* ===========================
+   static/css/extra.css
+   =========================== */
+
+/* --- Buttons --- */
 .btn-read-more {
   display: inline-block;
   padding: 8px 14px;
@@ -10,16 +14,23 @@
 }
 .btn-read-more:hover { background: #1d5dcc; }
 
-.widget-separator {
-  border: 0;
-  height: 1px;
-  background: #e4e4e4;
-  margin: 14px 0 0 0;
-}
+/* If you still have an <hr class="widget-separator"> in any custom widget, hide it */
+.widget-bio .widget-separator,
+.widget-disclaimer .widget-separator { display: none; }
 
-/* --- Sidebar bio widget (avatar + wrapped text) --- */
-.widget-bio { display: block !important; }            /* defeat any theme flex on widgets */
-.widget-bio .bio-wrap { display: block !important; }  /* ensure floats can wrap */
+/* --- Sidebar bio widget (avatar + wrapped text) ---
+   Markup uses:
+     <div class="widget widget-bio">
+       <h4 class="widget__title">About</h4>
+       <div class="widget__content">
+         <div class="bio-wrap">
+           <img class="bio-avatar" ...>
+           <p class="bio-text">...</p>
+         </div>
+       </div>
+     </div>
+*/
+.widget-bio .bio-wrap { display: block !important; }    /* ensure floats can wrap */
 
 .widget-bio .bio-avatar {
   float: left;
@@ -27,36 +38,39 @@
   height: 72px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 2px 12px 6px 0;      /* space to right/bottom */
-  shape-outside: circle(50%);  /* nicer wrap (modern browsers) */
+  margin: 2px 12px 6px 0;          /* space to right/bottom */
+  shape-outside: circle(50%);      /* nicer wrap on modern browsers */
 }
 
-.widget-bio .bio-wrap .bio-text {
+.widget-bio .bio-text {
   clear: none !important;
   margin-top: 0.2rem;
 }
 
-/* Clear the float so button/HR align correctly */
+/* Clear the float after the bio block */
 .widget-bio .bio-wrap::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* --- About page bio (same text block, no avatar) --- */
+/* --- About page bio (same layout, no avatar, extra spacing below) ---
+   Markup (shortcode) uses:
+     <div class="about-bio">
+       <img class="bio-avatar">   <-- hidden here
+       <div class="bio-text">...</div>
+     </div>
+*/
 .about-bio {
   display: block;
-  margin-bottom: 1rem; /* space before first paragraph after the bio */
+  margin-bottom: 1rem;             /* gap before the first paragraph following the bio */
 }
-/* Hide the avatar on the About page to avoid duplication with the sidebar */
+/* Hide avatar on the About page to avoid duplication with sidebar */
 .about-bio .bio-avatar { display: none !important; }
 .about-bio .bio-text { clear: none !important; }
+.about-bio::after { content: ""; display: table; clear: both; }
 
-/* If your theme collapses margins, you can also add:
-.about-bio + p { margin-top: 1rem; }
-*/
-
-/* ——— Make HOME/SECTION list titles pop (Mainroad selectors) ——— */
+/* --- Home/section post list styling (Mainroad selectors) --- */
 .posts-list .post-title {
   font-size: 1.6rem !important;
   font-weight: 800 !important;
@@ -65,23 +79,23 @@
 }
 
 .posts-list .post-title a {
-  color: #0d1a2d !important;   /* dark navy */
+  color: #0d1a2d !important;       /* dark navy */
   text-decoration: none !important;
 }
 .posts-list .post-title a:hover { text-decoration: underline !important; }
 
 /* Accent shape before each list title */
 .posts-list .post-title a::before {
-  content: "◆";                /* try: ▸ ■ ● */
+  content: "◆";                    /* try: ▸ ■ ● */
   display: inline-block;
-  color: #2b7cff;              /* accent */
+  color: #2b7cff;                  /* accent */
   font-size: .95rem;
   margin-right: .5rem;
   transform: translateY(-1px);
 }
 
-/* Date + tags smaller, gray, italic under title
-   (Mainroad may use .post-meta OR .post__meta depending on version) */
+/* Date + tags smaller, gray, italic under title.
+   Mainroad may use .post-meta OR .post__meta depending on version. */
 .posts-list .post-meta,
 .posts-list .post__meta {
   font-style: italic;
@@ -94,31 +108,21 @@
 .posts-list .post-meta a:hover,
 .posts-list .post__meta a:hover { text-decoration: underline; }
 
-/* Let Mainroad handle separators; no extra borders here to avoid double lines */
-/* ---- Post delimiters & spacing (accent bar) ---- */
-:root {
-  /* Pick your accent; adjust to match your widget underline */
-  --post-accent: #2b7cff; /* e.g., same blue as your READ MORE button */
-}
+/* --- Delimiters & spacing between posts ---
+   Use a single clean separator and avoid doubling with theme borders. */
+.posts-list .post { border-top: none !important; }      /* neutralize theme’s top borders */
 
-/* Remove any theme border separators so we don't double up */
-.posts-list .post { border-top: none !important; }
-
-/* Space between posts */
 .posts-list .post {
-  margin-top: 1.25rem;   /* gap above every post */
-  padding-top: 0;        /* theme sometimes adds padding; we control it */
+  margin-top: 1.25rem;                                  /* space above each post */
+  padding-top: 0;
 }
 
-/* Add an accent bar above every post except the first */
-.posts-list .post:not(:first-child) {
-  padding-top: 1rem;     /* spacing between the bar and the title */
-}
+/* Simple 1px gray line above every post except the first */
+.posts-list .post:not(:first-child) { padding-top: 1rem; }
 .posts-list .post:not(:first-child)::before {
   content: "";
   display: block;
-  height: 2px;
-  background: var(--post-accent);
-  border-radius: 2px;
-  margin: 0 0 1rem 0;    /* space below the bar */
+  height: 1px;
+  background: #e4e4e4;                                  /* matches widget separators */
+  margin: 0 0 1rem 0;                                   /* space under the line */
 }
