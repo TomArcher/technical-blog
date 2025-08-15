@@ -1,0 +1,44 @@
+baseURL = "https://tomarcher.io/"
+languageCode = "en-us"
+title = "Signal & Syntax by Tom Archer"
+theme = "mainroad"
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  mainSections = ["posts"]
+  description = "Tom Archer's technical blog"
+
+  # Full bio (we'll show the first 100 chars in a sidebar widget)
+  bio = """
+Tom Archer is a longtime software developer, author, and technicalist with deep roots in Python, C++, Windows programming, and AI-driven automation. Tom started his career coding the box-office reporting & itinerary systems in Amsterdam for Holiday on Ice. Since then, he has designed and coded software for companies like IBM, AT&T, and VeriSign. Tom currently builds AI tools at Microsoft that generate technical documentation.
+"""
+
+  # Load a small custom CSS file for the "READ MORE" button and separators
+  customCSS = ["css/extra.css"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Blog"
+    url = "/"
+    weight = 2
+
+# Right sidebar widgets order:
+[params.widgets]
+  right = ["bio", "disclaimer", "categories", "tags"]
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    style = "dracula"
+    lineNos = true

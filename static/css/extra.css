@@ -1,0 +1,19 @@
+/* Sidebar "READ MORE" button */
+.btn-read-more {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #2b7cff;
+  color: #fff !important;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.btn-read-more:hover { background: #1d5dcc; }
+
+/* Thin separator line under custom widgets */
+.widget-separator {
+  border: 0;
+  height: 1px;
+  background: #e4e4e4;
+  margin: 14px 0 0 0;
+}

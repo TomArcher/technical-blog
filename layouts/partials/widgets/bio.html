@@ -1,0 +1,16 @@
+{{/* Custom "Bio" widget: first 100 chars of site.Params.bio + READ MORE button */}}
+<div class="widget-bio widget">
+  <h3 class="widget-title">About</h3>
+
+  {{ $bio := .Site.Params.bio | plainify }}
+  {{ if $bio }}
+    <p>{{ truncate $bio 100 }}</p>
+  {{ else }}
+    {{ with .Site.GetPage "page" "about" }}
+      <p>{{ .Plain | truncate 100 }}</p>
+    {{ end }}
+  {{ end }}
+
+  <p><a class="btn-read-more" href="/about/">READ MORE</a></p>
+  <hr class="widget-separator" />
+</div>
