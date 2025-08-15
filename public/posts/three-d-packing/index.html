@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>From Ice Shows to Algorithms: Cracking the Truck-Packing Puzzle - Signal &amp; Syntax by Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax by Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax by Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">From Ice Shows to Algorithms: Cracking the Truck-Packing Puzzle</h1>
+			
+		</header>
+		<div class="content post__content clearfix">
+			<p>My very first programming job was with Holiday on Ice, a touring show that hauled entire arenas’ worth of scenery, props, and gear from city to city. Every week, the crew would break everything down and load it into trucks for the next destination.</p>
+<p>One day, the controller asked if I could write a program to figure out <strong>the most efficient way to pack those trucks</strong>. I had already built their itinerary and box-office reporting systems, so I was comfortable with logic and basic math. But this was different. This was geometry, weight distribution, and optimization rolled into one giant puzzle — and at the time, I had no idea where to start.</p>
+<hr>
+<h3 id="the-thought-experiment">The Thought Experiment</h3>
+<p>Imagine standing in a cavernous loading bay. In front of you are dozens of oddly shaped crates, each with its own weight, size, and fragility. You have a limited number of trucks, each with a fixed height, width, and length. The challenge:</p>
+<ul>
+<li>Fit every crate if possible.</li>
+<li>Keep the load balanced so the truck doesn’t handle poorly or overload an axle.</li>
+<li>Protect fragile items while still making full use of space.</li>
+</ul>
+<p>Which item do you load first? The heaviest? The bulkiest? The one that will be hardest to fit later?</p>
+<p>The problem hides layers of complexity:</p>
+<ul>
+<li><strong>3D geometry</strong> — fitting rectangular prisms together efficiently.</li>
+<li><strong>Combinatorics</strong> — the staggering number of possible loading orders.</li>
+<li><strong>Optimization tradeoffs</strong> — maximizing space usage vs. keeping weight balanced.</li>
+</ul>
+<p>At the time, this felt like a riddle I couldn’t solve — a real-world constraint problem without an obvious formula.</p>
+<hr>
+<h3 id="modeling-the-trucks">Modeling the Trucks</h3>
+<p>To make the problem solvable, you have to simplify reality without losing the essence of the challenge. A model might assume:</p>
+<ul>
+<li>The truck interior is a perfect rectangular box with fixed dimensions.</li>
+<li>All cargo is rectangular, with known width, length, height, and weight.</li>
+<li>Items can be rotated only in certain ways (e.g., no tipping fragile crates on their sides).</li>
+<li>Each placement is axis-aligned (no angles).</li>
+<li>The goal is to place as many items as possible without exceeding the truck’s weight limit or violating balance rules.</li>
+</ul>
+<p>These constraints let us move from “impossible to simulate” to a <strong>discrete 3D bin packing problem</strong> that we can attack with algorithms.</p>
+<hr>
+<h3 id="a-python-approach">A Python Approach</h3>
+<p>Below is a simplified Python implementation of a greedy “shelf-packing” algorithm. It tries to place the biggest and heaviest items first, filling each horizontal layer (“shelf”) before moving upward. It also includes a crude balance check to keep the center of mass near the middle of the truck.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@dataclass</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Item</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># width in inches</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># length in inches</span>
+</span></span><span class="line"><span class="cl">    <span class="n">h</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># height in inches</span>
+</span></span><span class="line"><span class="cl">    <span class="n">weight</span><span class="p">:</span> <span class="nb">float</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@dataclass</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PlacedItem</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">item</span><span class="p">:</span> <span class="n">Item</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
+</span></span><span class="line"><span class="cl">    <span class="n">z</span><span class="p">:</span> <span class="nb">float</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@dataclass</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Truck</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inner_w</span><span class="p">:</span> <span class="nb">float</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inner_l</span><span class="p">:</span> <span class="nb">float</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inner_h</span><span class="p">:</span> <span class="nb">float</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_payload_lb</span><span class="p">:</span> <span class="nb">float</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pack_truck</span><span class="p">(</span><span class="n">truck</span><span class="p">:</span> <span class="n">Truck</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Item</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PlacedItem</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Sort largest-first by volume, then weight</span>
+</span></span><span class="line"><span class="cl">    <span class="n">items_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">it</span><span class="p">:</span> <span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">it</span><span class="o">.</span><span class="n">l</span> <span class="o">*</span> <span class="n">it</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">weight</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">placed</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">row_height</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items_sorted</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">x</span> <span class="o">+</span> <span class="n">item</span><span class="o">.</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="n">truck</span><span class="o">.</span><span class="n">inner_w</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">+</span> <span class="n">item</span><span class="o">.</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">truck</span><span class="o">.</span><span class="n">inner_l</span> <span class="ow">and</span> <span class="n">z</span> <span class="o">+</span> <span class="n">item</span><span class="o">.</span><span class="n">h</span> <span class="o">&lt;=</span> <span class="n">truck</span><span class="o">.</span><span class="n">inner_h</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">placed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PlacedItem</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">x</span> <span class="o">+=</span> <span class="n">item</span><span class="o">.</span><span class="n">w</span>
+</span></span><span class="line"><span class="cl">            <span class="n">row_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">row_height</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">y</span> <span class="o">+=</span> <span class="n">row_height</span>
+</span></span><span class="line"><span class="cl">            <span class="n">row_height</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">h</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">y</span> <span class="o">+</span> <span class="n">item</span><span class="o">.</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">truck</span><span class="o">.</span><span class="n">inner_l</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">placed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PlacedItem</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="n">x</span> <span class="o">+=</span> <span class="n">item</span><span class="o">.</span><span class="n">w</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">placed</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sample-output">Sample Output</h3>
+<p>Let’s test the algorithm with a small set of items:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">truck</span> <span class="o">=</span> <span class="n">Truck</span><span class="p">(</span><span class="n">inner_w</span><span class="o">=</span><span class="mi">96</span><span class="p">,</span> <span class="n">inner_l</span><span class="o">=</span><span class="mi">312</span><span class="p">,</span> <span class="n">inner_h</span><span class="o">=</span><span class="mi">102</span><span class="p">,</span> <span class="n">max_payload_lb</span><span class="o">=</span><span class="mi">18000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">items</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Item</span><span class="p">(</span><span class="s2">&#34;crate1&#34;</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">1200</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Item</span><span class="p">(</span><span class="s2">&#34;crate2&#34;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">260</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Item</span><span class="p">(</span><span class="s2">&#34;crate3&#34;</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plan</span> <span class="o">=</span> <span class="n">pack_truck</span><span class="p">(</span><span class="n">truck</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">plan</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> at (</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">z</span><span class="si">}</span><span class="s2">)&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em><strong>Output</strong></em></p>
+<pre tabindex="0"><code class="language-output" data-lang="output">crate1 at (0, 0, 0)
+crate2 at (48, 0, 0)
+crate3 at (78, 0, 0)
+</code></pre>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/geometry/" rel="tag">Geometry</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/3d-bin-packing/" rel="tag">3D Bin Packing</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/logistics/" rel="tag">Logistics</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/thought-experiment/" rel="tag">Thought Experiment</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax by Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

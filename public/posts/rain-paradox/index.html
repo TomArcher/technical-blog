@@ -3,7 +3,7 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Hello, World - Signal &amp; Syntax by Tom Archer</title>
+	<title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion - Signal &amp; Syntax by Tom Archer</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,30 +61,246 @@
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Hello, World</h1>
+			<h1 class="post__title">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</h1>
 			
 		</header>
 		<div class="content post__content clearfix">
-			<p>Welcome to my blog!</p>
+			<p>Early in my programming career, I came across a programming problem that stuck with me for many years:</p>
+<hr>
+<blockquote>
+<p><em>“If it&rsquo;s raining, will you stay drier by walking or running through it?”</em></p></blockquote>
+<hr>
+<p>At the time, I didn’t have the skills to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn’t about recursion or memory management. It was about <strong>getting wet</strong>, and <strong>how fast you move through falling rain</strong>.</p>
+<hr>
+<h3 id="the-thought-experiment">The Thought Experiment</h3>
+<p>Imagine you&rsquo;re 500 feet from shelter. It’s raining. No umbrella.
+You have two options:</p>
+<ul>
+<li><strong>Walk</strong> - exposes you to more rain from above.</li>
+<li><strong>Run</strong> - reduce vertical exposure but increase the number of raindrops hitting your front.</li>
+</ul>
+<p>Which gets you wetter?</p>
+<p>The paradox lies in competing intuitions:</p>
+<ul>
+<li>More time in rain = more wetness.</li>
+<li>Moving faster = more frontal exposure.</li>
+</ul>
+<p>What made this problem compelling was that there wasn’t an obvious answer — and no way (back then) for me to definitively prove my intuition one way or the other. It was a thought experiment we debated with intuition and hand-waving</p>
+<p>But now, with Python and a (virtual) rainy afternoon to spare, I can finally simulate it for real in a few minutes.</p>
+<hr>
+<h3 id="modeling-the-rain">Modeling the Rain</h3>
+<p>To simulate the problem accurately (but tractably), we make the following simplifications:</p>
+<h4 id="assumptions">Assumptions:</h4>
+<ul>
+<li>Rain falls vertically at a constant rate (no wind).</li>
+<li>Rain falls vertically at a uniform density.</li>
+<li>You’re a rectangular block moving at constant speed.</li>
+<li>Getting wet = the number of raindrops hitting you from the <strong>top</strong> and the <strong>front</strong>.</li>
+<li>Rain hits the top based on <strong>time exposed</strong>, and the front based on <strong>distance</strong> traveled.</li>
+<li>Rain from behind and sides is ignored.</li>
+</ul>
+<p>This converts the real-world complexity into a <strong>discrete physical model</strong> driven by surface area, velocity, and time.</p>
+<hr>
+<h3 id="python-simulation">Python Simulation</h3>
+<p>To better understand the rain exposure at different speeds, we can model the problem in Python. This function estimates how many raindrops hit your body while walking or running, based on your speed, body dimensions, and distance to shelter. It works by calculating how much rain hits a person from two directions: above and in front.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">simulate_wetness</span><span class="p">(</span><span class="n">speed_ft_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">distance_ft</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">rain_density</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calculates total &#39;wetness&#39; (raindrops hitting the body) for a given speed.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Parameters:
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - speed_ft_s: speed in feet per second
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - distance_ft: distance to shelter in feet
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - rain_density: raindrops per square foot per second
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Returns:
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - total number of raindrops that hit the body
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Human body dimensions (tested with random values).</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">70</span> <span class="o">/</span> <span class="mi">12</span>     <span class="c1"># in feet (5&#39;10&#34;)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">12</span>      <span class="c1"># in feet (should width)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">depth</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">/</span> <span class="mi">12</span>      <span class="c1"># in feet (body depth)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">If</span> <span class="n">you</span> <span class="n">add</span> <span class="n">images</span> <span class="ow">or</span> <span class="n">code</span> <span class="n">files</span> <span class="k">for</span> <span class="n">the</span> <span class="n">post</span><span class="p">,</span> <span class="n">put</span> <span class="n">them</span> <span class="ow">in</span> <span class="n">the</span> <span class="o">**</span><span class="n">same</span> <span class="n">folder</span><span class="o">**</span> 
-</span></span><span class="line"><span class="cl"><span class="ow">and</span> <span class="n">reference</span> <span class="n">them</span> <span class="n">relatively</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="err">`!</span><span class="p">[</span><span class="n">img</span><span class="p">](</span><span class="n">diagram</span><span class="o">.</span><span class="n">png</span><span class="p">)</span><span class="err">`</span> <span class="ow">or</span> <span class="err">`</span><span class="p">[</span><span class="n">download</span><span class="p">](</span><span class="n">tool</span><span class="o">.</span><span class="n">py</span><span class="p">)</span><span class="err">`</span><span class="o">.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Time exposed to rain (in seconds).</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time_in_rain</span> <span class="o">=</span> <span class="n">distance_ft</span> <span class="o">/</span> <span class="n">speed_ft_s</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">---</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Surface areas exposed.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">top_area</span> <span class="o">=</span> <span class="n">width</span> <span class="o">*</span> <span class="n">depth</span>     <span class="c1"># Head and shoulders.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">front_area</span> <span class="o">=</span> <span class="n">height</span> <span class="o">*</span> <span class="n">width</span>  <span class="c1"># Chest and legs.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Calculate rain impact.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rain_from_above</span> <span class="o">=</span> <span class="n">rain_density</span> <span class="o">*</span> <span class="n">top_area</span> <span class="o">*</span> <span class="n">time_in_rain</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rain_from_front</span> <span class="o">=</span> <span class="n">rain_density</span> <span class="o">*</span> <span class="n">front_area</span> <span class="o">*</span> <span class="n">distance_ft</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Total wetness from above and front.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rain_from_above</span> <span class="o">+</span> <span class="n">rain_from_front</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><hr>
+<h3 id="simulating-the-tradeoff-walking-vs-running">Simulating the Tradeoff: Walking vs. Running</h3>
+<p>To see how speed affects how wet you get, let’s run some simulations at a few different movement speeds. We&rsquo;ll run the function for values representing a slow walk at 2.25 mph all the way up to a full sprint at 9 mph. The values printed represent the total number of raindrops that hit you at each speed.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Define a list of speeds in feet per second.</span>
+</span></span><span class="line"><span class="cl"><span class="n">speeds</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.3</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">,</span> <span class="mf">13.2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">328</span>  <span class="c1"># Arbritrary value to test with.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Compute wetness values for each speed</span>
+</span></span><span class="line"><span class="cl"><span class="n">wetness_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulate_wetness</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span> <span class="k">for</span> <span class="n">speed</span> <span class="ow">in</span> <span class="n">speeds</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Iterate over speeds and their corresponding wetness values.</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">speed</span><span class="p">,</span> <span class="n">wetness</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span> <span class="n">wetness_values</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Print the speed and its associated wetness.</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Speed: </span><span class="si">{</span><span class="n">speed</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ft/s -&gt; Wetness: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">wetness</span><span class="p">)</span><span class="si">}</span><span class="s2"> drops&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div><hr>
+<p><strong>Sample Output:</strong></p>
+<p>After running the simulation, we can now see how wetness changes with each increase in speed. As expected, the longer you spend in the rain, the more drops accumulate on your head and shoulders. But running faster also means more drops hit you from the front. The balance between those two effects is captured in the following numbers:</p>
+<pre tabindex="0"><code>Speed: 3.3 ft/s -&gt; Wetness: 68333 drops
+Speed: 5.5 ft/s -&gt; Wetness: 54000 drops
+Speed: 8.8 ft/s -&gt; Wetness: 46500 drops
+Speed: 13.2 ft/s -&gt; Wetness: 43333 drops
+</code></pre><p>As you can see, the trend is clear: faster movement reduces overall wetness, but with diminishing returns.</p>
+<hr>
+<h3 id="making-the-results-visual">Making the Results Visual</h3>
+<p>Now, let’s turn the data into a graph so we can better visualize the relationship between speed and total wetness. This plot will show how the number of raindrops hitting you changes as your speed increases:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plot_wetness_vs_speed</span><span class="p">(</span><span class="n">speeds</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">wetness_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Plots wetness vs. speed using matplotlib.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Parameters:
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - speeds: list of speeds (in feet/second)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - wetness_values: list of corresponding wetness values
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Create a new figure with a specified size (width=8&#34;, height=5&#34;).</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Plot speed vs. wetness as a blue line with circular markers.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span> <span class="n">wetness_values</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Add a title to the chart.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Wetness vs. Speed in Rain&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Label the x-axis and y-axis.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;Speed (feet per second)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;Total Raindrops Hit&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Add a grid for better readability.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Use the actual speed values as x-axis ticks.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">speeds</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Automatically adjust layout to prevent clipping.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Display the plot window.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="wetness-graph.png" alt="Rain simulation chart"></p>
+<h3 id="the-verdict">The Verdict</h3>
+<p><strong>Running gets you less wet</strong>, consistently. The longer you spend under the rain, the more water lands on your head and shoulders. By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.</p>
+<p>However, there’s a tradeoff. As you speed up, you collide with more raindrops from the front. At first, the gains from reduced top-down exposure far outweigh the cost of increased frontal hits. But as your speed continues to climb, you start to hit a point of diminishing returns: you’re still getting wetter from the front, and there’s less time savings left to gain. No matter how fast you go, you&rsquo;ll always collide with some rain from the front, but you can reduce how long rain hits you from above.</p>
+<p>This result holds under idealized assumptions with no wind, dodging puddles, or slipping. But the model teaches us something deeper: <strong>some problems can only be truly understood when you take the time to simulate them</strong>.</p>
+<hr>
+<h3 id="why-i-chose-this-as-my-first-post">Why I Chose This as My First Post</h3>
+<p>This problem isn’t just about physics or weather. It’s about <strong>thinking like a programmer</strong>, and using code to test what your intuition can’t fully resolve.</p>
+<p>Over the past many years, that mindset of modeling uncertainty, isolating variables, and iterating toward insight has shaped everything from how I write software, author technical content, and how I approach AI and automation today.</p>
+<p>If you enjoyed this, stay tuned. I’ll be sharing insights on solving similar puzzles, Python programming, AI prompting, OpenAI, and LLMs.</p>
+<hr>
+<h3 id="try-it-yourself">Try It Yourself</h3>
+<p><a href="rain-paradox.py">Download the full code on GitHub</a></p>
+
 		</div>
 		<footer class="post__footer">
 			
@@ -92,10 +308,19 @@
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/welcome/" rel="tag">welcome</a>
+			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/hugo/" rel="tag">hugo</a>
+			<a class="tags__link btn" href="/tags/geometry/" rel="tag">Geometry</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/3d-bin-packing/" rel="tag">3D Bin Packing</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/logistics/" rel="tag">Logistics</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/thought-experiment/" rel="tag">Thought Experiment</a>
 		</li>
 	</ul>
 </div>
