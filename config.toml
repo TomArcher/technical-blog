@@ -34,8 +34,11 @@ Tom Archer is a longtime software developer, author, and technicalist with deep 
     weight = 2
 
 # Right sidebar widgets order:
-[params.widgets]
-  right = ["bio", "disclaimer", "categories", "tags"]
+[params.sidebar]
+  home   = "right"
+  list   = "right"
+  single = "right"
+  widgets = ["bio", "disclaimer", "recent", "categories", "taglist"]
 
 [markup]
   [markup.highlight]
