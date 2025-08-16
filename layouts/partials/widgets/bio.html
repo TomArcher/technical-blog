@@ -25,19 +25,19 @@
         </a>
       {{ end }}
 
+      {{/* Render bio as Markdown so render-link hook can add target=_blank to external links */}}
       {{ with .Site.Params.bio }}
-        {{ $bio := . | plainify }}
-        <p class="bio-text">{{ $bio | truncate 250 }}</p>
+        <div class="bio-text">{{ . | markdownify }}</div>
       {{ else }}
         {{ with site.GetPage "/about" }}
-          <p class="bio-text">{{ .Plain | truncate 100 }}</p>
+          <div class="bio-text">{{ .RawContent | markdownify }}</div>
         {{ else }}
-          <p class="bio-text">Add your bio to <code>params.bio</code> or create <code>content/about/index.md</code>.</p>
+          <div class="bio-text">Add your bio to <code>params.bio</code> or create <code>content/about/index.md</code>.</div>
         {{ end }}
       {{ end }}
     </div>
 
-    <!-- Lightweight "Read more →" link replaces the big button -->
+    <!-- Lightweight "Read more →" link -->
     <p class="more"><a class="link-more" href="{{ "/about/" | relURL }}">Read more →</a></p>
   </div>
 </div>

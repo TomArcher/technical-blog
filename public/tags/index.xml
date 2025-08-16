@@ -43,5 +43,54 @@
       <guid>http://localhost:1313/tags/thought-experiment/</guid>
       <description></description>
     </item>
+    <item>
+      <title>Matplotlib</title>
+      <link>http://localhost:1313/tags/matplotlib/</link>
+      <pubDate>Mon, 04 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/matplotlib/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Modeling</title>
+      <link>http://localhost:1313/tags/modeling/</link>
+      <pubDate>Mon, 04 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/modeling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optimization</title>
+      <link>http://localhost:1313/tags/optimization/</link>
+      <pubDate>Mon, 04 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/optimization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Physics</title>
+      <link>http://localhost:1313/tags/physics/</link>
+      <pubDate>Mon, 04 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/physics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rain</title>
+      <link>http://localhost:1313/tags/rain/</link>
+      <pubDate>Mon, 04 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/rain/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Visualization</title>
+      <link>http://localhost:1313/tags/visualization/</link>
+      <pubDate>Mon, 04 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/visualization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Weather</title>
+      <link>http://localhost:1313/tags/weather/</link>
+      <pubDate>Mon, 04 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/weather/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
