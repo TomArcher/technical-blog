@@ -1,6 +1,6 @@
 +++
 title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
-date = 2025-08-04T09:00:00-07:00
+date = 2025-08-15T20:39:00-07:00
 draft = false
 categories = ["Programming", "Modeling"]
 tags = [
@@ -21,21 +21,21 @@ Early in my programming career, I came across a programming problem that stuck w
 
 ---
 
-> *“If it's raining, will you stay drier by walking or running through it?”*
+> *"If it's raining, will you stay drier by walking or running through it?"*
 
 ---
 
-At the time, I didn’t have the skills to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn’t about recursion or memory management. It was about **getting wet**, and **how fast you move through falling rain**.
+At the time, I didn't have the skills to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn't about recursion or memory management. It was about **getting wet**, and **how fast you move through falling rain**.
 
 ---
 
-### The Thought Experiment
+## The Thought Experiment
 
-Imagine you're 500 feet from shelter. It’s raining. No umbrella.
+Imagine you're 500 feet from shelter. It's raining. No umbrella.
 You have two options:
 
 * **Walk** - exposes you to more rain from above.
-* **Run** - reduce vertical exposure but increase the number of raindrops hitting your front.
+* **Run** - reduces vertical exposure but increases the number of raindrops hitting your front.
 
 Which gets you wetter?
 
@@ -43,21 +43,21 @@ The paradox lies in competing intuitions:
 - More time in rain = more wetness.
 - Moving faster = more frontal exposure.
 
-What made this problem compelling was that there wasn’t an obvious answer — and no way (back then) for me to definitively prove my intuition one way or the other. It was a thought experiment we debated with intuition and hand-waving
+What made this problem compelling was that there wasn't an obvious answer and no way (back then) for me to definitively prove my intuition one way or the other. It was a thought experiment we debated with intuition and hand-waving.
 
-But now, with Python and a (virtual) rainy afternoon to spare, I can finally simulate it for real in a few minutes.
+But now, with Python and a (virtual) rainy afternoon to spare, I can finally simulate this problem to *know the answer*.
 
 ---
 
-### Modeling the Rain
+## Modeling the Rain
 
 To simulate the problem accurately (but tractably), we make the following simplifications:
 
-#### Assumptions:
+**Assumptions:**
 
 * Rain falls vertically at a constant rate (no wind).
 * Rain falls vertically at a uniform density.
-* You’re a rectangular block moving at constant speed.
+* You're a rectangular block moving at constant speed.
 * Getting wet = the number of raindrops hitting you from the **top** and the **front**.
 * Rain hits the top based on **time exposed**, and the front based on **distance** traveled.
 * Rain from behind and sides is ignored.
@@ -66,147 +66,273 @@ This converts the real-world complexity into a **discrete physical model** drive
 
 ---
 
-### Python Simulation
+## Python Simulation
 
 To better understand the rain exposure at different speeds, we can model the problem in Python. This function estimates how many raindrops hit your body while walking or running, based on your speed, body dimensions, and distance to shelter. It works by calculating how much rain hits a person from two directions: above and in front.
 
 ```python
-def simulate_wetness(speed_ft_s: float, distance_ft: float, rain_density:int = 1000) -> float:
+from dataclasses import dataclass
+import math
+
+@dataclass(frozen=True)
+class Person:
+    height_feet: float
+    shoulder_width_feet: float
+    depth_feet: float
+
+    @property
+    def top_area_sqft(self) -> float:
+        return self.shoulder_width_feet * self.depth_feet
+
+    @property
+    def front_area_sqft(self) -> float:
+        return self.height_feet * self.shoulder_width_feet
+
+
+@dataclass(frozen=True)
+class Rain:
+    intensity_drops_per_sqft_s: float  # drops / ft^2 / s
+    fall_speed_ft_s: float             # ft / s
+
+
+def intensity_from_inches_per_hour(
+    rainfall_inches_per_hour: float,
+    drop_diameter_mm: float = 2.0
+) -> float:
+    # Convert rainfall (in/hr) to intensity (drops/ft^2/s)
+    depth_flux_ft_per_s = (
+        (rainfall_inches_per_hour / 12.0) / 3600.0
+    )
+    drop_diameter_ft = (
+        (drop_diameter_mm / 1000.0) * 3.28084
+    )
+    drop_radius_ft = drop_diameter_ft / 2.0
+    drop_volume_cuft = (
+        (4.0 / 3.0) * math.pi * (drop_radius_ft ** 3)
+    )
+    return depth_flux_ft_per_s / drop_volume_cuft
+
+
+def simulate_wetness(
+    speed_ft_s: float,
+    distance_feet: float,
+    person: Person,
+    rain: Rain
+) -> float:
     """
-    Calculates total 'wetness' (raindrops hitting the body) for a given speed.
-
-    Parameters:
-    - speed_ft_s: speed in feet per second
-    - distance_ft: distance to shelter in feet
-    - rain_density: raindrops per square foot per second
-
-    Returns:
-    - total number of raindrops that hit the body
+    Wetness = intensity * top_area * (distance / speed)
+            + (intensity / fall_speed) * front_area * distance
     """
-    # Human body dimensions (tested with random values).
-    height = 70 / 12     # in feet (5'10")
-    width = 20 / 12      # in feet (should width)
-    depth = 12 / 12      # in feet (body depth)
+    if speed_ft_s <= 0:
+        raise ValueError("Speed must be positive")
 
-    # Time exposed to rain (in seconds).
-    time_in_rain = distance_ft / speed_ft_s
+    intensity = rain.intensity_drops_per_sqft_s
+    fall_speed = rain.fall_speed_ft_s
+    top_area = person.top_area_sqft
+    front_area = person.front_area_sqft
 
-    # Surface areas exposed.
-    top_area = width * depth     # Head and shoulders.
-    front_area = height * width  # Chest and legs.
-
-    # Calculate rain impact.
-    rain_from_above = rain_density * top_area * time_in_rain
-    rain_from_front = rain_density * front_area * distance_ft
-
-    # Total wetness from above and front.
-    return rain_from_above + rain_from_front
+    from_above = intensity * top_area * (distance_feet / speed_ft_s)
+    from_front = (
+        (intensity / fall_speed) * front_area * distance_feet
+    )
+    return from_above + from_front
 ```
 
----
+## Simulating the Tradeoff: Walking vs. Running
 
-### Simulating the Tradeoff: Walking vs. Running
-
-To see how speed affects how wet you get, let’s run some simulations at a few different movement speeds. We'll run the function for values representing a slow walk at 2.25 mph all the way up to a full sprint at 9 mph. The values printed represent the total number of raindrops that hit you at each speed.
+To see how speed affects how wet you get, let's run some simulations at a few different movement speeds. We'll run the function for values representing a slow walk at 2.25 mph all the way up to a full sprint at 9 mph. The values printed represent the total number of raindrops that hit you at each speed.
 
 ```python
+from typing import List
+
+# Person (~5'10" tall; ~20" shoulder width; ~12" depth)
+person = Person(
+    height_feet=70/12,
+    shoulder_width_feet=20/12,
+    depth_feet=12/12
+)
+
+# Example rain: 0.2 in/hr, ~2 mm drops, ~20 ft/s fall speed
+intensity = intensity_from_inches_per_hour(
+    0.2, drop_diameter_mm=2.0
+)
+rain = Rain(
+    intensity_drops_per_sqft_s=intensity,
+    fall_speed_ft_s=20.0
+)
+
 # Define a list of speeds in feet per second.
-speeds: List[float] = [3.3, 5.5, 8.8, 13.2]
-distance: int = 328  # Arbritrary value to test with.
+speeds_ft_s: List[float] = [3.3, 5.5, 8.8, 13.2]
+distance_feet: float = 500.0  # Arbitrary test distance (ft)
 
 # Compute wetness values for each speed
-wetness_values: List[float] = [simulate_wetness(speed, distance) for speed in speeds]
+wetness_values: List[float] = [
+    simulate_wetness(
+        speed, distance_feet, person, rain
+    )
+    for speed in speeds_ft_s
+]
 
 # Iterate over speeds and their corresponding wetness values.
-for speed, wetness in zip(speeds, wetness_values):
-    # Print the speed and its associated wetness.
-    print(f"Speed: {speed:.1f} ft/s -> Wetness: {int(wetness)} drops")
-
+for speed, wetness in zip(speeds_ft_s, wetness_values):
+    print(
+        f"Speed: {speed:.1f} ft/s -> "
+        f"Wetness: {int(wetness)} drops"
+    )
 ```
-
----
 
 **Sample Output:**
 
 After running the simulation, we can now see how wetness changes with each increase in speed. As expected, the longer you spend in the rain, the more drops accumulate on your head and shoulders. But running faster also means more drops hit you from the front. The balance between those two effects is captured in the following numbers:
 
-```
-Speed: 3.3 ft/s -> Wetness: 68333 drops
-Speed: 5.5 ft/s -> Wetness: 54000 drops
-Speed: 8.8 ft/s -> Wetness: 46500 drops
-Speed: 13.2 ft/s -> Wetness: 43333 drops
+```output
+Speed: 3.3 ft/s -> Wetness: 15,510 drops
+Speed: 5.5 ft/s -> Wetness: 12,348 drops
+Speed: 8.8 ft/s -> Wetness: 10,570 drops
+Speed: 13.2 ft/s -> Wetness: 9,582 drops
+Speed: 30.0 ft/s -> Wetness: 8,476 drops
 ```
 
 As you can see, the trend is clear: faster movement reduces overall wetness, but with diminishing returns.
 
+## Making the Results Visual
 
----
-
-### Making the Results Visual
-
-Now, let’s turn the data into a graph so we can better visualize the relationship between speed and total wetness. This plot will show how the number of raindrops hitting you changes as your speed increases:
+Now, let's turn the data into a graph so we can better visualize the relationship between speed and total wetness. This plot shows how the number of raindrops hitting you changes as your speed increases:
 
 ```python
 from typing import List
 import matplotlib.pyplot as plt
 
-def plot_wetness_vs_speed(speeds: List[float], wetness_values: List[float]) -> None:
-    """
-    Plots wetness vs. speed using matplotlib.
+def plot_wetness_vs_speed(
+    speeds_ft_s: List[float],
+    wetness_values: List[float],
+    person: Person,
+    rain: Rain,
+    distance_feet: float
+) -> None:
+    # Frontal-only asymptote (independent of speed)
+    intensity = rain.intensity_drops_per_sqft_s
+    fall_speed = rain.fall_speed_ft_s
+    frontal_limit = (
+        (intensity / fall_speed) *
+        person.front_area_sqft *
+        distance_feet
+    )
 
-    Parameters:
-    - speeds: list of speeds (in feet/second)
-    - wetness_values: list of corresponding wetness values
-    """
-    # Create a new figure with a specified size (width=8", height=5").
     plt.figure(figsize=(8, 5))
+    plt.plot(
+        speeds_ft_s,
+        wetness_values,
+        marker='o',
+        linestyle='-',
+        color='blue',
+        label='Total wetness'
+    )
+    plt.axhline(
+        frontal_limit,
+        color='crimson',
+        linestyle='--',
+        label='Frontal-only limit (as speed→∞)'
+    )
 
-    # Plot speed vs. wetness as a blue line with circular markers.
-    plt.plot(speeds, wetness_values, marker='o', linestyle='-', color='blue')
-
-    # Add a title to the chart.
     plt.title("Wetness vs. Speed in Rain")
-
-    # Label the x-axis and y-axis.
     plt.xlabel("Speed (feet per second)")
-    plt.ylabel("Total Raindrops Hit")
-
-    # Add a grid for better readability.
+    plt.ylabel("Total Raindrops (expected)")
     plt.grid(True)
-
-    # Use the actual speed values as x-axis ticks.
-    plt.xticks(speeds)
-
-    # Automatically adjust layout to prevent clipping.
+    plt.xticks(speeds_ft_s)
+    plt.legend()
     plt.tight_layout()
-
-    # Display the plot window.
     plt.show()
-
 ```
 
-![Rain simulation chart](wetness-graph.png)
+![Graph that shows wetness vs. speed](./wetness-graph.png)
 
-### The Verdict
+## The Verdict
 
 **Running gets you less wet**, consistently. The longer you spend under the rain, the more water lands on your head and shoulders. By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.
 
-However, there’s a tradeoff. As you speed up, you collide with more raindrops from the front. At first, the gains from reduced top-down exposure far outweigh the cost of increased frontal hits. But as your speed continues to climb, you start to hit a point of diminishing returns: you’re still getting wetter from the front, and there’s less time savings left to gain. No matter how fast you go, you'll always collide with some rain from the front, but you can reduce how long rain hits you from above.
+However, there's a tradeoff. As you speed up, you collide with more raindrops from the front. At first, the gains from reduced top-down exposure far outweigh the cost of increased frontal hits. But as your speed continues to climb, you start to hit a point of diminishing returns: you're still getting wetter from the front, and there's less time savings left to gain. No matter how fast you go, you'll always collide with some rain from the front, but you can reduce how long rain hits you from above.
 
 This result holds under idealized assumptions with no wind, dodging puddles, or slipping. But the model teaches us something deeper: **some problems can only be truly understood when you take the time to simulate them**.
 
 ---
 
-### Why I Chose This as My First Post
+## Exercises for the Reader
 
-This problem isn’t just about physics or weather. It’s about **thinking like a programmer**, and using code to test what your intuition can’t fully resolve.
+When I started writing books, an old friend of mine joked that technical 
+authors often cover the basics while leaving the more difficult problems as 
+an *"exercise for the reader."*
 
-Over the past many years, that mindset of modeling uncertainty, isolating variables, and iterating toward insight has shaped everything from how I write software, author technical content, and how I approach AI and automation today.
+In that same spirit, here are some ideas to extend this rainy-day simulation. 
+They're grouped into levels — from easy tweaks to more advanced experiments 
+that add realism or mathematical depth.
 
-If you enjoyed this, stay tuned. I’ll be sharing insights on solving similar puzzles, Python programming, AI prompting, OpenAI, and LLMs.
+### Beginner Level: Quick Fixes & Calibration
+
+1. **Unit check:** Verify that each term in the wetness equation resolves 
+   to "drops." Work through the dimensional analysis: intensity is in 
+   drops/ft²/s, areas are in ft², distances are in ft, and speeds are in 
+   ft/s. Making sure these cancel properly is a good exercise in unit 
+   consistency.  
+
+2. **Real rainfall:** Let the user input rainfall in inches/hour 
+   (e.g., 0.1, 0.5, 1.0). Convert this to drops/ft²/s using the helper 
+   function and an assumed drop diameter. Compare light drizzle vs. heavy 
+   downpour to see how much the totals scale.  
+
+3. **Validation:** Add input checks to ensure negative speeds or distances 
+   can’t be passed into `simulate_wetness`. You could raise exceptions with 
+   clear error messages or clamp inputs to realistic ranges. Try testing with 
+   edge cases like `speed=0` or `distance=0` to confirm behavior.  
 
 ---
 
-### Try It Yourself
+### Intermediate Level: Geometry & Body Modeling
 
-[Download the full code on GitHub](rain-paradox.py)
+4. **Cylindrical person:** Replace the box model with a cylinder (height, 
+   radius). Compute the top area as πr² and the front area as height × 2r. 
+   Compare wetness outcomes from this smoother shape versus the rectangular 
+   one, and discuss which feels more realistic.  
+
+5. **Hunch angle:** Add a tilt angle that decreases top area and increases 
+   frontal area. You can use simple trigonometry to project the areas based 
+   on the angle. Plotting wetness across different posture angles could 
+   reveal the "best" stance in the rain.  
+
+6. **Variable distance:** Run scenarios at 50, 200, 500, and 1000 ft to see 
+   how distance affects strategy. Short distances might not justify sprinting, 
+   while long distances magnify the benefits. Make a table or plot that 
+   compares these cases.  
+
+---
+
+### Advanced Level: Environment & Stochasticity
+
+7. **Wind:** Add a horizontal wind component. Now raindrops fall at an angle 
+   (vector \((u, 0, -fall\_speed)\)), so the effective frontal area changes. 
+   This turns the simple vertical model into a 3D vector problem. You’ll see 
+   that wind can make running sideways into the rain much worse.  
+
+8. **Monte Carlo rain:** Instead of continuous flux, simulate drops randomly 
+   with a Poisson process in space-time. Each drop has a chance of hitting 
+   the person’s projected area. Run many trials and average the results to 
+   approximate the analytic model. This adds randomness to the story.  
+
+9. **Drop size distribution:** Sample raindrop diameters from a realistic 
+   distribution (meteorology papers often use log-normal). Larger drops carry 
+   more volume and can be weighted more heavily in the wetness score. Try 
+   mixing small drizzle with a few large drops to see how totals shift.  
+
+---
+
+## Why I Chose This as My First Post
+
+This problem isn't just about physics or weather. It's about **thinking like a programmer**, and using code to test what your intuition can't fully resolve.
+
+Over the past many years, that mindset of modeling uncertainty, isolating variables, and iterating toward insight has shaped everything from how I write software, author technical content, and how I approach AI and automation today.
+
+If you enjoyed this, stay tuned. I'll be sharing insights on solving similar puzzles, Python programming, AI prompting, OpenAI, and LLMs.
+
+## Try It Yourself
+
+[Download the full code on GitHub](./rain-paradox.py)

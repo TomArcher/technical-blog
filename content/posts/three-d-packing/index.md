@@ -1,7 +1,7 @@
 +++
 title = "From Ice Shows to Algorithms: Cracking the Truck-Packing Puzzle"
 date = 2025-08-14T09:00:00-07:00
-draft = false
+draft = true
 categories = ["Programming", "Optimization"]
 tags = ["Python", "Geometry", "3D Bin Packing", "Logistics", "Thought Experiment"]
 +++
