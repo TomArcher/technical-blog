@@ -2,35 +2,26 @@
    static/css/extra.css
    =========================== */
 
-/* --- Buttons --- */
-.btn-read-more {
-  display: inline-block;
-  padding: 8px 14px;
-  background: #2b7cff;
-  color: #fff !important;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-}
-.btn-read-more:hover { background: #1d5dcc; }
-
-/* If you still have an <hr class="widget-separator"> in any custom widget, hide it */
-.widget-bio .widget-separator,
-.widget-disclaimer .widget-separator { display: none; }
-
-/* --- Sidebar bio widget (avatar + wrapped text) ---
-   Markup uses:
-     <div class="widget widget-bio">
-       <h4 class="widget__title">About</h4>
-       <div class="widget__content">
-         <div class="bio-wrap">
+/* ---------------------------------
+   Sidebar bio widget (avatar + wrap)
+   ---------------------------------- 
+   Markup (custom widget partial):
+   <div class="widget widget-bio">
+     <h4 class="widget__title">About</h4>
+     <div class="widget__content">
+       <div class="bio-wrap">
+         <a class="bio-avatar-link" href="/about/">
            <img class="bio-avatar" ...>
-           <p class="bio-text">...</p>
-         </div>
+         </a>
+         <p class="bio-text">...</p>
        </div>
+       <p class="more"><a class="link-more" href="/about/">Read more →</a></p>
      </div>
+   </div>
 */
-.widget-bio .bio-wrap { display: block !important; }    /* ensure floats can wrap */
+.widget-bio .bio-wrap { 
+  display: block !important;        /* ensure floats can wrap even if parent uses flex */
+}
 
 .widget-bio .bio-avatar {
   float: left;
@@ -38,8 +29,14 @@
   height: 72px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 2px 12px 6px 0;          /* space to right/bottom */
-  shape-outside: circle(50%);      /* nicer wrap on modern browsers */
+  margin: 2px 12px 6px 0;           /* space to right/bottom */
+  shape-outside: circle(50%);       /* nicer wrap on modern browsers */
+}
+
+.widget-bio .bio-avatar-link {
+  float: left;                      /* keep the wrap with the image */
+  display: block;
+  text-decoration: none !important; /* no underline around the image */
 }
 
 .widget-bio .bio-text {
@@ -54,23 +51,49 @@
   clear: both;
 }
 
-/* --- About page bio (same layout, no avatar, extra spacing below) ---
-   Markup (shortcode) uses:
-     <div class="about-bio">
-       <img class="bio-avatar">   <-- hidden here
-       <div class="bio-text">...</div>
-     </div>
+/* Compact “Read more →” link */
+.widget-bio .more { margin: .35rem 0 0 0; }
+.widget-bio .link-more {
+  font-size: .95rem;
+  color: #2b7cff;                   /* accent */
+  text-decoration: none;
+  font-weight: 600;
+}
+.widget-bio .link-more:hover,
+.widget-bio .link-more:focus { text-decoration: underline; }
+
+/* Keyboard focus ring for accessibility */
+.widget-bio .bio-avatar-link:focus-visible,
+.widget-bio .link-more:focus-visible {
+  outline: 2px solid #2b7cff;
+  outline-offset: 2px;
+}
+
+/* Hide any legacy button if it still exists in markup */
+.btn-read-more { display: none !important; }
+
+/* Hide legacy gray <hr> separators inside custom widgets (to avoid double bars) */
+.widget-bio .widget-separator,
+.widget-disclaimer .widget-separator { display: none; }
+
+/* ------------------------------------------------
+   About page bio (same text block, no avatar shown)
+   ------------------------------------------------ 
+   Markup (shortcode): <div class="about-bio"> ... </div>
 */
 .about-bio {
   display: block;
-  margin-bottom: 1rem;             /* gap before the first paragraph following the bio */
+  margin-bottom: 1rem;              /* gap before the first paragraph after the bio */
 }
-/* Hide avatar on the About page to avoid duplication with sidebar */
+
+/* Hide the avatar on the About page to avoid duplication with sidebar image */
 .about-bio .bio-avatar { display: none !important; }
 .about-bio .bio-text { clear: none !important; }
 .about-bio::after { content: ""; display: table; clear: both; }
 
-/* --- Home/section post list styling (Mainroad selectors) --- */
+/* ---------------------------------------------------
+   Home/section post list styling (Mainroad selectors)
+   --------------------------------------------------- */
 .posts-list .post-title {
   font-size: 1.6rem !important;
   font-weight: 800 !important;
@@ -79,22 +102,22 @@
 }
 
 .posts-list .post-title a {
-  color: #0d1a2d !important;       /* dark navy */
+  color: #0d1a2d !important;        /* dark navy */
   text-decoration: none !important;
 }
 .posts-list .post-title a:hover { text-decoration: underline !important; }
 
-/* Accent shape before each list title */
+/* Accent shape before each list title (pick one: ◆ ▸ ■ ●) */
 .posts-list .post-title a::before {
-  content: "◆";                    /* try: ▸ ■ ● */
+  content: "◆";
   display: inline-block;
-  color: #2b7cff;                  /* accent */
+  color: #2b7cff;                   /* accent */
   font-size: .95rem;
   margin-right: .5rem;
   transform: translateY(-1px);
 }
 
-/* Date + tags smaller, gray, italic under title.
+/* Date + tags smaller, gray, italic under the title.
    Mainroad may use .post-meta OR .post__meta depending on version. */
 .posts-list .post-meta,
 .posts-list .post__meta {
@@ -108,12 +131,16 @@
 .posts-list .post-meta a:hover,
 .posts-list .post__meta a:hover { text-decoration: underline; }
 
-/* --- Delimiters & spacing between posts ---
-   Use a single clean separator and avoid doubling with theme borders. */
-.posts-list .post { border-top: none !important; }      /* neutralize theme’s top borders */
+/* ---------------------------------------
+   Post delimiters & spacing between posts
+   --------------------------------------- */
 
+/* Neutralize any theme border to avoid doubling */
+.posts-list .post { border-top: none !important; }
+
+/* Space above each post */
 .posts-list .post {
-  margin-top: 1.25rem;                                  /* space above each post */
+  margin-top: 1.25rem;
   padding-top: 0;
 }
 
@@ -123,6 +150,25 @@
   content: "";
   display: block;
   height: 1px;
-  background: #e4e4e4;                                  /* matches widget separators */
-  margin: 0 0 1rem 0;                                   /* space under the line */
+  background: #e4e4e4;              /* same gray used for widget separators */
+  margin: 0 0 1rem 0;               /* space under the line */
 }
+/* Avatar link + wrap */
+.widget-bio .bio-wrap { display:block !important; }
+.widget-bio .bio-avatar {
+  float:left; width:72px; height:72px; border-radius:50%; object-fit:cover;
+  margin:2px 12px 6px 0; shape-outside:circle(50%);
+}
+.widget-bio .bio-avatar-link { float:left; display:block; text-decoration:none !important; }
+.widget-bio .bio-text { clear:none !important; margin-top:.2rem; }
+.widget-bio .bio-wrap::after { content:""; display:table; clear:both; }
+
+/* Compact "Read more →" link */
+.widget-bio .more { margin:.35rem 0 0 0; }
+.widget-bio .link-more {
+  font-size:.95rem; color:#2b7cff; text-decoration:none; font-weight:600;
+}
+.widget-bio .link-more:hover, .widget-bio .link-more:focus { text-decoration:underline; }
+
+/* Remove old big button if still present in older markup */
+.btn-read-more { display:none !important; }

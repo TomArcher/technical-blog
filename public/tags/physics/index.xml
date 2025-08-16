@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Physics on Signal &amp; Syntax by Tom Archer</title>
+    <link>http://localhost:1313/tags/physics/</link>
+    <description>Recent content in Physics on Signal &amp; Syntax by Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Aug 2025 09:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/physics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</title>
+      <link>http://localhost:1313/posts/rain-paradox/</link>
+      <pubDate>Mon, 04 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/rain-paradox/</guid>
+      <description>&lt;p&gt;Early in my programming career, I came across a programming problem that stuck with me for many years:&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;“If it&amp;rsquo;s raining, will you stay drier by walking or running through it?”&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;At the time, I didn’t have the skills to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn’t about recursion or memory management. It was about &lt;strong&gt;getting wet&lt;/strong&gt;, and &lt;strong&gt;how fast you move through falling rain&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

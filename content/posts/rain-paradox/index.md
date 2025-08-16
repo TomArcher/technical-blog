@@ -2,8 +2,19 @@
 title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
 date = 2025-08-04T09:00:00-07:00
 draft = false
-categories = ["Programming", "Optimization"]
-tags = ["Python", "Geometry", "3D Bin Packing", "Logistics", "Thought Experiment"]
+categories = ["Programming", "Modeling"]
+tags = [
+  "Python",
+  "Modeling",
+  "Physics",
+  "Rain",
+  "Weather",
+  "Optimization",
+  "Geometry",
+  "Matplotlib",
+  "Visualization",
+  "Thought Experiment"
+]
 +++
 
 Early in my programming career, I came across a programming problem that stuck with me for many years:
