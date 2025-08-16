@@ -29,10 +29,10 @@
       {{ with .Site.Params.bio }}
         <div class="bio-text">{{ . | markdownify }}</div>
       {{ else }}
-        {{ with site.GetPage "/about" }}
+        {{ with site.GetPage "/bio" }}
           <div class="bio-text">{{ .RawContent | markdownify }}</div>
         {{ else }}
-          <div class="bio-text">Add your bio to <code>params.bio</code> or create <code>content/about/index.md</code>.</div>
+          <div class="bio-text">Add your bio to <code>params.bio</code> or create <code>content/bio/index.md</code>.</div>
         {{ end }}
       {{ end }}
     </div>
