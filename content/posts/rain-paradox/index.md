@@ -46,9 +46,9 @@ The paradox lies in competing intuitions:
 - More time in rain = more wetness.
 - Moving faster = more frontal exposure.
 
-What made this problem compelling was that there wasn't an obvious answer and no way (back then) for me to definitively prove my intuition one way or the other. It was a thought experiment we debated with intuition and hand-waving.
+What made this problem compelling was that there wasn’t an obvious answer and no way (back then) to definitively prove which effect dominated. It was a thought experiment we debated endlessly with hand-waving.
 
-But now, with Python, generative AI, and a (virtual) rainy afternoon to spare, I can finally simulate this problem to know the answer.
+But now, with Python, generative AI, and a (virtual) rainy afternoon to spare, I can finally simulate this problem to **know the answer**.
 
 ## Modeling the Rain
 

@@ -66,13 +66,81 @@
 			<div class="primary">
 			
 <main class="main" role="main">
-	<article class="post">
-		<header class="post__header">
-			<h1 class="post__title">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</h1>
-			
-		</header>
-		<div class="content post__content clearfix">
-			<p>Early in my programming career, I came across a programming problem that stuck with me for many years:</p>
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</h1>
+
+      <div class="post__meta meta">
+        <p class="meta__line"><em>
+              <time datetime="2025-08-15T20:39:00-07:00">
+                August 15, 2025
+              </time>
+            </em>&nbsp;•&nbsp;<a class="meta__link"
+                 href="/categories/programming/"
+                 rel="category">
+                <em>Programming</em>
+              </a>, <a class="meta__link"
+                 href="/categories/modeling/"
+                 rel="category">
+                <em>Modeling</em>
+              </a>, <a class="meta__link"
+                 href="/categories/ai/"
+                 rel="category">
+                <em>AI</em>
+              </a>,<a class="meta__link"
+                 href="/tags/python/"
+                 rel="tag">
+                #Python
+              </a>, <a class="meta__link"
+                 href="/tags/generative-ai/"
+                 rel="tag">
+                #Generative AI
+              </a>, <a class="meta__link"
+                 href="/tags/prompt-engineering/"
+                 rel="tag">
+                #Prompt Engineering
+              </a>, <a class="meta__link"
+                 href="/tags/modeling/"
+                 rel="tag">
+                #Modeling
+              </a>, <a class="meta__link"
+                 href="/tags/physics/"
+                 rel="tag">
+                #Physics
+              </a>, <a class="meta__link"
+                 href="/tags/rain/"
+                 rel="tag">
+                #Rain
+              </a>, <a class="meta__link"
+                 href="/tags/weather/"
+                 rel="tag">
+                #Weather
+              </a>, <a class="meta__link"
+                 href="/tags/optimization/"
+                 rel="tag">
+                #Optimization
+              </a>, <a class="meta__link"
+                 href="/tags/geometry/"
+                 rel="tag">
+                #Geometry
+              </a>, <a class="meta__link"
+                 href="/tags/matplotlib/"
+                 rel="tag">
+                #Matplotlib
+              </a>, <a class="meta__link"
+                 href="/tags/visualization/"
+                 rel="tag">
+                #Visualization
+              </a>, <a class="meta__link"
+                 href="/tags/thought-experiment/"
+                 rel="tag">
+                #Thought Experiment
+              </a></p>
+      </div>
+    </header>
+
+    <div class="content post__content clearfix">
+      <p>Early in my programming career, I came across a programming problem that stuck with me for many years:</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;If it&rsquo;s raining, will you stay drier by walking or running through it?&rdquo;</em></p></blockquote>
@@ -92,8 +160,8 @@ You have two options:</p>
 <li>More time in rain = more wetness.</li>
 <li>Moving faster = more frontal exposure.</li>
 </ul>
-<p>What made this problem compelling was that there wasn&rsquo;t an obvious answer and no way (back then) for me to definitively prove my intuition one way or the other. It was a thought experiment we debated with intuition and hand-waving.</p>
-<p>But now, with Python, generative AI, and a (virtual) rainy afternoon to spare, I can finally simulate this problem to know the answer.</p>
+<p>What made this problem compelling was that there wasn’t an obvious answer and no way (back then) to definitively prove which effect dominated. It was a thought experiment we debated endlessly with hand-waving.</p>
+<p>But now, with Python, generative AI, and a (virtual) rainy afternoon to spare, I can finally simulate this problem to <strong>know the answer</strong>.</p>
 <h2 id="modeling-the-rain">Modeling the Rain</h2>
 <p>To simulate the problem accurately (but tractably), we make the following simplifications:</p>
 <p><strong>Assumptions:</strong></p>
@@ -114,144 +182,144 @@ person is a rectangular block with a top area and front area.
 Rain falls vertically at a steady rate. Calculate drops hitting 
 the top (time exposed) and front (distance traveled).
 </code></pre><p>The model produces a solid draft. As with most AI-generated code, it needs refinements, such as naming consistency, unit correctness, and clearer abstractions. But that initial generation saved me from boilerplate and gave me a starting point. What follows is the refined version.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">math</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">height_feet</span><span class="p">:</span> <span class="nb">float</span>
-</span></span><span class="line"><span class="cl">    <span class="n">shoulder_width_feet</span><span class="p">:</span> <span class="nb">float</span>
-</span></span><span class="line"><span class="cl">    <span class="n">depth_feet</span><span class="p">:</span> <span class="nb">float</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@property</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">top_area_sqft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shoulder_width_feet</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_feet</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@property</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">front_area_sqft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">height_feet</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">shoulder_width_feet</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Rain</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">intensity_drops_per_sqft_s</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># drops / ft^2 / s</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fall_speed_ft_s</span><span class="p">:</span> <span class="nb">float</span>             <span class="c1"># ft / s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">intensity_from_inches_per_hour</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">rainfall_inches_per_hour</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">drop_diameter_mm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Convert rainfall (in/hr) to intensity (drops/ft^2/s)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">depth_flux_ft_per_s</span> <span class="o">=</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="n">rainfall_inches_per_hour</span> <span class="o">/</span> <span class="mf">12.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3600.0</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">drop_diameter_ft</span> <span class="o">=</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="n">drop_diameter_mm</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span> <span class="o">*</span> <span class="mf">3.28084</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">drop_radius_ft</span> <span class="o">=</span> <span class="n">drop_diameter_ft</span> <span class="o">/</span> <span class="mf">2.0</span>
-</span></span><span class="line"><span class="cl">    <span class="n">drop_volume_cuft</span> <span class="o">=</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="mf">4.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">drop_radius_ft</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">depth_flux_ft_per_s</span> <span class="o">/</span> <span class="n">drop_volume_cuft</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">simulate_wetness</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">speed_ft_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">distance_feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">person</span><span class="p">:</span> <span class="n">Person</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">rain</span><span class="p">:</span> <span class="n">Rain</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Wetness = intensity * top_area * (distance / speed)
-</span></span></span><span class="line"><span class="cl"><span class="s2">            + (intensity / fall_speed) * front_area * distance
-</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">speed_ft_s</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Speed must be positive&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">intensity</span> <span class="o">=</span> <span class="n">rain</span><span class="o">.</span><span class="n">intensity_drops_per_sqft_s</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fall_speed</span> <span class="o">=</span> <span class="n">rain</span><span class="o">.</span><span class="n">fall_speed_ft_s</span>
-</span></span><span class="line"><span class="cl">    <span class="n">top_area</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">top_area_sqft</span>
-</span></span><span class="line"><span class="cl">    <span class="n">front_area</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">front_area_sqft</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">from_above</span> <span class="o">=</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="n">intensity</span> <span class="o">*</span> <span class="n">top_area</span> <span class="o">*</span> <span class="p">(</span><span class="n">distance_feet</span> <span class="o">/</span> <span class="n">speed_ft_s</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">from_front</span> <span class="o">=</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="n">intensity</span> <span class="o">/</span> <span class="n">fall_speed</span><span class="p">)</span> <span class="o">*</span> <span class="n">front_area</span> <span class="o">*</span> <span class="n">distance_feet</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">from_above</span> <span class="o">+</span> <span class="n">from_front</span>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> dataclasses <span style="color:#ff79c6">import</span> dataclass
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> math
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@dataclass(frozen<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span>:
+</span></span><span style="display:flex;"><span>    height_feet: <span style="color:#8be9fd;font-style:italic">float</span>
+</span></span><span style="display:flex;"><span>    shoulder_width_feet: <span style="color:#8be9fd;font-style:italic">float</span>
+</span></span><span style="display:flex;"><span>    depth_feet: <span style="color:#8be9fd;font-style:italic">float</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @property
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">top_area_sqft</span>(<span style="font-style:italic">self</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">float</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>shoulder_width_feet <span style="color:#ff79c6">*</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>depth_feet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @property
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">front_area_sqft</span>(<span style="font-style:italic">self</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">float</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>height_feet <span style="color:#ff79c6">*</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>shoulder_width_feet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@dataclass(frozen<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Rain</span>:
+</span></span><span style="display:flex;"><span>    intensity_drops_per_sqft_s: <span style="color:#8be9fd;font-style:italic">float</span>  <span style="color:#6272a4"># drops / ft^2 / s</span>
+</span></span><span style="display:flex;"><span>    fall_speed_ft_s: <span style="color:#8be9fd;font-style:italic">float</span>             <span style="color:#6272a4"># ft / s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">intensity_from_inches_per_hour</span>(
+</span></span><span style="display:flex;"><span>    rainfall_inches_per_hour: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    drop_diameter_mm: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2.0</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">float</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Convert rainfall (in/hr) to intensity (drops/ft^2/s)</span>
+</span></span><span style="display:flex;"><span>    depth_flux_ft_per_s <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        (rainfall_inches_per_hour <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">12.0</span>) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3600.0</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    drop_diameter_ft <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        (drop_diameter_mm <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">1000.0</span>) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">3.28084</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    drop_radius_ft <span style="color:#ff79c6">=</span> drop_diameter_ft <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">2.0</span>
+</span></span><span style="display:flex;"><span>    drop_volume_cuft <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        (<span style="color:#bd93f9">4.0</span> <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3.0</span>) <span style="color:#ff79c6">*</span> math<span style="color:#ff79c6">.</span>pi <span style="color:#ff79c6">*</span> (drop_radius_ft <span style="color:#ff79c6">**</span> <span style="color:#bd93f9">3</span>)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> depth_flux_ft_per_s <span style="color:#ff79c6">/</span> drop_volume_cuft
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">simulate_wetness</span>(
+</span></span><span style="display:flex;"><span>    speed_ft_s: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    distance_feet: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    person: Person,
+</span></span><span style="display:flex;"><span>    rain: Rain
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">float</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Wetness = intensity * top_area * (distance / speed)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            + (intensity / fall_speed) * front_area * distance
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> speed_ft_s <span style="color:#ff79c6">&lt;=</span> <span style="color:#bd93f9">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">raise</span> ValueError(<span style="color:#f1fa8c">&#34;Speed must be positive&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    intensity <span style="color:#ff79c6">=</span> rain<span style="color:#ff79c6">.</span>intensity_drops_per_sqft_s
+</span></span><span style="display:flex;"><span>    fall_speed <span style="color:#ff79c6">=</span> rain<span style="color:#ff79c6">.</span>fall_speed_ft_s
+</span></span><span style="display:flex;"><span>    top_area <span style="color:#ff79c6">=</span> person<span style="color:#ff79c6">.</span>top_area_sqft
+</span></span><span style="display:flex;"><span>    front_area <span style="color:#ff79c6">=</span> person<span style="color:#ff79c6">.</span>front_area_sqft
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    from_above <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        intensity <span style="color:#ff79c6">*</span> top_area <span style="color:#ff79c6">*</span> (distance_feet <span style="color:#ff79c6">/</span> speed_ft_s)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    from_front <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        (intensity <span style="color:#ff79c6">/</span> fall_speed) <span style="color:#ff79c6">*</span> front_area <span style="color:#ff79c6">*</span> distance_feet
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> from_above <span style="color:#ff79c6">+</span> from_front
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="simulating-the-tradeoff-walking-vs-running">Simulating the Tradeoff: Walking vs. Running</h2>
@@ -259,82 +327,82 @@ the top (time exposed) and front (distance traveled).
 <pre tabindex="0"><code class="language-prompt" data-lang="prompt">Using the simulate_wetness function, generate Python code to loop over
 a list of speeds (ft/s) and print out the resulting wetness.
 </code></pre><p>The model produces usable code that I edit for clarity and readability.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Person (~5&#39;10&#34; tall; ~20&#34; shoulder width; ~12&#34; depth)</span>
-</span></span><span class="line"><span class="cl"><span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">height_feet</span><span class="o">=</span><span class="mi">70</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">shoulder_width_feet</span><span class="o">=</span><span class="mi">20</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">depth_feet</span><span class="o">=</span><span class="mi">12</span><span class="o">/</span><span class="mi">12</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Example rain: 0.2 in/hr, ~2 mm drops, ~20 ft/s fall speed</span>
-</span></span><span class="line"><span class="cl"><span class="n">intensity</span> <span class="o">=</span> <span class="n">intensity_from_inches_per_hour</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="mf">0.2</span><span class="p">,</span> <span class="n">drop_diameter_mm</span><span class="o">=</span><span class="mf">2.0</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">rain</span> <span class="o">=</span> <span class="n">Rain</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">intensity_drops_per_sqft_s</span><span class="o">=</span><span class="n">intensity</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fall_speed_ft_s</span><span class="o">=</span><span class="mf">20.0</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Define a list of speeds in feet per second.</span>
-</span></span><span class="line"><span class="cl"><span class="n">speeds_ft_s</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.3</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">,</span> <span class="mf">13.2</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">distance_feet</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">500.0</span>  <span class="c1"># Arbitrary test distance (ft)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Compute wetness values for each speed</span>
-</span></span><span class="line"><span class="cl"><span class="n">wetness_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="n">simulate_wetness</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="n">speed</span><span class="p">,</span> <span class="n">distance_feet</span><span class="p">,</span> <span class="n">person</span><span class="p">,</span> <span class="n">rain</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">speed</span> <span class="ow">in</span> <span class="n">speeds_ft_s</span>
-</span></span><span class="line"><span class="cl"><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Iterate over speeds and their corresponding wetness values.</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">speed</span><span class="p">,</span> <span class="n">wetness</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">speeds_ft_s</span><span class="p">,</span> <span class="n">wetness_values</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;Speed: </span><span class="si">{</span><span class="n">speed</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ft/s -&gt; &#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;Wetness: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">wetness</span><span class="p">)</span><span class="si">}</span><span class="s2"> drops&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> typing <span style="color:#ff79c6">import</span> List
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Person (~5&#39;10&#34; tall; ~20&#34; shoulder width; ~12&#34; depth)</span>
+</span></span><span style="display:flex;"><span>person <span style="color:#ff79c6">=</span> Person(
+</span></span><span style="display:flex;"><span>    height_feet<span style="color:#ff79c6">=</span><span style="color:#bd93f9">70</span><span style="color:#ff79c6">/</span><span style="color:#bd93f9">12</span>,
+</span></span><span style="display:flex;"><span>    shoulder_width_feet<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span><span style="color:#ff79c6">/</span><span style="color:#bd93f9">12</span>,
+</span></span><span style="display:flex;"><span>    depth_feet<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span><span style="color:#ff79c6">/</span><span style="color:#bd93f9">12</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Example rain: 0.2 in/hr, ~2 mm drops, ~20 ft/s fall speed</span>
+</span></span><span style="display:flex;"><span>intensity <span style="color:#ff79c6">=</span> intensity_from_inches_per_hour(
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">0.2</span>, drop_diameter_mm<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2.0</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>rain <span style="color:#ff79c6">=</span> Rain(
+</span></span><span style="display:flex;"><span>    intensity_drops_per_sqft_s<span style="color:#ff79c6">=</span>intensity,
+</span></span><span style="display:flex;"><span>    fall_speed_ft_s<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20.0</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Define a list of speeds in feet per second.</span>
+</span></span><span style="display:flex;"><span>speeds_ft_s: List[<span style="color:#8be9fd;font-style:italic">float</span>] <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">3.3</span>, <span style="color:#bd93f9">5.5</span>, <span style="color:#bd93f9">8.8</span>, <span style="color:#bd93f9">13.2</span>]
+</span></span><span style="display:flex;"><span>distance_feet: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">500.0</span>  <span style="color:#6272a4"># Arbitrary test distance (ft)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Compute wetness values for each speed</span>
+</span></span><span style="display:flex;"><span>wetness_values: List[<span style="color:#8be9fd;font-style:italic">float</span>] <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>    simulate_wetness(
+</span></span><span style="display:flex;"><span>        speed, distance_feet, person, rain
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> speed <span style="color:#ff79c6">in</span> speeds_ft_s
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Iterate over speeds and their corresponding wetness values.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> speed, wetness <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(speeds_ft_s, wetness_values):
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Speed: </span><span style="color:#f1fa8c">{</span>speed<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> ft/s -&gt; &#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Wetness: </span><span style="color:#f1fa8c">{</span><span style="color:#8be9fd;font-style:italic">int</span>(wetness)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> drops&#34;</span>
+</span></span><span style="display:flex;"><span>    )
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Sample Output:</strong></p>
@@ -349,96 +417,96 @@ Speed: 30.0 ft/s -&gt; Wetness: 8476 drops
 <pre tabindex="0"><code class="language-prompt" data-lang="prompt">Add a matplotlib function that plots wetness vs. speed, including
 a horizontal asymptote for the minimum frontal-only exposure.
 </code></pre><p>This prompt yields the basis of the plotting function below, which I then fine-tune by adjusting labels, colors, and legend placement.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plot_wetness_vs_speed</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">speeds_ft_s</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">wetness_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">person</span><span class="p">:</span> <span class="n">Person</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">rain</span><span class="p">:</span> <span class="n">Rain</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">distance_feet</span><span class="p">:</span> <span class="nb">float</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Frontal-only asymptote (independent of speed)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">intensity</span> <span class="o">=</span> <span class="n">rain</span><span class="o">.</span><span class="n">intensity_drops_per_sqft_s</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fall_speed</span> <span class="o">=</span> <span class="n">rain</span><span class="o">.</span><span class="n">fall_speed_ft_s</span>
-</span></span><span class="line"><span class="cl">    <span class="n">frontal_limit</span> <span class="o">=</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="n">intensity</span> <span class="o">/</span> <span class="n">fall_speed</span><span class="p">)</span> <span class="o">*</span>
-</span></span><span class="line"><span class="cl">        <span class="n">person</span><span class="o">.</span><span class="n">front_area_sqft</span> <span class="o">*</span>
-</span></span><span class="line"><span class="cl">        <span class="n">distance_feet</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="n">speeds_ft_s</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">wetness_values</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Total wetness&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="n">frontal_limit</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;crimson&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Frontal-only limit (as speed→∞)&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Wetness vs. Speed in Rain&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;Speed (feet per second)&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;Total Raindrops (expected)&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">speeds_ft_s</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> typing <span style="color:#ff79c6">import</span> List
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_wetness_vs_speed</span>(
+</span></span><span style="display:flex;"><span>    speeds_ft_s: List[<span style="color:#8be9fd;font-style:italic">float</span>],
+</span></span><span style="display:flex;"><span>    wetness_values: List[<span style="color:#8be9fd;font-style:italic">float</span>],
+</span></span><span style="display:flex;"><span>    person: Person,
+</span></span><span style="display:flex;"><span>    rain: Rain,
+</span></span><span style="display:flex;"><span>    distance_feet: <span style="color:#8be9fd;font-style:italic">float</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Frontal-only asymptote (independent of speed)</span>
+</span></span><span style="display:flex;"><span>    intensity <span style="color:#ff79c6">=</span> rain<span style="color:#ff79c6">.</span>intensity_drops_per_sqft_s
+</span></span><span style="display:flex;"><span>    fall_speed <span style="color:#ff79c6">=</span> rain<span style="color:#ff79c6">.</span>fall_speed_ft_s
+</span></span><span style="display:flex;"><span>    frontal_limit <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        (intensity <span style="color:#ff79c6">/</span> fall_speed) <span style="color:#ff79c6">*</span>
+</span></span><span style="display:flex;"><span>        person<span style="color:#ff79c6">.</span>front_area_sqft <span style="color:#ff79c6">*</span>
+</span></span><span style="display:flex;"><span>        distance_feet
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>figure(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">5</span>))
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>plot(
+</span></span><span style="display:flex;"><span>        speeds_ft_s,
+</span></span><span style="display:flex;"><span>        wetness_values,
+</span></span><span style="display:flex;"><span>        marker<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;o&#39;</span>,
+</span></span><span style="display:flex;"><span>        linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;-&#39;</span>,
+</span></span><span style="display:flex;"><span>        color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;blue&#39;</span>,
+</span></span><span style="display:flex;"><span>        label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;Total wetness&#39;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>axhline(
+</span></span><span style="display:flex;"><span>        frontal_limit,
+</span></span><span style="display:flex;"><span>        color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;crimson&#39;</span>,
+</span></span><span style="display:flex;"><span>        linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;--&#39;</span>,
+</span></span><span style="display:flex;"><span>        label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;Frontal-only limit (as speed→∞)&#39;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#34;Wetness vs. Speed in Rain&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#34;Speed (feet per second)&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#34;Total Raindrops (expected)&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>grid(<span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>xticks(speeds_ft_s)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>legend()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="./wetness-graph.png" alt="Graph that shows wetness vs. speed"></p>
@@ -520,9 +588,9 @@ mixing small drizzle with a few large drops to see how totals shift.</li>
 </a>
 </p>
 
-		</div>
-		<footer class="post__footer">
-			
+    </div>
+      <footer class="post__footer">
+        
 <div class="post__tags tags clearfix">
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
 	<ul class="tags__list">
@@ -564,21 +632,22 @@ mixing small drizzle with a few large drops to see how totals shift.</li>
 		</li>
 	</ul>
 </div>
-		</footer>
-	</article>
+      </footer>
+  </article>
 </main>
+
 
 
 
 
 			</div>
 			<aside class="sidebar"><div class="widget widget-bio">
-  <h4 class="widget__title">About</h4>
+  <h4 class="widget__title">Bio</h4>
   <div class="widget__content">
 
     <div class="bio-wrap">
       
-        <a class="bio-avatar-link" href="/about/">
+        <a class="bio-avatar-link" href="/bio/">
           <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
         </a>
       
@@ -596,7 +665,7 @@ mixing small drizzle with a few large drops to see how totals shift.</li>
     </div>
 
     
-    <p class="more"><a class="link-more" href="/about/">Read more →</a></p>
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
   </div>
 </div>
 <div class="widget widget-disclaimer">
