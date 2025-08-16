@@ -19,7 +19,7 @@ tags = [
 ]
 +++
 
-Early in my programming career, I came across a programming problem that stuck with me for many years:
+Early in my programming career, I came across a coding challenge that stuck with me for many years:
 
 ---
 
