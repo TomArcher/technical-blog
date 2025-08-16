@@ -3,7 +3,7 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion - Signal &amp; Syntax by Tom Archer</title>
+	<title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,9 +23,9 @@
 	<div class="container header__container">
 		
 	<div class="logo">
-		<a class="logo__link" href="/" title="Signal &amp; Syntax by Tom Archer" rel="home">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
 			<div class="logo__item logo__text">
-					<div class="logo__title">Signal &amp; Syntax by Tom Archer</div>
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
 					
 				</div>
 		</a>
@@ -37,6 +37,13 @@
 	</button>
 	<ul class="menu__list">
 		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
 			<a class="menu__link" href="/about/">
 				
 				<span class="menu__text">About</span>
@@ -44,9 +51,9 @@
 			</a>
 		</li>
 		<li class="menu__item">
-			<a class="menu__link" href="/">
+			<a class="menu__link" href="/bio/">
 				
-				<span class="menu__text">Blog</span>
+				<span class="menu__text">Bio</span>
 				
 			</a>
 		</li>
@@ -86,8 +93,7 @@ You have two options:</p>
 <li>Moving faster = more frontal exposure.</li>
 </ul>
 <p>What made this problem compelling was that there wasn&rsquo;t an obvious answer and no way (back then) for me to definitively prove my intuition one way or the other. It was a thought experiment we debated with intuition and hand-waving.</p>
-<p>But now, with Python and a (virtual) rainy afternoon to spare, I can finally simulate this problem to <em>know the answer</em>.</p>
-<hr>
+<p>But now, with Python, generative AI, and a (virtual) rainy afternoon to spare, I can finally simulate this problem to know the answer.</p>
 <h2 id="modeling-the-rain">Modeling the Rain</h2>
 <p>To simulate the problem accurately (but tractably), we make the following simplifications:</p>
 <p><strong>Assumptions:</strong></p>
@@ -95,14 +101,19 @@ You have two options:</p>
 <li>Rain falls vertically at a constant rate (no wind).</li>
 <li>Rain falls vertically at a uniform density.</li>
 <li>You&rsquo;re a rectangular block moving at constant speed.</li>
-<li>Getting wet = the number of raindrops hitting you from the <strong>top</strong> and the <strong>front</strong>.</li>
-<li>Rain hits the top based on <strong>time exposed</strong>, and the front based on <strong>distance</strong> traveled.</li>
+<li>Getting wet = the number of raindrops hitting you from the top and the front.</li>
+<li>Rain hits the top based on time exposed, and the front based on distance traveled.</li>
 <li>Rain from behind and sides is ignored.</li>
 </ul>
-<p>This converts the real-world complexity into a <strong>discrete physical model</strong> driven by surface area, velocity, and time.</p>
-<hr>
-<h2 id="python-simulation">Python Simulation</h2>
-<p>To better understand the rain exposure at different speeds, we can model the problem in Python. This function estimates how many raindrops hit your body while walking or running, based on your speed, body dimensions, and distance to shelter. It works by calculating how much rain hits a person from two directions: above and in front.</p>
+<p>This converts the real-world complexity into a discrete physical model driven by surface area, velocity, and time.</p>
+<h2 id="using-ai-to-generate-the-simulation">Using AI to Generate the Simulation</h2>
+<p>Instead of starting from scratch, I begin by asking a generative AI model to help scaffold the solution.</p>
+<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write a Python simulation to model how wet a person gets in the 
+rain depending on their walking or running speed. Assume a 
+person is a rectangular block with a top area and front area. 
+Rain falls vertically at a steady rate. Calculate drops hitting 
+the top (time exposed) and front (distance traveled).
+</code></pre><p>The model produces a solid draft. As with most AI-generated code, it needs refinements, such as naming consistency, unit correctness, and clearer abstractions. But that initial generation saved me from boilerplate and gave me a starting point. What follows is the refined version.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -170,6 +181,8 @@ You have two options:</p>
 </span><span class="lnt">63
 </span><span class="lnt">64
 </span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
@@ -232,7 +245,9 @@ You have two options:</p>
 </span></span><span class="line"><span class="cl">    <span class="n">top_area</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">top_area_sqft</span>
 </span></span><span class="line"><span class="cl">    <span class="n">front_area</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">front_area_sqft</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">from_above</span> <span class="o">=</span> <span class="n">intensity</span> <span class="o">*</span> <span class="n">top_area</span> <span class="o">*</span> <span class="p">(</span><span class="n">distance_feet</span> <span class="o">/</span> <span class="n">speed_ft_s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">from_above</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">intensity</span> <span class="o">*</span> <span class="n">top_area</span> <span class="o">*</span> <span class="p">(</span><span class="n">distance_feet</span> <span class="o">/</span> <span class="n">speed_ft_s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">from_front</span> <span class="o">=</span> <span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="n">intensity</span> <span class="o">/</span> <span class="n">fall_speed</span><span class="p">)</span> <span class="o">*</span> <span class="n">front_area</span> <span class="o">*</span> <span class="n">distance_feet</span>
 </span></span><span class="line"><span class="cl">    <span class="p">)</span>
@@ -240,7 +255,10 @@ You have two options:</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="simulating-the-tradeoff-walking-vs-running">Simulating the Tradeoff: Walking vs. Running</h2>
-<p>To see how speed affects how wet you get, let&rsquo;s run some simulations at a few different movement speeds. We&rsquo;ll run the function for values representing a slow walk at 2.25 mph all the way up to a full sprint at 9 mph. The values printed represent the total number of raindrops that hit you at each speed.</p>
+<p>Here, I used AI again. I asked it to <em>extend</em> the simulation with a loop that tested speeds from walking pace up to sprinting. The prompt was short:</p>
+<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Using the simulate_wetness function, generate Python code to loop over
+a list of speeds (ft/s) and print out the resulting wetness.
+</code></pre><p>The model produces usable code that I edit for clarity and readability.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -320,15 +338,17 @@ You have two options:</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Sample Output:</strong></p>
-<p>After running the simulation, we can now see how wetness changes with each increase in speed. As expected, the longer you spend in the rain, the more drops accumulate on your head and shoulders. But running faster also means more drops hit you from the front. The balance between those two effects is captured in the following numbers:</p>
-<pre tabindex="0"><code class="language-output" data-lang="output">Speed: 3.3 ft/s -&gt; Wetness: 15,510 drops
-Speed: 5.5 ft/s -&gt; Wetness: 12,348 drops
-Speed: 8.8 ft/s -&gt; Wetness: 10,570 drops
-Speed: 13.2 ft/s -&gt; Wetness: 9,582 drops
-Speed: 30.0 ft/s -&gt; Wetness: 8,476 drops
-</code></pre><p>As you can see, the trend is clear: faster movement reduces overall wetness, but with diminishing returns.</p>
-<h2 id="making-the-results-visual">Making the Results Visual</h2>
-<p>Now, let&rsquo;s turn the data into a graph so we can better visualize the relationship between speed and total wetness. This plot shows how the number of raindrops hitting you changes as your speed increases:</p>
+<p>The following sample output shows that the trend is clear: faster movement reduces overall wetness, but with diminishing returns.</p>
+<pre tabindex="0"><code class="language-output" data-lang="output">Speed: 3.3 ft/s -&gt; Wetness: 15510 drops
+Speed: 5.5 ft/s -&gt; Wetness: 12348 drops
+Speed: 8.8 ft/s -&gt; Wetness: 10570 drops
+Speed: 13.2 ft/s -&gt; Wetness: 9582 drops
+Speed: 30.0 ft/s -&gt; Wetness: 8476 drops
+</code></pre><h2 id="making-the-results-visual">Making the Results Visual</h2>
+<p>For visualization, I didn’t ask AI to just &ldquo;plot it.&rdquo; Instead, I prompted:</p>
+<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Add a matplotlib function that plots wetness vs. speed, including
+a horizontal asymptote for the minimum frontal-only exposure.
+</code></pre><p>This prompt yields the basis of the plotting function below, which I then fine-tune by adjusting labels, colors, and legend placement.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -423,17 +443,17 @@ Speed: 30.0 ft/s -&gt; Wetness: 8,476 drops
 </div>
 </div><p><img src="./wetness-graph.png" alt="Graph that shows wetness vs. speed"></p>
 <h2 id="the-verdict">The Verdict</h2>
-<p><strong>Running gets you less wet</strong>, consistently. The longer you spend under the rain, the more water lands on your head and shoulders. By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.</p>
+<p><strong>Running gets you less wet, consistently.</strong> The longer you spend under the rain, the more water lands on your head and shoulders. By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.</p>
 <p>However, there&rsquo;s a tradeoff. As you speed up, you collide with more raindrops from the front. At first, the gains from reduced top-down exposure far outweigh the cost of increased frontal hits. But as your speed continues to climb, you start to hit a point of diminishing returns: you&rsquo;re still getting wetter from the front, and there&rsquo;s less time savings left to gain. No matter how fast you go, you&rsquo;ll always collide with some rain from the front, but you can reduce how long rain hits you from above.</p>
-<p>This result holds under idealized assumptions with no wind, dodging puddles, or slipping. But the model teaches us something deeper: <strong>some problems can only be truly understood when you take the time to simulate them</strong>.</p>
-<hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
 <p>When I started writing books, an old friend of mine joked that technical
 authors often cover the basics while leaving the more difficult problems as
-an <em>&ldquo;exercise for the reader.&rdquo;</em></p>
+an <em>&ldquo;exercise for the reader.</em>&rdquo;</p>
 <p>In that same spirit, here are some ideas to extend this rainy-day simulation.
-They&rsquo;re grouped into levels — from easy tweaks to more advanced experiments
-that add realism or mathematical depth.</p>
+They&rsquo;re grouped into levels, from easy tweaks to more advanced experiments that add realism or mathematical depth.</p>
+<p><strong>Pro tip:</strong> Try phrasing each extension idea as an AI prompt. For example:
+&ldquo;Modify the simulation to treat the person as a cylinder instead of a block.&rdquo;
+Then, refine the AI&rsquo;s output to ensure it matches the math.</p>
 <h3 id="beginner-level-quick-fixes--calibration">Beginner Level: Quick Fixes &amp; Calibration</h3>
 <ol>
 <li>
@@ -458,53 +478,42 @@ edge cases like <code>speed=0</code> or <code>distance=0</code> to confirm behav
 </ol>
 <hr>
 <h3 id="intermediate-level-geometry--body-modeling">Intermediate Level: Geometry &amp; Body Modeling</h3>
-<ol start="4">
-<li>
-<p><strong>Cylindrical person:</strong> Replace the box model with a cylinder (height,
+<ol>
+<li><strong>Cylindrical person:</strong> Replace the box model with a cylinder (height,
 radius). Compute the top area as πr² and the front area as height × 2r.
 Compare wetness outcomes from this smoother shape versus the rectangular
-one, and discuss which feels more realistic.</p>
-</li>
-<li>
-<p><strong>Hunch angle:</strong> Add a tilt angle that decreases top area and increases
+one, and discuss which feels more realistic.</li>
+<li><strong>Hunch angle:</strong> Add a tilt angle that decreases top area and increases
 frontal area. You can use simple trigonometry to project the areas based
 on the angle. Plotting wetness across different posture angles could
-reveal the &ldquo;best&rdquo; stance in the rain.</p>
-</li>
-<li>
-<p><strong>Variable distance:</strong> Run scenarios at 50, 200, 500, and 1000 ft to see
+reveal the &ldquo;best&rdquo; stance in the rain.</li>
+<li><strong>Variable distance:</strong> Run scenarios at 50, 200, 500, and 1000 ft to see
 how distance affects strategy. Short distances might not justify sprinting,
 while long distances magnify the benefits. Make a table or plot that
-compares these cases.</p>
-</li>
+compares these cases.</li>
 </ol>
 <hr>
 <h3 id="advanced-level-environment--stochasticity">Advanced Level: Environment &amp; Stochasticity</h3>
-<ol start="7">
-<li>
-<p><strong>Wind:</strong> Add a horizontal wind component. Now raindrops fall at an angle
+<ol>
+<li><strong>Wind:</strong> Add a horizontal wind component. Now raindrops fall at an angle
 (vector ((u, 0, -fall_speed))), so the effective frontal area changes.
 This turns the simple vertical model into a 3D vector problem. You’ll see
-that wind can make running sideways into the rain much worse.</p>
-</li>
-<li>
-<p><strong>Monte Carlo rain:</strong> Instead of continuous flux, simulate drops randomly
+that wind can make running sideways into the rain much worse.</li>
+<li><strong>Monte Carlo rain:</strong> Instead of continuous flux, simulate drops randomly
 with a Poisson process in space-time. Each drop has a chance of hitting
 the person’s projected area. Run many trials and average the results to
-approximate the analytic model. This adds randomness to the story.</p>
-</li>
-<li>
-<p><strong>Drop size distribution:</strong> Sample raindrop diameters from a realistic
+approximate the analytic model. This adds randomness to the story.</li>
+<li><strong>Drop size distribution:</strong> Sample raindrop diameters from a realistic
 distribution (meteorology papers often use log-normal). Larger drops carry
 more volume and can be weighted more heavily in the wetness score. Try
-mixing small drizzle with a few large drops to see how totals shift.</p>
-</li>
+mixing small drizzle with a few large drops to see how totals shift.</li>
 </ol>
 <hr>
 <h2 id="why-i-chose-this-as-my-first-post">Why I Chose This as My First Post</h2>
-<p>This problem isn&rsquo;t just about physics or weather. It&rsquo;s about <strong>thinking like a programmer</strong>, and using code to test what your intuition can&rsquo;t fully resolve.</p>
+<p>This problem isn&rsquo;t just about physics or weather. It&rsquo;s about thinking like a programmer, and today, <strong>thinking like a programmer includes understanding how to use AI effectively</strong>.</p>
+<p>Yesterday, we memorized programming patterns. Today, we craft AI prompts, evaluate the generated code, and adapt it to real-world needs. The skills are different, but the spirit of curiosity and modeling remains the same.</p>
 <p>Over the past many years, that mindset of modeling uncertainty, isolating variables, and iterating toward insight has shaped everything from how I write software, author technical content, and how I approach AI and automation today.</p>
-<p>If you enjoyed this, stay tuned. I&rsquo;ll be sharing insights on solving similar puzzles, Python programming, AI prompting, OpenAI, and LLMs.</p>
+<p>If you enjoyed this, stay tuned. I&rsquo;ll be sharing insights on solving similar puzzles, Python programming, AI prompting, OpenAI, MCP servers, and LLMs.</p>
 <h2 id="try-it-yourself">Try It Yourself</h2>
 <p><a href="./rain-paradox.py">
   Download the full code on GitHub
@@ -519,6 +528,12 @@ mixing small drizzle with a few large drops to see how totals shift.</p>
 	<ul class="tags__list">
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/generative-ai/" rel="tag">Generative AI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/prompt-engineering/" rel="tag">Prompt Engineering</a>
 		</li>
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/modeling/" rel="tag">Modeling</a>
@@ -564,7 +579,7 @@ mixing small drizzle with a few large drops to see how totals shift.</p>
     <div class="bio-wrap">
       
         <a class="bio-avatar-link" href="/about/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax by Tom Archer">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
         </a>
       
 
@@ -608,6 +623,8 @@ mixing small drizzle with a few large drops to see how totals shift.</p>
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai/">AI</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/categories/modeling/">Modeling</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/programming/">Programming</a></li>
@@ -617,11 +634,13 @@ mixing small drizzle with a few large drops to see how totals shift.</p>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/generative-ai/" title="Generative AI">Generative AI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/prompt-engineering/" title="Prompt Engineering">Prompt Engineering</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/thought-experiment/" title="Thought Experiment">Thought Experiment</a>
@@ -635,7 +654,7 @@ mixing small drizzle with a few large drops to see how totals shift.</p>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2025 Signal &amp; Syntax by Tom Archer.
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

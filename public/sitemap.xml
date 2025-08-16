@@ -2,7 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/categories/ai/</loc>
+    <lastmod>2025-08-15T20:39:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-08-15T20:39:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/generative-ai/</loc>
     <lastmod>2025-08-15T20:39:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/geometry/</loc>
@@ -29,6 +35,9 @@
     <loc>http://localhost:1313/categories/programming/</loc>
     <lastmod>2025-08-15T20:39:00-07:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/prompt-engineering/</loc>
+    <lastmod>2025-08-15T20:39:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/python/</loc>
     <lastmod>2025-08-15T20:39:00-07:00</lastmod>
   </url><url>
@@ -52,6 +61,8 @@
   </url><url>
     <loc>http://localhost:1313/tags/weather/</loc>
     <lastmod>2025-08-15T20:39:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/bio/</loc>
   </url><url>
     <loc>http://localhost:1313/about/</loc>
   </url>

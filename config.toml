@@ -1,6 +1,6 @@
 baseURL = "https://tomarcher.io/"
 languageCode = "en-us"
-title = "Signal & Syntax by Tom Archer"
+title = "Signal & Syntax: Practical AI Coding with Tom Archer"
 theme = "mainroad"
 
 [pagination]
@@ -30,14 +30,17 @@ theme = "mainroad"
 
 [menu]
   [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 1
-
-  [[menu.main]]
     name = "Blog"
     url = "/"
     weight = 2
+  [[menu.main]]
+    name = "About"
+    url  = "/about/"
+    weight = 10
+  [[menu.main]]
+    name = "Bio"
+    url  = "/bio/"
+    weight = 20
 
 # Right sidebar widgets order:
 [params.sidebar]
