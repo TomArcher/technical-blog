@@ -13,7 +13,7 @@
         {{- if not $d.IsZero -}}
           <p class="meta__line">
             <time datetime="{{ $d.Format "2006-01-02T15:04:05Z07:00" }}">
-              <strong><em>{{ $d.Format "January 2, 2006" }}</em></strong>
+              <strong>{{ $d.Format "January 2, 2006" }}</strong>
             </time>
         {{- end -}}
 

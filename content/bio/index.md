@@ -1,5 +1,5 @@
 ---
-title: "A little about Tom"
+title: "Meet Tom"
 draft: false
 ---
 
