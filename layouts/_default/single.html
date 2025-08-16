@@ -3,29 +3,50 @@
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">{{ .Title }}</h1>
+
       {{- with .Params.lead }}
       <p class="post__lead">{{ . }}</p>
       {{- end }}
 
       <div class="post__meta meta">
-        <em>{{ .Date.Format "January 02, 2006" }}</em>
-        {{- $cats := .Params.categories }}
-        {{- $tags := .Params.tags }}
-        {{- if or $cats $tags }}
-          &nbsp;•&nbsp;
-        {{- end }}
-        {{- range $i, $cat := $cats }}
-          {{- if $i}}, {{end}}<em>{{ $cat }}</em>
-        {{- end }}
-        {{- if and $cats $tags }}, {{ end }}
-        {{- range $i, $tag := $tags }}
-          {{- if $i}}, {{end}}#{{ $tag }}
-        {{- end }}
+        {{- $d := .Date -}}
+        {{- if not $d.IsZero -}}
+          <p class="meta__line">
+            <time datetime="{{ $d.Format "2006-01-02T15:04:05Z07:00" }}">
+              <strong><em>{{ $d.Format "January 2, 2006" }}</em></strong>
+            </time>
+        {{- end -}}
+
+        {{- $cats := .Params.categories -}}
+        {{- with $cats -}}
+            &nbsp;•&nbsp;
+            <strong>Categories:</strong>&nbsp;
+            {{- range $i, $cat := . -}}
+              {{- if $i }}, {{ end -}}
+              <a class="meta__link"
+                 href="{{ (site.GetPage (printf "/categories/%s" ($cat | urlize))).RelPermalink }}"
+                 rel="category"><em>{{ $cat }}</em></a>
+            {{- end -}}
+        {{- end -}}
+
+        {{- $tags := .Params.tags -}}
+        {{- with $tags -}}
+            &nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;
+            {{- range $i, $tag := . -}}
+              {{- if $i }}, {{ end -}}
+              <a class="meta__link"
+                 href="{{ (site.GetPage (printf "/tags/%s" ($tag | urlize))).RelPermalink }}"
+                 rel="tag">#{{ $tag }}</a>
+            {{- end -}}
+          </p>
+        {{- end -}}
       </div>
     </header>
 
     {{ partial "post_thumbnail.html" (dict "class" "post" "page" .) }}
     {{- partial "post_toc.html" . -}}
+
     <div class="content post__content clearfix">
       {{ .Content }}
     </div>
