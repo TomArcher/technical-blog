@@ -1,5 +1,5 @@
 ---
-title: "Meet Tom"
+title: "Behind the Code: Tom's Story"
 draft: false
 ---
 

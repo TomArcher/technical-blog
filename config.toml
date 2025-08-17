@@ -41,7 +41,8 @@ theme = "mainroad"
     url  = "/about/"
     weight = 10
   [[menu.main]]
-    name = "Bio"
+    #name = "Bio"
+    name = "behind the code"
     url  = "/bio/"
     weight = 20
 
