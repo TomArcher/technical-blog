@@ -44,12 +44,17 @@ theme = "mainroad"
     url  = "/bio/"
     weight = 20
 
+[params.social]
+  github   = "https://github.com/tomarcher"
+  linkedin = "https://www.linkedin.com/in/tom-archer-dev/"
+  rss      = true
+
 # Right sidebar widgets order:
 [params.sidebar]
   home   = "right"
   list   = "right"
   single = "right"
-  widgets = ["bio", "disclaimer", "recent", "categories", "taglist"]
+  widgets = ["bio", "disclaimer", "social", "recent", "categories", "taglist"]
 
 [markup]
   [markup.highlight]
