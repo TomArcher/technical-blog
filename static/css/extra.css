@@ -242,3 +242,18 @@ a:focus-visible {
     clear: none;
   }
 }
+
+/* More space between summary and Read more button */
+.posts-list .post .post-summary {
+  margin-bottom: 0.9rem;            /* adjust to taste */
+}
+
+/* Nudge the paragraph that immediately follows the summary */
+.posts-list .post .post-summary + p {
+  margin-top: 0.4rem;               /* extra gap above the button */
+}
+
+/* If a 96x96 thumb is floated, ensure the button also clears the image */
+.posts-list .post.post--has-title-thumb .post-summary + p {
+  clear: both;
+}
