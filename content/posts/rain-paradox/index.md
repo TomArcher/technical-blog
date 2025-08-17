@@ -10,14 +10,18 @@ tags = [
   "Modeling",
   "Physics",
   "Rain",
-  "Weather",
-  "Optimization",
   "Geometry",
-  "Matplotlib",
-  "Visualization",
-  "Thought Experiment"
+  "Matplotlib"
 ]
+listThumb = "rain-paradox.png"
 +++
+
+<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./rain-paradox.png" alt="Rain Paradox: Walk or Run?" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>To walk or to run. That is the question.</em>
+  </figcaption>
+</figure>
 
 Early in my programming career, I came across a coding challenge that stuck with me for many years:
 
@@ -27,9 +31,7 @@ Early in my programming career, I came across a coding challenge that stuck with
 
 ---
 
-At the time, I didn't have the skills to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn't about recursion or memory management. It was about **getting wet**, and **how fast you move through falling rain**.
-
-<!--more-->
+At the time, I didn't have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn't about recursion or memory management. It was about **getting wet**, and **how fast you move through falling rain**.
 
 ---
 
@@ -356,4 +358,4 @@ If you enjoyed this, stay tuned. I'll be sharing insights on solving similar puz
 
 ## Try It Yourself
 
-[Download the full code on GitHub](./rain-paradox.py)
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/rain-paradox)

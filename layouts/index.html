@@ -6,52 +6,66 @@
     {{ $p := .Paginate $pages }}
 
     {{ range $p.Pages }}
-      <article class="post">
+      {{/* Resolve thumbnail: prefer page bundle resource; fallback to relURL */}}
+      {{ $page := . }}
+      {{ $thumb := "" }}
+      {{ with $page.Params.listThumb }}
+        {{ with $page.Resources.GetMatch . }}
+          {{ $thumb = .RelPermalink }}
+        {{ else }}
+          {{ $thumb = (. | relURL) }}
+        {{ end }}
+      {{ end }}
+
+      <article class="post {{ if $thumb }}post--has-title-thumb{{ end }}">
         <header class="post-header">
-          <h2 class="post-title">
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </h2>
+          {{/* Clickable thumbnail before the title */}}
+          {{ if $thumb }}
+            <a class="post-title-thumb" href="{{ .RelPermalink }}">
+              <img src="{{ $thumb }}" alt="" loading="lazy">
+            </a>
+          {{ end }}
 
-          <div class="post-meta">
-            <time datetime="{{ .Date.Format "2006-01-02" }}">
-              <strong>{{ .Date.Format "Jan 2, 2006" }}</strong>
-            </time>
-            {{- $cats := .Params.categories -}}
-            {{- $tags := .Params.tags -}}
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
 
-            {{- with $cats -}}
-            &nbsp;•&nbsp;
-            <strong>Categories:</strong>&nbsp;
-              {{- range $i, $c := . -}}
-                {{- if $i }}, {{ end -}}
-                <a href="{{ (printf "/categories/%s/" ($c | urlize)) | relURL }}">{{ $c }}</a>
+            <div class="post-meta">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">
+                <strong>{{ .Date.Format "Jan 2, 2006" }}</strong>
+              </time>
+              {{- $cats := .Params.categories -}}
+              {{- $tags := .Params.tags -}}
+
+              {{- with $cats -}}
+              &nbsp;•&nbsp;<strong>Categories:</strong>&nbsp;
+                {{- range $i, $c := . -}}
+                  {{- if $i }}, {{ end -}}
+                  <a href="{{ (printf "/categories/%s/" ($c | urlize)) | relURL }}">{{ $c }}</a>
+                {{- end -}}
               {{- end -}}
-            {{- end -}}
 
-            {{- if and $cats $tags }}, {{ end -}}
+              {{- if and $cats $tags }}, {{ end -}}
 
-            {{- with $tags -}}
-            &nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;
-              {{- range $i, $t := . -}}
-                {{- if $i }}, {{ end -}}
-                <a href="{{ (printf "/tags/%s/" ($t | urlize)) | relURL }}">#{{ $t }}</a>
+              {{- with $tags -}}
+              &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+                {{- range $i, $t := . -}}
+                  {{- if $i }}, {{ end -}}
+                  <a href="{{ (printf "/tags/%s/" ($t | urlize)) | relURL }}">#{{ $t }}</a>
+                {{- end -}}
               {{- end -}}
-            {{- end -}}
+            </div>
           </div>
         </header>
 
-        {{/* Summary with fallback if .Summary is empty */}}
-        {{ $sum := .Summary }}
-        {{ if not $sum }}
-          {{ $sum = ( .Plain | truncate 280 ) }}
-        {{ end }}
-        <div class="post-summary">{{ $sum | safeHTML }}</div>
+        {{/* Text-only summary: strip figures/images so first-paragraph visuals don't leak into list */}}
+        {{ $raw := .Summary | safeHTML }}
+        {{ $clean := $raw | replaceRE `(?s)<figure.*?</figure>` "" | replaceRE `<img[^>]*>` "" }}
+        {{ if not $clean }}{{ $clean = ( .Plain | truncate 280 ) }}{{ end }}
+        <div class="post-summary">{{ $clean | safeHTML }}</div>
 
-        {{/* Read more link styled like bio widget buttons */}}
-        <p>
-          <a class="btn" href="{{ .RelPermalink }}">Read more →</a>
-        </p>
+        <p><a class="btn" href="{{ .RelPermalink }}">Read more →</a></p>
       </article>
     {{ end }}
 

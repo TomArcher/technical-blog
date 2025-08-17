@@ -185,3 +185,60 @@ a:focus-visible {
   background: #e4e4e4;              /* same gray used for widget separators */
   margin: 0 0 1rem 0;               /* space under the line */
 }
+
+/* ---------------------------------------------------
+   Thumbnails that replace the diamond (inline, 96x96)
+   --------------------------------------------------- */
+/* Float a 96×96 thumbnail before the title; title+meta flow to the right.
+   Summary clears below the image so it starts on a new line. */
+.posts-list .post.post--has-title-thumb .post-title-thumb {
+  float: left;
+  width: 96px;
+  height: 96px;
+  margin: 0 12px 8px 0;    /* space to the right & below */
+  text-decoration: none !important;
+}
+.posts-list .post.post--has-title-thumb .post-title-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;      /* optional rounding */
+}
+
+/* Title + meta block sits to the right; overflow hidden avoids awkward wraps */
+.posts-list .post.post--has-title-thumb .post-header-text {
+  overflow: hidden;
+}
+
+/* Start the summary (and read-more) below the bottom of the image */
+.posts-list .post.post--has-title-thumb .post-summary,
+.posts-list .post.post--has-title-thumb .read-more,
+.posts-list .post.post--has-title-thumb p.read-more {
+  clear: both;
+}
+
+/* Hide the diamond only when a thumbnail is present */
+.posts-list .post.post--has-title-thumb .post-title a::before {
+  content: none !important;
+}
+
+/* Optional: nudge title alignment when thumb exists */
+.posts-list .post.post--has-title-thumb .post-title { margin-top: 0; }
+
+/* Responsive: stack on small screens (thumbnail above title) */
+@media (max-width: 520px) {
+  .posts-list .post.post--has-title-thumb .post-title-thumb {
+    float: none;
+    display: block;
+    margin: 0 0 8px 0;
+    width: 100%;
+    height: auto; /* keep aspect ratio when full width */
+    max-width: 320px; /* cap size */
+  }
+  .posts-list .post.post--has-title-thumb .post-summary,
+  .posts-list .post.post--has-title-thumb .read-more,
+  .posts-list .post.post--has-title-thumb p.read-more {
+    clear: none;
+  }
+}

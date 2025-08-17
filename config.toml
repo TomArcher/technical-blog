@@ -59,6 +59,9 @@ theme = "mainroad"
   widgets = ["bio", "disclaimer", "social", "recent", "categories", "taglist"]
 
 [markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
   [markup.highlight]
     noClasses = true
     style = "dracula"
