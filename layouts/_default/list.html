@@ -36,9 +36,17 @@
           </div>
         </header>
 
-        {{ with .Summary }}
-          <div class="post-summary">{{ . }}</div>
+        {{/* Summary (fallback to truncated plain content if needed) */}}
+        {{ $sum := .Summary }}
+        {{ if not $sum }}
+          {{ $sum = ( .Plain | truncate 280 ) }}
         {{ end }}
+        <div class="post-summary">{{ $sum | safeHTML }}</div>
+
+        {{/* Always show Read more link */}}
+        <p class="read-more">
+          <a class="read-more-link" href="{{ .RelPermalink }}">Read more →</a>
+        </p>
       </article>
     {{ end }}
 

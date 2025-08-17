@@ -13,12 +13,15 @@
           </h2>
 
           <div class="post-meta">
-            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">
+              <strong>{{ .Date.Format "Jan 2, 2006" }}</strong>
+            </time>
             {{- $cats := .Params.categories -}}
             {{- $tags := .Params.tags -}}
-            {{- if or $cats $tags }} • {{ end -}}
 
             {{- with $cats -}}
+            &nbsp;•&nbsp;
+            <strong>Categories:</strong>&nbsp;
               {{- range $i, $c := . -}}
                 {{- if $i }}, {{ end -}}
                 <a href="{{ (printf "/categories/%s/" ($c | urlize)) | relURL }}">{{ $c }}</a>
@@ -28,6 +31,8 @@
             {{- if and $cats $tags }}, {{ end -}}
 
             {{- with $tags -}}
+            &nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;
               {{- range $i, $t := . -}}
                 {{- if $i }}, {{ end -}}
                 <a href="{{ (printf "/tags/%s/" ($t | urlize)) | relURL }}">#{{ $t }}</a>
@@ -36,9 +41,17 @@
           </div>
         </header>
 
-        {{ with .Summary }}
-          <div class="post-summary">{{ . }}</div>
+        {{/* Summary with fallback if .Summary is empty */}}
+        {{ $sum := .Summary }}
+        {{ if not $sum }}
+          {{ $sum = ( .Plain | truncate 280 ) }}
         {{ end }}
+        <div class="post-summary">{{ $sum | safeHTML }}</div>
+
+        {{/* Read more link styled like bio widget buttons */}}
+        <p>
+          <a class="btn" href="{{ .RelPermalink }}">Read more →</a>
+        </p>
       </article>
     {{ end }}
 

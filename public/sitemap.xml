@@ -62,6 +62,18 @@
     <loc>http://localhost:1313/tags/weather/</loc>
     <lastmod>2025-08-15T20:39:00-07:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/3d-bin-packing/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/three-d-packing/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/logistics/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/optimization/</loc>
+    <lastmod>2025-08-14T09:00:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/bio/</loc>
   </url><url>
     <loc>http://localhost:1313/about/</loc>

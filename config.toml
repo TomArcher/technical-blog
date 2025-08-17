@@ -7,6 +7,7 @@ theme = "mainroad"
   pagerSize = 10
 
 [params]
+  readMore = true
   aboutShowAvatar = false
   avatar = "img/avatar.png"
   mainSections = ["posts"]

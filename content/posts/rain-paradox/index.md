@@ -29,6 +29,8 @@ Early in my programming career, I came across a coding challenge that stuck with
 
 At the time, I didn't have the skills to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn't about recursion or memory management. It was about **getting wet**, and **how fast you move through falling rain**.
 
+<!--more-->
+
 ---
 
 ## The Thought Experiment
