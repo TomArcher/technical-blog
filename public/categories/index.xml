@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
-    <link>http://localhost:59531/categories/</link>
+    <link>http://localhost:59988/categories/</link>
     <description>Recent content in Categories on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Aug 2025 05:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:59531/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:59988/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI</title>
-      <link>http://localhost:59531/categories/ai/</link>
+      <link>http://localhost:59988/categories/ai/</link>
       <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:59531/categories/ai/</guid>
+      <guid>http://localhost:59988/categories/ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Economics</title>
-      <link>http://localhost:59531/categories/economics/</link>
+      <link>http://localhost:59988/categories/economics/</link>
       <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:59531/categories/economics/</guid>
+      <guid>http://localhost:59988/categories/economics/</guid>
       <description></description>
     </item>
     <item>
       <title>Productivity</title>
-      <link>http://localhost:59531/categories/productivity/</link>
+      <link>http://localhost:59988/categories/productivity/</link>
       <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:59531/categories/productivity/</guid>
+      <guid>http://localhost:59988/categories/productivity/</guid>
       <description></description>
     </item>
     <item>
       <title>Modeling</title>
-      <link>http://localhost:59531/categories/modeling/</link>
+      <link>http://localhost:59988/categories/modeling/</link>
       <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:59531/categories/modeling/</guid>
+      <guid>http://localhost:59988/categories/modeling/</guid>
       <description></description>
     </item>
     <item>
       <title>Programming</title>
-      <link>http://localhost:59531/categories/programming/</link>
+      <link>http://localhost:59988/categories/programming/</link>
       <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:59531/categories/programming/</guid>
+      <guid>http://localhost:59988/categories/programming/</guid>
       <description></description>
     </item>
   </channel>
