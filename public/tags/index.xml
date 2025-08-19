@@ -2,87 +2,94 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
-    <link>http://localhost:53978/tags/</link>
+    <link>http://localhost:59531/tags/</link>
     <description>Recent content in Tags on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Aug 2025 20:39:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:53978/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Aug 2025 05:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:59531/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Economic Growth</title>
+      <link>http://localhost:59531/tags/economic-growth/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/economic-growth/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Generative AI</title>
-      <link>http://localhost:53978/tags/generative-ai/</link>
-      <pubDate>Fri, 15 Aug 2025 20:39:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/generative-ai/</guid>
+      <link>http://localhost:59531/tags/generative-ai/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/generative-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Measurement</title>
+      <link>http://localhost:59531/tags/measurement/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/measurement/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TFP</title>
+      <link>http://localhost:59531/tags/tfp/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/tfp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Total Factor Productivity</title>
+      <link>http://localhost:59531/tags/total-factor-productivity/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/total-factor-productivity/</guid>
       <description></description>
     </item>
     <item>
       <title>Geometry</title>
-      <link>http://localhost:53978/tags/geometry/</link>
-      <pubDate>Fri, 15 Aug 2025 20:39:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/geometry/</guid>
+      <link>http://localhost:59531/tags/geometry/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/geometry/</guid>
       <description></description>
     </item>
     <item>
       <title>Matplotlib</title>
-      <link>http://localhost:53978/tags/matplotlib/</link>
-      <pubDate>Fri, 15 Aug 2025 20:39:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/matplotlib/</guid>
+      <link>http://localhost:59531/tags/matplotlib/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/matplotlib/</guid>
       <description></description>
     </item>
     <item>
       <title>Modeling</title>
-      <link>http://localhost:53978/tags/modeling/</link>
-      <pubDate>Fri, 15 Aug 2025 20:39:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/modeling/</guid>
+      <link>http://localhost:59531/tags/modeling/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/modeling/</guid>
       <description></description>
     </item>
     <item>
       <title>Physics</title>
-      <link>http://localhost:53978/tags/physics/</link>
-      <pubDate>Fri, 15 Aug 2025 20:39:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/physics/</guid>
+      <link>http://localhost:59531/tags/physics/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/physics/</guid>
       <description></description>
     </item>
     <item>
       <title>Prompt Engineering</title>
-      <link>http://localhost:53978/tags/prompt-engineering/</link>
-      <pubDate>Fri, 15 Aug 2025 20:39:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/prompt-engineering/</guid>
+      <link>http://localhost:59531/tags/prompt-engineering/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/prompt-engineering/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:53978/tags/python/</link>
-      <pubDate>Fri, 15 Aug 2025 20:39:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/python/</guid>
+      <link>http://localhost:59531/tags/python/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Rain</title>
-      <link>http://localhost:53978/tags/rain/</link>
-      <pubDate>Fri, 15 Aug 2025 20:39:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/rain/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>3D Bin Packing</title>
-      <link>http://localhost:53978/tags/3d-bin-packing/</link>
-      <pubDate>Thu, 14 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/3d-bin-packing/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Logistics</title>
-      <link>http://localhost:53978/tags/logistics/</link>
-      <pubDate>Thu, 14 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/logistics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Thought Experiment</title>
-      <link>http://localhost:53978/tags/thought-experiment/</link>
-      <pubDate>Thu, 14 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:53978/tags/thought-experiment/</guid>
+      <link>http://localhost:59531/tags/rain/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:59531/tags/rain/</guid>
       <description></description>
     </item>
   </channel>

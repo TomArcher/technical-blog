@@ -6,14 +6,20 @@
     {{ $p := .Paginate $pages }}
 
     {{ range $p.Pages }}
-      {{/* Resolve thumbnail: prefer page bundle resource; fallback to relURL */}}
+      {{/* Resolve thumbnail: prefer page-bundle resource; fallback to page-relative or site path */}}
       {{ $page := . }}
       {{ $thumb := "" }}
       {{ with $page.Params.listThumb }}
-        {{ with $page.Resources.GetMatch . }}
+        {{ $name := . }}
+        {{ with $page.Resources.GetMatch $name }}
           {{ $thumb = .RelPermalink }}
         {{ else }}
-          {{ $thumb = (. | relURL) }}
+          {{ if hasPrefix $name "/" }}
+            {{ $thumb = ($name | relURL) }}
+          {{ else }}
+            {{/* Build a URL relative to the page's own URL (works for leaf bundles) */}}
+            {{ $thumb = (printf "%s%s" $page.RelPermalink $name) }}
+          {{ end }}
         {{ end }}
       {{ end }}
 

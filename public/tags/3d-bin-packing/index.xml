@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>3D Bin Packing on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
-    <link>http://localhost:53978/tags/3d-bin-packing/</link>
+    <link>http://localhost:59367/tags/3d-bin-packing/</link>
     <description>Recent content in 3D Bin Packing on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 14 Aug 2025 09:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:53978/tags/3d-bin-packing/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:59367/tags/3d-bin-packing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>From Ice Shows to Algorithms: Cracking the Truck-Packing Puzzle</title>
-      <link>http://localhost:53978/posts/three-d-packing/</link>
+      <link>http://localhost:59367/posts/three-d-packing/</link>
       <pubDate>Thu, 14 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:53978/posts/three-d-packing/</guid>
+      <guid>http://localhost:59367/posts/three-d-packing/</guid>
       <description>&lt;p&gt;My very first programming job was with Holiday on Ice, a touring show that hauled entire arenas’ worth of scenery, props, and gear from city to city. Every week, the crew would break everything down and load it into trucks for the next destination.&lt;/p&gt;&#xA;&lt;p&gt;One day, the controller asked if I could write a program to figure out &lt;strong&gt;the most efficient way to pack those trucks&lt;/strong&gt;. I had already built their itinerary and box-office reporting systems, so I was comfortable with logic and basic math. But this was different. This was geometry, weight distribution, and optimization rolled into one giant puzzle — and at the time, I had no idea where to start.&lt;/p&gt;</description>
     </item>
   </channel>

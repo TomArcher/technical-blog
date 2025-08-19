@@ -13,13 +13,36 @@ a {
   text-decoration-skip-ink: auto;
 }
 
-/* Underline links inside readable content areas */
+/* Link colors inside readable content (beat theme rules) */
+.post__content a,
+.post__content a:visited,
 .post .post-content a,
 .page .post-content a,
 .widget .widget__content a,
 .about-bio .bio-text a {
+  color: #1a73e8 !important;          /* pleasant blue */
   text-decoration: underline;
-  text-decoration-thickness: 1.5px; /* subtle weight */
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+  text-decoration-skip-ink: auto;
+}
+
+.post__content a:hover,
+.post .post-content a:hover,
+.page .post-content a:hover,
+.widget .widget__content a:hover,
+.about-bio .bio-text a:hover {
+  color: #1257a0 !important;          /* darker hover */
+  text-decoration: underline;
+}
+
+/* Optional distinct visited color (keep accessible contrast) */
+.post__content a:visited,
+.post .post-content a:visited,
+.page .post-content a:visited,
+.widget .widget__content a:visited,
+.about-bio .bio-text a:visited {
+  color: #5a2ca0 !important;          /* purple-ish visited */
 }
 
 /* Hover/focus: underline everywhere as an extra cue */
