@@ -41,7 +41,7 @@ But that was a world of assembly lines, not AI copilots.
 
 ## Why TFP Struggles With Modern Technology
 
-Critics have been pointing out TFP's flaws for years (see [References](#references)), and their arguments ring even louder in the age of AI:
+Critics have been pointing out TFP's flaws for years (see [Further Reading](#further-reading)), and their arguments ring even louder in the age of AI:
 
 * **It ignores embodied technology.** Many innovations are baked into capital goods (think semiconductors or cloud infrastructure). TFP doesn't see them until much later.
 * **It misses free digital tools.** Google Maps saves millions of driving hours a day — but because it's free, it barely registers in GDP or TFP.
