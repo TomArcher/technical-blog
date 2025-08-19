@@ -2,6 +2,7 @@ baseURL = "https://tomarcher.io/"
 languageCode = "en-us"
 title = "Signal & Syntax: Practical AI Coding with Tom Archer"
 theme = "mainroad"
+ignoreFiles = ['^content/posts/.*/_private/']
 
 [pagination]
   pagerSize = 10
