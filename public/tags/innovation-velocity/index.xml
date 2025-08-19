@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Innovation Velocity on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/innovation-velocity/</link>
+    <description>Recent content in Innovation Velocity on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Aug 2025 20:07:36 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/innovation-velocity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</title>
+      <link>http://localhost:1313/posts/tfp-chatgpt/</link>
+      <pubDate>Mon, 18 Aug 2025 20:07:36 -0700</pubDate>
+      <guid>http://localhost:1313/posts/tfp-chatgpt/</guid>
+      <description>&lt;p&gt;If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn&amp;rsquo;t that show up in our productivity statistics?&lt;/p&gt;&#xA;&lt;p&gt;Economists have long relied on a metric called &lt;strong&gt;Total Factor Productivity (TFP)&lt;/strong&gt; to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,6 +1,6 @@
 +++
 title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
-date = 2025-08-15T20:39:00-07:00
+date = '2025-08-18T09:00:00-07:00'
 draft = false
 categories = ["Programming", "Modeling", "AI"]
 tags = [
