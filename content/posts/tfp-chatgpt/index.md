@@ -41,13 +41,6 @@ But that was a world of assembly lines, not AI copilots.
 
 ## Why TFP Struggles With Modern Technology
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 350px; text-align: center;">
-  <img src="./tfp-chatgpt-chart.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="350" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>The productivity paradox in action: AI adoption is soaring while TFP growth stays flat.</em>
-  </figcaption>
-</figure>
-
 Critics have been pointing out TFP's flaws for years (see [References](#references)), and their arguments ring even louder in the age of AI:
 
 * **It ignores embodied technology.** Many innovations are baked into capital goods (think semiconductors or cloud infrastructure). TFP doesn't see them until much later.
@@ -59,6 +52,13 @@ Generative AI checks all three boxes. It lives in the cloud, is often free or ch
 ---
 
 ## Generative AI as the Productivity Paradox 2.0
+
+<figure style="float: right; margin: 0 20px 10px 20px; width: 350px; text-align: center;">
+  <img src="./tfp-chatgpt-chart.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="350" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>The productivity paradox in action: AI adoption is soaring while TFP growth stays flat.</em>
+  </figcaption>
+</figure>
 
 We've been here before. In the 1980s, economist Robert Solow famously quipped, *"You can see the computer age everywhere but in the productivity statistics."*
 
