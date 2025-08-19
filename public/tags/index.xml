@@ -92,26 +92,5 @@
       <guid>http://localhost:1313/tags/rain/</guid>
       <description></description>
     </item>
-    <item>
-      <title>3D Bin Packing</title>
-      <link>http://localhost:1313/tags/3d-bin-packing/</link>
-      <pubDate>Thu, 14 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/tags/3d-bin-packing/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Logistics</title>
-      <link>http://localhost:1313/tags/logistics/</link>
-      <pubDate>Thu, 14 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/tags/logistics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Thought Experiment</title>
-      <link>http://localhost:1313/tags/thought-experiment/</link>
-      <pubDate>Thu, 14 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/tags/thought-experiment/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>

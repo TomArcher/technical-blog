@@ -92,7 +92,7 @@ Robert Solow gave us a tool to understand the growth of the 20th century. But in
 
 ## Further Reading
 
-APA 7 references are probably overkill for a blog post. But if you’d like to explore the same journal articles I drew from when I wrote my university paper, here they are:
+APA 7 references are probably overkill for a blog post. But if you’d like to explore the same journal articles I drew from when I wrote the original university paper that was the catalyst for this post, here they are:
 
 - Solow, R. M. (1957). *Technical Change and the Aggregate Production Function.* *The Review of Economics and Statistics,* 39(3), 312–320. *(No direct link)*
 - [Reati, A. (2001). *Total Factor Productivity - a Misleading Concept.* PSL Quarterly Review, 54(218), 313–332.](https://doaj.org/article/e036df80c66540b3bbf188c4a9267f56)  
