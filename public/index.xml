@@ -2,38 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
-    <link>http://localhost:59531/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Aug 2025 05:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:59531/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</title>
-      <link>http://localhost:59531/posts/tfp-chatgpt/</link>
+      <link>http://localhost:1313/posts/tfp-chatgpt/</link>
       <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:59531/posts/tfp-chatgpt/</guid>
+      <guid>http://localhost:1313/posts/tfp-chatgpt/</guid>
       <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./tfp-chatgpt.png&#34; alt=&#34;Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI.&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Our tools for measuring progress were built for factories, not for AI.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn&amp;rsquo;t that show up in our productivity statistics?&lt;/p&gt;&#xA;&lt;p&gt;Economists have long relied on a metric called &lt;strong&gt;Total Factor Productivity (TFP)&lt;/strong&gt; to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</title>
-      <link>http://localhost:59531/posts/rain-paradox/</link>
+      <link>http://localhost:1313/posts/rain-paradox/</link>
       <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:59531/posts/rain-paradox/</guid>
+      <guid>http://localhost:1313/posts/rain-paradox/</guid>
       <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./rain-paradox.png&#34; alt=&#34;Rain Paradox: Walk or Run?&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;To walk or to run. That is the question.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;Early in my programming career, I came across a coding challenge that stuck with me for many years:&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;If it&amp;rsquo;s raining, will you stay drier by walking or running through it?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;At the time, I didn&amp;rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&amp;rsquo;t about recursion or memory management. It was about &lt;strong&gt;getting wet&lt;/strong&gt;, and &lt;strong&gt;how fast you move through falling rain&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>From Ice Shows to Algorithms: Cracking the Truck-Packing Puzzle</title>
+      <link>http://localhost:1313/posts/three-d-packing/</link>
+      <pubDate>Thu, 14 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/three-d-packing/</guid>
+      <description>&lt;p&gt;My very first programming job was with Holiday on Ice, a touring show that hauled entire arenas’ worth of scenery, props, and gear from city to city. Every week, the crew would break everything down and load it into trucks for the next destination.&lt;/p&gt;&#xA;&lt;p&gt;One day, the controller asked if I could write a program to figure out &lt;strong&gt;the most efficient way to pack those trucks&lt;/strong&gt;. I had already built their itinerary and box-office reporting systems, so I was comfortable with logic and basic math. But this was different. This was geometry, weight distribution, and optimization rolled into one giant puzzle — and at the time, I had no idea where to start.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>About Signal &amp; Syntax</title>
-      <link>http://localhost:59531/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:59531/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description>&lt;p&gt;For years, coding blogs followed a familiar pattern: a polished tutorial, fully working code, neat explanations. That style has its place , but today’s developer reality looks different. We live in an era of &lt;strong&gt;vibe coding&lt;/strong&gt;, where AI is part of the toolkit from the first sketch of an idea.&lt;/p&gt;&#xA;&lt;p&gt;At Signal &amp;amp; Syntax, I explore that new style:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Prompt → Output → Fix → Learn&lt;/strong&gt;&#xA;Posts aren’t static tutorials — they’re walkthroughs of how I use AI to explore solutions, refine them, and extract lessons along the way.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;AI as a Force Multiplier&lt;/strong&gt;&#xA;I use modern LLMs to accelerate analysis, drafting, and prototyping — never as a substitute for human judgment.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Domain Knowledge First&lt;/strong&gt;&#xA;Real results come from understanding systems, users, and constraints — then encoding that context into prompts, tools, and evaluations.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Creativity with Constraints&lt;/strong&gt;&#xA;Every limitation is a design input. I model, simulate, and iterate with checkpoints to keep progress measurable.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Repeatability&lt;/strong&gt;&#xA;I favor reproducible workflows, versioned prompts, and test artifacts so insights can be shared, debugged, and built upon.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This lens shapes the posts you&amp;rsquo;ll find here: hands-on guides, simulations,&#xA;annotated prompts, and tools that turn insight into working software.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Behind the Code: Tom&#39;s Story</title>
-      <link>http://localhost:59531/bio/</link>
+      <link>http://localhost:1313/bio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:59531/bio/</guid>
+      <guid>http://localhost:1313/bio/</guid>
       <description>&lt;div class=&#34;about-bio&#34;&gt;&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;&#xD;&#xA;  &lt;div class=&#34;bio-text&#34;&gt;&#xD;&#xA;     &lt;p&gt;Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.&lt;/p&gt;&#xA;&lt;p&gt;Tom also helped build and run &lt;a href=&#34;https://codeguru.com&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  CodeGuru.com&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, once the world&amp;rsquo;s largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.&lt;/p&gt;</description>
     </item>
   </channel>

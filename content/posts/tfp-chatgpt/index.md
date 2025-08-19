@@ -73,7 +73,7 @@ Why? Because TFP was designed for smokestacks, not syntax suggestions. It can't 
 If TFP is outdated, what could replace it? Economists and policymakers may need to expand the definition of productivity to reflect the new realities of human-machine collaboration:
 
 * **Time saved per task.** If an AI reduces a four-hour process to 30 minutes, that's real productivity, even if GDP doesn't change much.
-* **Innovation velocity.** AI tools accelerate how fast ideas move from concept to product — a dimension TFP never touches.
+* **Innovation velocity.** AI tools accelerate how fast ideas move from concept to product. This is a dimension TFP never touches.
 * **Human-AI capital.** Instead of treating workers and technology as separate, we should measure the combined capabilities of humans augmented by AI.
 
 This isn't just academic nitpicking. **If our metrics don't evolve, policymakers may underestimate AI's economic impact and make poor decisions about investment, regulation, and education.**
