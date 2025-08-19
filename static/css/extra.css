@@ -21,7 +21,7 @@ a {
 .widget .widget__content a,
 .about-bio .bio-text a {
   color: #1a73e8 !important;          /* pleasant blue */
-  text-decoration: underline;
+  text-decoration: none;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 2px;
   text-decoration-skip-ink: auto;

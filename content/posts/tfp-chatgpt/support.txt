@@ -1,0 +1,25 @@
+The chart is conceptual, not built directly from raw BLS or Stanford AI Index data. 
+
+The shape of the lines (TFP flattening, AI adoption skyrocketing) is historically accurate, 
+but the exact percentages and scales are illustrative rather than pulled from real datasets.
+
+Here’s the reality:
+
+TFP data (accurate):
+
+U.S. BLS shows strong growth through the 1950s–60s, slowing around 1973.
+
+Since ~2005, TFP growth has averaged ~0.5–1% per year — flat compared to earlier decades.
+
+AI adoption data (accurate surveys):
+
+McKinsey (2023): ~50% of companies report AI adoption in at least one business unit.
+
+Stanford AI Index (2024): Generative AI adoption accelerated dramatically after 2022.
+
+Before ~2015, adoption was effectively negligible.
+
+So the story the chart tells is right, but the numbers in that mockup aren’t from BLS spreadsheets or survey tables.
+
+👉 To be rigorously correct, I would need to pull real BLS TFP index data + McKinsey/Stanford adoption data, 
+then build a precise chart with actual values and citations.
