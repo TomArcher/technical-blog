@@ -109,7 +109,15 @@
 <p><em>&ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&rdquo;</em></p></blockquote>
 <hr>
 <p>One day, the controller asked me if I could code a system that took, as input, the trucks&rsquo; <strong>3D dimensions</strong> and the <strong>3D dimensions (and weight)</strong> of every object to be packed. Back in the <strong>Turbo Pascal</strong> era, exploring 3D packing was painful. Today, with <strong>Python</strong> and <strong>AI-assisted scaffolding</strong>, it&rsquo;s surprisingly approachable.</p>
-<p>This same problem shows up anywhere people need to fit things into finite 3D spaces—think <strong>concert tours</strong> (road cases into trailers), <strong>e-commerce fulfillment</strong> (cartons into pallets/containers), <strong>furniture moves</strong>, <strong>air cargo</strong> (ULDs), <strong>shipping &amp; logistics</strong> (LTL/FTL), and <strong>warehouse slotting</strong>.</p>
+<p>This same problem shows up anywhere people need to fit things into finite 3D spaces:</p>
+<ul>
+<li><strong>Air cargo</strong>: Loading Unit Load Devices (ULDs - aircraft pallets and containers)</li>
+<li><strong>Concert tours</strong>: Packing road cases into trailers and stage trucks</li>
+<li><strong>E-commerce fulfillment</strong>: Fitting cartons onto pallets and into shipping containers</li>
+<li><strong>Furniture / equipment moves</strong>: Loading mixed-size items into moving trucks or pods</li>
+<li><strong>Shipping &amp; logistics</strong>: Optimizing Less-Than-Truckload (LTL) and Full-Truckload (FTL) loads</li>
+<li><strong>Warehouse slotting</strong>: Assigning products to rack/bin locations to balance space use and picking efficiency</li>
+</ul>
 <hr>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
 <p>Imagine a truck interior sized <strong>H × W × D</strong> (height, width, depth) and a set of boxes with <strong>height, width, depth, and weight</strong>. The challenge:</p>

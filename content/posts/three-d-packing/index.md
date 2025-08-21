@@ -34,7 +34,14 @@ One day, the controller asked me if I could code a system that took, as input, t
 
 <!--more-->
 
-This same problem shows up anywhere people need to fit things into finite 3D spaces—think **concert tours** (road cases into trailers), **e-commerce fulfillment** (cartons into pallets/containers), **furniture moves**, **air cargo** (ULDs), **shipping & logistics** (LTL/FTL), and **warehouse slotting**.  
+This same problem shows up anywhere people need to fit things into finite 3D spaces:
+
+- **Air cargo**: Loading Unit Load Devices (ULDs - aircraft pallets and containers)
+- **Concert tours**: Packing road cases into trailers and stage trucks
+- **E-commerce fulfillment**: Fitting cartons onto pallets and into shipping containers
+- **Furniture / equipment moves**: Loading mixed-size items into moving trucks or pods
+- **Shipping & logistics**: Optimizing Less-Than-Truckload (LTL) and Full-Truckload (FTL) loads
+- **Warehouse slotting**: Assigning products to rack/bin locations to balance space use and picking efficiency
 
 --- 
 
