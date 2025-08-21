@@ -222,8 +222,6 @@ if __name__ == "__main__":
             print("-", n)
 ```
 
-Here's a short lead-in you can drop right after the header:
-
 **Sample Output:**
 
 The packing function produces a sequential plan showing where each crate ends up, including its 3D position, size, and weight. Each line corresponds to one item in the truck, listed in the order it was placed.
