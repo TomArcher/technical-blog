@@ -2,13 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/ai/</loc>
-    <lastmod>2025-08-19T05:00:00-07:00</lastmod>
+    <loc>http://localhost:1313/tags/3d-bin-packing/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/ai/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/algorithms/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/three-d-packing/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/matplotlib/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/modeling/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/optimization/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/programming/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-08-20T09:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/academic/</loc>
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/economic-growth/</loc>
+    <loc>http://localhost:1313/categories/ai/</loc>
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/economics/</loc>
@@ -20,49 +56,25 @@
     <loc>http://localhost:1313/tags/generative-ai/</loc>
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/measurement/</loc>
-    <lastmod>2025-08-19T05:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:1313/tags/opinion/</loc>
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/productivity/</loc>
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-08-19T05:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-08-19T05:00:00-07:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/tfp/</loc>
-    <lastmod>2025-08-19T05:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/total-factor-productivity/</loc>
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/geometry/</loc>
     <lastmod>2025-08-18T09:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/matplotlib/</loc>
-    <lastmod>2025-08-18T09:00:00-07:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/categories/modeling/</loc>
-    <lastmod>2025-08-18T09:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/modeling/</loc>
     <lastmod>2025-08-18T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/physics/</loc>
     <lastmod>2025-08-18T09:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/programming/</loc>
-    <lastmod>2025-08-18T09:00:00-07:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/prompt-engineering/</loc>
-    <lastmod>2025-08-18T09:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
     <lastmod>2025-08-18T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/rain/</loc>

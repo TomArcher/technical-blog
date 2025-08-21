@@ -3,7 +3,7 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>From Ice Shows to Algorithms: Cracking the Truck-Packing Puzzle - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,11 +68,11 @@
 <main class="main" role="main">
   <article class="post">
     <header class="post__header">
-      <h1 class="post__title">From Ice Shows to Algorithms: Cracking the Truck-Packing Puzzle</h1>
+      <h1 class="post__title">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</h1>
 
       <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-08-14T09:00:00-07:00">
-              <strong>August 14, 2025</strong>
+            <time datetime="2025-08-20T09:00:00-07:00">
+              <strong>August 20, 2025</strong>
             </time>&nbsp;•&nbsp;
             <strong>Categories:</strong>&nbsp;<a class="meta__link"
                  href="/categories/programming/"
@@ -82,22 +82,637 @@
             <strong>Tags:</strong>&nbsp;<a class="meta__link"
                  href="/tags/python/"
                  rel="tag">#Python</a>, <a class="meta__link"
-                 href="/tags/geometry/"
-                 rel="tag">#Geometry</a>, <a class="meta__link"
                  href="/tags/3d-bin-packing/"
                  rel="tag">#3D Bin Packing</a>, <a class="meta__link"
-                 href="/tags/logistics/"
-                 rel="tag">#Logistics</a>, <a class="meta__link"
-                 href="/tags/thought-experiment/"
-                 rel="tag">#Thought Experiment</a></p></div>
+                 href="/tags/algorithms/"
+                 rel="tag">#Algorithms</a>, <a class="meta__link"
+                 href="/tags/ai/"
+                 rel="tag">#AI</a>, <a class="meta__link"
+                 href="/tags/modeling/"
+                 rel="tag">#Modeling</a>, <a class="meta__link"
+                 href="/tags/heuristics/"
+                 rel="tag">#Heuristics</a>, <a class="meta__link"
+                 href="/tags/matplotlib/"
+                 rel="tag">#Matplotlib</a></p></div>
     </header>
 
     <div class="content post__content clearfix">
-      <p>My very first programming job was with Holiday on Ice, a touring show that hauled entire arenas’ worth of scenery, props, and gear from city to city. Every week, the crew would break everything down and load it into trucks for the next destination.</p>
-<p>One day, the controller asked if I could write a program to figure out <strong>the most efficient way to pack those trucks</strong>. I had already built their itinerary and box-office reporting systems, so I was comfortable with logic and basic math. But this was different. This was geometry, weight distribution, and optimization rolled into one giant puzzle — and at the time, I had no idea where to start.</p>
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./three-d-packing.png" alt="3D Bin Packing" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>How do you fit it all in?</em>
+  </figcaption>
+</figure>
+<p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
 <hr>
-<h3 id="the-thought-experiment">The Thought Experiment</h3>
-
+<blockquote>
+<p><em>&ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&rdquo;</em></p></blockquote>
+<hr>
+<p>One day, the controller asked me if I could code a system that took, as input, the trucks&rsquo; <strong>3D dimensions</strong> and the <strong>3D dimensions (and weight)</strong> of every object to be packed. Back in the <strong>Turbo Pascal</strong> era, exploring 3D packing was painful. Today, with <strong>Python</strong> and <strong>AI-assisted scaffolding</strong>, it&rsquo;s surprisingly approachable.</p>
+<p>This same problem shows up anywhere people need to fit things into finite 3D spaces—think <strong>concert tours</strong> (road cases into trailers), <strong>e-commerce fulfillment</strong> (cartons into pallets/containers), <strong>furniture moves</strong>, <strong>air cargo</strong> (ULDs), <strong>shipping &amp; logistics</strong> (LTL/FTL), and <strong>warehouse slotting</strong>.</p>
+<hr>
+<h2 id="the-thought-experiment">The Thought Experiment</h2>
+<p>Imagine a truck interior sized <strong>H × W × D</strong> (height, width, depth) and a set of boxes with <strong>height, width, depth, and weight</strong>. The challenge:</p>
+<ul>
+<li><strong>Maximize space usage</strong> while avoiding overlap.</li>
+<li><strong>Respect the truck bounds</strong> (no sticking out).</li>
+<li>Optionally <strong>consider weight</strong> and stacking rules.</li>
+</ul>
+<p>Real-world simple? Not really. Computationally, it&rsquo;s a classic <strong>3D bin-packing</strong> problem. On the scale of computational complexity, this problem is extremely difficult (<strong>NP-hard</strong>), meaning there&rsquo;s no known fast way to always find the perfect solution. Instead, we rely on heuristics, which are clever shortcuts that deliver good (though not guaranteed optimal) results quickly.</p>
+<p>It&rsquo;s like trying to figure out every possible way to load groceries into your car trunk. You could test every arrangement, but that would take forever, so instead you look for smart tricks to get a good result quickly. Tricks such as loading heavy items first, stacking boxes neatly, and filling gaps with small bags.</p>
+<h1 id="modeling-the-packing-problem">Modeling the Packing Problem</h1>
+<p>To simulate the problem, we make the following simplifications:</p>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>The truck is a perfect cuboid with fixed dimensions.</li>
+<li>Each box is also a cuboid with (height, width, depth, weight).</li>
+<li>Boxes may only be rotated in <strong>axis-aligned orientations</strong> (6 total).</li>
+<li>Free space is tracked as rectangular subspaces (split after each placement).</li>
+<li>Goal: maximize volume utilization, while optionally considering stacking rules.</li>
+</ul>
+<hr>
+<h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
+<p>I start by prompting an AI model to sketch out a basic packing algorithm:</p>
+<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write a Python script that, given the dimensions of a truck 
+(height, width, depth) and a dictionary of objects with 
+height, width, depth, and weight, produces a packing order. 
+The script should output 3D positions and orientations for 
+each object.
+</code></pre><p>The model produces a working draft. As with most AI-generated code, it needs refinement so blocks don&rsquo;t float or extend beyond the truck&rsquo;s limits. These edits include better variable and function naming, clearer placement logic, and fixing layout issues. Still, this first generation saves me hours of scaffolding and gives me a strong foundation to improve upon. What follows is the refined version.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">81
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">82
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">83
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">84
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">85
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">86
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">87
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">88
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">89
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">90
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">91
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">92
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> dataclasses <span style="color:#ff79c6">import</span> dataclass
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> typing <span style="color:#ff79c6">import</span> List, Tuple, Dict
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@dataclass
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Dimensions</span>:
+</span></span><span style="display:flex;"><span>    height: <span style="color:#8be9fd;font-style:italic">float</span>
+</span></span><span style="display:flex;"><span>    width: <span style="color:#8be9fd;font-style:italic">float</span>
+</span></span><span style="display:flex;"><span>    depth: <span style="color:#8be9fd;font-style:italic">float</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@dataclass
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Placement</span>:
+</span></span><span style="display:flex;"><span>    name: <span style="color:#8be9fd;font-style:italic">str</span>
+</span></span><span style="display:flex;"><span>    size: Dimensions
+</span></span><span style="display:flex;"><span>    weight: <span style="color:#8be9fd;font-style:italic">float</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># (x, y, z) = (width, height, depth)</span>
+</span></span><span style="display:flex;"><span>    position: Tuple[<span style="color:#8be9fd;font-style:italic">float</span>, <span style="color:#8be9fd;font-style:italic">float</span>, <span style="color:#8be9fd;font-style:italic">float</span>] 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">pack_truck</span>(
+</span></span><span style="display:flex;"><span>    truck: Dimensions,
+</span></span><span style="display:flex;"><span>    items: Dict[<span style="color:#8be9fd;font-style:italic">str</span>, Dict]
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> Tuple[List[Placement], List[<span style="color:#8be9fd;font-style:italic">str</span>], List[<span style="color:#8be9fd;font-style:italic">str</span>]]:
+</span></span><span style="display:flex;"><span>    placements: List[Placement] <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span>    skipped: List[<span style="color:#8be9fd;font-style:italic">str</span>] <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span>    notes: List[<span style="color:#8be9fd;font-style:italic">str</span>] <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Shelf-style cursor positions using (x, y, z) </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># with y=height and z=depth</span>
+</span></span><span style="display:flex;"><span>    x, y, z <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.0</span>, <span style="color:#bd93f9">0.0</span>, <span style="color:#bd93f9">0.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Tallest item in this layer (height consumed)</span>
+</span></span><span style="display:flex;"><span>    current_layer_height <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.0</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Deepest item in the current row</span>
+</span></span><span style="display:flex;"><span>    row_depth <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Sort by volume then weight (desc) to be more </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># stable/deterministic</span>
+</span></span><span style="display:flex;"><span>    items_sorted <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sorted</span>(
+</span></span><span style="display:flex;"><span>        items<span style="color:#ff79c6">.</span>items(),
+</span></span><span style="display:flex;"><span>        key<span style="color:#ff79c6">=</span><span style="color:#ff79c6">lambda</span> kv: (
+</span></span><span style="display:flex;"><span>            kv[<span style="color:#bd93f9">1</span>][<span style="color:#f1fa8c">&#34;height&#34;</span>] <span style="color:#ff79c6">*</span> kv[<span style="color:#bd93f9">1</span>][<span style="color:#f1fa8c">&#34;width&#34;</span>] <span style="color:#ff79c6">*</span> kv[<span style="color:#bd93f9">1</span>][<span style="color:#f1fa8c">&#34;depth&#34;</span>],
+</span></span><span style="display:flex;"><span>            kv[<span style="color:#bd93f9">1</span>][<span style="color:#f1fa8c">&#34;weight&#34;</span>],
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>        reverse<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> name, item <span style="color:#ff79c6">in</span> items_sorted:
+</span></span><span style="display:flex;"><span>        h, w, d, wt <span style="color:#ff79c6">=</span> (item[<span style="color:#f1fa8c">&#34;height&#34;</span>], 
+</span></span><span style="display:flex;"><span>                      item[<span style="color:#f1fa8c">&#34;width&#34;</span>], 
+</span></span><span style="display:flex;"><span>                      item[<span style="color:#f1fa8c">&#34;depth&#34;</span>], 
+</span></span><span style="display:flex;"><span>                      item[<span style="color:#f1fa8c">&#34;weight&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># If it doesn&#39;t fit in the current row across width,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># wrap to next row (advance depth z)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> x <span style="color:#ff79c6">+</span> w <span style="color:#ff79c6">&gt;</span> truck<span style="color:#ff79c6">.</span>width:
+</span></span><span style="display:flex;"><span>            x <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.0</span>
+</span></span><span style="display:flex;"><span>            z <span style="color:#ff79c6">+=</span> row_depth
+</span></span><span style="display:flex;"><span>            row_depth <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># If it doesn&#39;t fit within remaining depth,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># start a new layer (advance height y)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> z <span style="color:#ff79c6">+</span> d <span style="color:#ff79c6">&gt;</span> truck<span style="color:#ff79c6">.</span>depth:
+</span></span><span style="display:flex;"><span>            z <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.0</span>
+</span></span><span style="display:flex;"><span>            y <span style="color:#ff79c6">+=</span> current_layer_height
+</span></span><span style="display:flex;"><span>            current_layer_height <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># If it doesn&#39;t fit within remaining height, skip</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> y <span style="color:#ff79c6">+</span> h <span style="color:#ff79c6">&gt;</span> truck<span style="color:#ff79c6">.</span>height:
+</span></span><span style="display:flex;"><span>            skipped<span style="color:#ff79c6">.</span>append(name)
+</span></span><span style="display:flex;"><span>            notes<span style="color:#ff79c6">.</span>append(
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> skipped: too tall for remaining truck height.&#34;</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">continue</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Place the item</span>
+</span></span><span style="display:flex;"><span>        placements<span style="color:#ff79c6">.</span>append(
+</span></span><span style="display:flex;"><span>            Placement(
+</span></span><span style="display:flex;"><span>                name<span style="color:#ff79c6">=</span>name,
+</span></span><span style="display:flex;"><span>                size<span style="color:#ff79c6">=</span>Dimensions(h, w, d),
+</span></span><span style="display:flex;"><span>                weight<span style="color:#ff79c6">=</span>wt,
+</span></span><span style="display:flex;"><span>                position<span style="color:#ff79c6">=</span>(x, y, z),
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Update cursors</span>
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">+=</span> w
+</span></span><span style="display:flex;"><span>        row_depth <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">max</span>(row_depth, d)
+</span></span><span style="display:flex;"><span>        current_layer_height <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">max</span>(current_layer_height, h)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> placements, skipped, notes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="simulation-packing-a-truck">Simulation: Packing a Truck</h2>
+<p>Once the function exists, I test it with a sample truck definition and a dictionary of sample items:</p>
+<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write example code that defines a truck, provides a dictionary 
+of items with height, width, depth, and weight, and prints 
+the resulting packing plan.
+</code></pre><p>The model produces usable code that I edit for clarity and readability.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># ---------- Demo ----------</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    truck <span style="color:#ff79c6">=</span> Dimensions(height<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100.0</span>, width<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100.0</span>, depth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">240.0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    items_input <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;crateA&#34;</span>: {<span style="color:#f1fa8c">&#34;height&#34;</span>: <span style="color:#bd93f9">50</span>, <span style="color:#f1fa8c">&#34;width&#34;</span>: <span style="color:#bd93f9">40</span>, <span style="color:#f1fa8c">&#34;depth&#34;</span>: <span style="color:#bd93f9">60</span>, <span style="color:#f1fa8c">&#34;weight&#34;</span>: <span style="color:#bd93f9">80</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;crateB&#34;</span>: {<span style="color:#f1fa8c">&#34;height&#34;</span>: <span style="color:#bd93f9">30</span>, <span style="color:#f1fa8c">&#34;width&#34;</span>: <span style="color:#bd93f9">30</span>, <span style="color:#f1fa8c">&#34;depth&#34;</span>: <span style="color:#bd93f9">30</span>, <span style="color:#f1fa8c">&#34;weight&#34;</span>: <span style="color:#bd93f9">40</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;crateC&#34;</span>: {<span style="color:#f1fa8c">&#34;height&#34;</span>: <span style="color:#bd93f9">20</span>, <span style="color:#f1fa8c">&#34;width&#34;</span>: <span style="color:#bd93f9">60</span>, <span style="color:#f1fa8c">&#34;depth&#34;</span>: <span style="color:#bd93f9">40</span>, <span style="color:#f1fa8c">&#34;weight&#34;</span>: <span style="color:#bd93f9">50</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;crateD&#34;</span>: {<span style="color:#f1fa8c">&#34;height&#34;</span>: <span style="color:#bd93f9">80</span>, <span style="color:#f1fa8c">&#34;width&#34;</span>: <span style="color:#bd93f9">40</span>, <span style="color:#f1fa8c">&#34;depth&#34;</span>: <span style="color:#bd93f9">50</span>, <span style="color:#f1fa8c">&#34;weight&#34;</span>: <span style="color:#bd93f9">90</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;crateE&#34;</span>: {<span style="color:#f1fa8c">&#34;height&#34;</span>: <span style="color:#bd93f9">10</span>, <span style="color:#f1fa8c">&#34;width&#34;</span>: <span style="color:#bd93f9">90</span>, <span style="color:#f1fa8c">&#34;depth&#34;</span>: <span style="color:#bd93f9">30</span>, <span style="color:#f1fa8c">&#34;weight&#34;</span>: <span style="color:#bd93f9">20</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;crateF&#34;</span>: {<span style="color:#f1fa8c">&#34;height&#34;</span>: <span style="color:#bd93f9">40</span>, <span style="color:#f1fa8c">&#34;width&#34;</span>: <span style="color:#bd93f9">40</span>, <span style="color:#f1fa8c">&#34;depth&#34;</span>: <span style="color:#bd93f9">40</span>, <span style="color:#f1fa8c">&#34;weight&#34;</span>: <span style="color:#bd93f9">60</span>},
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    placements, skipped, notes <span style="color:#ff79c6">=</span> pack_truck(truck, items_input)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;== PACK PLAN ==&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> i, p <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(placements, <span style="color:#bd93f9">1</span>):
+</span></span><span style="display:flex;"><span>        x, y, z <span style="color:#ff79c6">=</span> p<span style="color:#ff79c6">.</span>position
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>i<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">02d</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">. </span><span style="color:#f1fa8c">{</span>p<span style="color:#ff79c6">.</span>name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">: pos=(</span><span style="color:#f1fa8c">{</span>x<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">,</span><span style="color:#f1fa8c">{</span>y<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">,</span><span style="color:#f1fa8c">{</span>z<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">) &#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;size(HxWxD)=(</span><span style="color:#f1fa8c">{</span>p<span style="color:#ff79c6">.</span>size<span style="color:#ff79c6">.</span>height<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">x</span><span style="color:#f1fa8c">{</span>p<span style="color:#ff79c6">.</span>size<span style="color:#ff79c6">.</span>width<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">x&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>p<span style="color:#ff79c6">.</span>size<span style="color:#ff79c6">.</span>depth<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">) &#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;weight=</span><span style="color:#f1fa8c">{</span>p<span style="color:#ff79c6">.</span>weight<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> skipped:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Skipped:&#34;</span>, skipped)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> notes:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Notes:&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> n <span style="color:#ff79c6">in</span> notes:
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span>, n)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here&rsquo;s a short lead-in you can drop right after the header:</p>
+<p><strong>Sample Output:</strong></p>
+<p>The packing function produces a sequential plan showing where each crate ends up, including its 3D position, size, and weight. Each line corresponds to one item in the truck, listed in the order it was placed.</p>
+<pre tabindex="0"><code class="language-output" data-lang="output">== PACK PLAN ==
+01. crateD: pos=(0.0,0.0,0.0) size(HxWxD)=(80.0x40.0x50.0) weight=90.0
+02. crateA: pos=(40.0,0.0,0.0) size(HxWxD)=(50.0x40.0x60.0) weight=80.0
+03. crateF: pos=(0.0,0.0,60.0) size(HxWxD)=(40.0x40.0x40.0) weight=60.0
+04. crateC: pos=(40.0,0.0,60.0) size(HxWxD)=(20.0x60.0x40.0) weight=50.0
+05. crateB: pos=(0.0,0.0,100.0) size(HxWxD)=(30.0x30.0x30.0) weight=40.0
+06. crateE: pos=(0.0,0.0,130.0) size(HxWxD)=(10.0x90.0x30.0) weight=20.0
+</code></pre><hr>
+<h2 id="making-the-results-visual">Making the Results Visual</h2>
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+  <img src="./packing-plot.png" alt="3D Bin Packing" width="400" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>3D visualization of packed items inside the truck, showing width, depth, and height alignment based on a heuristic best-guess for efficiency.</em>
+  </figcaption>
+</figure>
+<p>By plotting the packed truck, we move beyond raw placement data and can see whether the packing logic produces a layout that makes sense in three dimensions. A list of coordinates and sizes may be correct mathematically, but it’s not easy to judge efficiency or orientation without a visual check. A 3D plot gives immediate feedback on how the boxes sit within the container: whether they fit, whether they stack as expected, and how well the available space is being used. This makes it much easier to spot mistakes in the algorithm, such as items standing on the wrong axis, overlapping, or leaving gaps that should have been filled.</p>
+<p>The plotting function directly supports this goal by turning the abstract placement data into a clear visual model. The prompt I use ensures that the visualization is both accurate and interpretable. By assigning each box its own color and labeling it at its center, the plot highlights how individual items relate to the container and to each other. In this way, the visualization is not just a cosmetic step, but an integral part of validating and improving the packing heuristic.</p>
+<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write a Python function that takes a truck&#39;s dimensions and the placements list, 
+and plots the packed truck in 3D using Matplotlib. Each box should have a unique 
+color and label.
+</code></pre><div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># ---------- Visualization ----------</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> mpl_toolkits.mplot3d.art3d <span style="color:#ff79c6">import</span> Poly3DCollection
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> random
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_cuboid_faces_mpl_from_internal</span>(x, y, z, w, h, d):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Internal coords: x=width, y=height, z=depth
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Matplotlib axes: X=width, Y=depth, Z=height
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Map (x,y,z) -&gt; (X,Y,Z) = (x, z, y)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># 8 vertices in internal space</span>
+</span></span><span style="display:flex;"><span>    v000 <span style="color:#ff79c6">=</span> (x,     y,     z    )
+</span></span><span style="display:flex;"><span>    v100 <span style="color:#ff79c6">=</span> (x <span style="color:#ff79c6">+</span> w, y,     z    )
+</span></span><span style="display:flex;"><span>    v110 <span style="color:#ff79c6">=</span> (x <span style="color:#ff79c6">+</span> w, y <span style="color:#ff79c6">+</span> h, z    )
+</span></span><span style="display:flex;"><span>    v010 <span style="color:#ff79c6">=</span> (x,     y <span style="color:#ff79c6">+</span> h, z    )
+</span></span><span style="display:flex;"><span>    v001 <span style="color:#ff79c6">=</span> (x,     y,     z <span style="color:#ff79c6">+</span> d)
+</span></span><span style="display:flex;"><span>    v101 <span style="color:#ff79c6">=</span> (x <span style="color:#ff79c6">+</span> w, y,     z <span style="color:#ff79c6">+</span> d)
+</span></span><span style="display:flex;"><span>    v111 <span style="color:#ff79c6">=</span> (x <span style="color:#ff79c6">+</span> w, y <span style="color:#ff79c6">+</span> h, z <span style="color:#ff79c6">+</span> d)
+</span></span><span style="display:flex;"><span>    v011 <span style="color:#ff79c6">=</span> (x,     y <span style="color:#ff79c6">+</span> h, z <span style="color:#ff79c6">+</span> d)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">to_mpl</span>(v):
+</span></span><span style="display:flex;"><span>        xi, yi, zi <span style="color:#ff79c6">=</span> v
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> [xi, zi, yi]  <span style="color:#6272a4"># (X=width, Y=depth, Z=height)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    V <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">list</span>(<span style="color:#8be9fd;font-style:italic">map</span>(to_mpl, [v000, v100, v110, v010, v001, v101, v111, v011]))
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># faces as quads using transformed verts</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> [
+</span></span><span style="display:flex;"><span>        [V[<span style="color:#bd93f9">0</span>], V[<span style="color:#bd93f9">1</span>], V[<span style="color:#bd93f9">2</span>], V[<span style="color:#bd93f9">3</span>]],  <span style="color:#6272a4"># back  (z)</span>
+</span></span><span style="display:flex;"><span>        [V[<span style="color:#bd93f9">4</span>], V[<span style="color:#bd93f9">5</span>], V[<span style="color:#bd93f9">6</span>], V[<span style="color:#bd93f9">7</span>]],  <span style="color:#6272a4"># front (z + d)</span>
+</span></span><span style="display:flex;"><span>        [V[<span style="color:#bd93f9">0</span>], V[<span style="color:#bd93f9">1</span>], V[<span style="color:#bd93f9">5</span>], V[<span style="color:#bd93f9">4</span>]],  <span style="color:#6272a4"># bottom</span>
+</span></span><span style="display:flex;"><span>        [V[<span style="color:#bd93f9">3</span>], V[<span style="color:#bd93f9">2</span>], V[<span style="color:#bd93f9">6</span>], V[<span style="color:#bd93f9">7</span>]],  <span style="color:#6272a4"># top</span>
+</span></span><span style="display:flex;"><span>        [V[<span style="color:#bd93f9">1</span>], V[<span style="color:#bd93f9">2</span>], V[<span style="color:#bd93f9">6</span>], V[<span style="color:#bd93f9">5</span>]],  <span style="color:#6272a4"># right</span>
+</span></span><span style="display:flex;"><span>        [V[<span style="color:#bd93f9">0</span>], V[<span style="color:#bd93f9">3</span>], V[<span style="color:#bd93f9">7</span>], V[<span style="color:#bd93f9">4</span>]],  <span style="color:#6272a4"># left</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>plot_truck_packing</code> function is responsible for visualizing how items are arranged inside the truck. It begins by drawing a wireframe of the container using width, depth, and height as the three axes. It then loops through each placed item, calls <code>_cuboid_faces_mpl_from_internal</code> to generate the six visible faces of the box in Matplotlib’s coordinate system, and renders them as colored 3D shapes. Labels are added at the center of each item for clarity, and the axes are labeled and scaled so the proportions match the truck’s real dimensions. Finally, the viewing angle, aspect ratio, and title are set to produce a clear, accurate perspective of the packed load.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_truck_packing</span>(truck: Dimensions, placements: List[Placement]):
+</span></span><span style="display:flex;"><span>    fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">8</span>))
+</span></span><span style="display:flex;"><span>    ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>, projection<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;3d&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Truck wireframe: bottom (Z=0), top (Z=truck.height)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Use (X,Y,Z) = (width, depth, height)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Bottom rectangle (Z=0)</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>plot([<span style="color:#bd93f9">0</span>, truck<span style="color:#ff79c6">.</span>width, truck<span style="color:#ff79c6">.</span>width, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>],
+</span></span><span style="display:flex;"><span>            [<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>,           truck<span style="color:#ff79c6">.</span>depth,  truck<span style="color:#ff79c6">.</span>depth, <span style="color:#bd93f9">0</span>],
+</span></span><span style="display:flex;"><span>            [<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>,           <span style="color:#bd93f9">0</span>,            <span style="color:#bd93f9">0</span>,           <span style="color:#bd93f9">0</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;k-&#34;</span>, linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Top rectangle (Z=truck.height)</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>plot([<span style="color:#bd93f9">0</span>, truck<span style="color:#ff79c6">.</span>width, truck<span style="color:#ff79c6">.</span>width, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>],
+</span></span><span style="display:flex;"><span>            [<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>,           truck<span style="color:#ff79c6">.</span>depth,  truck<span style="color:#ff79c6">.</span>depth, <span style="color:#bd93f9">0</span>],
+</span></span><span style="display:flex;"><span>            [truck<span style="color:#ff79c6">.</span>height]<span style="color:#ff79c6">*</span><span style="color:#bd93f9">5</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;k-&#34;</span>, linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Vertical edges</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> X, Y <span style="color:#ff79c6">in</span> [
+</span></span><span style="display:flex;"><span>        (<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>),
+</span></span><span style="display:flex;"><span>        (truck<span style="color:#ff79c6">.</span>width, <span style="color:#bd93f9">0</span>),
+</span></span><span style="display:flex;"><span>        (truck<span style="color:#ff79c6">.</span>width, truck<span style="color:#ff79c6">.</span>depth),
+</span></span><span style="display:flex;"><span>        (<span style="color:#bd93f9">0</span>, truck<span style="color:#ff79c6">.</span>depth),
+</span></span><span style="display:flex;"><span>    ]:
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>plot([X, X], [Y, Y], [<span style="color:#bd93f9">0</span>, truck<span style="color:#ff79c6">.</span>height], <span style="color:#f1fa8c">&#34;k-&#34;</span>, linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Draw items</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> p <span style="color:#ff79c6">in</span> placements:
+</span></span><span style="display:flex;"><span>        x, y, z <span style="color:#ff79c6">=</span> p<span style="color:#ff79c6">.</span>position          <span style="color:#6272a4"># internal</span>
+</span></span><span style="display:flex;"><span>        h, w, d <span style="color:#ff79c6">=</span> p<span style="color:#ff79c6">.</span>size<span style="color:#ff79c6">.</span>height, p<span style="color:#ff79c6">.</span>size<span style="color:#ff79c6">.</span>width, p<span style="color:#ff79c6">.</span>size<span style="color:#ff79c6">.</span>depth
+</span></span><span style="display:flex;"><span>        faces <span style="color:#ff79c6">=</span> _cuboid_faces_mpl_from_internal(x, y, z, w, h, d)
+</span></span><span style="display:flex;"><span>        color <span style="color:#ff79c6">=</span> [random<span style="color:#ff79c6">.</span>random(), random<span style="color:#ff79c6">.</span>random(), random<span style="color:#ff79c6">.</span>random()]
+</span></span><span style="display:flex;"><span>        poly <span style="color:#ff79c6">=</span> Poly3DCollection(faces, facecolors<span style="color:#ff79c6">=</span>color, 
+</span></span><span style="display:flex;"><span>                                edgecolors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;k&#34;</span>, 
+</span></span><span style="display:flex;"><span>                                linewidths<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.8</span>, 
+</span></span><span style="display:flex;"><span>                                alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.7</span>)
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>add_collection3d(poly)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Label at center (map to mpl coords)</span>
+</span></span><span style="display:flex;"><span>        Xc, Yc, Zc <span style="color:#ff79c6">=</span> x <span style="color:#ff79c6">+</span> w<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>, z <span style="color:#ff79c6">+</span> d<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>, y <span style="color:#ff79c6">+</span> h<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>text(Xc, Yc, Zc, p<span style="color:#ff79c6">.</span>name, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;k&#34;</span>, ha<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;center&#34;</span>, va<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;center&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Labels &amp; limits (match mapped axes)</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;Width (X)&#34;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;Depth (Y)&#34;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_zlabel(<span style="color:#f1fa8c">&#34;Height (Z)&#34;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_xlim(<span style="color:#bd93f9">0</span>, truck<span style="color:#ff79c6">.</span>width)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_ylim(<span style="color:#bd93f9">0</span>, truck<span style="color:#ff79c6">.</span>depth)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_zlim(<span style="color:#bd93f9">0</span>, truck<span style="color:#ff79c6">.</span>height)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Proportional box aspect</span>
+</span></span><span style="display:flex;"><span>    max_range <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">max</span>(truck<span style="color:#ff79c6">.</span>width, truck<span style="color:#ff79c6">.</span>depth, truck<span style="color:#ff79c6">.</span>height)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_box_aspect((truck<span style="color:#ff79c6">.</span>width <span style="color:#ff79c6">/</span> max_range,
+</span></span><span style="display:flex;"><span>                       truck<span style="color:#ff79c6">.</span>depth <span style="color:#ff79c6">/</span> max_range,
+</span></span><span style="display:flex;"><span>                       truck<span style="color:#ff79c6">.</span>height <span style="color:#ff79c6">/</span> max_range))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Optional: set a helpful view angle</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>view_init(elev<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>, azim<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">60</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#34;Truck Packing (X=Width, Y=Depth, Z=Height)&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you are following along, remember to call the <code>plot_truck_packing</code> function at the end of the <code>main</code> function.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Visualize the simulated pack</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span>:
+</span></span><span style="display:flex;"><span>        plot_truck_packing(truck, placements)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">except</span> Exception <span style="color:#ff79c6">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">(Visualization skipped; matplotlib may not be installed.)&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(e)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="what-we-learned">What We Learned</h2>
+<p>So what did we actually learn from tackling this truck-packing problem with AI? First, prompt engineering really does matter. The clearer and more constrained the prompt, the closer the AI&rsquo;s first draft will be to something usable, saving time on rework.</p>
+<p>Second, we should remember that this is an <strong>NP-hard problem</strong>. No matter how clever we are, we&rsquo;re not going to get perfect solutions every time. Therefore, the practical goal is heuristics that give us &ldquo;good enough&rdquo; answers <strong>fast</strong>.</p>
+<p>Finally, we saw how <strong>greedy placement rules</strong> and <strong>guillotine-style splits</strong> can provide practical packing strategies, and how visualization is key to making the results feel intuitive rather than just lines of coordinates.</p>
+<hr>
+<h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
+<p>The best way to internalize a concept like 3D packing is to get your hands dirty. The following exercises encourage you to tweak the algorithm, adjust the inputs, and even rethink the heuristics. By experimenting, you&rsquo;ll see firsthand how small changes in assumptions or constraints can dramatically affect the packing efficiency.</p>
+<hr>
+<h3 id="beginner-level-quick-fixes--calibration">Beginner Level: Quick Fixes &amp; Calibration</h3>
+<ol>
+<li>
+<p>Add weight limits: don&rsquo;t allow heavy crates to stack on fragile ones.</p>
+</li>
+<li>
+<p>Track utilization percentage after each placement.</p>
+</li>
+</ol>
+<hr>
+<h3 id="intermediate-level-geometry--body-modeling">Intermediate Level: Geometry &amp; Body Modeling</h3>
+<ol>
+<li>
+<p>Allow full box rotations (beyond axis-aligned).</p>
+</li>
+<li>
+<p>Experiment with different scoring heuristics (e.g., minimize height first).</p>
+</li>
+</ol>
+<hr>
+<h3 id="advanced-level-environment--stochasticity">Advanced Level: Environment &amp; Stochasticity</h3>
+<ol>
+<li>
+<p>Implement simulated annealing or genetic algorithms to search better packings.</p>
+</li>
+<li>
+<p>Add real-world rules like axle load balancing or fragile stacking.</p>
+</li>
+<li>
+<p>Scale up to thousands of boxes with Monte Carlo heuristics.</p>
+</li>
+</ol>
+<hr>
+<h2 id="last-words">Last words</h2>
+<p>Packing trucks may seem like grunt work, but it&rsquo;s really a microcosm of <strong>optimization problems</strong>: finite resources, constraints, tradeoffs. The thrill of solving them, especially with today&rsquo;s AI scaffolding, is the same thrill that first drew me to programming back at Holiday on Ice.</p>
+<hr>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/three-d-packing" target="_blank" rel="noopener noreferrer">
+  Download the full code on GitHub
+</a>
+</p>
     </div>
     <footer class="post__footer">
       
@@ -108,16 +723,22 @@
 			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/geometry/" rel="tag">Geometry</a>
-		</li>
-		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/3d-bin-packing/" rel="tag">3D Bin Packing</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/logistics/" rel="tag">Logistics</a>
+			<a class="tags__link btn" href="/tags/algorithms/" rel="tag">Algorithms</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/thought-experiment/" rel="tag">Thought Experiment</a>
+			<a class="tags__link btn" href="/tags/ai/" rel="tag">AI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/modeling/" rel="tag">Modeling</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/heuristics/" rel="tag">Heuristics</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/matplotlib/" rel="tag">Matplotlib</a>
 		</li>
 	</ul>
 </div>
@@ -195,9 +816,9 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Puzzle</a></li>
 		</ul>
 	</div>
 </div>
@@ -224,20 +845,20 @@
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/economic-growth/" title="Economic Growth">Economic Growth</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/academic/" title="Academic">Academic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/generative-ai/" title="Generative AI">Generative AI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/logistics/" title="Logistics">Logistics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/measurement/" title="Measurement">Measurement</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/opinion/" title="Opinion">Opinion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/prompt-engineering/" title="Prompt Engineering">Prompt Engineering</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/thought-experiment/" title="Thought Experiment">Thought Experiment</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/total-factor-productivity/" title="Total Factor Productivity">Total Factor Productivity</a>
 	</div>
 </div>
 </aside>

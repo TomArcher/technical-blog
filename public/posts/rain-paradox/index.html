@@ -129,7 +129,8 @@ You have two options:</p>
 </ul>
 <p>What made this problem compelling was that there wasn’t an obvious answer and no way (back then) to definitively prove which effect dominated. It was a thought experiment we debated endlessly with hand-waving.</p>
 <p>But now, with Python, generative AI, and a (virtual) rainy afternoon to spare, I can finally simulate this problem to <strong>know the answer</strong>.</p>
-<h2 id="modeling-the-rain">Modeling the Rain</h2>
+<hr>
+<h2 id="modeling-the-problem">Modeling the Problem</h2>
 <p>To simulate the problem accurately (but tractably), we make the following simplifications:</p>
 <p><strong>Assumptions:</strong></p>
 <ul>
@@ -141,8 +142,9 @@ You have two options:</p>
 <li>Rain from behind and sides is ignored.</li>
 </ul>
 <p>This converts the real-world complexity into a discrete physical model driven by surface area, velocity, and time.</p>
-<h2 id="using-ai-to-generate-the-simulation">Using AI to Generate the Simulation</h2>
-<p>Instead of starting from scratch, I begin by asking a generative AI model to help scaffold the solution.</p>
+<hr>
+<h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
+<p>I start by prompting an AI model to sketch out a basic algorithm:</p>
 <pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write a Python simulation to model how wet a person gets in the 
 rain depending on their walking or running speed. Assume a 
 person is a rectangular block with a top area and front area. 
@@ -289,7 +291,8 @@ the top (time exposed) and front (distance traveled).
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> from_above <span style="color:#ff79c6">+</span> from_front
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="simulating-the-tradeoff-walking-vs-running">Simulating the Tradeoff: Walking vs. Running</h2>
+</div><hr>
+<h2 id="simulation-walking-vs-running">Simulation: Walking vs. Running</h2>
 <p>Here, I used AI again. I asked it to <em>extend</em> the simulation with a loop that tested speeds from walking pace up to sprinting. The prompt was short:</p>
 <pre tabindex="0"><code class="language-prompt" data-lang="prompt">Using the simulate_wetness function, generate Python code to loop over
 a list of speeds (ft/s) and print out the resulting wetness.
@@ -379,8 +382,16 @@ Speed: 5.5 ft/s -&gt; Wetness: 12348 drops
 Speed: 8.8 ft/s -&gt; Wetness: 10570 drops
 Speed: 13.2 ft/s -&gt; Wetness: 9582 drops
 Speed: 30.0 ft/s -&gt; Wetness: 8476 drops
-</code></pre><h2 id="making-the-results-visual">Making the Results Visual</h2>
-<p>For visualization, I didn’t ask AI to just &ldquo;plot it.&rdquo; Instead, I prompted:</p>
+</code></pre><hr>
+<h2 id="making-the-results-visual">Making the Results Visual</h2>
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+  <img src="./wetness-graph.png" alt=" Plot showing Wettness versus Speed in Rain" width="400" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>The simulation is clear: Running gets you less wet, consistently.</em>
+  </figcaption>
+</figure>
+<p>In the rain paradox article, the purpose of plotting is to make the underlying math and simulation results easier to grasp at a glance. While numbers and formulas can show how exposure changes with speed, a chart conveys the tradeoff much more intuitively. By plotting wetness against speed, readers can quickly see how running reduces exposure up to a point, and how the curve eventually levels off. Adding a horizontal asymptote makes it clear that no matter how fast you move, there’s a hard limit set by the rain hitting only the front of the body. This visual element turns an abstract thought experiment into something concrete, bridging the gap between the code and the real-world intuition.</p>
+<p>The prompt that drives this visualization — <em>“Add a matplotlib function that plots wetness vs. speed, including a horizontal asymptote for the minimum frontal-only exposure.”</em> — focuses the AI not on generic plotting, but on a graph tailored to the paradox itself. It ensures that the plot shows not just the raw relationship between variables, but also highlights the boundary condition that gives the problem its nuance. By guiding the AI in this way, the visualization becomes more than just a chart: it becomes a teaching tool that reinforces the central insight of the paradox.</p>
 <pre tabindex="0"><code class="language-prompt" data-lang="prompt">Add a matplotlib function that plots wetness vs. speed, including
 a horizontal asymptote for the minimum frontal-only exposure.
 </code></pre><p>This prompt yields the basis of the plotting function below, which I then fine-tune by adjusting labels, colors, and legend placement.</p>
@@ -476,10 +487,11 @@ a horizontal asymptote for the minimum frontal-only exposure.
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="./wetness-graph.png" alt="Graph that shows wetness vs. speed"></p>
-<h2 id="the-verdict">The Verdict</h2>
+</div><hr>
+<h2 id="what-we-learned">What We Learned</h2>
 <p><strong>Running gets you less wet, consistently.</strong> The longer you spend under the rain, the more water lands on your head and shoulders. By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.</p>
 <p>However, there&rsquo;s a tradeoff. As you speed up, you collide with more raindrops from the front. At first, the gains from reduced top-down exposure far outweigh the cost of increased frontal hits. But as your speed continues to climb, you start to hit a point of diminishing returns: you&rsquo;re still getting wetter from the front, and there&rsquo;s less time savings left to gain. No matter how fast you go, you&rsquo;ll always collide with some rain from the front, but you can reduce how long rain hits you from above.</p>
+<hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
 <p>When I started writing books, an old friend of mine joked that technical
 authors often cover the basics while leaving the more difficult problems as
@@ -489,6 +501,7 @@ They&rsquo;re grouped into levels, from easy tweaks to more advanced experiments
 <p><strong>Pro tip:</strong> Try phrasing each extension idea as an AI prompt. For example:
 &ldquo;Modify the simulation to treat the person as a cylinder instead of a block.&rdquo;
 Then, refine the AI&rsquo;s output to ensure it matches the math.</p>
+<hr>
 <h3 id="beginner-level-quick-fixes--calibration">Beginner Level: Quick Fixes &amp; Calibration</h3>
 <ol>
 <li>
@@ -544,11 +557,12 @@ more volume and can be weighted more heavily in the wetness score. Try
 mixing small drizzle with a few large drops to see how totals shift.</li>
 </ol>
 <hr>
-<h2 id="why-i-chose-this-as-my-first-post">Why I Chose This as My First Post</h2>
-<p>This problem isn&rsquo;t just about physics or weather. It&rsquo;s about thinking like a programmer, and today, <strong>thinking like a programmer includes understanding how to use AI effectively</strong>.</p>
+<h2 id="last-words">Last words</h2>
+<p>I chose this as my first post because this problem isn&rsquo;t just about physics or weather. It&rsquo;s about thinking like a programmer, and today, <strong>thinking like a programmer includes understanding how to use AI effectively</strong>.</p>
 <p>Yesterday, we memorized programming patterns. Today, we craft AI prompts, evaluate the generated code, and adapt it to real-world needs. The skills are different, but the spirit of curiosity and modeling remains the same.</p>
 <p>Over the past many years, that mindset of modeling uncertainty, isolating variables, and iterating toward insight has shaped everything from how I write software, author technical content, and how I approach AI and automation today.</p>
 <p>If you enjoyed this, stay tuned. I&rsquo;ll be sharing insights on solving similar puzzles, Python programming, AI prompting, OpenAI, MCP servers, and LLMs.</p>
+<hr>
 <h2 id="try-it-yourself">Try It Yourself</h2>
 <p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/rain-paradox" target="_blank" rel="noopener noreferrer">
   Download the full code on GitHub
@@ -661,6 +675,7 @@ mixing small drizzle with a few large drops to see how totals shift.</li>
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
 		</ul>
@@ -677,6 +692,8 @@ mixing small drizzle with a few large drops to see how totals shift.</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/modeling/">Modeling</a></li>
 			<li class="widget__item">
+				<a class="widget__link" href="/categories/optimization/">Optimization</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/categories/productivity/">Productivity</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/programming/">Programming</a></li>
@@ -686,18 +703,21 @@ mixing small drizzle with a few large drops to see how totals shift.</li>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/economic-growth/" title="Economic Growth">Economic Growth</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/academic/" title="Academic">Academic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/generative-ai/" title="Generative AI">Generative AI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/measurement/" title="Measurement">Measurement</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/opinion/" title="Opinion">Opinion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/prompt-engineering/" title="Prompt Engineering">Prompt Engineering</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/total-factor-productivity/" title="Total Factor Productivity">Total Factor Productivity</a>
 	</div>
 </div>
 </aside>

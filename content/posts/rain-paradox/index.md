@@ -54,7 +54,9 @@ What made this problem compelling was that there wasn’t an obvious answer and 
 
 But now, with Python, generative AI, and a (virtual) rainy afternoon to spare, I can finally simulate this problem to **know the answer**.
 
-## Modeling the Rain
+---
+
+## Modeling the Problem
 
 To simulate the problem accurately (but tractably), we make the following simplifications:
 
@@ -69,9 +71,11 @@ To simulate the problem accurately (but tractably), we make the following simpli
 
 This converts the real-world complexity into a discrete physical model driven by surface area, velocity, and time.
 
-## Using AI to Generate the Simulation
+---
 
-Instead of starting from scratch, I begin by asking a generative AI model to help scaffold the solution.
+## Using AI to Scaffold the Code
+
+I start by prompting an AI model to sketch out a basic algorithm:
 
 ```prompt
 Write a Python simulation to model how wet a person gets in the 
@@ -153,7 +157,9 @@ def simulate_wetness(
     return from_above + from_front
 ```
 
-## Simulating the Tradeoff: Walking vs. Running
+---
+
+## Simulation: Walking vs. Running
 
 Here, I used AI again. I asked it to *extend* the simulation with a loop that tested speeds from walking pace up to sprinting. The prompt was short:
 
@@ -215,9 +221,20 @@ Speed: 13.2 ft/s -> Wetness: 9582 drops
 Speed: 30.0 ft/s -> Wetness: 8476 drops
 ```
 
+---
+
 ## Making the Results Visual
 
-For visualization, I didn’t ask AI to just "plot it." Instead, I prompted:
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+  <img src="./wetness-graph.png" alt=" Plot showing Wettness versus Speed in Rain" width="400" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>The simulation is clear: Running gets you less wet, consistently.</em>
+  </figcaption>
+</figure>
+
+In the rain paradox article, the purpose of plotting is to make the underlying math and simulation results easier to grasp at a glance. While numbers and formulas can show how exposure changes with speed, a chart conveys the tradeoff much more intuitively. By plotting wetness against speed, readers can quickly see how running reduces exposure up to a point, and how the curve eventually levels off. Adding a horizontal asymptote makes it clear that no matter how fast you move, there’s a hard limit set by the rain hitting only the front of the body. This visual element turns an abstract thought experiment into something concrete, bridging the gap between the code and the real-world intuition.
+
+The prompt that drives this visualization — *“Add a matplotlib function that plots wetness vs. speed, including a horizontal asymptote for the minimum frontal-only exposure.”* — focuses the AI not on generic plotting, but on a graph tailored to the paradox itself. It ensures that the plot shows not just the raw relationship between variables, but also highlights the boundary condition that gives the problem its nuance. By guiding the AI in this way, the visualization becomes more than just a chart: it becomes a teaching tool that reinforces the central insight of the paradox.
 
 ```prompt
 Add a matplotlib function that plots wetness vs. speed, including
@@ -272,13 +289,15 @@ def plot_wetness_vs_speed(
     plt.show()
 ```
 
-![Graph that shows wetness vs. speed](./wetness-graph.png)
+---
 
-## The Verdict
+## What We Learned
 
 **Running gets you less wet, consistently.** The longer you spend under the rain, the more water lands on your head and shoulders. By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.
 
 However, there's a tradeoff. As you speed up, you collide with more raindrops from the front. At first, the gains from reduced top-down exposure far outweigh the cost of increased frontal hits. But as your speed continues to climb, you start to hit a point of diminishing returns: you're still getting wetter from the front, and there's less time savings left to gain. No matter how fast you go, you'll always collide with some rain from the front, but you can reduce how long rain hits you from above.
+
+---
 
 ## Exercises for the Reader
 
@@ -292,6 +311,8 @@ They're grouped into levels, from easy tweaks to more advanced experiments that 
 **Pro tip:** Try phrasing each extension idea as an AI prompt. For example:
 "Modify the simulation to treat the person as a cylinder instead of a block."
 Then, refine the AI's output to ensure it matches the math.
+
+---
 
 ### Beginner Level: Quick Fixes & Calibration
 
@@ -346,15 +367,17 @@ Then, refine the AI's output to ensure it matches the math.
 
 ---
 
-## Why I Chose This as My First Post
+## Last words
 
-This problem isn't just about physics or weather. It's about thinking like a programmer, and today, **thinking like a programmer includes understanding how to use AI effectively**.
+I chose this as my first post because this problem isn't just about physics or weather. It's about thinking like a programmer, and today, **thinking like a programmer includes understanding how to use AI effectively**.
 
 Yesterday, we memorized programming patterns. Today, we craft AI prompts, evaluate the generated code, and adapt it to real-world needs. The skills are different, but the spirit of curiosity and modeling remains the same.
 
 Over the past many years, that mindset of modeling uncertainty, isolating variables, and iterating toward insight has shaped everything from how I write software, author technical content, and how I approach AI and automation today.
 
 If you enjoyed this, stay tuned. I'll be sharing insights on solving similar puzzles, Python programming, AI prompting, OpenAI, MCP servers, and LLMs.
+
+---
 
 ## Try It Yourself
 
