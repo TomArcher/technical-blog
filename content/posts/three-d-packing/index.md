@@ -156,11 +156,9 @@ def pack_truck(
         # If it doesn't fit within remaining height, skip
         if y + h > truck.height:
             skipped.append(name)
-            notes.append(
-                f"{name} skipped: too tall for remaining truck height."
-            )
+            notes.append(f"{name} skipped: too tall for "
+                         "remaining truck height.")
             continue
-
 
         # Place the item
         placements.append(
@@ -227,6 +225,14 @@ if __name__ == "__main__":
         print("\nNotes:")
         for n in notes:
             print("-", n)
+
+    # Visualize the simulated pack
+    try:
+        plot_truck_packing(truck, placements)
+    except Exception as e:
+        print("\n(Visualization skipped; matplotlib "
+              "may not be installed.)")
+        print(e)
 ```
 
 **Sample Output:**
@@ -264,6 +270,8 @@ and plots the packed truck in 3D using Matplotlib. Each box should have a unique
 color and label.
 ```
 
+The `plot_truck_packing` function is responsible for visualizing how items are arranged inside the truck. It begins by drawing a wireframe of the container using width, depth, and height as the three axes. It then loops through each placed item, calls `_cuboid_faces_mpl_from_internal` to generate the six visible faces of the box in Matplotlib’s coordinate system, and renders them as colored 3D shapes. Labels are added at the center of each item for clarity, and the axes are labeled and scaled so the proportions match the truck’s real dimensions. Finally, the viewing angle, aspect ratio, and title are set to produce a clear, accurate perspective of the packed load.
+
 ```python
 # ---------- Visualization ----------
 import matplotlib.pyplot as plt
@@ -290,7 +298,8 @@ def _cuboid_faces_mpl_from_internal(x, y, z, w, h, d):
         xi, yi, zi = v
         return [xi, zi, yi]  # (X=width, Y=depth, Z=height)
 
-    V = list(map(to_mpl, [v000, v100, v110, v010, v001, v101, v111, v011]))
+    V = list(map(to_mpl, [v000, v100, v110, v010, 
+                          v001, v101, v111, v011]))
     # faces as quads using transformed verts
     return [
         [V[0], V[1], V[2], V[3]],  # back  (z)
@@ -300,11 +309,7 @@ def _cuboid_faces_mpl_from_internal(x, y, z, w, h, d):
         [V[1], V[2], V[6], V[5]],  # right
         [V[0], V[3], V[7], V[4]],  # left
     ]
-```
 
-The `plot_truck_packing` function is responsible for visualizing how items are arranged inside the truck. It begins by drawing a wireframe of the container using width, depth, and height as the three axes. It then loops through each placed item, calls `_cuboid_faces_mpl_from_internal` to generate the six visible faces of the box in Matplotlib’s coordinate system, and renders them as colored 3D shapes. Labels are added at the center of each item for clarity, and the axes are labeled and scaled so the proportions match the truck’s real dimensions. Finally, the viewing angle, aspect ratio, and title are set to produce a clear, accurate perspective of the packed load.
-
-```python
 def plot_truck_packing(truck: Dimensions, placements: List[Placement]):
     fig = plt.figure(figsize=(10, 8))
     ax = fig.add_subplot(111, projection="3d")
@@ -353,7 +358,7 @@ def plot_truck_packing(truck: Dimensions, placements: List[Placement]):
     ax.set_ylabel("Depth (Y)")
     ax.set_zlabel("Height (Z)")
     ax.set_xlim(0, truck.width)
-    ax.set_ylim(0, truck.depth)
+    ax.set_ylim(truck.depth, 0)
     ax.set_zlim(0, truck.height)
 
     # Proportional box aspect
@@ -368,21 +373,6 @@ def plot_truck_packing(truck: Dimensions, placements: List[Placement]):
     plt.title("Truck Packing (X=Width, Y=Depth, Z=Height)")
     plt.tight_layout()
     plt.show()
-```
-
-If you are following along, remember to call the `plot_truck_packing` function at the end of the `main` function.
-
-```python
-if __name__ == "__main__":
-
-    ...
-
-    # Visualize the simulated pack
-    try:
-        plot_truck_packing(truck, placements)
-    except Exception as e:
-        print("\n(Visualization skipped; matplotlib may not be installed.)")
-        print(e)
 ```
 
 ---
