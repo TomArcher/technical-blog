@@ -113,7 +113,11 @@
 <blockquote>
 <p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
 <hr>
-<p>The good news: math can help. By modeling meetings like items in a knapsack with values, time costs, and energy costs, you can apply classic optimization to decide which to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation that visualizes your optimal &ldquo;meeting diet.&rdquo;</p>
+<p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
+  <strong>0/1 knapsack problem with two constraints</strong>
+</a>
+
+, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
 <hr>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
 <p>Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn&rsquo;t fear of missing out, it&rsquo;s fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to the AI to summarize?</p>
@@ -606,7 +610,6 @@
   Download the full code on GitHub
 </a>
 </p>
-
     </div>
     <footer class="post__footer">
       

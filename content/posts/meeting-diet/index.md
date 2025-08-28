@@ -23,7 +23,10 @@ Every week your calendar fills with more meeting invites than you can reasonably
 
 ---
 
-The good news: math can help. By modeling meetings like items in a knapsack with values, time costs, and energy costs, you can apply classic optimization to decide which to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a simulation that visualizes your optimal "meeting diet."
+**The good news: math can help.** By modeling your schedule as a [**0/1 knapsack problem with two constraints**](https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem)
+, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal "meeting diet."
+
+<!--more-->
 
 ---
 
