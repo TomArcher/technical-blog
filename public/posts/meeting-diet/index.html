@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The Meeting Diet: Max Value Under Time &amp; Energy Budgets - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">The Meeting Diet: Max Value Under Time &amp; Energy Budgets</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-08-28T05:00:00-07:00">
+              <strong>August 28, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Categories:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/ai/"
+                 rel="category"><em>AI</em></a>, <a class="meta__link"
+                 href="/categories/optimization/"
+                 rel="category"><em>Optimization</em></a>, <a class="meta__link"
+                 href="/categories/workplace-productivity/"
+                 rel="category"><em>Workplace Productivity</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/knapsack-problem/"
+                 rel="tag">#Knapsack Problem</a>, <a class="meta__link"
+                 href="/tags/python/"
+                 rel="tag">#Python</a>, <a class="meta__link"
+                 href="/tags/or-tools/"
+                 rel="tag">#OR-Tools</a>, <a class="meta__link"
+                 href="/tags/meetings/"
+                 rel="tag">#Meetings</a>, <a class="meta__link"
+                 href="/tags/ai-prompting/"
+                 rel="tag">#AI Prompting</a></p></div>
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./meeting-diet.png" alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>If you don't optimize your schedule, your schedule will optimize you. Badly</em>
+  </figcaption>
+</figure>
+<p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
+<hr>
+<p>The good news: math can help. By modeling meetings like items in a knapsack with values, time costs, and energy costs, you can apply classic optimization to decide which to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation that visualizes your optimal &ldquo;meeting diet.&rdquo;</p>
+<hr>
+<h2 id="the-thought-experiment">The Thought Experiment</h2>
+<p>Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn&rsquo;t fear of missing out, it&rsquo;s fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to the AI to summarize?</p>
+<p>Now add two constraints:</p>
+<ul>
+<li>A <strong>time budget</strong> (say, three hours of meetings per week).</li>
+<li>An <strong>energy budget</strong> (say, ten units of attention before you burn out).</li>
+</ul>
+<p>Your challenge: select the subset of meetings that maximizes total value without breaking either budget.</p>
+<p>This is precisely the <strong>0/1 knapsack problem with two constraints</strong>. The logic is simple, but the combinations can be overwhelming without computational help. That&rsquo;s where optimization libraries and AI to scaffold the boilerplate come in.</p>
+<h2 id="modeling-the-problem">Modeling the Problem</h2>
+<p>To simulate the problem accurately (but tractably), we make the following simplifications:</p>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>Each meeting has three attributes: <code>value</code>, <code>time</code>, and <code>energy</code>.</li>
+<li>Meetings are indivisible. You either attend or skip (no partial credit).</li>
+<li>Time and energy budgets are hard caps (no overdraw allowed).</li>
+<li>All values are known and deterministic (no surprises this week).</li>
+</ul>
+<p>With these assumptions, our task is to implement a binary decision variable for each meeting and solve a maximization problem subject to dual constraints.</p>
+<hr>
+<h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
+<p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong>ILP</strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong>PuLP</strong>, a lightweight open-source Python library for linear and integer programming. It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
+<p><strong>Prompt:</strong></p>
+<hr>
+<blockquote>
+<p><em>Write Python code using PuLP to solve a 0/1 knapsack where each item (meeting) has a value, a time cost, and an energy cost. Maximize value under two constraints: total time &lt;= TIME_BUDGET and total energy &lt;= ENERGY_BUDGET. Return the chosen meetings, total value, and totals for time and energy.</em></p></blockquote>
+<hr>
+<p>As you can see, this prompt took a little bit of problem-domain knowledge: namely, the mathematics of a 0/1 knapsack with dual constraints. That&rsquo;s the pattern with good prompts: you bake in just enough structure (variables, objective, constraints) so the model knows what to build. From there, you iterate by adding practical details the solver actually needs:</p>
+<ul>
+<li>
+<p><strong>Data schema</strong>: specify each meeting&rsquo;s fields (name, value, time, energy), units (minutes), and example rows.</p>
+</li>
+<li>
+<p><strong>Feasibility &amp; edge cases</strong>: what if no solution fits? what if time or energy is zero?</p>
+</li>
+<li>
+<p><strong>Determinism</strong>: ask to print solver status and selected items in a stable order.</p>
+</li>
+<li>
+<p><strong>Output contract</strong>: require totals (value, time, energy) and a compact table for copy/paste.</p>
+</li>
+<li>
+<p><strong>Extensibility</strong>: mention optional constraints (mandatory meetings, conflicts/overlaps) so the code scaffolds for growth.</p>
+</li>
+</ul>
+<p>A stronger, next-iteration prompt might read:</p>
+<hr>
+<blockquote>
+<p><em>Write Python code with PuLP to solve a 0/1 knapsack over meetings. Each meeting is a dict with name (str), value (int), time (minutes, int), and energy (int). Maximize total value subject to sum(time) ≤ TIME_BUDGET and sum(energy) ≤ ENERGY_BUDGET. If infeasible, print ‘No feasible selection&rsquo;. Otherwise, print a sorted table of selected meetings with columns: Name, Value, Time, Energy; and then totals. Include a function solve_meeting_diet(meetings, time_budget, energy_budget) that returns (chosen, total_value, total_time, total_energy), and a main() with 5 sample meetings. Print solver status.</em></p></blockquote>
+<hr>
+<p>This keeps the math crisp, but adds the engineering guardrails that turn a first-draft script into something you can run, read, and extend.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> pulp <span style="color:#ff79c6">import</span> LpProblem, LpMaximize, LpVariable, lpSum, LpBinary
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">solve_meeting_diet</span>(meetings, time_budget, energy_budget):
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Decision variables</span>
+</span></span><span style="display:flex;"><span>    x <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>        m[<span style="color:#f1fa8c">&#34;name&#34;</span>]: LpVariable(cat<span style="color:#ff79c6">=</span>LpBinary, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;x_</span><span style="color:#f1fa8c">{</span>i<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> i, m <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(meetings)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Model</span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">=</span> LpProblem(<span style="color:#f1fa8c">&#34;MeetingDiet&#34;</span>, LpMaximize)
+</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">+=</span> lpSum(m[<span style="color:#f1fa8c">&#34;value&#34;</span>] <span style="color:#ff79c6">*</span> x[m[<span style="color:#f1fa8c">&#34;name&#34;</span>]] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Constraints</span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">+=</span> lpSum(
+</span></span><span style="display:flex;"><span>        m[<span style="color:#f1fa8c">&#34;time&#34;</span>] <span style="color:#ff79c6">*</span> x[m[<span style="color:#f1fa8c">&#34;name&#34;</span>]] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings
+</span></span><span style="display:flex;"><span>    ) <span style="color:#ff79c6">&lt;=</span> time_budget
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">+=</span> lpSum(
+</span></span><span style="display:flex;"><span>        m[<span style="color:#f1fa8c">&#34;energy&#34;</span>] <span style="color:#ff79c6">*</span> x[m[<span style="color:#f1fa8c">&#34;name&#34;</span>]] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings
+</span></span><span style="display:flex;"><span>    ) <span style="color:#ff79c6">&lt;=</span> energy_budget
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Solve</span>
+</span></span><span style="display:flex;"><span>    model<span style="color:#ff79c6">.</span>solve()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Gather results</span>
+</span></span><span style="display:flex;"><span>    attend <span style="color:#ff79c6">=</span> [m <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings <span style="color:#ff79c6">if</span> x[m[<span style="color:#f1fa8c">&#34;name&#34;</span>]]<span style="color:#ff79c6">.</span>value() <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span>]
+</span></span><span style="display:flex;"><span>    chosen_names <span style="color:#ff79c6">=</span> {m[<span style="color:#f1fa8c">&#34;name&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend}
+</span></span><span style="display:flex;"><span>    total_value <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sum</span>(m[<span style="color:#f1fa8c">&#34;value&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend)
+</span></span><span style="display:flex;"><span>    total_time <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sum</span>(m[<span style="color:#f1fa8c">&#34;time&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend)
+</span></span><span style="display:flex;"><span>    total_energy <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sum</span>(m[<span style="color:#f1fa8c">&#34;energy&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> attend, chosen_names, total_value, total_time, total_energy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="simulation-choosing-meetings">Simulation: Choosing Meetings</h2>
+<p>Let&rsquo;s run the model and print results. Here we prompt AI to write a simple main() block that reports which meetings were chosen and the totals.</p>
+<p><strong>Prompt:</strong></p>
+<hr>
+<blockquote>
+<p><em>Extend the PuLP meeting diet example by printing the selected meetings and totals for value, time, and energy.</em></p></blockquote>
+<p>I took the generated code, added some sample meetings, and ran the script.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
+</span></span><span style="display:flex;"><span>    meetings <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;Weekly Staff&#34;</span>,  <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">7</span>,  <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">60</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">3</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;Design Review&#34;</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">9</span>,  <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">90</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">6</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;1:1 Mentoring&#34;</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">8</span>,  <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">45</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">2</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;Vendor Pitch&#34;</span>,  <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">4</span>,  <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">30</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">2</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;Roadmap Sync&#34;</span>,  <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">10</span>, <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">50</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">4</span>},
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    TIME_BUDGET <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">180</span>
+</span></span><span style="display:flex;"><span>    ENERGY_BUDGET <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    attend, chosen_names, total_value, total_time, total_energy <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        solve_meeting_diet(
+</span></span><span style="display:flex;"><span>            meetings,
+</span></span><span style="display:flex;"><span>            TIME_BUDGET,
+</span></span><span style="display:flex;"><span>            ENERGY_BUDGET,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Selected meetings:&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34; - </span><span style="color:#f1fa8c">{</span>m[<span style="color:#f1fa8c">&#39;name&#39;</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> &#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;(v=</span><span style="color:#f1fa8c">{</span>m[<span style="color:#f1fa8c">&#39;value&#39;</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, t=</span><span style="color:#f1fa8c">{</span>m[<span style="color:#f1fa8c">&#39;time&#39;</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">m, e=</span><span style="color:#f1fa8c">{</span>m[<span style="color:#f1fa8c">&#39;energy&#39;</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">)&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Total value = </span><span style="color:#f1fa8c">{</span>total_value<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Total time  = </span><span style="color:#f1fa8c">{</span>total_time<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> minutes&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Total energy= </span><span style="color:#f1fa8c">{</span>total_energy<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> units&#34;</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Sample Output:</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Result <span style="color:#ff79c6">-</span> Optimal solution found
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Objective value:                25.<span style="color:#50fa7b">00000000</span>
+</span></span><span style="display:flex;"><span>Enumerated nodes:               0
+</span></span><span style="display:flex;"><span>Total iterations:               0
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">Time</span> (CPU seconds):             0.<span style="color:#50fa7b">01</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">Time</span> (Wallclock seconds):       0.<span style="color:#50fa7b">01</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Option <span style="color:#ff79c6">for</span> printingOptions changed from normal to all
+</span></span><span style="display:flex;"><span>Total <span style="color:#50fa7b">time</span> (CPU seconds):       0.<span style="color:#50fa7b">03</span>   (Wallclock seconds):       0.<span style="color:#50fa7b">03</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Selected meetings:
+</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">-</span> Weekly <span style="color:#50fa7b">Staff</span> (v<span style="color:#ff79c6">=</span>7, t<span style="color:#ff79c6">=</span>60m, e<span style="color:#ff79c6">=</span>3)
+</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">-</span> 1:1 <span style="color:#50fa7b">Mentoring</span> (v<span style="color:#ff79c6">=</span>8, t<span style="color:#ff79c6">=</span>45m, e<span style="color:#ff79c6">=</span>2)
+</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">-</span> Roadmap <span style="color:#50fa7b">Sync</span> (v<span style="color:#ff79c6">=</span>10, t<span style="color:#ff79c6">=</span>50m, e<span style="color:#ff79c6">=</span>4)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Total value <span style="color:#ff79c6">=</span> 25
+</span></span><span style="display:flex;"><span>Total time  <span style="color:#ff79c6">=</span> 155 minutes
+</span></span><span style="display:flex;"><span>Total energy<span style="color:#ff79c6">=</span> 9 units
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="making-the-results-visual">Making the Results Visual</h2>
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+  <img src="./plot.png" alt="Plot of Meeting Value Efficiency (Chosen vs. Skipped)" width="400" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings attended under the time and energy budgets and red bars marking those declined.</em>
+  </figcaption>
+</figure>
+<p>At first, I asked the AI for a quick visualization. The initial result was a plain vertical bar chart: it technically worked, but it looked generic and wasn&rsquo;t presentation-ready. Specifically, I realized the graph needed to:</p>
+<ul>
+<li>sort meetings by efficiency,</li>
+<li>show labels clearly,</li>
+<li>differentiate attended vs declined with a legend,</li>
+<li>and generally look like something I&rsquo;d actually show a team.</li>
+</ul>
+<p><strong>Prompt:</strong></p>
+<hr>
+<blockquote>
+<p><em>Using matplotlib, plot a horizontal bar chart of meetings sorted by value-per-minute. Color attended meetings green and declined meetings red. Add a legend, gridlines, and numeric labels at the end of each bar. Use a clear title and make the chart presentation-quality.</em></p></blockquote>
+<hr>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">81
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">82
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">83
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">84
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">85
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_meetings</span>(
+</span></span><span style="display:flex;"><span>    meetings,
+</span></span><span style="display:flex;"><span>    chosen_names,
+</span></span><span style="display:flex;"><span>    title<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Meeting Value Efficiency (Attend vs Decline)&#34;</span>,
+</span></span><span style="display:flex;"><span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">from</span> matplotlib.patches <span style="color:#ff79c6">import</span> Patch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Compute value-per-minute ratios (avoid div-by-zero)</span>
+</span></span><span style="display:flex;"><span>    names   <span style="color:#ff79c6">=</span> [m[<span style="color:#f1fa8c">&#34;name&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings]
+</span></span><span style="display:flex;"><span>    ratios <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>        (m[<span style="color:#f1fa8c">&#34;value&#34;</span>] <span style="color:#ff79c6">/</span> m[<span style="color:#f1fa8c">&#34;time&#34;</span>]) <span style="color:#ff79c6">if</span> m[<span style="color:#f1fa8c">&#34;time&#34;</span>] <span style="color:#ff79c6">else</span> <span style="color:#bd93f9">0.0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    status <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Attend&#34;</span> <span style="color:#ff79c6">if</span> m[<span style="color:#f1fa8c">&#34;name&#34;</span>] <span style="color:#ff79c6">in</span> chosen_names <span style="color:#ff79c6">else</span> <span style="color:#f1fa8c">&#34;Decline&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Sort by ratio (desc) for a cleaner story</span>
+</span></span><span style="display:flex;"><span>    order <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sorted</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#8be9fd;font-style:italic">len</span>(meetings)),
+</span></span><span style="display:flex;"><span>        key<span style="color:#ff79c6">=</span><span style="color:#ff79c6">lambda</span> i: ratios[i],
+</span></span><span style="display:flex;"><span>        reverse<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    names_sorted  <span style="color:#ff79c6">=</span> [names[i] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> order]
+</span></span><span style="display:flex;"><span>    ratios_sorted <span style="color:#ff79c6">=</span> [ratios[i] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> order]
+</span></span><span style="display:flex;"><span>    status_sorted <span style="color:#ff79c6">=</span> [status[i] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> order]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Color map</span>
+</span></span><span style="display:flex;"><span>    colors <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;Attend&#34;</span>: <span style="color:#f1fa8c">&#34;#2ca02c&#34;</span>,  <span style="color:#6272a4"># green</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f1fa8c">&#34;Decline&#34;</span>: <span style="color:#f1fa8c">&#34;#d62728&#34;</span>}  <span style="color:#6272a4"># red</span>
+</span></span><span style="display:flex;"><span>    bar_colors <span style="color:#ff79c6">=</span> [colors[s] <span style="color:#ff79c6">for</span> s <span style="color:#ff79c6">in</span> status_sorted]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Figure</span>
+</span></span><span style="display:flex;"><span>    fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">6</span>), dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">120</span>)
+</span></span><span style="display:flex;"><span>    bars <span style="color:#ff79c6">=</span> ax<span style="color:#ff79c6">.</span>barh(names_sorted, 
+</span></span><span style="display:flex;"><span>                   ratios_sorted, 
+</span></span><span style="display:flex;"><span>                   color<span style="color:#ff79c6">=</span>bar_colors, 
+</span></span><span style="display:flex;"><span>                   edgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;black&#34;</span>, 
+</span></span><span style="display:flex;"><span>                   linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.5</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Labels &amp; title</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;Value per Minute (higher is better)&#34;</span>, labelpad<span style="color:#ff79c6">=</span><span style="color:#bd93f9">8</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_title(title, pad<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span>, fontweight<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;bold&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Grid for readability</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>xaxis<span style="color:#ff79c6">.</span>grid(<span style="color:#ff79c6">True</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;--&#34;</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.35</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_axisbelow(<span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Show values at end of bars</span>
+</span></span><span style="display:flex;"><span>    xmax <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">max</span>(ratios_sorted) <span style="color:#ff79c6">if</span> ratios_sorted <span style="color:#ff79c6">else</span> <span style="color:#bd93f9">0.0</span>
+</span></span><span style="display:flex;"><span>    pad <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.02</span> <span style="color:#ff79c6">*</span> (xmax <span style="color:#ff79c6">if</span> xmax <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">else</span> <span style="color:#bd93f9">1.0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> bar, r <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(bars, ratios_sorted):
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>text(bar<span style="color:#ff79c6">.</span>get_width() <span style="color:#ff79c6">+</span> pad, bar<span style="color:#ff79c6">.</span>get_y() <span style="color:#ff79c6">+</span> bar<span style="color:#ff79c6">.</span>get_height()<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>r<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>, va<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;center&#34;</span>, ha<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;left&#34;</span>, fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">9</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Legend</span>
+</span></span><span style="display:flex;"><span>    legend_handles <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>        Patch(
+</span></span><span style="display:flex;"><span>            facecolor<span style="color:#ff79c6">=</span>colors[<span style="color:#f1fa8c">&#34;Attend&#34;</span>],
+</span></span><span style="display:flex;"><span>            edgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;black&#34;</span>,
+</span></span><span style="display:flex;"><span>            label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Attend&#34;</span>,
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>        Patch(
+</span></span><span style="display:flex;"><span>            facecolor<span style="color:#ff79c6">=</span>colors[<span style="color:#f1fa8c">&#34;Decline&#34;</span>],
+</span></span><span style="display:flex;"><span>            edgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;black&#34;</span>,
+</span></span><span style="display:flex;"><span>            label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Decline&#34;</span>,
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>legend(
+</span></span><span style="display:flex;"><span>        handles<span style="color:#ff79c6">=</span>legend_handles,
+</span></span><span style="display:flex;"><span>        frameon<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>,
+</span></span><span style="display:flex;"><span>        loc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;lower right&#34;</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Invert y to have highest ratio on top</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>invert_yaxis()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Tight layout; extra space for long labels</span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>subplots_adjust(left<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.28</span>, right<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.95</span>, top<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.9</span>, bottom<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.12</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="what-we-learned">What We Learned</h2>
+<p>By modeling your calendar as a knapsack, you can quantify trade-offs instead of relying on gut feel. We also learned how to craft precise AI prompts that generate optimization code, and how to refine those prompts to add reporting and visualization. The big win: you now have a framework for saying no with math.</p>
+<hr>
+<h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
+<p>Ready to push this further? Try these extensions:</p>
+<h3 id="beginner-level-quick-fixes--calibration">Beginner Level: Quick Fixes &amp; Calibration</h3>
+<ul>
+<li>
+<p><strong>Mandatory meetings:</strong> Add a constraint that Weekly Staff must always be selected.</p>
+</li>
+<li>
+<p><strong>Budget tuning:</strong> Run the model with TIME_BUDGET = 120, 180, 240 and see how choices shift.</p>
+</li>
+<li>
+<p><strong>Energy-only mode:</strong> Ignore time constraint; see which meetings blow up your energy budget first.</p>
+</li>
+</ul>
+<hr>
+<h3 id="intermediate-level-geometry--body-modeling">Intermediate Level: Geometry &amp; Body Modeling</h3>
+<ul>
+<li>
+<p><strong>Overlaps:</strong> Add a constraint to forbid selecting two meetings that overlap in time.</p>
+</li>
+<li>
+<p><strong>Daily limits:</strong> Add a rule like “no more than 2 hours of meetings per day.”</p>
+</li>
+<li>
+<p><strong>Context switching:</strong> Penalize picking too many short meetings.</p>
+</li>
+</ul>
+<hr>
+<h3 id="advanced-level-environment--stochasticity">Advanced Level: Environment &amp; Stochasticity</h3>
+<ul>
+<li>
+<p><strong>Uncertain values:</strong> Sample meeting values from a probability distribution (e.g., Normal).</p>
+</li>
+<li>
+<p><strong>Monte Carlo:</strong> Run 100 simulations of random meeting values and see which meetings are most often chosen.</p>
+</li>
+<li>
+<p><strong>Multi-objective optimization:</strong> Balance value against “fatigue penalty” explicitly.</p>
+</li>
+</ul>
+<hr>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>Meetings don&rsquo;t have to consume your week. With a little optimization, you can put your calendar on a diet that actually helps you get healthier at work. To paraphrase the old expression, <strong>run your calendar, or your calendar will run you</strong>.</p>
+<hr>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/meeting-diet" target="_blank" rel="noopener noreferrer">
+  Download the full code on GitHub
+</a>
+</p>
+
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/knapsack-problem/" rel="tag">Knapsack Problem</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/or-tools/" rel="tag">OR-Tools</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/meetings/" rel="tag">Meetings</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ai-prompting/" rel="tag">AI Prompting</a>
+		</li>
+	</ul>
+</div>
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: Max Value Under Time &amp; Energy Budgets</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai/">AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/economics/">Economics</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/modeling/">Modeling</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/optimization/">Optimization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/productivity/">Productivity</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/programming/">Programming</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/workplace-productivity/">Workplace Productivity</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/academic/" title="Academic">Academic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-prompting/" title="AI Prompting">AI Prompting</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/generative-ai/" title="Generative AI">Generative AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/meetings/" title="Meetings">Meetings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/opinion/" title="Opinion">Opinion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/or-tools/" title="OR-Tools">OR-Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/prompt-engineering/" title="Prompt Engineering">Prompt Engineering</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

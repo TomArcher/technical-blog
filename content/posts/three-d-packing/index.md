@@ -254,7 +254,7 @@ The packing function produces a sequential plan showing where each crate ends up
 ## Making the Results Visual
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./packing-plot.png" alt="3D Bin Packing" width="400" style="display: block; margin: 0 auto;">
+  <img src="./plot.png" alt="3D Bin Packing" width="400" style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
     <em>3D visualization of packed items inside the truck, showing width, depth, and height alignment based on a heuristic best-guess for efficiency.</em>
   </figcaption>
@@ -419,7 +419,7 @@ The best way to internalize a concept like 3D packing is to get your hands dirty
 
 ---
 
-## Last words
+## Final Thoughts
 
 Packing trucks may seem like grunt work, but it's really a microcosm of **optimization problems**: finite resources, constraints, tradeoffs. The thrill of solving them, especially with today's AI scaffolding, is the same thrill that first drew me to programming back at Holiday on Ice.
 

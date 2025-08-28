@@ -226,7 +226,7 @@ Speed: 30.0 ft/s -> Wetness: 8476 drops
 ## Making the Results Visual
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./wetness-graph.png" alt=" Plot showing Wettness versus Speed in Rain" width="400" style="display: block; margin: 0 auto;">
+  <img src="./plot.png" alt=" Plot showing Wettness versus Speed in Rain" width="400" style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
     <em>The simulation is clear: Running gets you less wet, consistently.</em>
   </figcaption>
@@ -367,7 +367,7 @@ Then, refine the AI's output to ensure it matches the math.
 
 ---
 
-## Last words
+## Final Thoughts
 
 I chose this as my first post because this problem isn't just about physics or weather. It's about thinking like a programmer, and today, **thinking like a programmer includes understanding how to use AI effectively**.
 

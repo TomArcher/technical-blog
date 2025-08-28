@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Aug 2025 09:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 28 Aug 2025 05:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Meeting Diet: Max Value Under Time &amp; Energy Budgets</title>
+      <link>http://localhost:1313/posts/meeting-diet/</link>
+      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/meeting-diet/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./meeting-diet.png&#34; alt=&#34;Professional woman pausing outside a conference room labeled &#39;Meeting in Progress&#39;, deciding whether to attend&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Deciding which meetings are really worth your time? Hint: Not every invite deserves a &#39;yes&#39;.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to &lt;em&gt;quantify&lt;/em&gt; that choice?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</title>
       <link>http://localhost:1313/posts/three-d-packing/</link>

@@ -53,7 +53,7 @@ Generative AI checks all three boxes. It lives in the cloud, is often free or ch
 ## Generative AI as the Productivity Paradox 2.0
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 350px; text-align: center;">
-  <img src="./tfp-chatgpt-chart.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="350" style="display: block; margin: 0 auto;">
+  <img src="./plot.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="350" style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
     <em>The productivity paradox in action: AI adoption is soaring while TFP growth stays flat.</em>
   </figcaption>
