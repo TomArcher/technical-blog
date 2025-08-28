@@ -23,8 +23,7 @@ Every week your calendar fills with more meeting invites than you can reasonably
 
 ---
 
-**The good news: math can help.** By modeling your schedule as a [**0/1 knapsack problem with two constraints**](https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem)
-, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal "meeting diet."
+**The good news: math can help.** By modeling your schedule as a [**0/1 knapsack problem with two constraints**](https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem), you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal "meeting diet."
 
 <!--more-->
 
@@ -32,7 +31,7 @@ Every week your calendar fills with more meeting invites than you can reasonably
 
 ## The Thought Experiment
 
-Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn't fear of missing out, it's fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to the AI to summarize?
+Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn't fear of missing out, it's fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to AI to summarize?
 
 Now add two constraints:  
 
@@ -208,7 +207,7 @@ Total energy= 9 units
 <figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
   <img src="./plot.png" alt="Plot of Meeting Value Efficiency (Chosen vs. Skipped)" width="400" style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings attended under the time and energy budgets and red bars marking those declined.</em>
+    <em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings to attend under the time and energy budgets and red bars marking those to decline.</em>
   </figcaption>
 </figure>
 
@@ -216,7 +215,7 @@ At first, I asked the AI for a quick visualization. The initial result was a pla
 
 - sort meetings by efficiency,
 - show labels clearly,
-- differentiate attended vs declined with a legend,
+- differentiate meetings to attend vs decline with a legend,
 - and generally look like something I'd actually show a team.
 
 **Prompt:**
