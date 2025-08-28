@@ -1,5 +1,5 @@
 +++
-title = "The Meeting Diet: Max Value Under Time & Energy Budgets"
+title = "The Meeting Diet: An Optimization Approach to Your Calendar"
 date = 2025-08-28T05:00:00-07:00
 draft = false
 categories = ["AI", "Optimization", "Workplace Productivity"]
