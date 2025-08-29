@@ -2,11 +2,11 @@
 date = '2025-08-22T10:38:20-07:00'
 draft = false
 title = "Python Tip of the Week: Using Dispatch Tables for Cleaner Validation"
-categories = ["Best Practices", "Programming", "Python"]
+categories = ["Best Practices", "Programming",]
 tags = [
     "Dispatch Table",
     "Guard Clause",
-    "Inverted-V",
+    "Python",
     "Validation",
 ]
 listThumb = "ptow.png"
@@ -43,7 +43,7 @@ There's a better way: **dispatch tables**!
 
 ## The Inverted-V Approach 😱
 
-Here's how many of C/C++/C#/Java programmers begin. You just want to validate a few things… but suddenly your code resembles a Cyrano de Bergerac profile:
+Here's how many programmers begin - especially those with a C++/C#/Java background. You just want to validate a few things… but suddenly your code resembles a Cyrano de Bergerac profile:
 
 ```python
 def create_user(username: str, age: int, email: str) -> None:

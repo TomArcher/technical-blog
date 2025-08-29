@@ -30,13 +30,6 @@
       <description></description>
     </item>
     <item>
-      <title>Meetings</title>
-      <link>http://localhost:1313/tags/meetings/</link>
-      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/tags/meetings/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>OR-Tools</title>
       <link>http://localhost:1313/tags/or-tools/</link>
       <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
@@ -44,10 +37,24 @@
       <description></description>
     </item>
     <item>
+      <title>Productivity</title>
+      <link>http://localhost:1313/tags/productivity/</link>
+      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/productivity/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>PuLP</title>
       <link>http://localhost:1313/tags/pulp/</link>
       <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
       <guid>http://localhost:1313/tags/pulp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://localhost:1313/tags/python/</link>
+      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/python/</guid>
       <description></description>
     </item>
     <item>
@@ -62,13 +69,6 @@
       <link>http://localhost:1313/tags/guard-clause/</link>
       <pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate>
       <guid>http://localhost:1313/tags/guard-clause/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Inverted-V</title>
-      <link>http://localhost:1313/tags/inverted-v/</link>
-      <pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate>
-      <guid>http://localhost:1313/tags/inverted-v/</guid>
       <description></description>
     </item>
     <item>
@@ -97,13 +97,6 @@
       <link>http://localhost:1313/tags/np-hard/</link>
       <pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate>
       <guid>http://localhost:1313/tags/np-hard/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Productivity</title>
-      <link>http://localhost:1313/tags/productivity/</link>
-      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/tags/productivity/</guid>
       <description></description>
     </item>
     <item>

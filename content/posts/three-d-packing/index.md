@@ -2,12 +2,13 @@
 title = "From Ice Shows to Algorithms: Cracking the Truck-Packing Problem"
 date = '2025-08-20T09:00:00-07:00'
 draft = false
-categories = ["Algorithms", "Generative AI", "Programming", "Python"]
+categories = ["Algorithms", "Generative AI", "Programming",]
 tags = [
     "3D Bin Packing",
     "Heuristics",
     "Matplotlib",
     "NP-hard",
+    "Python",
 ]
 listThumb = "three-d-packing.png"
 +++

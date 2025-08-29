@@ -287,3 +287,20 @@ pre {
 .highlight {
   margin-bottom: 2rem;
 }
+
+/* Force white text on visited tag buttons with higher specificity */
+.widget-taglist__link.widget__link.btn:visited {
+    color: white !important;
+}
+
+/* Also target all states to be sure */
+.widget-taglist__link.widget__link.btn,
+.widget-taglist__link.widget__link.btn:link,
+.widget-taglist__link.widget__link.btn:visited {
+    color: white !important;
+}
+
+/* Keep hover as theme default */
+.widget-taglist__link.widget__link.btn:hover {
+    /* Theme handles this */
+}

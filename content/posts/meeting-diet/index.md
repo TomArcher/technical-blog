@@ -2,14 +2,15 @@
 title = "The Meeting Diet: An Optimization Approach to Your Calendar"
 date = 2025-08-28T05:00:00-07:00
 draft = false
-categories = ["Algorithms", "Generative AI", "Programming", "Python"]
+categories = ["Algorithms", "Generative AI", "Programming"]
 tags = [
     "ILP",
     "Knapsack Problem",
     "Matplotlib",
-    "Meetings",
     "OR-Tools",
+    "Productivity",
     "PuLP",
+    "Python",
 ]
 listThumb = "meeting-diet.png"
 +++
