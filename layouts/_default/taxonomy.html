@@ -1,46 +1,86 @@
 {{ define "main" }}
-  <header class="term-header">
-    <h1>{{ .Title }}</h1>
-  </header>
+<main class="main" role="main">
+  <div class="posts-list">
+    {{/* Display the taxonomy title */}}
+    <header class="taxonomy-header">
+      <h1>"{{ .Title }}" Posts</h1>
+      <!--<p class="taxonomy-description">Articles tagged with {{ .Title }}</p>-->
+    </header>
 
-  {{/* Order posts newest → oldest and paginate */}}
-  {{ $pages := .Pages.ByDate.Reverse }}
-  {{ $p := .Paginate $pages }}
+    {{/* Use the filtered pages that Hugo provides for taxonomy pages */}}
+    {{ $p := .Paginate .Pages }}
 
-  <section class="post-list">
     {{ range $p.Pages }}
-      <article class="post-item">
-        <h2 class="post-title">
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        </h2>
-        <div class="post-meta">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-        </div>
-        {{ with .Params.description }}
-          <p>{{ . }}</p>
+      {{/* Resolve thumbnail: prefer page-bundle resource; fallback to page-relative or site path */}}
+      {{ $page := . }}
+      {{ $thumb := "" }}
+      {{ with $page.Params.listThumb }}
+        {{ $name := . }}
+        {{ with $page.Resources.GetMatch $name }}
+          {{ $thumb = .RelPermalink }}
         {{ else }}
-          {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+          {{ if hasPrefix $name "/" }}
+            {{ $thumb = ($name | relURL) }}
+          {{ else }}
+            {{/* Build a URL relative to the page's own URL (works for leaf bundles) */}}
+            {{ $thumb = (printf "%s%s" $page.RelPermalink $name) }}
+          {{ end }}
         {{ end }}
+      {{ end }}
+
+      <article class="post {{ if $thumb }}post--has-title-thumb{{ end }}">
+        <header class="post-header">
+          {{/* Clickable thumbnail before the title */}}
+          {{ if $thumb }}
+            <a class="post-title-thumb" href="{{ .RelPermalink }}">
+              <img src="{{ $thumb }}" alt="" loading="lazy">
+            </a>
+          {{ end }}
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">
+                <strong>{{ .Date.Format "Jan 2, 2006" }}</strong>
+              </time>
+              {{- $cats := .Params.categories -}}
+              {{- $tags := .Params.tags -}}
+
+              {{- with $cats -}}
+              &nbsp;•&nbsp;<strong>Categories:</strong>&nbsp;
+                {{- range $i, $c := . -}}
+                  {{- if $i }}, {{ end -}}
+                  <a href="{{ (printf "/categories/%s/" ($c | urlize)) | relURL }}">{{ $c }}</a>
+                {{- end -}}
+              {{- end -}}
+
+              {{- if and $cats $tags }}, {{ end -}}
+
+              {{- with $tags -}}
+              &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+                {{- range $i, $t := . -}}
+                  {{- if $i }}, {{ end -}}
+                  <a href="{{ (printf "/tags/%s/" ($t | urlize)) | relURL }}">#{{ $t }}</a>
+                {{- end -}}
+              {{- end -}}
+            </div>
+          </div>
+        </header>
+
+        {{/* Text-only summary: strip figures/images so first-paragraph visuals don't leak into list */}}
+        {{ $raw := .Summary | safeHTML }}
+        {{ $clean := $raw | replaceRE `(?s)<figure.*?</figure>` "" | replaceRE `<img[^>]*>` "" }}
+        {{ if not $clean }}{{ $clean = ( .Plain | truncate 280 ) }}{{ end }}
+        <div class="post-summary">{{ $clean | safeHTML }}</div>
+
+        <p><a class="btn" href="{{ .RelPermalink }}">Read more →</a></p>
       </article>
     {{ end }}
-  </section>
 
-  {{/* Simple, self-contained pagination (no _internal dependency) */}}
-  <nav class="pager" aria-label="Pagination">
-    {{ if $p.HasPrev }}
-      <a class="pager-prev" href="{{ $p.Prev.URL }}">← Newer</a>
-    {{ end }}
-
-    {{ range $p.Pagers }}
-      <a class="pager-num{{ if eq . $p }} is-active{{ end }}"
-         href="{{ .URL }}"
-         {{ if eq . $p }}aria-current="page"{{ end }}>
-        {{ .PageNumber }}
-      </a>
-    {{ end }}
-
-    {{ if $p.HasNext }}
-      <a class="pager-next" href="{{ $p.Next.URL }}">Older →</a>
-    {{ end }}
-  </nav>
+    {{ partial "pagination.html" . }}
+  </div>
+</main>
 {{ end }}
