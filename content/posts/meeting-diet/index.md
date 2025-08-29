@@ -79,15 +79,15 @@ To save time, we'll lean on an AI assistant to scaffold the solver code. The tri
 
 As you can see, this prompt took a little bit of problem-domain knowledge: namely, the mathematics of a 0/1 knapsack with dual constraints. That's the pattern with good prompts: you bake in just enough structure (variables, objective, constraints) so the model knows what to build. From there, you iterate by adding practical details the solver actually needs:
 
-- **Data schema**: specify each meeting's fields (name, value, time, energy), units (minutes), and example rows.
+- **Data schema**: Specify each meeting's fields (name, value, time, energy), units (minutes), and example rows.
 
-- **Feasibility & edge cases**: what if no solution fits? what if time or energy is zero?
+- **Feasibility & edge cases**: What if no solution fits? What if time or energy is zero?
 
-- **Determinism**: ask to print solver status and selected items in a stable order.
+- **Determinism**: Ask to print solver status and selected items in a stable order.
 
-- **Output contract**: require totals (value, time, energy) and a compact table for copy/paste.
+- **Output contract**: Require totals (value, time, energy) and a compact table for copy/paste.
 
-- **Extensibility**: mention optional constraints (mandatory meetings, conflicts/overlaps) so the code scaffolds for growth.
+- **Extensibility**: Mention optional constraints (mandatory meetings, conflicts/overlaps) so the code scaffolds for growth.
 
 A stronger, next-iteration prompt might read:
 
@@ -223,10 +223,9 @@ Total energy= 9 units
 
 At first, I asked the AI for a quick visualization. The initial result was a plain vertical bar chart: it technically worked, but it looked generic and wasn't presentation-ready. Specifically, I realized the graph needed to:
 
-- sort meetings by efficiency,
-- show labels clearly,
-- differentiate meetings to attend vs decline with a legend,
-- and generally look like something I'd actually show a team.
+- Sort meetings by efficiency
+- Show labels clearly
+- Differentiate meetings to attend vs decline with a legend
 
 **Prompt:**
 
