@@ -1,6 +1,6 @@
 +++
 date = '2025-08-22T10:38:20-07:00'
-draft = true
+draft = false
 title = "Python Tip of the Week: Using Dispatch Tables for Cleaner Validation"
 categories = ["Best Practices", "Programming", "Python"]
 tags = [
