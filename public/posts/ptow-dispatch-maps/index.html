@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Python Tip of the Week: Using Dispatch Tables for Cleaner Validation - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-08-22T10:38:20-07:00">
+              <strong>August 22, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Categories:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/best-practices/"
+                 rel="category"><em>Best Practices</em></a>, <a class="meta__link"
+                 href="/categories/programming/"
+                 rel="category"><em>Programming</em></a>, <a class="meta__link"
+                 href="/categories/python/"
+                 rel="category"><em>Python</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/dispatch-table/"
+                 rel="tag">#Dispatch Table</a>, <a class="meta__link"
+                 href="/tags/guard-clause/"
+                 rel="tag">#Guard Clause</a>, <a class="meta__link"
+                 href="/tags/inverted-v/"
+                 rel="tag">#Inverted-V</a>, <a class="meta__link"
+                 href="/tags/validation/"
+                 rel="tag">#Validation</a></p></div>
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./ptow-trans.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Tips and techniques to improve your Python skills</em>
+  </figcaption>
+</figure>
+<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
+<p>Most of us start with the usual suspects:</p>
+<p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
+❌ A graveyard of guard clauses scattered line after line</p>
+<hr>
+<blockquote>
+<p><em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.</em></p></blockquote>
+<hr>
+<p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
+<p>There&rsquo;s a better way: <strong>dispatch tables</strong>!</p>
+<hr>
+<h2 id="the-inverted-v-approach-">The Inverted-V Approach 😱</h2>
+<p>Here&rsquo;s how many of us begin. You just want to check a few things… but suddenly your code looks like a wedding cake:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_validate_args</span>(kwargs: <span style="color:#8be9fd;font-style:italic">dict</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#f1fa8c">&#39;article_output_path&#39;</span> <span style="color:#ff79c6">in</span> kwargs:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">isinstance</span>(kwargs[<span style="color:#f1fa8c">&#39;article_output_path&#39;</span>], Path):
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (<span style="color:#f1fa8c">&#39;template_name&#39;</span> <span style="color:#ff79c6">in</span> kwargs
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">and</span> <span style="color:#f1fa8c">&#39;template_path&#39;</span> <span style="color:#ff79c6">in</span> kwargs):
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>                    <span style="color:#f1fa8c">&#34;Both template_name and template_path &#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f1fa8c">&#34;can&#39;t be specified.&#34;</span>
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> <span style="color:#f1fa8c">&#39;debug&#39;</span> <span style="color:#ff79c6">in</span> kwargs:
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">not</span> <span style="color:#8be9fd;font-style:italic">isinstance</span>(kwargs[<span style="color:#f1fa8c">&#39;debug&#39;</span>], <span style="color:#8be9fd;font-style:italic">bool</span>):
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>                            <span style="color:#f1fa8c">&#39;&#34;debug&#34; must be a bool.&#39;</span>
+</span></span><span style="display:flex;"><span>                        )
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#39;&#34;article_output_path&#34; must be a Path object.&#39;</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;&#34;article_output_path&#34; must be specified.&#39;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Takeaway:</strong>
+Sure, it works… but it&rsquo;s awkward, fragile, and painful to extend. Add one more rule and the nesting level reaches the earth&rsquo;s mantle.</p>
+<h2 id="the-guard-clause-approach-">The Guard Clause Approach 😬</h2>
+<p>Next step: fail fast. One check per line. No nesting. Looks like this:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_validate_args</span>(kwargs: <span style="color:#8be9fd;font-style:italic">dict</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#f1fa8c">&#39;article_output_path&#39;</span> <span style="color:#ff79c6">not</span> <span style="color:#ff79c6">in</span> kwargs:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;&#34;article_output_path&#34; must be specified.&#39;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">not</span> <span style="color:#8be9fd;font-style:italic">isinstance</span>(kwargs[<span style="color:#f1fa8c">&#39;article_output_path&#39;</span>], Path):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;&#34;article_output_path&#34; must be a Path object.&#39;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#f1fa8c">&#39;template_name&#39;</span> <span style="color:#ff79c6">in</span> kwargs <span style="color:#ff79c6">and</span> <span style="color:#f1fa8c">&#39;template_path&#39;</span> <span style="color:#ff79c6">in</span> kwargs:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;Both template_name and template_path cannot be &#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;specified.&#39;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#f1fa8c">&#39;debug&#39;</span> <span style="color:#ff79c6">in</span> kwargs <span style="color:#ff79c6">and</span> <span style="color:#ff79c6">not</span> <span style="color:#8be9fd;font-style:italic">isinstance</span>(kwargs[<span style="color:#f1fa8c">&#39;debug&#39;</span>], <span style="color:#8be9fd;font-style:italic">bool</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;&#34;debug&#34; must be a bool.&#39;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Takeaway:</strong>
+Cleaner than the inverted-V, but now every new rule means another line. Add 10 rules, and you&rsquo;re back to scrolling forever.</p>
+<h2 id="enter-dispatch-tables-">Enter Dispatch Tables ✨</h2>
+<p>A dispatch table is just a dictionary where the key is the error message and the value is a check function (usually a lambda).
+Instead of scattering control flow everywhere, you centralize the rules in one tidy structure.</p>
+<p>Here&rsquo;s a snack-sized example you can paste right now:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_validate_args</span>(kwargs: <span style="color:#8be9fd;font-style:italic">dict</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    rules <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#39;&#34;x&#34; must be specified.&#39;</span>: <span style="color:#ff79c6">lambda</span> a: <span style="color:#f1fa8c">&#39;x&#39;</span> <span style="color:#ff79c6">in</span> a,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#39;&#34;x&#34; must be an int.&#39;</span>: (
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">lambda</span> a: <span style="color:#f1fa8c">&#39;x&#39;</span> <span style="color:#ff79c6">not</span> <span style="color:#ff79c6">in</span> a <span style="color:#ff79c6">or</span> <span style="color:#8be9fd;font-style:italic">isinstance</span>(a[<span style="color:#f1fa8c">&#39;x&#39;</span>], <span style="color:#8be9fd;font-style:italic">int</span>)
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#39;&#34;y&#34; must be positive.&#39;</span>: (
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">lambda</span> a: <span style="color:#f1fa8c">&#39;y&#39;</span> <span style="color:#ff79c6">not</span> <span style="color:#ff79c6">in</span> a <span style="color:#ff79c6">or</span> a[<span style="color:#f1fa8c">&#39;y&#39;</span>] <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    errors <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>        msg <span style="color:#ff79c6">for</span> msg, check <span style="color:#ff79c6">in</span> rules<span style="color:#ff79c6">.</span>items() <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">not</span> check(kwargs)
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> errors:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">raise</span> ValueError(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;Validation failed:</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>join(errors)
+</span></span><span style="display:flex;"><span>        )
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Takeaway:</strong></p>
+<ul>
+<li>
+<p>All rules live in one place (in the dictionary).</p>
+</li>
+<li>
+<p>Adding a rule requires simply adding a dictionary entry - either a lamda or a function name that returns a boolean indicating validation success or failure.</p>
+</li>
+<li>
+<p>No <code>if</code> sprawl, which leads to loss of readability. The result is obviously higher maintenace costs.</p>
+</li>
+</ul>
+<h2 id="final-thoughts">Final Thoughts💡</h2>
+<p>Dispatch tables turn &ldquo;ugh, validation code&rdquo; into something declarative, compact, and kind of fun to work with. They are:</p>
+<ul>
+<li>
+<p><strong>Readable</strong>: Each rule is self-explanatory, almost like documentation.</p>
+</li>
+<li>
+<p><strong>Maintainable</strong>: You can add or remove rules without touching control flow.</p>
+</li>
+<li>
+<p><strong>Consistent</strong>: Whether you have 3 rules or 30, the same single loop handles them all.</p>
+</li>
+</ul>
+<p>Therefore, the next time you&rsquo;re staring at a jungle of <code>if/else</code> checks or guard clauses, stop.
+Reach for a dispatch table instead. Your future self (and your teammates) will thank you.</p>
+<h2 id="resources-">Resources 📚</h2>
+<p>I&rsquo;ve gathered some trustworthy references that provide more detail if you want to read more:</p>
+<p><a href="https://docs.python.org/3/library/stdtypes.html#dict" target="_blank" rel="noopener noreferrer">
+  Python dict documentation
+</a>
+</p>
+<p><a href="https://en.wikipedia.org/wiki/Dispatch_table" target="_blank" rel="noopener noreferrer">
+  Wikipedia: Dispatch table
+</a>
+</p>
+<p><a href="https://en.wikipedia.org/wiki/Structured_programming" target="_blank" rel="noopener noreferrer">
+  Knuth on structured programming
+</a>
+</p>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/dispatch-table/" rel="tag">Dispatch Table</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/guard-clause/" rel="tag">Guard Clause</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/inverted-v/" rel="tag">Inverted-V</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/validation/" rel="tag">Validation</a>
+		</li>
+	</ul>
+</div>
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer communities. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/academics/">Academics</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/algorithms/">Algorithms</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/best-practices/">Best Practices</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/economics/">Economics</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/generative-ai/">Generative AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/opinion/">Opinion</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/productivity/">Productivity</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/programming/">Programming</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python/">Python</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dispatch-table/" title="Dispatch Table">Dispatch Table</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/guard-clause/" title="Guard Clause">Guard Clause</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ilp/" title="ILP">ILP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-v/" title="Inverted-V">Inverted-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/meetings/" title="Meetings">Meetings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/np-hard/" title="NP-Hard">NP-Hard</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/or-tools/" title="OR-Tools">OR-Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pulp/" title="PuLP">PuLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validation/" title="Validation">Validation</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Meeting Diet: Max Value Under Time &amp; Energy Budgets - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<title>The Meeting Diet: An Optimization Approach to Your Calendar - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,30 +75,34 @@
 <main class="main" role="main">
   <article class="post">
     <header class="post__header">
-      <h1 class="post__title">The Meeting Diet: Max Value Under Time &amp; Energy Budgets</h1>
+      <h1 class="post__title">The Meeting Diet: An Optimization Approach to Your Calendar</h1>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-08-28T05:00:00-07:00">
               <strong>August 28, 2025</strong>
             </time>&nbsp;•&nbsp;
             <strong>Categories:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai/"
-                 rel="category"><em>AI</em></a>, <a class="meta__link"
-                 href="/categories/optimization/"
-                 rel="category"><em>Optimization</em></a>, <a class="meta__link"
-                 href="/categories/workplace-productivity/"
-                 rel="category"><em>Workplace Productivity</em></a>&nbsp;•&nbsp;
+                 href="/categories/algorithms/"
+                 rel="category"><em>Algorithms</em></a>, <a class="meta__link"
+                 href="/categories/generative-ai/"
+                 rel="category"><em>Generative AI</em></a>, <a class="meta__link"
+                 href="/categories/programming/"
+                 rel="category"><em>Programming</em></a>, <a class="meta__link"
+                 href="/categories/python/"
+                 rel="category"><em>Python</em></a>&nbsp;•&nbsp;
             <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/ilp/"
+                 rel="tag">#ILP</a>, <a class="meta__link"
                  href="/tags/knapsack-problem/"
                  rel="tag">#Knapsack Problem</a>, <a class="meta__link"
-                 href="/tags/python/"
-                 rel="tag">#Python</a>, <a class="meta__link"
-                 href="/tags/or-tools/"
-                 rel="tag">#OR-Tools</a>, <a class="meta__link"
+                 href="/tags/matplotlib/"
+                 rel="tag">#Matplotlib</a>, <a class="meta__link"
                  href="/tags/meetings/"
                  rel="tag">#Meetings</a>, <a class="meta__link"
-                 href="/tags/ai-prompting/"
-                 rel="tag">#AI Prompting</a></p></div>
+                 href="/tags/or-tools/"
+                 rel="tag">#OR-Tools</a>, <a class="meta__link"
+                 href="/tags/pulp/"
+                 rel="tag">#PuLP</a></p></div>
     </header>
 
     <div class="content post__content clearfix">
@@ -116,11 +120,10 @@
 <p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
   <strong>0/1 knapsack problem with two constraints</strong>
 </a>
-
 , you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
 <hr>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
-<p>Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn&rsquo;t fear of missing out, it&rsquo;s fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to the AI to summarize?</p>
+<p>Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn&rsquo;t fear of missing out, it&rsquo;s fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to AI to summarize?</p>
 <p>Now add two constraints:</p>
 <ul>
 <li>A <strong>time budget</strong> (say, three hours of meetings per week).</li>
@@ -140,7 +143,7 @@
 <p>With these assumptions, our task is to implement a binary decision variable for each meeting and solve a maximization problem subject to dual constraints.</p>
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
-<p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong>ILP</strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong>PuLP</strong>, a lightweight open-source Python library for linear and integer programming. It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
+<p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong>ILP</strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong>PuLP</strong>, a lightweight open-source Python library for linear and integer programming (ILP). It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
 <p><strong>Prompt:</strong></p>
 <hr>
 <blockquote>
@@ -366,14 +369,14 @@
 <figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
   <img src="./plot.png" alt="Plot of Meeting Value Efficiency (Chosen vs. Skipped)" width="400" style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings attended under the time and energy budgets and red bars marking those declined.</em>
+    <em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings to attend under the time and energy budgets and red bars marking those to decline.</em>
   </figcaption>
 </figure>
 <p>At first, I asked the AI for a quick visualization. The initial result was a plain vertical bar chart: it technically worked, but it looked generic and wasn&rsquo;t presentation-ready. Specifically, I realized the graph needed to:</p>
 <ul>
 <li>sort meetings by efficiency,</li>
 <li>show labels clearly,</li>
-<li>differentiate attended vs declined with a legend,</li>
+<li>differentiate meetings to attend vs decline with a legend,</li>
 <li>and generally look like something I&rsquo;d actually show a team.</li>
 </ul>
 <p><strong>Prompt:</strong></p>
@@ -617,19 +620,22 @@
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ilp/" rel="tag">ILP</a>
+		</li>
+		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/knapsack-problem/" rel="tag">Knapsack Problem</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/or-tools/" rel="tag">OR-Tools</a>
+			<a class="tags__link btn" href="/tags/matplotlib/" rel="tag">Matplotlib</a>
 		</li>
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/meetings/" rel="tag">Meetings</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/ai-prompting/" rel="tag">AI Prompting</a>
+			<a class="tags__link btn" href="/tags/or-tools/" rel="tag">OR-Tools</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/pulp/" rel="tag">PuLP</a>
 		</li>
 	</ul>
 </div>
@@ -658,7 +664,7 @@
 <p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
   CodeGuru.com
 </a>
-, once the world&rsquo;s largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+, once the world&rsquo;s largest Windows developer communities. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
 <p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
 <p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
   LinkedIn
@@ -707,7 +713,8 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: Max Value Under Time &amp; Energy Budgets</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
@@ -719,19 +726,23 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/ai/">AI</a></li>
+				<a class="widget__link" href="/categories/academics/">Academics</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/algorithms/">Algorithms</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/best-practices/">Best Practices</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/economics/">Economics</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/modeling/">Modeling</a></li>
+				<a class="widget__link" href="/categories/generative-ai/">Generative AI</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/optimization/">Optimization</a></li>
+				<a class="widget__link" href="/categories/opinion/">Opinion</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/productivity/">Productivity</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/programming/">Programming</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/workplace-productivity/">Workplace Productivity</a></li>
+				<a class="widget__link" href="/categories/python/">Python</a></li>
 		</ul>
 	</div>
 </div>
@@ -739,24 +750,23 @@
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/academic/" title="Academic">Academic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai-prompting/" title="AI Prompting">AI Prompting</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/generative-ai/" title="Generative AI">Generative AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dispatch-table/" title="Dispatch Table">Dispatch Table</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/guard-clause/" title="Guard Clause">Guard Clause</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ilp/" title="ILP">ILP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-v/" title="Inverted-V">Inverted-V</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/meetings/" title="Meetings">Meetings</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/opinion/" title="Opinion">Opinion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/np-hard/" title="NP-Hard">NP-Hard</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/or-tools/" title="OR-Tools">OR-Tools</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/prompt-engineering/" title="Prompt Engineering">Prompt Engineering</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pulp/" title="PuLP">PuLP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validation/" title="Validation">Validation</a>
 	</div>
 </div>
 </aside>

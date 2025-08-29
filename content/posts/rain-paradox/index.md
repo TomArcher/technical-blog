@@ -2,16 +2,12 @@
 title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
 date = '2025-08-18T09:00:00-07:00'
 draft = false
-categories = ["Programming", "Modeling", "AI"]
+categories = ["Algorithms", "Generative AI", "Programming", "Python"]
 tags = [
-  "Python",
-  "Generative AI",
-  "Prompt Engineering",
-  "Modeling",
-  "Physics",
-  "Rain",
-  "Geometry",
-  "Matplotlib"
+    "Geometry",
+    "Matplotlib",
+    "Physics",
+    "Rain",
 ]
 listThumb = "rain-paradox.png"
 +++

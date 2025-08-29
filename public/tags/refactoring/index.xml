@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Refactoring on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/refactoring/</link>
+    <description>Recent content in Refactoring on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Aug 2025 10:38:20 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/refactoring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python Tip of the Week: Using Dispatch Maps for Cleaner Validation</title>
+      <link>http://localhost:1313/posts/ptow-dispatch-maps/</link>
+      <pubDate>Thu, 28 Aug 2025 10:38:20 -0700</pubDate>
+      <guid>http://localhost:1313/posts/ptow-dispatch-maps/</guid>
+      <description>&lt;h1 id=&#34;python-tip-of-the-week-&#34;&gt;Python Tip of the Week 🐍&lt;/h1&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s be honest: argument validation code is rarely the proudest part of anyone&amp;rsquo;s repo.&lt;/p&gt;&#xA;&lt;p&gt;Most of us start with the usual suspects:&lt;/p&gt;&#xA;&lt;p&gt;❌ The dreaded &lt;em&gt;inverted-V&lt;/em&gt; tower of &lt;code&gt;if/else&lt;/code&gt; statements&lt;br&gt;&#xA;❌ A graveyard of guard clauses scattered line after line&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Using a dispatch map for validation rules means: one dictionary, one loop, infinite sanity.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Both work fine… until they don&amp;rsquo;t. Then you&amp;rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

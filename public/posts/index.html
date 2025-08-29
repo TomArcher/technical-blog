@@ -83,11 +83,11 @@
       <article class="post">
         <header class="post-header">
           <h2 class="post-title">
-            <a href="/posts/meeting-diet/">The Meeting Diet: Max Value Under Time &amp; Energy Budgets</a>
+            <a href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a>
           </h2>
 
           <div class="post-meta">
-            <time datetime="2025-08-28">August 28, 2025</time> • <a href="/categories/ai/">AI</a>, <a href="/categories/optimization/">Optimization</a>, <a href="/categories/workplace-productivity/">Workplace Productivity</a>, <a href="/tags/knapsack-problem/">#Knapsack Problem</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/or-tools/">#OR-Tools</a>, <a href="/tags/meetings/">#Meetings</a>, <a href="/tags/ai-prompting/">#AI Prompting</a></div>
+            <time datetime="2025-08-28">August 28, 2025</time> • <a href="/categories/algorithms/">Algorithms</a>, <a href="/categories/generative-ai/">Generative AI</a>, <a href="/categories/programming/">Programming</a>, <a href="/categories/python/">Python</a>, <a href="/tags/ilp/">#ILP</a>, <a href="/tags/knapsack-problem/">#Knapsack Problem</a>, <a href="/tags/matplotlib/">#Matplotlib</a>, <a href="/tags/meetings/">#Meetings</a>, <a href="/tags/or-tools/">#OR-Tools</a>, <a href="/tags/pulp/">#PuLP</a></div>
         </header>
 
         
@@ -99,7 +99,15 @@
     <em>If you don't optimize your schedule, your schedule will optimize you. Badly</em>
   </figcaption>
 </figure>
-<p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p></div>
+<p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
+<hr>
+<p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
+  <strong>0/1 knapsack problem with two constraints</strong>
+</a>
+, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p></div>
 
         
         <p class="read-more">
@@ -110,11 +118,47 @@
       <article class="post">
         <header class="post-header">
           <h2 class="post-title">
+            <a href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a>
+          </h2>
+
+          <div class="post-meta">
+            <time datetime="2025-08-22">August 22, 2025</time> • <a href="/categories/best-practices/">Best Practices</a>, <a href="/categories/programming/">Programming</a>, <a href="/categories/python/">Python</a>, <a href="/tags/dispatch-table/">#Dispatch Table</a>, <a href="/tags/guard-clause/">#Guard Clause</a>, <a href="/tags/inverted-v/">#Inverted-V</a>, <a href="/tags/validation/">#Validation</a></div>
+        </header>
+
+        
+        
+        
+        <div class="post-summary"><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./ptow-trans.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Tips and techniques to improve your Python skills</em>
+  </figcaption>
+</figure>
+<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
+<p>Most of us start with the usual suspects:</p>
+<p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
+❌ A graveyard of guard clauses scattered line after line</p>
+<hr>
+<blockquote>
+<p><em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.</em></p></blockquote>
+<hr>
+<p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
+<p>There&rsquo;s a better way: <strong>dispatch tables</strong>!</p></div>
+
+        
+        <p class="read-more">
+          <a class="read-more-link" href="/posts/ptow-dispatch-maps/">Read more →</a>
+        </p>
+      </article>
+    
+      <article class="post">
+        <header class="post-header">
+          <h2 class="post-title">
             <a href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a>
           </h2>
 
           <div class="post-meta">
-            <time datetime="2025-08-20">August 20, 2025</time> • <a href="/categories/programming/">Programming</a>, <a href="/categories/optimization/">Optimization</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/3d-bin-packing/">#3D Bin Packing</a>, <a href="/tags/algorithms/">#Algorithms</a>, <a href="/tags/ai/">#AI</a>, <a href="/tags/modeling/">#Modeling</a>, <a href="/tags/heuristics/">#Heuristics</a>, <a href="/tags/matplotlib/">#Matplotlib</a></div>
+            <time datetime="2025-08-20">August 20, 2025</time> • <a href="/categories/algorithms/">Algorithms</a>, <a href="/categories/generative-ai/">Generative AI</a>, <a href="/categories/programming/">Programming</a>, <a href="/categories/python/">Python</a>, <a href="/tags/3d-bin-packing/">#3D Bin Packing</a>, <a href="/tags/heuristics/">#Heuristics</a>, <a href="/tags/matplotlib/">#Matplotlib</a>, <a href="/tags/np-hard/">#NP-hard</a></div>
         </header>
 
         
@@ -146,7 +190,7 @@
           </h2>
 
           <div class="post-meta">
-            <time datetime="2025-08-19">August 19, 2025</time> • <a href="/categories/ai/">AI</a>, <a href="/categories/economics/">Economics</a>, <a href="/categories/productivity/">Productivity</a>, <a href="/tags/opinion/">#Opinion</a>, <a href="/tags/academic/">#Academic</a>, <a href="/tags/generative-ai/">#Generative AI</a>, <a href="/tags/tfp/">#TFP</a></div>
+            <time datetime="2025-08-19">August 19, 2025</time> • <a href="/categories/academics/">Academics</a>, <a href="/categories/economics/">Economics</a>, <a href="/categories/generative-ai/">Generative AI</a>, <a href="/categories/opinion/">Opinion</a>, <a href="/categories/productivity/">Productivity</a>, <a href="/tags/productivity/">#Productivity</a>, <a href="/tags/tfp/">#TFP</a></div>
         </header>
 
         
@@ -159,7 +203,12 @@
   </figcaption>
 </figure>
 <p>If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn&rsquo;t that show up in our productivity statistics?</p>
-<p>Economists have long relied on a metric called <strong>Total Factor Productivity (TFP)</strong> to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.</p></div>
+<p>Economists have long relied on a metric called <strong>Total Factor Productivity (TFP)</strong> to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.</p>
+<hr>
+<blockquote>
+<p><em>You can see the <del>computer age</del> generative AI everywhere but in the productivity statistics.</em></p>
+<p><em>(Adapted from Robert Solow, 1987)</em></p></blockquote>
+<hr></div>
 
         
         <p class="read-more">
@@ -174,7 +223,7 @@
           </h2>
 
           <div class="post-meta">
-            <time datetime="2025-08-18">August 18, 2025</time> • <a href="/categories/programming/">Programming</a>, <a href="/categories/modeling/">Modeling</a>, <a href="/categories/ai/">AI</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/generative-ai/">#Generative AI</a>, <a href="/tags/prompt-engineering/">#Prompt Engineering</a>, <a href="/tags/modeling/">#Modeling</a>, <a href="/tags/physics/">#Physics</a>, <a href="/tags/rain/">#Rain</a>, <a href="/tags/geometry/">#Geometry</a>, <a href="/tags/matplotlib/">#Matplotlib</a></div>
+            <time datetime="2025-08-18">August 18, 2025</time> • <a href="/categories/algorithms/">Algorithms</a>, <a href="/categories/generative-ai/">Generative AI</a>, <a href="/categories/programming/">Programming</a>, <a href="/categories/python/">Python</a>, <a href="/tags/geometry/">#Geometry</a>, <a href="/tags/matplotlib/">#Matplotlib</a>, <a href="/tags/physics/">#Physics</a>, <a href="/tags/rain/">#Rain</a></div>
         </header>
 
         
@@ -223,7 +272,7 @@
 <p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
   CodeGuru.com
 </a>
-, once the world&rsquo;s largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+, once the world&rsquo;s largest Windows developer communities. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
 <p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
 <p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
   LinkedIn
@@ -272,7 +321,8 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: Max Value Under Time &amp; Energy Budgets</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
@@ -284,19 +334,23 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/ai/">AI</a></li>
+				<a class="widget__link" href="/categories/academics/">Academics</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/algorithms/">Algorithms</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/best-practices/">Best Practices</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/economics/">Economics</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/modeling/">Modeling</a></li>
+				<a class="widget__link" href="/categories/generative-ai/">Generative AI</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/optimization/">Optimization</a></li>
+				<a class="widget__link" href="/categories/opinion/">Opinion</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/productivity/">Productivity</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/programming/">Programming</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/workplace-productivity/">Workplace Productivity</a></li>
+				<a class="widget__link" href="/categories/python/">Python</a></li>
 		</ul>
 	</div>
 </div>
@@ -304,24 +358,23 @@
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/academic/" title="Academic">Academic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai-prompting/" title="AI Prompting">AI Prompting</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/generative-ai/" title="Generative AI">Generative AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dispatch-table/" title="Dispatch Table">Dispatch Table</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/guard-clause/" title="Guard Clause">Guard Clause</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ilp/" title="ILP">ILP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-v/" title="Inverted-V">Inverted-V</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/meetings/" title="Meetings">Meetings</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/opinion/" title="Opinion">Opinion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/np-hard/" title="NP-Hard">NP-Hard</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/or-tools/" title="OR-Tools">OR-Tools</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/prompt-engineering/" title="Prompt Engineering">Prompt Engineering</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pulp/" title="PuLP">PuLP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validation/" title="Validation">Validation</a>
 	</div>
 </div>
 </aside>

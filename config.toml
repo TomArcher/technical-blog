@@ -5,7 +5,6 @@ theme = "mainroad"
 ignoreFiles = ['^content/posts/.*/_private/']
 googleAnalytics = "G-7ZV2PMS61P"
 
-
 [pagination]
   pagerSize = 10
 
@@ -20,7 +19,7 @@ googleAnalytics = "G-7ZV2PMS61P"
   bio = """
   Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.
 
-  Tom also helped build and run [CodeGuru.com](https://codeguru.com), once the world's largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.
+  Tom also helped build and run [CodeGuru.com](https://codeguru.com), once the world's largest Windows developer communities. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.
 
   While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he's always excited to hear about it.  
 

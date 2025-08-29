@@ -2,12 +2,9 @@
 date = '2025-08-19T05:00:00-07:00'
 draft = false
 title = "From Solow to ChatGPT: Why Total Factor Productivity Can't Keep Up With Generative AI"
-categories = ["AI", "Economics", "Productivity"]
-
+categories = ["Academics", "Economics", "Generative AI", "Opinion", "Productivity"]
 tags = [
-  "Opinion",
-  "Academic",
-  "Generative AI",
+  "Productivity",
   "TFP",
 ]
 listThumb = "tfp-chatgpt.png"
@@ -23,6 +20,14 @@ listThumb = "tfp-chatgpt.png"
 If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn't that show up in our productivity statistics?
 
 Economists have long relied on a metric called **Total Factor Productivity (TFP)** to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.
+
+---
+
+> *You can see the ~~computer age~~ generative AI everywhere but in the productivity statistics.*
+>
+> *(Adapted from Robert Solow, 1987)*
+
+---
 
 <!--more-->
 
@@ -61,7 +66,7 @@ Generative AI checks all three boxes. It lives in the cloud, is often free or ch
 
 We've been here before. In the 1980s, economist Robert Solow famously quipped, *"You can see the computer age everywhere but in the productivity statistics."*
 
-Today, swap "computer" for "ChatGPT" and the paradox feels the same. Workers report huge time savings using AI for brainstorming, code generation, and document drafting. Yet official productivity measures look flat.
+Today, swap "computer" for "generative AI" and the paradox feels the same. Workers report huge time savings using AI for brainstorming, code generation, and document drafting. Yet official productivity measures look flat.
 
 Why? Because TFP was designed for smokestacks, not syntax suggestions. It can't capture the fact that a single lawyer using AI can review contracts in half the time or that a small business can now launch global marketing campaigns without hiring a full agency.
 

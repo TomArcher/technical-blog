@@ -2,8 +2,15 @@
 title = "The Meeting Diet: An Optimization Approach to Your Calendar"
 date = 2025-08-28T05:00:00-07:00
 draft = false
-categories = ["AI", "Optimization", "Workplace Productivity"]
-tags = ["Knapsack Problem", "Python", "OR-Tools", "Meetings", "AI Prompting"]
+categories = ["Algorithms", "Generative AI", "Programming", "Python"]
+tags = [
+    "ILP",
+    "Knapsack Problem",
+    "Matplotlib",
+    "Meetings",
+    "OR-Tools",
+    "PuLP",
+]
 listThumb = "meeting-diet.png"
 +++
 
@@ -59,7 +66,7 @@ With these assumptions, our task is to implement a binary decision variable for 
 
 ## Using AI to Scaffold the Code
 
-To save time, we'll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (**knapsack**, **ILP**, **constraints**) and be explicit about **inputs/outputs**. For the solver, we'll use **PuLP**, a lightweight open-source Python library for linear and integer programming. It's simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.
+To save time, we'll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (**knapsack**, **ILP**, **constraints**) and be explicit about **inputs/outputs**. For the solver, we'll use **PuLP**, a lightweight open-source Python library for linear and integer programming (ILP). It's simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.
 
 **Prompt:**
 
