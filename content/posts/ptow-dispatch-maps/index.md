@@ -43,32 +43,31 @@ There's a better way: **dispatch tables**!
 
 ## The Inverted-V Approach 😱
 
-Here's how many of us begin. You just want to check a few things… but suddenly your code looks like a wedding cake:
+Here's how many of C/C++/C#/Java programmers begin. You just want to validate a few things… but suddenly your code resembles a Cyrano de Bergerac profile:
 
 ```python
-def _validate_args(kwargs: dict) -> None:
-    if 'article_output_path' in kwargs:
-        if isinstance(kwargs['article_output_path'], Path):
-            if ('template_name' in kwargs
-                and 'template_path' in kwargs):
-                raise ValueError(
-                    "Both template_name and template_path "
-                    "can't be specified."
-                )
+def create_user(username: str, age: int, email: str) -> None:
+    if username:
+        if len(username) >= 3:
+            if age is not None:
+                if age >= 18:
+                    if email:
+                        if '@' in email:
+                            # All validations passed - create the user
+                            print(f"Creating user: {username}")
+                            return
+                        else:
+                            raise ValueError("Email must contain '@'")
+                    else:
+                        raise ValueError("Email is required")
+                else:
+                    raise ValueError("Age must be 18 or older")
             else:
-                if 'debug' in kwargs:
-                    if not isinstance(kwargs['debug'], bool):
-                        raise ValueError(
-                            '"debug" must be a bool.'
-                        )
+                raise ValueError("Age is required")
         else:
-            raise ValueError(
-                '"article_output_path" must be a Path object.'
-            )
+            raise ValueError("Username must be at least 3 characters")
     else:
-        raise ValueError(
-            '"article_output_path" must be specified.'
-        )
+        raise ValueError("Username is required")
 ```
 <br/>
 
@@ -80,28 +79,27 @@ Sure, it works… but it's awkward, fragile, and painful to extend. Add one more
 Next step: fail fast. One check per line. No nesting. Looks like this:
 
 ```python
-def _validate_args(kwargs: dict) -> None:
-    if 'article_output_path' not in kwargs:
-        raise ValueError(
-            '"article_output_path" must be specified.'
-        )
-
-    if not isinstance(kwargs['article_output_path'], Path):
-        raise ValueError(
-            '"article_output_path" must be a Path object.'
-        )
-
-    if 'template_name' in kwargs and 'template_path' in kwargs:
-        raise ValueError(
-            'Both template_name and template_path cannot be '
-            'specified.'
-        )
-
-    if 'debug' in kwargs and not isinstance(kwargs['debug'], bool):
-        raise ValueError(
-            '"debug" must be a bool.'
-        )
-
+def create_user(username: str, age: int, email: str) -> None:
+    if not username:
+        raise ValueError("Username is required")
+    
+    if len(username) < 3:
+        raise ValueError("Username must be at least 3 characters")
+    
+    if age is None:
+        raise ValueError("Age is required")
+    
+    if age < 18:
+        raise ValueError("Age must be 18 or older")
+    
+    if not email:
+        raise ValueError("Email is required")
+    
+    if '@' not in email:
+        raise ValueError("Email must contain '@'")
+    
+    # All validations passed - create the user
+    print(f"Creating user: {username}")
 ```
 
 <br/>
@@ -117,25 +115,23 @@ Instead of scattering control flow everywhere, you centralize the rules in one t
 Here's a snack-sized example you can paste right now:
 
 ```python
-def _validate_args(kwargs: dict) -> None:
+def create_user(username: str, age: int, email: str) -> None:
     rules = {
-        '"x" must be specified.': lambda a: 'x' in a,
-        '"x" must be an int.': (
-            lambda a: 'x' not in a or isinstance(a['x'], int)
-        ),
-        '"y" must be positive.': (
-            lambda a: 'y' not in a or a['y'] > 0
-        ),
+        "Username is required": lambda: bool(username),
+        "Username must be at least 3 characters":
+            lambda: len(username or '') >= 3,
+        "Age is required": lambda: age is not None,
+        "Age must be 18 or older": lambda: age is None or age >= 18,
+        "Email is required": lambda: bool(email),
+        "Email must contain '@'": lambda: not email or '@' in email,
     }
-
-    errors = [
-        msg for msg, check in rules.items() if not check(kwargs)
-    ]
+    
+    errors = [msg for msg, check in rules.items() if not check()]
     if errors:
-        raise ValueError(
-            "Validation failed:\n" + "\n".join(errors)
-        )
-
+        raise ValueError("Validation failed:\n" + "\n".join(errors))
+    
+    # All validations passed - create the user
+    print(f"Creating user: {username}")
 ```
 
 <br/>
