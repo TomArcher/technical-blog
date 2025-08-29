@@ -3,7 +3,11 @@
   <div class="posts-list">
     {{/* Display the taxonomy title */}}
     <header class="taxonomy-header">
-      <h1>"{{ .Title }}" Posts</h1>
+      <h1>
+        {{ $count := len .Pages }}
+        {{ $count }} "{{ .Title }}" {{ if eq $count 1 }}Post{{ else }}Posts{{ end }}
+        </h1>
+
       <!--<p class="taxonomy-description">Articles tagged with {{ .Title }}</p>-->
     </header>
 
