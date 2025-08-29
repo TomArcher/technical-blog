@@ -6,29 +6,8 @@
     <description>Recent content in Categories on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Aug 2025 10:38:20 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 28 Aug 2025 05:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Best Practices</title>
-      <link>http://localhost:1313/categories/best-practices/</link>
-      <pubDate>Thu, 28 Aug 2025 10:38:20 -0700</pubDate>
-      <guid>http://localhost:1313/categories/best-practices/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Programming</title>
-      <link>http://localhost:1313/categories/programming/</link>
-      <pubDate>Thu, 28 Aug 2025 10:38:20 -0700</pubDate>
-      <guid>http://localhost:1313/categories/programming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>http://localhost:1313/categories/python/</link>
-      <pubDate>Thu, 28 Aug 2025 10:38:20 -0700</pubDate>
-      <guid>http://localhost:1313/categories/python/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Algorithms</title>
       <link>http://localhost:1313/categories/algorithms/</link>
@@ -41,6 +20,27 @@
       <link>http://localhost:1313/categories/generative-ai/</link>
       <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
       <guid>http://localhost:1313/categories/generative-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Programming</title>
+      <link>http://localhost:1313/categories/programming/</link>
+      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://localhost:1313/categories/python/</link>
+      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Best Practices</title>
+      <link>http://localhost:1313/categories/best-practices/</link>
+      <pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate>
+      <guid>http://localhost:1313/categories/best-practices/</guid>
       <description></description>
     </item>
     <item>

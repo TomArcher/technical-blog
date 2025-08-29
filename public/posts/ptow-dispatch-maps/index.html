@@ -171,7 +171,8 @@
 </span></span><span style="display:flex;"><span>        )
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Takeaway:</strong>
+</div><br/>
+<p><strong>Takeaway:</strong>
 Sure, it works… but it&rsquo;s awkward, fragile, and painful to extend. Add one more rule and the nesting level reaches the earth&rsquo;s mantle.</p>
 <h2 id="the-guard-clause-approach-">The Guard Clause Approach 😬</h2>
 <p>Next step: fail fast. One check per line. No nesting. Looks like this:</p>
@@ -223,7 +224,8 @@ Sure, it works… but it&rsquo;s awkward, fragile, and painful to extend. Add on
 </span></span><span style="display:flex;"><span>        )
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Takeaway:</strong>
+</div><br/>
+<p><strong>Takeaway:</strong>
 Cleaner than the inverted-V, but now every new rule means another line. Add 10 rules, and you&rsquo;re back to scrolling forever.</p>
 <h2 id="enter-dispatch-tables-">Enter Dispatch Tables ✨</h2>
 <p>A dispatch table is just a dictionary where the key is the error message and the value is a check function (usually a lambda).
@@ -271,7 +273,8 @@ Instead of scattering control flow everywhere, you centralize the rules in one t
 </span></span><span style="display:flex;"><span>        )
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Takeaway:</strong></p>
+</div><br/>
+<p><strong>Takeaway:</strong></p>
 <ul>
 <li>
 <p>All rules live in one place (in the dictionary).</p>

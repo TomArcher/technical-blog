@@ -72,13 +72,15 @@ To simulate the problem, we make the following simplifications:
 
 I start by prompting an AI model to sketch out a basic packing algorithm:
 
-```prompt
-Write a Python script that, given the dimensions of a truck 
+---
+
+> *Write a Python script that, given the dimensions of a truck 
 (height, width, depth) and a dictionary of objects with 
 height, width, depth, and weight, produces a packing order. 
 The script should output 3D positions and orientations for 
-each object.
-```
+each object.*
+
+---
 
 The model produces a working draft. As with most AI-generated code, it needs refinement so blocks don't float or extend beyond the truck's limits. These edits include better variable and function naming, clearer placement logic, and fixing layout issues. Still, this first generation saves me hours of scaffolding and gives me a strong foundation to improve upon. What follows is the refined version.
 
@@ -182,11 +184,13 @@ def pack_truck(
 
 Once the function exists, I test it with a sample truck definition and a dictionary of sample items:
 
-```prompt
-Write example code that defines a truck, provides a dictionary 
+---
+
+> *Write example code that defines a truck, provides a dictionary 
 of items with height, width, depth, and weight, and prints 
-the resulting packing plan.
-```
+the resulting packing plan.*
+
+---
 
 The model produces usable code that I edit for clarity and readability.
 
@@ -236,7 +240,7 @@ if __name__ == "__main__":
 
 The packing function produces a sequential plan showing where each crate ends up, including its 3D position, size, and weight. Each line corresponds to one item in the truck, listed in the order it was placed.
 
-```output
+```java
 == PACK PLAN ==
 01. crateD: pos=(0.0,0.0,0.0) size(HxWxD)=(80.0x40.0x50.0) weight=90.0
 02. crateA: pos=(40.0,0.0,0.0) size(HxWxD)=(50.0x40.0x60.0) weight=80.0
@@ -261,11 +265,13 @@ By plotting the packed truck, we move beyond raw placement data and can see whet
 
 The plotting function directly supports this goal by turning the abstract placement data into a clear visual model. The prompt I use ensures that the visualization is both accurate and interpretable. By assigning each box its own color and labeling it at its center, the plot highlights how individual items relate to the container and to each other. In this way, the visualization is not just a cosmetic step, but an integral part of validating and improving the packing heuristic.
 
-```prompt
-Write a Python function that takes a truck's dimensions and the placements list, 
+---
+
+> *Write a Python function that takes a truck's dimensions and the placements list, 
 and plots the packed truck in 3D using Matplotlib. Each box should have a unique 
-color and label.
-```
+color and label.*
+
+---
 
 The `plot_truck_packing` function is responsible for visualizing how items are arranged inside the truck. It begins by drawing a wireframe of the container using width, depth, and height as the three axes. It then loops through each placed item, calls `_cuboid_faces_mpl_from_internal` to generate the six visible faces of the box in Matplotlib’s coordinate system, and renders them as colored 3D shapes. Labels are added at the center of each item for clarity, and the axes are labeled and scaled so the proportions match the truck’s real dimensions. Finally, the viewing angle, aspect ratio, and title are set to produce a clear, accurate perspective of the packed load.
 

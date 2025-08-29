@@ -73,13 +73,15 @@ This converts the real-world complexity into a discrete physical model driven by
 
 I start by prompting an AI model to sketch out a basic algorithm:
 
-```prompt
-Write a Python simulation to model how wet a person gets in the 
+---
+
+> *Write a Python simulation to model how wet a person gets in the 
 rain depending on their walking or running speed. Assume a 
 person is a rectangular block with a top area and front area. 
 Rain falls vertically at a steady rate. Calculate drops hitting 
-the top (time exposed) and front (distance traveled).
-```
+the top (time exposed) and front (distance traveled).*
+
+---
 
 The model produces a solid draft. As with most AI-generated code, it needs refinements, such as naming consistency, unit correctness, and clearer abstractions. But that initial generation saved me from boilerplate and gave me a starting point. What follows is the refined version.
 
@@ -159,10 +161,12 @@ def simulate_wetness(
 
 Here, I used AI again. I asked it to *extend* the simulation with a loop that tested speeds from walking pace up to sprinting. The prompt was short:
 
-```prompt
-Using the simulate_wetness function, generate Python code to loop over
-a list of speeds (ft/s) and print out the resulting wetness.
-```
+---
+
+> *Using the simulate_wetness function, generate Python code to loop over
+a list of speeds (ft/s) and print out the resulting wetness.*
+
+---
 
 The model produces usable code that I edit for clarity and readability.
 
@@ -205,11 +209,13 @@ for speed, wetness in zip(speeds_ft_s, wetness_values):
     )
 ```
 
+<br/>
+
 **Sample Output:**
 
 The following sample output shows that the trend is clear: faster movement reduces overall wetness, but with diminishing returns.
 
-```output
+```java
 Speed: 3.3 ft/s -> Wetness: 15510 drops
 Speed: 5.5 ft/s -> Wetness: 12348 drops
 Speed: 8.8 ft/s -> Wetness: 10570 drops

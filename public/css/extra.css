@@ -280,3 +280,10 @@ a:focus-visible {
 .posts-list .post.post--has-title-thumb .post-summary + p {
   clear: both;
 }
+
+pre {
+  margin-bottom: 2rem;
+}
+.highlight {
+  margin-bottom: 2rem;
+}

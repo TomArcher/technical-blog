@@ -146,12 +146,15 @@ You have two options:</p>
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
 <p>I start by prompting an AI model to sketch out a basic algorithm:</p>
-<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write a Python simulation to model how wet a person gets in the 
-rain depending on their walking or running speed. Assume a 
-person is a rectangular block with a top area and front area. 
-Rain falls vertically at a steady rate. Calculate drops hitting 
-the top (time exposed) and front (distance traveled).
-</code></pre><p>The model produces a solid draft. As with most AI-generated code, it needs refinements, such as naming consistency, unit correctness, and clearer abstractions. But that initial generation saved me from boilerplate and gave me a starting point. What follows is the refined version.</p>
+<hr>
+<blockquote>
+<p><em>Write a Python simulation to model how wet a person gets in the
+rain depending on their walking or running speed. Assume a
+person is a rectangular block with a top area and front area.
+Rain falls vertically at a steady rate. Calculate drops hitting
+the top (time exposed) and front (distance traveled).</em></p></blockquote>
+<hr>
+<p>The model produces a solid draft. As with most AI-generated code, it needs refinements, such as naming consistency, unit correctness, and clearer abstractions. But that initial generation saved me from boilerplate and gave me a starting point. What follows is the refined version.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -295,9 +298,12 @@ the top (time exposed) and front (distance traveled).
 </div><hr>
 <h2 id="simulation-walking-vs-running">Simulation: Walking vs. Running</h2>
 <p>Here, I used AI again. I asked it to <em>extend</em> the simulation with a loop that tested speeds from walking pace up to sprinting. The prompt was short:</p>
-<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Using the simulate_wetness function, generate Python code to loop over
-a list of speeds (ft/s) and print out the resulting wetness.
-</code></pre><p>The model produces usable code that I edit for clarity and readability.</p>
+<hr>
+<blockquote>
+<p><em>Using the simulate_wetness function, generate Python code to loop over
+a list of speeds (ft/s) and print out the resulting wetness.</em></p></blockquote>
+<hr>
+<p>The model produces usable code that I edit for clarity and readability.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -376,14 +382,26 @@ a list of speeds (ft/s) and print out the resulting wetness.
 </span></span><span style="display:flex;"><span>    )
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Sample Output:</strong></p>
+</div><br/>
+<p><strong>Sample Output:</strong></p>
 <p>The following sample output shows that the trend is clear: faster movement reduces overall wetness, but with diminishing returns.</p>
-<pre tabindex="0"><code class="language-output" data-lang="output">Speed: 3.3 ft/s -&gt; Wetness: 15510 drops
-Speed: 5.5 ft/s -&gt; Wetness: 12348 drops
-Speed: 8.8 ft/s -&gt; Wetness: 10570 drops
-Speed: 13.2 ft/s -&gt; Wetness: 9582 drops
-Speed: 30.0 ft/s -&gt; Wetness: 8476 drops
-</code></pre><hr>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Speed</span>: 3.<span style="color:#50fa7b">3</span> ft<span style="color:#ff79c6">/</span>s <span style="color:#ff79c6">-&gt;</span> Wetness: 15510 drops
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Speed</span>: 5.<span style="color:#50fa7b">5</span> ft<span style="color:#ff79c6">/</span>s <span style="color:#ff79c6">-&gt;</span> Wetness: 12348 drops
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Speed</span>: 8.<span style="color:#50fa7b">8</span> ft<span style="color:#ff79c6">/</span>s <span style="color:#ff79c6">-&gt;</span> Wetness: 10570 drops
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Speed</span>: 13.<span style="color:#50fa7b">2</span> ft<span style="color:#ff79c6">/</span>s <span style="color:#ff79c6">-&gt;</span> Wetness: 9582 drops
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Speed</span>: 30.<span style="color:#50fa7b">0</span> ft<span style="color:#ff79c6">/</span>s <span style="color:#ff79c6">-&gt;</span> Wetness: 8476 drops
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="making-the-results-visual">Making the Results Visual</h2>
 <figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
   <img src="./plot.png" alt=" Plot showing Wettness versus Speed in Rain" width="400" style="display: block; margin: 0 auto;">

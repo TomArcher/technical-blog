@@ -1,0 +1,46 @@
+{{ define "main" }}
+  <header class="term-header">
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  {{/* Order posts newest → oldest and paginate */}}
+  {{ $pages := .Pages.ByDate.Reverse }}
+  {{ $p := .Paginate $pages }}
+
+  <section class="post-list">
+    {{ range $p.Pages }}
+      <article class="post-item">
+        <h2 class="post-title">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h2>
+        <div class="post-meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+        </div>
+        {{ with .Params.description }}
+          <p>{{ . }}</p>
+        {{ else }}
+          {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+        {{ end }}
+      </article>
+    {{ end }}
+  </section>
+
+  {{/* Simple, self-contained pagination (no _internal dependency) */}}
+  <nav class="pager" aria-label="Pagination">
+    {{ if $p.HasPrev }}
+      <a class="pager-prev" href="{{ $p.Prev.URL }}">← Newer</a>
+    {{ end }}
+
+    {{ range $p.Pagers }}
+      <a class="pager-num{{ if eq . $p }} is-active{{ end }}"
+         href="{{ .URL }}"
+         {{ if eq . $p }}aria-current="page"{{ end }}>
+        {{ .PageNumber }}
+      </a>
+    {{ end }}
+
+    {{ if $p.HasNext }}
+      <a class="pager-next" href="{{ $p.Next.URL }}">Older →</a>
+    {{ end }}
+  </nav>
+{{ end }}

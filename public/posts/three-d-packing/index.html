@@ -146,12 +146,15 @@
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
 <p>I start by prompting an AI model to sketch out a basic packing algorithm:</p>
-<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write a Python script that, given the dimensions of a truck 
-(height, width, depth) and a dictionary of objects with 
-height, width, depth, and weight, produces a packing order. 
-The script should output 3D positions and orientations for 
-each object.
-</code></pre><p>The model produces a working draft. As with most AI-generated code, it needs refinement so blocks don&rsquo;t float or extend beyond the truck&rsquo;s limits. These edits include better variable and function naming, clearer placement logic, and fixing layout issues. Still, this first generation saves me hours of scaffolding and gives me a strong foundation to improve upon. What follows is the refined version.</p>
+<hr>
+<blockquote>
+<p><em>Write a Python script that, given the dimensions of a truck
+(height, width, depth) and a dictionary of objects with
+height, width, depth, and weight, produces a packing order.
+The script should output 3D positions and orientations for
+each object.</em></p></blockquote>
+<hr>
+<p>The model produces a working draft. As with most AI-generated code, it needs refinement so blocks don&rsquo;t float or extend beyond the truck&rsquo;s limits. These edits include better variable and function naming, clearer placement logic, and fixing layout issues. Still, this first generation saves me hours of scaffolding and gives me a strong foundation to improve upon. What follows is the refined version.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -341,10 +344,13 @@ each object.
 </div><hr>
 <h2 id="simulation-packing-a-truck">Simulation: Packing a Truck</h2>
 <p>Once the function exists, I test it with a sample truck definition and a dictionary of sample items:</p>
-<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write example code that defines a truck, provides a dictionary 
-of items with height, width, depth, and weight, and prints 
-the resulting packing plan.
-</code></pre><p>The model produces usable code that I edit for clarity and readability.</p>
+<hr>
+<blockquote>
+<p><em>Write example code that defines a truck, provides a dictionary
+of items with height, width, depth, and weight, and prints
+the resulting packing plan.</em></p></blockquote>
+<hr>
+<p>The model produces usable code that I edit for clarity and readability.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -431,14 +437,27 @@ the resulting packing plan.
 </div>
 </div><p><strong>Sample Output:</strong></p>
 <p>The packing function produces a sequential plan showing where each crate ends up, including its 3D position, size, and weight. Each line corresponds to one item in the truck, listed in the order it was placed.</p>
-<pre tabindex="0"><code class="language-output" data-lang="output">== PACK PLAN ==
-01. crateD: pos=(0.0,0.0,0.0) size(HxWxD)=(80.0x40.0x50.0) weight=90.0
-02. crateA: pos=(40.0,0.0,0.0) size(HxWxD)=(50.0x40.0x60.0) weight=80.0
-03. crateF: pos=(0.0,0.0,60.0) size(HxWxD)=(40.0x40.0x40.0) weight=60.0
-04. crateC: pos=(40.0,0.0,60.0) size(HxWxD)=(20.0x60.0x40.0) weight=50.0
-05. crateB: pos=(0.0,0.0,100.0) size(HxWxD)=(30.0x30.0x30.0) weight=40.0
-06. crateE: pos=(0.0,0.0,130.0) size(HxWxD)=(10.0x90.0x30.0) weight=20.0
-</code></pre><hr>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">==</span> PACK PLAN <span style="color:#ff79c6">==</span>
+</span></span><span style="display:flex;"><span>01. crateD: pos<span style="color:#ff79c6">=</span>(0.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>) size(HxWxD)<span style="color:#ff79c6">=</span>(80.<span style="color:#50fa7b">0x40</span>.<span style="color:#50fa7b">0x50</span>.<span style="color:#50fa7b">0</span>) weight<span style="color:#ff79c6">=</span>90.<span style="color:#50fa7b">0</span>
+</span></span><span style="display:flex;"><span>02. crateA: pos<span style="color:#ff79c6">=</span>(40.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>) size(HxWxD)<span style="color:#ff79c6">=</span>(50.<span style="color:#50fa7b">0x40</span>.<span style="color:#50fa7b">0x60</span>.<span style="color:#50fa7b">0</span>) weight<span style="color:#ff79c6">=</span>80.<span style="color:#50fa7b">0</span>
+</span></span><span style="display:flex;"><span>03. crateF: pos<span style="color:#ff79c6">=</span>(0.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>,60.<span style="color:#50fa7b">0</span>) size(HxWxD)<span style="color:#ff79c6">=</span>(40.<span style="color:#50fa7b">0x40</span>.<span style="color:#50fa7b">0x40</span>.<span style="color:#50fa7b">0</span>) weight<span style="color:#ff79c6">=</span>60.<span style="color:#50fa7b">0</span>
+</span></span><span style="display:flex;"><span>04. crateC: pos<span style="color:#ff79c6">=</span>(40.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>,60.<span style="color:#50fa7b">0</span>) size(HxWxD)<span style="color:#ff79c6">=</span>(20.<span style="color:#50fa7b">0x60</span>.<span style="color:#50fa7b">0x40</span>.<span style="color:#50fa7b">0</span>) weight<span style="color:#ff79c6">=</span>50.<span style="color:#50fa7b">0</span>
+</span></span><span style="display:flex;"><span>05. crateB: pos<span style="color:#ff79c6">=</span>(0.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>,100.<span style="color:#50fa7b">0</span>) size(HxWxD)<span style="color:#ff79c6">=</span>(30.<span style="color:#50fa7b">0x30</span>.<span style="color:#50fa7b">0x30</span>.<span style="color:#50fa7b">0</span>) weight<span style="color:#ff79c6">=</span>40.<span style="color:#50fa7b">0</span>
+</span></span><span style="display:flex;"><span>06. crateE: pos<span style="color:#ff79c6">=</span>(0.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>,130.<span style="color:#50fa7b">0</span>) size(HxWxD)<span style="color:#ff79c6">=</span>(10.<span style="color:#50fa7b">0x90</span>.<span style="color:#50fa7b">0x30</span>.<span style="color:#50fa7b">0</span>) weight<span style="color:#ff79c6">=</span>20.<span style="color:#50fa7b">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="making-the-results-visual">Making the Results Visual</h2>
 <figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
   <img src="./plot.png" alt="3D Bin Packing" width="400" style="display: block; margin: 0 auto;">
@@ -448,10 +467,13 @@ the resulting packing plan.
 </figure>
 <p>By plotting the packed truck, we move beyond raw placement data and can see whether the packing logic produces a layout that makes sense in three dimensions. A list of coordinates and sizes may be correct mathematically, but it’s not easy to judge efficiency or orientation without a visual check. A 3D plot gives immediate feedback on how the boxes sit within the container: whether they fit, whether they stack as expected, and how well the available space is being used. This makes it much easier to spot mistakes in the algorithm, such as items standing on the wrong axis, overlapping, or leaving gaps that should have been filled.</p>
 <p>The plotting function directly supports this goal by turning the abstract placement data into a clear visual model. The prompt I use ensures that the visualization is both accurate and interpretable. By assigning each box its own color and labeling it at its center, the plot highlights how individual items relate to the container and to each other. In this way, the visualization is not just a cosmetic step, but an integral part of validating and improving the packing heuristic.</p>
-<pre tabindex="0"><code class="language-prompt" data-lang="prompt">Write a Python function that takes a truck&#39;s dimensions and the placements list, 
-and plots the packed truck in 3D using Matplotlib. Each box should have a unique 
-color and label.
-</code></pre><p>The <code>plot_truck_packing</code> function is responsible for visualizing how items are arranged inside the truck. It begins by drawing a wireframe of the container using width, depth, and height as the three axes. It then loops through each placed item, calls <code>_cuboid_faces_mpl_from_internal</code> to generate the six visible faces of the box in Matplotlib’s coordinate system, and renders them as colored 3D shapes. Labels are added at the center of each item for clarity, and the axes are labeled and scaled so the proportions match the truck’s real dimensions. Finally, the viewing angle, aspect ratio, and title are set to produce a clear, accurate perspective of the packed load.</p>
+<hr>
+<blockquote>
+<p><em>Write a Python function that takes a truck&rsquo;s dimensions and the placements list,
+and plots the packed truck in 3D using Matplotlib. Each box should have a unique
+color and label.</em></p></blockquote>
+<hr>
+<p>The <code>plot_truck_packing</code> function is responsible for visualizing how items are arranged inside the truck. It begins by drawing a wireframe of the container using width, depth, and height as the three axes. It then loops through each placed item, calls <code>_cuboid_faces_mpl_from_internal</code> to generate the six visible faces of the box in Matplotlib’s coordinate system, and renders them as colored 3D shapes. Labels are added at the center of each item for clarity, and the axes are labeled and scaled so the proportions match the truck’s real dimensions. Finally, the viewing angle, aspect ratio, and title are set to produce a clear, accurate perspective of the packed load.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1

@@ -70,6 +70,7 @@ def _validate_args(kwargs: dict) -> None:
             '"article_output_path" must be specified.'
         )
 ```
+<br/>
 
 **Takeaway:**
 Sure, it works… but it's awkward, fragile, and painful to extend. Add one more rule and the nesting level reaches the earth's mantle.
@@ -103,6 +104,8 @@ def _validate_args(kwargs: dict) -> None:
 
 ```
 
+<br/>
+
 **Takeaway:**
 Cleaner than the inverted-V, but now every new rule means another line. Add 10 rules, and you're back to scrolling forever.
 
@@ -134,6 +137,8 @@ def _validate_args(kwargs: dict) -> None:
         )
 
 ```
+
+<br/>
 
 **Takeaway:**
 

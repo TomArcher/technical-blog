@@ -73,63 +73,25 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
-<main class="main" role="main">
-  <div class="posts-list">
+  <header class="term-header">
+    <h1>OR-Tools</h1>
+  </header>
+
+  
+  
+  
+
+  <section class="post-list">
     
-    
-    
-
-    
-      <article class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a>
-          </h2>
-
-          <div class="post-meta">
-            <time datetime="2025-08-28">August 28, 2025</time> • <a href="/categories/best-practices/">Best Practices</a>, <a href="/categories/programming/">Programming</a>, <a href="/categories/python/">Python</a>, <a href="/tags/dispatch-table/">#Dispatch Table</a>, <a href="/tags/guard-clause/">#Guard Clause</a>, <a href="/tags/inverted-v/">#Inverted-V</a>, <a href="/tags/validation/">#Validation</a></div>
-        </header>
-
+      <article class="post-item">
+        <h2 class="post-title">
+          <a href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a>
+        </h2>
+        <div class="post-meta">
+          <time datetime="2025-08-28">Aug 28, 2025</time>
+        </div>
         
-        
-        
-        <div class="post-summary"><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./ptow.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Tips and techniques to improve your Python skills</em>
-  </figcaption>
-</figure>
-<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
-<p>Most of us start with the usual suspects:</p>
-<p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
-❌ A graveyard of guard clauses scattered line after line</p>
-<hr>
-<blockquote>
-<p><em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.</em></p></blockquote>
-<hr>
-<p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
-<p>There&rsquo;s a better way: <strong>dispatch tables</strong>!</p></div>
-
-        
-        <p class="read-more">
-          <a class="read-more-link" href="/posts/ptow-dispatch-maps/">Read more →</a>
-        </p>
-      </article>
-    
-      <article class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a>
-          </h2>
-
-          <div class="post-meta">
-            <time datetime="2025-08-28">August 28, 2025</time> • <a href="/categories/algorithms/">Algorithms</a>, <a href="/categories/generative-ai/">Generative AI</a>, <a href="/categories/programming/">Programming</a>, <a href="/categories/python/">Python</a>, <a href="/tags/ilp/">#ILP</a>, <a href="/tags/knapsack-problem/">#Knapsack Problem</a>, <a href="/tags/matplotlib/">#Matplotlib</a>, <a href="/tags/meetings/">#Meetings</a>, <a href="/tags/or-tools/">#OR-Tools</a>, <a href="/tags/pulp/">#PuLP</a></div>
-        </header>
-
-        
-        
-        
-        <div class="post-summary"><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+          <p><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
   <img src="./meeting-diet.png" alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width="250" style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
     <em>If you don't optimize your schedule, your schedule will optimize you. Badly</em>
@@ -143,115 +105,26 @@
 <p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
   <strong>0/1 knapsack problem with two constraints</strong>
 </a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p></div>
-
+, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p></p>
         
-        <p class="read-more">
-          <a class="read-more-link" href="/posts/meeting-diet/">Read more →</a>
-        </p>
       </article>
     
-      <article class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a>
-          </h2>
+  </section>
 
-          <div class="post-meta">
-            <time datetime="2025-08-20">August 20, 2025</time> • <a href="/categories/algorithms/">Algorithms</a>, <a href="/categories/generative-ai/">Generative AI</a>, <a href="/categories/programming/">Programming</a>, <a href="/categories/python/">Python</a>, <a href="/tags/3d-bin-packing/">#3D Bin Packing</a>, <a href="/tags/heuristics/">#Heuristics</a>, <a href="/tags/matplotlib/">#Matplotlib</a>, <a href="/tags/np-hard/">#NP-hard</a></div>
-        </header>
-
-        
-        
-        
-        <div class="post-summary"><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./three-d-packing.png" alt="3D Bin Packing" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>How do you fit it all in?</em>
-  </figcaption>
-</figure>
-<p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&rdquo;</em></p></blockquote>
-<hr>
-<p>One day, the controller asked me if I could code a system that took, as input, the trucks&rsquo; <strong>3D dimensions</strong> and the <strong>3D dimensions (and weight)</strong> of every object to be packed. Back in the <strong>Turbo Pascal</strong> era, exploring 3D packing was painful. Today, with <strong>Python</strong> and <strong>AI-assisted scaffolding</strong>, it&rsquo;s surprisingly approachable.</p></div>
-
-        
-        <p class="read-more">
-          <a class="read-more-link" href="/posts/three-d-packing/">Read more →</a>
-        </p>
-      </article>
-    
-      <article class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a>
-          </h2>
-
-          <div class="post-meta">
-            <time datetime="2025-08-19">August 19, 2025</time> • <a href="/categories/academics/">Academics</a>, <a href="/categories/economics/">Economics</a>, <a href="/categories/generative-ai/">Generative AI</a>, <a href="/categories/opinion/">Opinion</a>, <a href="/categories/productivity/">Productivity</a>, <a href="/tags/productivity/">#Productivity</a>, <a href="/tags/tfp/">#TFP</a></div>
-        </header>
-
-        
-        
-        
-        <div class="post-summary"><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./tfp-chatgpt.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Our tools for measuring progress were built for factories, not for AI.</em>
-  </figcaption>
-</figure>
-<p>If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn&rsquo;t that show up in our productivity statistics?</p>
-<p>Economists have long relied on a metric called <strong>Total Factor Productivity (TFP)</strong> to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.</p>
-<hr>
-<blockquote>
-<p><em>You can see the <del>computer age</del> generative AI everywhere but in the productivity statistics.</em></p>
-<p><em>(Adapted from Robert Solow, 1987)</em></p></blockquote>
-<hr></div>
-
-        
-        <p class="read-more">
-          <a class="read-more-link" href="/posts/tfp-chatgpt/">Read more →</a>
-        </p>
-      </article>
-    
-      <article class="post">
-        <header class="post-header">
-          <h2 class="post-title">
-            <a href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a>
-          </h2>
-
-          <div class="post-meta">
-            <time datetime="2025-08-18">August 18, 2025</time> • <a href="/categories/algorithms/">Algorithms</a>, <a href="/categories/generative-ai/">Generative AI</a>, <a href="/categories/programming/">Programming</a>, <a href="/categories/python/">Python</a>, <a href="/tags/geometry/">#Geometry</a>, <a href="/tags/matplotlib/">#Matplotlib</a>, <a href="/tags/physics/">#Physics</a>, <a href="/tags/rain/">#Rain</a></div>
-        </header>
-
-        
-        
-        
-        <div class="post-summary"><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./rain-paradox.png" alt="Rain Paradox: Walk or Run?" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>To walk or to run. That is the question.</em>
-  </figcaption>
-</figure>
-<p>Early in my programming career, I came across a coding challenge that stuck with me for many years:</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;If it&rsquo;s raining, will you stay drier by walking or running through it?&rdquo;</em></p></blockquote>
-<hr>
-<p>At the time, I didn&rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&rsquo;t about recursion or memory management. It was about <strong>getting wet</strong>, and <strong>how fast you move through falling rain</strong>.</p></div>
-
-        
-        <p class="read-more">
-          <a class="read-more-link" href="/posts/rain-paradox/">Read more →</a>
-        </p>
-      </article>
+  
+  <nav class="pager" aria-label="Pagination">
     
 
     
-  </div>
-</main>
+      <a class="pager-num is-active"
+         href="/tags/or-tools/"
+         aria-current="page">
+        1
+      </a>
+    
+
+    
+  </nav>
 
 			</div>
 			
@@ -321,8 +194,8 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
