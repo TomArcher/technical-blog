@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The Five-Second Rule Explored with Math &amp; Python - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">The Five-Second Rule Explored with Math &amp; Python</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-09-04T06:00:00-07:00">
+              <strong>September 4, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Categories:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/algorithms/"
+                 rel="category"><em>Algorithms</em></a>, <a class="meta__link"
+                 href="/categories/generative-ai/"
+                 rel="category"><em>Generative AI</em></a>, <a class="meta__link"
+                 href="/categories/programming/"
+                 rel="category"><em>Programming</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/germs/"
+                 rel="tag">#Germs</a>, <a class="meta__link"
+                 href="/tags/matplotlib/"
+                 rel="tag">#Matplotlib</a>, <a class="meta__link"
+                 href="/tags/numpy/"
+                 rel="tag">#Numpy</a>, <a class="meta__link"
+                 href="/tags/python/"
+                 rel="tag">#Python</a></p></div>
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./five-second-rule-explored.png" alt="Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Forget the five-second rule. Germs transfer instantly, and we can prove it with math.</em>
+  </figcaption>
+</figure>
+<p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&rdquo;</em></p></blockquote>
+<hr>
+<p>The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.</p>
+<hr>
+<h3 id="sidebar-do-germs-move-toward-the-food">Sidebar: Do Germs Move Toward the Food?</h3>
+<p>A common misconception to address before we get started is the notion that germs actively crawl toward your food once it hits the floor. In reality, that is not what happens.</p>
+<ul>
+<li><strong>On the floor:</strong> Bacteria and other microbes are already present, sitting passively on the surface. They may be alive, but they are not rushing toward your snack.</li>
+<li><strong>On contact:</strong> When food lands, it presses directly onto those germs. Transfer happens because of physical touch, moisture, and stickiness, not because the germs &ldquo;chose&rdquo; to move.</li>
+<li><strong>Over time:</strong> The longer food sits, the more chance there is for spreading through passive processes like <em>capillary action</em> (moisture wicking) or micro-adhesion.</li>
+</ul>
+<p>Think of it like stamping a piece of bread onto a surface covered in sprinkles: the sprinkles do not jump onto the bread. The bread simply picks them up by contact.</p>
+<hr>
+<h2 id="the-thought-experiment">The Thought Experiment</h2>
+<p>Let&rsquo;s start with logic. Imagine you spill two foods:</p>
+<ol>
+<li>A cracker lands on a clean kitchen tile.</li>
+<li>A slice of watermelon lands on a subway floor.</li>
+</ol>
+<p>Both are on the ground for the same five seconds. Are they equally contaminated? Of course not. The watermelon is wet, sticky, and porous: basically a germ magnet. The cracker is dry and smooth, with fewer places for microbes to cling.</p>
+<p>So the real question is <strong>not</strong> &ldquo;how long has it been on the ground?&rdquo; but rather:</p>
+<ul>
+<li>How dirty is the surface?</li>
+<li>How much of the food touches it?</li>
+<li>How easily do germs transfer?</li>
+</ul>
+<p>This logic tells us we need a model that accounts for those factors. That is where math enters: not scary math, but storytelling math.</p>
+<h2 id="modeling-the-problem">Modeling the Problem</h2>
+<p>Think of the surface as a field of germs, like sprinkles on a donut. The density of those sprinkles is our &ldquo;germiness factor&rdquo; (ρ). When food touches the floor, it is like pressing a stamp down: the larger the contact area (A), the more germs are available to transfer.</p>
+<p>But not every germ jumps instantly. That is where efficiency comes in. Some foods are more welcoming than others:</p>
+<ul>
+<li><strong>Baseline stickiness (α):</strong> a generic &ldquo;how likely are germs to move?&rdquo;</li>
+<li><strong>Moisture (m):</strong> wetter foods transfer more.</li>
+<li><strong>Surface roughness (s):</strong> porous textures hold onto more.</li>
+</ul>
+<p>Multiply these together, and you get a number that tells you how hospitable your food is to germs.</p>
+<p>Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like filling a sponge: the first squeeze of water soaks it, but topping it off takes longer. That is our &ldquo;rate constant&rdquo; (β).</p>
+<p>So the logic goes like this:</p>
+<ul>
+<li>The total number of germs you could get is fixed by dirtiness × area × stickiness.</li>
+<li>The number you actually get rises quickly at the start, then flattens out.</li>
+<li>That is why the first second is so critical.</li>
+</ul>
+<h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
+<p>When prompting AI for this model, we do not just say &ldquo;simulate germs.&rdquo; For better results, spell out the assumptions.</p>
+<p><strong>Prompt:</strong></p>
+<hr>
+<blockquote>
+<p><em>Write a Python function germs(t, rho, A, alpha, moisture, surface, beta) that calculates bacteria transfer over time. Use an exponential approach so germs arrive quickly at first, then taper off. Also write safe_time() that returns the time needed to reach a threshold L.</em></p></blockquote>
+<hr>
+<p><strong>Python:</strong></p>
+<p>These functions are the backbone. The <code>germs()</code> function gives the germ count at any time. The <code>safe_time()</code> function for the time to cross a danger line.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">germs</span>(
+</span></span><span style="display:flex;"><span>    t: Number,
+</span></span><span style="display:flex;"><span>    rho: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    A: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    p: TransferParams <span style="color:#ff79c6">=</span> TransferParams()
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">float</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Expected bacteria on food after t seconds.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    G(t) = rho * A * p.k * (1 - exp(-p.beta * t))
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> (
+</span></span><span style="display:flex;"><span>        rho <span style="color:#ff79c6">*</span> A <span style="color:#ff79c6">*</span> p<span style="color:#ff79c6">.</span>k
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">*</span> (<span style="color:#bd93f9">1</span> <span style="color:#ff79c6">-</span> math<span style="color:#ff79c6">.</span>exp(<span style="color:#ff79c6">-</span>p<span style="color:#ff79c6">.</span>beta <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">float</span>(t)))
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">safe_time</span>(
+</span></span><span style="display:flex;"><span>    L: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    rho: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    A: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    p: TransferParams <span style="color:#ff79c6">=</span> TransferParams()
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">float</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Time until bacteria count first reaches threshold L.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Returns math.inf if L is above the asymptote.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    gmax <span style="color:#ff79c6">=</span> rho <span style="color:#ff79c6">*</span> A <span style="color:#ff79c6">*</span> p<span style="color:#ff79c6">.</span>k
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> L <span style="color:#ff79c6">&gt;=</span> gmax:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> math<span style="color:#ff79c6">.</span>inf
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span>math<span style="color:#ff79c6">.</span>log(<span style="color:#bd93f9">1</span> <span style="color:#ff79c6">-</span> L <span style="color:#ff79c6">/</span> gmax) <span style="color:#ff79c6">/</span> p<span style="color:#ff79c6">.</span>beta
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="building-out-parameters">Building Out Parameters</h2>
+<p>To keep things tidy, we can group efficiency factors into a <code>TransferParams</code> object. That way, you can tweak <code>α</code>, <code>moisture</code>, <code>surface roughness</code>, and <code>β</code> all in one place.</p>
+<p><strong>Prompt:</strong></p>
+<hr>
+<blockquote>
+<p><em>Write a Python dataclass <code>TransferParams</code> that holds <code>alpha</code>, <code>moisture</code>, <code>surface</code>, and <code>beta</code>. Add a property that returns their combined product <code>k</code>.</em></p></blockquote>
+<hr>
+<p>This makes experiments much cleaner: no messy parameter lists every time you call a function.</p>
+<p><strong>Python:</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>@dataclass
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">TransferParams</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Transfer efficiency components and approach rate</span>
+</span></span><span style="display:flex;"><span>    alpha: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.5</span>    <span style="color:#6272a4"># baseline stickiness</span>
+</span></span><span style="display:flex;"><span>    moisture: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.8</span> <span style="color:#6272a4"># 0..1, wetter transfers more</span>
+</span></span><span style="display:flex;"><span>    surface: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.5</span>  <span style="color:#6272a4"># 0..1, rougher holds more</span>
+</span></span><span style="display:flex;"><span>    beta: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.8</span>     <span style="color:#6272a4"># per second, how quickly you approach</span>
+</span></span><span style="display:flex;"><span>                          <span style="color:#6272a4"># the ceiling</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @property
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">k</span>(<span style="font-style:italic">self</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">float</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>alpha <span style="color:#ff79c6">*</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>moisture <span style="color:#ff79c6">*</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>surface
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="simulation-testing-the-rule">Simulation: Testing the Rule</h2>
+<p>Now let&rsquo;s put it to work. Suppose the floor has 100 germs per cm², and your cookie touches 4 cm². That is 400 germs available. Not all will transfer, but plenty could.</p>
+<p>We can call our functions at 1, 5, and 10 seconds and also ask: how long until the cookie hits 50 germs?</p>
+<p><strong>Prompt:</strong></p>
+<hr>
+<blockquote>
+<p><em>Write a main() function that sets rho=100 and A=4. Call germs() at 1, 5, and 10 seconds and print the results. Also call safe_time() with L=50 and print the time. Finally call plot_results() to visualize.</em></p></blockquote>
+<hr>
+<p><strong>Python:</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Scenario settings</span>
+</span></span><span style="display:flex;"><span>    rho <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">100.0</span>  <span style="color:#6272a4"># germs per cm^2 on the floor</span>
+</span></span><span style="display:flex;"><span>    A <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4.0</span>      <span style="color:#6272a4"># cm^2 of food touching the floor</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># tweak alpha, moisture, surface, beta as needed</span>
+</span></span><span style="display:flex;"><span>    p <span style="color:#ff79c6">=</span> TransferParams()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Quick checks</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> (<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">10</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Germs after </span><span style="color:#f1fa8c">{</span>t<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">s: </span><span style="color:#f1fa8c">{</span>germs(t, rho, A, p)<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    L <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">50.0</span>
+</span></span><span style="display:flex;"><span>    t_star <span style="color:#ff79c6">=</span> safe_time(L, rho, A, p)
+</span></span><span style="display:flex;"><span>    safe_msg <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Safe time for L=</span><span style="color:#f1fa8c">{</span>L<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> germs: &#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span><span style="color:#f1fa8c">&#39;never&#39;</span> <span style="color:#ff79c6">if</span> math<span style="color:#ff79c6">.</span>isinf(t_star) <span style="color:#ff79c6">else</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;</span><span style="color:#f1fa8c">{</span>t_star<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">s&#39;</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(safe_msg)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Sample Output:</strong></p>
+<p>The output shows what intuition already suggests: germs arrive almost instantly, and your &ldquo;five-second&rdquo; window is really more like two or three seconds before contamination crosses a meaningful line.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">Germs after 1s</span>: <span style="color:#bd93f9">44.05</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Germs after 5s</span>: <span style="color:#bd93f9">78.53</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Germs after 10s</span>: <span style="color:#bd93f9">79.97</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Safe time for L=50.0 germs</span>: <span style="color:#bd93f9">1.</span>23s
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="making-the-results-visual">Making the Results Visual</h2>
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+  <img src="./plot.png" alt="Line plot showing how germs accumulate on food over 10 seconds with a steep rise at the start and then leveling off" width="400" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>The curve shows bacteria transfer to food over time: a rapid rise in the first seconds followed by a slow flattening as the germ ceiling is reached.</em>
+  </figcaption>
+</figure>
+<p>A graph makes the story vivid. We sample times between 0 and 10 seconds, run them through <code>germs()</code>, and plot the results. For easier visual consumption, we add a dashed red line for the threshold <code>L</code> and a vertical dotted line for the crossing point.</p>
+<p><strong>Prompt:</strong></p>
+<hr>
+<blockquote>
+<p><em>Write a plot_results() function that uses matplotlib to plot germs over time. Include an optional threshold line L and a vertical line at the crossing time.</em></p></blockquote>
+<hr>
+<p><strong>Python:</strong></p>
+<p>The curve tells the tale: steep rise at the start, then flattening out as it nears the ceiling.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_results</span>(
+</span></span><span style="display:flex;"><span>    rho: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    A: <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    p: TransferParams <span style="color:#ff79c6">=</span> TransferParams(),
+</span></span><span style="display:flex;"><span>    t_max: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10.0</span>,
+</span></span><span style="display:flex;"><span>    L: Optional[<span style="color:#8be9fd;font-style:italic">float</span>] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    times <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>linspace(<span style="color:#bd93f9">0</span>, t_max, <span style="color:#bd93f9">200</span>)
+</span></span><span style="display:flex;"><span>    values <span style="color:#ff79c6">=</span> [germs(t, rho, A, p) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> times]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>plot(times, values, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;G(t): germs on food&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#34;Time (seconds)&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#34;Bacteria count&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#34;Germ transfer to food over time&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> L <span style="color:#ff79c6">is</span> <span style="color:#ff79c6">not</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff79c6">.</span>axhline(
+</span></span><span style="display:flex;"><span>            L, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;red&#34;</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;--&#34;</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Threshold L=</span><span style="color:#f1fa8c">{</span>L<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        t_star <span style="color:#ff79c6">=</span> safe_time(L, rho, A, p)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> math<span style="color:#ff79c6">.</span>isfinite(t_star):
+</span></span><span style="display:flex;"><span>            plt<span style="color:#ff79c6">.</span>axvline(
+</span></span><span style="display:flex;"><span>                t_star,
+</span></span><span style="display:flex;"><span>                color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;red&#34;</span>,
+</span></span><span style="display:flex;"><span>                linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;:&#34;</span>,
+</span></span><span style="display:flex;"><span>                label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;t* ≈ </span><span style="color:#f1fa8c">{</span>t_star<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">s&#34;</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>legend()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="what-we-learned">What We Learned</h2>
+<ul>
+<li>Germ transfer is immediate. There is no magical pause.</li>
+<li>The first second is the dirtiest, since the curve rises steeply at the start.</li>
+<li>After a few seconds, the food is already near its &ldquo;germ ceiling.&rdquo; Waiting longer adds little.</li>
+</ul>
+<p>From the AI side, we saw how careful prompting matters. The clearer the assumptions, the better the generated scaffold. By wrapping parameters in a class and writing helper functions, we turned a fragile script into a reusable model.</p>
+<h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
+<h3 id="beginner-level-quick-fixes-and-calibration">Beginner Level: Quick Fixes and Calibration</h3>
+<ol>
+<li><strong>Dry vs. wet:</strong> Try toast (moisture=0.2) and watermelon (moisture=0.9).</li>
+<li><strong>Clean vs. dirty:</strong> Compare a kitchen counter (ρ=10) vs. a bus floor (ρ=500).</li>
+<li><strong>Pizza tragedy:</strong> Face-down slice with A=25 cm².</li>
+</ol>
+<h3 id="intermediate-level-geometry-and-body-modeling">Intermediate Level: Geometry and Body Modeling</h3>
+<ol>
+<li><strong>Rolling grape:</strong> Irregular contact vs. flat stamp.</li>
+<li><strong>Bread vs. chocolate:</strong> Rough surface vs. smooth.</li>
+<li><strong>Variable β:</strong> Faster soak for soft foods.</li>
+</ol>
+<h3 id="advanced-level-environment-and-stochasticity">Advanced Level: Environment and Stochasticity</h3>
+<ol>
+<li><strong>Random dirt:</strong> Use probability distributions for surface contamination.</li>
+<li><strong>Climate effects:</strong> Let β vary with humidity.</li>
+<li><strong>Monte Carlo:</strong> Run 1,000 drops and chart the spread.</li>
+</ol>
+<h2 id="last-words">Last words</h2>
+<p>Next time you drop a cookie, do not chant &ldquo;five seconds&rdquo; like a protective spell. Germs do not need your permission. They are sprinters at the starting line, and the race begins the instant food hits the floor.</p>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/tomarcher-dev" target="_blank" rel="noopener noreferrer">
+  Check out the code on my GitHub
+</a>
+</p>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/germs/" rel="tag">Germs</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/matplotlib/" rel="tag">Matplotlib</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/numpy/" rel="tag">Numpy</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
+		</li>
+	</ul>
+</div>
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer communities. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule-explored/">The Five-Second Rule Explored with Math &amp; Python</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/academic/">Academic</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/algorithms/">Algorithms</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/best-practices/">Best Practices</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/economics/">Economics</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/generative-ai/">Generative AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/opinion/">Opinion</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/programming/">Programming</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dispatch-table/" title="Dispatch Table">Dispatch Table</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/germs/" title="Germs">Germs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/guard-clause/" title="Guard Clause">Guard Clause</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ilp/" title="ILP">ILP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/np-hard/" title="NP-Hard">NP-Hard</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numpy/" title="Numpy">Numpy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/or-tools/" title="OR-Tools">OR-Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pulp/" title="PuLP">PuLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validation/" title="Validation">Validation</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -152,19 +152,19 @@
 <p>As you can see, this prompt took a little bit of problem-domain knowledge: namely, the mathematics of a 0/1 knapsack with dual constraints. That&rsquo;s the pattern with good prompts: you bake in just enough structure (variables, objective, constraints) so the model knows what to build. From there, you iterate by adding practical details the solver actually needs:</p>
 <ul>
 <li>
-<p><strong>Data schema</strong>: specify each meeting&rsquo;s fields (name, value, time, energy), units (minutes), and example rows.</p>
+<p><strong>Data schema</strong>: Specify each meeting&rsquo;s fields (name, value, time, energy), units (minutes), and example rows.</p>
 </li>
 <li>
-<p><strong>Feasibility &amp; edge cases</strong>: what if no solution fits? what if time or energy is zero?</p>
+<p><strong>Feasibility &amp; edge cases</strong>: What if no solution fits? What if time or energy is zero?</p>
 </li>
 <li>
-<p><strong>Determinism</strong>: ask to print solver status and selected items in a stable order.</p>
+<p><strong>Determinism</strong>: Ask to print solver status and selected items in a stable order.</p>
 </li>
 <li>
-<p><strong>Output contract</strong>: require totals (value, time, energy) and a compact table for copy/paste.</p>
+<p><strong>Output contract</strong>: Require totals (value, time, energy) and a compact table for copy/paste.</p>
 </li>
 <li>
-<p><strong>Extensibility</strong>: mention optional constraints (mandatory meetings, conflicts/overlaps) so the code scaffolds for growth.</p>
+<p><strong>Extensibility</strong>: Mention optional constraints (mandatory meetings, conflicts/overlaps) so the code scaffolds for growth.</p>
 </li>
 </ul>
 <p>A stronger, next-iteration prompt might read:</p>
@@ -375,10 +375,9 @@
 </figure>
 <p>At first, I asked the AI for a quick visualization. The initial result was a plain vertical bar chart: it technically worked, but it looked generic and wasn&rsquo;t presentation-ready. Specifically, I realized the graph needed to:</p>
 <ul>
-<li>sort meetings by efficiency,</li>
-<li>show labels clearly,</li>
-<li>differentiate meetings to attend vs decline with a legend,</li>
-<li>and generally look like something I&rsquo;d actually show a team.</li>
+<li>Sort meetings by efficiency</li>
+<li>Show labels clearly</li>
+<li>Differentiate meetings to attend vs decline with a legend</li>
 </ul>
 <p><strong>Prompt:</strong></p>
 <hr>
@@ -717,6 +716,7 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule-explored/">Five Second Rule Explored</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Food Safety on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/food-safety/</link>
+    <description>Recent content in Food Safety on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Aug 2025 09:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/food-safety/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Math Behind the Five-Second Rule</title>
+      <link>http://localhost:1313/posts/five-second-rule-explored/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/five-second-rule-explored/</guid>
+      <description>&lt;p&gt;We’ve all heard it: drop your cookie on the kitchen floor, scoop it up within five seconds, and it’s safe to eat. But is there really some magic countdown clock before germs start crawling on your food?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Contamination doesn’t wait politely for a timer—it starts the instant food touches the floor.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This myth has survived because the idea feels comforting. But if we dig deeper, we’ll see it’s not about five seconds—it’s about how fast germs transfer, how dirty the floor is, and what kind of food hits it. And with a little math and Python, we can actually model it.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
