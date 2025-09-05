@@ -26,17 +26,11 @@ The truth is much more interesting than the myth. Germs do transfer gradually, b
 
 <!--more-->
 
----
+<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
+  <strong>Do germs move toward the food?</strong><br>
+  No. Germs just sit on a surface. When food lands on the germs, the food picks up those germs through contact, moisture, or stickiness. Think of stamping bread on sprinkles: the sprinkles don't move, the bread collects them.
+</div>
 
-### Sidebar: Do Germs Move Toward the Food?
-
-A common misconception to address before we get started is the notion that germs actively crawl toward your food once it hits the floor. In reality, that is not what happens.  
-
-- **On the floor:** Bacteria and other microbes are already present, sitting passively on the surface. They may be alive, but they are not rushing toward your snack.  
-- **On contact:** When food lands, it presses directly onto those germs. Transfer happens because of physical touch, moisture, and stickiness, not because the germs "chose" to move.  
-- **Over time:** The longer food sits, the more chance there is for spreading through passive processes like *capillary action* (moisture wicking) or micro-adhesion.  
-
-Think of it like stamping a piece of bread onto a surface covered in sprinkles: the sprinkles do not jump onto the bread. The bread simply picks them up by contact.
 
 ---
 

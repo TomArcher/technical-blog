@@ -260,7 +260,14 @@
 </div><p>This works fine for cases where tiny differences don&rsquo;t matter. But in domains like finance, physics, or logistics, &ldquo;close enough&rdquo; isn&rsquo;t always good enough. Pennies in an account balance, millimeters in manufacturing tolerances, or decimals in a tax calculation can&rsquo;t just be waved away.</p>
 <p>That&rsquo;s where SymPy earns its keep. Instead of comparing with a tolerance, it carries exact rational values through every calculation. The result is guaranteed precision with no thresholds or guessing.</p>
 <h3 id="java-and-epsilon-comparisons">Java and Epsilon Comparisons</h3>
-<p>If you&rsquo;ve written Java, this may feel familiar. Because Java&rsquo;s double type has the same floating-point limitations, developers either compare values using an epsilon threshold or switch to the more verbose BigDecimal class for exact decimal math.</p>
+<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
+  <strong>What is an epsilon?</strong><br>
+  In mathematics, epsilon (ε) is a symbol for a very small number.
+  In programming, it's a tiny threshold used to decide when two floating-point
+  numbers should be treated as equal.
+</div>
+<p>If you&rsquo;ve programmed in Java, this issue (and Python&rsquo;s workaround) may feel familiar. Because Java&rsquo;s <code>double</code> type has the same floating-point limitations, developers either compare values using an <em>epsilon</em> threshold (see Sidebar) or switch to the more verbose <code>BigDecimal</code> class for exact decimal math.</p>
+</br>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -281,13 +288,13 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>The Java approach with the <code>epsilon</code> is essentially the same idea as Python&rsquo;s <code>math.isclose</code> function: accept that floats are inexact, then decide how much error you&rsquo;re willing to tolerate.</p>
+</div><p>The Java approach with the epsilon is essentially the same idea as Python&rsquo;s <code>math.isclose</code> function: acknowledge that floats are inexact, then decide how much error you&rsquo;re willing to tolerate.</p>
 <h3 id="the-takeaway">The Takeaway</h3>
-<p>NumPy and Python floats are fast and powerful, but they live in the world of approximations. math.isclose and Java&rsquo;s epsilon checks are clever workarounds, but they don&rsquo;t change the underlying math. SymPy is different — it gives you exact results all the way through the calculation.</p>
+<p>NumPy and Python floats are fast and powerful, but they live in the world of approximations. <code>math.isclose</code> and Java&rsquo;s epsilon checks are clever workarounds, but they don&rsquo;t change the underlying math. SymPy is different — it gives you exact results all the way through the calculation.</p>
 <p>That&rsquo;s why it matters: when errors aren&rsquo;t acceptable, symbolic precision is the only safe choice.</p>
 <hr>
 <h2 id="common-pitfalls-">Common Pitfalls 😬</h2>
-<p>When it comes to math, many developers either rely on Python&rsquo;s built-in floats (assuming they&rsquo;re &ldquo;good enough&rdquo;) or reach for the numeric library they&rsquo;re most familiar with. Both share the same floating-point limitations. Here are three common traps where SymPy can save the day:</p>
+<p>Let&rsquo;s look at some specific examples. When it comes to math, many developers rely on either Python&rsquo;s built-in floats or the numeric library with which they&rsquo;re most familiar. Both share the same floating-point limitations. Here are three common scenarios where SymPy is the right tool:</p>
 <p><strong>Floating-point finance math (rounding errors)</strong>
 Imagine calculating monthly loan payments. With float, small errors accumulate:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">

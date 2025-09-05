@@ -99,7 +99,16 @@ That's where SymPy earns its keep. Instead of comparing with a tolerance, it car
 
 ### Java and Epsilon Comparisons
 
-If you've written Java, this may feel familiar. Because Java's double type has the same floating-point limitations, developers either compare values using an epsilon threshold or switch to the more verbose BigDecimal class for exact decimal math.
+<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
+  <strong>What is an epsilon?</strong><br>
+  In mathematics, epsilon (ε) is a symbol for a very small number.
+  In programming, it's a tiny threshold used to decide when two floating-point
+  numbers should be treated as equal.
+</div>
+
+If you've programmed in Java, this issue (and Python's workaround) may feel familiar. Because Java's `double` type has the same floating-point limitations, developers either compare values using an *epsilon* threshold (see Sidebar) or switch to the more verbose `BigDecimal` class for exact decimal math.
+
+</br>
 
 ```java
 double a = 0.1 + 0.2;
@@ -111,11 +120,11 @@ if (Math.abs(a - b) < epsilon) {
 }
 ```
 
-The Java approach with the `epsilon` is essentially the same idea as Python's `math.isclose` function: accept that floats are inexact, then decide how much error you're willing to tolerate.
+The Java approach with the epsilon is essentially the same idea as Python's `math.isclose` function: acknowledge that floats are inexact, then decide how much error you're willing to tolerate.
 
 ### The Takeaway
 
-NumPy and Python floats are fast and powerful, but they live in the world of approximations. math.isclose and Java's epsilon checks are clever workarounds, but they don't change the underlying math. SymPy is different — it gives you exact results all the way through the calculation.
+NumPy and Python floats are fast and powerful, but they live in the world of approximations. `math.isclose` and Java's epsilon checks are clever workarounds, but they don't change the underlying math. SymPy is different — it gives you exact results all the way through the calculation.
 
 That's why it matters: when errors aren't acceptable, symbolic precision is the only safe choice.
 
@@ -123,7 +132,7 @@ That's why it matters: when errors aren't acceptable, symbolic precision is the 
 
 ## Common Pitfalls 😬
 
-When it comes to math, many developers either rely on Python's built-in floats (assuming they're "good enough") or reach for the numeric library they're most familiar with. Both share the same floating-point limitations. Here are three common traps where SymPy can save the day:
+Let's look at some specific examples. When it comes to math, many developers rely on either Python's built-in floats or the numeric library with which they're most familiar. Both share the same floating-point limitations. Here are three common scenarios where SymPy is the right tool:
 
 **Floating-point finance math (rounding errors)**
 Imagine calculating monthly loan payments. With float, small errors accumulate:
