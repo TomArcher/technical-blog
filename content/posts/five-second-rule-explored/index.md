@@ -93,7 +93,7 @@ G'(t) = \rho \cdot A \cdot \alpha \cdot m \cdot s \cdot \beta \cdot e^{-\beta t}
  germs transfer right away.
 - As \\(t \to \infty\\), the derivative approaches zero. The curve flattens as the surface becomes saturated, and the rate of transfer slows down.
 
-This explains the everyday observation: the first second is the dirtiest, and
+From the math, we know that the first second is the dirtiest, and
 waiting longer just gets you closer to the contamination ceiling.
 
 Now that we have framed the problem logically and understand the math, let's use AI to create a Python application that implements the mathematical model.
@@ -317,7 +317,7 @@ From the AI side, we saw how careful prompting matters. The clearer the assumpti
 
 ## Last words
 
-Next time you drop a cookie, do not chant "five seconds" like a protective spell. Germs do not need your permission. They are sprinters at the starting line, and the race begins the instant food hits the floor.  
+Next time you drop a cookie, don’t chant "five seconds" like a protective spell. Germs don't wait for your permission. Transfer begins the instant food hits the floor.
 
 ## Try It Yourself
 
