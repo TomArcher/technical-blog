@@ -121,6 +121,46 @@
                  rel="tag">#PuLP</a>, <a class="meta__link"
                  href="/tags/python/"
                  rel="tag">#Python</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    X
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    in
+  </a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+    f
+  </a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+    r
+  </a>
+  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F" aria-label="Share via Email">
+    @
+  </a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">
+    Share
+  </button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "%!q(\u003cnil\u003e)",
+        url: "\"http://localhost:1313/posts/meeting-diet/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>
+  
+
     </header>
 
     <div class="content post__content clearfix">
@@ -660,6 +700,7 @@
 		</li>
 	</ul>
 </div>
+      
     </footer>
   </article>
 </main>

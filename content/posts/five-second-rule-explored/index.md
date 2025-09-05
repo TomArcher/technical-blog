@@ -57,10 +57,7 @@ foods are more welcoming than others:
 Multiply these together and you get a number that tells you how hospitable
 your food is to germs.
 
-Finally, germs do not arrive linearly. They rush in fast at first, then slow
-down as the easy-to-transfer germs make the jump. It is like filling a sponge:
-the first squeeze of water soaks it, but topping it off takes longer. That is
-our rate constant \\(\beta\\).
+Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like pouring sand into a jar: the first handful drops in quickly, but as the jar fills, you have to shake and settle it to fit more. That tapering-off is what our rate constant \(\beta\) represents.
 
 ---
 
