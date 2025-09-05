@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SymPy on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/sympy/</link>
+    <description>Recent content in SymPy on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Sep 2025 11:45:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sympy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python Tip of the Week: When NumPy Isn’t Enough — Try SymPy</title>
+      <link>http://localhost:1313/posts/ptow-sympy-vs-numpy/</link>
+      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/ptow-sympy-vs-numpy/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;  &#xA;  &lt;img src=&#34;./ptow-trans.png&#34; alt=&#34;Python Tip of the Week logo: Python Post-it note on monitor&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;  &#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;  &#xA;    &lt;em&gt;Tips and techniques to improve your Python skills&lt;/em&gt;  &#xA;  &lt;/figcaption&gt;  &#xA;&lt;/figure&gt;  &#xA;&lt;p&gt;Most of us reach for &lt;a href=&#34;https://stackoverflow.com/questions/what-is-the-difference-between-numpy-and-sympy&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  &lt;strong&gt;NumPy&lt;/strong&gt;&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; whenever math shows up in a project.&#xA;But sometimes, you don’t want approximate answers. You want exact math.&#xA;That’s when SymPy taps you on the shoulder and whispers: “I’ve got this.”&lt;/p&gt;&#xA;&lt;p&gt;Concrete examples where “close enough” isn’t good enough:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Computing interest rates in finance where pennies matter.&lt;/li&gt;&#xA;&lt;li&gt;Physics simulations where rounding errors accumulate into nonsense results.&lt;/li&gt;&#xA;&lt;li&gt;Checking algebraic identities where 0.0000001 should really be 0.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>
