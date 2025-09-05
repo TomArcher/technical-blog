@@ -80,7 +80,7 @@ The difference is subtle at first glance, but critical. SymPy guarantees correct
 
 ### What About math.isclose?
 
-Like many languages that implement the IEEE-754 standard, Python has a built-in way to cope with floating-point quirks: the `math.isclose` function. Instead of checking strict equality, it checks whether two numbers are "close enough" within a specified tolerance:
+Like many languages that implement the IEEE-754 standard, Python has a built-in way to cope with floating-point quirks: the `math.isclose` function. Instead of checking strict equality, it checks whether two numbers are within a specified tolerance:
 
 ```python
 import math
@@ -95,7 +95,7 @@ print(math.isclose(a, b, rel_tol=1e-9))  # True with custom tolerance
 
 This works fine for cases where tiny differences don't matter. But in domains like finance, physics, or logistics, "close enough" isn't always good enough. Pennies in an account balance, millimeters in manufacturing tolerances, or decimals in a tax calculation can't just be waved away.
 
-That's where SymPy earns its keep. Instead of comparing with a tolerance, it carries exact rational values through every calculation. The result is guaranteed precision — no thresholds, no guessing.
+That's where SymPy earns its keep. Instead of comparing with a tolerance, it carries exact rational values through every calculation. The result is guaranteed precision with no thresholds or guessing.
 
 ### Java and Epsilon Comparisons
 

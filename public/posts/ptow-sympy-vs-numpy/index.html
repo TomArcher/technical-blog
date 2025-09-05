@@ -234,7 +234,7 @@
 </div>
 </div><p>The difference is subtle at first glance, but critical. SymPy guarantees correctness by carrying exact values through every step, while floats and NumPy give you speed at the cost of precision.</p>
 <h3 id="what-about-mathisclose">What About math.isclose?</h3>
-<p>Like many languages that implement the IEEE-754 standard, Python has a built-in way to cope with floating-point quirks: the <code>math.isclose</code> function. Instead of checking strict equality, it checks whether two numbers are &ldquo;close enough&rdquo; within a specified tolerance:</p>
+<p>Like many languages that implement the IEEE-754 standard, Python has a built-in way to cope with floating-point quirks: the <code>math.isclose</code> function. Instead of checking strict equality, it checks whether two numbers are within a specified tolerance:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -258,7 +258,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>This works fine for cases where tiny differences don&rsquo;t matter. But in domains like finance, physics, or logistics, &ldquo;close enough&rdquo; isn&rsquo;t always good enough. Pennies in an account balance, millimeters in manufacturing tolerances, or decimals in a tax calculation can&rsquo;t just be waved away.</p>
-<p>That&rsquo;s where SymPy earns its keep. Instead of comparing with a tolerance, it carries exact rational values through every calculation. The result is guaranteed precision — no thresholds, no guessing.</p>
+<p>That&rsquo;s where SymPy earns its keep. Instead of comparing with a tolerance, it carries exact rational values through every calculation. The result is guaranteed precision with no thresholds or guessing.</p>
 <h3 id="java-and-epsilon-comparisons">Java and Epsilon Comparisons</h3>
 <p>If you&rsquo;ve written Java, this may feel familiar. Because Java&rsquo;s double type has the same floating-point limitations, developers either compare values using an epsilon threshold or switch to the more verbose BigDecimal class for exact decimal math.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
