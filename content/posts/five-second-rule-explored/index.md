@@ -57,7 +57,7 @@ foods are more welcoming than others:
 Multiply these together and you get a number that tells you how hospitable
 your food is to germs.
 
-Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like pouring sand into a jar: the first handful drops in quickly, but as the jar fills, you have to shake and settle it to fit more. That tapering-off is what our rate constant \(\beta\) represents.
+Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like pouring sand into a jar: the first handful drops in quickly, but as the jar fills, you have to shake and settle it to fit more. That tapering-off is what our rate constant \\(\beta\\) represents.
 
 ---
 
@@ -91,8 +91,7 @@ G'(t) = \rho \cdot A \cdot \alpha \cdot m \cdot s \cdot \beta \cdot e^{-\beta t}
 - At \\(t = 0\\), the derivative is at its maximum:
  \\(\rho A \alpha m s \beta\\). This is the steep initial slope, meaning most
  germs transfer right away.
-- As \\(t \to \infty\\), the derivative approaches zero. The curve flattens
- because the easy germs have already moved.
+- As \\(t \to \infty\\), the derivative approaches zero. The curve flattens as the surface becomes saturated, and the rate of transfer slows down.
 
 This explains the everyday observation: the first second is the dirtiest, and
 waiting longer just gets you closer to the contamination ceiling.
