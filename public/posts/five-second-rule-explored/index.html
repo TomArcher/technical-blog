@@ -23,6 +23,24 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -122,36 +140,54 @@
 </ul>
 <p>Think of it like stamping a piece of bread onto a surface covered in sprinkles: the sprinkles do not jump onto the bread. The bread simply picks them up by contact.</p>
 <hr>
-<h2 id="the-thought-experiment">The Thought Experiment</h2>
-<p>Let&rsquo;s start with logic. Imagine you spill two foods:</p>
-<ol>
-<li>A cracker lands on a clean kitchen tile.</li>
-<li>A slice of watermelon lands on a subway floor.</li>
-</ol>
-<p>Both are on the ground for the same five seconds. Are they equally contaminated? Of course not. The watermelon is wet, sticky, and porous: basically a germ magnet. The cracker is dry and smooth, with fewer places for microbes to cling.</p>
-<p>So the real question is <strong>not</strong> &ldquo;how long has it been on the ground?&rdquo; but rather:</p>
-<ul>
-<li>How dirty is the surface?</li>
-<li>How much of the food touches it?</li>
-<li>How easily do germs transfer?</li>
-</ul>
-<p>This logic tells us we need a model that accounts for those factors. That is where math enters: not scary math, but storytelling math.</p>
 <h2 id="modeling-the-problem">Modeling the Problem</h2>
-<p>Think of the surface as a field of germs, like sprinkles on a donut. The density of those sprinkles is our &ldquo;germiness factor&rdquo; (ρ). When food touches the floor, it is like pressing a stamp down: the larger the contact area (A), the more germs are available to transfer.</p>
-<p>But not every germ jumps instantly. That is where efficiency comes in. Some foods are more welcoming than others:</p>
+<p>Think of the surface as a field of germs, like sprinkles on a donut. The density
+of those sprinkles is our germiness factor \(\rho\). When food touches the floor,
+it is like pressing a stamp down: the larger the contact area \(A\), the more
+germs are available to transfer.</p>
+<p>But not every germ jumps instantly. That is where efficiency comes in. Some
+foods are more welcoming than others:</p>
 <ul>
-<li><strong>Baseline stickiness (α):</strong> a generic &ldquo;how likely are germs to move?&rdquo;</li>
-<li><strong>Moisture (m):</strong> wetter foods transfer more.</li>
-<li><strong>Surface roughness (s):</strong> porous textures hold onto more.</li>
+<li><strong>Baseline stickiness \((\alpha)\)</strong>: a generic &ldquo;how likely are germs to move?&rdquo;</li>
+<li><strong>Moisture \((m)\)</strong>: wetter foods transfer more.</li>
+<li><strong>Surface roughness \((s)\)</strong>: porous textures hold onto more.</li>
 </ul>
-<p>Multiply these together, and you get a number that tells you how hospitable your food is to germs.</p>
-<p>Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like filling a sponge: the first squeeze of water soaks it, but topping it off takes longer. That is our &ldquo;rate constant&rdquo; (β).</p>
-<p>So the logic goes like this:</p>
+<p>Multiply these together and you get a number that tells you how hospitable
+your food is to germs.</p>
+<p>Finally, germs do not arrive linearly. They rush in fast at first, then slow
+down as the easy-to-transfer germs make the jump. It is like filling a sponge:
+the first squeeze of water soaks it, but topping it off takes longer. That is
+our rate constant \(\beta\).</p>
+<hr>
+<h3 id="turning-logic-into-math">Turning Logic Into Math</h3>
+<p>All of this can be expressed as a function of time, \(t\), that tells us the
+expected number of germs on the food:</p>
+<p>\[
+G(t) = \rho \cdot A \cdot \alpha \cdot m \cdot s \cdot \bigl(1 - e^{-\beta t}\bigr)
+\]</p>
+<p>This function starts at zero, rises quickly, and flattens toward a ceiling of
+\(\rho A \alpha m s\). That ceiling represents the maximum contamination
+possible in this setup.</p>
+<p>As a bit of a math nerd, I love slipping calculus into problems like this.
+Defining the function is only half the fun. The real payoff comes from looking
+at how it changes second by second.</p>
+<hr>
+<h3 id="why-the-first-second-matters">Why the First Second Matters</h3>
+<p>To see how fast germs are transferring at any moment, we look at the derivative:</p>
+<p>\[
+G&rsquo;(t) = \rho \cdot A \cdot \alpha \cdot m \cdot s \cdot \beta \cdot e^{-\beta t}
+\]</p>
 <ul>
-<li>The total number of germs you could get is fixed by dirtiness × area × stickiness.</li>
-<li>The number you actually get rises quickly at the start, then flattens out.</li>
-<li>That is why the first second is so critical.</li>
+<li>At \(t = 0\), the derivative is at its maximum:
+\(\rho A \alpha m s \beta\). This is the steep initial slope, meaning most
+germs transfer right away.</li>
+<li>As \(t \to \infty\), the derivative approaches zero. The curve flattens
+because the easy germs have already moved.</li>
 </ul>
+<p>This explains the everyday observation: the first second is the dirtiest, and
+waiting longer just gets you closer to the contamination ceiling.</p>
+<p>Now that we have framed the problem logically and understand the math, let&rsquo;s use AI to create a Python application that implements the mathematical model.</p>
+<hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
 <p>When prompting AI for this model, we do not just say &ldquo;simulate germs.&rdquo; For better results, spell out the assumptions.</p>
 <p><strong>Prompt:</strong></p>

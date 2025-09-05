@@ -14,6 +14,7 @@ googleAnalytics = "G-7ZV2PMS61P"
   avatar = "img/avatar.png"
   mainSections = ["posts"]
   description = "Tom Archer's technical blog"
+  math = true
 
   # Short bio (first paragraph)
   bio = """

@@ -24,6 +24,24 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -93,15 +111,24 @@
       
       
       
+        
+        
+          
+        
+      
 
-      <article class="post ">
+      <article class="post post--has-title-thumb">
         <header class="post-header">
           
+          
+            <a class="post-title-thumb" href="/posts/five-second-rule-explored/">
+              <img src="/posts/five-second-rule-explored/five-second-rule-explored.png" alt="" loading="lazy">
+            </a>
           
 
           <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/five-second-rule-explored/">The Math Behind the Five-Second Rule</a>
+              <a href="/posts/five-second-rule-explored/">The Five-Second Rule Explored with Math &amp; Python</a>
             </h2>
 
             <div class="post-meta">
@@ -115,12 +142,13 @@
         
         
         
-        <div class="post-summary"><p>We’ve all heard it: drop your cookie on the kitchen floor, scoop it up within five seconds, and it’s safe to eat. But is there really some magic countdown clock before germs start crawling on your food?</p>
+        <div class="post-summary">
+<p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.</p>
 <hr>
 <blockquote>
-<p><em>&ldquo;Contamination doesn’t wait politely for a timer—it starts the instant food touches the floor.&rdquo;</em></p></blockquote>
+<p><em>&ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&rdquo;</em></p></blockquote>
 <hr>
-<p>This myth has survived because the idea feels comforting. But if we dig deeper, we’ll see it’s not about five seconds—it’s about how fast germs transfer, how dirty the floor is, and what kind of food hits it. And with a little math and Python, we can actually model it.</p></div>
+<p>The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.</p></div>
 
         <p><a class="btn" href="/posts/five-second-rule-explored/">Read more →</a></p>
       </article>
@@ -198,7 +226,7 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule-explored/">The Math Behind the Five-Second Rule</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule-explored/">The Five-Second Rule Explored with Math &amp; Python</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>

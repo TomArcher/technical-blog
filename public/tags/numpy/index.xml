@@ -9,11 +9,11 @@
     <lastBuildDate>Thu, 04 Sep 2025 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/numpy/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The Math Behind the Five-Second Rule</title>
+      <title>The Five-Second Rule Explored with Math &amp; Python</title>
       <link>http://localhost:1313/posts/five-second-rule-explored/</link>
       <pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate>
       <guid>http://localhost:1313/posts/five-second-rule-explored/</guid>
-      <description>&lt;p&gt;We’ve all heard it: drop your cookie on the kitchen floor, scoop it up within five seconds, and it’s safe to eat. But is there really some magic countdown clock before germs start crawling on your food?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Contamination doesn’t wait politely for a timer—it starts the instant food touches the floor.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This myth has survived because the idea feels comforting. But if we dig deeper, we’ll see it’s not about five seconds—it’s about how fast germs transfer, how dirty the floor is, and what kind of food hits it. And with a little math and Python, we can actually model it.&lt;/p&gt;</description>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./five-second-rule-explored.png&#34; alt=&#34;Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Forget the five-second rule. Germs transfer instantly, and we can prove it with math.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

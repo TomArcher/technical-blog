@@ -6,8 +6,15 @@
     <description>Recent content in Matplotlib on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Aug 2025 05:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 04 Sep 2025 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/matplotlib/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Five-Second Rule Explored with Math &amp; Python</title>
+      <link>http://localhost:1313/posts/five-second-rule-explored/</link>
+      <pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/five-second-rule-explored/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./five-second-rule-explored.png&#34; alt=&#34;Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Forget the five-second rule. Germs transfer instantly, and we can prove it with math.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Meeting Diet: An Optimization Approach to Your Calendar</title>
       <link>http://localhost:1313/posts/meeting-diet/</link>
