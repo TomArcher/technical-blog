@@ -63,6 +63,12 @@ To simulate the problem accurately (but tractably), we make the following simpli
 
 With these assumptions, our task is to implement a binary decision variable for each meeting and solve a maximization problem subject to dual constraints.
 
+### Under the Hood: Why This Is Really a Matrix Problem
+
+Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a constraint matrix.
+
+When you run the model, the solver crunches through that matrix using linear algebra techniques to find the best combination of 1s and 0s (attend vs skip). So while you don’t see the math spelled out, the engine making it all work is pure matrix computation.
+
 ---
 
 ## Using AI to Scaffold the Code

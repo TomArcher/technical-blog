@@ -199,6 +199,9 @@
 <li>All values are known and deterministic (no surprises this week).</li>
 </ul>
 <p>With these assumptions, our task is to implement a binary decision variable for each meeting and solve a maximization problem subject to dual constraints.</p>
+<h3 id="under-the-hood-why-this-is-really-a-matrix-problem">Under the Hood: Why This Is Really a Matrix Problem</h3>
+<p>Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a constraint matrix.</p>
+<p>When you run the model, the solver crunches through that matrix using linear algebra techniques to find the best combination of 1s and 0s (attend vs skip). So while you don’t see the math spelled out, the engine making it all work is pure matrix computation.</p>
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
 <p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong>ILP</strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong>PuLP</strong>, a lightweight open-source Python library for linear and integer programming (ILP). It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
