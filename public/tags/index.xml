@@ -6,8 +6,57 @@
     <description>Recent content in Tags on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Sep 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 17 Sep 2025 13:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integer Division</title>
+      <link>http://localhost:1313/tags/integer-division/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/integer-division/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Modulus</title>
+      <link>http://localhost:1313/tags/modulus/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/modulus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Numeric Parsing</title>
+      <link>http://localhost:1313/tags/numeric-parsing/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/numeric-parsing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Operators</title>
+      <link>http://localhost:1313/tags/operators/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/operators/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://localhost:1313/tags/python/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NumPy</title>
+      <link>http://localhost:1313/tags/numpy/</link>
+      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/numpy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SymPy</title>
+      <link>http://localhost:1313/tags/sympy/</link>
+      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/sympy/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Germs</title>
       <link>http://localhost:1313/tags/germs/</link>
@@ -20,20 +69,6 @@
       <link>http://localhost:1313/tags/matplotlib/</link>
       <pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate>
       <guid>http://localhost:1313/tags/matplotlib/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Numpy</title>
-      <link>http://localhost:1313/tags/numpy/</link>
-      <pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/tags/numpy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
-      <pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/tags/python/</guid>
       <description></description>
     </item>
     <item>

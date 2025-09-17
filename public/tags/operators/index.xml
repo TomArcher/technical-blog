@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Operators on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/operators/</link>
+    <description>Recent content in Operators on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Sep 2025 13:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/operators/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python Tip of the Week: Numeric Parsing with Integer Division and Modulus</title>
+      <link>http://localhost:1313/posts/ptow-integer-division-and-modulus/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/ptow-integer-division-and-modulus/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./ptow-trans.png&#34; alt=&#34;Python Tip of the Week logo: Python Post-it note on monitor&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Tips and techniques to improve your Python skills&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong&gt;numeric parsing with integer division (&lt;code&gt;//&lt;/code&gt;) and modulus (&lt;code&gt;%&lt;/code&gt;)&lt;/strong&gt; is the better option.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>

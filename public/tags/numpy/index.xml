@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Numpy on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <title>NumPy on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
     <link>http://localhost:1313/tags/numpy/</link>
-    <description>Recent content in Numpy on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <description>Recent content in NumPy on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Sep 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 05 Sep 2025 11:45:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/numpy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python Tip of the Week: Try SymPy When NumPy Isn&#39;t Enough</title>
+      <link>http://localhost:1313/posts/ptow-sympy-vs-numpy/</link>
+      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/ptow-sympy-vs-numpy/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;  &#xA;  &lt;img src=&#34;./ptow-trans.png&#34; alt=&#34;Python Tip of the Week logo: Python Post-it note on monitor&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;  &#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;  &#xA;    &lt;em&gt;Tips and techniques to improve your Python skills&lt;/em&gt;  &#xA;  &lt;/figcaption&gt;  &#xA;&lt;/figure&gt;  &#xA;&lt;p&gt;Most of us reach for &lt;a href=&#34;https://numpy.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  NumPy&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; whenever math shows up in a project. But sometimes, you don&amp;rsquo;t want approximate answers, you want exact math. That&amp;rsquo;s when you pull &lt;a href=&#34;https://sympy.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  SymPy&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; out of your programmer&amp;rsquo;s toolkit and get to work.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.&lt;/p&gt;&#xA;&lt;p&gt;In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Floats guess. SymPy knows.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This is where SymPy shines. To see the difference between &lt;strong&gt;floating-point approximations&lt;/strong&gt; (Python or NumPy) and &lt;strong&gt;symbolic precision&lt;/strong&gt; (SymPy), let&amp;rsquo;s look at a simple but very real example from finance.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Five-Second Rule Explored with Math &amp; Python</title>
       <link>http://localhost:1313/posts/five-second-rule-explored/</link>

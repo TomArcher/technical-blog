@@ -114,9 +114,6 @@
         
         
           
-            
-            
-          
         
       
 
@@ -131,13 +128,13 @@
 
           <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/ptow-sympy-vs-numpy/">Python Tip of the Week: When NumPy Isn’t Enough — Try SymPy</a>
+              <a href="/posts/ptow-sympy-vs-numpy/">Python Tip of the Week: Try SymPy When NumPy Isn&#39;t Enough</a>
             </h2>
 
             <div class="post-meta">
               <time datetime="2025-09-05">
                 <strong>Sep 5, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Categories:</strong>&nbsp;<a href="/categories/best-practices/">Best Practices</a>, <a href="/categories/programming/">Programming</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/numpy/">#Numpy</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/sympy/">#SymPy</a></div>
+              </time>&nbsp;•&nbsp;<strong>Categories:</strong>&nbsp;<a href="/categories/best-practices/">Best Practices</a>, <a href="/categories/programming/">Programming</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/numpy/">#NumPy</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/sympy/">#SymPy</a></div>
           </div>
         </header>
 
@@ -146,18 +143,20 @@
         
         
         <div class="post-summary">  
-<p>Most of us reach for <a href="https://stackoverflow.com/questions/what-is-the-difference-between-numpy-and-sympy" target="_blank" rel="noopener noreferrer">
-  <strong>NumPy</strong>
+<p>Most of us reach for <a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
+  NumPy
 </a>
- whenever math shows up in a project.
-But sometimes, you don’t want approximate answers. You want exact math.
-That’s when SymPy taps you on the shoulder and whispers: “I’ve got this.”</p>
-<p>Concrete examples where “close enough” isn’t good enough:</p>
-<ul>
-<li>Computing interest rates in finance where pennies matter.</li>
-<li>Physics simulations where rounding errors accumulate into nonsense results.</li>
-<li>Checking algebraic identities where 0.0000001 should really be 0.</li>
-</ul></div>
+ whenever math shows up in a project. But sometimes, you don&rsquo;t want approximate answers, you want exact math. That&rsquo;s when you pull <a href="https://sympy.org/" target="_blank" rel="noopener noreferrer">
+  SymPy
+</a>
+ out of your programmer&rsquo;s toolkit and get to work.</p>
+<p>It&rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.</p>
+<p>In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Floats guess. SymPy knows.&rdquo;</em></p></blockquote>
+<hr>
+<p>This is where SymPy shines. To see the difference between <strong>floating-point approximations</strong> (Python or NumPy) and <strong>symbolic precision</strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p></div>
 
         <p><a class="btn" href="/posts/ptow-sympy-vs-numpy/">Read more →</a></p>
       </article>
@@ -235,7 +234,8 @@ That’s when SymPy taps you on the shoulder and whispers: “I’ve got this.�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/ptow-sympy-vs-numpy/">Python Tip of the Week: When NumPy Isn’t Enough — Try SymPy</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-integer-division-and-modulus/">Python Tip of the Week: Numeric Parsing with Integer Division and Modulus</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-sympy-vs-numpy/">Python Tip of the Week: Try SymPy When NumPy Isn&#39;t Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule-explored/">The Five-Second Rule Explored with Math &amp; Python</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
@@ -276,10 +276,14 @@ That’s when SymPy taps you on the shoulder and whispers: “I’ve got this.�
 		<a class="widget-taglist__link widget__link btn" href="/tags/guard-clause/" title="Guard Clause">Guard Clause</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ilp/" title="ILP">ILP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/integer-division/" title="Integer Division">Integer Division</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/modulus/" title="Modulus">Modulus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/np-hard/" title="NP-Hard">NP-Hard</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/numpy/" title="Numpy">Numpy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numeric-parsing/" title="Numeric Parsing">Numeric Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numpy/" title="NumPy">NumPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/operators/" title="Operators">Operators</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/or-tools/" title="OR-Tools">OR-Tools</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
