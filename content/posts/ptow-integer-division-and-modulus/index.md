@@ -36,7 +36,7 @@ The `//` operator divides one number by another and returns only the integer par
 
 print(17 // 5)   # 3
 
-It’s a great way to chop off digits from the right side of a number and keep working with what’s left.
+It's a great way to chop off digits from the right side of a number and keep working with what's left.
 
 ---
 
@@ -46,7 +46,7 @@ The `%` operator gives you the remainder:
 
 print(17 % 5)    # 2
 
-It’s the tool you reach for when you want to peel off the last digits.
+It's the tool you reach for when you want to peel off the last digits.
 
 ---
 
@@ -136,7 +136,7 @@ while num > 0:
 * Use `%` to peel digits from the right.
 * Numeric parsing is best when the data is **purely numeric, fixed-width, and not meant to preserve formatting**.
 
-Examples like warehouse codes, timestamps, and checksum digit processing highlight where numeric parsing outshines string slicing. If the data is messy or formatting matters, use string parsing. If the data is clean and fixed, numeric parsing is not just elegant — it’s the right tool.
+Examples like warehouse codes, timestamps, and checksum digit processing highlight where numeric parsing outshines string slicing. If the data is messy or formatting matters, use string parsing. If the data is clean and fixed, numeric parsing is not just elegant. It's the right tool.
 
 ## Resources 📚
 
