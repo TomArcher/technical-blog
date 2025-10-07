@@ -98,7 +98,7 @@ Even though these are just coordinates, the geometry encodes analogy. That's the
 
 ### Linear Algebra and the Geometry of Thought
 
-When I first started deep-diving into how LLMs work under the hood, my mind was struggling to reconcile the fact that LLMs rely on geometry when I remembered that in my level 300 and 400 math courses, working with vectors was done through linear algebra. The reason for this mental tension is that I had always treated geometry and linear algebra as separate domains with geometry being something visual and spatial, and linear algebra being something symbolic and procedural.
+When I first started deep-diving into how LLMs work under the hood, I struggled to reconcile the fact that LLMs rely on geometry when I remembered that in my level 300 and 400 math courses, working with vectors was done through linear algebra. The reason for this mental tension was that I had always treated geometry and linear algebra as separate domains with geometry being something visual and spatial, and linear algebra being something symbolic and procedural.
 
 What I eventually realized is that they are two views of the same thing. The math behind a large language model is entirely linear algebra: multiplying matrices, taking dot products, projecting vectors, computing norms. But what those operations create is a *geometric world.*
 
