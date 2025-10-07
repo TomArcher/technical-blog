@@ -4,10 +4,11 @@ draft = false
 title = "Python Tip of the Week: Try SymPy When NumPy Isn't Enough"
 categories = ["Best Practices", "Programming"]
 tags = [
-"NumPy",
-"Python",
-"SymPy",
+  "NumPy",
+  "Python",
+  "SymPy",
 ]
+author = "Tom Archer"
 listThumb = "ptow.png"
 +++
 

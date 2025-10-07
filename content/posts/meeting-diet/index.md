@@ -12,6 +12,7 @@ tags = [
     "PuLP",
     "Python",
 ]
+author = "Tom Archer"
 listThumb = "meeting-diet.png"
 +++
 

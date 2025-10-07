@@ -7,6 +7,7 @@ tags = [
   "Productivity",
   "TFP",
 ]
+author = "Tom Archer"
 listThumb = "tfp-chatgpt.png"
 +++
 

@@ -10,6 +10,7 @@ tags = [
     "NP-hard",
     "Python",
 ]
+author = "Tom Archer"
 listThumb = "three-d-packing.png"
 +++
 

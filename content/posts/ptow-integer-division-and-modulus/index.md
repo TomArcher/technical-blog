@@ -10,6 +10,7 @@ tags = [
     "Operators",
     "Python",
 ]
+author = "Tom Archer"
 listThumb = "ptow.png"
 +++
 

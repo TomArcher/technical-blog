@@ -10,6 +10,7 @@ tags = [
     "Python",
     "Rain",
 ]
+author = "Tom Archer"
 listThumb = "rain-paradox.png"
 +++
 
