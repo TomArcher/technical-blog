@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neural Geometry on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/neural-geometry/</link>
+    <description>Recent content in Neural Geometry on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Oct 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/neural-geometry/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Inside the Mind of a Model: How AI Turns Meaning into Math</title>
+      <link>http://localhost:1313/posts/how-ai-turns-meaning-into-math/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-ai-turns-meaning-into-math/</guid>
+      <description>&lt;p&gt;When you type a sentence into ChatGPT or Copilot, you see words. The model sees geometry.&lt;/p&gt;&#xA;&lt;p&gt;Every word, phrase, and line of code you enter becomes a point inside an invisible mathematical landscape; a high-dimensional map where meaning is measured not by grammar or logic, but by distance.&lt;/p&gt;&#xA;&lt;p&gt;This post explores how that landscape works, why it gives AI its uncanny sense of context, and how you can visualize it using tools like Python or &lt;a href=&#34;https://www.mathworks.com/products/matlab.html&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  MATLAB&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;.&lt;br&gt;&#xA;If you’d like a more conceptual introduction to how AI “reads” code, start with &lt;a href=&#34;http://localhost:1313/posts/how-ai-reads-code/&#34;&gt;&#xD;&#xA;  How AI Reads Code: What Large Language Models Actually Understand&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

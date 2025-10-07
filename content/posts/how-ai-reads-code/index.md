@@ -5,7 +5,8 @@ title = "How AI Reads Code: What Large Language Models Actually Understand"
 subtitle = "Exploring how large language models interpret code and what they miss"
 categories = ["Academic", "Generative AI"]
 tags = [
-    "Code Interpretation", 
+    "AI Interpretation", 
+    "Code Semantics",
     "Large Language Models", 
 ]
 author = "Tom Archer"
@@ -23,6 +24,8 @@ listThumb = "how-ai-reads-code.png"
 </figure>
 
 Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a large language model, or LLM, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules. 
+
+---
 
 > *"When an AI system 'understands' code, it is not executing logic; it is modeling probability.*"
 
@@ -47,7 +50,7 @@ These models can do many things:
 * Hold conversations
 * Generate code
 
-**Examples:** ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), and LLaMA (Meta).
+**Examples:** [ChatGPT (OpenAI)](https://chatgpt.com/), [Claude (Anthropic)](https://claude.ai/new), [Gemini (Google)](https://gemini.google.com/app), and [LLaMA (Meta)](https://www.llama.com/).
 
 The "large" in large language model refers to the scale of parameters where billions of adjustable values tune how the model interprets and generates text.
 
@@ -59,14 +62,22 @@ In other words, an LLM doesn't think about language; it **models** language itse
 
 ### Syntax as Pattern, Not Rule
 
-When a compiler reads a function like
+When a compiler reads a function like the following, it parses tokens, constructs an abstract syntax tree (AST), and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable `x` by itself.
 
 ```python
 def square(x): 
     return x * x
 ```
 
-it parses tokens, constructs an abstract syntax tree (AST), and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable `x` by itself.
+<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+    <img src="./how-ai-reads-code-flow.png" 
+    alt="Flowchart-style illustration showing how an AI model tokenizes source code and predicts the next token based on statistical context, contrasting with how a compiler parses syntax." 
+    width="250" 
+    style="display: block; margin: 0 auto;">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Patterns drive AI recognition; not syntax.</em>
+    </figcaption>
+</figure>
 
 An LLM, by contrast, does not parse in the traditional sense. It tokenizes, compressing text by subword frequency rather than grammatical role, and then predicts one token at a time based on the statistical context of all previous tokens. The model "understands" that `return x * x` likely follows `def square(x):` because it has seen this pattern thousands of times across training corpora, not because it knows what multiplication does.
 
@@ -158,13 +169,15 @@ To see how deep this patterning goes, look at a model's log probabilities for a 
 "def is_palindrome(s): return s == s[::-1]"
 ```
 
-The log probability for `s[::-1]` is extremely high because that slice notation is a canonical pattern in the training corpus for palindrome detection. Replace it with a less common variant:
+The log probability for `s[::-1]` is extremely high because that slice notation is a canonical pattern in the training corpus for palindrome detection. (For a deeper look at what *log probability* means and why models use it, see [Inside the Mind of a Model: How AI Turns Meaning into Math](/posts/how-ai-turns-meaning-into-math/).)
+
+Now, consider a less common variant of the same prompt:
 
 ```
 "def is_palindrome(s): return s == ''.join(reversed(s))"
 ```
 
-and the probability distribution shifts. Both are correct, but one feels "unnatural" to the model. AI reads code with a memory of popularity, not authority.
+Here, the probability distribution shifts. Both are correct, but one feels "unnatural" to the model. AI reads code with a memory of popularity, not authority.
 
 ---
 
@@ -221,5 +234,9 @@ After many years of writing software, I have come to realize that code is as cul
 That is why an AI sometimes finishes your thought before you finish typing. It is not reading your mind; it is reading the echoes of every mind that came before you.
 
 And that, in its strange, approximate way, is a kind of understanding.
+
+---
+
+If you'd like to see how these ideas translate into math and geometry, continue with [Inside the Mind of a Model: How AI Turns Meaning into Math](/posts/how-ai-turns-meaning-into-math/).
 
 ---

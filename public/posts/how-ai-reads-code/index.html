@@ -105,8 +105,10 @@
                  href="/categories/generative-ai/"
                  rel="category"><em>Generative AI</em></a>&nbsp;•&nbsp;
             <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/code-interpretation/"
-                 rel="tag">#Code Interpretation</a>, <a class="meta__link"
+                 href="/tags/ai-interpretation/"
+                 rel="tag">#AI Interpretation</a>, <a class="meta__link"
+                 href="/tags/code-semantics/"
+                 rel="tag">#Code Semantics</a>, <a class="meta__link"
                  href="/tags/large-language-models/"
                  rel="tag">#Large Language Models</a></p></div>
 
@@ -162,6 +164,7 @@
     </figcaption>
 </figure>
 <p>Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a large language model, or LLM, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
+<hr>
 <blockquote>
 <p><em>&ldquo;When an AI system &lsquo;understands&rsquo; code, it is not executing logic; it is modeling probability.</em>&rdquo;</p></blockquote>
 <hr>
@@ -178,13 +181,25 @@
 <li>Hold conversations</li>
 <li>Generate code</li>
 </ul>
-<p><strong>Examples:</strong> ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), and LLaMA (Meta).</p>
+<p><strong>Examples:</strong> <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT (OpenAI)
+</a>
+, <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude (Anthropic)
+</a>
+, <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">
+  Gemini (Google)
+</a>
+, and <a href="https://www.llama.com/" target="_blank" rel="noopener noreferrer">
+  LLaMA (Meta)
+</a>
+.</p>
 <p>The &ldquo;large&rdquo; in large language model refers to the scale of parameters where billions of adjustable values tune how the model interprets and generates text.</p>
 <p>At its core, an LLM is a probability engine. It predicts the next most likely word or token based on the context of what came before. That simple act, repeated across billions of examples during training, is what gives these models the ability to sound fluent, coherent, and contextually aware.</p>
 <p>In other words, an LLM doesn&rsquo;t think about language; it <strong>models</strong> language itself.</p>
 <hr>
 <h3 id="syntax-as-pattern-not-rule">Syntax as Pattern, Not Rule</h3>
-<p>When a compiler reads a function like</p>
+<p>When a compiler reads a function like the following, it parses tokens, constructs an abstract syntax tree (AST), and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable <code>x</code> by itself.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -195,7 +210,15 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> x <span style="color:#ff79c6">*</span> x
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>it parses tokens, constructs an abstract syntax tree (AST), and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable <code>x</code> by itself.</p>
+</div><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+    <img src="./how-ai-reads-code-flow.png" 
+    alt="Flowchart-style illustration showing how an AI model tokenizes source code and predicts the next token based on statistical context, contrasting with how a compiler parses syntax." 
+    width="250" 
+    style="display: block; margin: 0 auto;">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Patterns drive AI recognition; not syntax.</em>
+    </figcaption>
+</figure>
 <p>An LLM, by contrast, does not parse in the traditional sense. It tokenizes, compressing text by subword frequency rather than grammatical role, and then predicts one token at a time based on the statistical context of all previous tokens. The model &ldquo;understands&rdquo; that <code>return x * x</code> likely follows <code>def square(x):</code> because it has seen this pattern thousands of times across training corpora, not because it knows what multiplication does.</p>
 <p>In the language of probability, a compiler computes meaning deterministically; a model approximates it stochastically.</p>
 <hr>
@@ -281,9 +304,13 @@
 <h3 id="from-tokens-to-intent">From Tokens to Intent</h3>
 <p>To see how deep this patterning goes, look at a model&rsquo;s log probabilities for a simple prompt:</p>
 <pre tabindex="0"><code>&#34;def is_palindrome(s): return s == s[::-1]&#34;
-</code></pre><p>The log probability for <code>s[::-1]</code> is extremely high because that slice notation is a canonical pattern in the training corpus for palindrome detection. Replace it with a less common variant:</p>
+</code></pre><p>The log probability for <code>s[::-1]</code> is extremely high because that slice notation is a canonical pattern in the training corpus for palindrome detection. (For a deeper look at what <em>log probability</em> means and why models use it, see <a href="/posts/how-ai-turns-meaning-into-math/">
+  Inside the Mind of a Model: How AI Turns Meaning into Math
+</a>
+.)</p>
+<p>Now, consider a less common variant of the same prompt:</p>
 <pre tabindex="0"><code>&#34;def is_palindrome(s): return s == &#39;&#39;.join(reversed(s))&#34;
-</code></pre><p>and the probability distribution shifts. Both are correct, but one feels &ldquo;unnatural&rdquo; to the model. AI reads code with a memory of popularity, not authority.</p>
+</code></pre><p>Here, the probability distribution shifts. Both are correct, but one feels &ldquo;unnatural&rdquo; to the model. AI reads code with a memory of popularity, not authority.</p>
 <hr>
 <h3 id="the-compiler-and-the-poet">The Compiler and the Poet</h3>
 <p>A compiler knows exactly what your code does and cares nothing about what you meant. A language model knows approximately what you meant and nothing about what your code does.</p>
@@ -315,6 +342,11 @@
 <p>That is why an AI sometimes finishes your thought before you finish typing. It is not reading your mind; it is reading the echoes of every mind that came before you.</p>
 <p>And that, in its strange, approximate way, is a kind of understanding.</p>
 <hr>
+<p>If you&rsquo;d like to see how these ideas translate into math and geometry, continue with <a href="/posts/how-ai-turns-meaning-into-math/">
+  Inside the Mind of a Model: How AI Turns Meaning into Math
+</a>
+.</p>
+<hr>
     </div>
     <footer class="post__footer">
       
@@ -322,7 +354,10 @@
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/code-interpretation/" rel="tag">Code Interpretation</a>
+			<a class="tags__link btn" href="/tags/ai-interpretation/" rel="tag">AI Interpretation</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/code-semantics/" rel="tag">Code Semantics</a>
 		</li>
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/large-language-models/" rel="tag">Large Language Models</a>
@@ -404,6 +439,7 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/how-ai-turns-meaning-into-math/">Inside the Mind of a Large Language Model (LLM): How AI Turns Meaning into Math</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/how-ai-reads-code/">How AI Reads Code: What Large Language Models Actually Understand</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/ptow-integer-division-and-modulus/">Python Tip of the Week: Numeric Parsing with Integer Division and Modulus</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/ptow-sympy-vs-numpy/">Python Tip of the Week: Try SymPy When NumPy Isn&#39;t Enough</a></li>
@@ -431,6 +467,8 @@
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/generative-ai/">Generative AI</a></li>
 			<li class="widget__item">
+				<a class="widget__link" href="/categories/mathematics/">Mathematics</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/categories/opinion/">Opinion</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/programming/">Programming</a></li>
@@ -441,8 +479,10 @@
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/code-interpretation/" title="Code Interpretation">Code Interpretation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-interpretation/" title="AI Interpretation">AI Interpretation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-semantics/" title="Code Semantics">Code Semantics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dispatch-table/" title="Dispatch Table">Dispatch Table</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/germs/" title="Germs">Germs</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/guard-clause/" title="Guard Clause">Guard Clause</a>
@@ -451,8 +491,12 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/integer-division/" title="Integer Division">Integer Division</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/large-language-models/" title="Large Language Models">Large Language Models</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mathematical-semantics/" title="Mathematical Semantics">Mathematical Semantics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matlab/" title="MATLAB">MATLAB</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/modulus/" title="Modulus">Modulus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-geometry/" title="Neural Geometry">Neural Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/np-hard/" title="NP-Hard">NP-Hard</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/numeric-parsing/" title="Numeric Parsing">Numeric Parsing</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/numpy/" title="NumPy">NumPy</a>
@@ -466,6 +510,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/validation/" title="Validation">Validation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vectors/" title="Vectors">Vectors</a>
 	</div>
 </div>
 </aside>
