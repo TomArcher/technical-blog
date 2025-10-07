@@ -28,7 +28,32 @@ Developers are accustomed to thinking about code in terms of syntax and semantic
 
 ---
 
+<!--more-->
+
 The difference may seem subtle, but it has vast consequences. Understanding the gap between human reasoning, compiler verification, and model prediction is key to using generative AI responsibly in programming environments.
+
+---
+
+### What Is an LLM (Large Language Model)?
+
+If you're new to the world of generative AI, it helps to start with a clear idea of what a large language model actually is. An LLM is an AI system trained on vast collections of text to recognize and reproduce the patterns of human language. It doesn't just store sentences; it learns relationships between words, ideas, and structures.
+
+These models can do many things:
+
+* Answer questions
+* Write content
+* Translate languages
+* Summarize text
+* Hold conversations
+* Generate code
+
+**Examples:** ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), and LLaMA (Meta).
+
+The "large" in large language model refers to the scale of parameters where billions of adjustable values tune how the model interprets and generates text.
+
+At its core, an LLM is a probability engine. It predicts the next most likely word or token based on the context of what came before. That simple act, repeated across billions of examples during training, is what gives these models the ability to sound fluent, coherent, and contextually aware.
+
+In other words, an LLM doesn't think about language; it **models** language itself.
 
 ---
 
