@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>AI on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
-    <link>http://localhost:1313/categories/ai/</link>
-    <description>Recent content in AI on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <title>Code Understanding on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/code-understanding/</link>
+    <description>Recent content in Code Understanding on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Oct 2025 09:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/ai/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/code-understanding/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How AI Reads Code: What Large Language Models Actually Understand</title>
       <link>http://localhost:1313/posts/how-ai-reads-code/</link>
