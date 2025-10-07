@@ -13,7 +13,7 @@ tags = [
     "Vectors",
 ]
 author = "Tom Archer"
-listThumb = "how-ai-turns-meaning-into-math.png"
+listThumb = "how-ai-turns-meaning-into-math-thumb.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
