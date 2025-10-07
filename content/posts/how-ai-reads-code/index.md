@@ -13,18 +13,16 @@ listThumb = "how-ai-reads-code.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-ai-reads-code.png" 
-       alt="Digital artwork showing an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
-       width="250" 
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>When AI reads code, it doesn't execute logic. It models probability.</em>
-  </figcaption>
+    <img src="./how-ai-reads-code.png" 
+    alt="Digital artwork showing an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
+    width="250" 
+    style="display: block; margin: 0 auto;">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>AI reads code as patterns, not instructions.</em>
+    </figcaption>
 </figure>
 
 Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a large language model, or LLM, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules. 
-
----
 
 > *"When an AI system 'understands' code, it is not executing logic; it is modeling probability.*"
 

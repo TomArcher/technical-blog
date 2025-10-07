@@ -23,8 +23,6 @@ listThumb = "three-d-packing.png"
 
 My first full-time programming job was for **Holiday on Ice**, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show's crew was efficiently loading trucks for the next city.  
 
----
-
 > *"Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?"*  
 
 ---
