@@ -184,6 +184,7 @@ Most likely next token: return
 The code above doesn't generate real text; it illustrates the logic. The context vector, which represents everything you've communicated so far to the model, points somewhere in the embedding space. The model searches for the nearest vectors and selects the one most aligned. **That is prediction in geometric form**.
 
 ---
+
 ### Why Models Use Log Probabilities
 
 If you've read *[How AI Reads Code](/posts/how-ai-reads-code)*, you might remember the phrase "log probability." Log probability is a small mathematical trick with a big purpose.
@@ -206,6 +207,8 @@ In two dimensions, you can represent a few relationships, such as animals versus
 
 High-dimensional space lets models *encode complexity linearly*, turning abstract semantics into measurable geometry. That is why they can generalize across tasks, languages, and even programming paradigms.
 
+---
+
 ### The Shape of Understanding
 
 When you ask an LLM to complete your sentence, it is not retrieving an answer; it is following a path through vector space.
@@ -214,6 +217,8 @@ Each token pulls the next one toward its neighborhood. Each neighborhood has loc
 
 In that sense, an LLM does not think; it navigates. It is a statistical traveler in a landscape shaped by human language.
 
+---
+
 ### Closing Thoughts
 
 Understanding embeddings turns the mystery of AI into something tangible. **When you realize that "meaning" is just geometry, you start to see why models feel both powerful and fragile.** They are not reasoning in symbols or words; they are surfing through probability.
@@ -221,3 +226,5 @@ Understanding embeddings turns the mystery of AI into something tangible. **When
 MATLAB and Python give us two lenses to explore that space: Python for the implementation, MATLAB for the math. Between the two, you can watch meaning become math in real time.
 
 And once you have seen that happen, the phrase *"AI understands"* feels less magical and far more human.
+
+---
