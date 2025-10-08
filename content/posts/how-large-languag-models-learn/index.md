@@ -1,5 +1,5 @@
 +++
-date = '2025-10-07T06:00:00-07:00'
+date = '2025-10-08T06:00:00-07:00'
 draft = false
 title = "How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding"
 subtitle = "Exploring how gradient descent and partial derivatives teach models to think"
