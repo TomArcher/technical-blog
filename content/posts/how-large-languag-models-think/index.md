@@ -17,16 +17,16 @@ tags = [
     "Vectors",
 ]
 author = "Tom Archer"
-listThumb = "how-large-languag-models-read-code.png"
+listThumb = "how-large-languag-models-read-code-thumb.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
     <img src="./how-large-languag-models-read-code.png" 
-    alt="Digital artwork showing an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
+    alt="Digital artwork showing vector/matrix math with the output being words, symbolizing that AI generates words from linear algebra operations." 
     width="250" 
     style="display: block; margin: 0 auto;">
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>Meaning takes shape in mathematics long before it reaches words.</em>
+        <em>Meaning shape in mathematics long before it reaches words.</em>
     </figcaption>
 </figure>
 

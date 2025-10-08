@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Optimization on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
-    <link>http://localhost:1313/tags/optimization/</link>
-    <description>Recent content in Optimization on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <title>AI Training on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/ai-training/</link>
+    <description>Recent content in AI Training on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Oct 2025 09:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/optimization/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/ai-training/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</title>
       <link>http://localhost:1313/posts/how-large-languag-models-learn/</link>
