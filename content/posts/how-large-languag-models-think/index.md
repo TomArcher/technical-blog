@@ -1,23 +1,27 @@
 +++
 date = '2025-10-07T06:00:00-07:00'
+aliases = [
+    "/posts/how-ai-turns-meaning-into-math/",
+]
 draft = false
-title = "Inside the Mind of a Large Language Model (LLM): How AI Turns Meaning into Math"
+title = "How Large Language Models (LLMs) Think: Turning Meaning into Math"
 subtitle = "Exploring how large language models use linear algebra to create geometric meaning"
 categories = ["Academic", "Generative AI", "Mathematics", ]
 tags = [
     "Embeddings", 
     "Linear Algebra", 
+    "LLM",
     "Mathematical Semantics",
     "MATLAB",
     "Neural Geometry",
     "Vectors",
 ]
 author = "Tom Archer"
-listThumb = "how-ai-turns-meaning-into-math-thumb.png"
+listThumb = "how-large-languag-models-read-code.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-ai-turns-meaning-into-math.png" 
+    <img src="./how-large-languag-models-read-code.png" 
     alt="Digital artwork showing an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
     width="250" 
     style="display: block; margin: 0 auto;">
@@ -26,7 +30,7 @@ listThumb = "how-ai-turns-meaning-into-math-thumb.png"
     </figcaption>
 </figure>
 
-When you enter a sentence into [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model does not process words as language. It represents them as numbers.
+When you enter a sentence into a Large Language Model (LLM) such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model does not process words as language. It represents them as numbers.
 
 Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.
 

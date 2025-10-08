@@ -1,20 +1,24 @@
 +++
 date = '2025-10-06T09:00:00-07:00'
+aliases = [
+    "/posts/how-ai-reads-code/",
+]
 draft = false
-title = "How AI Reads Code: What Large Language Models Actually Understand"
+title = "How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic"
 subtitle = "Exploring how large language models interpret code and what they miss"
 categories = ["Academic", "Generative AI"]
 tags = [
     "AI Interpretation", 
     "Code Semantics",
     "Large Language Models", 
+    "LLM",
 ]
 author = "Tom Archer"
-listThumb = "how-ai-reads-code.png"
+listThumb = "how-large-languag-models-read-code.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-ai-reads-code.png" 
+    <img src="./how-large-languag-models-read-code.png" 
     alt="Digital artwork showing an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
     width="250" 
     style="display: block; margin: 0 auto;">
@@ -23,7 +27,7 @@ listThumb = "how-ai-reads-code.png"
     </figcaption>
 </figure>
 
-Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a large language model, or LLM, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules. 
+Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules. 
 
 ---
 
@@ -37,7 +41,7 @@ The difference may seem subtle, but it has vast consequences. Understanding the 
 
 ---
 
-### What Is an LLM (Large Language Model)?
+### What Is an LLM
 
 If you're new to the world of generative AI, it helps to start with a clear idea of what a large language model actually is. An LLM is an AI system trained on vast collections of text to recognize and reproduce the patterns of human language. It doesn't just store sentences; it learns relationships between words, ideas, and structures.
 
@@ -70,7 +74,7 @@ def square(x):
 ```
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-ai-reads-code-flow.png" 
+    <img src="./how-large-languag-models-read-code-flow.png" 
     alt="Flowchart-style illustration showing how an AI model tokenizes source code and predicts the next token based on statistical context, contrasting with how a compiler parses syntax." 
     width="250" 
     style="display: block; margin: 0 auto;">

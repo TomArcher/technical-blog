@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How Large Language Models (LLMs) Think: Turning Meaning into Math - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">How Large Language Models (LLMs) Think: Turning Meaning into Math</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-10-07T06:00:00-07:00">
+              <strong>October 7, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Categories:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/academic/"
+                 rel="category"><em>Academic</em></a>, <a class="meta__link"
+                 href="/categories/generative-ai/"
+                 rel="category"><em>Generative AI</em></a>, <a class="meta__link"
+                 href="/categories/mathematics/"
+                 rel="category"><em>Mathematics</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/embeddings/"
+                 rel="tag">#Embeddings</a>, <a class="meta__link"
+                 href="/tags/linear-algebra/"
+                 rel="tag">#Linear Algebra</a>, <a class="meta__link"
+                 href="/tags/llm/"
+                 rel="tag">#LLM</a>, <a class="meta__link"
+                 href="/tags/mathematical-semantics/"
+                 rel="tag">#Mathematical Semantics</a>, <a class="meta__link"
+                 href="/tags/matlab/"
+                 rel="tag">#MATLAB</a>, <a class="meta__link"
+                 href="/tags/neural-geometry/"
+                 rel="tag">#Neural Geometry</a>, <a class="meta__link"
+                 href="/tags/vectors/"
+                 rel="tag">#Vectors</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-languag-models-think%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    X
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-languag-models-think%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    in
+  </a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-languag-models-think%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+    f
+  </a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-languag-models-think%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+    r
+  </a>
+  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-languag-models-think%252F" aria-label="Share via Email">
+    @
+  </a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">
+    Share
+  </button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "%!q(\u003cnil\u003e)",
+        url: "\"http://localhost:1313/posts/how-large-languag-models-think/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>
+  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+    <img src="./how-large-languag-models-read-code.png" 
+    alt="Digital artwork showing an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
+    width="250" 
+    style="display: block; margin: 0 auto;">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Meaning takes shape in mathematics long before it reaches words.</em>
+    </figcaption>
+</figure>
+<p>When you enter a sentence into a Large Language Model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, the model does not process words as language. It represents them as numbers.</p>
+<p>Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
+<p>This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&rdquo;</em></p></blockquote>
+<hr>
+<p>This post explains how those operations create what we perceive as context and comprehension. You will see how linear algebra forms the bridge between words and meaning and how tools such as Python or <a href="https://www.mathworks.com/products/matlab.html" target="_blank" rel="noopener noreferrer">
+  MATLAB
+</a>
+ make this hidden structure visible. For a conceptual introduction to how models interpret code, start with <a href="/posts/how-ai-reads-code/">
+  How AI Reads Code: What Large Language Models Actually Understand
+</a>
+.</p>
+<hr>
+<h3 id="from-words-to-numbers">From Words to Numbers</h3>
+<p>Computers don&rsquo;t understand language. They understand numbers. So before a model can process text, it has to convert every token (a word or fragment) into a numerical vector (in this case, representing a list of floating-point values).</p>
+<p>Here&rsquo;s a simplified Python example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.feature_extraction.text <span style="color:#ff79c6">import</span> CountVectorizer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vectorizer <span style="color:#ff79c6">=</span> CountVectorizer()
+</span></span><span style="display:flex;"><span>X <span style="color:#ff79c6">=</span> vectorizer<span style="color:#ff79c6">.</span>fit_transform([<span style="color:#f1fa8c">&#34;AI reads code&#34;</span>, <span style="color:#f1fa8c">&#34;AI writes code&#34;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(X<span style="color:#ff79c6">.</span>toarray())
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Output:</strong></p>
+<pre tabindex="0"><code>[[1 1 1 0]
+ [1 0 1 1]]
+</code></pre><p>Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous embeddings instead of simple counts, but the principle is the same: text becomes math.</p>
+<hr>
+<h3 id="the-geometry-of-meaning">The Geometry of Meaning</h3>
+<p>An <em>embedding</em> is not a dictionary lookup. It is a <strong>coordinate</strong> in a high-dimensional space with thousands of dimensions where mathematical proximity corresponds to semantic similarity.</p>
+<p>In this space, &ldquo;cat&rdquo; sits close to &ldquo;dog,&rdquo; &ldquo;car&rdquo; lies near &ldquo;truck,&rdquo; and <code>process_users()</code> resides near <code>handle_clients()</code>. Proximity encodes relationship.</p>
+<p>You can visualize a simplified version in MATLAB or Python. For instance, in MATLAB:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span>words = [&#34;king&#34;,&#34;queen&#34;,&#34;man&#34;,&#34;woman&#34;];
+</span></span><span style="display:flex;"><span>vectors = [ <span style="color:#6272a4">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">0.8</span> <span style="color:#bd93f9">0.6</span>;   <span style="color:#6272a4">% king</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">0.75</span> <span style="color:#bd93f9">0.65</span>; <span style="color:#6272a4">% queen</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">0.6</span> <span style="color:#bd93f9">0.3</span>;   <span style="color:#6272a4">% man</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">0.55</span> <span style="color:#bd93f9">0.35</span>  <span style="color:#6272a4">% woman</span>
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>plot(vectors(:,<span style="color:#bd93f9">1</span>), vectors(:,<span style="color:#bd93f9">2</span>),<span style="color:#f1fa8c">&#39;o&#39;</span>);
+</span></span><span style="display:flex;"><span>text(vectors(:,<span style="color:#bd93f9">1</span>)<span style="color:#ff79c6">+</span><span style="color:#bd93f9">0.02</span>, vectors(:,<span style="color:#bd93f9">2</span>), words);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This tiny example mimics one of the most famous discoveries in word embeddings:
+<strong>king – man + woman ≈ queen.</strong></p>
+<p>Even though these are just coordinates, the geometry encodes analogy. That&rsquo;s the quiet miracle of embeddings where relations emerge from math alone.</p>
+<hr>
+<h3 id="linear-algebra-and-the-geometry-of-thought">Linear Algebra and the Geometry of Thought</h3>
+<p>When I first started deep-diving into how LLMs work under the hood, I struggled to reconcile the fact that LLMs rely on geometry when I remembered that in my level 300 and 400 math courses, working with vectors was done through linear algebra. The reason for this mental tension was that I had always treated geometry and linear algebra as separate domains with geometry being something visual and spatial, and linear algebra being something symbolic and procedural.</p>
+<p>What I eventually realized is that they are two views of the same thing. The math behind a large language model is entirely linear algebra: multiplying matrices, taking dot products, projecting vectors, computing norms. But what those operations create is a <em>geometric world.</em></p>
+<p>A vector is just a list of numbers, but when millions of those vectors interact through linear transformations, they define a space where distance, angle, and direction become meaningful. Similar words or code fragments cluster together; analogies become lines; transformations become rotations and translations in thousands of dimensions.</p>
+<p>So the geometry is not literal; it&rsquo;s emergent. The network doesn&rsquo;t draw shapes; it performs math that <em>behaves</em> geometrically. That&rsquo;s why &ldquo;geometry&rdquo; is such an accurate metaphor for how LLMs represent meaning. The linear algebra is the physics, and the geometry is the language we use to understand it.</p>
+<hr>
+<h3 id="meaning-as-direction">Meaning as Direction</h3>
+<p>In embedding space, the <em>direction</em> between vectors often means more than the coordinates themselves. For example:</p>
+<ul>
+<li>Moving in one direction might represent <strong>gender</strong> (man → woman).</li>
+<li>Another might represent <strong>tense</strong> (run → ran).</li>
+<li>Another might represent <strong>formality</strong> (kid → child → youth).</li>
+</ul>
+<p>These relationships exist because models learn to compress the messy richness of language into consistent geometric transformations.</p>
+<p>In code models, directions might encode things like:</p>
+<ul>
+<li><code>function → class</code> (abstraction)</li>
+<li><code>print → return</code> (output mechanism)</li>
+<li><code>public → private</code> (scope)</li>
+</ul>
+<p>When an LLM predicts your next token, it&rsquo;s essentially following these invisible directions through vector space.</p>
+<hr>
+<h3 id="visualizing-it-with-probability">Visualizing It with Probability</h3>
+<p>Every time a model predicts the next token, it&rsquo;s estimating how close the new vector should be to the current path. Think of it as walking through this landscape one step at a time, guided by probability rather than certainty.</p>
+<p>Here&rsquo;s a conceptual MATLAB snippet that simulates that:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span><span style="color:#6272a4">% Random 2D embedding of 4 tokens</span>
+</span></span><span style="display:flex;"><span>tokens = [&#34;def&#34;, &#34;<span style="color:#ff79c6">for</span>&#34;, &#34;<span style="color:#ff79c6">if</span>&#34;, &#34;<span style="color:#ff79c6">return</span>&#34;];
+</span></span><span style="display:flex;"><span>E = <span style="color:#8be9fd;font-style:italic">rand</span>(<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">% Simulated &#34;context vector&#34; representing the current prompt</span>
+</span></span><span style="display:flex;"><span>context = mean(E([<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">2</span>],:));  <span style="color:#6272a4">% halfway between &#39;def&#39; and &#39;for&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">% Compute cosine similarities (likelihood of next token)</span>
+</span></span><span style="display:flex;"><span>similarity = E <span style="color:#ff79c6">*</span> context<span style="color:#ff79c6">&#39;</span> <span style="color:#ff79c6">./</span> (vecnorm(E,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">2</span>) <span style="color:#ff79c6">*</span> norm(context));
+</span></span><span style="display:flex;"><span>[<span style="color:#ff79c6">~</span>, idx] = max(similarity);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fprintf(&#34;Most likely next token: <span style="color:#6272a4">%s\n&#34;, tokens(idx));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Output:</strong></p>
+<pre tabindex="0"><code>Most likely next token: return
+</code></pre><p>The code above doesn&rsquo;t generate real text; it illustrates the logic. The context vector, which represents everything you&rsquo;ve communicated so far to the model, points somewhere in the embedding space. The model searches for the nearest vectors and selects the one most aligned. <strong>That is prediction in geometric form</strong>.</p>
+<hr>
+<h3 id="why-models-use-log-probabilities">Why Models Use Log Probabilities</h3>
+<p>If you&rsquo;ve read <em><a href="/posts/how-ai-reads-code">
+  How AI Reads Code
+</a>
+</em>, you might remember the phrase &ldquo;log probability.&rdquo; Log probability is a small mathematical trick with a big purpose.</p>
+<p>When a model predicts the next token, it doesn&rsquo;t make a single guess. It assigns a probability to every possible token that could come next, evaluating thousands of options, each with its own confidence score. For example, in a code context for implementing a palindrome check, the model might assign <code>s[::-1]</code> a probability of 0.93 (almost certain), <code>reversed(s)</code> a probability of 0.05, and everything else close to zero.</p>
+<p>Multiplying those probabilities across long sequences quickly drives the numbers into infinitesimal fractions, making them computationally unstable. To avoid that instability, models work in logarithmic space, where multiplication becomes addition and tiny values remain manageable.</p>
+<p>The result is a set of log probabilities, negative numbers that are easier to compare and sum across many steps. Because the logarithm of a number between 0 and 1 is negative, a confident prediction such as 0.93 becomes a value close to zero (around -0.07), while an uncertain one such as 0.05 becomes a much smaller number (around -3.0). In log space, a less negative value means greater confidence.</p>
+<p>In other words, log probabilities do not change what the model believes. They simply make belief computable.</p>
+<hr>
+<h3 id="why-high-dimensions-matter">Why High Dimensions Matter</h3>
+<p>It is easy to imagine this in two dimensions, but real models operate in thousands of dimensions. Why so many? Because meaning is not simple.</p>
+<p>In two dimensions, you can represent a few relationships, such as animals versus vehicles. In ten thousand dimensions, you can represent subtler unions: gender, tone, syntax, domain, even emotional valence.</p>
+<p>High-dimensional space lets models <em>encode complexity linearly</em>, turning abstract semantics into measurable geometry. That is why they can generalize across tasks, languages, and even programming paradigms.</p>
+<h3 id="the-shape-of-understanding">The Shape of Understanding</h3>
+<p>When you ask an LLM to complete your sentence, it is not retrieving an answer; it is following a path through vector space.</p>
+<p>Each token pulls the next one toward its neighborhood. Each neighborhood has local rules learned from millions of examples. Together, they form a topology of understanding, a map that balances memory and probability.</p>
+<p>In that sense, an LLM does not think; it navigates. It is a statistical traveler in a landscape shaped by human language.</p>
+<h3 id="closing-thoughts">Closing Thoughts</h3>
+<p>Understanding embeddings turns the mystery of AI into something tangible. <strong>When you realize that &ldquo;meaning&rdquo; is just geometry, you start to see why models feel both powerful and fragile.</strong> They are not reasoning in symbols or words; they are surfing through probability.</p>
+<p>MATLAB and Python give us two lenses to explore that space: Python for the implementation, MATLAB for the math. Between the two, you can watch meaning become math in real time.</p>
+<p>And once you have seen that happen, the phrase <em>&ldquo;AI understands&rdquo;</em> feels less magical and far more human.</p>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/embeddings/" rel="tag">Embeddings</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linear-algebra/" rel="tag">Linear Algebra</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/llm/" rel="tag">LLM</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/mathematical-semantics/" rel="tag">Mathematical Semantics</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/matlab/" rel="tag">MATLAB</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/neural-geometry/" rel="tag">Neural Geometry</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/vectors/" rel="tag">Vectors</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer communities. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-think/">How Large Language Models (LLMs) Think: Turning Meaning into Math</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-read-code/">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-integer-division-and-modulus/">Python Tip of the Week: Numeric Parsing with Integer Division and Modulus</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-sympy-vs-numpy/">Python Tip of the Week: Try SymPy When NumPy Isn&#39;t Enough</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/academic/">Academic</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/algorithms/">Algorithms</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/best-practices/">Best Practices</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/economics/">Economics</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/generative-ai/">Generative AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/mathematics/">Mathematics</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/opinion/">Opinion</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/programming/">Programming</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-interpretation/" title="AI Interpretation">AI Interpretation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-semantics/" title="Code Semantics">Code Semantics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dispatch-table/" title="Dispatch Table">Dispatch Table</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/germs/" title="Germs">Germs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/guard-clause/" title="Guard Clause">Guard Clause</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ilp/" title="ILP">ILP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/integer-division/" title="Integer Division">Integer Division</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/large-language-models/" title="Large Language Models">Large Language Models</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mathematical-semantics/" title="Mathematical Semantics">Mathematical Semantics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matlab/" title="MATLAB">MATLAB</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/modulus/" title="Modulus">Modulus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-geometry/" title="Neural Geometry">Neural Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/np-hard/" title="NP-Hard">NP-Hard</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numeric-parsing/" title="Numeric Parsing">Numeric Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numpy/" title="NumPy">NumPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/operators/" title="Operators">Operators</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/or-tools/" title="OR-Tools">OR-Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pulp/" title="PuLP">PuLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validation/" title="Validation">Validation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vectors/" title="Vectors">Vectors</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

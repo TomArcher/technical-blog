@@ -6,8 +6,71 @@
     <description>Recent content in Tags on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Sep 2025 13:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 07 Oct 2025 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Embeddings</title>
+      <link>http://localhost:1313/tags/embeddings/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/embeddings/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linear Algebra</title>
+      <link>http://localhost:1313/tags/linear-algebra/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/linear-algebra/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mathematical Semantics</title>
+      <link>http://localhost:1313/tags/mathematical-semantics/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/mathematical-semantics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MATLAB</title>
+      <link>http://localhost:1313/tags/matlab/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/matlab/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Neural Geometry</title>
+      <link>http://localhost:1313/tags/neural-geometry/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/neural-geometry/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vectors</title>
+      <link>http://localhost:1313/tags/vectors/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/vectors/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI Interpretation</title>
+      <link>http://localhost:1313/tags/ai-interpretation/</link>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/ai-interpretation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Code Semantics</title>
+      <link>http://localhost:1313/tags/code-semantics/</link>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/code-semantics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Large Language Models</title>
+      <link>http://localhost:1313/tags/large-language-models/</link>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/large-language-models/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Integer Division</title>
       <link>http://localhost:1313/tags/integer-division/</link>
