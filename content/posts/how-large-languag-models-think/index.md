@@ -112,6 +112,28 @@ So the geometry is not literal; it's emergent. The network doesn't draw shapes; 
 
 ---
 
+### Eigenvectors: The Hidden Axes of Meaning
+
+Every linear transformation within an LLM, from attention weights to embedding updates, can be described as a matrix acting on vectors. But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by eigenvectors, and the amount of stretching or compression along them is determined by their eigenvalues.
+
+In an embedding space, you can think of eigenvectors as the hidden axes along which meaning varies most strongly. One direction might capture gender, another might capture tense, another might reflect tone or formality. These axes are not programmed; they emerge from training as the model learns to organize information in ways that minimize error.
+
+Mathematically, this relationship is expressed as: `Av = λv`.
+
+Where:
+
+- `A` is a transformation matrix
+- `v` is an eigenvector
+- `λ` (lambda) is the eigenvalue
+
+The eigenvalue tells us how much the transformation scales that direction. In practical terms, LLMs contain thousands of such matrices, each shaping information flow in subtle but predictable ways.
+
+When researchers analyze embeddings using techniques like singular value decomposition (SVD) or principal component analysis (PCA), they are effectively identifying these dominant eigenvectors, the directions that explain the most structure in meaning. This is why, even though the model's internal space has thousands of dimensions, a handful of them often capture broad semantic relationships.
+
+In that sense, eigenvectors reveal the skeleton of understanding inside the model: the stable, interpretable directions that give geometric form to meaning itself.
+
+---
+
 ### Meaning as Direction
 
 In embedding space, the *direction* between vectors often means more than the coordinates themselves. For example:

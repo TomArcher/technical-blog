@@ -207,7 +207,7 @@ Developers can exploit the geometric nature of embeddings by rephrasing code-rel
 
 > "Explain this code."
 
-ask:
+Ask:
 
 > "What would this function's docstring likely say in a production environment?"
 

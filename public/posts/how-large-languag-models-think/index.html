@@ -256,6 +256,20 @@
 <p>A vector is just a list of numbers, but when millions of those vectors interact through linear transformations, they define a space where distance, angle, and direction become meaningful. Similar words or code fragments cluster together; analogies become lines; transformations become rotations and translations in thousands of dimensions.</p>
 <p>So the geometry is not literal; it&rsquo;s emergent. The network doesn&rsquo;t draw shapes; it performs math that <em>behaves</em> geometrically. That&rsquo;s why &ldquo;geometry&rdquo; is such an accurate metaphor for how LLMs represent meaning. The linear algebra is the physics, and the geometry is the language we use to understand it.</p>
 <hr>
+<h3 id="eigenvectors-the-hidden-axes-of-meaning">Eigenvectors: The Hidden Axes of Meaning</h3>
+<p>Every linear transformation within an LLM, from attention weights to embedding updates, can be described as a matrix acting on vectors. But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by eigenvectors, and the amount of stretching or compression along them is determined by their eigenvalues.</p>
+<p>In an embedding space, you can think of eigenvectors as the hidden axes along which meaning varies most strongly. One direction might capture gender, another might capture tense, another might reflect tone or formality. These axes are not programmed; they emerge from training as the model learns to organize information in ways that minimize error.</p>
+<p>Mathematically, this relationship is expressed as: <code>Av = λv</code>.</p>
+<p>Where:</p>
+<ul>
+<li><code>A</code> is a transformation matrix</li>
+<li><code>v</code> is an eigenvector</li>
+<li><code>λ</code> (lambda) is the eigenvalue</li>
+</ul>
+<p>The eigenvalue tells us how much the transformation scales that direction. In practical terms, LLMs contain thousands of such matrices, each shaping information flow in subtle but predictable ways.</p>
+<p>When researchers analyze embeddings using techniques like singular value decomposition (SVD) or principal component analysis (PCA), they are effectively identifying these dominant eigenvectors, the directions that explain the most structure in meaning. This is why, even though the model&rsquo;s internal space has thousands of dimensions, a handful of them often capture broad semantic relationships.</p>
+<p>In that sense, eigenvectors reveal the skeleton of understanding inside the model: the stable, interpretable directions that give geometric form to meaning itself.</p>
+<hr>
 <h3 id="meaning-as-direction">Meaning as Direction</h3>
 <p>In embedding space, the <em>direction</em> between vectors often means more than the coordinates themselves. For example:</p>
 <ul>
