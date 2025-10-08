@@ -107,12 +107,12 @@
                  href="/categories/mathematics/"
                  rel="category"><em>Mathematics</em></a>&nbsp;•&nbsp;
             <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/gradient-descent/"
-                 rel="tag">#Gradient Descent</a>, <a class="meta__link"
                  href="/tags/backpropagation/"
                  rel="tag">#Backpropagation</a>, <a class="meta__link"
                  href="/tags/calculus/"
                  rel="tag">#Calculus</a>, <a class="meta__link"
+                 href="/tags/gradient-descent/"
+                 rel="tag">#Gradient Descent</a>, <a class="meta__link"
                  href="/tags/optimization/"
                  rel="tag">#Optimization</a>, <a class="meta__link"
                  href="/tags/ai-training/"
@@ -175,64 +175,61 @@
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
-, the model seems to respond instantly relative to the question’s degree of difficulty. What’s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.</p>
-<p>Large language models don’t memorize text. They <em>optimize</em> it.<br>
-Behind that optimization lies calculus. I’m not referring to the calculus you did with pencil and paper. I’m talking about a sprawling, automated version that computes millions of derivatives per second.</p>
-<p>At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be <em>slightly less wrong.</em> The word “slightly” in this context is the essence of calculus.</p>
+, the model seems to respond instantly relative to the question&rsquo;s degree of difficulty. What&rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.</p>
+<p>Large language models don&rsquo;t memorize text. They <em>optimize</em> it.<br>
+Behind that optimization lies calculus. I&rsquo;m not referring to the calculus you did with pencil and paper. I&rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.</p>
+<p>At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be <em>slightly less wrong.</em> The word &ldquo;slightly&rdquo; in this context is the essence of calculus.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.&rdquo;</em></p></blockquote>
 <hr>
-<p>This post explores how derivatives guide learning, how gradients shape understanding, and how every improvement in an AI’s intelligence begins with a single slope on a vast mathematical landscape. Think of that landscape as a terrain of error and knowledge: each ridge represents mistakes, each valley represents improvement, and the model’s journey is one of descending that terrain toward understanding itself.</p>
+<p>This post explores how derivatives guide learning, how gradients shape understanding, and how every improvement in an AI&rsquo;s intelligence begins with a single slope on a vast mathematical landscape. Think of that landscape as a terrain of error and knowledge: each ridge represents mistakes, each valley represents improvement, and the model&rsquo;s journey is one of descending that terrain toward understanding itself.</p>
 <hr>
 <h3 id="the-role-of-calculus-in-learning">The Role of Calculus in Learning</h3>
 <p>In the simplest terms, calculus gives LLMs the ability to <em>improve</em>. Specifically, it gives them a way to measure <em>change.</em></p>
 <p>When a model produces an output, it compares that output to the correct answer and computes a <strong>loss</strong> — a single number representing error. But the key question is: <em>how should each parameter change to make that loss smaller next time?</em></p>
-<p>That question is answered by <strong>derivatives.</strong> A derivative tells the model how sensitive the loss is to a small change in one of its parameters. If the derivative is positive, the model nudges that parameter down; if it’s negative, it nudges it up.</p>
+<p>That question is answered by <strong>derivatives.</strong> A derivative tells the model how sensitive the loss is to a small change in one of its parameters. If the derivative is positive, the model nudges that parameter down; if it&rsquo;s negative, it nudges it up.</p>
 <p>Repeat this process across billions of parameters, and what emerges is learning.</p>
 <hr>
 <h3 id="the-landscape-of-loss">The Landscape of Loss</h3>
-<p>You can think of training a model as trying to find the lowest point in a vast, invisible landscape — a mathematical surface defined by all possible combinations of parameter values.</p>
-<p>Each point on that surface has a height (the loss). The model’s job is to find the valleys — where loss is minimal and predictions are most accurate.</p>
+<p>You can think of training a model as trying to find the lowest point in a vast, invisible landscape, a mathematical surface defined by all possible combinations of parameter values.</p>
+<p>Each point on that surface has a height (the loss). The model&rsquo;s job is to find the valleys — where loss is minimal and predictions are most accurate.</p>
 <p>Calculus provides the map. <strong>Gradient descent</strong> is the compass.</p>
 <p>In one step of gradient descent, the model computes the slope (gradient) of the loss function with respect to its parameters, then moves a small step downhill. Too large a step and it overshoots; too small and training crawls.</p>
-<p>The process is not graceful — more like sliding down a foggy mountain guided only by the steepness underfoot. But given enough iterations, it converges.</p>
+<p>The process is like sliding down a foggy mountain guided only by the steepness underfoot. But given enough iterations, it converges.</p>
 <hr>
 <h3 id="backpropagation-the-chain-rule-in-action">Backpropagation: The Chain Rule in Action</h3>
-<p>For models with many layers, like transformers, each parameter affects the output indirectly through layers of computation. To know how changing an early weight influences the final result, we need to apply the <strong>chain rule</strong> — the backbone of backpropagation.</p>
+<p>For models with many layers, such as transformers, each parameter affects the output indirectly through multiple stages of computation. To determine how a change in an early weight influences the final result, we apply the <strong>chain rule</strong>, the backbone of backpropagation.</p>
 <p>Backpropagation is the algorithm that carries error signals backward through the network, layer by layer, computing derivatives at each stage.</p>
-<p>In mathematical shorthand, if <code>L</code> is the loss and <code>W</code> are the weights, we compute</p>
-<p>[
+<p>In mathematical shorthand, if <code>L</code> is the loss and <code>W</code> represents the weights, we compute the following for every parameter. The result is a gradient that tells us how much each weight contributed to the total error:</p>
+<p>\[
 \frac{\partial L}{\partial W}
-]</p>
-<p>for every parameter — a gradient that tells us how much each weight contributed to the total error.</p>
-<p>Then the model updates each weight according to:</p>
-<p>[
+\]</p>
+<p>The model then updates each weight according to the rule below, where <code>η</code> (eta) is the <strong>learning rate</strong>, representing the size of the step taken down the loss gradient:</p>
+<p>\[
 W_{new} = W_{old} - \eta \frac{\partial L}{\partial W}
-]</p>
-<p>where <code>η</code> (eta) is the <strong>learning rate</strong> — the size of the step taken down the loss gradient.</p>
-<hr>
+\]</p>
 <h3 id="optimization-as-controlled-chaos">Optimization as Controlled Chaos</h3>
-<p>Training doesn’t happen neatly. Real-world loss landscapes aren’t smooth bowls; they’re chaotic terrains full of cliffs, ridges, and deceptive plateaus.</p>
-<p>That’s why optimization relies on heuristics like <strong>momentum</strong>, <strong>Adam</strong>, and <strong>RMSProp</strong> — refinements that stabilize learning by dampening oscillations and adapting step sizes.</p>
-<p>These techniques don’t change the calculus itself. They refine how it’s applied, balancing speed and stability so that models reach better minima without falling into traps.</p>
+<p>Training doesn&rsquo;t happen neatly. Real-world loss landscapes aren&rsquo;t smooth bowls; they&rsquo;re chaotic terrains full of cliffs, ridges, and deceptive plateaus.</p>
+<p>That&rsquo;s why optimization relies on heuristics like <strong>momentum</strong>, <strong>Adam</strong>, and <strong>RMSProp</strong> — refinements that stabilize learning by dampening oscillations and adapting step sizes.</p>
+<p>These techniques don&rsquo;t change the calculus itself. They refine how it&rsquo;s applied, balancing speed and stability so that models reach better minima without falling into traps.</p>
 <p>If linear algebra gives LLMs their <em>structure</em>, calculus gives them <em>motion</em>.</p>
 <hr>
 <h3 id="learning-as-compression">Learning as Compression</h3>
 <p>In a sense, every gradient update compresses experience. The model takes the difference between its prediction and reality, distills that error into a small numerical change, and encodes it into its parameters.</p>
-<p>Over billions of updates, those tiny corrections accumulate into knowledge — patterns of weights that embody the statistical structure of language, code, and reasoning.</p>
+<p>Over billions of updates, those tiny corrections accumulate into knowledge, forming patterns of weights that capture the statistical structure of language, code, and reasoning.</p>
 <p>The calculus disappears, leaving behind intuition embedded in numbers.</p>
 <hr>
 <h3 id="from-mistake-to-meaning">From Mistake to Meaning</h3>
 <p>All machine learning begins in error. The genius of calculus is that it makes error useful.</p>
 <p>Every misprediction becomes information about <em>direction</em> — where the model should go next.</p>
-<p>That is what makes AI training so remarkable: it doesn’t eliminate mistakes; it learns from them.</p>
-<p>So when a large language model finishes your sentence, it’s not recalling a rule or retrieving a fact. It’s the product of countless adjustments, each one a derivative of failure, converging toward meaning.</p>
+<p><strong>That is what makes AI training so remarkable: it doesn&rsquo;t eliminate mistakes; it learns from them.</strong></p>
+<p>So when a large language model finishes your sentence, it&rsquo;s not recalling a rule or retrieving a fact. It&rsquo;s the product of countless adjustments, each one a derivative of failure, converging toward meaning.</p>
 <hr>
 <h3 id="closing-thoughts">Closing Thoughts</h3>
 <p>The first two parts of this series explored how LLMs <strong>see</strong> the world — through probability and geometry. This post reveals how they <strong>move</strong> through it.</p>
 <p>Linear algebra gives them the map. Calculus gives them the path.</p>
-<p>Together, they transform static equations into evolving intelligence — a system that doesn’t just <em>model</em> language, but <em>learns</em> it.</p>
+<p>Together, they transform static equations into evolving intelligence, a system that not only <em>models</em> language but also <em>learns</em> it.</p>
 <hr>
     </div>
     <footer class="post__footer">
@@ -241,13 +238,13 @@ W_{new} = W_{old} - \eta \frac{\partial L}{\partial W}
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/gradient-descent/" rel="tag">Gradient Descent</a>
-		</li>
-		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/backpropagation/" rel="tag">Backpropagation</a>
 		</li>
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/calculus/" rel="tag">Calculus</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/gradient-descent/" rel="tag">Gradient Descent</a>
 		</li>
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/optimization/" rel="tag">Optimization</a>
