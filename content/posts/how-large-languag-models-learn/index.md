@@ -47,7 +47,7 @@ This post explores how derivatives guide learning, how gradients shape understan
 
 In the simplest terms, calculus gives LLMs the ability to *improve*. Specifically, it gives them a way to measure *change.*
 
-When a model produces an output, it compares that output to the correct answer and computes a **loss** — a single number representing error. But the key question is: *how should each parameter change to make that loss smaller next time?*
+When a model produces an output, it compares that output to the correct answer and computes a **loss**, a single number that represents error. But the key question is *how each parameter should change to make that loss smaller next time?*.
 
 That question is answered by **derivatives.** A derivative tells the model how sensitive the loss is to a small change in one of its parameters. If the derivative is positive, the model nudges that parameter down; if it's negative, it nudges it up.
 
@@ -59,7 +59,7 @@ Repeat this process across billions of parameters, and what emerges is learning.
 
 You can think of training a model as trying to find the lowest point in a vast, invisible landscape, a mathematical surface defined by all possible combinations of parameter values.
 
-Each point on that surface has a height (the loss). The model's job is to find the valleys — where loss is minimal and predictions are most accurate.
+Each point on that surface has a height (the loss). The model's job is to find the valleys where loss is minimal and predictions are most accurate.
 
 Calculus provides the map. **Gradient descent** is the compass.
 
@@ -92,7 +92,7 @@ W_{new} = W_{old} - \eta \frac{\partial L}{\partial W}
 
 Training doesn't happen neatly. Real-world loss landscapes aren't smooth bowls; they're chaotic terrains full of cliffs, ridges, and deceptive plateaus.
 
-That's why optimization relies on heuristics like **momentum**, **Adam**, and **RMSProp** — refinements that stabilize learning by dampening oscillations and adapting step sizes.
+That's why optimization relies on heuristics like **momentum**, **Adam**, and **RMSProp**, which are refinements that stabilize learning by dampening oscillations and adapting step sizes.
 
 These techniques don't change the calculus itself. They refine how it's applied, balancing speed and stability so that models reach better minima without falling into traps.
 
@@ -114,7 +114,7 @@ The calculus disappears, leaving behind intuition embedded in numbers.
 
 All machine learning begins in error. The genius of calculus is that it makes error useful.
 
-Every misprediction becomes information about *direction* — where the model should go next.
+Every misprediction becomes information about *direction*, showing the model where to go next.
 
 **That is what makes AI training so remarkable: it doesn't eliminate mistakes; it learns from them.**
 
@@ -124,7 +124,7 @@ So when a large language model finishes your sentence, it's not recalling a rule
 
 ### Closing Thoughts
 
-The first two parts of this series explored how LLMs **see** the world — through probability and geometry. This post reveals how they **move** through it.
+The first two parts of this series explored how LLMs **see** the world through probability and geometry. This post reveals how they **move** through it.
 
 Linear algebra gives them the map. Calculus gives them the path.
 

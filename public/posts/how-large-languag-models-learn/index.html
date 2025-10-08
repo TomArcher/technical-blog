@@ -186,13 +186,13 @@
 <hr>
 <h3 id="the-role-of-calculus-in-learning">The Role of Calculus in Learning</h3>
 <p>In the simplest terms, calculus gives LLMs the ability to <em>improve</em>. Specifically, it gives them a way to measure <em>change.</em></p>
-<p>When a model produces an output, it compares that output to the correct answer and computes a <strong>loss</strong> — a single number representing error. But the key question is: <em>how should each parameter change to make that loss smaller next time?</em></p>
+<p>When a model produces an output, it compares that output to the correct answer and computes a <strong>loss</strong>, a single number that represents error. But the key question is <em>how each parameter should change to make that loss smaller next time?</em>.</p>
 <p>That question is answered by <strong>derivatives.</strong> A derivative tells the model how sensitive the loss is to a small change in one of its parameters. If the derivative is positive, the model nudges that parameter down; if it&rsquo;s negative, it nudges it up.</p>
 <p>Repeat this process across billions of parameters, and what emerges is learning.</p>
 <hr>
 <h3 id="the-landscape-of-loss">The Landscape of Loss</h3>
 <p>You can think of training a model as trying to find the lowest point in a vast, invisible landscape, a mathematical surface defined by all possible combinations of parameter values.</p>
-<p>Each point on that surface has a height (the loss). The model&rsquo;s job is to find the valleys — where loss is minimal and predictions are most accurate.</p>
+<p>Each point on that surface has a height (the loss). The model&rsquo;s job is to find the valleys where loss is minimal and predictions are most accurate.</p>
 <p>Calculus provides the map. <strong>Gradient descent</strong> is the compass.</p>
 <p>In one step of gradient descent, the model computes the slope (gradient) of the loss function with respect to its parameters, then moves a small step downhill. Too large a step and it overshoots; too small and training crawls.</p>
 <p>The process is like sliding down a foggy mountain guided only by the steepness underfoot. But given enough iterations, it converges.</p>
@@ -210,7 +210,7 @@ W_{new} = W_{old} - \eta \frac{\partial L}{\partial W}
 \]</p>
 <h3 id="optimization-as-controlled-chaos">Optimization as Controlled Chaos</h3>
 <p>Training doesn&rsquo;t happen neatly. Real-world loss landscapes aren&rsquo;t smooth bowls; they&rsquo;re chaotic terrains full of cliffs, ridges, and deceptive plateaus.</p>
-<p>That&rsquo;s why optimization relies on heuristics like <strong>momentum</strong>, <strong>Adam</strong>, and <strong>RMSProp</strong> — refinements that stabilize learning by dampening oscillations and adapting step sizes.</p>
+<p>That&rsquo;s why optimization relies on heuristics like <strong>momentum</strong>, <strong>Adam</strong>, and <strong>RMSProp</strong>, which are refinements that stabilize learning by dampening oscillations and adapting step sizes.</p>
 <p>These techniques don&rsquo;t change the calculus itself. They refine how it&rsquo;s applied, balancing speed and stability so that models reach better minima without falling into traps.</p>
 <p>If linear algebra gives LLMs their <em>structure</em>, calculus gives them <em>motion</em>.</p>
 <hr>
@@ -221,12 +221,12 @@ W_{new} = W_{old} - \eta \frac{\partial L}{\partial W}
 <hr>
 <h3 id="from-mistake-to-meaning">From Mistake to Meaning</h3>
 <p>All machine learning begins in error. The genius of calculus is that it makes error useful.</p>
-<p>Every misprediction becomes information about <em>direction</em> — where the model should go next.</p>
+<p>Every misprediction becomes information about <em>direction</em>, showing the model where to go next.</p>
 <p><strong>That is what makes AI training so remarkable: it doesn&rsquo;t eliminate mistakes; it learns from them.</strong></p>
 <p>So when a large language model finishes your sentence, it&rsquo;s not recalling a rule or retrieving a fact. It&rsquo;s the product of countless adjustments, each one a derivative of failure, converging toward meaning.</p>
 <hr>
 <h3 id="closing-thoughts">Closing Thoughts</h3>
-<p>The first two parts of this series explored how LLMs <strong>see</strong> the world — through probability and geometry. This post reveals how they <strong>move</strong> through it.</p>
+<p>The first two parts of this series explored how LLMs <strong>see</strong> the world through probability and geometry. This post reveals how they <strong>move</strong> through it.</p>
 <p>Linear algebra gives them the map. Calculus gives them the path.</p>
 <p>Together, they transform static equations into evolving intelligence, a system that not only <em>models</em> language but also <em>learns</em> it.</p>
 <hr>
