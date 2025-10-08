@@ -27,8 +27,7 @@ listThumb = "how-large-languag-models-learn3.png"
 
 When you interact with a large language model (LLM) such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model seems to respond instantly relative to the question's degree of difficulty. What's easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.
 
-Large language models don't memorize text. They *optimize* it.  
-Behind that optimization lies calculus. I'm not referring to the calculus you did with pencil and paper. I'm talking about a sprawling, automated version that computes millions of derivatives per second.
+Large language models don't memorize text. They *optimize* it. Behind that optimization lies calculus. I'm not referring to the calculus you did with pencil and paper. I'm talking about a sprawling, automated version that computes millions of derivatives per second.
 
 At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be *slightly less wrong.* The word "slightly" in this context is the essence of calculus.  
 
