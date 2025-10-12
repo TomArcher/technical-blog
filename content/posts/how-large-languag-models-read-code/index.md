@@ -6,13 +6,8 @@ aliases = [
 draft = false
 title = "How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic"
 subtitle = "Exploring how large language models interpret code and what they miss"
-categories = ["Academic", "Generative AI"]
-tags = [
-    "AI Interpretation", 
-    "Code Semantics",
-    "Large Language Models", 
-    "LLM",
-]
+categories = ["AI & The Mathematics of Language"]
+tags = ["AI", "LLMs", "probability", "tokenization",]
 author = "Tom Archer"
 listThumb = "how-large-languag-models-read-code.png"
 +++
@@ -231,7 +226,7 @@ Such systems would merge two epistemologies: the compiler's precision and the mo
 
 ---
 
-## Final Thoughts
+## Closing Thoughts
 
 After many years of writing software, I have come to realize that code is as cultural as it is logical. Every function carries fingerprints of habits, mentors, and languages long gone. Large language models do not understand code the way we do; they remember it, in the collective statistical sense. They compress decades of programming idioms into geometry.
 

@@ -100,21 +100,17 @@
               <strong>September 4, 2025</strong>
             </time>&nbsp;•&nbsp;
             <strong>Categories:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/algorithms/"
-                 rel="category"><em>Algorithms</em></a>, <a class="meta__link"
-                 href="/categories/generative-ai/"
-                 rel="category"><em>Generative AI</em></a>, <a class="meta__link"
-                 href="/categories/programming/"
-                 rel="category"><em>Programming</em></a>&nbsp;•&nbsp;
+                 href=""
+                 rel="category"><em>Applied Modeling &amp; Simulation</em></a>&nbsp;•&nbsp;
             <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/germs/"
-                 rel="tag">#Germs</a>, <a class="meta__link"
-                 href="/tags/matplotlib/"
-                 rel="tag">#Matplotlib</a>, <a class="meta__link"
-                 href="/tags/numpy/"
-                 rel="tag">#Numpy</a>, <a class="meta__link"
+                 href="/tags/physics/"
+                 rel="tag">#physics</a>, <a class="meta__link"
                  href="/tags/python/"
-                 rel="tag">#Python</a></p></div>
+                 rel="tag">#Python</a>, <a class="meta__link"
+                 href="/tags/probability/"
+                 rel="tag">#probability</a>, <a class="meta__link"
+                 href="/tags/simulation/"
+                 rel="tag">#simulation</a></p></div>
 
       <div class="share">
   <span class="share__label">Share:</span>
@@ -171,8 +167,8 @@
 <hr>
 <p>The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.</p>
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
-  <strong>Do germs move toward the food?</strong><br>
-  No. Germs just sit on a surface. When food lands on the germs, the food picks up those germs through contact, moisture, or stickiness.
+    <div style="text-align: center;"><strong>Do germs move toward the food?</strong><br><br></div>
+    No. Germs just sit on a surface. When food lands on the germs, the food picks up those germs through contact, moisture, or stickiness.
 </div>
 <hr>
 <h2 id="modeling-the-problem">Modeling the Problem</h2>
@@ -221,7 +217,7 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
 <p>When prompting AI for this model, we do not just say &ldquo;simulate germs.&rdquo; For better results, spell out the assumptions.</p>
-<p><strong>Prompt:</strong></p>
+<p><strong>Prompt example:</strong></p>
 <hr>
 <blockquote>
 <p><em>Write a Python function germs(t, rho, A, alpha, moisture, surface, beta) that calculates bacteria transfer over time. Use an exponential approach so germs arrive quickly at first, then taper off. Also write safe_time() that returns the time needed to reach a threshold L.</em></p></blockquote>
@@ -296,7 +292,7 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 </div>
 </div><h2 id="building-out-parameters">Building Out Parameters</h2>
 <p>To keep things tidy, we can group efficiency factors into a <code>TransferParams</code> object. That way, you can tweak <code>α</code>, <code>moisture</code>, <code>surface roughness</code>, and <code>β</code> all in one place.</p>
-<p><strong>Prompt:</strong></p>
+<p><strong>Prompt example:</strong></p>
 <hr>
 <blockquote>
 <p><em>Write a Python dataclass <code>TransferParams</code> that holds <code>alpha</code>, <code>moisture</code>, <code>surface</code>, and <code>beta</code>. Add a property that returns their combined product <code>k</code>.</em></p></blockquote>
@@ -336,7 +332,7 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 </div><h2 id="simulation-testing-the-rule">Simulation: Testing the Rule</h2>
 <p>Now let&rsquo;s put it to work. Suppose the floor has 100 germs per cm², and your cookie touches 4 cm². That is 400 germs available. Not all will transfer, but plenty could.</p>
 <p>We can call our functions at 1, 5, and 10 seconds and also ask: how long until the cookie hits 50 germs?</p>
-<p><strong>Prompt:</strong></p>
+<p><strong>Prompt example:</strong></p>
 <hr>
 <blockquote>
 <p><em>Write a main() function that sets rho=100 and A=4. Call germs() at 1, 5, and 10 seconds and print the results. Also call safe_time() with L=50 and print the time. Finally call plot_results() to visualize.</em></p></blockquote>
@@ -408,7 +404,7 @@ waiting longer just gets you closer to the contamination ceiling.</p>
   </figcaption>
 </figure>
 <p>A graph makes the story vivid. We sample times between 0 and 10 seconds, run them through <code>germs()</code>, and plot the results. For easier visual consumption, we add a dashed red line for the threshold <code>L</code> and a vertical dotted line for the crossing point.</p>
-<p><strong>Prompt:</strong></p>
+<p><strong>Prompt example:</strong></p>
 <hr>
 <blockquote>
 <p><em>Write a plot_results() function that uses matplotlib to plot germs over time. Include an optional threshold line L and a vertical line at the crossing time.</em></p></blockquote>
@@ -515,7 +511,7 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 <li><strong>Climate effects:</strong> Let β vary with humidity.</li>
 <li><strong>Monte Carlo:</strong> Run 1,000 drops and chart the spread.</li>
 </ol>
-<h2 id="last-words">Last words</h2>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
 <p>Next time you drop a cookie, don’t chant &ldquo;five seconds&rdquo; like a protective spell. Germs don&rsquo;t wait for your permission. Transfer begins the instant food hits the floor.</p>
 <h2 id="try-it-yourself">Try It Yourself</h2>
 <p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/five-second-rule-explored" target="_blank" rel="noopener noreferrer">
@@ -529,16 +525,16 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/germs/" rel="tag">Germs</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/matplotlib/" rel="tag">Matplotlib</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/numpy/" rel="tag">Numpy</a>
+			<a class="tags__link btn" href="/tags/physics/" rel="tag">physics</a>
 		</li>
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/probability/" rel="tag">probability</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/simulation/" rel="tag">simulation</a>
 		</li>
 	</ul>
 </div>
@@ -617,16 +613,16 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/thermo-water-energy-balance/">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-learn/">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-think/">How Large Language Models (LLMs) Think: Turning Meaning into Math</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-read-code/">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/ptow-integer-division-and-modulus/">Python Tip of the Week: Numeric Parsing with Integer Division and Modulus</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/ptow-sympy-vs-numpy/">Python Tip of the Week: Try SymPy When NumPy Isn&#39;t Enough</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/ptow-dispatch-maps/">Python Tip of the Week: Using Dispatch Tables for Cleaner Validation</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-dispatch-maps/">Using Python Dispatch Tables for Cleaner Validation</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tfp-chatgpt/">From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</a></li>
 		</ul>
 	</div>
 </div>
@@ -635,66 +631,46 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/academic/">Academic</a></li>
+				<a class="widget__link" href="/categories/ai--the-mathematics-of-language/">AI &amp; the Mathematics of Language</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/algorithms/">Algorithms</a></li>
+				<a class="widget__link" href="/categories/applied-modeling--simulation/">Applied Modeling &amp; Simulation</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/best-practices/">Best Practices</a></li>
+				<a class="widget__link" href="/categories/essays--perspectives/">Essays &amp; Perspectives</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/economics/">Economics</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/generative-ai/">Generative AI</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/mathematics/">Mathematics</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/opinion/">Opinion</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/programming/">Programming</a></li>
+				<a class="widget__link" href="/categories/python-techniques--tooling/">Python Techniques &amp; Tooling</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/3d-bin-packing/" title="3D Bin Packing">3D Bin Packing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai-interpretation/" title="AI Interpretation">AI Interpretation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai-training/" title="AI Training">AI Training</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/backpropagation/" title="Backpropagation">Backpropagation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/code-semantics/" title="Code Semantics">Code Semantics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dispatch-table/" title="Dispatch Table">Dispatch Table</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/germs/" title="Germs">Germs</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/guard-clause/" title="Guard Clause">Guard Clause</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/heuristics/" title="Heuristics">Heuristics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ilp/" title="ILP">ILP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/integer-division/" title="Integer Division">Integer Division</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/knapsack-problem/" title="Knapsack Problem">Knapsack Problem</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/large-language-models/" title="Large Language Models">Large Language Models</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/mathematical-semantics/" title="Mathematical Semantics">Mathematical Semantics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/matlab/" title="MATLAB">MATLAB</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/matplotlib/" title="Matplotlib">Matplotlib</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/modulus/" title="Modulus">Modulus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/neural-geometry/" title="Neural Geometry">Neural Geometry</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/np-hard/" title="NP-Hard">NP-Hard</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/numeric-parsing/" title="Numeric Parsing">Numeric Parsing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/numpy/" title="NumPy">NumPy</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/operators/" title="Operators">Operators</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/or-tools/" title="OR-Tools">OR-Tools</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/pulp/" title="PuLP">PuLP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rain/" title="Rain">Rain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/simulation/" title="Simulation">Simulation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tfp/" title="TFP">TFP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/validation/" title="Validation">Validation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vectors/" title="Vectors">Vectors</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
 	</div>
 </div>
 </aside>

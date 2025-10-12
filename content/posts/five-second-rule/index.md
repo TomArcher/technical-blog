@@ -2,13 +2,8 @@
 title = "The Five-Second Rule Explored with Math & Python"
 date = "2025-09-04T06:00:00-07:00"
 draft = false
-categories = ["Algorithms", "Generative AI", "Programming",]
-tags = [
-    "Germs", 
-    "Matplotlib", 
-    "Numpy", 
-    "Python",
-]
+categories = ["Applied Modeling & Simulation",]
+tags = ["physics", "Python", "probability", "simulation",]
 author = "Tom Archer"
 listThumb = "five-second-rule-explored.png"
 +++
@@ -33,8 +28,8 @@ The truth is much more interesting than the myth. Germs do transfer gradually, b
 <!--more-->
 
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
-  <strong>Do germs move toward the food?</strong><br>
-  No. Germs just sit on a surface. When food lands on the germs, the food picks up those germs through contact, moisture, or stickiness.
+    <div style="text-align: center;"><strong>Do germs move toward the food?</strong><br><br></div>
+    No. Germs just sit on a surface. When food lands on the germs, the food picks up those germs through contact, moisture, or stickiness.
 </div>
 
 
@@ -104,7 +99,7 @@ Now that we have framed the problem logically and understand the math, let's use
 
 When prompting AI for this model, we do not just say "simulate germs." For better results, spell out the assumptions.  
 
-**Prompt:**
+**Prompt example:**
 
 ---
 
@@ -153,7 +148,7 @@ def safe_time(
 
 To keep things tidy, we can group efficiency factors into a `TransferParams` object. That way, you can tweak `α`, `moisture`, `surface roughness`, and `β` all in one place.  
 
-**Prompt:**
+**Prompt example:**
 
 ---
 
@@ -185,7 +180,7 @@ Now let's put it to work. Suppose the floor has 100 germs per cm², and your coo
 
 We can call our functions at 1, 5, and 10 seconds and also ask: how long until the cookie hits 50 germs?  
 
-**Prompt:**
+**Prompt example:**
 
 ---
 
@@ -238,7 +233,7 @@ Safe time for L=50.0 germs: 1.23s
 
 A graph makes the story vivid. We sample times between 0 and 10 seconds, run them through `germs()`, and plot the results. For easier visual consumption, we add a dashed red line for the threshold `L` and a vertical dotted line for the crossing point.  
 
-**Prompt:**
+**Prompt example:**
 
 ---
 
@@ -315,7 +310,7 @@ From the AI side, we saw how careful prompting matters. The clearer the assumpti
 2. **Climate effects:** Let β vary with humidity.  
 3. **Monte Carlo:** Run 1,000 drops and chart the spread.  
 
-## Last words
+## Closing Thoughts
 
 Next time you drop a cookie, don’t chant "five seconds" like a protective spell. Germs don't wait for your permission. Transfer begins the instant food hits the floor.
 

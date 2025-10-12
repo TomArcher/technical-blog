@@ -2,14 +2,8 @@
 title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
 date = '2025-08-18T09:00:00-07:00'
 draft = false
-categories = ["Algorithms", "Generative AI", "Programming",]
-tags = [
-    "Geometry",
-    "Matplotlib",
-    "Physics",
-    "Python",
-    "Rain",
-]
+categories = ["Applied Modeling & Simulation",]
+tags = ["modeling", "physics", "probability", "Python",]
 author = "Tom Archer"
 listThumb = "rain-paradox.png"
 +++
@@ -371,7 +365,7 @@ Then, refine the AI's output to ensure it matches the math.
 
 ---
 
-## Final Thoughts
+## Closing Thoughts
 
 I chose this as my first post because this problem isn't just about physics or weather. It's about thinking like a programmer, and today, **thinking like a programmer includes understanding how to use AI effectively**.
 

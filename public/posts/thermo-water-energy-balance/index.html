@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-10-12T09:00:00-07:00">
+              <strong>October 12, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Categories:</strong>&nbsp;<a class="meta__link"
+                 href=""
+                 rel="category"><em>Applied Modeling &amp; Simulation</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/energy-balance/"
+                 rel="tag">#energy balance</a>, <a class="meta__link"
+                 href="/tags/python/"
+                 rel="tag">#Python</a>, <a class="meta__link"
+                 href="/tags/simulation/"
+                 rel="tag">#simulation</a>, <a class="meta__link"
+                 href="/tags/thermodynamics/"
+                 rel="tag">#thermodynamics</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthermo-water-energy-balance%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    X
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthermo-water-energy-balance%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    in
+  </a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthermo-water-energy-balance%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+    f
+  </a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthermo-water-energy-balance%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+    r
+  </a>
+  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthermo-water-energy-balance%252F" aria-label="Share via Email">
+    @
+  </a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">
+    Share
+  </button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "%!q(\u003cnil\u003e)",
+        url: "\"http://localhost:1313/posts/thermo-water-energy-balance/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>
+  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./thermo-water-energy-balance.png" 
+       alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background" 
+       width="250" 
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.</em>
+  </figcaption>
+</figure>
+<p>Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.</p>
+<p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&rsquo;s not coincidence; it&rsquo;s thermodynamics.</p>
+<p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&rsquo;s <em>specific heat</em> is much higher.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&rdquo;</em></p></blockquote>
+<hr>
+<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
+    <div style="text-align: center;"><strong>Specific heat vs. heat capacity</strong><br><br></div>
+    <strong>Specific heat</strong> measures how much energy it takes to raise <strong>one gram of a substance</strong> by one degree. 
+    <strong>Heat capacity</strong> is the total energy needed to warm the <strong>entire object by one degree</strong>. 
+    In this post, "specific heat" refers to the <em>intensive property</em> of materials like water, while "heat capacity" applies to the <em>extensive property</em> of the pool as a whole.
+</div>
+<p>A swimming pool works the same way, just scaled up thousands of times. Its massive water content means it has enormous heat capacity where warming takes a long time because every degree requires tremendous energy. Cooling happens faster, though, because evaporation and night radiation pull energy out far more efficiently than the sun can replace it.</p>
+<p>In this post, we will turn that intuition into a simple Python model that explains exactly why water warms so slowly but cools so fast.</p>
+<hr>
+<h2 id="the-thought-experiment">The Thought Experiment</h2>
+<p>Imagine a shallow pool sitting in the desert sun. During the day, it absorbs energy from sunlight, and at night it loses energy to the air and sky. The surprising part is not that both happen, but that the rates are so uneven.</p>
+<p>The pool&rsquo;s heat capacity acts like a huge thermal battery; it takes time to charge. The cooling process, on the other hand, is driven by evaporation. Each gram of water that evaporates carries away about 2.45 kilojoules of energy, and with enough dry air and a light breeze, those losses pile up quickly.</p>
+<p>The same logic explains why a pat of margarine melts more slowly than butter. Water is a powerful heat sink, and evaporation is a powerful energy thief. Put them together, and you have a recipe for long warmups and quick cooldowns.</p>
+<hr>
+<h2 id="modeling-the-problem">Modeling the Problem</h2>
+<p>We will treat the water as a well mixed control volume with a single temperature. The surface exchanges heat with the air through convection, with the sky through longwave radiation, and with the sun through shortwave absorption. Evaporation removes energy proportional to the rate at which vapor escapes.</p>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>The water is well mixed with no stratification. This means that the water&rsquo;s temperature is assumed to be uniform throughout, rather than layered (or stratified). In real life, large bodies of water often stratify, meaning warmer, lighter water floats on top while cooler, denser water sinks.</li>
+<li>Conduction through walls and floor is small compared with surface fluxes. In other words, most heat exchange happens through the surface where the water meets the air, not through the pool&rsquo;s sides or bottom. This fact allows us to ignore the smaller conductive losses into the ground or walls.</li>
+<li>Shortwave absorption is a constant fraction of incident irradiance. The sunlight that hits the surface is partly reflected and partly absorbed. Here, we assume that a fixed portion (often 85–90%) is absorbed as heat, rather than modeling how absorption varies with sun angle or surface color.</li>
+<li>Longwave exchange follows the Stefan–Boltzmann law with an effective sky temperature. The pool radiates heat upward to the sky, and the sky radiates a smaller amount back. We model this as a simple radiation balance using the Stefan–Boltzmann law, where the &ldquo;sky temperature&rdquo; represents the average radiative temperature of the atmosphere above.</li>
+<li>Evaporation follows a bulk aerodynamic relationship that depends on humidity gradient and wind. The rate of evaporation depends on how dry the air is and how quickly air moves over the surface. Wind helps carry away moist air, increasing evaporation, while higher humidity slows it down.</li>
+<li>Weather varies smoothly over the day and repeats during the simulation window. Instead of using random or hourly data, we assume repeating daily cycles for temperature, humidity, sunlight, and wind. This simplifies the simulation while still capturing the main diurnal pattern of heating and cooling.</li>
+</ul>
+<p>The <strong>energy balance</strong> is defined as follows using the standard form of the surface energy balance used throughout thermodynamics, climatology, and environmental engineering. In academic terms, this is the first-law (conservation of energy) equation for a control volume, applied to a water surface.</p>
+<p>\[
+C \frac{dT}{dt} = Q_{\text{solar}} + Q_{\text{convective}} + Q_{\text{radiative}} + Q_{\text{evaporative}}
+\]</p>
+<p>where:</p>
+<p>\[
+C = m c_p
+\]</p>
+<p>\[
+Q_{\text{solar}} = \alpha A I(t)
+\]</p>
+<p>\[
+Q_{\text{convective}} = h_c A [T_{\text{air}}(t) - T(t)]
+\]</p>
+<p>\[
+Q_{\text{radiative}} = \varepsilon \sigma A [T_{\text{sky}}(t)^4 - T(t)^4]
+\]</p>
+<p>\[
+Q_{\text{evaporative}} = -L_v \dot{m}_{\text{evap}}
+\]</p>
+<hr>
+<h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
+<p>We&rsquo;ll begin by using AI to generate the helper functions and constants needed to support our simulation.</p>
+<p><strong>Prompt example:</strong> When you ask an AI assistant to provide scaffolding, be specific about inputs, outputs, and units. Request pure functions for each physical term, expressed in SI units, and constants defined once. Ask for no plotting and no input or output inside the helpers so that you can test them easily.</p>
+<blockquote>
+<p>Write a single Python module that defines helper functions for a simple water-surface energy balance, and include only valid Python code in the output.</p>
+<p>Requirements:</p>
+<ol>
+<li>
+<p>Import NumPy as <code>np</code>.</p>
+</li>
+<li>
+<p>Define these constants (SI units):</p>
+<ul>
+<li><code>SIGMA = 5.670374419e-8</code>  # Stefan–Boltzmann W·m^-2·K^-4</li>
+<li><code>LV = 2.45e6</code>             # latent heat of vaporization J·kg^-1</li>
+<li><code>CP = 4186.0</code>             # specific heat of water J·kg^-1·K^-1</li>
+<li><code>RHO = 1000.0</code>            # density of water kg·m^-3</li>
+</ul>
+</li>
+<li>
+<p>Define temperature conversion helpers:</p>
+<ul>
+<li><code>c_to_f(c)</code> returns Fahrenheit from Celsius</li>
+<li><code>f_to_c(f)</code> returns Celsius from Fahrenheit</li>
+<li><code>c_to_k(C)</code> returns Kelvin from Celsius</li>
+</ul>
+</li>
+<li>
+<p>Define saturation vapor pressure over water (Pa) as a function of Celsius using Magnus:</p>
+<ul>
+<li><code>esat(C) = 610.94 * exp(17.625*C / (C + 243.04))</code></li>
+</ul>
+</li>
+<li>
+<p>Define an evaporation mass flux helper (kg·s^-1) using a bulk aerodynamic form:</p>
+<ul>
+<li><code>evap_flux(TwC, TairC, RH, wind, A, k_evap=2.5e-7, beta_wind=0.1)</code>
+where <code>RH</code> is fractional 0..1, <code>wind</code> is m·s^-1, <code>A</code> is m^2.</li>
+<li>Compute <code>es = esat(TwC)</code>, <code>ea = RH * esat(TairC)</code>, <code>grad = max(es - ea, 0)</code>,
+and return <code>k_evap * A * grad * (1.0 + beta_wind * wind)</code>.</li>
+</ul>
+</li>
+<li>
+<p>Define heat flux terms that return Watts (W):</p>
+<ul>
+<li><code>q_solar(I, A, alpha)</code> returns <code>alpha * A * I</code> where <code>I</code> is W·m^-2</li>
+<li><code>q_conv(TwK, TairK, A, h_c)</code> returns <code>h_c * A * (TairK - TwK)</code></li>
+<li><code>q_rad(TwK, TskyK, A, epsilon)</code> returns <code>epsilon * SIGMA * A * (TskyK**4 - TwK**4)</code></li>
+<li><code>q_evap(TwC, TairC, RH, wind, A, k_evap=2.5e-7, beta_wind=0.1)</code> computes <code>mdot = evap_flux(...)</code> and returns <code>-LV * mdot</code></li>
+</ul>
+</li>
+<li>
+<p>Define a diurnal helper <code>diurnal(base, amp, hours, peak_shift=7.0)</code> that returns <code>base + amp * sin(2*pi*(hours - peak_shift)/24.0)</code>.</p>
+</li>
+<li>
+<p>Do not include any print statements, main guards, or plotting.</p>
+</li>
+<li>
+<p>Output only the code with the exact function names and signatures specified.</p>
+</li>
+</ol></blockquote>
+<p><strong>Python code:</strong> Your LLM should respond with code similar to the following:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SIGMA <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5.670374419e-8</span>
+</span></span><span style="display:flex;"><span>LV <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2.45e6</span>
+</span></span><span style="display:flex;"><span>CP <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4186.0</span>
+</span></span><span style="display:flex;"><span>RHO <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1000.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">c_to_f</span>(c):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> c <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">9.0</span><span style="color:#ff79c6">/</span><span style="color:#bd93f9">5.0</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">32.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">f_to_c</span>(f):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> (f <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">32.0</span>) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">5.0</span><span style="color:#ff79c6">/</span><span style="color:#bd93f9">9.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">c_to_k</span>(C):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> C <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">273.15</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">esat</span>(C):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">610.94</span> <span style="color:#ff79c6">*</span> np<span style="color:#ff79c6">.</span>exp(<span style="color:#bd93f9">17.625</span> <span style="color:#ff79c6">*</span> C <span style="color:#ff79c6">/</span> (C <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">243.04</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">evap_flux</span>(TwC, TairC, RH, wind, A, k_evap<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2.5e-7</span>, beta_wind<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.1</span>):
+</span></span><span style="display:flex;"><span>    es <span style="color:#ff79c6">=</span> esat(TwC)
+</span></span><span style="display:flex;"><span>    ea <span style="color:#ff79c6">=</span> RH <span style="color:#ff79c6">*</span> esat(TairC)
+</span></span><span style="display:flex;"><span>    grad <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>maximum(es <span style="color:#ff79c6">-</span> ea, <span style="color:#bd93f9">0.0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> k_evap <span style="color:#ff79c6">*</span> A <span style="color:#ff79c6">*</span> grad <span style="color:#ff79c6">*</span> (<span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">+</span> beta_wind <span style="color:#ff79c6">*</span> wind)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">q_solar</span>(I, A, alpha):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> alpha <span style="color:#ff79c6">*</span> A <span style="color:#ff79c6">*</span> I
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">q_conv</span>(TwK, TairK, A, h_c):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> h_c <span style="color:#ff79c6">*</span> A <span style="color:#ff79c6">*</span> (TairK <span style="color:#ff79c6">-</span> TwK)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">q_rad</span>(TwK, TskyK, A, epsilon):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> epsilon <span style="color:#ff79c6">*</span> SIGMA <span style="color:#ff79c6">*</span> A <span style="color:#ff79c6">*</span> (TskyK<span style="color:#ff79c6">**</span><span style="color:#bd93f9">4</span> <span style="color:#ff79c6">-</span> TwK<span style="color:#ff79c6">**</span><span style="color:#bd93f9">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">q_evap</span>(TwC, TairC, RH, wind, A, k_evap<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2.5e-7</span>, beta_wind<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.1</span>):
+</span></span><span style="display:flex;"><span>    mdot <span style="color:#ff79c6">=</span> evap_flux(TwC, TairC, RH, wind, A, k_evap, beta_wind)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span>LV <span style="color:#ff79c6">*</span> mdot
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">diurnal</span>(base, amp, hours, peak_shift<span style="color:#ff79c6">=</span><span style="color:#bd93f9">7.0</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> base <span style="color:#ff79c6">+</span> amp <span style="color:#ff79c6">*</span> np<span style="color:#ff79c6">.</span>sin(<span style="color:#bd93f9">2</span><span style="color:#ff79c6">*</span>np<span style="color:#ff79c6">.</span>pi <span style="color:#ff79c6">*</span> (hours <span style="color:#ff79c6">-</span> peak_shift) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">24.0</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="simulation-diurnal-heating-and-night-cooling">Simulation: Diurnal Heating and Night Cooling</h2>
+<p><strong>Prompt example:</strong> Now we tell AI to generate a fairly tractable function to simulate the diurnal heating and cooling of a body of water over a specified number of days. Note how specific I have to be in order to get the code I need.</p>
+<blockquote>
+<p>Write a single Python function <code>simulate(days=14, dt=3600.0, cover=False, seed_temp_C=24.0)</code> that performs a forward Euler simulation of a well mixed water body under diurnal forcing. Output only valid Python code.</p>
+<p>Requirements:</p>
+<ol>
+<li>
+<p>The function must include a NumPy import as <code>np</code> at top scope.</p>
+</li>
+<li>
+<p>Use these already defined helpers and constants, do not redefine them:</p>
+<ul>
+<li>helpers: <code>diurnal(base, amp, hours, peak_shift)</code>, <code>c_to_k(C)</code>, <code>q_solar(I, A, alpha)</code>, <code>q_conv(TwK, TairK, A, h_c)</code>, <code>q_rad(TwK, TskyK, A, epsilon)</code>, <code>q_evap(TwC, TairC, RH, wind, A, k_evap, beta_wind)</code></li>
+<li>constants: <code>RHO</code> and <code>CP</code></li>
+</ul>
+</li>
+<li>
+<p>Geometry and bulk properties inside the function:</p>
+<ul>
+<li><code>L, W, depth = 8.0, 4.0, 1.4</code></li>
+<li><code>A = L * W</code></li>
+<li><code>V = A * depth</code></li>
+<li><code>m = RHO * V</code></li>
+<li><code>C = m * CP</code></li>
+</ul>
+</li>
+<li>
+<p>Surface exchange coefficients and optical properties:</p>
+<ul>
+<li><code>alpha = 0.85</code></li>
+<li><code>epsilon = 0.95</code></li>
+<li><code>h_c = 8.0</code></li>
+<li><code>k_evap = 2.5e-7</code></li>
+<li><code>beta_wind = 0.1</code></li>
+<li>If <code>cover</code> is True, set <code>k_evap = 0.3e-7</code>, <code>epsilon = 0.75</code>, <code>h_c = 6.0</code></li>
+</ul>
+</li>
+<li>
+<p>Time discretization:</p>
+<ul>
+<li><code>N = int(days * 24)</code></li>
+<li><code>t = np.arange(N) * dt</code></li>
+<li><code>hours = (t / 3600.0) % 24</code></li>
+</ul>
+</li>
+<li>
+<p>Synthetic diurnal forcing:</p>
+<ul>
+<li><code>T_air_C = diurnal(37.0, 10.0, hours)</code></li>
+<li><code>RH = np.clip(diurnal(0.18, 0.10, hours), 0.05, 0.6)</code></li>
+<li><code>wind = np.clip(diurnal(2.0, 1.5, hours), 0.2, 6.0)</code></li>
+<li><code>I = np.maximum(0.0, 900.0 * np.sin(np.pi * (hours - 6.0) / 12.0))</code></li>
+<li><code>T_sky_K = c_to_k(T_air_C - 15.0)</code></li>
+</ul>
+</li>
+<li>
+<p>State initialization:</p>
+<ul>
+<li><code>Tw = np.zeros(N)</code></li>
+<li><code>Tw[0] = seed_temp_C</code></li>
+</ul>
+</li>
+<li>
+<p>Time stepping loop for <code>i</code> from 1 to <code>N-1</code>:</p>
+<ul>
+<li><code>TwK = c_to_k(Tw[i-1])</code></li>
+<li>Compute fluxes (Watts):
+<code>Qs = q_solar(I[i-1], A, alpha)</code>
+<code>Qc = q_conv(TwK, c_to_k(T_air_C[i-1]), A, h_c)</code>
+<code>Qr = q_rad(TwK, T_sky_K[i-1], A, epsilon)</code>
+<code>Qe = q_evap(Tw[i-1], T_air_C[i-1], RH[i-1], wind[i-1], A, k_evap, beta_wind)</code></li>
+<li><code>Qnet = Qs + Qc + Qr + Qe</code></li>
+<li><code>Tw[i] = Tw[i-1] + (Qnet * dt) / C</code></li>
+</ul>
+</li>
+<li>
+<p>Return a tuple <code>(t / 3600.0, Tw)</code> where time is in hours and temperature in Celsius.</p>
+</li>
+<li>
+<p>After the function, include a main guard that runs a 14 day open and covered simulation, prints the number of simulated hours, and prints the final temperatures with one decimal place labeled in Celsius.</p>
+</li>
+<li>
+<p>Generously comment the code, but do not exceed 80 chars on any line.</p>
+</li>
+</ol></blockquote>
+<p><strong>Python code:</strong> Below is the<code>simulate</code> function and a compact <code>main</code> with a simple run that compares open water with a covered surface.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">81
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">82
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">83
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">84
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">85
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">86
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">87
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">88
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">simulate</span>(days<span style="color:#ff79c6">=</span><span style="color:#bd93f9">14</span>, dt<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3600.0</span>, cover<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>, seed_temp_C<span style="color:#ff79c6">=</span><span style="color:#bd93f9">24.0</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Geometry and bulk properties</span>
+</span></span><span style="display:flex;"><span>    L, W, depth <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">8.0</span>, <span style="color:#bd93f9">4.0</span>, <span style="color:#bd93f9">1.4</span>  <span style="color:#6272a4"># meters</span>
+</span></span><span style="display:flex;"><span>    A <span style="color:#ff79c6">=</span> L <span style="color:#ff79c6">*</span> W                    <span style="color:#6272a4"># surface area, m^2</span>
+</span></span><span style="display:flex;"><span>    V <span style="color:#ff79c6">=</span> A <span style="color:#ff79c6">*</span> depth                <span style="color:#6272a4"># volume, m^3</span>
+</span></span><span style="display:flex;"><span>    m <span style="color:#ff79c6">=</span> RHO <span style="color:#ff79c6">*</span> V                  <span style="color:#6272a4"># mass of water, kg</span>
+</span></span><span style="display:flex;"><span>    C <span style="color:#ff79c6">=</span> m <span style="color:#ff79c6">*</span> CP                   <span style="color:#6272a4"># heat capacity, J/K</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Surface exchange coefficients and optical properties</span>
+</span></span><span style="display:flex;"><span>    alpha <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.85</span>                 <span style="color:#6272a4"># shortwave absorptivity (fraction)</span>
+</span></span><span style="display:flex;"><span>    epsilon <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.95</span>               <span style="color:#6272a4"># longwave emissivity (dimensionless)</span>
+</span></span><span style="display:flex;"><span>    h_c <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">8.0</span>                    <span style="color:#6272a4"># convective HTC, W/(m^2 K)</span>
+</span></span><span style="display:flex;"><span>    k_evap <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2.5e-7</span>              <span style="color:#6272a4"># bulk evaporation coefficient</span>
+</span></span><span style="display:flex;"><span>    beta_wind <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span>              <span style="color:#6272a4"># wind amplification factor</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Apply cover effects: reduce evaporation and radiation, slightly </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># lower convection</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> cover:
+</span></span><span style="display:flex;"><span>        k_evap <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.3e-7</span>          <span style="color:#6272a4"># strong reduction in evaporation losses</span>
+</span></span><span style="display:flex;"><span>        epsilon <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.75</span>           <span style="color:#6272a4"># less longwave emission with cover</span>
+</span></span><span style="display:flex;"><span>        h_c <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">6.0</span>                <span style="color:#6272a4"># modestly lower convection</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Time discretization</span>
+</span></span><span style="display:flex;"><span>    N <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">int</span>(days <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">24</span>)           <span style="color:#6272a4"># number of hourly steps</span>
+</span></span><span style="display:flex;"><span>    t <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(N) <span style="color:#ff79c6">*</span> dt        <span style="color:#6272a4"># seconds</span>
+</span></span><span style="display:flex;"><span>    hours <span style="color:#ff79c6">=</span> (t <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3600.0</span>) <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">24</span>    <span style="color:#6272a4"># local hour of day for diurnal cycles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Synthetic diurnal weather forcing</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># hot mean with daily swing</span>
+</span></span><span style="display:flex;"><span>    T_air_C <span style="color:#ff79c6">=</span> diurnal(<span style="color:#bd93f9">37.0</span>, <span style="color:#bd93f9">10.0</span>, hours)                     
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># very dry afternoons</span>
+</span></span><span style="display:flex;"><span>    RH <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>clip(diurnal(<span style="color:#bd93f9">0.18</span>, <span style="color:#bd93f9">0.10</span>, hours), <span style="color:#bd93f9">0.05</span>, <span style="color:#bd93f9">0.6</span>)      
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># m/s</span>
+</span></span><span style="display:flex;"><span>    wind <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>clip(diurnal(<span style="color:#bd93f9">2.0</span>, <span style="color:#bd93f9">1.5</span>, hours), <span style="color:#bd93f9">0.2</span>, <span style="color:#bd93f9">6.0</span>)       
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># W/m^2</span>
+</span></span><span style="display:flex;"><span>    I <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>maximum(<span style="color:#bd93f9">0.0</span>, <span style="color:#bd93f9">900.0</span> <span style="color:#ff79c6">*</span> np<span style="color:#ff79c6">.</span>sin(np<span style="color:#ff79c6">.</span>pi <span style="color:#ff79c6">*</span> (hours <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">6.0</span>) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">12.0</span>))  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># effective sky temp in Kelvin</span>
+</span></span><span style="display:flex;"><span>    T_sky_K <span style="color:#ff79c6">=</span> c_to_k(T_air_C <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">15.0</span>)                         
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># State initialization</span>
+</span></span><span style="display:flex;"><span>    Tw <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>zeros(N)
+</span></span><span style="display:flex;"><span>    Tw[<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">=</span> seed_temp_C
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Time integration of energy balance</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">1</span>, N):
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Convert current water temp to Kelvin for radiation and </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># convection calcs</span>
+</span></span><span style="display:flex;"><span>        TwK <span style="color:#ff79c6">=</span> c_to_k(Tw[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Compute flux terms (Watts). Sign convention:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Positive adds heat to water. Negative removes heat </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># from water.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># shortwave absorbed</span>
+</span></span><span style="display:flex;"><span>        Qs <span style="color:#ff79c6">=</span> q_solar(I[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>], A, alpha)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># convection with air</span>
+</span></span><span style="display:flex;"><span>        Qc <span style="color:#ff79c6">=</span> q_conv(TwK, c_to_k(T_air_C[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]), A, h_c)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># longwave net radiation</span>
+</span></span><span style="display:flex;"><span>        Qr <span style="color:#ff79c6">=</span> q_rad(TwK, T_sky_K[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>], A, epsilon)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># evaporation</span>
+</span></span><span style="display:flex;"><span>        Qe <span style="color:#ff79c6">=</span> q_evap(Tw[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>], T_air_C[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>], RH[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>], 
+</span></span><span style="display:flex;"><span>                    wind[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>], A, k_evap, beta_wind)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Net heat rate and temperature update</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Watts</span>
+</span></span><span style="display:flex;"><span>        Qnet <span style="color:#ff79c6">=</span> Qs <span style="color:#ff79c6">+</span> Qc <span style="color:#ff79c6">+</span> Qr <span style="color:#ff79c6">+</span> Qe
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Celsius update</span>
+</span></span><span style="display:flex;"><span>        Tw[i] <span style="color:#ff79c6">=</span> Tw[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> (Qnet <span style="color:#ff79c6">*</span> dt) <span style="color:#ff79c6">/</span> C
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Return time in hours and temperature in Celsius</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> t <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3600.0</span>, Tw
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    hours_open, Tw_open <span style="color:#ff79c6">=</span> simulate(days<span style="color:#ff79c6">=</span><span style="color:#bd93f9">14</span>, cover<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span>    hours_cov, Tw_cov <span style="color:#ff79c6">=</span> simulate(days<span style="color:#ff79c6">=</span><span style="color:#bd93f9">14</span>, cover<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Simulated </span><span style="color:#f1fa8c">{</span><span style="color:#8be9fd;font-style:italic">len</span>(hours_open)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> hours&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Final temperature open: </span><span style="color:#f1fa8c">{</span>Tw_open[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> C&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Final temperature cover: </span><span style="color:#f1fa8c">{</span>Tw_cov[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> C&#34;</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Sample Output:</strong> The following simulation shows a ~25 °F (~14 °C) difference between a covered body of water and an uncovered one.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>Simulated 336 hours
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Final temperature open</span>:  <span style="color:#bd93f9">61.4</span> °F (16.3 °C)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Final temperature cover</span>: <span style="color:#bd93f9">86.8</span> °F (30.5 °C)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="making-the-results-visual">Making the Results Visual</h2>
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+    <img src="./plot.png" alt="Line plot showing how germs accumulate on food over 10 seconds with a steep rise at the start and then leveling off" width="400" style="display: block; margin: 0 auto;">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Water temperature over 14 days under diurnal forcing for open vs covered conditions (left axis °F, right axis °C). The cover reduces nighttime losses from evaporation and longwave radiation, raising the average temperature and narrowing the daily swing compared with the open surface.</em>
+    </figcaption>
+</figure>
+<p><strong>Prompt example:</strong> A picture makes the mechanism obvious. Here I ask AI to generate the Python code to plot the two temperature curves on the same axes to compare warming with and without a cover.</p>
+<blockquote>
+<p>Write a Python function named plot_runs_dual_axis(run_open, run_cov) that uses Matplotlib to plot two temperature time series with Fahrenheit on the left (primary) y-axis and Celsius on the right (secondary) y-axis.</p>
+<p>Requirements:</p>
+<ol>
+<li>
+<p>Assume these helpers already exist in scope and must be used: <code>c_to_f(array_like)</code> and <code>f_to_c(array_like)</code>.</p>
+</li>
+<li>
+<p>Inputs are tuples:</p>
+<ul>
+<li><code>run_open = (hours_open, Tw_open_C, label_open)</code></li>
+<li><code>run_cov  = (hours_cov,  Tw_cov_C,  label_cov)</code>
+where <code>hours_*</code> are hour vectors, and <code>Tw_*_C</code> are water temperatures in Celsius.</li>
+</ul>
+</li>
+<li>
+<p>Convert the Celsius series to Fahrenheit for plotting on the primary axis.</p>
+</li>
+<li>
+<p>Create the plot with <code>fig, ax = plt.subplots(figsize=(10, 4))</code>.</p>
+</li>
+<li>
+<p>Plot both runs with labels, set x-label to <code>&quot;Hour&quot;</code>, primary y-label to <code>&quot;Water temperature (°F)&quot;</code>, title to <code>&quot;Two week warming under diurnal forcing&quot;</code>, and show a legend.</p>
+</li>
+<li>
+<p>Add a <strong>secondary y-axis on the right</strong> in Celsius using <code>ax.secondary_yaxis('right', functions=(f_to_c, c_to_f))</code> and set its label to <code>&quot;Water temperature (°C)&quot;</code>.</p>
+</li>
+<li>
+<p>Call <code>fig.tight_layout()</code> and <code>plt.show()</code> at the end.</p>
+</li>
+<li>
+<p>Include a short docstring explaining inputs and the dual-axis behavior.</p>
+</li>
+<li>
+<p>Return only valid Python code with the single function definition and necessary <code>import matplotlib.pyplot as plt</code>.</p>
+</li>
+</ol></blockquote>
+<p><strong>Python code:</strong> Here is a minimal plotting script for the temperature trajectories.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_runs_dual_axis</span>(run_open, run_cov):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Unpack the arguments for open vs. covered run</span>
+</span></span><span style="display:flex;"><span>    hours_open, Tw_open_C, label_open <span style="color:#ff79c6">=</span> run_open
+</span></span><span style="display:flex;"><span>    hours_cov,  Tw_cov_C,  label_cov  <span style="color:#ff79c6">=</span> run_cov
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Convert series to °F for the primary y-axis</span>
+</span></span><span style="display:flex;"><span>    Tw_open_F <span style="color:#ff79c6">=</span> c_to_f(Tw_open_C)
+</span></span><span style="display:flex;"><span>    Tw_cov_F  <span style="color:#ff79c6">=</span> c_to_f(Tw_cov_C)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">4</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>plot(hours_open, Tw_open_F, label<span style="color:#ff79c6">=</span>label_open)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>plot(hours_cov,  Tw_cov_F,  label<span style="color:#ff79c6">=</span>label_cov)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;Hour&#34;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;Water temperature (°F)&#34;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;Two week warming under diurnal forcing&#34;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>legend(loc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;best&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Secondary y-axis in °C mapped from the primary °F axis</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># functions = (forward, inverse) where forward maps </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">#   primary-&gt;secondary</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Primary is °F, secondary is °C, so use (f_to_c, c_to_f)</span>
+</span></span><span style="display:flex;"><span>    ax2 <span style="color:#ff79c6">=</span> ax<span style="color:#ff79c6">.</span>secondary_yaxis(<span style="color:#f1fa8c">&#39;right&#39;</span>, functions<span style="color:#ff79c6">=</span>(f_to_c, c_to_f))
+</span></span><span style="display:flex;"><span>    ax2<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;Water temperature (°C)&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    fig<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="what-we-learned">What We Learned</h2>
+<p>Water behaves like a massive thermal reservoir. High specific heat spreads warming across many days. Evaporation and longwave radiation remove energy efficiently at night, especially in dry air. A simple cover changes the balance by cutting evaporation and reducing radiative loss, which keeps more of the daytime energy in the water.</p>
+<hr>
+<h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
+<h3 id="beginner-level-quick-fixes-and-calibration">Beginner Level: Quick Fixes and Calibration</h3>
+<ol>
+<li>
+<p>Calibrate the evaporation coefficient so the model matches a week of measured temperatures from your own setup.</p>
+</li>
+<li>
+<p>Change depth while holding surface area fixed and observe how geometry changes heating and cooling time scales.</p>
+</li>
+<li>
+<p>Replace the synthetic solar curve with measured irradiance from a local weather source.</p>
+</li>
+</ol>
+<h3 id="intermediate-level-weather-and-geometry">Intermediate Level: Weather and Geometry</h3>
+<ol>
+<li>
+<p>Add a thin surface layer on top of the bulk water and give it its own temperature for faster daytime response.</p>
+</li>
+<li>
+<p>Drive the model with hourly air temperature, humidity, and wind from a nearby station and compare seasons.</p>
+</li>
+<li>
+<p>Add an approximate ground heat flux term using a constant heat transfer coefficient and soil temperature.</p>
+</li>
+</ol>
+<h3 id="advanced-level-stochasticity-and-control">Advanced Level: Stochasticity and Control</h3>
+<ol>
+<li>
+<p>Add random gusts in wind and random humidity excursions at night and examine the spread of outcomes.</p>
+</li>
+<li>
+<p>Implement a simple controller that applies a cover based on forecasted night conditions and a target minimum temperature.</p>
+</li>
+<li>
+<p>Couple the model to a small heat pump with a coefficient of performance and schedule it when losses are smallest.</p>
+</li>
+</ol>
+<hr>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>The same physics that makes butter soften faster than a water-rich spread also explains why water warms slowly and cools quickly. Specific heat stretches warming across time while evaporation and night sky cooling can pull heat out quickly. Once you see the balance in code the paradox turns into a ledger.</p>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/thermo-water-energy-balance" target="_blank" rel="noopener noreferrer">
+  Download the full code on GitHub
+</a>
+</p>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/energy-balance/" rel="tag">energy balance</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/simulation/" rel="tag">simulation</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/thermodynamics/" rel="tag">thermodynamics</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer communities. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/thermo-water-energy-balance/">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-learn/">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-think/">How Large Language Models (LLMs) Think: Turning Meaning into Math</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-read-code/">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-dispatch-maps/">Using Python Dispatch Tables for Cleaner Validation</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/three-d-packing/">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai--the-mathematics-of-language/">AI &amp; the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling--simulation/">Applied Modeling &amp; Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays--perspectives/">Essays &amp; Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques--tooling/">Python Techniques &amp; Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/simulation/" title="Simulation">Simulation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

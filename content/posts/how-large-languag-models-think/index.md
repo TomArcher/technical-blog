@@ -6,16 +6,8 @@ aliases = [
 draft = false
 title = "How Large Language Models (LLMs) Think: Turning Meaning into Math"
 subtitle = "Exploring how large language models use linear algebra to create geometric meaning"
-categories = ["Academic", "Generative AI", "Mathematics", ]
-tags = [
-    "Embeddings", 
-    "Linear Algebra", 
-    "LLM",
-    "Mathematical Semantics",
-    "MATLAB",
-    "Neural Geometry",
-    "Vectors",
-]
+categories = ["AI & The Mathematics of Language", ]
+tags = ["AI", "embeddings", "geometry", "linear algebra", "LLMs",]
 author = "Tom Archer"
 listThumb = "how-large-languag-models-read-code-thumb.png"
 +++
@@ -219,7 +211,7 @@ In that sense, an LLM does not think; it navigates. It is a statistical traveler
 
 ---
 
-### Closing Thoughts
+## Closing Thoughts
 
 Understanding embeddings turns the mystery of AI into something tangible. **When you realize that "meaning" is just geometry, you start to see why models feel both powerful and fragile.** They are not reasoning in symbols or words; they are surfing through probability.
 

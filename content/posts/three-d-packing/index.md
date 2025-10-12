@@ -2,14 +2,8 @@
 title = "From Ice Shows to Algorithms: Cracking the Truck-Packing Problem"
 date = '2025-08-20T09:00:00-07:00'
 draft = false
-categories = ["Algorithms", "Generative AI", "Programming",]
-tags = [
-    "3D Bin Packing",
-    "Heuristics",
-    "Matplotlib",
-    "NP-hard",
-    "Python",
-]
+categories = ["Applied Modeling & Simulation",]
+tags = ["algorithms", "geometry", "optimization", "Python",]
 author = "Tom Archer"
 listThumb = "three-d-packing.png"
 +++
@@ -422,7 +416,7 @@ The best way to internalize a concept like 3D packing is to get your hands dirty
 
 ---
 
-## Final Thoughts
+## Closing Thoughts
 
 Packing trucks may seem like grunt work, but it's really a microcosm of **optimization problems**: finite resources, constraints, tradeoffs. The thrill of solving them, especially with today's AI scaffolding, is the same thrill that first drew me to programming back at Holiday on Ice.
 

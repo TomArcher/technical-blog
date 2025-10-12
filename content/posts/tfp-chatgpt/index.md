@@ -2,11 +2,8 @@
 date = '2025-08-19T05:00:00-07:00'
 draft = false
 title = "From Solow to ChatGPT: Why Total Factor Productivity Can't Keep Up With Generative AI"
-categories = ["Academic", "Economics", "Generative AI", "Opinion", ]
-tags = [
-  "Productivity",
-  "TFP",
-]
+categories = ["Essays & Perspectives", ]
+tags = ["AI", "economics", "innovation", "productivity",]
 author = "Tom Archer"
 listThumb = "tfp-chatgpt.png"
 +++
@@ -85,7 +82,7 @@ This isn't just academic nitpicking. **If our metrics don't evolve, policymakers
 
 ---
 
-## The Bigger Picture
+## Closing Thoughts
 
 Generative AI forces us to confront a deeper truth: productivity is more than output per hour. It's about **potential unlocked**. It's about new business models, new kinds of creativity, and new ways of working that defy neat equations.
 

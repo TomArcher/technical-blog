@@ -2,16 +2,8 @@
 title = "The Meeting Diet: An Optimization Approach to Your Calendar"
 date = 2025-08-28T05:00:00-07:00
 draft = false
-categories = ["Algorithms", "Generative AI", "Programming"]
-tags = [
-    "ILP",
-    "Knapsack Problem",
-    "Matplotlib",
-    "OR-Tools",
-    "Productivity",
-    "PuLP",
-    "Python",
-]
+categories = ["Applied Modeling & Simulation"]
+tags = ["optimization", "Python", "scheduling", "simulation",]
 author = "Tom Archer"
 listThumb = "meeting-diet.png"
 +++
@@ -375,7 +367,7 @@ Ready to push this further? Try these extensions:
 
 ---
 
-## Final Thoughts
+## Closing Thoughts
 
 Meetings don't have to consume your week. With a little optimization, you can put your calendar on a diet that actually helps you get healthier at work. To paraphrase the old expression, **run your calendar, or your calendar will run you**.
 

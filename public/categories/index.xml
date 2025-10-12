@@ -6,62 +6,34 @@
     <description>Recent content in Categories on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Oct 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 10 Oct 2025 09:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Academic</title>
-      <link>http://localhost:1313/categories/academic/</link>
-      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/academic/</guid>
+      <title>Applied Modeling &amp; Simulation</title>
+      <link>http://localhost:1313/categories/applied-modeling--simulation/</link>
+      <pubDate>Fri, 10 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/applied-modeling--simulation/</guid>
       <description></description>
     </item>
     <item>
-      <title>Generative AI</title>
-      <link>http://localhost:1313/categories/generative-ai/</link>
-      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/generative-ai/</guid>
+      <title>AI &amp; the Mathematics of Language</title>
+      <link>http://localhost:1313/categories/ai--the-mathematics-of-language/</link>
+      <pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/ai--the-mathematics-of-language/</guid>
       <description></description>
     </item>
     <item>
-      <title>Mathematics</title>
-      <link>http://localhost:1313/categories/mathematics/</link>
-      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/mathematics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Best Practices</title>
-      <link>http://localhost:1313/categories/best-practices/</link>
+      <title>Python Techniques &amp; Tooling</title>
+      <link>http://localhost:1313/categories/python-techniques--tooling/</link>
       <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/best-practices/</guid>
+      <guid>http://localhost:1313/categories/python-techniques--tooling/</guid>
       <description></description>
     </item>
     <item>
-      <title>Programming</title>
-      <link>http://localhost:1313/categories/programming/</link>
-      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/programming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Algorithms</title>
-      <link>http://localhost:1313/categories/algorithms/</link>
-      <pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/algorithms/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Economics</title>
-      <link>http://localhost:1313/categories/economics/</link>
+      <title>Essays &amp; Perspectives</title>
+      <link>http://localhost:1313/categories/essays--perspectives/</link>
       <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/economics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Opinion</title>
-      <link>http://localhost:1313/categories/opinion/</link>
-      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/opinion/</guid>
+      <guid>http://localhost:1313/categories/essays--perspectives/</guid>
       <description></description>
     </item>
   </channel>

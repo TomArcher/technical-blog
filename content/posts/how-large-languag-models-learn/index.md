@@ -3,14 +3,8 @@ date = '2025-10-08T06:00:00-07:00'
 draft = false
 title = "How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding"
 subtitle = "Exploring how gradient descent and partial derivatives teach models to think"
-categories = ["Academic", "Generative AI", "Mathematics"]
-tags = [
-    "Backpropagation", 
-    "Calculus", 
-    "Gradient Descent", 
-    "Optimization", 
-    "AI Training"
-]
+categories = ["AI & The Mathematics of Language"]
+tags = ["AI", "calculus", "gradient descent", "LLMs", "optimization",]
 author = "Tom Archer"
 listThumb = "how-large-languag-models-learn3.png"
 +++
@@ -122,7 +116,7 @@ So when a large language model finishes your sentence, it's not recalling a rule
 
 ---
 
-### Closing Thoughts
+## Closing Thoughts
 
 The first two parts of this series explored how LLMs **see** the world through probability and geometry. This post reveals how they **move** through it.
 
