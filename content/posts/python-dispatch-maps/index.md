@@ -141,7 +141,9 @@ def create_user(username: str, age: int, email: str) -> None:
 
 - Adding a rule requires simply adding a dictionary entry - either a lamda or a function name that returns a boolean indicating validation success or failure.
 
-- No `if` sprawl, which leads to loss of readability. The result is obviously higher maintenace costs.
+- No `if` sprawl, which leads to loss of readability. 
+
+- Lower maintenace costs.
 
 ## Closing Thoughts 💡
 

@@ -450,7 +450,7 @@ Water behaves like a massive thermal reservoir. High specific heat spreads warmi
 
 ## Closing Thoughts
 
-The same physics that makes butter soften faster than a water-rich spread also explains why water warms slowly and cools quickly. Specific heat stretches warming across time while evaporation and night sky cooling can pull heat out quickly. Once you see the balance in code the paradox turns into a ledger.
+Butter and pools may seem like strange lab partners, until you **turn up the heat**. In butter, fat gives way quickly, while the water in margarine plays the long game. Pools behave like margarine on a grand scale, warming slowly, then giving it all back after just a few dry nights. Next time you're poolside on a broiling summer day, you'll know exactly why the water can feel like early spring.
 
 ## Try It Yourself
 
