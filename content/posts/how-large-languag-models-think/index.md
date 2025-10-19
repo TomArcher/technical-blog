@@ -18,7 +18,7 @@ listThumb = "how-large-languag-models-read-code-thumb.png"
     width="250" 
     style="display: block; margin: 0 auto;">
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>Meaning shape in mathematics long before it reaches words.</em>
+        <em>Meaning takes shape in mathematics long before it reaches words.</em>
     </figcaption>
 </figure>
 
