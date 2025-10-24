@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-10-23T09:00:00-07:00">
+              <strong>October 23, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Categories:</strong>&nbsp;<a class="meta__link"
+                 href=""
+                 rel="category"><em>Applied Modeling &amp; Simulation</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/physics/"
+                 rel="tag">#physics</a>, <a class="meta__link"
+                 href="/tags/python/"
+                 rel="tag">#Python</a>, <a class="meta__link"
+                 href="/tags/simulation/"
+                 rel="tag">#simulation</a>, <a class="meta__link"
+                 href="/tags/kinematics/"
+                 rel="tag">#kinematics</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fsafe-distance-in-traffic%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    X
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fsafe-distance-in-traffic%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    in
+  </a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fsafe-distance-in-traffic%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+    f
+  </a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fsafe-distance-in-traffic%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+    r
+  </a>
+  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fsafe-distance-in-traffic%252F" aria-label="Share via Email">
+    @
+  </a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">
+    Share
+  </button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "%!q(\u003cnil\u003e)",
+        url: "\"http://localhost:1313/posts/safe-distance-in-traffic/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>
+  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./safe-distance-in-traffic-vertical-arrows.png" alt="Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Following distance isn't just space, it's time in motion.</em>
+  </figcaption>
+</figure>
+<p>While researching why car insurance rates are so extremely high in Las Vegas, I got to thinking about the three-second rule and its validity. From what I&rsquo;ve heard most of my life, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front. That rule is simple enough, yet deceptively deep once you unpack the physics.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Three seconds is a rule of thumb. Physics decides if it is enough.&rdquo;</em></p></blockquote>
+<hr>
+<p>I have always found that kind of rule fascinating because it is both universal and situational. It works whether you are cruising at 25 mph through town or flying down I-5 at 75 mph. At least, that is what the manuals claim. But how does it hold up when you actually model two cars in motion: one stopping suddenly; the other reacting with a delay? That is where the math and a little Python simulation come in handy.</p>
+<h2 id="the-thought-experiment">The Thought Experiment</h2>
+<p>Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn&rsquo;t just brake; it <strong>comes to an immediate stop</strong> after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. The question now becomes: how much <strong>time headway</strong> (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?</p>
+<p>This scenario is far harsher than the standard &ldquo;braking distance&rdquo; example you see in driver&rsquo;s ed. When the lead car stops instantly, there&rsquo;s no gradual deceleration, no brake lights glowing in time to react; there&rsquo;s just physics and the driver&rsquo;s delay. In this version, reaction time dominates everything. Every tenth of a second eats up more road, and if the following car&rsquo;s tires or brakes aren&rsquo;t perfect, even three seconds might not be enough.</p>
+<hr>
+<h2 id="modeling-the-problem">Modeling the Problem</h2>
+<p>To make the problem solvable, we model the leader&rsquo;s <strong>instantaneous stop</strong> as having zero forward motion after time zero, while the follower continues at a constant speed until reaction time elapses, then brakes at a fixed deceleration rate.</p>
+<p><strong>Assumptions:</strong></p>
+<ol>
+<li>Both cars are traveling at the same initial speed.</li>
+<li>The leader stops completely at time zero (no deceleration ramp).</li>
+<li>The follower continues at full speed during the reaction delay, then begins braking at a constant rate.</li>
+<li>The goal is to find the minimum headway time (in seconds) or distance (in feet) needed to prevent impact.</li>
+</ol>
+<p>The follower&rsquo;s stopping distance is given by the classic kinematic equation:</p>
+<p>\[
+d_F = v\tau + \frac{v^2}{2a_F}
+\]</p>
+<p>where:</p>
+<ul>
+<li>\(v\) = initial speed (ft/s)</li>
+<li>\(\tau\) = reaction time (s)</li>
+<li>\(a_F\) = follower&rsquo;s braking deceleration (ft/s²)</li>
+</ul>
+<p>Since the leader&rsquo;s distance to a stop is zero (it&rsquo;s already stationary), the <strong>minimum initial gap</strong> must be at least \(d_F\), which translates directly into <strong>headway time</strong> by dividing by the initial velocity:</p>
+<p>\[
+h \ge \tau + \frac{v}{2a_F}
+\]</p>
+<p>This model is intentionally severe because the lead car contributes nothing to braking. The follower alone must cover the entire stopping distance.</p>
+<hr>
+<h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
+<p>You can still ask an AI assistant to generate the helper functions, but now the prompt needs to describe the <strong>instant-stop leader scenario</strong>, where only the follower decelerates.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Define a constant <code>MPH_TO_FTS = 1.4666666667</code>and implement three functions:</p>
+<ol>
+<li><code>mph_to_fts(mph: np.ndarray | float) -&gt; np.ndarray</code>: converts mph to ft/s, accepts scalar or arraylike, and returns <code>np.asarray(mph, dtype=float) * MPH_TO_FTS</code>.</li>
+<li><code>required_headway_instant_stop(v_mph: np.ndarray | float, tau: float = 1.5, a_f: float = 19.7) -&gt; np.ndarray</code>: computes the minimum time headway (seconds) to avoid collision if the lead car stops instantly, using <code>h = tau + v/(2*a_f)</code> where <code>v</code> is in ft/s.</li>
+<li><code>print_headway_table(speeds_mph: Iterable[float], conditions: Dict[str, float], tau: float = 1.5) -&gt; None</code>: prints a table of required headway for each condition and speed, using formatted output like <code>&quot;{mph:&gt;3.0f} mph → {h:.2f} s&quot;</code>.</li>
+</ol>
+<p>Use clear docstrings, vectorized math, and match standard Python formatting and type hints exactly. Output only the Python code.</p></blockquote>
+<p><strong>Python code</strong>:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> __future__ <span style="color:#ff79c6">import</span> annotations
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> typing <span style="color:#ff79c6">import</span> Dict, Iterable, Tuple
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MPH_TO_FTS <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.4666666667</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">mph_to_fts</span>(mph: np<span style="color:#ff79c6">.</span>ndarray <span style="color:#ff79c6">|</span> <span style="color:#8be9fd;font-style:italic">float</span>) <span style="color:#ff79c6">-&gt;</span> np<span style="color:#ff79c6">.</span>ndarray:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Convert mph to ft/s. Accepts scalar or arraylike.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    v <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>asarray(mph, dtype<span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">float</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> v <span style="color:#ff79c6">*</span> MPH_TO_FTS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">required_headway_instant_stop</span>(
+</span></span><span style="display:flex;"><span>    v_mph: np<span style="color:#ff79c6">.</span>ndarray <span style="color:#ff79c6">|</span> <span style="color:#8be9fd;font-style:italic">float</span>,
+</span></span><span style="display:flex;"><span>    tau: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.5</span>,
+</span></span><span style="display:flex;"><span>    a_f: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">19.7</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> np<span style="color:#ff79c6">.</span>ndarray:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Minimum time headway (seconds) to avoid collision if the 
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    lead car stops instantly. h = tau + v/(2*a_f), where v is 
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    initial speed in ft/s and a_f is follower decel in ft/s^2.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Accepts scalar or arraylike mph and returns ndarray.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    v_fts <span style="color:#ff79c6">=</span> mph_to_fts(v_mph)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> tau <span style="color:#ff79c6">+</span> v_fts <span style="color:#ff79c6">/</span> (<span style="color:#bd93f9">2.0</span> <span style="color:#ff79c6">*</span> a_f)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">print_headway_table</span>(
+</span></span><span style="display:flex;"><span>    speeds_mph: Iterable[<span style="color:#8be9fd;font-style:italic">float</span>],
+</span></span><span style="display:flex;"><span>    conditions: Dict[<span style="color:#8be9fd;font-style:italic">str</span>, <span style="color:#8be9fd;font-style:italic">float</span>],
+</span></span><span style="display:flex;"><span>    tau: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.5</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Print a simple table of required headway by condition 
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    and speed.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    speeds <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">list</span>(speeds_mph)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> name, a_f <span style="color:#ff79c6">in</span> conditions<span style="color:#ff79c6">.</span>items():
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">{</span>name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> pavement:&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> mph <span style="color:#ff79c6">in</span> speeds:
+</span></span><span style="display:flex;"><span>            h <span style="color:#ff79c6">=</span> required_headway_instant_stop(mph, tau<span style="color:#ff79c6">=</span>tau, a_f<span style="color:#ff79c6">=</span>a_f)
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  </span><span style="color:#f1fa8c">{</span>mph<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">&gt;3.0f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> mph </span><span style="color:#f1fa8c">\u2192</span><span style="color:#f1fa8c"> </span><span style="color:#f1fa8c">{</span>h<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> s&#34;</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="simulation-comparing-road-conditions">Simulation: Comparing Road Conditions</h2>
+<p>Now we can simulate how road conditions (dry, wet, icy) affect the safe following time <strong>if the car ahead stops dead</strong>.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Implement a <code>main</code> function that defines a speeds table list that contains the elements 30, 50, 70. Define a table conditions dictionary to hold the driving conditions (key) and its deceleration default (value). The values are &ldquo;Dry&rdquo; (19.7), &ldquo;Wet&rdquo; (13.1&quot;), and &ldquo;Icy&rdquo; (6.6). Finally, call the <code>print_headway_table</code> function passing it the speeds table list, the table conditions dictionary, and a tau value of 1.5.</p></blockquote>
+<p><strong>Python code</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>() <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Headway at a few representative speeds</span>
+</span></span><span style="display:flex;"><span>    speeds_table <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">30</span>, <span style="color:#bd93f9">50</span>, <span style="color:#bd93f9">70</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Deceleration assumptions in ft/s^2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Print table uses simple dict[name] = a_f</span>
+</span></span><span style="display:flex;"><span>    table_conditions <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Dry&#34;</span>: <span style="color:#bd93f9">19.7</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Wet&#34;</span>: <span style="color:#bd93f9">13.1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Icy&#34;</span>: <span style="color:#bd93f9">6.6</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    print_headway_table(speeds_table, table_conditions, tau<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.5</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Sample Output:</strong></p>
+<p>The following output tells us the <strong>minimum time gap needed to avoid a collision</strong> under each condition (Dry, Wet, Icy) at those speeds (30, 50, 70), given the model&rsquo;s assumptions. A quick read tells us that, even at moderate speeds, the difference is dramatic. A three-second gap feels generous in dry weather but terrifyingly short when the road turns slick.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">✨ Dry pavement</span>:
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">30</span> mph → 2.62 s
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">50</span> mph → 3.36 s
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">70</span> mph → 4.11 s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">😬 Wet pavement</span>:
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">30</span> mph → 3.18 s
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">50</span> mph → 4.30 s
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">70</span> mph → 5.42 s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">😱 Icy pavement</span>:
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">30</span> mph → 4.83 s
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">50</span> mph → 7.06 s
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">70</span> mph → 9.28 s
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="making-the-results-visual">Making the Results Visual</h2>
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+  <img src="./plot.png" 
+       alt="Line chart of minimum headway time versus speed for dry, wet, and icy roads, with a dashed 3-second rule line showing that lower friction and higher speed require more time." 
+       width="400" 
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Time-based following rules scale with speed, but the coefficient of friction between the tires and the road and the driver's reaction time set the real safety margin.</em>
+  </figcaption>
+</figure>
+<p>A plot brings this vividly to life: three upward curves showing how the safe following time rises sharply with speed, and exponentially with slipperiness. The dashed &ldquo;3-second rule&rdquo; line slices through them, safe in good weather but hopeless on ice.</p>
+<p><strong>Prompt:</strong></p>
+<blockquote>
+<p>Write Python code that plots the minimum safe following time versus speed for several road conditions when the lead car stops instantly. Assume there is a helper named required_headway_instant_stop(speeds_mph, tau, a_f) that accepts a scalar or array of speeds in mph and returns headway in seconds. Create a function called plot_headway_curves that:</p>
+<ul>
+<li>Accepts an iterable of speeds in mph and a dict of conditions where each key is a label like Dry or Wet and each value is a tuple (a_f, color) with a_f in ft/s^2 and a valid Matplotlib color.</li>
+<li>Has optional parameters for the reaction time tau, a horizontal rule in seconds to compare against, and a title string.</li>
+<li>Uses NumPy to turn the speeds into a float array.</li>
+<li>For each condition computes headway for all speeds and plots a line with markers, one line per condition.</li>
+<li>Draws a dashed horizontal line at the chosen rule level in seconds.</li>
+<li>Labels axes with Speed (mph) and Minimum headway (seconds), adds a legend, applies a tight layout, and shows the figure.</li>
+</ul>
+<p>Keep the implementation compact and readable. Import Matplotlib inside the function. Use reasonable defaults like tau around 1.5 seconds and a 3 second rule line. Do not include any file I/O or CLI parsing. Output only the Python code.</p></blockquote>
+<p><strong>Python code:</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_headway_curves</span>(
+</span></span><span style="display:flex;"><span>    speeds_mph: Iterable[<span style="color:#8be9fd;font-style:italic">float</span>],
+</span></span><span style="display:flex;"><span>    conditions: Dict[<span style="color:#8be9fd;font-style:italic">str</span>, Tuple[<span style="color:#8be9fd;font-style:italic">float</span>, <span style="color:#8be9fd;font-style:italic">str</span>]],
+</span></span><span style="display:flex;"><span>    tau: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.5</span>,
+</span></span><span style="display:flex;"><span>    rule_sec: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3.0</span>,
+</span></span><span style="display:flex;"><span>    title: <span style="color:#8be9fd;font-style:italic">str</span> <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Safe Following Time if the Lead Car Stops Instantly&#34;</span>
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Plot headway vs speed for multiple road conditions.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    conditions: dict like
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    {&#34;Dry&#34;: (19.7, &#34;green&#34;), &#34;Wet&#34;: (13.1, &#34;orange&#34;), ...}
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    speeds_mph: iterable of speeds in mph
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    speeds <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>asarray(<span style="color:#8be9fd;font-style:italic">list</span>(speeds_mph), dtype<span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">float</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>figure(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">4</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> name, (a_f, color) <span style="color:#ff79c6">in</span> conditions<span style="color:#ff79c6">.</span>items():
+</span></span><span style="display:flex;"><span>        h <span style="color:#ff79c6">=</span> required_headway_instant_stop(
+</span></span><span style="display:flex;"><span>            speeds, tau<span style="color:#ff79c6">=</span>tau, a_f<span style="color:#ff79c6">=</span>a_f
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff79c6">.</span>plot(speeds, h, <span style="color:#f1fa8c">&#34;o-&#34;</span>, color<span style="color:#ff79c6">=</span>color, label<span style="color:#ff79c6">=</span>name)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>axhline(
+</span></span><span style="display:flex;"><span>        rule_sec,
+</span></span><span style="display:flex;"><span>        color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;black&#34;</span>,
+</span></span><span style="display:flex;"><span>        ls<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;--&#34;</span>,
+</span></span><span style="display:flex;"><span>        label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>rule_sec<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.0f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">-second rule&#34;</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#34;Speed (mph)&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#34;Minimum headway (seconds)&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>title(title)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>legend()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="what-we-learned">What We Learned</h2>
+<p>When you model an <strong>instant-stop collision</strong>, the &ldquo;three-second rule&rdquo; starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That&rsquo;s the length of five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you&rsquo;re not fighting the brakes; you&rsquo;re fighting time itself. It&rsquo;s a sobering reminder that safety margins are rarely about skill or confidence but about how fast physics cashes the checks our reflexes can&rsquo;t cover.</p>
+<hr>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/physics/" rel="tag">physics</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/simulation/" rel="tag">simulation</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/kinematics/" rel="tag">kinematics</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer communities. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/safe-distance-in-traffic/">Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/thermo-water-energy-balance/">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-learn/">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-think/">How Large Language Models (LLMs) Think: Turning Meaning into Math</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-languag-models-read-code/">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-dispatch-maps/">Using Python Dispatch Tables for Cleaner Validation</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai--the-mathematics-of-language/">AI &amp; the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling--simulation/">Applied Modeling &amp; Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays--perspectives/">Essays &amp; Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques--tooling/">Python Techniques &amp; Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/simulation/" title="Simulation">Simulation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

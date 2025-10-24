@@ -6,8 +6,15 @@
     <description>Recent content in Physics on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Sep 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 23 Oct 2025 09:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/physics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</title>
+      <link>http://localhost:1313/posts/safe-distance-in-traffic/</link>
+      <pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/safe-distance-in-traffic/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./safe-distance-in-traffic-vertical-arrows.png&#34; alt=&#34;Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Following distance isn&#39;t just space, it&#39;s time in motion.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;While researching why car insurance rates are so extremely high in Las Vegas, I got to thinking about the three-second rule and its validity. From what I&amp;rsquo;ve heard most of my life, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front. That rule is simple enough, yet deceptively deep once you unpack the physics.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Three seconds is a rule of thumb. Physics decides if it is enough.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
     <item>
       <title>The Five-Second Rule Explored with Math &amp; Python</title>
       <link>http://localhost:1313/posts/five-second-rule/</link>
