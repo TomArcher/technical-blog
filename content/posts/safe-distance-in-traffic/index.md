@@ -3,7 +3,7 @@ title = "Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not 
 date = "2025-10-23T09:00:00-07:00"
 draft = false
 categories = ["Applied Modeling & Simulation"]
-tags = ["physics", "Python", "simulation", "kinematics"]
+tags = ["kinematics", "physics", "Python", "simulation",]
 author = "Tom Archer"
 listThumb = "safe-distance-in-traffic.png"
 +++
@@ -29,7 +29,7 @@ I have always found that kind of rule fascinating because it is both universal a
 
 ## The Thought Experiment
 
-Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn't just brake; it **comes to an immediate stop** after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. The question now becomes: how much **time headway** (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?
+Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn't just brake; it **comes to an immediate stop** after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. The question becomes: how much **time headway** (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?
 
 This scenario is far harsher than the standard "braking distance" example you see in driver's ed. When the lead car stops instantly, there's no gradual deceleration, no brake lights glowing in time to react; there's just physics and the driver's delay. In this version, reaction time dominates everything. Every tenth of a second eats up more road, and if the following car's tires or brakes aren't perfect, even three seconds might not be enough.
 
@@ -46,7 +46,7 @@ To make the problem solvable, we model the leader's **instantaneous stop** as ha
 3. The follower continues at full speed during the reaction delay, then begins braking at a constant rate.
 4. The goal is to find the minimum headway time (in seconds) or distance (in feet) needed to prevent impact.
 
-The follower's stopping distance is given by the classic kinematic equation:
+The follower's stopping distance is given by the classic [kinematic](https://en.wikipedia.org/wiki/Kinematics) equation:
 
 \\[
 d_F = v\tau + \frac{v^2}{2a_F}
@@ -74,7 +74,7 @@ You can still ask an AI assistant to generate the helper functions, but now the 
 
 **Prompt example:**
 
-> Define a constant `MPH_TO_FTS = 1.4666666667`and implement three functions:
+> Define a constant `MPH_TO_FTS = 1.4666666667` and implement three functions:
 > 1. `mph_to_fts(mph: np.ndarray | float) -> np.ndarray`: converts mph to ft/s, accepts scalar or arraylike, and returns `np.asarray(mph, dtype=float) * MPH_TO_FTS`.
 > 2. `required_headway_instant_stop(v_mph: np.ndarray | float, tau: float = 1.5, a_f: float = 19.7) -> np.ndarray`: computes the minimum time headway (seconds) to avoid collision if the lead car stops instantly, using `h = tau + v/(2*a_f)` where `v` is in ft/s.
 > 3. `print_headway_table(speeds_mph: Iterable[float], conditions: Dict[str, float], tau: float = 1.5) -> None`: prints a table of required headway for each condition and speed, using formatted output like `"{mph:>3.0f} mph → {h:.2f} s"`.
@@ -134,7 +134,7 @@ Now we can simulate how road conditions (dry, wet, icy) affect the safe followin
 
 **Prompt example:**
 
-> Implement a `main` function that defines a speeds table list that contains the elements 30, 50, 70. Define a table conditions dictionary to hold the driving conditions (key) and its deceleration default (value). The values are "Dry" (19.7), "Wet" (13.1"), and "Icy" (6.6). Finally, call the `print_headway_table` function passing it the speeds table list, the table conditions dictionary, and a tau value of 1.5.
+> Implement a `main` function that defines a speeds table list that contains the elements 30, 50, 70. Define a table conditions dictionary to hold the driving conditions (key) and its deceleration default (value). The values are "Dry" (19.7), "Wet" (13.1), and "Icy" (6.6). Finally, call the `print_headway_table` function passing it the speeds table list, the table conditions dictionary, and a tau value of 1.5.
 
 **Python code**
 ```python
@@ -154,7 +154,7 @@ def main() -> None:
 
 **Sample Output:**
 
-The following output tells us the **minimum time gap needed to avoid a collision** under each condition (Dry, Wet, Icy) at those speeds (30, 50, 70), given the model's assumptions. A quick read tells us that, even at moderate speeds, the difference is dramatic. A three-second gap feels generous in dry weather but terrifyingly short when the road turns slick.
+The following output tells us the **minimum time gap needed to avoid a collision** under each condition (Dry, Wet, Icy) at those speeds (30, 50, 70), given the model's assumptions. These numbers tell us that, even at moderate speeds, the difference is dramatic. A three-second gap feels generous in dry weather but terrifyingly short when the road turns slick.
 
 ```yaml
 ✨ Dry pavement:
@@ -263,6 +263,6 @@ plot_headway_curves(speeds_plot, plot_conditions, tau=1.5, rule_sec=3.0)
 
 ## What We Learned
 
-When you model an **instant-stop collision**, the "three-second rule" starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That's the length of five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you're not fighting the brakes; you're fighting time itself. It's a sobering reminder that safety margins are rarely about skill or confidence but about how fast physics cashes the checks our reflexes can't cover.
+When you model an **instant-stop collision**, the "three-second rule" starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That's five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you're not fighting the brakes; you're fighting time itself. It's a sobering reminder that safety margins are rarely about skill or confidence. Ultimately, safety is about how fast physics cashes the checks our reflexes can't cover.
 
 ---

@@ -20,7 +20,7 @@
         {{- $cats := .Params.categories -}}
         {{- with $cats -}}
             &nbsp;•&nbsp;
-            <strong>Categories:</strong>&nbsp;
+            <strong>Category:</strong>&nbsp;
             {{- range $i, $cat := . -}}
               {{- if $i }}, {{ end -}}
               <a class="meta__link"

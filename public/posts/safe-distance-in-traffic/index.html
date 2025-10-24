@@ -99,18 +99,18 @@
             <time datetime="2025-10-23T09:00:00-07:00">
               <strong>October 23, 2025</strong>
             </time>&nbsp;•&nbsp;
-            <strong>Categories:</strong>&nbsp;<a class="meta__link"
+            <strong>Category:</strong>&nbsp;<a class="meta__link"
                  href=""
                  rel="category"><em>Applied Modeling &amp; Simulation</em></a>&nbsp;•&nbsp;
             <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/kinematics/"
+                 rel="tag">#kinematics</a>, <a class="meta__link"
                  href="/tags/physics/"
                  rel="tag">#physics</a>, <a class="meta__link"
                  href="/tags/python/"
                  rel="tag">#Python</a>, <a class="meta__link"
                  href="/tags/simulation/"
-                 rel="tag">#simulation</a>, <a class="meta__link"
-                 href="/tags/kinematics/"
-                 rel="tag">#kinematics</a></p></div>
+                 rel="tag">#simulation</a></p></div>
 
       <div class="share">
   <span class="share__label">Share:</span>
@@ -167,7 +167,7 @@
 <hr>
 <p>I have always found that kind of rule fascinating because it is both universal and situational. It works whether you are cruising at 25 mph through town or flying down I-5 at 75 mph. At least, that is what the driver&rsquo;s manuals claim. But how does it hold up when you actually model two cars in motion: one stopping suddenly, the other reacting with a delay? That is where the math and a little Python simulation come in.</p>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
-<p>Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn&rsquo;t just brake; it <strong>comes to an immediate stop</strong> after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. The question now becomes: how much <strong>time headway</strong> (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?</p>
+<p>Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn&rsquo;t just brake; it <strong>comes to an immediate stop</strong> after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. The question becomes: how much <strong>time headway</strong> (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?</p>
 <p>This scenario is far harsher than the standard &ldquo;braking distance&rdquo; example you see in driver&rsquo;s ed. When the lead car stops instantly, there&rsquo;s no gradual deceleration, no brake lights glowing in time to react; there&rsquo;s just physics and the driver&rsquo;s delay. In this version, reaction time dominates everything. Every tenth of a second eats up more road, and if the following car&rsquo;s tires or brakes aren&rsquo;t perfect, even three seconds might not be enough.</p>
 <hr>
 <h2 id="modeling-the-problem">Modeling the Problem</h2>
@@ -179,7 +179,10 @@
 <li>The follower continues at full speed during the reaction delay, then begins braking at a constant rate.</li>
 <li>The goal is to find the minimum headway time (in seconds) or distance (in feet) needed to prevent impact.</li>
 </ol>
-<p>The follower&rsquo;s stopping distance is given by the classic kinematic equation:</p>
+<p>The follower&rsquo;s stopping distance is given by the classic <a href="https://en.wikipedia.org/wiki/Kinematics" target="_blank" rel="noopener noreferrer">
+  kinematic
+</a>
+ equation:</p>
 <p>\[
 d_F = v\tau + \frac{v^2}{2a_F}
 \]</p>
@@ -199,7 +202,7 @@ h \ge \tau + \frac{v}{2a_F}
 <p>You can still ask an AI assistant to generate the helper functions, but now the prompt needs to describe the <strong>instant-stop leader scenario</strong>, where only the follower decelerates.</p>
 <p><strong>Prompt example:</strong></p>
 <blockquote>
-<p>Define a constant <code>MPH_TO_FTS = 1.4666666667</code>and implement three functions:</p>
+<p>Define a constant <code>MPH_TO_FTS = 1.4666666667</code> and implement three functions:</p>
 <ol>
 <li><code>mph_to_fts(mph: np.ndarray | float) -&gt; np.ndarray</code>: converts mph to ft/s, accepts scalar or arraylike, and returns <code>np.asarray(mph, dtype=float) * MPH_TO_FTS</code>.</li>
 <li><code>required_headway_instant_stop(v_mph: np.ndarray | float, tau: float = 1.5, a_f: float = 19.7) -&gt; np.ndarray</code>: computes the minimum time headway (seconds) to avoid collision if the lead car stops instantly, using <code>h = tau + v/(2*a_f)</code> where <code>v</code> is in ft/s.</li>
@@ -298,7 +301,7 @@ h \ge \tau + \frac{v}{2a_F}
 <p>Now we can simulate how road conditions (dry, wet, icy) affect the safe following time <strong>if the car ahead stops dead</strong>.</p>
 <p><strong>Prompt example:</strong></p>
 <blockquote>
-<p>Implement a <code>main</code> function that defines a speeds table list that contains the elements 30, 50, 70. Define a table conditions dictionary to hold the driving conditions (key) and its deceleration default (value). The values are &ldquo;Dry&rdquo; (19.7), &ldquo;Wet&rdquo; (13.1&quot;), and &ldquo;Icy&rdquo; (6.6). Finally, call the <code>print_headway_table</code> function passing it the speeds table list, the table conditions dictionary, and a tau value of 1.5.</p></blockquote>
+<p>Implement a <code>main</code> function that defines a speeds table list that contains the elements 30, 50, 70. Define a table conditions dictionary to hold the driving conditions (key) and its deceleration default (value). The values are &ldquo;Dry&rdquo; (19.7), &ldquo;Wet&rdquo; (13.1), and &ldquo;Icy&rdquo; (6.6). Finally, call the <code>print_headway_table</code> function passing it the speeds table list, the table conditions dictionary, and a tau value of 1.5.</p></blockquote>
 <p><strong>Python code</strong></p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -331,7 +334,7 @@ h \ge \tau + \frac{v}{2a_F}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Sample Output:</strong></p>
-<p>The following output tells us the <strong>minimum time gap needed to avoid a collision</strong> under each condition (Dry, Wet, Icy) at those speeds (30, 50, 70), given the model&rsquo;s assumptions. A quick read tells us that, even at moderate speeds, the difference is dramatic. A three-second gap feels generous in dry weather but terrifyingly short when the road turns slick.</p>
+<p>The following output tells us the <strong>minimum time gap needed to avoid a collision</strong> under each condition (Dry, Wet, Icy) at those speeds (30, 50, 70), given the model&rsquo;s assumptions. These numbers tell us that, even at moderate speeds, the difference is dramatic. A three-second gap feels generous in dry weather but terrifyingly short when the road turns slick.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -504,7 +507,7 @@ h \ge \tau + \frac{v}{2a_F}
 </div>
 </div><hr>
 <h2 id="what-we-learned">What We Learned</h2>
-<p>When you model an <strong>instant-stop collision</strong>, the &ldquo;three-second rule&rdquo; starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That&rsquo;s the length of five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you&rsquo;re not fighting the brakes; you&rsquo;re fighting time itself. It&rsquo;s a sobering reminder that safety margins are rarely about skill or confidence but about how fast physics cashes the checks our reflexes can&rsquo;t cover.</p>
+<p>When you model an <strong>instant-stop collision</strong>, the &ldquo;three-second rule&rdquo; starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That&rsquo;s five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you&rsquo;re not fighting the brakes; you&rsquo;re fighting time itself. It&rsquo;s a sobering reminder that safety margins are rarely about skill or confidence. Ultimately, safety is about how fast physics cashes the checks our reflexes can&rsquo;t cover.</p>
 <hr>
     </div>
     <footer class="post__footer">
@@ -513,6 +516,9 @@ h \ge \tau + \frac{v}{2a_F}
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/kinematics/" rel="tag">kinematics</a>
+		</li>
+		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/physics/" rel="tag">physics</a>
 		</li>
 		<li class="tags__item">
@@ -520,9 +526,6 @@ h \ge \tau + \frac{v}{2a_F}
 		</li>
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/simulation/" rel="tag">simulation</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/kinematics/" rel="tag">kinematics</a>
 		</li>
 	</ul>
 </div>
