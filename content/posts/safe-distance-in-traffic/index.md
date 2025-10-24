@@ -15,17 +15,17 @@ listThumb = "safe-distance-in-traffic.png"
   </figcaption>
 </figure>
 
-While researching why car insurance rates are so extremely high in Las Vegas, I got to thinking about the three-second rule and its validity. From what I've heard most of my life, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front. That rule is simple enough, yet deceptively deep once you unpack the physics.
+While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the **three-second rule** and its validity. As I've always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.
 
 ---
 
-> *"Three seconds is a rule of thumb. Physics decides if it is enough."*
+> *"Three seconds is a rule of thumb. Physics reveals the truth."*
 
 ---
 
 <!--more-->
 
-I have always found that kind of rule fascinating because it is both universal and situational. It works whether you are cruising at 25 mph through town or flying down I-5 at 75 mph. At least, that is what the manuals claim. But how does it hold up when you actually model two cars in motion: one stopping suddenly; the other reacting with a delay? That is where the math and a little Python simulation come in handy.
+I have always found that kind of rule fascinating because it is both universal and situational. It works whether you are cruising at 25 mph through town or flying down I-5 at 75 mph. At least, that is what the driver's manuals claim. But how does it hold up when you actually model two cars in motion: one stopping suddenly, the other reacting with a delay? That is where the math and a little Python simulation come in.
 
 ## The Thought Experiment
 
@@ -242,6 +242,21 @@ def plot_headway_curves(
     plt.legend()
     plt.tight_layout()
     plt.show()
+```
+
+Insert the following code at the bottom of the `main` function to call the `plot_headway_curves` function:
+
+```python
+# Smoother range for plotting
+speeds_plot = np.linspace(20, 80, 13)
+
+# Plotting uses dict[name] = (a_f, color)
+plot_conditions = {
+    "Dry": (19.7, "green"),
+    "Wet": (13.1, "orange"),
+    "Icy": (6.6, "blue"),
+}
+plot_headway_curves(speeds_plot, plot_conditions, tau=1.5, rule_sec=3.0)
 ```
 
 ---
