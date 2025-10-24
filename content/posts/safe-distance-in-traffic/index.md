@@ -266,3 +266,39 @@ plot_headway_curves(speeds_plot, plot_conditions, tau=1.5, rule_sec=3.0)
 When you model an **instant-stop collision**, the "three-second rule" starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That's five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you're not fighting the brakes; you're fighting time itself. It's a sobering reminder that safety margins are rarely about skill or confidence. Ultimately, safety is about how fast physics cashes the checks our reflexes can't cover.
 
 ---
+
+## Exercises for the Reader
+
+The point of this model isn’t just driving safety; it’s how quickly a simple time-based rule can turn into a clean simulation. Try extending it.
+
+**Beginner Level: Quick Fixes & Calibration**
+
+1. **Driver reaction variation**: Simulate a range of reaction times between 1.0 and 2.5 seconds and plot the resulting spread in safe following distances.
+
+1. **Unit conversion check**: Modify the code to accept metric inputs (km/h and m/s²) and compare the results to the imperial version.
+
+**Intermediate Level: Geometry & Body Modeling**
+
+1. **Vehicle length inclusion**: Add the lengths of both vehicles to the minimum gap calculation and see how much total space is required in feet.
+
+1. **Brake degradation**: Model how worn brake pads reduce deceleration by a fixed percentage over time.
+
+**Advanced Level: Environment & Stochasticity**
+
+1. **Monte Carlo simulation**: Randomize reaction time, braking rates, and initial speeds to simulate thousands of driver pairs and estimate collision probability.
+
+1. **Sensor delay modeling**: Add an extra 0.2-second lag for radar-based adaptive cruise control and see whether “three seconds” still holds.
+
+---
+
+## Closing Thoughts
+
+The three-second rule isn't about being cautious; it's about being realistic. Because when the car ahead becomes a stationary object, your reaction time is the only thing standing between you and a **very expensive physics lesson**.
+
+---
+
+## Try It Yourself
+
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/safe-distance-in-traffic)
+
+---

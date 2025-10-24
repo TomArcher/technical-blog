@@ -509,6 +509,45 @@ h \ge \tau + \frac{v}{2a_F}
 <h2 id="what-we-learned">What We Learned</h2>
 <p>When you model an <strong>instant-stop collision</strong>, the &ldquo;three-second rule&rdquo; starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That&rsquo;s five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you&rsquo;re not fighting the brakes; you&rsquo;re fighting time itself. It&rsquo;s a sobering reminder that safety margins are rarely about skill or confidence. Ultimately, safety is about how fast physics cashes the checks our reflexes can&rsquo;t cover.</p>
 <hr>
+<h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
+<p>The point of this model isn’t just driving safety; it’s how quickly a simple time-based rule can turn into a clean simulation. Try extending it.</p>
+<p><strong>Beginner Level: Quick Fixes &amp; Calibration</strong></p>
+<ol>
+<li>
+<p><strong>Driver reaction variation</strong>: Simulate a range of reaction times between 1.0 and 2.5 seconds and plot the resulting spread in safe following distances.</p>
+</li>
+<li>
+<p><strong>Unit conversion check</strong>: Modify the code to accept metric inputs (km/h and m/s²) and compare the results to the imperial version.</p>
+</li>
+</ol>
+<p><strong>Intermediate Level: Geometry &amp; Body Modeling</strong></p>
+<ol>
+<li>
+<p><strong>Vehicle length inclusion</strong>: Add the lengths of both vehicles to the minimum gap calculation and see how much total space is required in feet.</p>
+</li>
+<li>
+<p><strong>Brake degradation</strong>: Model how worn brake pads reduce deceleration by a fixed percentage over time.</p>
+</li>
+</ol>
+<p><strong>Advanced Level: Environment &amp; Stochasticity</strong></p>
+<ol>
+<li>
+<p><strong>Monte Carlo simulation</strong>: Randomize reaction time, braking rates, and initial speeds to simulate thousands of driver pairs and estimate collision probability.</p>
+</li>
+<li>
+<p><strong>Sensor delay modeling</strong>: Add an extra 0.2-second lag for radar-based adaptive cruise control and see whether “three seconds” still holds.</p>
+</li>
+</ol>
+<hr>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>The three-second rule isn&rsquo;t about being cautious; it&rsquo;s about being realistic. Because when the car ahead becomes a stationary object, your reaction time is the only thing standing between you and a <strong>very expensive physics lesson</strong>.</p>
+<hr>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/safe-distance-in-traffic" target="_blank" rel="noopener noreferrer">
+  Download the full code on GitHub
+</a>
+</p>
+<hr>
     </div>
     <footer class="post__footer">
       
