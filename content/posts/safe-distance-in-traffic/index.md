@@ -267,7 +267,7 @@ The three-second rule is designed for normal **shared deceleration** scenarios, 
 
 In an **instantaneous stop** scenario, though, the lead car doesn't slow; it disappears from the equation. Only the trailing car continues moving, and that changes everything. When speed doubles, kinetic energy (and thus required stopping distance) goes up by a factor of four, but reaction delay still burns the same fixed amount of time. At 70 mph, you travel about 100 feet every second, so 1.5 seconds of reaction time eats up 150 feet before your brakes even engage. By the time you begin slowing, you've already closed most of the "three-second" buffer.
 
-A constant time gap assumes shared deceleration. Once you remove that assumption, it stops being a safety cushion and starts being a countdown. The three-second rule scales fine for shared braking—but not for the catastrophic instant-stop case we modeled.
+A constant time gap assumes shared deceleration. Once you remove that assumption, it stops being a safety cushion and becomes a countdown. The three-second rule scales fine for shared braking, but not for the catastrophic instant-stop case we modeled.
 
 ---
 
