@@ -507,7 +507,9 @@ h \ge \tau + \frac{v}{2a_F}
 </div>
 </div><hr>
 <h2 id="what-we-learned">What We Learned</h2>
-<p>When you model an <strong>instant-stop collision</strong>, the &ldquo;three-second rule&rdquo; starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That&rsquo;s five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you&rsquo;re not fighting the brakes; you&rsquo;re fighting time itself. It&rsquo;s a sobering reminder that safety margins are rarely about skill or confidence. Ultimately, safety is about how fast physics cashes the checks our reflexes can&rsquo;t cover.</p>
+<p>The three-second rule is designed for normal <strong>shared deceleration</strong> scenarios, where both the lead car and trailing car slow at roughly the same rate. In that situation, the gap scales nicely with speed because each car&rsquo;s braking distance grows with the square of velocity, and both are still moving while braking. Both take longer to stop, but they take longer together.</p>
+<p>In an <strong>instantaneous stop</strong> scenario, though, the lead car doesn&rsquo;t slow; it disappears from the equation. Only the trailing car continues moving, and that changes everything. When speed doubles, kinetic energy (and thus required stopping distance) goes up by a factor of four, but reaction delay still burns the same fixed amount of time. At 70 mph, you travel about 100 feet every second, so 1.5 seconds of reaction time eats up 150 feet before your brakes even engage. By the time you begin slowing, you&rsquo;ve already closed most of the &ldquo;three-second&rdquo; buffer.</p>
+<p>A constant time gap assumes shared deceleration. Once you remove that assumption, it stops being a safety cushion and starts being a countdown. The three-second rule scales fine for shared braking—but not for the catastrophic instant-stop case we modeled.</p>
 <hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
 <p>The point of this model isn’t just driving safety; it’s how quickly a simple time-based rule can turn into a clean simulation. Try extending it.</p>
@@ -535,12 +537,12 @@ h \ge \tau + \frac{v}{2a_F}
 <p><strong>Monte Carlo simulation</strong>: Randomize reaction time, braking rates, and initial speeds to simulate thousands of driver pairs and estimate collision probability.</p>
 </li>
 <li>
-<p><strong>Sensor delay modeling</strong>: Add an extra 0.2-second lag for radar-based adaptive cruise control and see whether “three seconds” still holds.</p>
+<p><strong>Sensor delay modeling</strong>: Add an extra 0.2-second lag for radar-based adaptive cruise control and see whether &ldquo;three seconds&rdquo; still holds.</p>
 </li>
 </ol>
 <hr>
 <h2 id="closing-thoughts">Closing Thoughts</h2>
-<p>The three-second rule isn&rsquo;t about being cautious; it&rsquo;s about being realistic. Because when the car ahead becomes a stationary object, your reaction time is the only thing standing between you and a <strong>very expensive physics lesson</strong>.</p>
+<p>The three-second rule isn&rsquo;t about being cautious; it&rsquo;s about being realistic. Because when the car ahead becomes a stationary object, your reaction time is the only thing standing between you and a very expensive physics lesson.</p>
 <hr>
 <h2 id="try-it-yourself">Try It Yourself</h2>
 <p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/safe-distance-in-traffic" target="_blank" rel="noopener noreferrer">

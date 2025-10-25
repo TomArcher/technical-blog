@@ -263,7 +263,11 @@ plot_headway_curves(speeds_plot, plot_conditions, tau=1.5, rule_sec=3.0)
 
 ## What We Learned
 
-When you model an **instant-stop collision**, the "three-second rule" starts looking dangerously optimistic. Reaction time, not braking force, becomes the real bottleneck. Even at 50 miles per hour, a delay of just one extra second can translate into nearly 75 feet of forward motion before your brakes even engage. That's five car lengths gone in an eye blink. The math lays it bare: once the car ahead stops cold, you're not fighting the brakes; you're fighting time itself. It's a sobering reminder that safety margins are rarely about skill or confidence. Ultimately, safety is about how fast physics cashes the checks our reflexes can't cover.
+The three-second rule is designed for normal **shared deceleration** scenarios, where both the lead car and trailing car slow at roughly the same rate. In that situation, the gap scales nicely with speed because each car's braking distance grows with the square of velocity, and both are still moving while braking. Both take longer to stop, but they take longer together.
+
+In an **instantaneous stop** scenario, though, the lead car doesn't slow; it disappears from the equation. Only the trailing car continues moving, and that changes everything. When speed doubles, kinetic energy (and thus required stopping distance) goes up by a factor of four, but reaction delay still burns the same fixed amount of time. At 70 mph, you travel about 100 feet every second, so 1.5 seconds of reaction time eats up 150 feet before your brakes even engage. By the time you begin slowing, you've already closed most of the "three-second" buffer.
+
+A constant time gap assumes shared deceleration. Once you remove that assumption, it stops being a safety cushion and starts being a countdown. The three-second rule scales fine for shared braking—but not for the catastrophic instant-stop case we modeled.
 
 ---
 
@@ -287,13 +291,13 @@ The point of this model isn’t just driving safety; it’s how quickly a simple
 
 1. **Monte Carlo simulation**: Randomize reaction time, braking rates, and initial speeds to simulate thousands of driver pairs and estimate collision probability.
 
-1. **Sensor delay modeling**: Add an extra 0.2-second lag for radar-based adaptive cruise control and see whether “three seconds” still holds.
+1. **Sensor delay modeling**: Add an extra 0.2-second lag for radar-based adaptive cruise control and see whether "three seconds" still holds.
 
 ---
 
 ## Closing Thoughts
 
-The three-second rule isn't about being cautious; it's about being realistic. Because when the car ahead becomes a stationary object, your reaction time is the only thing standing between you and a **very expensive physics lesson**.
+The three-second rule isn't about being cautious; it's about being realistic. Because when the car ahead becomes a stationary object, your reaction time is the only thing standing between you and a very expensive physics lesson.
 
 ---
 
