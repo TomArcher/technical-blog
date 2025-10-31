@@ -326,6 +326,6 @@ And perhaps that's the most human thing about them: they learn not by being told
 
 ---
 
-**If you've followed this series from how LLMs read code through how they think to how they learn, you've traced the full arc: from pattern recognition to geometric reasoning to calculus-driven improvement. What emerges isn't magic. It's mathematics in motion, and it's far more remarkable than magic ever could be.**
+**If you've followed this series from [how LLMs read code](/posts/how-large-languag-models-read-code) through [how they think](/posts/how-large-languag-models-think) to [how they learn](/posts/how-large-languag-models-learn) (this post), you've traced the full arc: from pattern recognition to geometric reasoning to calculus-driven improvement. What emerges isn't magic. It's mathematics in motion, and it's far more remarkable than magic ever could be.**
 
 ---
