@@ -5,7 +5,7 @@ draft = false
 categories = ["Applied Modeling & Simulation"]
 tags = ["kinematics", "physics", "Python", "simulation",]
 author = "Tom Archer"
-listThumb = "safe-distance-in-traffic.png"
+listThumb = "safe-distance-in-traffic-vertical-arrows.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
@@ -70,7 +70,8 @@ This model is intentionally severe because the lead car contributes nothing to b
 
 ## Using AI to Scaffold the Code
 
-You can still ask an AI assistant to generate the helper functions, but now the prompt needs to describe the **instant-stop leader scenario**, where only the follower decelerates.
+You can still ask an AI assistant to generate the helper functions, but now the prompt needs to describe the **instant-stop leader scenario**, where only the follower decelerates. Since speeds are given in miles per hour (mph) but the physics equations use feet per second (ft/s), we use the conversion factor 1 mph ≈ 1.4666666667 ft/s.
+
 
 **Prompt example:**
 
@@ -189,7 +190,7 @@ The following output tells us the **minimum time gap needed to avoid a collision
 
 A plot brings this vividly to life: three upward curves showing how the safe following time rises sharply with speed, and exponentially with slipperiness. The dashed "3-second rule" line slices through them, safe in good weather but hopeless on ice.
 
-**Prompt:**
+**Prompt example:**
 
 > Write Python code that plots the minimum safe following time versus speed for several road conditions when the lead car stops instantly. Assume there is a helper named required_headway_instant_stop(speeds_mph, tau, a_f) that accepts a scalar or array of speeds in mph and returns headway in seconds. Create a function called plot_headway_curves that:
 > - Accepts an iterable of speeds in mph and a dict of conditions where each key is a label like Dry or Wet and each value is a tuple (a_f, color) with a_f in ft/s^2 and a valid Matplotlib color.

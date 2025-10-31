@@ -199,7 +199,7 @@ h \ge \tau + \frac{v}{2a_F}
 <p>This model is intentionally severe because the lead car contributes nothing to braking. The follower alone must cover the entire stopping distance.</p>
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
-<p>You can still ask an AI assistant to generate the helper functions, but now the prompt needs to describe the <strong>instant-stop leader scenario</strong>, where only the follower decelerates.</p>
+<p>You can still ask an AI assistant to generate the helper functions, but now the prompt needs to describe the <strong>instant-stop leader scenario</strong>, where only the follower decelerates. Since speeds are given in miles per hour (mph) but the physics equations use feet per second (ft/s), we use the conversion factor 1 mph ≈ 1.4666666667 ft/s.</p>
 <p><strong>Prompt example:</strong></p>
 <blockquote>
 <p>Define a constant <code>MPH_TO_FTS = 1.4666666667</code> and implement three functions:</p>
@@ -381,7 +381,7 @@ h \ge \tau + \frac{v}{2a_F}
   </figcaption>
 </figure>
 <p>A plot brings this vividly to life: three upward curves showing how the safe following time rises sharply with speed, and exponentially with slipperiness. The dashed &ldquo;3-second rule&rdquo; line slices through them, safe in good weather but hopeless on ice.</p>
-<p><strong>Prompt:</strong></p>
+<p><strong>Prompt example:</strong></p>
 <blockquote>
 <p>Write Python code that plots the minimum safe following time versus speed for several road conditions when the lead car stops instantly. Assume there is a helper named required_headway_instant_stop(speeds_mph, tau, a_f) that accepts a scalar or array of speeds in mph and returns headway in seconds. Create a function called plot_headway_curves that:</p>
 <ul>
