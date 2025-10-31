@@ -40,7 +40,7 @@ This post explains how those operations create what we perceive as context and c
 
 ---
 
-### From Words to Numbers
+## From Words to Numbers
 
 Computers don't understand language. They understand numbers. So before a model can process text, it has to convert every token (a word or fragment) into a numerical vector (in this case, representing a list of floating-point values).
 
@@ -65,7 +65,7 @@ Each word becomes part of a vector representation showing which tokens appear to
 
 ---
 
-### The Geometry of Meaning
+## The Geometry of Meaning
 
 An *embedding* is not a dictionary lookup. It is a **coordinate** in a high-dimensional space with thousands of dimensions where mathematical proximity corresponds to semantic similarity.
 
@@ -92,7 +92,7 @@ Even though these are just coordinates, the geometry encodes analogy. That's the
 
 ---
 
-### Linear Algebra and the Geometry of Thought
+## Linear Algebra and the Geometry of Thought
 
 When I first started deep-diving into how LLMs work under the hood, I struggled to reconcile the fact that LLMs rely on geometry when I remembered that in my level 300 and 400 math courses, working with vectors was done through linear algebra. The reason for this mental tension was that I had always treated geometry and linear algebra as separate domains with geometry being something visual and spatial, and linear algebra being something symbolic and procedural.
 
@@ -104,7 +104,7 @@ So the geometry is not literal; it's emergent. The network doesn't draw shapes; 
 
 ---
 
-### Eigenvectors: The Hidden Axes of Meaning
+## Eigenvectors: The Hidden Axes of Meaning
 
 Every linear transformation within an LLM, from attention weights to embedding updates, can be described as a matrix acting on vectors. But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by eigenvectors, and the amount of stretching or compression along them is determined by their eigenvalues.
 
@@ -126,7 +126,7 @@ In that sense, eigenvectors reveal the skeleton of understanding inside the mode
 
 ---
 
-### Meaning as Direction
+## Meaning as Direction
 
 In embedding space, the *direction* between vectors often means more than the coordinates themselves. For example:
 
@@ -146,7 +146,7 @@ When an LLM predicts your next token, it's essentially following these invisible
 
 ---
 
-### Visualizing It with Probability
+## Visualizing It with Probability
 
 Every time a model predicts the next token, it's estimating how close the new vector should be to the current path. Think of it as walking through this landscape one step at a time, guided by probability rather than certainty.
 
@@ -177,7 +177,7 @@ The code above doesn't generate real text; it illustrates the logic. The context
 
 ---
 
-### Why Models Use Log Probabilities
+## Why Models Use Log Probabilities
 
 If you've read *[How AI Reads Code](/posts/how-ai-reads-code)*, you might remember the phrase "log probability." Log probability is a small mathematical trick with a big purpose.
 
@@ -191,7 +191,7 @@ In other words, log probabilities do not change what the model believes. They si
 
 ---
 
-### Why High Dimensions Matter
+## Why High Dimensions Matter
 
 It is easy to imagine this in two dimensions, but real models operate in thousands of dimensions. Why so many? Because meaning is not simple.
 
@@ -201,7 +201,7 @@ High-dimensional space lets models *encode complexity linearly*, turning abstrac
 
 ---
 
-### The Shape of Understanding
+## The Shape of Understanding
 
 When you ask an LLM to complete your sentence, it is not retrieving an answer; it is following a path through vector space.
 
@@ -218,5 +218,9 @@ Understanding embeddings turns the mystery of AI into something tangible. **When
 MATLAB and Python give us two lenses to explore that space: Python for the implementation, MATLAB for the math. Between the two, you can watch meaning become math in real time.
 
 And once you have seen that happen, the phrase *"AI understands"* feels less magical and far more human.
+
+---
+
+Now that you have a basic overview of how LLMs think, if you'd like to see how LLMs learn, continue with [How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding](/posts/how-large-languag-models-learn/).
 
 ---

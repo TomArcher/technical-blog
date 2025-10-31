@@ -36,7 +36,7 @@ The difference may seem subtle, but it has vast consequences. Understanding the 
 
 ---
 
-### What Is an LLM
+## What Is an LLM
 
 If you're new to the world of generative AI, it helps to start with a clear idea of what a large language model actually is. An LLM is an AI system trained on vast collections of text to recognize and reproduce the patterns of human language. It doesn't just store sentences; it learns relationships between words, ideas, and structures.
 
@@ -59,7 +59,7 @@ In other words, an LLM doesn't think about language; it **models** language itse
 
 ---
 
-### Syntax as Pattern, Not Rule
+## Syntax as Pattern, Not Rule
 
 When a compiler reads a function like the following, it parses tokens, constructs an abstract syntax tree (AST), and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable `x` by itself.
 
@@ -84,7 +84,7 @@ In the language of probability, a compiler computes meaning deterministically; a
 
 ---
 
-### The Shape of Understanding
+## The Shape of Understanding
 
 When a human reads code, we chunk it semantically. The line `for user in data:` evokes an internal schema: iteration, collection, filtering. The model does something analogous, but its mental map is geometric, not symbolic.
 
@@ -102,7 +102,7 @@ Embeddings compress the vast space of human logic into geometric analogies. Code
 
 ---
 
-### The Comment Paradox
+## The Comment Paradox
 
 To illustrate, try this small experiment using the OpenAI API:
 
@@ -134,7 +134,7 @@ Comments not only help humans; they also anchor semantic space for models. Embed
 
 ---
 
-### When Syntax Misleads Semantics
+## When Syntax Misleads Semantics
 
 Because models learn from co-occurrence rather than execution, they sometimes hallucinate logic. A variable named `result` near `sum()` nudges the model to assume aggregation, even if the code computes a difference. The model's "understanding" is weighted toward linguistic bias.
 
@@ -152,7 +152,7 @@ Studies on code-focused transformers have shown that inconsistent or misleading 
 
 ---
 
-### The Statistical Mind
+## The Statistical Mind
 
 LLMs do not parse control flow; they predict control flow. When you type `for`, the model's top token candidates include `i`, `item`, and `user`. When it predicts `if user.is_active:`, it has learned a latent schema: "loop + conditional + method call" often ends in a side effect like `send_email(user)` or `update_status(user)`.
 
@@ -160,7 +160,7 @@ That is not understanding in the compiler sense; it is associative modeling. But
 
 ---
 
-### From Tokens to Intent
+## From Tokens to Intent
 
 To see how deep this patterning goes, look at a model's log probabilities for a simple prompt:
 
@@ -180,7 +180,7 @@ Here, the probability distribution shifts. Both are correct, but one feels "unna
 
 ---
 
-### The Compiler and the Poet
+## The Compiler and the Poet
 
 A compiler knows exactly what your code does and cares nothing about what you meant. A language model knows approximately what you meant and nothing about what your code does.
 
@@ -188,7 +188,7 @@ The compiler enforces the syntax of logic; the model enforces the logic of cultu
 
 ---
 
-### The Power of Context Windows
+## The Power of Context Windows
 
 One of the most underappreciated aspects of AI code comprehension is the size of its context window. The broader the context, the closer a model gets to true comprehension.
 
@@ -196,7 +196,7 @@ In human terms, a developer reading fifty lines can recall relationships across 
 
 ---
 
-### Experimenting with Prompt Geometry
+## Experimenting with Prompt Geometry
 
 Developers can exploit the geometric nature of embeddings by rephrasing code-related prompts. For example, rather than asking:
 
@@ -210,7 +210,7 @@ That subtle shift pushes the model's attention toward documentation-style patter
 
 ---
 
-### When Probabilities Meet Production
+## When Probabilities Meet Production
 
 Models that read code can accelerate onboarding, documentation, and even code review, but they introduce risk if developers mistake probability for proof. A suggestion may be statistically likely but logically wrong.
 
@@ -218,7 +218,7 @@ In safety-critical domains such as finance, medicine, and infrastructure, LLMs s
 
 ---
 
-### Toward a Hybrid Intelligence
+## Toward a Hybrid Intelligence
 
 The real frontier lies in coupling deterministic parsers with probabilistic interpreters. Imagine an IDE where the compiler exposes ASTs and an LLM attaches commentary to each node, explaining likely intent, flagging anomalies, and predicting downstream effects.
 

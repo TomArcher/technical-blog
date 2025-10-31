@@ -186,7 +186,7 @@
 </a>
 .</p>
 <hr>
-<h3 id="from-words-to-numbers">From Words to Numbers</h3>
+<h2 id="from-words-to-numbers">From Words to Numbers</h2>
 <p>Computers don&rsquo;t understand language. They understand numbers. So before a model can process text, it has to convert every token (a word or fragment) into a numerical vector (in this case, representing a list of floating-point values).</p>
 <p>Here&rsquo;s a simplified Python example:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
@@ -210,7 +210,7 @@
  [1 0 1 1]]
 </code></pre><p>Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous embeddings instead of simple counts, but the principle is the same: text becomes math.</p>
 <hr>
-<h3 id="the-geometry-of-meaning">The Geometry of Meaning</h3>
+<h2 id="the-geometry-of-meaning">The Geometry of Meaning</h2>
 <p>An <em>embedding</em> is not a dictionary lookup. It is a <strong>coordinate</strong> in a high-dimensional space with thousands of dimensions where mathematical proximity corresponds to semantic similarity.</p>
 <p>In this space, &ldquo;cat&rdquo; sits close to &ldquo;dog,&rdquo; &ldquo;car&rdquo; lies near &ldquo;truck,&rdquo; and <code>process_users()</code> resides near <code>handle_clients()</code>. Proximity encodes relationship.</p>
 <p>You can visualize a simplified version in MATLAB or Python. For instance, in MATLAB:</p>
@@ -242,13 +242,13 @@
 <strong>king – man + woman ≈ queen.</strong></p>
 <p>Even though these are just coordinates, the geometry encodes analogy. That&rsquo;s the quiet miracle of embeddings where relations emerge from math alone.</p>
 <hr>
-<h3 id="linear-algebra-and-the-geometry-of-thought">Linear Algebra and the Geometry of Thought</h3>
+<h2 id="linear-algebra-and-the-geometry-of-thought">Linear Algebra and the Geometry of Thought</h2>
 <p>When I first started deep-diving into how LLMs work under the hood, I struggled to reconcile the fact that LLMs rely on geometry when I remembered that in my level 300 and 400 math courses, working with vectors was done through linear algebra. The reason for this mental tension was that I had always treated geometry and linear algebra as separate domains with geometry being something visual and spatial, and linear algebra being something symbolic and procedural.</p>
 <p>What I eventually realized is that they are two views of the same thing. The math behind a large language model is entirely linear algebra: multiplying matrices, taking dot products, projecting vectors, computing norms. But what those operations create is a <em>geometric world.</em></p>
 <p>A vector is just a list of numbers, but when millions of those vectors interact through linear transformations, they define a space where distance, angle, and direction become meaningful. Similar words or code fragments cluster together; analogies become lines; transformations become rotations and translations in thousands of dimensions.</p>
 <p>So the geometry is not literal; it&rsquo;s emergent. The network doesn&rsquo;t draw shapes; it performs math that <em>behaves</em> geometrically. That&rsquo;s why &ldquo;geometry&rdquo; is such an accurate metaphor for how LLMs represent meaning. The linear algebra is the physics, and the geometry is the language we use to understand it.</p>
 <hr>
-<h3 id="eigenvectors-the-hidden-axes-of-meaning">Eigenvectors: The Hidden Axes of Meaning</h3>
+<h2 id="eigenvectors-the-hidden-axes-of-meaning">Eigenvectors: The Hidden Axes of Meaning</h2>
 <p>Every linear transformation within an LLM, from attention weights to embedding updates, can be described as a matrix acting on vectors. But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by eigenvectors, and the amount of stretching or compression along them is determined by their eigenvalues.</p>
 <p>In an embedding space, you can think of eigenvectors as the hidden axes along which meaning varies most strongly. One direction might capture gender, another might capture tense, another might reflect tone or formality. These axes are not programmed; they emerge from training as the model learns to organize information in ways that minimize error.</p>
 <p>Mathematically, this relationship is expressed as: <code>Av = λv</code>.</p>
@@ -262,7 +262,7 @@
 <p>When researchers analyze embeddings using techniques like singular value decomposition (SVD) or principal component analysis (PCA), they are effectively identifying these dominant eigenvectors, the directions that explain the most structure in meaning. This is why, even though the model&rsquo;s internal space has thousands of dimensions, a handful of them often capture broad semantic relationships.</p>
 <p>In that sense, eigenvectors reveal the skeleton of understanding inside the model: the stable, interpretable directions that give geometric form to meaning itself.</p>
 <hr>
-<h3 id="meaning-as-direction">Meaning as Direction</h3>
+<h2 id="meaning-as-direction">Meaning as Direction</h2>
 <p>In embedding space, the <em>direction</em> between vectors often means more than the coordinates themselves. For example:</p>
 <ul>
 <li>Moving in one direction might represent <strong>gender</strong> (man → woman).</li>
@@ -278,7 +278,7 @@
 </ul>
 <p>When an LLM predicts your next token, it&rsquo;s essentially following these invisible directions through vector space.</p>
 <hr>
-<h3 id="visualizing-it-with-probability">Visualizing It with Probability</h3>
+<h2 id="visualizing-it-with-probability">Visualizing It with Probability</h2>
 <p>Every time a model predicts the next token, it&rsquo;s estimating how close the new vector should be to the current path. Think of it as walking through this landscape one step at a time, guided by probability rather than certainty.</p>
 <p>Here&rsquo;s a conceptual MATLAB snippet that simulates that:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
@@ -315,7 +315,7 @@
 <pre tabindex="0"><code>Most likely next token: return
 </code></pre><p>The code above doesn&rsquo;t generate real text; it illustrates the logic. The context vector, which represents everything you&rsquo;ve communicated so far to the model, points somewhere in the embedding space. The model searches for the nearest vectors and selects the one most aligned. <strong>That is prediction in geometric form</strong>.</p>
 <hr>
-<h3 id="why-models-use-log-probabilities">Why Models Use Log Probabilities</h3>
+<h2 id="why-models-use-log-probabilities">Why Models Use Log Probabilities</h2>
 <p>If you&rsquo;ve read <em><a href="/posts/how-ai-reads-code">
   How AI Reads Code
 </a>
@@ -325,12 +325,12 @@
 <p>The result is a set of log probabilities, negative numbers that are easier to compare and sum across many steps. Because the logarithm of a number between 0 and 1 is negative, a confident prediction such as 0.93 becomes a value close to zero (around -0.07), while an uncertain one such as 0.05 becomes a much smaller number (around -3.0). In log space, a less negative value means greater confidence.</p>
 <p>In other words, log probabilities do not change what the model believes. They simply make belief computable.</p>
 <hr>
-<h3 id="why-high-dimensions-matter">Why High Dimensions Matter</h3>
+<h2 id="why-high-dimensions-matter">Why High Dimensions Matter</h2>
 <p>It is easy to imagine this in two dimensions, but real models operate in thousands of dimensions. Why so many? Because meaning is not simple.</p>
 <p>In two dimensions, you can represent a few relationships, such as animals versus vehicles. In ten thousand dimensions, you can represent subtler unions: gender, tone, syntax, domain, even emotional valence.</p>
 <p>High-dimensional space lets models <em>encode complexity linearly</em>, turning abstract semantics into measurable geometry. That is why they can generalize across tasks, languages, and even programming paradigms.</p>
 <hr>
-<h3 id="the-shape-of-understanding">The Shape of Understanding</h3>
+<h2 id="the-shape-of-understanding">The Shape of Understanding</h2>
 <p>When you ask an LLM to complete your sentence, it is not retrieving an answer; it is following a path through vector space.</p>
 <p>Each token pulls the next one toward its neighborhood. Each neighborhood has local rules learned from millions of examples. Together, they form a topology of understanding, a map that balances memory and probability.</p>
 <p>In that sense, an LLM does not think; it navigates. It is a statistical traveler in a landscape shaped by human language.</p>
@@ -339,6 +339,11 @@
 <p>Understanding embeddings turns the mystery of AI into something tangible. <strong>When you realize that &ldquo;meaning&rdquo; is just geometry, you start to see why models feel both powerful and fragile.</strong> They are not reasoning in symbols or words; they are surfing through probability.</p>
 <p>MATLAB and Python give us two lenses to explore that space: Python for the implementation, MATLAB for the math. Between the two, you can watch meaning become math in real time.</p>
 <p>And once you have seen that happen, the phrase <em>&ldquo;AI understands&rdquo;</em> feels less magical and far more human.</p>
+<hr>
+<p>Now that you have a basic overview of how LLMs think, if you&rsquo;d like to see how LLMs learn, continue with <a href="/posts/how-large-languag-models-learn/">
+  How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding
+</a>
+.</p>
 <hr>
     </div>
     <footer class="post__footer">
