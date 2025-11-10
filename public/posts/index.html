@@ -98,6 +98,42 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/posts/how-large-language-models-handle-context-windows/" rel="bookmark">
+			How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./how-llms-handle-context-windows.png"
+       alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens"
+       width="250"
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
+  </figcaption>
+</figure>
+<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
+<p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
+<hr>
+<blockquote>
+<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-handle-context-windows/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/posts/safe-distance-in-traffic/" rel="bookmark">
 			Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough
 			</a>
@@ -375,37 +411,6 @@
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/meeting-diet/">Read more…</a>
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/python-dispatch-maps/" rel="bookmark">
-			Using Python Dispatch Tables for Cleaner Validation
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./python-dispatch-maps.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.</em>
-  </figcaption>
-</figure>
-<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
-<p>Most of us start with the usual suspects:</p>
-<p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
-❌ A graveyard of guard clauses scattered line after line</p>
-<hr>
-<blockquote>
-<p><em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.</em></p></blockquote>
-<hr>
-<p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
-<p>There&rsquo;s a better way: <strong>dispatch tables</strong>!</p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/python-dispatch-maps/">Read more…</a>
-	</div>
 </article>
 </main>
 
@@ -482,6 +487,7 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-handle-context-windows/">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/safe-distance-in-traffic/">Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/thermo-water-energy-balance/">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-learn/">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</a></li>
@@ -491,7 +497,6 @@
 			<li class="widget__item"><a class="widget__link" href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/python-dispatch-maps/">Using Python Dispatch Tables for Cleaner Validation</a></li>
 		</ul>
 	</div>
 </div>
@@ -515,8 +520,10 @@
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
@@ -541,6 +548,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
 	</div>
 </div>
 </aside>
