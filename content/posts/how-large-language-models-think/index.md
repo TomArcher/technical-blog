@@ -2,6 +2,7 @@
 date = '2025-10-07T06:00:00-07:00'
 aliases = [
     "/posts/how-ai-turns-meaning-into-math/",
+    "how-large-language-models-think",
 ]
 draft = false
 title = "How Large Language Models (LLMs) Think: Turning Meaning into Math"
@@ -9,11 +10,11 @@ subtitle = "Exploring how large language models use linear algebra to create geo
 categories = ["AI & The Mathematics of Language", ]
 tags = ["AI", "embeddings", "geometry", "linear algebra", "LLMs",]
 author = "Tom Archer"
-listThumb = "how-large-languag-models-read-code-thumb.png"
+listThumb = "how-large-language-models-read-code-thumb.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-languag-models-read-code.png" 
+    <img src="./how-large-language-models-read-code.png" 
     alt="Digital artwork showing vector/matrix math with the output being words, symbolizing that AI generates words from linear algebra operations." 
     width="250" 
     style="display: block; margin: 0 auto;">
@@ -221,6 +222,6 @@ And once you have seen that happen, the phrase *"AI understands"* feels less mag
 
 ---
 
-Now that you have a basic overview of how LLMs think, if you'd like to see how LLMs learn, continue with [How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding](/posts/how-large-languag-models-learn/).
+Now that you have a basic overview of how LLMs think, if you'd like to see how LLMs learn, continue with [How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding](/posts/how-large-language-models-learn/).
 
 ---

@@ -1,16 +1,20 @@
 +++
 date = '2025-10-08T06:00:00-07:00'
+aliases = [
+    "/posts/ptow-sympy-vs-numpy/",
+    "how-large-language-models-learn",
+]
 draft = false
 title = "How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding"
 subtitle = "Exploring how gradient descent and partial derivatives teach models to think"
 categories = ["AI & The Mathematics of Language"]
 tags = ["AI", "calculus", "gradient descent", "LLMs", "optimization",]
 author = "Tom Archer"
-listThumb = "how-large-languag-models-learn3.png"
+listThumb = "how-large-language-models-learn3.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-large-languag-models-learn3.png"
+  <img src="./how-large-language-models-learn3.png"
        alt="Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding."
        width="250"
        style="display: block; margin: 0 auto;">
@@ -326,6 +330,6 @@ And perhaps that's the most human thing about them: they learn not by being told
 
 ---
 
-**If you've followed this series from [how LLMs read code](/posts/how-large-languag-models-read-code) through [how they think](/posts/how-large-languag-models-think) to [how they learn](/posts/how-large-languag-models-learn) (this post), you've traced the full arc: from pattern recognition to geometric reasoning to calculus-driven improvement. What emerges isn't magic. It's mathematics in motion, and it's far more remarkable than magic ever could be.**
+**If you've followed this series from [how LLMs read code](/posts/how-large-language-models-read-code) through [how they think](/posts/how-large-language-models-think) to [how they learn](/posts/how-large-language-models-learn) (this post), you've traced the full arc: from pattern recognition to geometric reasoning to calculus-driven improvement. What emerges isn't magic. It's mathematics in motion, and it's far more remarkable than magic ever could be.**
 
 ---

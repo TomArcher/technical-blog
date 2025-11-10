@@ -2,6 +2,7 @@
 date = '2025-10-06T09:00:00-07:00'
 aliases = [
     "/posts/how-ai-reads-code/",
+    "how-large-language-models-read-code",
 ]
 draft = false
 title = "How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic"
@@ -9,11 +10,11 @@ subtitle = "Exploring how large language models interpret code and what they mis
 categories = ["AI & The Mathematics of Language"]
 tags = ["AI", "LLMs", "probability", "tokenization",]
 author = "Tom Archer"
-listThumb = "how-large-languag-models-read-code.png"
+listThumb = "how-large-language-models-read-code.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-languag-models-read-code.png" 
+    <img src="./how-large-language-models-read-code.png" 
     alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
     width="250" 
     style="display: block; margin: 0 auto;">
@@ -69,7 +70,7 @@ def square(x):
 ```
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-languag-models-read-code-flow.png" 
+    <img src="./how-large-language-models-read-code-flow.png" 
     alt="Flowchart-style illustration showing how an AI model tokenizes source code and predicts the next token based on statistical context, contrasting with how a compiler parses syntax." 
     width="250" 
     style="display: block; margin: 0 auto;">
