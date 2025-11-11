@@ -159,7 +159,7 @@ This is why "memory" in LLMs is an illusion. The model performs pattern matching
 
 ## How Attention Creates the Illusion
 
-The mechanism that makes this work is the **attention mechanism**, specifically **self-attention**, as defined in the foundational paper ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) (Vaswani et al., 2017). When processing token \\(i\\) in the sequence, the model computes how much attention to pay to every previous token \\(j\\).
+The mechanism that makes this work is the **attention mechanism**, specifically **self-attention**, as defined in the foundational paper "Attention Is All You Need" ([Vaswani et al., 2017](#vaswani2017)). When processing token \\(i\\) in the sequence, the model computes how much attention to pay to every previous token \\(j\\).
 
 The attention score between two tokens is computed as:
 
@@ -173,13 +173,13 @@ Where:
 - \\(V\\) = values (the actual content of those tokens)
 - \\(d_k\\) = dimensionality of the key vectors (scaling factor)
 
-For every new token the model generates, it computes attention across **every token in the context window**. If your conversation is 10,000 tokens long, that's 10,000 attention calculations per new token.
+For every new token the model generates, it computes attention across **every token in the context window**. If your conversation is 10,000 tokens long, that's 10,000 attention calculations per new token. For a visual explanation of how attention mechanisms work in practice, see [Alammar (2018)](#alammar2018).
 
 ---
 
 ## The Quadratic Cost Problem
 
-Here's where the math gets brutal. As shown in the original Transformer paper (Vaswani et al., 2017), attention scales **quadratically** with sequence length.
+Here's where the math gets brutal. As shown in the original Transformer paper ([Vaswani et al., 2017](#vaswani2017)), attention scales **quadratically** with sequence length.
 
 If you double the conversation length:
 - The model has to compute \\(2n\\) queries
@@ -232,7 +232,7 @@ The weights trained into the model represent **general patterns from training da
 
 One of the stranger aspects of context windows is that **transformers have no inherent sense of token order**. The attention mechanism is permutation-invariant. It doesn't naturally know that "The cat chased the mouse" is different from "The mouse chased the cat."
 
-To solve this, models use **positional encodings** that inject order information into each token's representation. The original Transformer architecture (Vaswani et al., 2017) used **absolute positional encodings** with sinusoidal functions:
+To solve this, models use **positional encodings** that inject order information into each token's representation. The original Transformer architecture ([Vaswani et al., 2017](#vaswani2017)) used **absolute positional encodings** with sinusoidal functions:
 
 \\[
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
@@ -243,7 +243,7 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 
 Where \\(pos\\) is the token's position, \\(i\\) is the dimension index, and \\(d_{model}\\) is the model's dimensionality. These sinusoidal functions create unique patterns for each position that the model learns to interpret.
 
-**Relative positional encodings** (Shaw et al., 2018; Dai et al., 2019) instead encode the **distance** between tokens rather than absolute positions. This helps with longer contexts because the model learns "token A is 5 positions before token B" rather than "token A is at position 1,247."
+**Relative positional encodings** ([Shaw et al., 2018](#shaw2018); [Dai et al., 2019](#dai2019)) instead encode the **distance** between tokens rather than absolute positions. This helps with longer contexts because the model learns "token A is 5 positions before token B" rather than "token A is at position 1,247."
 
 But both approaches degrade at extreme distances. A token 100,000 positions away has such a different positional encoding that attention scores become unreliable.
 
@@ -300,13 +300,17 @@ You'd think a 1 million token context window would be strictly better than a 100
 
 **Positional encoding degradation:** Encoding schemes that work well at 10k tokens break down at 500k tokens.
 
-**"Lost in the middle" phenomenon:** Studies show models perform worst on information buried in the middle of very long contexts (Liu et al., 2023). They attend well to the beginning (recency bias inverted by training) and the end (recency bias), but lose track of the middle.
+**"Lost in the middle" phenomenon:** Studies show models perform worst on information buried in the middle of very long contexts ([Liu et al., 2023](#liu2023)). They attend well to the beginning (recency bias inverted by training) and the end (recency bias), but lose track of the middle.
 
 **Increased hallucination:** With more context to "manage," models sometimes confabulate connections between distant, unrelated parts of the conversation.
 
 ---
 
 ## Visualizing Attention Across Context
+
+Attention weight distribution is easier to understand visually. For a comprehensive visual explanation of how attention mechanisms work, see [Alammar (2018)](#alammar2018).
+
+Below is a simplified simulation showing how attention weights decay across growing context lengths:
 
 ### Python Version
 
@@ -401,7 +405,7 @@ RAG bridges the gap between finite context and long-term knowledge. Instead of d
 
 This scales almost logarithmically with data size, though retrieval accuracy becomes the bottleneck. If the retrieval misses a key piece of context, the response quality collapses.
 
-Recent work on **context compression models (CCMs)** and **adaptive retrieval** improves this by predicting relevance before querying (Jiang et al., 2023). GPT-4's emerging memory features and Claude's "Artifacts" hint at this direction with persistent, embedded summaries that act as *latent conversation memory*.
+Recent work on context compression models and adaptive retrieval improves this by predicting relevance before querying ([Jiang et al., 2023](#jiang2023)). GPT-4's emerging memory features and Claude's "Artifacts" hint at this direction with persistent, embedded summaries that act as *latent conversation memory*.
 
 ---
 
@@ -440,7 +444,7 @@ The key insight: **long context is a tool, not a solution**. For many tasks, str
 Researchers are pushing beyond quadratic attention toward architectures that combine **efficiency, persistence, and abstraction**.
 
 **1. Linearized and Hybrid Attention**
-Models like **Mamba** (Gu & Dao, 2023) and **RWKV** merge recurrent updates with attention-style gating, keeping a compact "state trace" instead of recomputing pairwise attention. They process input almost linearly with sequence length, hinting at a path to true scalability.
+Models like **Mamba** ([Gu & Dao, 2023](#gu2023)) and **RWKV** ([Peng et al., 2023](#peng2023)) merge recurrent updates with attention-style gating, keeping a compact "state trace" instead of recomputing pairwise attention. They process input almost linearly with sequence length, hinting at a path to true scalability.
 
 **2. Modular Memory Architectures**
 Upcoming designs experiment with distinct submodules for short-term reasoning, factual recall, and abstract summaries. Instead of one monolithic attention map, different "memory heads" specialize, which is closer to how human cognition distributes recall.
@@ -497,31 +501,39 @@ Understanding that transforms how you work with LLMs. You restate. You summarize
 
 If you want to dive deeper into the mathematics and architecture of context windows:
 
-- Alammar, J. [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/).  
+<a id="alammar2018"></a>
+- Alammar, J. (2018). [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/).  
   *Excellent visual explanation of attention mechanisms and how transformers process sequences. Highly accessible introduction to the concepts.*
 
+<a id="dai2019"></a>
 - Dai, Z., Yang, Z., Yang, Y., et al. (2019). [Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context](https://arxiv.org/abs/1901.02860). *Proceedings of ACL 2019*.  
   *Proposes techniques for extending context beyond fixed windows, including relative positional encodings and segment-level recurrence.*
 
-- Gu, A., & Dao, T. (2023). [Mamba: Linear-Time Sequence Modeling with 
-  Selective State Spaces](https://arxiv.org/abs/2312.00752). *arXiv preprint*.  
+<a id="gu2023"></a>
+- Gu, A., & Dao, T. (2023). [Mamba: Linear-Time Sequence Modeling with Selective State Spaces](https://arxiv.org/abs/2312.00752). *arXiv preprint*.  
   *Introduces state space models that achieve linear-time processing while maintaining competitive performance with transformers.*
 
+<a id="jiang2023"></a>
 - Jiang, Z., et al. (2023). [LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models](https://arxiv.org/abs/2310.05736). *arXiv preprint*.  
   *Introduces prompt compression techniques that maintain semantic meaning while reducing token count.*
 
+<a id="liu2023"></a>
 - Liu, N. F., Lin, K., Hewitt, J., et al. (2023). [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172). *arXiv preprint*.  
   *Empirical study showing that LLMs perform worst on information in the middle of very long contexts, with best performance at the beginning and end.*
 
+<a id="peng2023"></a>
 - Peng, B., Alcaide, E., Anthony, Q., et al. (2023). [RWKV: Reinventing RNNs for the Transformer Era](https://arxiv.org/abs/2305.13048). *arXiv preprint*.  
   *Proposes a linear-complexity alternative to transformers that combines RNN efficiency with transformer-like performance.*
 
+<a id="shaw2018"></a>
 - Shaw, P., Uszkoreit, J., & Vaswani, A. (2018). [Self-Attention with Relative Position Representations](https://arxiv.org/abs/1803.02155). *Proceedings of NAACL-HLT 2018*.  
   *Introduces relative positional encodings that help models handle longer contexts more effectively.*
 
+<a id="tay2022"></a>
 - Tay, Y., Dehghani, M., Bahri, D., & Metzler, D. (2022). [Efficient Transformers: A Survey](https://dl.acm.org/doi/10.1145/3530811). *ACM Computing Surveys*, 55(6), 1-28.  
   *Comprehensive survey of attention alternatives and efficiency techniques for transformers, covering sparse attention, linear attention, and other scaling approaches.*
   
+<a id="vaswani2017"></a>
 - Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). [Attention Is All You Need](https://arxiv.org/abs/1706.03762). *Advances in Neural Information Processing Systems*, 30.  
   *The foundational paper that introduced the Transformer architecture and the attention mechanism. Essential reading for understanding how context windows work mathematically.*
 
