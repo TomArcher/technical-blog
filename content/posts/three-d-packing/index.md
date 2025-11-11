@@ -2,7 +2,7 @@
 title = "From Ice Shows to Algorithms: Cracking the Truck-Packing Problem"
 date = '2025-08-20T09:00:00-07:00'
 draft = false
-categories = ["Applied Modeling & Simulation",]
+categories = ["Applied Modeling and Simulation",]
 tags = ["algorithms", "geometry", "optimization", "Python",]
 author = "Tom Archer"
 listThumb = "three-d-packing.png"

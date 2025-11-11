@@ -9,31 +9,31 @@
     <lastBuildDate>Mon, 10 Nov 2025 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>AI &amp; the Mathematics of Language</title>
-      <link>http://localhost:1313/categories/ai--the-mathematics-of-language/</link>
+      <title>AI and the Mathematics of Language</title>
+      <link>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</link>
       <pubDate>Mon, 10 Nov 2025 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/ai--the-mathematics-of-language/</guid>
+      <guid>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</guid>
       <description></description>
     </item>
     <item>
-      <title>Applied Modeling &amp; Simulation</title>
-      <link>http://localhost:1313/categories/applied-modeling--simulation/</link>
+      <title>Applied Modeling and Simulation</title>
+      <link>http://localhost:1313/categories/applied-modeling-and-simulation/</link>
       <pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/applied-modeling--simulation/</guid>
+      <guid>http://localhost:1313/categories/applied-modeling-and-simulation/</guid>
       <description></description>
     </item>
     <item>
-      <title>Python Techniques &amp; Tooling</title>
-      <link>http://localhost:1313/categories/python-techniques--tooling/</link>
+      <title>Python Techniques and Tooling</title>
+      <link>http://localhost:1313/categories/python-techniques-and-tooling/</link>
       <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/python-techniques--tooling/</guid>
+      <guid>http://localhost:1313/categories/python-techniques-and-tooling/</guid>
       <description></description>
     </item>
     <item>
-      <title>Essays &amp; Perspectives</title>
-      <link>http://localhost:1313/categories/essays--perspectives/</link>
+      <title>Essays and Perspectives</title>
+      <link>http://localhost:1313/categories/essays-and-perspectives/</link>
       <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/essays--perspectives/</guid>
+      <guid>http://localhost:1313/categories/essays-and-perspectives/</guid>
       <description></description>
     </item>
   </channel>

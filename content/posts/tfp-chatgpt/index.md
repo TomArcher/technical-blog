@@ -2,7 +2,7 @@
 date = '2025-08-19T05:00:00-07:00'
 draft = false
 title = "From Solow to ChatGPT: Why Total Factor Productivity Can't Keep Up With Generative AI"
-categories = ["Essays & Perspectives", ]
+categories = ["Essays and Perspectives", ]
 tags = ["AI", "economics", "innovation", "productivity",]
 author = "Tom Archer"
 listThumb = "tfp-chatgpt.png"

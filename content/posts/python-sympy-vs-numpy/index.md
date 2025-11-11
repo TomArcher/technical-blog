@@ -5,7 +5,7 @@ aliases = [
 ]
 draft = false
 title = "Using SymPy in Python When NumPy Isn't Enough"
-categories = ["Python Techniques & Tooling"]
+categories = ["Python Techniques and Tooling"]
 tags = ["linear algebra", "Python", "SymPy", "symbolic math",]
 author = "Tom Archer"
 listThumb = "sympy.png"

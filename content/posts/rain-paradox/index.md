@@ -2,7 +2,7 @@
 title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
 date = '2025-08-18T09:00:00-07:00'
 draft = false
-categories = ["Applied Modeling & Simulation",]
+categories = ["Applied Modeling and Simulation",]
 tags = ["modeling", "physics", "probability", "Python",]
 author = "Tom Archer"
 listThumb = "rain-paradox.png"

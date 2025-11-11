@@ -97,7 +97,7 @@
     <header class="taxonomy-header">
       <h1>
         
-        3 "Python Techniques &amp; Tooling" Posts
+        0 "Python Techniques &amp; Tooling" Posts
         </h1>
 
       
@@ -106,158 +106,6 @@
     
     
 
-    
-      
-      
-      
-      
-        
-        
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/python-integer-division-and-modulus/">
-              <img src="/posts/python-integer-division-and-modulus/python-integer-division-and-modulus.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              <a href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2025-09-17">
-                <strong>Sep 17, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Categories:</strong>&nbsp;<a href="/categories/python-techniques-tooling/">Python Techniques &amp; Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/data-parsing/">#data parsing</a>, <a href="/tags/numerical-methods/">#numerical methods</a>, <a href="/tags/python/">#Python</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">
-<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, <strong>numeric parsing with integer division (<code>//</code>) and modulus (<code>%</code>)</strong> is the better option.</p>
-<hr>
-<blockquote>
-<p><em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/python-integer-division-and-modulus/">Read more →</a></p>
-      </article>
-    
-      
-      
-      
-      
-        
-        
-          
-            
-            
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/python-sympy-vs-numpy/">
-              <img src="/posts/python-sympy-vs-numpy/sympy.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              <a href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2025-09-05">
-                <strong>Sep 5, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Categories:</strong>&nbsp;<a href="/categories/python-techniques-tooling/">Python Techniques &amp; Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/linear-algebra/">#linear algebra</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/sympy/">#SymPy</a>, <a href="/tags/symbolic-math/">#symbolic math</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">  
-<p>Most of us reach for <a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
-  NumPy
-</a>
- whenever math shows up in a project. But sometimes, you don&rsquo;t want approximate answers, you want exact math. That&rsquo;s when you pull <a href="https://sympy.org/" target="_blank" rel="noopener noreferrer">
-  SymPy
-</a>
- out of your programmer&rsquo;s toolkit and get to work.</p>
-<p>It&rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.</p>
-<p>In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Floats guess. SymPy knows.&rdquo;</em></p></blockquote>
-<hr>
-<p>This is where SymPy shines. To see the difference between <strong>floating-point approximations</strong> (Python or NumPy) and <strong>symbolic precision</strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p></div>
-
-        <p><a class="btn" href="/posts/python-sympy-vs-numpy/">Read more →</a></p>
-      </article>
-    
-      
-      
-      
-      
-        
-        
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/python-dispatch-maps/">
-              <img src="/posts/python-dispatch-maps/python-dispatch-maps-thumb.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              <a href="/posts/python-dispatch-maps/">Using Python Dispatch Tables for Cleaner Validation</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2025-08-22">
-                <strong>Aug 22, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Categories:</strong>&nbsp;<a href="/categories/python-techniques-tooling/">Python Techniques &amp; Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/code-organization/">#code organization</a>, <a href="/tags/design-patterns/">#design patterns</a>, <a href="/tags/python/">#Python</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">
-<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
-<p>Most of us start with the usual suspects:</p>
-<p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
-❌ A graveyard of guard clauses scattered line after line</p>
-<hr>
-<blockquote>
-<p><em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.</em></p></blockquote>
-<hr>
-<p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
-<p>There&rsquo;s a better way: <strong>dispatch tables</strong>!</p></div>
-
-        <p><a class="btn" href="/posts/python-dispatch-maps/">Read more →</a></p>
-      </article>
     
 
     
@@ -356,7 +204,7 @@
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/essays--perspectives/">Essays &amp; Perspectives</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/python-techniques--tooling/">Python Techniques &amp; Tooling</a></li>
+				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
 		</ul>
 	</div>
 </div>

@@ -2,7 +2,7 @@
 title = "Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast"
 date = "2025-10-12T09:00:00-07:00"
 draft = false
-categories = ["Applied Modeling & Simulation"]
+categories = ["Applied Modeling and Simulation"]
 tags = ["energy balance", "Python", "simulation", "thermodynamics",]
 author = "Tom Archer"
 listThumb = "thermo-water-energy-balance-thumb.png"

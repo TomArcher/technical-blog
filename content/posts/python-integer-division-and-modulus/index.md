@@ -5,7 +5,7 @@ aliases = [
 ]
 draft = false
 title = "Numeric Parsing in Python with Integer Division and Modulus"
-categories = ["Python Techniques & Tooling",]
+categories = ["Python Techniques and Tooling",]
 tags = ["data parsing", "numerical methods", "Python",]
 author = "Tom Archer"
 listThumb = "python-integer-division-and-modulus.png"

@@ -5,7 +5,7 @@ aliases = [
 ]
 draft = false
 title = "Using Python Dispatch Tables for Cleaner Validation"
-categories = ["Python Techniques & Tooling",]
+categories = ["Python Techniques and Tooling",]
 tags = ["code organization", "design patterns", "Python",]
 author = "Tom Archer"
 listThumb = "python-dispatch-maps-thumb.png"
