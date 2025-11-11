@@ -367,13 +367,11 @@ Then, refine the AI's output to ensure it matches the math.
 
 ## Closing Thoughts
 
-I chose this as my first post because this problem isn't just about physics or weather. It's about thinking like a programmer, and today, **thinking like a programmer includes understanding how to use AI effectively**.
+This problem isn't just about physics or weather. It's about **thinking like a programmer**, and today, that increasingly means knowing how to work with AI.
 
-Yesterday, we memorized programming patterns. Today, we craft AI prompts, evaluate the generated code, and adapt it to real-world needs. The skills are different, but the spirit of curiosity and modeling remains the same.
+Yesterday, we memorized algorithms and syntax. Today, we craft prompts, evaluate generated code, and refine it for real-world constraints. The tools have changed, but the mindset of modeling uncertainty, isolating variables, and iterating toward insight remains the same.
 
-Over the past many years, that mindset of modeling uncertainty, isolating variables, and iterating toward insight has shaped everything from how I write software, author technical content, and how I approach AI and automation today.
-
-If you enjoyed this, stay tuned. I'll be sharing insights on solving similar puzzles, Python programming, AI prompting, OpenAI, MCP servers, and LLMs.
+So next time you're caught in a downpour, the answer is clear: **run**. The math doesn't lie, and neither does the rain.
 
 ---
 
