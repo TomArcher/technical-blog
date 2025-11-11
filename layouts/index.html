@@ -45,7 +45,7 @@
               {{- $tags := .Params.tags -}}
 
               {{- with $cats -}}
-              &nbsp;•&nbsp;<strong>Categories:</strong>&nbsp;
+              &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
                 {{- range $i, $c := . -}}
                   {{- if $i }}, {{ end -}}
                   <a href="{{ (printf "/categories/%s/" ($c | urlize)) | relURL }}">{{ $c }}</a>
