@@ -575,7 +575,7 @@ When you understand tokenization:
 
 ---
 
-**If you've followed this series from [how LLMs read code](/posts/how-large-language-models-read-code) through [how they think](/posts/how-large-language-models-think), [how they learn](/posts/how-large-language-models-learn), and [how they handle context](/posts/how-llms-handle-context-windows), you now understand the complete pipeline: text becomes tokens, tokens become vectors, vectors become predictions, and predictions become learning. What emerges is a system that's both more powerful and more limited than it appears—and understanding those limits is the key to using these tools effectively.**
+**If you've followed this series from [how LLMs read code](/posts/how-large-language-models-read-code) through [how they think](/posts/how-large-language-models-think), [how they learn](/posts/how-large-language-models-learn), and [how they handle context](/posts/how-large-language-models-handle-context-windows), you now understand the complete pipeline: text becomes tokens, tokens become vectors, vectors become predictions, and predictions become learning. What emerges is a system that's both more powerful and more limited than it appears—and understanding those limits is the key to using these tools effectively.**
 
 ---
 
