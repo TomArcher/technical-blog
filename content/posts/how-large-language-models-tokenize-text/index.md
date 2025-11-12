@@ -1,7 +1,7 @@
 +++
 date = '2025-11-11T06:00:00-07:00'
 draft = false
-title = "How Large Language Models Tokenize Text: Why Words Aren't What You Think"
+title = "How Large Language Models (LLMs) Tokenize Text: Why Words Aren't What You Think"
 subtitle = "Understanding how LLMs break language into pieces—and why it matters more than you realize"
 categories = ["AI & The Mathematics of Language"]
 tags = ["AI", "tokenization", "LLMs", "transformers", "NLP"]
