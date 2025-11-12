@@ -497,6 +497,12 @@ Understanding that transforms how you work with LLMs. You restate. You summarize
 
 ---
 
+## Try It Yourself
+
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/how-large-language-models-handle-context-windows)
+
+---
+
 ## Further Reading
 
 If you want to dive deeper into the mathematics and architecture of context windows:

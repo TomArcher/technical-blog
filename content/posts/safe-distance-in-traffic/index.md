@@ -82,7 +82,7 @@ You can still ask an AI assistant to generate the helper functions, but now the 
 >
 > Use clear docstrings, vectorized math, and match standard Python formatting and type hints exactly. Output only the Python code.
 
-**Python code**:
+**Python**:
 ```python
 from __future__ import annotations
 import numpy as np
@@ -137,7 +137,7 @@ Now we can simulate how road conditions (dry, wet, icy) affect the safe followin
 
 > Implement a `main` function that defines a speeds table list that contains the elements 30, 50, 70. Define a table conditions dictionary to hold the driving conditions (key) and its deceleration default (value). The values are "Dry" (19.7), "Wet" (13.1), and "Icy" (6.6). Finally, call the `print_headway_table` function passing it the speeds table list, the table conditions dictionary, and a tau value of 1.5.
 
-**Python code**
+**Python:**
 ```python
 def main() -> None:
     # Headway at a few representative speeds
@@ -202,7 +202,7 @@ A plot brings this vividly to life: three upward curves showing how the safe fol
 >
 > Keep the implementation compact and readable. Import Matplotlib inside the function. Use reasonable defaults like tau around 1.5 seconds and a 3 second rule line. Do not include any file I/O or CLI parsing. Output only the Python code.
 
-**Python code:**
+**Python:**
 ```python
 def plot_headway_curves(
     speeds_mph: Iterable[float],
@@ -304,6 +304,6 @@ The three-second rule isn't about being cautious; it's about being realistic. Be
 
 ## Try It Yourself
 
-[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/safe-distance-in-traffic)
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/safe-distance-in-traffic)
 
 ---

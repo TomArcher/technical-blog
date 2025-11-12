@@ -209,7 +209,7 @@ h \ge \tau + \frac{v}{2a_F}
 <li><code>print_headway_table(speeds_mph: Iterable[float], conditions: Dict[str, float], tau: float = 1.5) -&gt; None</code>: prints a table of required headway for each condition and speed, using formatted output like <code>&quot;{mph:&gt;3.0f} mph → {h:.2f} s&quot;</code>.</li>
 </ol>
 <p>Use clear docstrings, vectorized math, and match standard Python formatting and type hints exactly. Output only the Python code.</p></blockquote>
-<p><strong>Python code</strong>:</p>
+<p><strong>Python</strong>:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -302,7 +302,7 @@ h \ge \tau + \frac{v}{2a_F}
 <p><strong>Prompt example:</strong></p>
 <blockquote>
 <p>Implement a <code>main</code> function that defines a speeds table list that contains the elements 30, 50, 70. Define a table conditions dictionary to hold the driving conditions (key) and its deceleration default (value). The values are &ldquo;Dry&rdquo; (19.7), &ldquo;Wet&rdquo; (13.1), and &ldquo;Icy&rdquo; (6.6). Finally, call the <code>print_headway_table</code> function passing it the speeds table list, the table conditions dictionary, and a tau value of 1.5.</p></blockquote>
-<p><strong>Python code</strong></p>
+<p><strong>Python:</strong></p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -393,7 +393,7 @@ h \ge \tau + \frac{v}{2a_F}
 <li>Labels axes with Speed (mph) and Minimum headway (seconds), adds a legend, applies a tight layout, and shows the figure.</li>
 </ul>
 <p>Keep the implementation compact and readable. Import Matplotlib inside the function. Use reasonable defaults like tau around 1.5 seconds and a 3 second rule line. Do not include any file I/O or CLI parsing. Output only the Python code.</p></blockquote>
-<p><strong>Python code:</strong></p>
+<p><strong>Python:</strong></p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -545,7 +545,7 @@ h \ge \tau + \frac{v}{2a_F}
 <p>The three-second rule isn&rsquo;t about being cautious; it&rsquo;s about being realistic. Because when the car ahead becomes a stationary object, your reaction time is the only thing standing between you and a very expensive physics lesson.</p>
 <hr>
 <h2 id="try-it-yourself">Try It Yourself</h2>
-<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/safe-distance-in-traffic" target="_blank" rel="noopener noreferrer">
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/safe-distance-in-traffic" target="_blank" rel="noopener noreferrer">
   Download the full code on GitHub
 </a>
 </p>
@@ -645,6 +645,7 @@ h \ge \tau + \frac{v}{2a_F}
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-tokenize-text/">How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-handle-context-windows/">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/safe-distance-in-traffic/">Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/thermo-water-energy-balance/">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</a></li>
@@ -654,7 +655,6 @@ h \ge \tau + \frac{v}{2a_F}
 			<li class="widget__item"><a class="widget__link" href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
 		</ul>
 	</div>
 </div>
@@ -662,6 +662,8 @@ h \ge \tau + \frac{v}{2a_F}
 	<h4 class="widget__title">Categories</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai--the-mathematics-of-language/">AI &amp; the Mathematics of Language</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
 			<li class="widget__item">
@@ -694,6 +696,7 @@ h \ge \tau + \frac{v}{2a_F}
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>

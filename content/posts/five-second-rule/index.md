@@ -316,4 +316,4 @@ Next time you drop a cookie, don’t chant "five seconds" like a protective spel
 
 ## Try It Yourself
 
-[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/five-second-rule-explored)
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/five-second-rule-explored)

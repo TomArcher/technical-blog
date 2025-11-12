@@ -6,8 +6,15 @@
     <description>Recent content in Transformers on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Nov 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 11 Nov 2025 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/transformers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think</title>
+      <link>http://localhost:1313/posts/how-large-language-models-tokenize-text/</link>
+      <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-tokenize-text/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./how-large-language-models-tokenize-text.png&#34;&#xA;       alt=&#34;Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens&#34;&#xA;       width=&#34;250&#34;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;When you type &amp;ldquo;I love programming&amp;rdquo; into ChatGPT, you might assume the model reads three words. It doesn&amp;rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.&lt;/p&gt;&#xA;&lt;p&gt;When you ask Claude to count the letters in the word &amp;ldquo;strawberry,&amp;rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &amp;ldquo;strawberry&amp;rdquo; as a complete unit. It saw tokens like &lt;code&gt;&amp;quot;str&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;aw&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;berry&amp;quot;&lt;/code&gt; and tried to reason about letters it couldn&amp;rsquo;t directly access.&lt;/p&gt;&#xA;&lt;p&gt;And when early GPT-3 users discovered that typing &amp;ldquo;SolidGoldMagikarp&amp;rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&amp;rsquo;t the model&amp;rsquo;s training. It was a &lt;strong&gt;glitch token&lt;/strong&gt;: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (&lt;a href=&#34;#rumbelow2023&#34;&gt;&#xD;&#xA;  Rumbelow &amp;amp; Watkins, 2023&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;).&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;To a language model, text isn&amp;rsquo;t a stream of words. It&amp;rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
     <item>
       <title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</title>
       <link>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</link>

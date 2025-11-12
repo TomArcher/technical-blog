@@ -139,7 +139,7 @@ We'll begin by using AI to generate the helper functions and constants needed to
 > 8. Do not include any print statements, main guards, or plotting.
 > 9. Output only the code with the exact function names and signatures specified.
 
-**Python code:** Your LLM should respond with code similar to the following:
+**Python:** Your LLM should respond with code similar to the following:
 
 ```python
 import numpy as np
@@ -244,7 +244,7 @@ def diurnal(base, amp, hours, peak_shift=7.0):
 > 10. After the function, include a main guard that runs a 14 day open and covered simulation, prints the number of simulated hours, and prints the final temperatures with one decimal place labeled in Celsius.
 > 11. Generously comment the code, but do not exceed 80 chars on any line.
 
-**Python code:** Below is the`simulate` function and a compact `main` with a simple run that compares open water with a covered surface.
+**Python:** Below is the`simulate` function and a compact `main` with a simple run that compares open water with a covered surface.
 
 ```python
 def simulate(days=14, dt=3600.0, cover=False, seed_temp_C=24.0):
@@ -376,7 +376,7 @@ Final temperature cover: 86.8 °F (30.5 °C)
 > 8. Include a short docstring explaining inputs and the dual-axis behavior.
 > 9. Return only valid Python code with the single function definition and necessary `import matplotlib.pyplot as plt`.
 
-**Python code:** Here is a minimal plotting script for the temperature trajectories.
+**Python:** Here is a minimal plotting script for the temperature trajectories.
 
 ```python
 def plot_runs_dual_axis(run_open, run_cov):
@@ -454,4 +454,4 @@ Butter and pools may seem like strange lab partners, until you **turn up the hea
 
 ## Try It Yourself
 
-[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/thermo-water-energy-balance)
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/thermo-water-energy-balance)

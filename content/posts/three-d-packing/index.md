@@ -424,4 +424,4 @@ Packing trucks may seem like grunt work, but it's really a microcosm of **optimi
 
 ## Try It Yourself
 
-[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/three-d-packing)
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/three-d-packing)

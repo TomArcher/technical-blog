@@ -238,4 +238,4 @@ The same physics that makes butter soften faster than a water rich spread also e
 
 ## Try It Yourself
 
-[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/water-heat-capacity)
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/water-heat-capacity)

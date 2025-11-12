@@ -98,6 +98,36 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/posts/meeting-diet/" rel="bookmark">
+			The Meeting Diet: An Optimization Approach to Your Calendar
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./meeting-diet.png" alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>If you don't optimize your schedule, your schedule will optimize you. Badly</em>
+  </figcaption>
+</figure>
+<p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
+<hr>
+<p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
+  <strong>0/1 knapsack problem with two constraints</strong>
+</a>
+, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/meeting-diet/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/posts/python-dispatch-maps/" rel="bookmark">
 			Using Python Dispatch Tables for Cleaner Validation
 			</a>
@@ -282,6 +312,7 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-tokenize-text/">How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-handle-context-windows/">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/safe-distance-in-traffic/">Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/thermo-water-energy-balance/">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</a></li>
@@ -291,7 +322,6 @@
 			<li class="widget__item"><a class="widget__link" href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
 		</ul>
 	</div>
 </div>
@@ -299,6 +329,8 @@
 	<h4 class="widget__title">Categories</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai--the-mathematics-of-language/">AI &amp; the Mathematics of Language</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
 			<li class="widget__item">
@@ -331,6 +363,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>

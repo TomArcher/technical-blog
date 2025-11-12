@@ -344,3 +344,10 @@ pre {
   height: 2.1rem;
   border-radius: 999px;
 }
+
+/* Override inline styles for Python comments */
+code.language-python span[style*="color:#6272a4"],
+pre code span[style*="color:#6272a4"] {
+    color: #9cdb7f !important;
+    font-style: italic !important;
+}

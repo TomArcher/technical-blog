@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-11-11T06:00:00-07:00">
+              <strong>November 11, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Category:</strong>&nbsp;<a class="meta__link"
+                 href=""
+                 rel="category"><em>AI &amp; The Mathematics of Language</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/ai/"
+                 rel="tag">#AI</a>, <a class="meta__link"
+                 href="/tags/tokenization/"
+                 rel="tag">#tokenization</a>, <a class="meta__link"
+                 href="/tags/llms/"
+                 rel="tag">#LLMs</a>, <a class="meta__link"
+                 href="/tags/transformers/"
+                 rel="tag">#transformers</a>, <a class="meta__link"
+                 href="/tags/nlp/"
+                 rel="tag">#NLP</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text-2%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    X
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text-2%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    in
+  </a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text-2%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+    f
+  </a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text-2%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+    r
+  </a>
+  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text-2%252F" aria-label="Share via Email">
+    @
+  </a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">
+    Share
+  </button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "%!q(\u003cnil\u003e)",
+        url: "\"http://localhost:1313/posts/how-large-language-models-tokenize-text-2/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>
+  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./how-llms-tokenize-text.png"
+       alt="Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens"
+       width="250"
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>LLMs don't read words—they read tokens, and the difference matters.</em>
+  </figcaption>
+</figure>
+<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
+<p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
+<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
+  Rumbelow &amp; Watkins, 2023
+</a>
+).</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;To a language model, text isn&rsquo;t a stream of words. It&rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&rdquo;</em></p></blockquote>
+<hr>
+<p>This post explores how tokenization works, why it&rsquo;s not as simple as splitting on spaces, and what happens when tokenization goes wrong. If you&rsquo;re following my series on how LLMs work, this is the foundation that makes everything else possible—because before a model can <a href="/posts/how-large-language-models-read-code">
+  read
+</a>
+, <a href="/posts/how-large-language-models-think">
+  think
+</a>
+, or <a href="/posts/how-large-language-models-learn">
+  learn
+</a>
+, it has to break language into pieces it can process.</p>
+<hr>
+<h2 id="what-is-tokenization">What Is Tokenization?</h2>
+<p><strong>Tokenization is the process of breaking text into units (tokens) that a language model can process.</strong></p>
+<p>At first glance, this seems trivial: just split on spaces and punctuation, right? But natural language is messier than that. Consider the word &ldquo;don&rsquo;t&rdquo;—is it one word or two (<code>&quot;do&quot;</code> + <code>&quot;n't&quot;</code>)? What about &ldquo;COVID-19&rdquo;—should the hyphen and numbers be separate tokens? How do you handle emoji like &ldquo;🚀&rdquo;? When you see &ldquo;Dr. Smith,&rdquo; is the period part of the abbreviation or sentence-ending punctuation? And what about &ldquo;New York&rdquo;—two words, but arguably one semantic unit?</p>
+<p>Different tokenization strategies make different tradeoffs between <strong>vocabulary size</strong>, <strong>sequence length</strong>, and <strong>semantic coherence</strong>.</p>
+<hr>
+<h2 id="why-not-just-use-words">Why Not Just Use Words?</h2>
+<p>The obvious approach would be to treat every word as a token. English has roughly 170,000 words in common use. Build a vocabulary of those words, assign each an ID, and you&rsquo;re done.</p>
+<p><strong>This breaks immediately for several reasons.</strong></p>
+<h3 id="1-vocabulary-explosion"><strong>1. Vocabulary Explosion</strong></h3>
+<p>Natural language isn&rsquo;t a fixed set of words. New words appear constantly—&ldquo;selfie,&rdquo; &ldquo;cryptocurrency,&rdquo; &ldquo;doomscrolling&rdquo;—each requiring a new vocabulary entry. Proper nouns are infinite, with every person, place, company, and product name needing its own token. Technical terms proliferate endlessly in specialized domains (&ldquo;hyperparameter,&rdquo; &ldquo;backpropagation,&rdquo; &ldquo;gradient&rdquo;). And then there are typos and variations like &ldquo;looooove,&rdquo; &ldquo;sooooo,&rdquo; or &ldquo;hahahaha&rdquo; that would each need separate tokens. A word-level vocabulary would need <strong>millions of entries</strong> and still couldn&rsquo;t handle novel terms.</p>
+<h3 id="2-morphological-complexity"><strong>2. Morphological Complexity</strong></h3>
+<p>Words have forms that share meaning. Take &ldquo;run,&rdquo; &ldquo;runs,&rdquo; &ldquo;running,&rdquo; &ldquo;ran,&rdquo; and &ldquo;runner&rdquo;—all clearly related, yet word-level tokenization treats them as completely unrelated tokens, forcing the model to relearn their relationship from scratch. The same happens with &ldquo;happy,&rdquo; &ldquo;happier,&rdquo; &ldquo;happiest,&rdquo; &ldquo;happiness,&rdquo; and &ldquo;happily.&rdquo; The model has to independently learn that these share a semantic root, wasting capacity and training time.</p>
+<h3 id="3-multilingual-challenges"><strong>3. Multilingual Challenges</strong></h3>
+<p>Not all languages use spaces to separate words. Chinese text like &ldquo;我爱编程&rdquo; has no word boundaries at all. Japanese mixes scripts with no consistent spacing: &ldquo;私はプログラミングが好きです.&rdquo; German creates compound words that can grow arbitrarily long, like &ldquo;Donaudampfschifffahrtsgesellschaftskapitän&rdquo; (Danube steamship company captain). Word-level tokenization simply doesn&rsquo;t generalize across languages.</p>
+<h3 id="4-out-of-vocabulary-problem"><strong>4. Out-of-Vocabulary Problem</strong></h3>
+<p>If you encounter a word not in your vocabulary, you&rsquo;re stuck. You can&rsquo;t process it, can&rsquo;t embed it, can&rsquo;t generate it. The model has a blind spot for anything it wasn&rsquo;t explicitly trained to recognize, making it brittle and unable to adapt to new terminology.</p>
+<hr>
+<h2 id="character-level-tokenization-the-other-extreme">Character-Level Tokenization: The Other Extreme</h2>
+<p>If words are too coarse, what about going fine-grained? Treat every character as a token, so &ldquo;I love programming&rdquo; becomes eighteen individual characters: <code>[&quot;I&quot;, &quot; &quot;, &quot;l&quot;, &quot;o&quot;, &quot;v&quot;, &quot;e&quot;, &quot; &quot;, &quot;p&quot;, &quot;r&quot;, &quot;o&quot;, &quot;g&quot;, &quot;r&quot;, &quot;a&quot;, &quot;m&quot;, &quot;m&quot;, &quot;i&quot;, &quot;n&quot;, &quot;g&quot;]</code>.</p>
+<h3 id="advantages"><strong>Advantages:</strong></h3>
+<p>The vocabulary becomes tiny—just 26 letters plus punctuation and digits, roughly 100 tokens total. There&rsquo;s no out-of-vocabulary problem since any text can be represented as a sequence of its constituent characters. And it works equally well for all languages and scripts.</p>
+<h3 id="fatal-flaw-sequence-length-explosion"><strong>Fatal Flaw: Sequence Length Explosion</strong></h3>
+<p>A 500-word document becomes approximately 2,500 characters. Since transformers have quadratic attention cost (as I explained in my <a href="/posts/how-large-language-models-handle-context-windows">
+  context windows post
+</a>
+), processing character sequences becomes <strong>computationally prohibitive</strong>. The model would spend most of its capacity learning that <code>&quot;c-a-t&quot;</code> forms a semantic unit, that <code>&quot;p-r-o-g-r-a-m-m-i-n-g&quot;</code> shares meaning with <code>&quot;p-r-o-g-r-a-m&quot;</code>, and so on. You&rsquo;ve pushed all the linguistic structure learning onto the model, making training inefficient and inference slow.</p>
+<hr>
+<h2 id="subword-tokenization-the-goldilocks-solution">Subword Tokenization: The Goldilocks Solution</h2>
+<p>Modern LLMs use <strong>subword tokenization</strong>: splitting text into units that are bigger than characters but smaller than words. The most common approach is <strong>Byte Pair Encoding (BPE)</strong>, originally developed for data compression (<a href="#gage1994">
+  Gage, 1994
+</a>
+) and later adapted for neural machine translation (<a href="#sennrich2016">
+  Sennrich et al., 2016
+</a>
+).</p>
+<h3 id="how-bpe-works"><strong>How BPE Works</strong></h3>
+<p>The algorithm starts with a character-level vocabulary, treating each character as its own token. It then counts every adjacent pair of tokens in the training data to find the most frequent pair. For example, in a corpus containing &ldquo;low lower lowest,&rdquo; the pair &ldquo;l&rdquo; + &ldquo;o&rdquo; appears multiple times across all three words.</p>
+<p>The algorithm merges this most frequent pair into a single new token, so everywhere we had <code>[&quot;l&quot;, &quot;o&quot;]</code> now becomes <code>[&quot;lo&quot;]</code>. The corpus representation changes from individual characters to a mix of characters and the newly created &ldquo;lo&rdquo; token. This process repeats—finding the next most frequent pair, merging it, and continuing until reaching the desired vocabulary size (typically 30,000–50,000 tokens).</p>
+<p>After many iterations on our example, &ldquo;low&rdquo; becomes a single token <code>[&quot;low&quot;]</code>, &ldquo;lower&rdquo; splits as <code>[&quot;low&quot;, &quot;er&quot;]</code>, and &ldquo;lowest&rdquo; becomes <code>[&quot;low&quot;, &quot;est&quot;]</code>. Notice how the model learned that &ldquo;low&rdquo; is a common subword, while suffixes like &ldquo;er&rdquo; and &ldquo;est&rdquo; are reusable components that modify many different roots.</p>
+<hr>
+<h2 id="why-this-works">Why This Works</h2>
+<p><strong>Subword tokenization elegantly balances multiple competing concerns.</strong></p>
+<p>Instead of millions of words, you need only about 50,000 subword tokens to cover most text effectively. Words with common roots naturally share tokens—&ldquo;program&rdquo; becomes <code>[&quot;program&quot;]</code>, &ldquo;programmer&rdquo; becomes <code>[&quot;program&quot;, &quot;mer&quot;]</code>, and &ldquo;programming&rdquo; becomes <code>[&quot;program&quot;, &quot;ming&quot;]</code>. The model learns the meaning of &ldquo;program&rdquo; once and reuses that knowledge across all its variations.</p>
+<p>When encountering novel words, the system gracefully degrades rather than failing. &ldquo;Doomscrolling&rdquo; might split into <code>[&quot;doom&quot;, &quot;scroll&quot;, &quot;ing&quot;]</code>, while &ldquo;cryptocurrency&rdquo; becomes <code>[&quot;cry&quot;, &quot;pt&quot;, &quot;o&quot;, &quot;currency&quot;]</code>. The model can process these new terms even if it never saw the complete word during training, inferring meaning from the combination of known subwords.</p>
+<p>Subword tokenization also adapts naturally to any language or writing system. Chinese characters often become individual tokens, German compounds break at morphologically meaningful boundaries, and emoji get their own tokens. The same algorithm works across all human languages without modification.</p>
+<hr>
+<h2 id="tokenization-in-practice">Tokenization in Practice</h2>
+<p>Let&rsquo;s examine how GPT&rsquo;s tokenizer handles real text. GPT-2 and later models use byte-level BPE (<a href="#radford2019">
+  Radford et al., 2019
+</a>
+), which operates on UTF-8 bytes rather than Unicode characters.</p>
+<h3 id="example-1-simple-sentence"><strong>Example 1: Simple Sentence</strong></h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love programming&#34;</span>
+</span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(tokens)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [40, 3021, 15840]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;I&#39;, &#39; love&#39;, &#39; programming&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Notice how &ldquo;I&rdquo; is one token, &quot; love&quot; includes the leading space (spaces are typically part of tokens in BPE), and &quot; programming&quot; is a single token because it&rsquo;s a common word. The entire sentence uses just <strong>3 tokens</strong> despite containing 18 characters.</p>
+<h3 id="example-2-rare-word"><strong>Example 2: Rare Word</strong></h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love supercalifragilisticexpialidocious&#34;</span>
+</span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;I&#39;, &#39; love&#39;, &#39; super&#39;, &#39;cal&#39;, &#39;if&#39;, &#39;rag&#39;, &#39;il&#39;, </span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># &#39;istic&#39;, &#39;exp&#39;, &#39;ial&#39;, &#39;id&#39;, &#39;ocious&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rare word breaks into 10 separate tokens because it didn&rsquo;t appear frequently enough in training data to warrant its own token. The model still processes it successfully by combining the meanings of its subword components. Total token count jumps to <strong>12 tokens</strong> for just 3 words.</p>
+<h3 id="example-3-code"><strong>Example 3: Code</strong></h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;def hello_world():</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">    print(&#39;Hello!&#39;)&#34;</span>
+</span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;def&#39;, &#39; hello&#39;, &#39;_world&#39;, &#39;():&#39;, &#39;\n&#39;, &#39;    &#39;, </span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># &#39;print&#39;, &#34;(&#39;&#34;, &#39;Hello&#39;, &#34;!&#39;&#34;, &#39;)&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Code tokenizes differently than prose. Function names split at underscores, indentation (four spaces) becomes a single token, and parentheses and quotes are individual tokens. This uses <strong>11 tokens</strong> for what might naively be considered 4 &ldquo;words&rdquo; if you split on spaces.</p>
+<h3 id="example-4-multilingual"><strong>Example 4: Multilingual</strong></h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love 编程&#34;</span>  <span style="color:#6272a4"># &#34;programming&#34; in Chinese</span>
+</span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;I&#39;, &#39; love&#39;, &#39; &#39;, &#39;编&#39;, &#39;程&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Chinese characters typically get one token per character, though common two-character words sometimes merge into single tokens. This reflects the character-based nature of Chinese writing while still allowing for some compression of frequent combinations.</p>
+<hr>
+<h2 id="why-tokenization-matters">Why Tokenization Matters</h2>
+<h3 id="1-token-limits-are-not-word-limits"><strong>1. Token Limits Are Not Word Limits</strong></h3>
+<p>GPT-4 has a 128,000 token context window, but this is <strong>not</strong> 128,000 words. The rough conversion for English is approximately 1 token per 0.75 words, meaning 128k tokens translates to about 96,000 words. However, this ratio varies dramatically based on content type. Code tokenizes less efficiently, often requiring 1.5-2 tokens per &ldquo;word.&rdquo; Rare or technical vocabulary breaks into multiple tokens. Non-English text often requires significantly more tokens for the same semantic content. You simply can&rsquo;t predict token count from word count without actually tokenizing the text.</p>
+<h3 id="2-letter-counting-fails"><strong>2. Letter Counting Fails</strong></h3>
+<p>When you ask Claude &ldquo;How many letters are in strawberry?&rdquo; it might say 10 (correct), 11, or 9, inconsistently. This happens because the model never sees &ldquo;strawberry&rdquo; as a sequence of characters. Instead, it sees three tokens: &ldquo;str&rdquo;, &ldquo;aw&rdquo;, and &ldquo;berry&rdquo;. To count letters, it must know that &ldquo;str&rdquo; has 3 letters, &ldquo;aw&rdquo; has 2, and &ldquo;berry&rdquo; has 5, then add them up. This requires <strong>reasoning over tokenization artifacts</strong> rather than directly perceiving the letters. Character-level tasks are inherently difficult because LLMs don&rsquo;t see characters—they see tokens.</p>
+<h3 id="3-glitch-tokens"><strong>3. Glitch Tokens</strong></h3>
+<p>In 2023, researchers discovered <strong>glitch tokens</strong> in GPT-3 that caused erratic behavior (<a href="#rumbelow2023">
+  Rumbelow &amp; Watkins, 2023
+</a>
+). The most infamous was &ldquo;SolidGoldMagikarp,&rdquo; which encoded as a single token that existed in GPT-3&rsquo;s vocabulary but never appeared in training data.</p>
+<p>This happened because the token came from Reddit usernames scraped during tokenizer training but filtered out during model training. The result was a token ID with no learned representation—just random noise in the embedding space. When users invoked this token, attention patterns broke and generation became incoherent. Other glitch tokens included &quot; petertodd&quot; and &quot; davidjl&quot; (more Reddit usernames) and &ldquo;\x00&rdquo; (the null byte). This mismatch between tokenizer training and model training created tokens that literally broke the model&rsquo;s ability to think.</p>
+<h3 id="4-tokenization-affects-performance"><strong>4. Tokenization Affects Performance</strong></h3>
+<p>Common words like &ldquo;the&rdquo; or &ldquo;said&rdquo; use single tokens, making them cheap to process. But rare words like &ldquo;antidisestablishmentarianism&rdquo; might require 7 tokens, consuming more context window and computational resources. This creates an inherent bias where the model is more efficient at processing common vocabulary, while technical or specialized terms are expensive. Since API costs depend on token count rather than word count, verbose or technical text costs more to process than simple prose using common words.</p>
+<hr>
+<h2 id="byte-level-bpe-what-gpt-uses">Byte-Level BPE (What GPT Uses)</h2>
+<p>GPT-4 uses <strong>Byte-level BPE</strong>, operating on UTF-8 bytes rather than Unicode characters (<a href="#radford2019">
+  Radford et al., 2019
+</a>
+). This means the base vocabulary consists of 256 possible byte values, with learned merges on top.</p>
+<p>The advantage is universality—byte-level BPE can represent any text in any language or encoding without modification. The vocabulary size is inherently bounded (256 base bytes plus learned merges), and no special &ldquo;unknown&rdquo; token is needed since any text can be decomposed into bytes.</p>
+<p>The tradeoff is that common characters might split into multiple byte tokens when they require multiple UTF-8 bytes to encode. For example, &ldquo;café&rdquo; might tokenize as <code>['c', 'af', 'é']</code>, with the accented é potentially split differently than expected. This makes byte-level tokenization slightly less intuitive than character-level, but the universality makes it worthwhile for multilingual models.</p>
+<hr>
+<h2 id="tokenization-in-other-models">Tokenization in Other Models</h2>
+<p>Different model families use different tokenization strategies, each with its own tradeoffs.</p>
+<p>GPT-2, GPT-3, and GPT-4 all use byte-level BPE with approximately 50,000 token vocabularies (<a href="#radford2019">
+  Radford et al., 2019
+</a>
+). BERT uses WordPiece, which is similar to BPE but with a different merge selection criterion, maintaining about 30,000 tokens and adding special tokens like <code>[CLS]</code>, <code>[SEP]</code>, and <code>[MASK]</code> for its masked language modeling objective.</p>
+<p>T5 uses SentencePiece (<a href="#kudo2018">
+  Kudo &amp; Richardson, 2018
+</a>
+), a language-agnostic tokenization approach that treats the input as a raw stream of characters, with around 32,000 tokens. LLaMA and Mistral also use SentencePiece but with larger vocabularies ranging from 32,000 to 64,000 tokens.</p>
+<p>The implication is that tokenizers are not interchangeable. A prompt that uses 100 tokens in GPT-4 might be 110 tokens in Claude or 95 tokens in LLaMA. This affects not just API costs but also how much information fits in each model&rsquo;s context window.</p>
+<hr>
+<h2 id="visualizing-tokenization">Visualizing Tokenization</h2>
+<p>Understanding how your specific text tokenizes helps optimize prompts and debug issues. Here&rsquo;s a Python script to visualize tokenization (using OpenAI&rsquo;s tokenizer tool as reference, <a href="#openai2023">
+  OpenAI, 2023
+</a>
+):</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">visualize_tokens</span>(text):
+</span></span><span style="display:flex;"><span>    enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
+</span></span><span style="display:flex;"><span>    tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Text: </span><span style="color:#f1fa8c">{</span>text<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Tokens: </span><span style="color:#f1fa8c">{</span><span style="color:#8be9fd;font-style:italic">len</span>(tokens)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> i, token <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(tokens):
+</span></span><span style="display:flex;"><span>        decoded <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>decode([token])
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Token </span><span style="color:#f1fa8c">{</span>i<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">: &#39;</span><span style="color:#f1fa8c">{</span>decoded<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39; (ID: </span><span style="color:#f1fa8c">{</span>token<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">)&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Examples</span>
+</span></span><span style="display:flex;"><span>visualize_tokens(<span style="color:#f1fa8c">&#34;I love programming&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;=&#34;</span><span style="color:#ff79c6">*</span><span style="color:#bd93f9">50</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>visualize_tokens(<span style="color:#f1fa8c">&#34;The quick brown fox jumps over the lazy dog&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;=&#34;</span><span style="color:#ff79c6">*</span><span style="color:#bd93f9">50</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>visualize_tokens(
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;def factorial(n):</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">    &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;return 1 if n == 0 else n * factorial(n-1)&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This reveals exactly how text splits into tokens, helping you understand why certain prompts work better than others and why models struggle with specific tasks.</p>
+<hr>
+<h2 id="practical-implications">Practical Implications</h2>
+<h3 id="1-counting-tokens-before-api-calls"><strong>1. Counting Tokens Before API Calls</strong></h3>
+<p>Since OpenAI charges by token rather than by word, it&rsquo;s essential to count tokens before sending requests. A simple utility function can save significant costs:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">count_tokens</span>(text, model<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;gpt-4&#34;</span>):
+</span></span><span style="display:flex;"><span>    enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>encoding_for_model(model)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">len</span>(enc<span style="color:#ff79c6">.</span>encode(text))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Explain quantum computing in simple terms&#34;</span>
+</span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> count_tokens(prompt)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;This prompt costs </span><span style="color:#f1fa8c">{</span>tokens<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> tokens&#34;</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-optimizing-prompts-for-token-efficiency"><strong>2. Optimizing Prompts for Token Efficiency</strong></h3>
+<p>Small changes in phrasing can dramatically affect token count. The verbose request &ldquo;Please provide a detailed explanation of the concept&rdquo; uses 12 tokens, while the concise &ldquo;Explain the concept&rdquo; uses just 5 tokens—same meaning, 58% fewer tokens. Over thousands of API calls, this optimization translates to substantial cost savings.</p>
+<h3 id="3-understanding-model-failures"><strong>3. Understanding Model Failures</strong></h3>
+<p>When an LLM fails at a seemingly simple task, tokenization is often the culprit. Tasks like counting letters, spelling words backward, or comparing character positions all suffer from tokenization mismatch. The model isn&rsquo;t inherently limited—it&rsquo;s blind to information below the token level. Understanding this helps set appropriate expectations and design better prompts.</p>
+<hr>
+<h2 id="the-future-of-tokenization">The Future of Tokenization</h2>
+<h3 id="problems-with-current-approaches"><strong>Problems with Current Approaches</strong></h3>
+<p>Current tokenization methods have several fundamental limitations that constrain model capabilities.</p>
+<p>Tokenization is brittle, with glitch tokens causing unpredictable failures (<a href="#rumbelow2023">
+  Rumbelow &amp; Watkins, 2023
+</a>
+). Similar words might split differently, and adding new vocabulary requires retraining the tokenizer from scratch. The system is also language-biased—English tokenizes efficiently while other languages often require significantly more tokens for equivalent content. Code tokenizes particularly poorly, especially when mixing natural language with programming languages. Perhaps most fundamentally, tokenization hides character-level information, making spelling, rhyming, and phonetic tasks unnecessarily difficult.</p>
+<h3 id="emerging-alternatives"><strong>Emerging Alternatives</strong></h3>
+<p>Several promising approaches could replace traditional tokenization in future models.</p>
+<p>Character-level models are becoming feasible with improved architectures like Mamba and RWKV that handle long sequences more efficiently. These models could operate on raw bytes without any tokenization step, eliminating artifacts and providing perfect character-level access, though sequence length remains a challenge.</p>
+<p>Learned tokenization represents another path forward. Instead of fixing token boundaries during preprocessing, models could learn optimal segmentation during training. Google&rsquo;s ByT5 demonstrates this approach, operating on raw bytes and learning internal segmentation dynamically (<a href="#xue2022">
+  Xue et al., 2022
+</a>
+).</p>
+<p>Multimodal tokenization points toward unified representations across modalities. Just as GPT-4V tokenizes images into patches and audio models tokenize sound into frames, future models might develop universal tokenization schemes that work across text, images, audio, and other modalities seamlessly.</p>
+<hr>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>Tokenization is the invisible layer between human language and machine learning. It&rsquo;s not a minor implementation detail—it&rsquo;s a fundamental design choice that shapes what models can and cannot do.</p>
+<p>When you understand tokenization, you write better prompts by optimizing for token efficiency and avoiding problematic splits. You can debug model failures by recognizing tokenization-induced blindness. You estimate costs accurately, knowing that tokens don&rsquo;t equal words. And you anticipate edge cases like glitch tokens and rare word handling.</p>
+<p><strong>The next time an LLM fails at a seemingly simple task, ask yourself: what did the model <em>actually see</em>?</strong> The answer is usually: not what you think.</p>
+<hr>
+<p><strong>If you&rsquo;ve followed this series from <a href="/posts/how-large-language-models-read-code">
+  how LLMs read code
+</a>
+ through <a href="/posts/how-large-language-models-think">
+  how they think
+</a>
+, <a href="/posts/how-large-language-models-learn">
+  how they learn
+</a>
+, and <a href="/posts/how-llms-handle-context-windows">
+  how they handle context
+</a>
+, you now understand the complete pipeline: text becomes tokens, tokens become vectors, vectors become predictions, and predictions become learning. What emerges is a system that&rsquo;s both more powerful and more limited than it appears—and understanding those limits is the key to using these tools effectively.</strong></p>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<p>If you want to dive deeper into tokenization and its implications:</p>
+<p><a id="gage1994"></a></p>
+<ul>
+<li>Gage, P. (1994). <a href="https://www.derczynski.com/papers/archive/BPE_Gage.pdf" target="_blank" rel="noopener noreferrer">
+  A New Algorithm for Data Compression
+</a>
+. <em>C Users Journal</em>, 12(2).<br>
+<em>The original Byte Pair Encoding paper from 1994, predating its use in NLP by two decades. Shows how compression algorithms became NLP tools.</em></li>
+</ul>
+<p><a id="kudo2018"></a></p>
+<ul>
+<li>Kudo, T., &amp; Richardson, J. (2018). <a href="https://arxiv.org/abs/1808.06226" target="_blank" rel="noopener noreferrer">
+  SentencePiece: A simple and language independent approach to subword tokenization
+</a>
+. <em>Proceedings of EMNLP 2018</em>.<br>
+<em>Introduces SentencePiece, a language-agnostic tokenization library used by T5, LLaMA, and many modern models.</em></li>
+</ul>
+<p><a id="openai2023"></a></p>
+<ul>
+<li>OpenAI. (2023). <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener noreferrer">
+  Tokenizer Tool
+</a>
+.<br>
+<em>Interactive web tool for visualizing how GPT models tokenize text. Essential for prompt engineering.</em></li>
+</ul>
+<p><a id="radford2019"></a></p>
+<ul>
+<li>Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). <a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener noreferrer">
+  Language Models are Unsupervised Multitask Learners
+</a>
+. <em>OpenAI Technical Report</em>.<br>
+<em>The GPT-2 paper, which popularized byte-level BPE. See Section 2.2 for tokenization details.</em></li>
+</ul>
+<p><a id="rumbelow2023"></a></p>
+<ul>
+<li>Rumbelow, J., &amp; Watkins, M. (2023). <a href="https://www.lesswrong.com/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation" target="_blank" rel="noopener noreferrer">
+  SolidGoldMagikarp and other Glitch Tokens
+</a>
+. <em>LessWrong</em>.<br>
+<em>Community-driven investigation into glitch tokens in GPT-3. Fascinating deep dive into tokenization artifacts.</em></li>
+</ul>
+<p><a id="sennrich2016"></a></p>
+<ul>
+<li>Sennrich, R., Haddow, B., &amp; Birch, A. (2016). <a href="https://arxiv.org/abs/1508.07909" target="_blank" rel="noopener noreferrer">
+  Neural Machine Translation of Rare Words with Subword Units
+</a>
+. <em>Proceedings of ACL 2016</em>.<br>
+<em>The foundational paper introducing BPE for neural networks. Essential reading for understanding why subword tokenization works.</em></li>
+</ul>
+<p><a id="xue2022"></a></p>
+<ul>
+<li>Xue, L., Barua, A., Constant, N., et al. (2022). <a href="https://arxiv.org/abs/2105.13626" target="_blank" rel="noopener noreferrer">
+  ByT5: Towards a token-free future with pre-trained byte-to-byte models
+</a>
+. <em>Transactions of ACL 2022</em>.<br>
+<em>Google&rsquo;s exploration of byte-level models without explicit tokenization. Points toward future architectures.</em></li>
+</ul>
+<hr>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ai/" rel="tag">AI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/tokenization/" rel="tag">tokenization</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/llms/" rel="tag">LLMs</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/transformers/" rel="tag">transformers</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/nlp/" rel="tag">NLP</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-tokenize-text-2/">How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-tokenize-text/">How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-handle-context-windows/">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/safe-distance-in-traffic/">Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/thermo-water-energy-balance/">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-learn/">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-think/">How Large Language Models (LLMs) Think: Turning Meaning into Math</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-read-code/">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai--the-mathematics-of-language/">AI &amp; the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/simulation/" title="Simulation">Simulation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

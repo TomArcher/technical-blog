@@ -375,4 +375,4 @@ Meetings don't have to consume your week. With a little optimization, you can pu
 
 ## Try It Yourself
 
-[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/meeting-diet)
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/meeting-diet)

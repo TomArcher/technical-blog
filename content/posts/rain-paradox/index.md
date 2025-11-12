@@ -377,4 +377,4 @@ So next time you're caught in a downpour, the answer is clear: **run**. The math
 
 ## Try It Yourself
 
-[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/python/rain-paradox)
+[Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/rain-paradox)

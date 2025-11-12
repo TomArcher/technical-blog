@@ -277,7 +277,7 @@ and return <code>k_evap * A * grad * (1.0 + beta_wind * wind)</code>.</li>
 <p>Output only the code with the exact function names and signatures specified.</p>
 </li>
 </ol></blockquote>
-<p><strong>Python code:</strong> Your LLM should respond with code similar to the following:</p>
+<p><strong>Python:</strong> Your LLM should respond with code similar to the following:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -450,7 +450,7 @@ and return <code>k_evap * A * grad * (1.0 + beta_wind * wind)</code>.</li>
 <p>Generously comment the code, but do not exceed 80 chars on any line.</p>
 </li>
 </ol></blockquote>
-<p><strong>Python code:</strong> Below is the<code>simulate</code> function and a compact <code>main</code> with a simple run that compares open water with a covered surface.</p>
+<p><strong>Python:</strong> Below is the<code>simulate</code> function and a compact <code>main</code> with a simple run that compares open water with a covered surface.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -692,7 +692,7 @@ where <code>hours_*</code> are hour vectors, and <code>Tw_*_C</code> are water t
 <p>Return only valid Python code with the single function definition and necessary <code>import matplotlib.pyplot as plt</code>.</p>
 </li>
 </ol></blockquote>
-<p><strong>Python code:</strong> Here is a minimal plotting script for the temperature trajectories.</p>
+<p><strong>Python:</strong> Here is a minimal plotting script for the temperature trajectories.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -804,7 +804,7 @@ where <code>hours_*</code> are hour vectors, and <code>Tw_*_C</code> are water t
 <h2 id="closing-thoughts">Closing Thoughts</h2>
 <p>Butter and pools may seem like strange lab partners, until you <strong>turn up the heat</strong>. In butter, fat gives way quickly, while the water in margarine plays the long game. Pools behave like margarine on a grand scale, warming slowly, then giving it all back after just a few dry nights. Next time you&rsquo;re poolside on a broiling summer day, you&rsquo;ll know exactly why the water can feel like early spring.</p>
 <h2 id="try-it-yourself">Try It Yourself</h2>
-<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/python/thermo-water-energy-balance" target="_blank" rel="noopener noreferrer">
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/thermo-water-energy-balance" target="_blank" rel="noopener noreferrer">
   Download the full code on GitHub
 </a>
 </p>
@@ -903,6 +903,7 @@ where <code>hours_*</code> are hour vectors, and <code>Tw_*_C</code> are water t
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-tokenize-text/">How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/how-large-language-models-handle-context-windows/">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/safe-distance-in-traffic/">Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/thermo-water-energy-balance/">Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</a></li>
@@ -912,7 +913,6 @@ where <code>hours_*</code> are hour vectors, and <code>Tw_*_C</code> are water t
 			<li class="widget__item"><a class="widget__link" href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/meeting-diet/">The Meeting Diet: An Optimization Approach to Your Calendar</a></li>
 		</ul>
 	</div>
 </div>
@@ -920,6 +920,8 @@ where <code>hours_*</code> are hour vectors, and <code>Tw_*_C</code> are water t
 	<h4 class="widget__title">Categories</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai--the-mathematics-of-language/">AI &amp; the Mathematics of Language</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
 			<li class="widget__item">
@@ -952,6 +954,7 @@ where <code>hours_*</code> are hour vectors, and <code>Tw_*_C</code> are water t
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/modeling/" title="Modeling">Modeling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
