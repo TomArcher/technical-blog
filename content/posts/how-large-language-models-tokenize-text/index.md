@@ -182,8 +182,7 @@ Subword tokenization adapts to any language:
 
 ## Tokenization in Practice
 
-Let's see how GPT's tokenizer handles real text. GPT-2 and later models use byte-level BPE ([Radford et al., 2019](#radford2019)). To do so, we'll use [tiktoken](https://pypi.org/project/tiktoken/) - OpenAI's open-source Python library for tokenizing text using the same tokenizers that GPT models use. It's the official way to count tokens before sending requests to the OpenAI API.
-
+Let's see how GPT's tokenizer handles real text. GPT-2 and later models use byte-level BPE ([Radford et al., 2019](#radford2019)). To do so, we'll use [tiktoken](https://pypi.org/project/tiktoken/) - OpenAI's open-source Python library for tokenizing text using the same tokenizers that GPT models use. **It's the official way to count tokens before sending requests to the OpenAI API.**
 
 ### **Example 1: Simple Sentence**
 
