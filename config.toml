@@ -59,7 +59,7 @@ googleAnalytics = "G-7ZV2PMS61P"
   home   = "right"
   list   = "right"
   single = "right"
-  widgets = ["bio", "disclaimer", "social", "recent", "categories", "taglist"]
+  widgets = ["bio", "disclaimer", "social", "categories", "taglist"]
 
 [markup]
   [markup.goldmark]
