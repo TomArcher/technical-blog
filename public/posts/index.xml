@@ -9,7 +9,7 @@
     <lastBuildDate>Tue, 11 Nov 2025 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>How Large Language Models Tokenize Text: Why Words Aren&#39;t What You Think</title>
+      <title>How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</title>
       <link>http://localhost:1313/posts/how-large-language-models-tokenize-text/</link>
       <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
       <guid>http://localhost:1313/posts/how-large-language-models-tokenize-text/</guid>

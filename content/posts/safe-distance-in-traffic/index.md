@@ -3,7 +3,7 @@ title = "Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not 
 date = "2025-10-23T09:00:00-07:00"
 draft = false
 categories = ["Applied Modeling and Simulation"]
-tags = ["kinematics", "physics", "Python", "simulation",]
+tags = ["kinematics", "physics", "Python",]
 author = "Tom Archer"
 listThumb = "safe-distance-in-traffic-vertical-arrows.png"
 +++

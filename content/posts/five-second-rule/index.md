@@ -3,7 +3,7 @@ title = "The Five-Second Rule Explored with Math & Python"
 date = "2025-09-04T06:00:00-07:00"
 draft = false
 categories = ["Applied Modeling and Simulation",]
-tags = ["physics", "Python", "probability", "simulation",]
+tags = ["physics", "Python", "probability",]
 author = "Tom Archer"
 listThumb = "five-second-rule-explored.png"
 +++

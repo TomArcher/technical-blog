@@ -3,7 +3,7 @@ title = "The Meeting Diet: An Optimization Approach to Your Calendar"
 date = 2025-08-28T05:00:00-07:00
 draft = false
 categories = ["Applied Modeling and Simulation"]
-tags = ["optimization", "Python", "scheduling", "simulation",]
+tags = ["optimization", "Python", "scheduling",]
 author = "Tom Archer"
 listThumb = "meeting-diet.png"
 +++
