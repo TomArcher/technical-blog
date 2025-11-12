@@ -309,8 +309,6 @@ print([enc.decode([t]) for t in tokens])
 
 ### **3. Glitch Tokens**
 
-### **3. Glitch Tokens**
-
 In 2023, researchers discovered **glitch tokens** in GPT-3 that caused erratic behavior ([Rumbelow & Watkins, 2023](#rumbelow2023)). The most infamous was "SolidGoldMagikarp," which in GPT-3's tokenizer encoded as a single token that existed in the vocabulary but never appeared in training data.
 
 **Python (GPT-3's tokenizer would show):**
