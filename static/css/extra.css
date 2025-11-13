@@ -369,3 +369,27 @@ pre code span[style*="color:#6272a4"] {
         height: auto !important;
     }
 }
+
+/* Ensure code blocks are scrollable on mobile */
+@media (max-width: 768px) {
+    pre {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    /* Add visual hint that content is scrollable */
+    pre::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    /* Optional: Add a gradient to indicate more content */
+    pre::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 20px;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+        pointer-events: none;
+    }
+}
