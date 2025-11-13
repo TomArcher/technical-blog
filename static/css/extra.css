@@ -351,3 +351,14 @@ pre code span[style*="color:#6272a4"] {
     color: #9cdb7f !important;
     font-style: italic !important;
 }
+
+/* Mobile-specific styling for intro images */
+@media (max-width: 768px) {
+    figure[style*="float: right"] {
+        float: none !important;
+        margin: 20px auto 30px auto !important;
+        width: 100% !important;
+        max-width: 250px !important;  /* Matches your current width */
+        display: block !important;
+    }
+}
