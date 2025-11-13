@@ -134,18 +134,7 @@
         
         
         
-        <div class="post-summary"><style>
-@media only screen and (max-width: 768px) {
-    body figure {
-        float: none !important;
-        width: 90% !important;
-        margin: 20px auto !important;
-        display: block !important;
-        background: red !important;  /* Red background to make it obvious */
-    }
-}
-</style>
-
+        <div class="post-summary">
 <p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
 <p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
 <p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">

@@ -9,18 +9,6 @@ author = "Tom Archer"
 listThumb = "how-large-language-models-tokenize-text.png"
 +++
 
-<style>
-@media only screen and (max-width: 768px) {
-    body figure {
-        float: none !important;
-        width: 90% !important;
-        margin: 20px auto !important;
-        display: block !important;
-        background: red !important;  /* Red background to make it obvious */
-    }
-}
-</style>
-
 <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
   <img src="./how-large-language-models-tokenize-text.png"
        alt="Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens"
