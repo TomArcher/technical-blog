@@ -189,23 +189,12 @@
 <h2 id="from-words-to-numbers">From Words to Numbers</h2>
 <p>Computers don&rsquo;t understand language. They understand numbers. So before a model can process text, it has to convert every token (a word or fragment) into a numerical vector (in this case, representing a list of floating-point values).</p>
 <p>Here&rsquo;s a simplified Python example:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.feature_extraction.text <span style="color:#ff79c6">import</span> CountVectorizer
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sklearn.feature_extraction.text <span style="color:#ff79c6">import</span> CountVectorizer
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>vectorizer <span style="color:#ff79c6">=</span> CountVectorizer()
 </span></span><span style="display:flex;"><span>X <span style="color:#ff79c6">=</span> vectorizer<span style="color:#ff79c6">.</span>fit_transform([<span style="color:#f1fa8c">&#34;AI reads code&#34;</span>, <span style="color:#f1fa8c">&#34;AI writes code&#34;</span>])
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(X<span style="color:#ff79c6">.</span>toarray())
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>Output:</strong></p>
+</span></span></code></pre></div><p><strong>Output:</strong></p>
 <pre tabindex="0"><code>[[1 1 1 0]
  [1 0 1 1]]
 </code></pre><p>Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous embeddings instead of simple counts, but the principle is the same: text becomes math.</p>
@@ -214,20 +203,7 @@
 <p>An <em>embedding</em> is not a dictionary lookup. It is a <strong>coordinate</strong> in a high-dimensional space with thousands of dimensions where mathematical proximity corresponds to semantic similarity.</p>
 <p>In this space, &ldquo;cat&rdquo; sits close to &ldquo;dog,&rdquo; &ldquo;car&rdquo; lies near &ldquo;truck,&rdquo; and <code>process_users()</code> resides near <code>handle_clients()</code>. Proximity encodes relationship.</p>
 <p>You can visualize a simplified version in MATLAB or Python. For instance, in MATLAB:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span>words = [&#34;king&#34;,&#34;queen&#34;,&#34;man&#34;,&#34;woman&#34;];
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span>words = [&#34;king&#34;,&#34;queen&#34;,&#34;man&#34;,&#34;woman&#34;];
 </span></span><span style="display:flex;"><span>vectors = [ <span style="color:#6272a4">...</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">0.8</span> <span style="color:#bd93f9">0.6</span>;   <span style="color:#6272a4">% king</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">0.75</span> <span style="color:#bd93f9">0.65</span>; <span style="color:#6272a4">% queen</span>
@@ -236,9 +212,7 @@
 </span></span><span style="display:flex;"><span>];
 </span></span><span style="display:flex;"><span>plot(vectors(:,<span style="color:#bd93f9">1</span>), vectors(:,<span style="color:#bd93f9">2</span>),<span style="color:#f1fa8c">&#39;o&#39;</span>);
 </span></span><span style="display:flex;"><span>text(vectors(:,<span style="color:#bd93f9">1</span>)<span style="color:#ff79c6">+</span><span style="color:#bd93f9">0.02</span>, vectors(:,<span style="color:#bd93f9">2</span>), words);
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This tiny example mimics one of the most famous discoveries in word embeddings:
+</span></span></code></pre></div><p>This tiny example mimics one of the most famous discoveries in word embeddings:
 <strong>king – man + woman ≈ queen.</strong></p>
 <p>Even though these are just coordinates, the geometry encodes analogy. That&rsquo;s the quiet miracle of embeddings where relations emerge from math alone.</p>
 <hr>
@@ -281,23 +255,7 @@
 <h2 id="visualizing-it-with-probability">Visualizing It with Probability</h2>
 <p>Every time a model predicts the next token, it&rsquo;s estimating how close the new vector should be to the current path. Think of it as walking through this landscape one step at a time, guided by probability rather than certainty.</p>
 <p>Here&rsquo;s a conceptual MATLAB snippet that simulates that:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span><span style="color:#6272a4">% Random 2D embedding of 4 tokens</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span><span style="color:#6272a4">% Random 2D embedding of 4 tokens</span>
 </span></span><span style="display:flex;"><span>tokens = [&#34;def&#34;, &#34;<span style="color:#ff79c6">for</span>&#34;, &#34;<span style="color:#ff79c6">if</span>&#34;, &#34;<span style="color:#ff79c6">return</span>&#34;];
 </span></span><span style="display:flex;"><span>E = <span style="color:#8be9fd;font-style:italic">rand</span>(<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">2</span>);
 </span></span><span style="display:flex;"><span>
@@ -309,9 +267,7 @@
 </span></span><span style="display:flex;"><span>[<span style="color:#ff79c6">~</span>, idx] = max(similarity);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>fprintf(&#34;Most likely next token: <span style="color:#6272a4">%s\n&#34;, tokens(idx));</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>Output:</strong></p>
+</span></span></code></pre></div><p><strong>Output:</strong></p>
 <pre tabindex="0"><code>Most likely next token: return
 </code></pre><p>The code above doesn&rsquo;t generate real text; it illustrates the logic. The context vector, which represents everything you&rsquo;ve communicated so far to the model, points somewhere in the embedding space. The model searches for the nearest vectors and selects the one most aligned. <strong>That is prediction in geometric form</strong>.</p>
 <hr>

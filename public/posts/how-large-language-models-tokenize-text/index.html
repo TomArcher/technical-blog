@@ -310,21 +310,7 @@ Subword tokenization adapts to any language:</p>
 <h3 id="example-1-simple-sentence"><strong>Example 1: Simple Sentence</strong></h3>
 <p>The first example is a simple sentence (&ldquo;I love programming&rdquo;) where all the words have been tokenized.</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love programming&#34;</span>
@@ -334,9 +320,7 @@ Subword tokenization adapts to any language:</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;I&#39;, &#39; love&#39;, &#39; programming&#39;]</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>Notice:</strong></p>
+</span></span></code></pre></div><p><strong>Notice:</strong></p>
 <ul>
 <li><code>&quot;I&quot;</code> is one token</li>
 <li><code>&quot; love&quot;</code> includes the leading space (spaces are part of tokens)</li>
@@ -347,19 +331,7 @@ Subword tokenization adapts to any language:</p>
 <h3 id="example-2-rare-word"><strong>Example 2: Rare Word</strong></h3>
 <p>In this example we show an extreme opposite by finding the amount of tokens for a word that is rarely used (&ldquo;supercalifragilisticexpialidocious&rdquo;).</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love supercalifragilisticexpialidocious&#34;</span>
@@ -367,27 +339,13 @@ Subword tokenization adapts to any language:</p>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;I&#39;, &#39; love&#39;, &#39; super&#39;, &#39;cal&#39;, &#39;if&#39;, &#39;rag&#39;, &#39;il&#39;, </span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># &#39;istic&#39;, &#39;exp&#39;, &#39;ial&#39;, &#39;id&#39;, &#39;ocious&#39;]</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>The rare word breaks into 10 tokens</strong> because it didn&rsquo;t appear frequently enough in training data to warrant its own token. The model still processes it successfully by combining the meanings of its subword components.</p>
+</span></span></code></pre></div><p><strong>The rare word breaks into 10 tokens</strong> because it didn&rsquo;t appear frequently enough in training data to warrant its own token. The model still processes it successfully by combining the meanings of its subword components.</p>
 <p><strong>Total: 12 tokens for just 3 words.</strong></p>
 <hr>
 <h3 id="example-3-code"><strong>Example 3: Code</strong></h3>
 <p>Now let&rsquo;s see how the tokens for a small code snippet would be counted.</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;def hello_world():</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">    print(&#39;Hello!&#39;)&#34;</span>
@@ -395,9 +353,7 @@ Subword tokenization adapts to any language:</p>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;def&#39;, &#39; hello&#39;, &#39;_world&#39;, &#39;():&#39;, &#39;\n&#39;, &#39;    &#39;, </span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># &#39;print&#39;, &#34;(&#39;&#34;, &#39;Hello&#39;, &#34;!&#39;&#34;, &#39;)&#39;]</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>Code tokenizes differently than prose:</strong></p>
+</span></span></code></pre></div><p><strong>Code tokenizes differently than prose:</strong></p>
 <ul>
 <li>Function names split at underscores</li>
 <li>Indentation (spaces) is a separate token</li>
@@ -408,27 +364,14 @@ Subword tokenization adapts to any language:</p>
 <h3 id="example-4-multilingual"><strong>Example 4: Multilingual</strong></h3>
 <p>Finally, let&rsquo;s look at a multilingual example.</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love 编程&#34;</span>  <span style="color:#6272a4"># &#34;programming&#34; in Chinese</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;I&#39;, &#39; love&#39;, &#39; &#39;, &#39;编&#39;, &#39;程&#39;]</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Chinese characters typically get <strong>one token per character</strong> (though common two-character words sometimes merge).</p>
+</span></span></code></pre></div><p>Chinese characters typically get <strong>one token per character</strong> (though common two-character words sometimes merge).</p>
 <p><strong>Total: 5 tokens for 3 words (or 4 words if you count the Chinese characters as one word).</strong></p>
 <hr>
 <h2 id="why-tokenization-matters">Why Tokenization Matters</h2>
@@ -439,50 +382,21 @@ Subword tokenization adapts to any language:</p>
 <h3 id="2-letter-counting-fails"><strong>2. Letter Counting Fails</strong></h3>
 <p>When you ask Claude &ldquo;How many letters are in strawberry?&rdquo; it might say 10 (correct), 11, or 9, inconsistently. This happens because the model never sees &ldquo;strawberry&rdquo; as a sequence of characters. Instead, it sees three tokens: &ldquo;str&rdquo;, &ldquo;aw&rdquo;, and &ldquo;berry&rdquo;. To count letters, it must know that &ldquo;str&rdquo; has 3 letters, &ldquo;aw&rdquo; has 2, and &ldquo;berry&rdquo; has 5, then add them up. This requires <strong>reasoning over tokenization artifacts</strong> rather than directly perceiving the letters. Character-level tasks are inherently difficult because LLMs don&rsquo;t see characters. They see tokens.</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;strawberry&#34;</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [496, 675, 15717]  (tokens: &#34;str&#34;, &#34;aw&#34;, &#34;berry&#34;)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
+</span></span></code></pre></div><hr>
 <h3 id="3-glitch-tokens"><strong>3. Glitch Tokens</strong></h3>
 <p>In 2023, researchers discovered <strong>glitch tokens</strong> in GPT-3 that caused erratic behavior (<a href="#rumbelow2023">
   Rumbelow &amp; Watkins, 2023
 </a>
 ). The most infamous was &ldquo;SolidGoldMagikarp,&rdquo; which in GPT-3&rsquo;s tokenizer encoded as a single token that existed in the vocabulary but never appeared in training data.</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># In GPT-3&#39;s tokenizer (not cl100k_base):</span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># enc.encode(&#34;SolidGoldMagikarp&#34;)</span>
@@ -494,36 +408,14 @@ Subword tokenization adapts to any language:</p>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(<span style="color:#f1fa8c">&#34;SolidGoldMagikarp&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;Solid&#39;, &#39;Gold&#39;, &#39;Mag&#39;, &#39;ik&#39;, &#39;arp&#39;]</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This happened because the token came from Reddit usernames scraped during GPT-3&rsquo;s tokenizer training but filtered out during model training. The result was a token ID with no learned representation—just random noise in the embedding space. When users invoked this token in GPT-3, attention patterns broke and generation became incoherent. Other glitch tokens included &quot; petertodd&quot; and &quot; davidjl&quot; (more Reddit usernames) and &ldquo;\x00&rdquo; (the null byte). This mismatch between tokenizer training and model training created tokens that literally broke GPT-3&rsquo;s ability to think.</p>
+</span></span></code></pre></div><p>This happened because the token came from Reddit usernames scraped during GPT-3&rsquo;s tokenizer training but filtered out during model training. The result was a token ID with no learned representation—just random noise in the embedding space. When users invoked this token in GPT-3, attention patterns broke and generation became incoherent. Other glitch tokens included &quot; petertodd&quot; and &quot; davidjl&quot; (more Reddit usernames) and &ldquo;\x00&rdquo; (the null byte). This mismatch between tokenizer training and model training created tokens that literally broke GPT-3&rsquo;s ability to think.</p>
 <p><strong>Note:</strong> These glitch tokens were fixed in GPT-4&rsquo;s tokenizer, which is why &ldquo;SolidGoldMagikarp&rdquo; now tokenizes normally into multiple subwords.</p>
 <hr>
 <h3 id="4-tokenization-affects-performance"><strong>4. Tokenization Affects Performance</strong></h3>
 <p>Common words like &ldquo;the&rdquo; or &ldquo;said&rdquo; use single tokens, making them cheap to process. But rare words like &ldquo;antidisestablishmentarianism&rdquo; might require 6 tokens, consuming more context window and computational resources. This creates an inherent bias where the model is more efficient at processing common vocabulary, while technical or specialized terms are expensive. Since API costs depend on token count rather than word count, verbose or technical text costs more to process than simple prose using common words.</p>
 <p>The following Python code snippet illustrates that common words are cheap while rare words are expensive:</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Common words token count</span>
@@ -539,9 +431,7 @@ Subword tokenization adapts to any language:</p>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;antidisestablishmentarianism&#34;</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)  <span style="color:#6272a4"># 6 tokens</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
+</span></span></code></pre></div><hr>
 <h2 id="byte-level-bpe-what-gpt-uses">Byte-Level BPE (What GPT Uses)</h2>
 <p>GPT-4 uses <strong>Byte-level BPE</strong>, operating on UTF-8 bytes rather than Unicode characters (<a href="#radford2019">
   Radford et al., 2019
@@ -550,27 +440,14 @@ Subword tokenization adapts to any language:</p>
 <p>The advantage is universality—byte-level BPE can represent any text in any language or encoding without modification. The vocabulary size is inherently bounded (256 base bytes plus learned merges), and no special &ldquo;unknown&rdquo; token is needed since any text can be decomposed into bytes.</p>
 <p>The tradeoff is that common characters might split into multiple tokens when they require multiple UTF-8 bytes to encode. For example, &ldquo;café&rdquo; tokenizes into two tokens:</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;café&#34;</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;ca&#39;, &#39;fé&#39;]</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The accented é gets grouped with the f to form &ldquo;fé&rdquo; as a single token, showing how byte-level BPE creates tokens based on frequency patterns in the training data rather than obvious character boundaries.</p>
+</span></span></code></pre></div><p>The accented é gets grouped with the f to form &ldquo;fé&rdquo; as a single token, showing how byte-level BPE creates tokens based on frequency patterns in the training data rather than obvious character boundaries.</p>
 <hr>
 <h2 id="tokenization-in-other-models">Tokenization in Other Models</h2>
 <p>Different model families use different tokenization strategies, each with its own tradeoffs.</p>
@@ -612,33 +489,7 @@ Subword tokenization adapts to any language:</p>
 </a>
 ):</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">visualize_tokens</span>(text):
 </span></span><span style="display:flex;"><span>    enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
@@ -660,9 +511,7 @@ Subword tokenization adapts to any language:</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;def factorial(n):</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">    &#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;return 1 if n == 0 else n * factorial(n-1)&#34;</span>
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>Output:</strong></p>
+</span></span></code></pre></div><p><strong>Output:</strong></p>
 <pre tabindex="0"><code>Text: I love programming
 Tokens: 3
 
@@ -718,20 +567,7 @@ Token 20: &#39;)&#39; (ID: 8)
 <h3 id="1-counting-tokens-before-api-calls"><strong>1. Counting Tokens Before API Calls</strong></h3>
 <p>Since OpenAI charges by token rather than by word, it’s essential to count tokens before sending requests. A simple utility function can save significant costs:</p>
 <p><strong>Python:</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">count_tokens</span>(text, model<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;gpt-4&#34;</span>):
 </span></span><span style="display:flex;"><span>    enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>encoding_for_model(model)
@@ -740,9 +576,7 @@ Token 20: &#39;)&#39; (ID: 8)
 </span></span><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Explain quantum computing in simple terms&#34;</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> count_tokens(prompt)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;This prompt costs </span><span style="color:#f1fa8c">{</span>tokens<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> tokens&#34;</span>)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
+</span></span></code></pre></div><hr>
 <h3 id="2-optimizing-prompts-for-token-efficiency"><strong>2. Optimizing Prompts for Token Efficiency</strong></h3>
 <p>Small changes in phrasing can dramatically affect token count. The verbose request “Please provide a detailed explanation of the concept” uses 12 tokens, while the concise “Explain the concept” uses just 5 tokens—same meaning, 58% fewer tokens. Over thousands of API calls, this optimization translates to substantial cost savings.</p>
 <p><strong>Verbose version (12 tokens):</strong></p>
