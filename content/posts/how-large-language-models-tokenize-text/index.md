@@ -191,7 +191,9 @@ The first example is a simple sentence ("I love programming") where all the word
 **Python:**
 ```python
 import tiktoken
-enc = tiktoken.get_encoding("cl100k_base")  # GPT-4 tokenizer
+
+# GPT-4 tokenizer
+enc = tiktoken.get_encoding("cl100k_base")
 
 text = "I love programming"
 tokens = enc.encode(text)
@@ -218,7 +220,9 @@ In this example we show an extreme opposite by finding the amount of tokens for 
 **Python:**
 ```python
 import tiktoken
-enc = tiktoken.get_encoding("cl100k_base")  # GPT-4 tokenizer
+
+# GPT-4 tokenizer
+enc = tiktoken.get_encoding("cl100k_base")
 
 text = "I love supercalifragilisticexpialidocious"
 tokens = enc.encode(text)
@@ -240,7 +244,9 @@ Now let's see how the tokens for a small code snippet would be counted.
 **Python:**
 ```python
 import tiktoken
-enc = tiktoken.get_encoding("cl100k_base")  # GPT-4 tokenizer
+
+# GPT-4 tokenizer
+enc = tiktoken.get_encoding("cl100k_base")
 
 text = "def hello_world():\n    print('Hello!')"
 tokens = enc.encode(text)
@@ -265,7 +271,9 @@ Finally, let's look at a multilingual example.
 **Python:**
 ```python
 import tiktoken
-enc = tiktoken.get_encoding("cl100k_base")  # GPT-4 tokenizer
+
+# GPT-4 tokenizer
+enc = tiktoken.get_encoding("cl100k_base")
 
 text = "I love 编程"  # "programming" in Chinese
 tokens = enc.encode(text)
@@ -297,7 +305,9 @@ When you ask Claude "How many letters are in strawberry?" it might say 10 (corre
 **Python:**
 ```python
 import tiktoken
-enc = tiktoken.get_encoding("cl100k_base")  # GPT-4 tokenizer
+
+# GPT-4 tokenizer
+enc = tiktoken.get_encoding("cl100k_base")
 
 text = "strawberry"
 tokens = enc.encode(text)

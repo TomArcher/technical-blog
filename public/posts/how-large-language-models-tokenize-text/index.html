@@ -311,7 +311,9 @@ Subword tokenization adapts to any language:</p>
 <p>The first example is a simple sentence (&ldquo;I love programming&rdquo;) where all the words have been tokenized.</p>
 <p><strong>Python:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
-</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love programming&#34;</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
@@ -332,7 +334,9 @@ Subword tokenization adapts to any language:</p>
 <p>In this example we show an extreme opposite by finding the amount of tokens for a word that is rarely used (&ldquo;supercalifragilisticexpialidocious&rdquo;).</p>
 <p><strong>Python:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
-</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love supercalifragilisticexpialidocious&#34;</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
@@ -346,7 +350,9 @@ Subword tokenization adapts to any language:</p>
 <p>Now let&rsquo;s see how the tokens for a small code snippet would be counted.</p>
 <p><strong>Python:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
-</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;def hello_world():</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">    print(&#39;Hello!&#39;)&#34;</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
@@ -365,7 +371,9 @@ Subword tokenization adapts to any language:</p>
 <p>Finally, let&rsquo;s look at a multilingual example.</p>
 <p><strong>Python:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
-</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;I love 编程&#34;</span>  <span style="color:#6272a4"># &#34;programming&#34; in Chinese</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
@@ -383,7 +391,9 @@ Subword tokenization adapts to any language:</p>
 <p>When you ask Claude &ldquo;How many letters are in strawberry?&rdquo; it might say 10 (correct), 11, or 9, inconsistently. This happens because the model never sees &ldquo;strawberry&rdquo; as a sequence of characters. Instead, it sees three tokens: &ldquo;str&rdquo;, &ldquo;aw&rdquo;, and &ldquo;berry&rdquo;. To count letters, it must know that &ldquo;str&rdquo; has 3 letters, &ldquo;aw&rdquo; has 2, and &ldquo;berry&rdquo; has 5, then add them up. This requires <strong>reasoning over tokenization artifacts</strong> rather than directly perceiving the letters. Character-level tasks are inherently difficult because LLMs don&rsquo;t see characters. They see tokens.</p>
 <p><strong>Python:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tiktoken
-</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)  <span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># GPT-4 tokenizer</span>
+</span></span><span style="display:flex;"><span>enc <span style="color:#ff79c6">=</span> tiktoken<span style="color:#ff79c6">.</span>get_encoding(<span style="color:#f1fa8c">&#34;cl100k_base&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;strawberry&#34;</span>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(text)
