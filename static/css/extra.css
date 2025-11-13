@@ -352,13 +352,20 @@ pre code span[style*="color:#6272a4"] {
     font-style: italic !important;
 }
 
-/* Mobile-specific styling for intro images */
-@media (max-width: 768px) {
-    figure[style*="float: right"] {
+/* Mobile-specific styling - more specific selectors */
+@media screen and (max-width: 768px) {
+    /* Target any figure with inline float style */
+    figure {
         float: none !important;
-        margin: 20px auto 30px auto !important;
         width: 100% !important;
-        max-width: 250px !important;  /* Matches your current width */
+        max-width: 300px !important;
+        margin: 20px auto 30px auto !important;
         display: block !important;
+    }
+    
+    /* Also target the image inside */
+    figure img {
+        width: 100% !important;
+        height: auto !important;
     }
 }
