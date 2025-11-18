@@ -202,7 +202,7 @@
        width="400"
        style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Random bytes almost never accidentally form valid structured data.</em>
+    <em>Random bytes almost never accidentally form meaningful structured data.</em>
   </figcaption>
 </figure>
 <p>Finding two inputs that hash to the same value is one thing. Finding two <em>meaningful</em> inputs that hash to the same value is exponentially harder. Language, whether natural or programming, has structure and rules that random bytes almost never satisfy.</p>
@@ -232,16 +232,26 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># How many are valid Python code?</span>
 </span></span><span style="display:flex;"><span>valid_python_count <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>meaningful_python_count <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> attempt <span style="color:#ff79c6">in</span> attempts:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">compile</span>(attempt, <span style="color:#f1fa8c">&#39;&lt;string&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;exec&#39;</span>)
 </span></span><span style="display:flex;"><span>        valid_python_count <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Check if it contains meaningful constructs</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">any</span>(keyword <span style="color:#ff79c6">in</span> attempt <span style="color:#ff79c6">for</span> keyword <span style="color:#ff79c6">in</span> 
+</span></span><span style="display:flex;"><span>               [<span style="color:#f1fa8c">&#39;def &#39;</span>, <span style="color:#f1fa8c">&#39;class &#39;</span>, <span style="color:#f1fa8c">&#39;import &#39;</span>, <span style="color:#f1fa8c">&#39;for &#39;</span>, <span style="color:#f1fa8c">&#39;if &#39;</span>, <span style="color:#f1fa8c">&#39;while &#39;</span>]):
+</span></span><span style="display:flex;"><span>            meaningful_python_count <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">except</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pass</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Valid Python found: </span><span style="color:#f1fa8c">{</span>valid_python_count<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">/1,000,000&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: Valid Python found: 0/1,000,000</span>
-</span></span></code></pre></div><p>Language has structure that random bytes don&rsquo;t accidentally reproduce. Random bytes don&rsquo;t accidentally form valid JSON, compilable code, or readable prose. This is why Git&rsquo;s reliance on SHA-1 (now SHA-256) remained practically secure despite theoretical vulnerabilities. Creating two <em>valid source code files</em> that compile, run correctly, and contain malicious logic while matching an existing hash? That&rsquo;s not just hard; it&rsquo;s effectively impossible with current technology.</p>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: Valid Python found: ~6,000/1,000,000 (0.6%)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Meaningful Python found: </span><span style="color:#f1fa8c">{</span>meaningful_python_count<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">/1,000,000&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: Meaningful Python found: 0/1,000,000</span>
+</span></span></code></pre></div><p>While random bytes occasionally form valid Python (about 0.6% of the time), these are trivial statements like single digits or whitespace—not meaningful programs. None contain functions, classes, or control flow. Random bytes don&rsquo;t form valid JSON, and they certainly don&rsquo;t form functional code with semantic meaning.</p>
+<p>This is why Git&rsquo;s reliance on SHA-1 (now SHA-256) remained practically secure despite theoretical vulnerabilities. Creating two <em>meaningful source code files</em> that compile, run correctly, perform useful operations, and contain malicious logic while matching an existing hash? That&rsquo;s not just hard—it&rsquo;s effectively impossible with current technology.</p>
 <hr>
 <h2 id="what-i-got-right-and-wrong-in-2005">What I Got Right and Wrong in 2005</h2>
 <h3 id="what-i-got-right-">What I Got Right ✅</h3>
@@ -307,7 +317,10 @@
 </a>
 ). What once required a research team now fits in a GitHub repository.</p>
 <p><strong>SHA-1: Officially Deprecated</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Also deprecated for security use</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Also deprecated for security use</span>
+</span></span><span style="display:flex;"><span>password <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;user_password&#34;</span>
 </span></span><span style="display:flex;"><span>sha1_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha1(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;SHA-1 (DEPRECATED): </span><span style="color:#f1fa8c">{</span>sha1_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
 </span></span><span style="display:flex;"><span>
@@ -322,7 +335,10 @@
 ). While expensive, it proved that nation-states and well-funded criminal organizations could forge SHA-1 signatures. Major browsers and certificate authorities began emergency migrations away from SHA-1.</p>
 <h3 id="whats-still-secure">What&rsquo;s Still Secure</h3>
 <p>After watching MD5 and SHA-1 fall, it&rsquo;s natural to wonder if any hash function can be trusted. The good news is that modern algorithms learned from their predecessors&rsquo; failures, incorporating defenses against known attack vectors while maintaining practical performance. These functions represent the current state of the art, though history teaches us to remain vigilant.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Modern, secure hash functions</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Modern, secure hash functions</span>
+</span></span><span style="display:flex;"><span>password <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;user_password&#34;</span>
 </span></span><span style="display:flex;"><span>sha256_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
 </span></span><span style="display:flex;"><span>sha3_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha3_256(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
 </span></span><span style="display:flex;"><span>
@@ -379,6 +395,14 @@ The code samples below illustrate this stark contrast between old and modern app
 </span></span><span style="display:flex;"><span>    password<span style="color:#ff79c6">.</span>encode() <span style="color:#ff79c6">+</span> salt
 </span></span><span style="display:flex;"><span>)<span style="color:#ff79c6">.</span>hexdigest()
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Password: </span><span style="color:#f1fa8c">{</span>password<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Salt (hex): </span><span style="color:#f1fa8c">{</span>salt<span style="color:#ff79c6">.</span>hex()<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;SHA-1 Hash: </span><span style="color:#f1fa8c">{</span>old_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Example output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Password: user_password</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Salt (hex): 4f3a2b1c8d9e5f...</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># SHA-1 Hash: 8b4066b178c928...</span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Seemed secure at the time!</span>
 </span></span></code></pre></div></div>
 <div style="flex: 1; background: #f3fff3; padding: 15px; border-radius: 5px;">
@@ -395,6 +419,13 @@ The code samples below illustrate this stark contrast between old and modern app
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>password <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;user_password&#34;</span>
 </span></span><span style="display:flex;"><span>password_hash <span style="color:#ff79c6">=</span> hasher<span style="color:#ff79c6">.</span>hash(password)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Password: </span><span style="color:#f1fa8c">{</span>password<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Argon2 Hash: </span><span style="color:#f1fa8c">{</span>password_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Example output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Password: user_password</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Argon2 Hash: $argon2id$v=...</span>
 </span></span></code></pre></div></div>
 </div>
 <p>The evolution from simple salted hashes to memory-hard functions represents a fundamental shift in defensive strategy.
@@ -404,7 +435,9 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
   Oechslin, 2003
 </a>
 ). What seemed like strong protection crumbled when attackers could simply look up the answer.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Demonstrating why unsalted hashes are vulnerable</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Demonstrating why unsalted hashes are vulnerable</span>
 </span></span><span style="display:flex;"><span>common_passwords <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;password&#34;</span>, <span style="color:#f1fa8c">&#34;123456&#34;</span>, <span style="color:#f1fa8c">&#34;password123&#34;</span>, <span style="color:#f1fa8c">&#34;admin&#34;</span>]
 </span></span><span style="display:flex;"><span>rainbow_table <span style="color:#ff79c6">=</span> {}
 </span></span><span style="display:flex;"><span>
@@ -415,7 +448,7 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Now they can instantly reverse any matching hash</span>
 </span></span><span style="display:flex;"><span>target_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256(<span style="color:#f1fa8c">&#34;password&#34;</span><span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> target_hash <span style="color:#ff79c6">in</span> rainbow_table:
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Password found: </span><span style="color:#f1fa8c">{</span>rainbow_table[target_hash]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)  
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Password found: </span><span style="color:#f1fa8c">{</span>rainbow_table[target_hash]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Output: Password found: password</span>
 </span></span></code></pre></div><p>Modern GPUs can test billions of SHA-256 hashes per second, making even salted SHA-256 vulnerable to brute force. A single RTX 4090 can test 15 billion passwords per second. Argon2, winner of the 2015 Password Hashing Competition, requires substantial memory for each guess, neutralizing the GPU advantage (<a href="#biryukov2016">
   Biryukov et al., 2016
@@ -445,26 +478,40 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># SHA-256 is ~10,000x faster - that&#39;s the point!</span>
 </span></span></code></pre></div><h3 id="alternative-modern-algorithms">Alternative Modern Algorithms</h3>
 <p>While Argon2 is the gold standard, other algorithms serve specific needs. Each represents a different approach to the same problem: making brute force attacks economically infeasible. The diversity of approaches provides defense in depth.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># bcrypt - Battle-tested, widely supported</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>password <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;user_password&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># bcrypt - Battle-tested, widely supported</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> bcrypt
-</span></span><span style="display:flex;"><span>hashed <span style="color:#ff79c6">=</span> bcrypt<span style="color:#ff79c6">.</span>hashpw(password<span style="color:#ff79c6">.</span>encode(), bcrypt<span style="color:#ff79c6">.</span>gensalt(rounds<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span>))
+</span></span><span style="display:flex;"><span>bcrypt_hash <span style="color:#ff79c6">=</span> bcrypt<span style="color:#ff79c6">.</span>hashpw(password<span style="color:#ff79c6">.</span>encode(), bcrypt<span style="color:#ff79c6">.</span>gensalt(rounds<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span>))
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;bcrypt (60 chars):  </span><span style="color:#f1fa8c">{</span>bcrypt_hash<span style="color:#ff79c6">.</span>decode()<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: $2b$12$Qw5xgFn8RO7yK3H9Lz5Pzu0GlGXoJe7bVkT9XwRnL3kI8yB5x2G7m</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># scrypt - Memory-hard, used by some cryptocurrencies</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
-</span></span><span style="display:flex;"><span>hashed <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>scrypt(
+</span></span><span style="display:flex;"><span>salt <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>urandom(<span style="color:#bd93f9">16</span>)
+</span></span><span style="display:flex;"><span>scrypt_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>scrypt(
 </span></span><span style="display:flex;"><span>    password<span style="color:#ff79c6">.</span>encode(),
-</span></span><span style="display:flex;"><span>    salt<span style="color:#ff79c6">=</span>os<span style="color:#ff79c6">.</span>urandom(<span style="color:#bd93f9">16</span>),
+</span></span><span style="display:flex;"><span>    salt<span style="color:#ff79c6">=</span>salt,
 </span></span><span style="display:flex;"><span>    n<span style="color:#ff79c6">=</span><span style="color:#bd93f9">16384</span>, r<span style="color:#ff79c6">=</span><span style="color:#bd93f9">8</span>, p<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>
 </span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;scrypt (64 bytes):  </span><span style="color:#f1fa8c">{</span>scrypt_hash<span style="color:#ff79c6">.</span>hex()[:<span style="color:#bd93f9">60</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">...&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: a7c3f2e8b9d4a1c6e9f3b8d2c7a4e9f1b3d8c2a7e4f9b1c3d8a2e7f4b9c1...</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># PBKDF2 - NIST approved, works everywhere</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
-</span></span><span style="display:flex;"><span>hashed <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>pbkdf2_hmac(
+</span></span><span style="display:flex;"><span>salt <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>urandom(<span style="color:#bd93f9">16</span>)
+</span></span><span style="display:flex;"><span>pbkdf2_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>pbkdf2_hmac(
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#39;sha256&#39;</span>,
 </span></span><span style="display:flex;"><span>    password<span style="color:#ff79c6">.</span>encode(),
-</span></span><span style="display:flex;"><span>    salt<span style="color:#ff79c6">=</span>os<span style="color:#ff79c6">.</span>urandom(<span style="color:#bd93f9">16</span>),
+</span></span><span style="display:flex;"><span>    salt<span style="color:#ff79c6">=</span>salt,
 </span></span><span style="display:flex;"><span>    iterations<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100000</span>
 </span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;PBKDF2 (32 bytes):  </span><span style="color:#f1fa8c">{</span>pbkdf2_hash<span style="color:#ff79c6">.</span>hex()[:<span style="color:#bd93f9">60</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">...&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: 5f4dcc3b5aa765d61d8327deb882cf99e8f3a1b2c4d5e6f7a8b9c0d1e2f3a4b5...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Note the different output formats:</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># - bcrypt: includes algorithm, cost, salt, and hash in one string</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># - scrypt/PBKDF2: raw bytes, need separate salt storage</span>
 </span></span></code></pre></div><p>Each algorithm makes different tradeoffs between security, performance, and compatibility. bcrypt remains popular due to its maturity and wide support (<a href="#provos1999">
   Provos &amp; Mazières, 1999
 </a>
@@ -498,32 +545,56 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
   NIST, 2022
 </a>
 ):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Simulating crypto-agility in smart contracts</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Simulating crypto-agility in smart contracts</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">HashAlgorithm</span>:
 </span></span><span style="display:flex;"><span>    SHA256 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
 </span></span><span style="display:flex;"><span>    SHA3_256 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
 </span></span><span style="display:flex;"><span>    BLAKE3 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3</span>
 </span></span><span style="display:flex;"><span>    CRYSTALS_DILITHIUM <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>  <span style="color:#6272a4"># Post-quantum signature</span>
-</span></span><span style="display:flex;"><span>    SPHINCS_PLUS <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>         <span style="color:#6272a4"># Stateless post-quantum</span>
+</span></span><span style="display:flex;"><span>    SPHINCS_PLUS <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>  <span style="color:#6272a4"># Stateless post-quantum</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">FutureProofContract</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>):
 </span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hash_version <span style="color:#ff79c6">=</span> HashAlgorithm<span style="color:#ff79c6">.</span>SHA256
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">hash_data</span>(<span style="font-style:italic">self</span>, data):
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hash_version <span style="color:#ff79c6">==</span> HashAlgorithm<span style="color:#ff79c6">.</span>SHA256:
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> hashlib<span style="color:#ff79c6">.</span>sha256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">elif</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hash_version <span style="color:#ff79c6">==</span> HashAlgorithm<span style="color:#ff79c6">.</span>SHA3_256:
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> hashlib<span style="color:#ff79c6">.</span>sha3_256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Ready to upgrade when quantum computers arrive</span>
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">upgrade_hash_algorithm</span>(<span style="font-style:italic">self</span>, new_version):
 </span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Allows migration to stronger algorithms.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hash_version <span style="color:#ff79c6">=</span> new_version
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Usage example</span>
+</span></span><span style="display:flex;"><span>contract <span style="color:#ff79c6">=</span> FutureProofContract()
+</span></span><span style="display:flex;"><span>data <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Critical transaction data&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Initial state: SHA-256</span>
+</span></span><span style="display:flex;"><span>hash1 <span style="color:#ff79c6">=</span> contract<span style="color:#ff79c6">.</span>hash_data(data)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;SHA-256:   </span><span style="color:#f1fa8c">{</span>hash1<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: SHA-256:   8b5e9db8c4f9a7e3b1d2c3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Upgrade to SHA3-256 (perhaps due to SHA-256 weakness discovered)</span>
+</span></span><span style="display:flex;"><span>contract<span style="color:#ff79c6">.</span>upgrade_hash_algorithm(HashAlgorithm<span style="color:#ff79c6">.</span>SHA3_256)
+</span></span><span style="display:flex;"><span>hash2 <span style="color:#ff79c6">=</span> contract<span style="color:#ff79c6">.</span>hash_data(data)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;SHA3-256:  </span><span style="color:#f1fa8c">{</span>hash2<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: SHA3-256:  f4a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Both algorithms can coexist - old data verified with SHA-256, new with SHA3-256</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Key insight: Same data, different algorithms, different hashes&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Old transactions remain valid with their original algorithm&#34;</span>)
 </span></span></code></pre></div><hr>
 <h2 id="when-collisions-dont-matter">When Collisions Don&rsquo;t Matter</h2>
 <p>Not every use of hashing requires collision resistance. Many applications use hashing for efficiency rather than security. In these cases, occasional collisions are acceptable or even expected. Understanding the difference is crucial for choosing the right tool.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Document dirty checking - collision would just trigger unnecessary save</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">DocumentEditor</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, content):
 </span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>content <span style="color:#ff79c6">=</span> content

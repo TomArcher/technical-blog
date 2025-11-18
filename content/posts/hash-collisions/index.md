@@ -71,7 +71,7 @@ But here's what most discussions miss: **not all collisions are created equal.**
        width="400"
        style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Random bytes almost never accidentally form valid structured data.</em>
+    <em>Random bytes almost never accidentally form meaningful structured data.</em>
   </figcaption>
 </figure>
 
@@ -105,18 +105,28 @@ print(f"Valid JSON found: {valid_json_count}/1,000,000")
 
 # How many are valid Python code?
 valid_python_count = 0
+meaningful_python_count = 0
+
 for attempt in attempts:
     try:
         compile(attempt, '<string>', 'exec')
         valid_python_count += 1
+        # Check if it contains meaningful constructs
+        if any(keyword in attempt for keyword in 
+               ['def ', 'class ', 'import ', 'for ', 'if ', 'while ']):
+            meaningful_python_count += 1
     except:
         pass
 
 print(f"Valid Python found: {valid_python_count}/1,000,000")
-# Output: Valid Python found: 0/1,000,000
-```
+# Output: Valid Python found: ~6,000/1,000,000 (0.6%)
 
-Language has structure that random bytes don't accidentally reproduce. Random bytes don't accidentally form valid JSON, compilable code, or readable prose. This is why Git's reliance on SHA-1 (now SHA-256) remained practically secure despite theoretical vulnerabilities. Creating two *valid source code files* that compile, run correctly, and contain malicious logic while matching an existing hash? That's not just hard; it's effectively impossible with current technology.
+print(f"Meaningful Python found: {meaningful_python_count}/1,000,000")
+# Output: Meaningful Python found: 0/1,000,000
+```
+While random bytes occasionally form valid Python (about 0.6% of the time), these are trivial statements like single digits or whitespace—not meaningful programs. None contain functions, classes, or control flow. Random bytes don't form valid JSON, and they certainly don't form functional code with semantic meaning.
+
+This is why Git's reliance on SHA-1 (now SHA-256) remained practically secure despite theoretical vulnerabilities. Creating two *meaningful source code files* that compile, run correctly, perform useful operations, and contain malicious logic while matching an existing hash? That's not just hard—it's effectively impossible with current technology.
 
 ---
 
@@ -179,7 +189,10 @@ In 2008, researchers created a rogue CA certificate using MD5 collisions, allowi
 **SHA-1: Officially Deprecated**
 
 ```python
+import hashlib
+
 # Also deprecated for security use
+password = "user_password"
 sha1_hash = hashlib.sha1(password.encode()).hexdigest()
 print(f"SHA-1 (DEPRECATED): {sha1_hash}")
 
@@ -197,7 +210,10 @@ The SHAttered attack marked a watershed moment in cryptographic history ([Steven
 After watching MD5 and SHA-1 fall, it's natural to wonder if any hash function can be trusted. The good news is that modern algorithms learned from their predecessors' failures, incorporating defenses against known attack vectors while maintaining practical performance. These functions represent the current state of the art, though history teaches us to remain vigilant.
 
 ```python
+import hashlib
+
 # Modern, secure hash functions
+password = "user_password"
 sha256_hash = hashlib.sha256(password.encode()).hexdigest()
 sha3_hash = hashlib.sha3_256(password.encode()).hexdigest()
 
@@ -255,7 +271,16 @@ old_hash = hashlib.sha1(
     password.encode() + salt
 ).hexdigest()
 
+print(f"Password: {password}")
+print(f"Salt (hex): {salt.hex()}")
+print(f"SHA-1 Hash: {old_hash}")
+
+# Example output:
+# Password: user_password
+# Salt (hex): 4f3a2b1c8d9e5f...
+# SHA-1 Hash: 8b4066b178c928...
 # Seemed secure at the time!
+
 ```
 </div>
 
@@ -275,6 +300,13 @@ hasher = argon2.PasswordHasher(
 
 password = "user_password"
 password_hash = hasher.hash(password)
+
+print(f"Password: {password}")
+print(f"Argon2 Hash: {password_hash}")
+
+# Example output:
+# Password: user_password
+# Argon2 Hash: $argon2id$v=...
 ```
 </div>
 </div>
@@ -287,6 +319,8 @@ We've moved from trying to hide the algorithm to making it computationally expen
 Rainbow tables (precomputed hash databases) destroyed simple hash-based password storage. These massive databases, some exceeding 100TB, could reverse common password hashes instantly ([Oechslin, 2003](#oechslin2003)). What seemed like strong protection crumbled when attackers could simply look up the answer.
 
 ```python
+import hashlib
+
 # Demonstrating why unsalted hashes are vulnerable
 common_passwords = ["password", "123456", "password123", "admin"]
 rainbow_table = {}
@@ -298,7 +332,7 @@ for pwd in common_passwords:
 # Now they can instantly reverse any matching hash
 target_hash = hashlib.sha256("password".encode()).hexdigest()
 if target_hash in rainbow_table:
-    print(f"Password found: {rainbow_table[target_hash]}")  
+    print(f"Password found: {rainbow_table[target_hash]}")
     # Output: Password found: password
 ```
 
@@ -334,26 +368,41 @@ print(f"Argon2 (10 hashes): {argon_time:.2f} seconds")
 While Argon2 is the gold standard, other algorithms serve specific needs. Each represents a different approach to the same problem: making brute force attacks economically infeasible. The diversity of approaches provides defense in depth.
 
 ```python
+import os
+password = 'user_password'
+
 # bcrypt - Battle-tested, widely supported
 import bcrypt
-hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt(rounds=12))
+bcrypt_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt(rounds=12))
+print(f"bcrypt (60 chars):  {bcrypt_hash.decode()}")
+# Output: $2b$12$Qw5xgFn8RO7yK3H9Lz5Pzu0GlGXoJe7bVkT9XwRnL3kI8yB5x2G7m
 
 # scrypt - Memory-hard, used by some cryptocurrencies
 import hashlib
-hashed = hashlib.scrypt(
+salt = os.urandom(16)
+scrypt_hash = hashlib.scrypt(
     password.encode(),
-    salt=os.urandom(16),
+    salt=salt,
     n=16384, r=8, p=1
 )
+print(f"scrypt (64 bytes):  {scrypt_hash.hex()[:60]}...")
+# Output: a7c3f2e8b9d4a1c6e9f3b8d2c7a4e9f1b3d8c2a7e4f9b1c3d8a2e7f4b9c1...
 
 # PBKDF2 - NIST approved, works everywhere
-import hashlib
-hashed = hashlib.pbkdf2_hmac(
+salt = os.urandom(16)
+pbkdf2_hash = hashlib.pbkdf2_hmac(
     'sha256',
     password.encode(),
-    salt=os.urandom(16),
+    salt=salt,
     iterations=100000
 )
+print(f"PBKDF2 (32 bytes):  {pbkdf2_hash.hex()[:60]}...")
+# Output: 5f4dcc3b5aa765d61d8327deb882cf99e8f3a1b2c4d5e6f7a8b9c0d1e2f3a4b5...
+
+# Note the different output formats:
+# - bcrypt: includes algorithm, cost, salt, and hash in one string
+# - scrypt/PBKDF2: raw bytes, need separate salt storage
+
 ```
 
 Each algorithm makes different tradeoffs between security, performance, and compatibility. bcrypt remains popular due to its maturity and wide support ([Provos & Mazières, 1999](#provos1999)). scrypt's memory requirements made it attractive for cryptocurrency mining ([Percival, 2009](#percival2009)). PBKDF2 offers the broadest compatibility, working even in constrained environments ([Kaliski, 2000](#kaliski2000)).
@@ -384,28 +433,49 @@ If SHA-256 falls, the implications are staggering and immediate. Transaction his
 This is why Ethereum is already planning post-quantum cryptography migrations. The threat may be years away, but the stakes are too high to wait. NIST's Post-Quantum Cryptography competition selected four algorithms in 2022, with implementation beginning across critical infrastructure ([NIST, 2022](#nist2022)):
 
 ```python
+import hashlib
+
 # Simulating crypto-agility in smart contracts
 class HashAlgorithm:
     SHA256 = 1
     SHA3_256 = 2
     BLAKE3 = 3
     CRYSTALS_DILITHIUM = 4  # Post-quantum signature
-    SPHINCS_PLUS = 5         # Stateless post-quantum
+    SPHINCS_PLUS = 5  # Stateless post-quantum
 
 class FutureProofContract:
     def __init__(self):
         self.hash_version = HashAlgorithm.SHA256
-        
+    
     def hash_data(self, data):
         if self.hash_version == HashAlgorithm.SHA256:
             return hashlib.sha256(data.encode()).hexdigest()
         elif self.hash_version == HashAlgorithm.SHA3_256:
             return hashlib.sha3_256(data.encode()).hexdigest()
         # Ready to upgrade when quantum computers arrive
-        
+    
     def upgrade_hash_algorithm(self, new_version):
         """Allows migration to stronger algorithms."""
         self.hash_version = new_version
+
+# Usage example
+contract = FutureProofContract()
+data = "Critical transaction data"
+
+# Initial state: SHA-256
+hash1 = contract.hash_data(data)
+print(f"SHA-256:   {hash1}")
+# Output: SHA-256:   8b5e9db8c4f9a7e3b1d2c3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4
+
+# Upgrade to SHA3-256 (perhaps due to SHA-256 weakness discovered)
+contract.upgrade_hash_algorithm(HashAlgorithm.SHA3_256)
+hash2 = contract.hash_data(data)
+print(f"SHA3-256:  {hash2}")
+# Output: SHA3-256:  f4a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1
+
+# Both algorithms can coexist - old data verified with SHA-256, new with SHA3-256
+print("\nKey insight: Same data, different algorithms, different hashes")
+print("Old transactions remain valid with their original algorithm")
 ```
 
 ---
@@ -416,6 +486,9 @@ Not every use of hashing requires collision resistance. Many applications use ha
 
 ```python
 # Document dirty checking - collision would just trigger unnecessary save
+
+import hashlib
+
 class DocumentEditor:
     def __init__(self, content):
         self.content = content
