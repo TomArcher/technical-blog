@@ -4,7 +4,7 @@ subtitle = "The mathematical certainty of collisions, the near-impossibility of 
 date = "2025-11-17T06:00:00-07:00"
 draft = false
 categories = ["Essays and Perspectives"]
-tags = ["cryptography", "security", "hashing", "blockchain", "passwords"]
+tags = ["blockchain", "cryptography", "hashing", "passwords", "security",]
 author = "Tom Archer"
 listThumb = "hash-collisions.png"
 +++
