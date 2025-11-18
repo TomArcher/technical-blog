@@ -134,7 +134,7 @@ This is why Git's reliance on SHA-1 (now SHA-256) remained practically secure de
 
 ### What I Got Right ✅
 
-Let's start with the good news; it turns out I wasn't completely wrong about everything! Some of my 2005 predictions have aged surprisingly well, like a fine wine rather than milk left on the counter. These successes mostly came from focusing on fundamental principles rather than specific implementations.
+Let's start with the good news. It turns out I wasn't completely wrong about everything! Some of my 2005 predictions have aged surprisingly well, like a fine wine rather than milk left on the counter. These successes mostly came from focusing on fundamental principles rather than specific implementations.
 
 - **Semantic collisions are nearly impossible** - Still true. Random data doesn't accidentally become meaningful. The structure of language and code remains our best defense against collision attacks.
 - **Salt is essential for passwords** - Though what seemed "foolproof" then is now the bare minimum. The principle was correct, even if the implementation has evolved dramatically.
