@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blockchain on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/blockchain/</link>
+    <description>Recent content in Blockchain on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Nov 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</title>
+      <link>http://localhost:1313/posts/hash-collisions/</link>
+      <pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/hash-collisions/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./hash-collisions-shattered.png&#34;&#xA;       alt=&#34;Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes&#34;&#xA;       width=&#34;250&#34;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&amp;rsquo;t create truly unique fingerprints. This &amp;ldquo;SHAttered&amp;rdquo; attack required 9 quintillion SHA-1 computations—equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.&lt;/p&gt;&#xA;&lt;p&gt;Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &amp;ldquo;unique&amp;rdquo; versus &amp;ldquo;not unique.&amp;rdquo;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;*&amp;ldquo;In cryptography, &amp;lsquo;secure&amp;rsquo; has always meant &amp;lsquo;secure for now&amp;rsquo;.&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>

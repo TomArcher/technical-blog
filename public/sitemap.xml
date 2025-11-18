@@ -2,13 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/tags/blockchain/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cryptography/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/essays-and-perspectives/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/hash-collisions/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/hashing/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/passwords/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/security/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/ai/</loc>
     <lastmod>2025-11-11T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</loc>
-    <lastmod>2025-11-11T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-11-11T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/how-large-language-models-tokenize-text/</loc>
@@ -18,15 +48,6 @@
     <lastmod>2025-11-11T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/nlp/</loc>
-    <lastmod>2025-11-11T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-11-11T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-11-11T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-11-11T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/tokenization/</loc>
@@ -144,9 +165,6 @@
     <lastmod>2025-08-20T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/economics/</loc>
-    <lastmod>2025-08-19T05:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/essays-and-perspectives/</loc>
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/tfp-chatgpt/</loc>

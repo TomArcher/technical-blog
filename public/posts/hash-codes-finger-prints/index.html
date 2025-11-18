@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK) - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-11-17T06:00:00-07:00">
+              <strong>November 17, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Category:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/essays-and-perspectives/"
+                 rel="category"><em>Essays and Perspectives</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/cryptography/"
+                 rel="tag">#cryptography</a>, <a class="meta__link"
+                 href="/tags/security/"
+                 rel="tag">#security</a>, <a class="meta__link"
+                 href="/tags/hashing/"
+                 rel="tag">#hashing</a>, <a class="meta__link"
+                 href="/tags/blockchain/"
+                 rel="tag">#blockchain</a>, <a class="meta__link"
+                 href="/tags/passwords/"
+                 rel="tag">#passwords</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-codes-finger-prints%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    X
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-codes-finger-prints%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    in
+  </a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-codes-finger-prints%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+    f
+  </a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-codes-finger-prints%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+    r
+  </a>
+  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-codes-finger-prints%252F" aria-label="Share via Email">
+    @
+  </a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">
+    Share
+  </button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "%!q(\u003cnil\u003e)",
+        url: "\"http://localhost:1313/posts/hash-codes-finger-prints/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>
+  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./hash-collisions-shattered.png"
+       alt="Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes"
+       width="250"
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
+  </figcaption>
+</figure>
+<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&rsquo;t create truly unique fingerprints. This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations—equivalent to 6,500 years of single-CPU computation.</p>
+<p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. Why? Because the full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
+<hr>
+<blockquote>
+<p>*&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</p></blockquote>
+<hr>
+<div style="background-color: #f8f8f8; border-left: 4px solid #4CAF50; padding: 1em; margin: 1em 0;">
+<strong>Historical Note:</strong> This post updates my <a href="https://learn.microsoft.com/en-us/archive/blogs/tomarcher/are-hash-codes-unique">2005 article on hash collisions</a>. Back then, MD5 was still considered "acceptable with caveats" and adding salt to passwords seemed cutting-edge. It's fascinating (and somewhat alarming) to see which predictions came true and which assumptions had to be completely reconsidered.
+</div>
+<p>Twenty years ago, I wrote about hash collisions when the biggest concern was spyware-removal applications getting false positives. Today, MD5 can be cracked on a laptop, simple salting is woefully inadequate, and billions of dollars in cryptocurrency depend on hash collision resistance. But the fundamental questions remain: How unique are hash codes really? And when does it matter?</p>
+<hr>
+<h2 id="the-pigeonhole-principle-in-action">The Pigeonhole Principle in Action</h2>
+<p>Hash algorithms generate fixed-length outputs regardless of input size. SHA-256 always produces 256 bits (32 bytes). SHA-3-512 always produces 512 bits. This creates an inherent mathematical constraint that&rsquo;s easy to visualize but hard to grasp in practice.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># These vastly different inputs...</span>
+</span></span><span style="display:flex;"><span>short_text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Hi&#34;</span>
+</span></span><span style="display:flex;"><span>medium_text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;A&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>  <span style="color:#6272a4"># 1KB</span>
+</span></span><span style="display:flex;"><span>long_text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;B&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1_000_000</span>  <span style="color:#6272a4"># 1MB</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ...all produce the same length output</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#8be9fd;font-style:italic">len</span>(hashlib<span style="color:#ff79c6">.</span>sha256(short_text<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>digest()))   <span style="color:#6272a4"># 32 bytes</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#8be9fd;font-style:italic">len</span>(hashlib<span style="color:#ff79c6">.</span>sha256(medium_text<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>digest()))  <span style="color:#6272a4"># 32 bytes  </span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#8be9fd;font-style:italic">len</span>(hashlib<span style="color:#ff79c6">.</span>sha256(long_text<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>digest()))    <span style="color:#6272a4"># 32 bytes</span>
+</span></span></code></pre></div><p>The math is unforgiving: if you have \(n\) possible hash values, you only need \(n + 1\) distinct inputs to guarantee at least one collision. For SHA-256, that&rsquo;s \(2^{256}\) possible values; a number so large (roughly \(10^{77}\)) it exceeds the estimated number of atoms in the observable universe.</p>
+<p>But here&rsquo;s what most discussions miss: <strong>not all collisions are created equal.</strong></p>
+<hr>
+<h2 id="the-semantic-collision-problem">The Semantic Collision Problem</h2>
+<figure style="margin: 20px auto; max-width: 600px; text-align: center;">
+  <img src="./semantic-collision-visualization.png"
+       alt="Diagram showing random bytes rarely forming valid JSON, code, or readable text"
+       style="width: 100%; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Random bytes almost never accidentally form valid structured data.</em>
+  </figcaption>
+</figure>
+<p>Finding two inputs that hash to the same value is one thing. Finding two <em>meaningful</em> inputs that hash to the same value is exponentially harder.</p>
+<p>Consider trying to generate a collision for a classified document. Even if you could generate billions of documents with matching hash values, the probability of any making coherent sense, let alone containing plausible intelligence, approaches zero.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> random
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> string
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">generate_random_bytes</span>(length):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Generate random bytes that might hash to a target value.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#39;&#39;</span><span style="color:#ff79c6">.</span>join(random<span style="color:#ff79c6">.</span>choices(string<span style="color:#ff79c6">.</span>printable, k<span style="color:#ff79c6">=</span>length))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Generate 1 million random attempts</span>
+</span></span><span style="display:flex;"><span>attempts <span style="color:#ff79c6">=</span> [generate_random_bytes(<span style="color:#bd93f9">100</span>) <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">1_000_000</span>)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># How many are valid JSON?</span>
+</span></span><span style="display:flex;"><span>valid_json_count <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> attempt <span style="color:#ff79c6">in</span> attempts:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span>:
+</span></span><span style="display:flex;"><span>        json<span style="color:#ff79c6">.</span>loads(attempt)
+</span></span><span style="display:flex;"><span>        valid_json_count <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">except</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Valid JSON found: </span><span style="color:#f1fa8c">{</span>valid_json_count<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">/1,000,000&#34;</span>)  
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: Valid JSON found: 0/1,000,000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># How many are valid Python code?</span>
+</span></span><span style="display:flex;"><span>valid_python_count <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> attempt <span style="color:#ff79c6">in</span> attempts:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">compile</span>(attempt, <span style="color:#f1fa8c">&#39;&lt;string&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;exec&#39;</span>)
+</span></span><span style="display:flex;"><span>        valid_python_count <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">except</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Valid Python found: </span><span style="color:#f1fa8c">{</span>valid_python_count<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">/1,000,000&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: Valid Python found: 0/1,000,000</span>
+</span></span></code></pre></div><p>Language has structure. Random bytes don&rsquo;t accidentally form valid JSON, compilable code, or readable prose. This is why Git&rsquo;s reliance on SHA-1 (now SHA-256) remained <em>practically</em> secure despite <em>theoretical vulnerabilities</em>. Creating two <em>valid source code files</em> that compile, run correctly, and contain malicious logic while matching an existing hash? That&rsquo;s not just hard—it&rsquo;s effectively impossible with current technology.</p>
+<hr>
+<h2 id="what-i-got-wrong-and-right-in-2005">What I Got Wrong and Right in 2005</h2>
+<p>Looking back at my <a href="/posts/2005/are-hash-codes-unique">
+  original 2005 post
+</a>
+, it&rsquo;s instructive to see what held up and what didn&rsquo;t:</p>
+<h3 id="what-i-got-right-">What I Got Right ✅</h3>
+<ul>
+<li><strong>Semantic collisions are nearly impossible</strong> - Still true. Random data doesn&rsquo;t accidentally become meaningful.</li>
+<li><strong>Salt is essential for passwords</strong> - Though what seemed &ldquo;foolproof&rdquo; then is now the bare minimum.</li>
+<li><strong>Hash algorithm strength matters</strong> - I recommended SHA-256 for sensitive applications. Good call.</li>
+<li><strong>Context determines security needs</strong> - Hash tables vs. cryptographic uses require different guarantees.</li>
+</ul>
+<h3 id="what-i-underestimated-">What I Underestimated ❌</h3>
+<ul>
+<li><strong>GPU acceleration</strong> - Modern GPUs test 10+ billion SHA-256 hashes/second, not the thousands I imagined.</li>
+<li><strong>Rainbow table sophistication</strong> - They grew from gigabytes to terabytes, covering far more than &ldquo;common passwords.&rdquo;</li>
+<li><strong>MD5&rsquo;s rapid demise</strong> - I thought it had years left. It was fully broken within 12 months.</li>
+<li><strong>Blockchain&rsquo;s hash dependence</strong> - Didn&rsquo;t see cryptocurrency coming, where hash collisions = economic catastrophe.</li>
+</ul>
+<h3 id="what-changed-everything-">What Changed Everything 🔄</h3>
+<ul>
+<li><strong>Cloud computing</strong> - Renting 1000 GPUs for an hour costs less than my 2005 laptop.</li>
+<li><strong>Cryptocurrency</strong> - Created billion-dollar bounties for breaking hash functions.</li>
+<li><strong>Quantum computing</strong> - From science fiction to IBM offering quantum cloud access.</li>
+</ul>
+<hr>
+<h2 id="real-world-collision-attacks">Real-World Collision Attacks</h2>
+<h3 id="whats-broken">What&rsquo;s Broken</h3>
+<p><strong>MD5: Completely Compromised</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Don&#39;t do this anymore!</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>password <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;user_password&#34;</span>
+</span></span><span style="display:flex;"><span>md5_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>md5(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;MD5 (INSECURE): </span><span style="color:#f1fa8c">{</span>md5_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Collisions can be generated in seconds</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Real attack: 2008 rogue CA certificate using MD5 collisions</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Modern GPUs: ~25 billion MD5 hashes/second</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Status: NEVER use for anything security-critical</span>
+</span></span></code></pre></div><p>In 2008, researchers created a rogue CA certificate using MD5 collisions, allowing them to impersonate any website. Today, you can generate MD5 collisions on a laptop in seconds using tools like HashClash.</p>
+<p><strong>SHA-1: Officially Deprecated</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Also deprecated for security use</span>
+</span></span><span style="display:flex;"><span>sha1_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha1(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;SHA-1 (DEPRECATED): </span><span style="color:#f1fa8c">{</span>sha1_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># SHAttered attack stats:</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># - 9,223,372,036,854,775,808 SHA-1 computations</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># - 6,500 CPU years (or 110 GPU years)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># - ~$45,000 in cloud computing costs (2020)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Modern GPUs: ~15 billion SHA-1 hashes/second</span>
+</span></span></code></pre></div><h3 id="whats-still-secure">What&rsquo;s Still Secure</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Modern, secure hash functions</span>
+</span></span><span style="display:flex;"><span>sha256_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>sha3_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha3_256(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;SHA-256 (SECURE): </span><span style="color:#f1fa8c">{</span>sha256_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;SHA-3 (SECURE): </span><span style="color:#f1fa8c">{</span>sha3_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Also consider BLAKE2 for performance</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>blake2_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>blake2b(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;BLAKE2b (SECURE &amp; FAST): </span><span style="color:#f1fa8c">{</span>blake2_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span></code></pre></div><p><strong>Current Status:</strong></p>
+<ul>
+<li><strong>SHA-256/SHA-3</strong>: No practical collision attacks known</li>
+<li><strong>BLAKE2/BLAKE3</strong>: Modern alternatives, faster than SHA-256</li>
+<li><strong>Energy requirement for SHA-256 collision</strong>: More than the sun outputs in a year</li>
+</ul>
+<hr>
+<h2 id="modern-password-hashing-beyond-salt">Modern Password Hashing: Beyond Salt</h2>
+<figure style="margin: 20px auto; max-width: 600px; text-align: center;">
+  <img src="./password-hashing-evolution.png"
+       alt="Timeline showing evolution from MD5 to Argon2, with increasing memory and computation requirements"
+       style="width: 100%; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Password hashing has evolved from simple hashes to memory-hard, time-expensive algorithms.</em>
+  </figcaption>
+</figure>
+<p>Twenty years ago, I wrote that adding salt to passwords before hashing would produce &ldquo;an almost fool-proof system.&rdquo; Today, it&rsquo;s the absolute minimum, and often insufficient.</p>
+<h3 id="the-evolution-then-vs-now">The Evolution: Then vs. Now</h3>
+<div style="display: flex; gap: 20px; margin: 20px 0;">
+<div style="flex: 1; background: #fff3f3; padding: 15px; border-radius: 5px;">
+<h4>Then (2005)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Old way (DON&#39;T DO THIS)</span>
+</span></span><span style="display:flex;"><span>password <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;user_password&#34;</span>
+</span></span><span style="display:flex;"><span>salt <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>urandom(<span style="color:#bd93f9">16</span>)
+</span></span><span style="display:flex;"><span>old_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha1(
+</span></span><span style="display:flex;"><span>    password<span style="color:#ff79c6">.</span>encode() <span style="color:#ff79c6">+</span> salt
+</span></span><span style="display:flex;"><span>)<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Seemed secure at the time!</span>
+</span></span></code></pre></div></div>
+<div style="flex: 1; background: #f3fff3; padding: 15px; border-radius: 5px;">
+<h4>Now (2025)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># pip install argon2-cffi</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> argon2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Modern way with Argon2</span>
+</span></span><span style="display:flex;"><span>hasher <span style="color:#ff79c6">=</span> argon2<span style="color:#ff79c6">.</span>PasswordHasher(
+</span></span><span style="display:flex;"><span>    memory_cost<span style="color:#ff79c6">=</span><span style="color:#bd93f9">65536</span>,  <span style="color:#6272a4"># 64 MB</span>
+</span></span><span style="display:flex;"><span>    time_cost<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3</span>,        <span style="color:#6272a4"># iterations  </span>
+</span></span><span style="display:flex;"><span>    parallelism<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>,      <span style="color:#6272a4"># threads</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>password <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;user_password&#34;</span>
+</span></span><span style="display:flex;"><span>password_hash <span style="color:#ff79c6">=</span> hasher<span style="color:#ff79c6">.</span>hash(password)
+</span></span></code></pre></div></div>
+</div>
+<h3 id="why-simple-hashing-failed">Why Simple Hashing Failed</h3>
+<p>Rainbow tables (precomputed hash databases) destroyed simple hash-based password storage:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Demonstrating why unsalted hashes are vulnerable</span>
+</span></span><span style="display:flex;"><span>common_passwords <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;password&#34;</span>, <span style="color:#f1fa8c">&#34;123456&#34;</span>, <span style="color:#f1fa8c">&#34;password123&#34;</span>, <span style="color:#f1fa8c">&#34;admin&#34;</span>]
+</span></span><span style="display:flex;"><span>rainbow_table <span style="color:#ff79c6">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Attacker precomputes common password hashes</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> pwd <span style="color:#ff79c6">in</span> common_passwords:
+</span></span><span style="display:flex;"><span>    rainbow_table[hashlib<span style="color:#ff79c6">.</span>sha256(pwd<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()] <span style="color:#ff79c6">=</span> pwd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Now they can instantly reverse any matching hash</span>
+</span></span><span style="display:flex;"><span>target_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256(<span style="color:#f1fa8c">&#34;password&#34;</span><span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> target_hash <span style="color:#ff79c6">in</span> rainbow_table:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Password found: </span><span style="color:#f1fa8c">{</span>rainbow_table[target_hash]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)  
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Output: Password found: password</span>
+</span></span></code></pre></div><p>Modern GPUs can test billions of SHA-256 hashes per second. Argon2, winner of the 2015 Password Hashing Competition, requires substantial memory for each guess, neutralizing the GPU advantage:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> argon2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>password <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;test_password&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Time SHA-256 (fast - bad for passwords)</span>
+</span></span><span style="display:flex;"><span>start <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">10000</span>):
+</span></span><span style="display:flex;"><span>    hashlib<span style="color:#ff79c6">.</span>sha256(password<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>sha_time <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time() <span style="color:#ff79c6">-</span> start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Time Argon2 (slow by design - good for passwords)</span>
+</span></span><span style="display:flex;"><span>hasher <span style="color:#ff79c6">=</span> argon2<span style="color:#ff79c6">.</span>PasswordHasher()
+</span></span><span style="display:flex;"><span>start <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">10</span>):  <span style="color:#6272a4"># Only 10 iterations!</span>
+</span></span><span style="display:flex;"><span>    hasher<span style="color:#ff79c6">.</span>hash(password)
+</span></span><span style="display:flex;"><span>argon_time <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time() <span style="color:#ff79c6">-</span> start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;SHA-256 (10,000 hashes): </span><span style="color:#f1fa8c">{</span>sha_time<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> seconds&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Argon2 (10 hashes): </span><span style="color:#f1fa8c">{</span>argon_time<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> seconds&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># SHA-256 is ~10,000x faster - that&#39;s the point!</span>
+</span></span></code></pre></div><h3 id="alternative-modern-algorithms">Alternative Modern Algorithms</h3>
+<p>While Argon2 is the gold standard, other algorithms serve specific needs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># bcrypt - Battle-tested, widely supported</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> bcrypt
+</span></span><span style="display:flex;"><span>hashed <span style="color:#ff79c6">=</span> bcrypt<span style="color:#ff79c6">.</span>hashpw(password<span style="color:#ff79c6">.</span>encode(), bcrypt<span style="color:#ff79c6">.</span>gensalt(rounds<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># scrypt - Memory-hard, used by some cryptocurrencies</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>hashed <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>scrypt(
+</span></span><span style="display:flex;"><span>    password<span style="color:#ff79c6">.</span>encode(),
+</span></span><span style="display:flex;"><span>    salt<span style="color:#ff79c6">=</span>os<span style="color:#ff79c6">.</span>urandom(<span style="color:#bd93f9">16</span>),
+</span></span><span style="display:flex;"><span>    n<span style="color:#ff79c6">=</span><span style="color:#bd93f9">16384</span>, r<span style="color:#ff79c6">=</span><span style="color:#bd93f9">8</span>, p<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># PBKDF2 - NIST approved, works everywhere</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>hashed <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>pbkdf2_hmac(
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#39;sha256&#39;</span>,
+</span></span><span style="display:flex;"><span>    password<span style="color:#ff79c6">.</span>encode(),
+</span></span><span style="display:flex;"><span>    salt<span style="color:#ff79c6">=</span>os<span style="color:#ff79c6">.</span>urandom(<span style="color:#bd93f9">16</span>),
+</span></span><span style="display:flex;"><span>    iterations<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100000</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><hr>
+<h2 id="blockchain-and-hash-collisions">Blockchain and Hash Collisions</h2>
+<p>Cryptocurrencies bet billions on hash collision resistance. Bitcoin&rsquo;s approach is particularly paranoid:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">bitcoin_hash</span>(data):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Bitcoin uses double SHA-256 for extra security.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    first_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>digest()
+</span></span><span style="display:flex;"><span>    second_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256(first_hash)<span style="color:#ff79c6">.</span>digest()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> second_hash<span style="color:#ff79c6">.</span>hex()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Example Bitcoin block header hashing</span>
+</span></span><span style="display:flex;"><span>block_header <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;version|prev_block|merkle_root|timestamp|bits|nonce&#34;</span>
+</span></span><span style="display:flex;"><span>block_hash <span style="color:#ff79c6">=</span> bitcoin_hash(block_header)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Bitcoin block hash: </span><span style="color:#f1fa8c">{</span>block_hash<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span></code></pre></div><p>If SHA-256 falls, the implications are staggering:</p>
+<ul>
+<li>Transaction history could be rewritten</li>
+<li>Digital signatures could be forged</li>
+<li>Proof-of-work becomes meaningless</li>
+<li>Billions in value evaporates</li>
+</ul>
+<p>This is why Ethereum is already planning post-quantum cryptography migrations. NIST&rsquo;s Post-Quantum Cryptography competition selected four algorithms in 2022, with implementation beginning across critical infrastructure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Simulating crypto-agility in smart contracts</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">HashAlgorithm</span>:
+</span></span><span style="display:flex;"><span>    SHA256 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>    SHA3_256 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>    BLAKE3 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>    CRYSTALS_DILITHIUM <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>  <span style="color:#6272a4"># Post-quantum signature</span>
+</span></span><span style="display:flex;"><span>    SPHINCS_PLUS <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>         <span style="color:#6272a4"># Stateless post-quantum</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">FutureProofContract</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>):
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hash_version <span style="color:#ff79c6">=</span> HashAlgorithm<span style="color:#ff79c6">.</span>SHA256
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">hash_data</span>(<span style="font-style:italic">self</span>, data):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hash_version <span style="color:#ff79c6">==</span> HashAlgorithm<span style="color:#ff79c6">.</span>SHA256:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> hashlib<span style="color:#ff79c6">.</span>sha256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">elif</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hash_version <span style="color:#ff79c6">==</span> HashAlgorithm<span style="color:#ff79c6">.</span>SHA3_256:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> hashlib<span style="color:#ff79c6">.</span>sha3_256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Ready to upgrade when quantum computers arrive</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">upgrade_hash_algorithm</span>(<span style="font-style:italic">self</span>, new_version):
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Allows migration to stronger algorithms.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hash_version <span style="color:#ff79c6">=</span> new_version
+</span></span></code></pre></div><hr>
+<h2 id="when-collisions-dont-matter">When Collisions Don&rsquo;t Matter</h2>
+<p>Not every use of hashing requires collision resistance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Hash table - collisions are expected and handled</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">SimpleHashTable</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>):
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">=</span> size
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>table <span style="color:#ff79c6">=</span> [[] <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(size)]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_hash</span>(<span style="font-style:italic">self</span>, key):
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Simple hash - collisions are fine here</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">hash</span>(key) <span style="color:#ff79c6">%</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>size
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">insert</span>(<span style="font-style:italic">self</span>, key, value):
+</span></span><span style="display:flex;"><span>        index <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_hash(key)
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Collision handling via chaining</span>
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>table[index]<span style="color:#ff79c6">.</span>append((key, value))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get</span>(<span style="font-style:italic">self</span>, key):
+</span></span><span style="display:flex;"><span>        index <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_hash(key)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> k, v <span style="color:#ff79c6">in</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>table[index]:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> k <span style="color:#ff79c6">==</span> key:
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> v
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Collisions just mean slight performance degradation</span>
+</span></span><span style="display:flex;"><span>table <span style="color:#ff79c6">=</span> SimpleHashTable(size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>)
+</span></span><span style="display:flex;"><span>table<span style="color:#ff79c6">.</span>insert(<span style="color:#f1fa8c">&#34;apple&#34;</span>, <span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>table<span style="color:#ff79c6">.</span>insert(<span style="color:#f1fa8c">&#34;banana&#34;</span>, <span style="color:#bd93f9">2</span>)  <span style="color:#6272a4"># Might collide - that&#39;s OK!</span>
+</span></span></code></pre></div><p><strong>Use cases where collisions are acceptable:</strong></p>
+<ul>
+<li>Hash tables/dictionaries (handled via chaining)</li>
+<li>Cache keys (collision = cache miss, not security breach)</li>
+<li>Load balancing (collision = slightly uneven distribution)</li>
+<li>Data deduplication (extremely rare collision = minor storage inefficiency)</li>
+</ul>
+<hr>
+<h2 id="best-practices-for-2025">Best Practices for 2025</h2>
+<h3 id="1-choose-the-right-tool">1. Choose the Right Tool</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> argon2
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hmac
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># File integrity (collision resistance matters)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">file_checksum</span>(filepath):
+</span></span><span style="display:flex;"><span>    sha256_hash <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(filepath, <span style="color:#f1fa8c">&#34;rb&#34;</span>) <span style="color:#ff79c6">as</span> f:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> chunk <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">iter</span>(<span style="color:#ff79c6">lambda</span>: f<span style="color:#ff79c6">.</span>read(<span style="color:#bd93f9">4096</span>), <span style="color:#f1fa8c">b</span><span style="color:#f1fa8c">&#34;&#34;</span>):
+</span></span><span style="display:flex;"><span>            sha256_hash<span style="color:#ff79c6">.</span>update(chunk)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> sha256_hash<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Password storage (use specialized algorithm)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">hash_password</span>(password):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> argon2<span style="color:#ff79c6">.</span>PasswordHasher()<span style="color:#ff79c6">.</span>hash(password)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Message authentication (use HMAC)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">create_mac</span>(message, secret_key):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> hmac<span style="color:#ff79c6">.</span>new(
+</span></span><span style="display:flex;"><span>        secret_key<span style="color:#ff79c6">.</span>encode(),
+</span></span><span style="display:flex;"><span>        message<span style="color:#ff79c6">.</span>encode(),
+</span></span><span style="display:flex;"><span>        hashlib<span style="color:#ff79c6">.</span>sha256
+</span></span><span style="display:flex;"><span>    )<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Content addressing (collision resistance critical)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">content_address</span>(data):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> hashlib<span style="color:#ff79c6">.</span>sha3_256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span></code></pre></div><h3 id="2-plan-for-crypto-agility">2. Plan for Crypto-Agility</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> enum <span style="color:#ff79c6">import</span> Enum
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">HashVersion</span>(Enum):
+</span></span><span style="display:flex;"><span>    SHA256_V1 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;sha256_v1&#34;</span>
+</span></span><span style="display:flex;"><span>    SHA3_256_V2 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;sha3_256_v2&#34;</span>
+</span></span><span style="display:flex;"><span>    BLAKE3_V3 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;blake3_v3&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">VersionedHasher</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>):
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>current_version <span style="color:#ff79c6">=</span> HashVersion<span style="color:#ff79c6">.</span>SHA3_256_V2
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">hash_with_version</span>(<span style="font-style:italic">self</span>, data):
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Store algorithm version with hash.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>current_version <span style="color:#ff79c6">==</span> HashVersion<span style="color:#ff79c6">.</span>SHA256_V1:
+</span></span><span style="display:flex;"><span>            hash_value <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">elif</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>current_version <span style="color:#ff79c6">==</span> HashVersion<span style="color:#ff79c6">.</span>SHA3_256_V2:
+</span></span><span style="display:flex;"><span>            hash_value <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha3_256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;version&#34;</span>: <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>current_version<span style="color:#ff79c6">.</span>value,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;hash&#34;</span>: hash_value
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">verify</span>(<span style="font-style:italic">self</span>, data, versioned_hash):
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Verify using the original algorithm.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        version <span style="color:#ff79c6">=</span> HashVersion(versioned_hash[<span style="color:#f1fa8c">&#34;version&#34;</span>])
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> version <span style="color:#ff79c6">==</span> HashVersion<span style="color:#ff79c6">.</span>SHA256_V1:
+</span></span><span style="display:flex;"><span>            computed <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">elif</span> version <span style="color:#ff79c6">==</span> HashVersion<span style="color:#ff79c6">.</span>SHA3_256_V2:
+</span></span><span style="display:flex;"><span>            computed <span style="color:#ff79c6">=</span> hashlib<span style="color:#ff79c6">.</span>sha3_256(data<span style="color:#ff79c6">.</span>encode())<span style="color:#ff79c6">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> computed <span style="color:#ff79c6">==</span> versioned_hash[<span style="color:#f1fa8c">&#34;hash&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Usage</span>
+</span></span><span style="display:flex;"><span>hasher <span style="color:#ff79c6">=</span> VersionedHasher()
+</span></span><span style="display:flex;"><span>stored_hash <span style="color:#ff79c6">=</span> hasher<span style="color:#ff79c6">.</span>hash_with_version(<span style="color:#f1fa8c">&#34;important data&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(json<span style="color:#ff79c6">.</span>dumps(stored_hash, indent<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>))
+</span></span></code></pre></div><h3 id="3-security-checklist">3. Security Checklist</h3>
+<p><strong>Never use for security:</strong></p>
+<ul>
+<li>❌ MD5 (broken since 2004)</li>
+<li>❌ SHA-1 (broken since 2017)</li>
+<li>❌ Plain SHA-256 for passwords (too fast)</li>
+</ul>
+<p><strong>Current best practices:</strong></p>
+<ul>
+<li>✅ SHA-256/SHA-3 for file integrity</li>
+<li>✅ Argon2id for password storage</li>
+<li>✅ BLAKE3 for performance-critical hashing</li>
+<li>✅ HMAC for message authentication</li>
+<li>✅ Store algorithm version with hashes</li>
+<li>✅ bcrypt/scrypt as Argon2 alternatives</li>
+</ul>
+<hr>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>Hash functions don&rsquo;t produce unique values. They produce values so astronomically unlikely to collide that we can pretend they&rsquo;re unique. For SHA-256, finding a collision would require more computational power than humanity will likely ever possess. But as history has shown, &ldquo;unfeasibly difficult&rdquo; is not &ldquo;impossible.&rdquo;</p>
+<p>The history of cryptography is littered with &ldquo;unbreakable&rdquo; systems that fell to advancing mathematics and computing power. MD5 went from secure to broken in 13 years. SHA-1 lasted 22 years. How long will SHA-256 survive? Quantum computers may accelerate this timeline dramatically.</p>
+<p>The lesson isn&rsquo;t to panic about hash collisions. It&rsquo;s to design systems that can evolve. Store your algorithm versions. Plan your migration paths. Understand when collision resistance matters and when it doesn&rsquo;t.</p>
+<p>Twenty years from now, someone might be updating this post again, explaining why SHA-256 is broken and why we should have seen it coming. The fundamentals won&rsquo;t change. Finite outputs for infinite inputs guarantee collisions. But hopefully, we&rsquo;ll have learned to build systems that gracefully handle the inevitable transition to whatever comes next.</p>
+<p><em>See you in 2045 when we&rsquo;re explaining why SHA-256 wasn&rsquo;t quantum-resistant and how we should have known all along.</em></p>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="https://shattered.io/" target="_blank" rel="noopener noreferrer">
+  SHAttered
+</a>
+ - The attack that broke SHA-1 with full technical details</li>
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">
+  OWASP Password Storage Cheat Sheet
+</a>
+ - Current best practices for password hashing</li>
+<li><a href="https://github.com/P-H-C/phc-winner-argon2/blob/master/argon2-specs.pdf" target="_blank" rel="noopener noreferrer">
+  Argon2 Specification
+</a>
+ - Winner of the Password Hashing Competition</li>
+<li><a href="https://en.bitcoin.it/wiki/Block_hashing_algorithm" target="_blank" rel="noopener noreferrer">
+  Bitcoin&rsquo;s Double SHA-256
+</a>
+ - Why Bitcoin hashes twice</li>
+<li><a href="https://csrc.nist.gov/projects/post-quantum-cryptography" target="_blank" rel="noopener noreferrer">
+  NIST Post-Quantum Cryptography
+</a>
+ - Selected algorithms and implementation timeline</li>
+<li><a href="https://learn.microsoft.com/en-us/archive/blogs/tomarcher/are-hash-codes-unique" target="_blank" rel="noopener noreferrer">
+  My Original 2005 Post
+</a>
+ - For historical perspective on how much has changed</li>
+</ul>
+<hr>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/hash-codes-finger-prints" target="_blank" rel="noopener noreferrer">
+  Download the enhanced code samples on GitHub
+</a>
+</p>
+<p>The repository includes runnable versions with timing comparisons, detailed output, and additional examples that demonstrate each concept in action.</p>
+<hr>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/cryptography/" rel="tag">cryptography</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/security/" rel="tag">security</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hashing/" rel="tag">hashing</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/blockchain/" rel="tag">blockchain</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/passwords/" rel="tag">passwords</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
