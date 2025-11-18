@@ -2,17 +2,17 @@
 title = "Hash Collisions: Why Your 'Unique' Fingerprints Aren't (And Why That's Usually OK)"
 subtitle = "The mathematical certainty of collisions, the near-impossibility of meaningful ones, and what it means for modern cryptography"
 date = "2025-11-17T06:00:00-07:00"
-draft = true
+draft = false
 categories = ["Essays and Perspectives"]
 tags = ["cryptography", "security", "hashing", "blockchain", "passwords"]
 author = "Tom Archer"
 listThumb = "hash-collisions.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
   <img src="./hash-collisions.png"
        alt="Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes"
-       width="250"
+       width="400"
        style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
     <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
@@ -65,10 +65,10 @@ But here's what most discussions miss: **not all collisions are created equal.**
 
 ## The Semantic Collision Problem
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
   <img src="./hash-collisions-random-bytes.png"
        alt="Diagram showing random bytes rarely forming valid JSON, code, or readable text"
-       width="250"
+       width="400"
        style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
     <em>Random bytes almost never accidentally form valid structured data.</em>
@@ -221,10 +221,10 @@ Modern hash functions incorporate lessons from past failures. SHA-256 uses a mor
 
 ## Modern Password Hashing: Beyond Salt
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
   <img src="./hash-algorithms-timeline.png"
        alt="Timeline showing evolution from MD5 to Argon2, with increasing memory and computation requirements"
-       width="250"
+       width="400"
        style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
     <em>Password hashing has evolved from simple hashes to memory-hard, time-expensive algorithms.</em>
