@@ -19,7 +19,7 @@ listThumb = "hash-collisions.png"
   </figcaption>
 </figure>
 
-In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don't create truly unique fingerprints ([Stevens et al., 2017](#stevens2017)). This "SHAttered" attack required 9 quintillion SHA-1 computations—equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
+In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don't create truly unique fingerprints ([Stevens et al., 2017](#stevens2017)). This "SHAttered" attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
 
 Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than "unique" versus "not unique."
 
@@ -124,9 +124,9 @@ print(f"Valid Python found: {valid_python_count}/1,000,000")
 print(f"Meaningful Python found: {meaningful_python_count}/1,000,000")
 # Output: Meaningful Python found: 0/1,000,000
 ```
-While random bytes occasionally form valid Python (about 0.6% of the time), these are trivial statements like single digits or whitespace—not meaningful programs. None contain functions, classes, or control flow. Random bytes don't form valid JSON, and they certainly don't form functional code with semantic meaning.
+While random bytes occasionally form valid Python (about 0.6% of the time), these are trivial statements like single digits or whitespace; not meaningful programs. None contain functions, classes, or control flow. Random bytes don't form valid JSON, and they certainly don't form functional code with semantic meaning.
 
-This is why Git's reliance on SHA-1 (now SHA-256) remained practically secure despite theoretical vulnerabilities. Creating two *meaningful source code files* that compile, run correctly, perform useful operations, and contain malicious logic while matching an existing hash? That's not just hard—it's effectively impossible with current technology.
+This is why Git's reliance on SHA-1 (now SHA-256) remained practically secure despite theoretical vulnerabilities. Creating two *meaningful source code files* that compile, run correctly, perform useful operations, and contain malicious logic while matching an existing hash? That's not just hard; it's effectively impossible with current technology.
 
 ---
 
@@ -134,7 +134,7 @@ This is why Git's reliance on SHA-1 (now SHA-256) remained practically secure de
 
 ### What I Got Right ✅
 
-Let's start with the good news—turns out I wasn't completely wrong about everything! Some of my 2005 predictions have aged surprisingly well, like a fine wine rather than milk left on the counter. These successes mostly came from focusing on fundamental principles rather than specific implementations.
+Let's start with the good news; it turns out I wasn't completely wrong about everything! Some of my 2005 predictions have aged surprisingly well, like a fine wine rather than milk left on the counter. These successes mostly came from focusing on fundamental principles rather than specific implementations.
 
 - **Semantic collisions are nearly impossible** - Still true. Random data doesn't accidentally become meaningful. The structure of language and code remains our best defense against collision attacks.
 - **Salt is essential for passwords** - Though what seemed "foolproof" then is now the bare minimum. The principle was correct, even if the implementation has evolved dramatically.
