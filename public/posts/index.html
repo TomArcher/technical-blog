@@ -42,6 +42,8 @@
 	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -105,20 +107,23 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./hash-collisions-shattered.png"
+		<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+  <img src="./hash-collisions.png"
        alt="Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes"
-       width="250"
+       width="400"
        style="display: block; margin: 0 auto;">
   <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
     <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
   </figcaption>
 </figure>
-<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&rsquo;t create truly unique fingerprints. This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations—equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
+<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
+  Stevens et al., 2017
+</a>
+). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
 <p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
 <hr>
 <blockquote>
-<p>*&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</p></blockquote>
+<p><em>&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</em></p></blockquote>
 <hr>
 	</div>
 	<div class="list__footer clearfix">
@@ -558,5 +563,6 @@
 </footer>
 	</div>
 <script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
 </body>
 </html>

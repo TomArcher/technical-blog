@@ -6,7 +6,7 @@ draft = false
 categories = ["Essays and Perspectives"]
 tags = ["blockchain", "cryptography", "hashing", "passwords", "security",]
 author = "Tom Archer"
-listThumb = "hash-collisions.png"
+listThumb = "hash-collisions-thumb.png"
 +++
 
 <figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">

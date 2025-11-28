@@ -42,6 +42,8 @@
 	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -263,6 +265,42 @@
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/rain-paradox/">Read more…</a>
 	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/birthday-paradox/" rel="bookmark">
+			
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<h1 id="the-birthday-paradox-in-production-when-random-ids-collide">The Birthday Paradox in Production: When Random IDs Collide</h1>
+<p>+++
+title = &ldquo;The Birthday Paradox in Production: When Random IDs Collide&rdquo;
+date = &ldquo;2025-11-24T06:00:00-07:00&rdquo;
+draft = true
+categories = [&ldquo;Applied Modeling and Simulation&rdquo;]
+tags = [&ldquo;probability&rdquo;, &ldquo;Python&rdquo;, &ldquo;databases&rdquo;, &ldquo;distributed-systems&rdquo;, &ldquo;cryptography&rdquo;]
+author = &ldquo;Tom Archer&rdquo;
+listThumb = &ldquo;birthday-paradox.png&rdquo;
++++</p>
+<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./birthday-paradox.png" alt="Multiple database servers with overlapping ID bubbles showing collision zones" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
+  </figcaption>
+</figure>
+<p>You generate a UUID. It&rsquo;s 128 bits of randomness—340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;In a room of 23 people, there&rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&rdquo;</em></p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/birthday-paradox/">Read more…</a>
+	</div>
 </article>
 </main>
 
@@ -403,5 +441,6 @@
 </footer>
 	</div>
 <script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
 </body>
 </html>

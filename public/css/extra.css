@@ -411,3 +411,27 @@ pre code span[style*="color:#6272a4"] {
     color: inherit !important;
     text-decoration: none !important;
 }
+
+.copy-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-family: monospace;
+    background-color: #2e3440;
+    color: #d8dee9;
+    border: 1px solid #4c566a;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+pre:hover .copy-button {
+    opacity: 0.9;
+}
+
+.copy-button:hover {
+    background-color: #3b4252;
+}

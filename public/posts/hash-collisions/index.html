@@ -41,6 +41,8 @@
 	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -168,7 +170,7 @@
 <p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
   Stevens et al., 2017
 </a>
-). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations—equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
+). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
 <p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
 <hr>
 <blockquote>
@@ -250,12 +252,12 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Meaningful Python found: </span><span style="color:#f1fa8c">{</span>meaningful_python_count<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">/1,000,000&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: Meaningful Python found: 0/1,000,000</span>
-</span></span></code></pre></div><p>While random bytes occasionally form valid Python (about 0.6% of the time), these are trivial statements like single digits or whitespace—not meaningful programs. None contain functions, classes, or control flow. Random bytes don&rsquo;t form valid JSON, and they certainly don&rsquo;t form functional code with semantic meaning.</p>
-<p>This is why Git&rsquo;s reliance on SHA-1 (now SHA-256) remained practically secure despite theoretical vulnerabilities. Creating two <em>meaningful source code files</em> that compile, run correctly, perform useful operations, and contain malicious logic while matching an existing hash? That&rsquo;s not just hard—it&rsquo;s effectively impossible with current technology.</p>
+</span></span></code></pre></div><p>While random bytes occasionally form valid Python (about 0.6% of the time), these are trivial statements like single digits or whitespace; not meaningful programs. None contain functions, classes, or control flow. Random bytes don&rsquo;t form valid JSON, and they certainly don&rsquo;t form functional code with semantic meaning.</p>
+<p>This is why Git&rsquo;s reliance on SHA-1 (now SHA-256) remained practically secure despite theoretical vulnerabilities. Creating two <em>meaningful source code files</em> that compile, run correctly, perform useful operations, and contain malicious logic while matching an existing hash? That&rsquo;s not just hard; it&rsquo;s effectively impossible with current technology.</p>
 <hr>
 <h2 id="what-i-got-right-and-wrong-in-2005">What I Got Right and Wrong in 2005</h2>
 <h3 id="what-i-got-right-">What I Got Right ✅</h3>
-<p>Let&rsquo;s start with the good news—turns out I wasn&rsquo;t completely wrong about everything! Some of my 2005 predictions have aged surprisingly well, like a fine wine rather than milk left on the counter. These successes mostly came from focusing on fundamental principles rather than specific implementations.</p>
+<p>Let&rsquo;s start with the good news. It turns out I wasn&rsquo;t completely wrong about everything! Some of my 2005 predictions have aged surprisingly well, like a fine wine rather than milk left on the counter. These successes mostly came from focusing on fundamental principles rather than specific implementations.</p>
 <ul>
 <li><strong>Semantic collisions are nearly impossible</strong> - Still true. Random data doesn&rsquo;t accidentally become meaningful. The structure of language and code remains our best defense against collision attacks.</li>
 <li><strong>Salt is essential for passwords</strong> - Though what seemed &ldquo;foolproof&rdquo; then is now the bare minimum. The principle was correct, even if the implementation has evolved dramatically.</li>
@@ -988,7 +990,9 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
 		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
@@ -1029,5 +1033,6 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
 </footer>
 	</div>
 <script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
 </body>
 </html>

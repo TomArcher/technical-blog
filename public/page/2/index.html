@@ -43,6 +43,8 @@
 	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -98,6 +100,63 @@
     
     
 
+    
+      
+      
+      
+      
+        
+        
+          
+            
+            
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/python-sympy-vs-numpy/">
+              <img src="/posts/python-sympy-vs-numpy/sympy.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2025-09-05">
+                <strong>Sep 5, 2025</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/linear-algebra/">#linear algebra</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/sympy/">#SymPy</a>, <a href="/tags/symbolic-math/">#symbolic math</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">  
+<p>Most of us reach for <a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
+  NumPy
+</a>
+ whenever math shows up in a project. But sometimes, you don&rsquo;t want approximate answers, you want exact math. That&rsquo;s when you pull <a href="https://sympy.org/" target="_blank" rel="noopener noreferrer">
+  SymPy
+</a>
+ out of your programmer&rsquo;s toolkit and get to work.</p>
+<p>It&rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.</p>
+<p>In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Floats guess. SymPy knows.&rdquo;</em></p></blockquote>
+<hr>
+<p>This is where SymPy shines. To see the difference between <strong>floating-point approximations</strong> (Python or NumPy) and <strong>symbolic precision</strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p></div>
+
+        <p><a class="btn" href="/posts/python-sympy-vs-numpy/">Read more →</a></p>
+      </article>
     
       
       
@@ -481,7 +540,9 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
@@ -522,5 +583,6 @@
 </footer>
 	</div>
 <script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
 </body>
 </html>
