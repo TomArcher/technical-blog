@@ -650,6 +650,16 @@ Twenty years from now, someone might be updating this post again, explaining why
 
 ---
 
+## Try It Yourself
+
+[Download the enhanced code samples on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/hash-collisions)
+
+<div style="background-color: #f8f8f8; border-left: 4px solid #4CAF50; padding: 1em; margin: 1em 0;">
+<strong>Enhanced Code Samples Available!</strong> The repository includes runnable versions with timing comparisons, detailed output, and additional examples that demonstrate each concept in action. Each script can be run independently and includes explanatory output to reinforce the concepts from this post.
+</div>
+
+---
+
 ## Further Reading
 
 These resources provide historical perspectives, deeper technical details, and current best practices for those who want to explore further. The [SHAttered website](#stevens2017) includes the actual PDFs that collide, allowing you to verify the attack yourself. The OWASP guide is regularly updated as new threats emerge.
@@ -713,15 +723,5 @@ These resources provide historical perspectives, deeper technical details, and c
 <a id="wang2005"></a>
 - Wang, X., & Yu, H. (2005). [How to break MD5 and other hash functions](https://merlot.usc.edu/csac-f06/papers/Wang05a.pdf). *Proceedings of EUROCRYPT 2005*.  
   *The breakthrough that showed MD5 collisions could be found in hours, not centuries.*
-
----
-
-## Try It Yourself
-
-[Download the enhanced code samples on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/hash-collisions)
-
-<div style="background-color: #f8f8f8; border-left: 4px solid #4CAF50; padding: 1em; margin: 1em 0;">
-<strong>Enhanced Code Samples Available!</strong> The repository includes runnable versions with timing comparisons, detailed output, and additional examples that demonstrate each concept in action. Each script can be run independently and includes explanatory output to reinforce the concepts from this post.
-</div>
 
 ---
