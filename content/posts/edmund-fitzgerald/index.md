@@ -15,7 +15,7 @@ listThumb = "edmund-fitzgerald.jpeg"
   </figcaption>
 </figure>
 
-Originally appearing on his 1976 album, *Summertime Dream*, "The Wreck of the Edmund Fitzgerald" is a powerful ballad written and performed by folk singer Gordon Lightfoot. In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: "The lake, it is said, never gives up her dead." Following the singer's death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard's Hot Rock and Alternative category. 
+Originally appearing on his 1976 album, *Summertime Dream*, "The Wreck of the Edmund Fitzgerald" is a powerful ballad written and performed by folk singer [Gordon Lightfoot](#lightfoot1976). In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: "The lake, it is said, never gives up her dead." Following the singer's death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard's Hot Rock and Alternative category. 
 
 Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn't give up her dead, and the science behind it is as haunting as the song itself.
 
@@ -48,9 +48,9 @@ In this post, we'll explore the disturbing science behind this phenomenon, build
 
 ## The Thought Experiment
 
-Imagine you're a forensic investigator trying to understand why, unlike most drowning victims, none of the Edmund Fitzgerald's crew ever surfaced. You know the basic physics: human bodies are slightly less dense than water (\\(985 {kg}/{m^3}\\) vs \\(1000 {kg}/{m^3}\\)) (Donoghue & Minnigerode, 1977), but they initially sink due to water in the lungs. Normally, decomposition produces gases that eventually cause bodies to float. Days or weeks later, recovery becomes possible.
+Imagine you're a forensic investigator trying to understand why, unlike most drowning victims, none of the Edmund Fitzgerald's crew ever surfaced. You know the basic physics: human bodies are slightly less dense than water (\\(985 {kg}/{m^3}\\) vs \\(1000 {kg}/{m^3}\\)) ([Donoghue & Minnigerode, 1977](#donoghue1977)), but they initially sink due to water in the lungs. Normally, decomposition produces gases that eventually cause bodies to float. Days or weeks later, recovery becomes possible.
 
-But Lake Superior is different. At 530 feet down, the water is 39°F year-round (Bennett, 1978; Assel, 1986). The pressure is 16 atmospheres. The lake bottom is fine clay sediment, easily disturbed. **These aren't just numbers; they're the parameters of a thermodynamic prison**.
+But Lake Superior is different. At 530 feet down, the water is 39°F year-round ([Bennett, 1978](#bennet1978);[Assel, 1986](#assel1986)). The pressure is 16 atmospheres. The lake bottom is fine clay sediment, easily disturbed. **These aren't just numbers; they're the parameters of a thermodynamic prison**.
 
 To understand why these bodies remain with their ship, we need to model the interplay between biological processes and physical laws. When does decomposition overcome pressure? How cold is too cold for bacteria? At what depth does physics make surfacing impossible?
 
@@ -76,7 +76,7 @@ The key processes to model:
 k = A e^{-E_a/RT}
 \\]
 
-Where \\(k\\) is the reaction rate, \\(A\\) is the frequency factor, \\(E_a\\) is activation energy, \\(R\\) is the gas constant, and \\(T\\) is absolute temperature. This tells us how temperature affects bacterial activity (Eyring, 1935; Volk et al., 2008).
+Where \\(k\\) is the reaction rate, \\(A\\) is the frequency factor, \\(E_a\\) is activation energy, \\(R\\) is the gas constant, and \\(T\\) is absolute temperature. This tells us how temperature affects bacterial activity ([Eyring, 1935](#eyring1935); [Volk et al., 2008](#volk2008)).
 
 **Gas Compression (Boyle's Law):**
 
@@ -748,7 +748,7 @@ The Edmund Fitzgerald's crew remains with their ship not due to mystery or mytho
 
 2. **Current modeling**: Add lake currents that might move bodies to shallower water over time.
 
-3. **Adipocere formation**: Model how "grave wax" formation further prevents decomposition in cold, anaerobic conditions (Ubelaker & Zarenko, 2011).
+3. **Adipocere formation**: Model how "grave wax" formation further prevents decomposition in cold, anaerobic conditions ([Ubelaker & Zarenko, 2011](#ubelaker2011)).
 
 **Advanced Level:**
 
@@ -780,24 +780,34 @@ The next time you hear the song, you'll know: the lake doesn't give up her dead 
 
 These resources provide historical perspectives and deeper technical details regarding the accident and the science behind this post.
 
+<a id="assel1986"></a>
 Assel, R. A. (1986). Fall and winter thermal structure of Lake Superior. *Journal of Great Lakes Research*, 12(4), 251-262.
 
+<a id="bennet1978"></a>
 Bennett, E. B. (1978). Water budgets for Lake Superior and Whitefish Bay. *Journal of Great Lakes Research*, 4(3-4), 331-342.
 
+<a id="donoghue1977"></a>
 Donoghue, E. R., & Minnigerode, S. C. (1977). Human body buoyancy: A study of 98 men. *Journal of Forensic Sciences*, 22(3), 573-579.
 
+<a id="eyring1935"></a>
 Eyring, H. (1935). The activated complex in chemical reactions. *Journal of Chemical Physics*, 3(2), 107-115.
 
+<a id="gillooly2001"></a>
 Gillooly, J. F., Brown, J. H., West, G. B., Savage, V. M., & Charnov, E. L. (2001). Effects of size and temperature on metabolic rate. *Science*, 293(5538), 2248-2251.
 
+<a id="lightfoot1976"></a>
 Lightfoot, G. (1976). The wreck of the Edmund Fitzgerald [Song]. On *Summertime Dream*. Reprise Records.
 
+<a id="ntsb1978"></a>
 National Transportation Safety Board. (1978). *Marine accident report: S.S. Edmund Fitzgerald sinking in Lake Superior* (Report No. NTSB-MAR-78-3). Washington, DC: Author.
 
+<a id="ubelaker2011"></a>
 Ubelaker, D. H., & Zarenko, K. M. (2011). Adipocere: What is known after over two centuries of research. *Forensic Science International*, 208(1-3), 167-172.
 
+<a id="uscoastguard1977"></a>
 U.S. Coast Guard. (1977). *Marine board of investigation report: S.S. Edmund Fitzgerald* (Report No. CG-D-95-77). Washington, DC: Department of Transportation.
 
+<a id="volk2008"></a>
 Volk, H. J., Dring, M. J., & Lüning, K. (2008). Temperature dependence of growth in marine macroalgae. *Journal of Phycology*, 21(1), 12-21.
 
 ---
