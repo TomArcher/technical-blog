@@ -221,8 +221,6 @@ def body_density_with_gas(
     return overall_density
 ```
 
-Here's the refactored version split into more digestible sections:
-
 ### Lake Conditions Data Structure
 
 First, let's create a data structure to hold environmental conditions at any given depth.
