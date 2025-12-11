@@ -721,7 +721,7 @@ These resources provide historical perspectives, deeper technical details, and c
   *The SHAttered attack paper that proved SHA-1 was practically broken.*
 
 <a id="wang2005"></a>
-- Wang, X., & Yu, H. (2005). [How to break MD5 and other hash functions](https://merlot.usc.edu/csac-f06/papers/Wang05a.pdf). *Proceedings of EUROCRYPT 2005*.  
+- Wang, X., & Yu, H. (2005). [How to break MD5 and other hash functions](https://iacr.org/cryptodb/archive/2005/EUROCRYPT/2868/2868.pdf). *Proceedings of EUROCRYPT 2005*.  
   *The breakthrough that showed MD5 collisions could be found in hours, not centuries.*
 
 ---

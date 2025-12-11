@@ -2,13 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/blockchain/</loc>
-    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+    <loc>http://localhost:1313/categories/applied-modeling-and-simulation/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/biology/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/physics/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/edmund-fitzgerald/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/thermodynamics/</loc>
+    <lastmod>2025-11-30T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/cryptography/</loc>
+    <lastmod>2025-11-28T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/databases/</loc>
+    <lastmod>2025-11-28T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/distributed-systems/</loc>
+    <lastmod>2025-11-28T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/probability/</loc>
+    <lastmod>2025-11-28T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/birthday-paradox/</loc>
+    <lastmod>2025-11-28T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/blockchain/</loc>
     <lastmod>2025-11-17T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/essays-and-perspectives/</loc>
@@ -23,16 +62,7 @@
     <loc>http://localhost:1313/tags/passwords/</loc>
     <lastmod>2025-11-17T06:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/security/</loc>
-    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-11-17T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-11-17T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/ai/</loc>
@@ -65,16 +95,7 @@
     <loc>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</loc>
     <lastmod>2025-11-10T06:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/applied-modeling-and-simulation/</loc>
-    <lastmod>2025-10-23T09:00:00-07:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/kinematics/</loc>
-    <lastmod>2025-10-23T09:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/physics/</loc>
-    <lastmod>2025-10-23T09:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
     <lastmod>2025-10-23T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/safe-distance-in-traffic/</loc>
@@ -84,9 +105,6 @@
     <lastmod>2025-10-12T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/thermo-water-energy-balance/</loc>
-    <lastmod>2025-10-12T09:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/thermodynamics/</loc>
     <lastmod>2025-10-12T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/calculus/</loc>
@@ -114,9 +132,6 @@
     <lastmod>2025-10-07T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/how-large-language-models-read-code/</loc>
-    <lastmod>2025-10-06T09:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/probability/</loc>
     <lastmod>2025-10-06T09:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/data-parsing/</loc>
@@ -178,8 +193,6 @@
   </url><url>
     <loc>http://localhost:1313/posts/rain-paradox/</loc>
     <lastmod>2025-08-18T09:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/birthday-paradox/</loc>
   </url><url>
     <loc>http://localhost:1313/about/</loc>
   </url><url>

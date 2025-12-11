@@ -134,9 +134,9 @@
             </h2>
 
             <div class="post-meta">
-              <time datetime="2025-11-24">
-                <strong>Nov 24, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/probability/">#probability</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/databases/">#databases</a>, <a href="/tags/distributed-systems/">#distributed-systems</a>, <a href="/tags/cryptography/">#cryptography</a></div>
+              <time datetime="2025-11-28">
+                <strong>Nov 28, 2025</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/cryptography/">#cryptography</a>, <a href="/tags/databases/">#databases</a>, <a href="/tags/distributed-systems/">#distributed-systems</a>, <a href="/tags/probability/">#probability</a>, <a href="/tags/python/">#Python</a></div>
           </div>
         </header>
 
@@ -145,7 +145,10 @@
         
         
         <div class="post-summary">
-<p>You generate a UUID. It&rsquo;s 128 bits of randomness—340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
+<p>You generate a UUID. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
+<p>As I like to say, <em>common sense and intuition are the enemies of science</em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?</p>
+<p>Math shows us the uncomfortable truth: You&rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.</p>
+<p>You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&rsquo;t just a party trick; it&rsquo;s the same mathematics that determines when your &ldquo;guaranteed unique&rdquo; database IDs collide, why hash tables need careful sizing, and when your distributed system&rsquo;s assumptions break.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;In a room of 23 people, there&rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&rdquo;</em></p></blockquote>
@@ -244,6 +247,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

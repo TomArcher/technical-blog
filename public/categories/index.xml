@@ -6,8 +6,15 @@
     <description>Recent content in Categories on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Nov 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Applied Modeling and Simulation</title>
+      <link>http://localhost:1313/categories/applied-modeling-and-simulation/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/applied-modeling-and-simulation/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Essays and Perspectives</title>
       <link>http://localhost:1313/categories/essays-and-perspectives/</link>
@@ -20,13 +27,6 @@
       <link>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</link>
       <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
       <guid>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Applied Modeling and Simulation</title>
-      <link>http://localhost:1313/categories/applied-modeling-and-simulation/</link>
-      <pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/categories/applied-modeling-and-simulation/</guid>
       <description></description>
     </item>
     <item>
