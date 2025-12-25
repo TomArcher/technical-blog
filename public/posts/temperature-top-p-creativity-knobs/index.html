@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Temperature and Top-P: The Creativity Knobs - Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Temperature and Top-P: The Creativity Knobs</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-12-25T06:00:00-07:00">
+              <strong>December 25, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Category:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/ai-and-the-mathematics-of-language/"
+                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/ai/"
+                 rel="tag">#AI</a>, <a class="meta__link"
+                 href="/tags/anthropic/"
+                 rel="tag">#Anthropic</a>, <a class="meta__link"
+                 href="/tags/llm/"
+                 rel="tag">#LLM</a>, <a class="meta__link"
+                 href="/tags/nucleus-sampling/"
+                 rel="tag">#nucleus sampling</a>, <a class="meta__link"
+                 href="/tags/openai/"
+                 rel="tag">#OpenAI</a>, <a class="meta__link"
+                 href="/tags/probability/"
+                 rel="tag">#probability</a>, <a class="meta__link"
+                 href="/tags/sampling/"
+                 rel="tag">#sampling</a>, <a class="meta__link"
+                 href="/tags/softmax/"
+                 rel="tag">#softmax</a>, <a class="meta__link"
+                 href="/tags/temperature/"
+                 rel="tag">#temperature</a>, <a class="meta__link"
+                 href="/tags/top-p/"
+                 rel="tag">#top-p</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Ftemperature-top-p-creativity-knobs%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    X
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Ftemperature-top-p-creativity-knobs%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    in
+  </a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Ftemperature-top-p-creativity-knobs%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+    f
+  </a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Ftemperature-top-p-creativity-knobs%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+    r
+  </a>
+  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Ftemperature-top-p-creativity-knobs%252F" aria-label="Share via Email">
+    @
+  </a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">
+    Share
+  </button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "%!q(\u003cnil\u003e)",
+        url: "\"http://localhost:1313/posts/temperature-top-p-creativity-knobs/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>
+  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./temperature-top-p-creativity-knobs.png"
+       alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
+       width="250"
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Turn it up and things get weird.</em>
+  </figcaption>
+</figure>
+<p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+, <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, or any other LLM includes two parameters most people either ignore or tweak randomly: <strong>temperature</strong> and <strong>top-p</strong>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
+<p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.</p>
+<p>I&rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &ldquo;Set temperature to 0.7 for creative writing&rdquo; becomes tribal knowledge, passed down without explanation. Let&rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Temperature doesn&rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&rdquo;</em></p></blockquote>
+<hr>
+<p>This post explores the mathematical foundations of token sampling in large language models, showing exactly how temperature and top-p transform probability distributions into actual text. You&rsquo;ll see the equations, run the code, and develop intuition for when to reach for which parameter.</p>
+<blockquote>
+<p><strong>TL;DR:</strong></p>
+<ul>
+<li>LLMs don&rsquo;t output text directly; they output probability distributions over tokens</li>
+<li>Temperature divides the logits before softmax, reshaping the probability curve</li>
+<li>Lower temperature makes the model more deterministic; temperature near zero always picks the top choice</li>
+<li>Higher temperature spreads probability across more tokens, approaching uniform randomness at extreme values</li>
+<li>Top-p (nucleus sampling) dynamically truncates the distribution, keeping only tokens that sum to probability \(p\)</li>
+<li>Temperature affects the shape of probabilities; top-p affects how many tokens remain in consideration</li>
+<li>For factual tasks: low temperature (0.1–0.3), top-p around 0.9</li>
+<li>For creative tasks: higher temperature (0.7–1.0), top-p around 0.95</li>
+<li>Using both simultaneously can produce unexpected interactions; understand them individually first</li>
+<li>Temperature 0 isn&rsquo;t truly deterministic in all implementations due to floating-point issues</li>
+</ul></blockquote>
+<hr>
+<h2 id="how-llms-generate-text">How LLMs Generate Text</h2>
+<p>Before we touch the knobs, we need to understand what they&rsquo;re adjusting. Large language models don&rsquo;t generate text directly. They generate probability distributions over vocabularies (typically 50,000 to 100,000 tokens) and then sample from those distributions to select the next token (<a href="#jurafsky2023">
+  Jurafsky &amp; Martin, 2023
+</a>
+).</p>
+<p>Here&rsquo;s the pipeline:</p>
+<ol>
+<li><strong>Input processing</strong>: Your prompt gets tokenized into a sequence of integers</li>
+<li><strong>Forward pass</strong>: The transformer produces a vector of raw scores (logits) for every token in the vocabulary</li>
+<li><strong>Softmax</strong>: Logits get converted to probabilities that sum to 1</li>
+<li><strong>Sampling</strong>: A token is selected based on those probabilities</li>
+<li><strong>Repeat</strong>: The selected token gets appended, and we go back to step 2</li>
+</ol>
+<p>Steps 3 and 4 are where temperature and top-p operate. They don&rsquo;t change what the model &ldquo;knows&rdquo;; they change how it decides.</p>
+<hr>
+<h2 id="the-softmax-function-probabilities-from-scores">The Softmax Function: Probabilities from Scores</h2>
+<p>The transformer&rsquo;s final layer outputs <em>logits</em>, which are unbounded real numbers where higher means &ldquo;more likely.&rdquo; To convert these to probabilities, we apply the <strong>softmax</strong> function (<a href="#goodfellow2016">
+  Goodfellow et al., 2016
+</a>
+):</p>
+<p>\[
+P(token_i) = \frac{e^{z_i}}{\sum_{j=1}^{V} e^{z_j}}
+\]</p>
+<p>Where \(z_i\) is the logit for token \(i\) and \(V\) is the vocabulary size.</p>
+<p>The exponential function amplifies differences: if token \(A\) has logit 5.0 and token \(B\) has logit 4.0, their probabilities won&rsquo;t be in a 5:4 ratio. <strong>The exponentials make \(A\) roughly 2.7 times more likely than \(B\).</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># softmax.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">softmax</span>(logits):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Standard softmax: convert logits to probabilities.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Subtract max for numerical stability</span>
+</span></span><span style="display:flex;"><span>    shifted <span style="color:#ff79c6">=</span> logits <span style="color:#ff79c6">-</span> np<span style="color:#ff79c6">.</span>max(logits)
+</span></span><span style="display:flex;"><span>    exp_logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>exp(shifted)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> exp_logits <span style="color:#ff79c6">/</span> np<span style="color:#ff79c6">.</span>sum(exp_logits)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Example logits for 5 tokens</span>
+</span></span><span style="display:flex;"><span>    logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array([<span style="color:#bd93f9">2.0</span>, <span style="color:#bd93f9">1.5</span>, <span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">0.5</span>, <span style="color:#bd93f9">0.0</span>])
+</span></span><span style="display:flex;"><span>    probs <span style="color:#ff79c6">=</span> softmax(logits)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Probabilities: </span><span style="color:#f1fa8c">{</span>probs<span style="color:#ff79c6">.</span>round(<span style="color:#bd93f9">3</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Output: [0.429 0.26  0.158 0.096 0.058]</span>
+</span></span></code></pre></div><p>Notice how a logit of 2.0 doesn&rsquo;t give twice the probability of logit 1.0. It gives nearly three times the probability. <strong>This exponential amplification is exactly what temperature modifies.</strong></p>
+<hr>
+<h2 id="temperature-reshaping-confidence">Temperature: Reshaping Confidence</h2>
+<p>Temperature is mathematically simple: divide the logits by a scalar before applying softmax (<a href="#hinton2015">
+  Hinton et al., 2015
+</a>
+):</p>
+<p>\[
+P(token_i | T) = \frac{e^{z_i / T}}{\sum_{j=1}^{V} e^{z_j / T}}
+\]</p>
+<p>That&rsquo;s it. One division. But watch what happens:</p>
+<p><strong>When T &lt; 1</strong> (low temperature): Dividing by a fraction amplifies the differences between logits. A gap of 1.0 between two logits becomes 2.0 after dividing by T=0.5, or 5.0 after dividing by T=0.2. This makes the highest-probability token dominate even further.</p>
+<p><strong>When T = 1</strong>: Standard softmax. No modification.</p>
+<p><strong>When T &gt; 1</strong> (high temperature): Dividing by a number greater than 1 compresses differences. Logit gaps shrink. The distribution flattens toward uniform.</p>
+<p><strong>When T → 0</strong>: The highest logit wins with probability approaching 1. Deterministic greedy decoding.</p>
+<p><strong>When T → ∞</strong>: All tokens approach equal probability. Pure randomness.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># softmax_with_temperature.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">softmax_with_temperature</span>(logits, temperature):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Apply temperature scaling before softmax.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> temperature <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Greedy: return one-hot for max logit</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>zeros_like(logits)
+</span></span><span style="display:flex;"><span>        result[np<span style="color:#ff79c6">.</span>argmax(logits)] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result
+</span></span><span style="display:flex;"><span>    scaled <span style="color:#ff79c6">=</span> logits <span style="color:#ff79c6">/</span> temperature
+</span></span><span style="display:flex;"><span>    shifted <span style="color:#ff79c6">=</span> scaled <span style="color:#ff79c6">-</span> np<span style="color:#ff79c6">.</span>max(scaled)
+</span></span><span style="display:flex;"><span>    exp_logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>exp(shifted)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> exp_logits <span style="color:#ff79c6">/</span> np<span style="color:#ff79c6">.</span>sum(exp_logits)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Same logits, different temperatures</span>
+</span></span><span style="display:flex;"><span>    logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array([<span style="color:#bd93f9">2.0</span>, <span style="color:#bd93f9">1.5</span>, <span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">0.5</span>, <span style="color:#bd93f9">0.0</span>])
+</span></span><span style="display:flex;"><span>    temperatures <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0.1</span>, <span style="color:#bd93f9">0.5</span>, <span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">1.5</span>, <span style="color:#bd93f9">2.0</span>]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Token probabilities at different temperatures:&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">50</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> T <span style="color:#ff79c6">in</span> temperatures:
+</span></span><span style="display:flex;"><span>        probs <span style="color:#ff79c6">=</span> softmax_with_temperature(logits, T)
+</span></span><span style="display:flex;"><span>        entropy <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span>np<span style="color:#ff79c6">.</span>sum(probs <span style="color:#ff79c6">*</span> np<span style="color:#ff79c6">.</span>log(probs <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1e-10</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;T=</span><span style="color:#f1fa8c">{</span>T<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">: </span><span style="color:#f1fa8c">{</span>probs<span style="color:#ff79c6">.</span>round(<span style="color:#bd93f9">3</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> | Entropy: </span><span style="color:#f1fa8c">{</span>entropy<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span></code></pre></div><p><strong>Output</strong>:</p>
+<pre tabindex="0"><code>Token probabilities at different temperatures:
+--------------------------------------------------
+T=0.1: [0.993 0.007 0.    0.    0.   ] | Entropy: 0.04
+T=0.5: [0.636 0.234 0.086 0.032 0.012] | Entropy: 1.00
+T=1.0: [0.429 0.26  0.158 0.096 0.058] | Entropy: 1.39
+T=1.5: [0.349 0.25  0.179 0.129 0.092] | Entropy: 1.51
+T=2.0: [0.31  0.241 0.188 0.146 0.114] | Entropy: 1.55
+</code></pre><p>The <strong>entropy</strong> column, a measure of probability distribution spread, quantifies what we&rsquo;re seeing: low temperature concentrates probability (low entropy), high temperature spreads it (high entropy approaching the maximum of \(ln(5) ≈ 1.61\) for 5 tokens).</p>
+<hr>
+<h2 id="visualizing-temperature-effects">Visualizing Temperature Effects</h2>
+<p>Let&rsquo;s see this graphically with a realistic vocabulary slice:</p>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># visualize_temperature_effects.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> softmax_with_temperature <span style="color:#ff79c6">import</span> softmax_with_temperature
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">visualize_temperature_effects</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Show how temperature reshapes probability distributions.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Simulate logits for 20 tokens (sorted for visualization)</span>
+</span></span><span style="display:flex;"><span>    np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>seed(<span style="color:#bd93f9">42</span>)
+</span></span><span style="display:flex;"><span>    logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sort(np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(<span style="color:#bd93f9">20</span>) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">2</span>)[::<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    temperatures <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0.3</span>, <span style="color:#bd93f9">0.7</span>, <span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">1.5</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    fig, axes <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>, figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">12</span>, <span style="color:#bd93f9">10</span>))
+</span></span><span style="display:flex;"><span>    axes <span style="color:#ff79c6">=</span> axes<span style="color:#ff79c6">.</span>flatten()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> ax, T <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(axes, temperatures):
+</span></span><span style="display:flex;"><span>        probs <span style="color:#ff79c6">=</span> softmax_with_temperature(logits, T)
+</span></span><span style="display:flex;"><span>        bars <span style="color:#ff79c6">=</span> ax<span style="color:#ff79c6">.</span>bar(<span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">20</span>), probs, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;steelblue&#39;</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.7</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Highlight top token</span>
+</span></span><span style="display:flex;"><span>        bars[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>set_color(<span style="color:#f1fa8c">&#39;darkred&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;Temperature = </span><span style="color:#f1fa8c">{</span>T<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39;</span>, fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">14</span>)
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#39;Token rank&#39;</span>)
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#39;Probability&#39;</span>)
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>set_ylim(<span style="color:#bd93f9">0</span>, <span style="color:#8be9fd;font-style:italic">max</span>(probs) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1.1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Annotate top probability</span>
+</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>annotate(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;</span><span style="color:#f1fa8c">{</span>probs[<span style="color:#bd93f9">0</span>]<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1%</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39;</span>, xy<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">0</span>, probs[<span style="color:#bd93f9">0</span>]),
+</span></span><span style="display:flex;"><span>                    xytext<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">2</span>, probs[<span style="color:#bd93f9">0</span>]), fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#39;temperature_comparison.png&#39;</span>, dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">150</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<p>At T=0.3, the top token claims nearly all the probability mass, so the model will almost always choose its first instinct. At T=1.5, probability spreads across many tokens, introducing genuine variety (and risk).</p>
+<img src="./visualize_temperature_effects.png" alt="" style="display: block; margin: 0 auto;">
+<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+<em>.</em>
+</figcaption>
+<hr>
+<h2 id="top-p-nucleus-sampling-dynamic-truncation">Top-P (Nucleus Sampling): Dynamic Truncation</h2>
+<p>While temperature reshapes the entire distribution, top-p takes a different approach: it truncates the distribution dynamically, keeping only the tokens needed to reach cumulative probability \(p\) (<a href="#holtzman2020">
+  Holtzman et al., 2020
+</a>
+).</p>
+<p>The algorithm:</p>
+<ol>
+<li>Sort tokens by probability (descending)</li>
+<li>Compute cumulative sum</li>
+<li>Find the smallest set where cumulative probability ≥ \(p\)</li>
+<li>Zero out everything else</li>
+<li>Renormalize</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># top_p_sampling</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> softmax_with_temperature <span style="color:#ff79c6">import</span> softmax_with_temperature
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">top_p_sampling</span>(logits, p, temperature<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.0</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Apply nucleus (top-p) sampling.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># First apply temperature</span>
+</span></span><span style="display:flex;"><span>    probs <span style="color:#ff79c6">=</span> softmax_with_temperature(logits, temperature)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Sort by probability</span>
+</span></span><span style="display:flex;"><span>    sorted_indices <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>argsort(probs)[::<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]
+</span></span><span style="display:flex;"><span>    sorted_probs <span style="color:#ff79c6">=</span> probs[sorted_indices]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Find cumulative sum</span>
+</span></span><span style="display:flex;"><span>    cumsum <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>cumsum(sorted_probs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Find cutoff index (first index where cumsum &gt;= p)</span>
+</span></span><span style="display:flex;"><span>    cutoff_idx <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>searchsorted(cumsum, p) <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Create mask</span>
+</span></span><span style="display:flex;"><span>    mask <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>zeros_like(probs)
+</span></span><span style="display:flex;"><span>    mask[sorted_indices[:cutoff_idx]] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Apply mask and renormalize</span>
+</span></span><span style="display:flex;"><span>    masked_probs <span style="color:#ff79c6">=</span> probs <span style="color:#ff79c6">*</span> mask
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> masked_probs <span style="color:#ff79c6">/</span> np<span style="color:#ff79c6">.</span>sum(masked_probs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Example</span>
+</span></span><span style="display:flex;"><span>    logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array([<span style="color:#bd93f9">3.0</span>, <span style="color:#bd93f9">2.5</span>, <span style="color:#bd93f9">2.0</span>, <span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">0.5</span>, <span style="color:#bd93f9">0.0</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">0.5</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1.0</span>])
+</span></span><span style="display:flex;"><span>    tokens <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;the&#39;</span>, <span style="color:#f1fa8c">&#39;a&#39;</span>, <span style="color:#f1fa8c">&#39;one&#39;</span>, <span style="color:#f1fa8c">&#39;some&#39;</span>, <span style="color:#f1fa8c">&#39;that&#39;</span>, <span style="color:#f1fa8c">&#39;this&#39;</span>, <span style="color:#f1fa8c">&#39;an&#39;</span>, <span style="color:#f1fa8c">&#39;my&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Original probabilities:&#34;</span>)
+</span></span><span style="display:flex;"><span>    orig_probs <span style="color:#ff79c6">=</span> softmax_with_temperature(logits, <span style="color:#bd93f9">1.0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> tok, prob <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(tokens, orig_probs):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  </span><span style="color:#f1fa8c">{</span>tok<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">: </span><span style="color:#f1fa8c">{</span>prob<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.3f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">After top-p=0.9:&#34;</span>)
+</span></span><span style="display:flex;"><span>    nucleus_probs <span style="color:#ff79c6">=</span> top_p_sampling(logits, p<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.9</span>, temperature<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> tok, prob <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(tokens, nucleus_probs):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> prob <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  </span><span style="color:#f1fa8c">{</span>tok<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">: </span><span style="color:#f1fa8c">{</span>prob<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.3f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span></code></pre></div><p><strong>Output</strong>:</p>
+<pre tabindex="0"><code>Original probabilities:
+  the: 0.437
+  a: 0.265
+  one: 0.161
+  some: 0.059
+  that: 0.036
+  this: 0.022
+  an: 0.013
+  my: 0.008
+
+After top-p=0.9:
+  the: 0.474
+  a: 0.287
+  one: 0.174
+  some: 0.064
+</code></pre><p>Notice that top-p=0.9 kept 7 of 8 tokens here, but the key insight is that this cutoff is dynamic. If the model is confident (one token has 95% probability), top-p=0.9 might keep only that one token. If the model is uncertain, it might keep dozens.</p>
+<p>This is the crucial difference from top-k sampling, which always keeps exactly \(k\) tokens regardless of the distribution shape.</p>
+<hr>
+<h2 id="why-nucleus-sampling-beats-top-k">Why Nucleus Sampling Beats Top-K</h2>
+<p>The original top-p paper (<a href="#holtzman2020">
+  Holtzman et al., 2020
+</a>
+) demonstrated a key failure mode of fixed top-k sampling. Consider two scenarios:</p>
+<p><strong>Scenario A</strong>: Model is very confident</p>
+<ul>
+<li>Token 1: 92%</li>
+<li>Token 2: 5%</li>
+<li>Token 3: 2%</li>
+<li>Tokens 4-10: &lt; 1% combined</li>
+</ul>
+<p>With top-k=10, you&rsquo;re including 7+ tokens that together contribute less than 1% probability. They&rsquo;ll rarely be selected, but when they are, you get incoherent outputs.</p>
+<p><strong>Scenario B</strong>: Model is genuinely uncertain</p>
+<ul>
+<li>Tokens 1-5: 15% each</li>
+<li>Tokens 6-10: 5% each</li>
+</ul>
+<p>With top-k=5, you&rsquo;re excluding tokens 6-10 that together represent 25% of the model&rsquo;s considered probability mass. You&rsquo;re artificially constraining legitimate options.</p>
+<p>Top-p handles both gracefully:</p>
+<ul>
+<li>In Scenario A, p=0.9 keeps only tokens 1-2</li>
+<li>In Scenario B, p=0.9 keeps tokens 1-8</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># compare_topk_topp.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> softmax_with_temperature <span style="color:#ff79c6">import</span> softmax_with_temperature
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">compare_topk_topp</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Demonstrate when top-p outperforms top-k.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Scenario A: Confident model</span>
+</span></span><span style="display:flex;"><span>    confident_logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array([<span style="color:#bd93f9">5.0</span>, <span style="color:#bd93f9">2.0</span>, <span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">0.0</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1.0</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">2.0</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">3.0</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">4.0</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Scenario B: Uncertain model</span>
+</span></span><span style="display:flex;"><span>    uncertain_logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array([<span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">0.95</span>, <span style="color:#bd93f9">0.9</span>, <span style="color:#bd93f9">0.85</span>, <span style="color:#bd93f9">0.8</span>, <span style="color:#bd93f9">0.3</span>, <span style="color:#bd93f9">0.25</span>, <span style="color:#bd93f9">0.2</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> name, logits <span style="color:#ff79c6">in</span> [(<span style="color:#f1fa8c">&#34;Confident&#34;</span>, confident_logits),
+</span></span><span style="display:flex;"><span>                         (<span style="color:#f1fa8c">&#34;Uncertain&#34;</span>, uncertain_logits)]:
+</span></span><span style="display:flex;"><span>        probs <span style="color:#ff79c6">=</span> softmax_with_temperature(logits, <span style="color:#bd93f9">1.0</span>)
+</span></span><span style="display:flex;"><span>        sorted_idx <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>argsort(probs)[::<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]
+</span></span><span style="display:flex;"><span>        sorted_probs <span style="color:#ff79c6">=</span> probs[sorted_idx]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Top-k=3</span>
+</span></span><span style="display:flex;"><span>        topk_included <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>        topk_mass <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sum(sorted_probs[:topk_included])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Top-p=0.9</span>
+</span></span><span style="display:flex;"><span>        cumsum <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>cumsum(sorted_probs)
+</span></span><span style="display:flex;"><span>        topp_included <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>searchsorted(cumsum, <span style="color:#bd93f9">0.9</span>) <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> model:&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Top-k=3: includes </span><span style="color:#f1fa8c">{</span>topk_included<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> tokens, &#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;captures </span><span style="color:#f1fa8c">{</span>topk_mass<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1%</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> of mass&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Top-p=0.9: includes </span><span style="color:#f1fa8c">{</span>topp_included<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> tokens, &#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;captures 90% of mass&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>()
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<pre tabindex="0"><code>Confident model:
+  Top-k=3: includes 3 tokens, captures 99.0% of mass
+  Top-p=0.9: includes 1 tokens, captures 90% of mass
+
+Uncertain model:
+  Top-k=3: includes 3 tokens, captures 48.0% of mass
+  Top-p=0.9: includes 7 tokens, captures 90% of mass
+</code></pre><hr>
+<h2 id="the-interaction-between-temperature-and-top-p">The Interaction Between Temperature and Top-P</h2>
+<p>Here&rsquo;s where things get subtle. When you use both parameters together, temperature applies first, then top-p filters the result. This means:</p>
+<ol>
+<li><strong>High temperature + top-p</strong>: Temperature flattens the distribution, so more tokens survive the top-p cutoff</li>
+<li><strong>Low temperature + top-p</strong>: Temperature sharpens the distribution, so fewer tokens survive</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># temp_topp_interaction.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> softmax_with_temperature <span style="color:#ff79c6">import</span> softmax_with_temperature
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">temp_topp_interaction</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Show how temperature affects top-p token counts.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(<span style="color:#bd93f9">100</span>) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">2</span>  <span style="color:#6272a4"># 100 tokens</span>
+</span></span><span style="display:flex;"><span>    logits <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sort(logits)[::<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]  <span style="color:#6272a4"># Sort descending</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    temperatures <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">0.3</span>, <span style="color:#bd93f9">0.5</span>, <span style="color:#bd93f9">0.7</span>, <span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">1.3</span>]
+</span></span><span style="display:flex;"><span>    p <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Tokens included in top-p=</span><span style="color:#f1fa8c">{</span>p<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> nucleus at different temperatures:&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">50</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> T <span style="color:#ff79c6">in</span> temperatures:
+</span></span><span style="display:flex;"><span>        probs <span style="color:#ff79c6">=</span> softmax_with_temperature(logits, T)
+</span></span><span style="display:flex;"><span>        sorted_probs <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sort(probs)[::<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]
+</span></span><span style="display:flex;"><span>        cumsum <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>cumsum(sorted_probs)
+</span></span><span style="display:flex;"><span>        tokens_included <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>searchsorted(cumsum, p) <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  T=</span><span style="color:#f1fa8c">{</span>T<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">: </span><span style="color:#f1fa8c">{</span>tokens_included<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> tokens&#34;</span>)
+</span></span></code></pre></div><p><strong>Output</strong>:</p>
+<pre tabindex="0"><code>Tokens included in top-p=0.9 nucleus at different temperatures:
+--------------------------------------------------
+  T=0.3: 8 tokens
+  T=0.5: 14 tokens
+  T=0.7: 19 tokens
+  T=1.0: 29 tokens
+  T=1.3: 41 tokens
+</code></pre><p><strong>This interaction is why many practitioners recommend adjusting one parameter at a time.</strong> The OpenAI documentation suggests setting one to its default and only tuning the other (<a href="#openai2023">
+  OpenAI, 2023
+</a>
+).</p>
+<hr>
+<h2 id="practical-experiments-with-real-apis">Practical Experiments with Real APIs</h2>
+<p>Let&rsquo;s see these parameters in action with actual API calls. The following experiments use both OpenAI and Anthropic APIs to demonstrate behavior across providers.</p>
+<h3 id="api-temperature-ranges-differ">API Temperature Ranges Differ</h3>
+<p>OpenAI accepts temperature values from 0.0 to 2.0, while Anthropic&rsquo;s API restricts temperature to 0.0–1.0. This means temperature=1.0 represents &ldquo;maximum creativity&rdquo; for Claude, whereas GPT models can go twice as high. The experiments below account for this by scaling Anthropic&rsquo;s temperature values proportionally.</p>
+<h3 id="openai-python-sample">OpenAI Python Sample</h3>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># openai_generate.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> openai <span style="color:#ff79c6">import</span> OpenAI
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Initialize client</span>
+</span></span><span style="display:flex;"><span>openai_client <span style="color:#ff79c6">=</span> OpenAI(api_key<span style="color:#ff79c6">=</span>os<span style="color:#ff79c6">.</span>environ[<span style="color:#f1fa8c">&#34;OPENAI_API_KEY&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">openai_generate</span>(prompt, temperature<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.0</span>, top_p<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.0</span>, n<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Generate n completions with OpenAI.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    responses <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n):
+</span></span><span style="display:flex;"><span>        response <span style="color:#ff79c6">=</span> openai_client<span style="color:#ff79c6">.</span>chat<span style="color:#ff79c6">.</span>completions<span style="color:#ff79c6">.</span>create(
+</span></span><span style="display:flex;"><span>            model<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;gpt-4o-mini&#34;</span>,
+</span></span><span style="display:flex;"><span>            messages<span style="color:#ff79c6">=</span>[{<span style="color:#f1fa8c">&#34;role&#34;</span>: <span style="color:#f1fa8c">&#34;user&#34;</span>, <span style="color:#f1fa8c">&#34;content&#34;</span>: prompt}],
+</span></span><span style="display:flex;"><span>            temperature<span style="color:#ff79c6">=</span>temperature,
+</span></span><span style="display:flex;"><span>            top_p<span style="color:#ff79c6">=</span>top_p,
+</span></span><span style="display:flex;"><span>            max_tokens<span style="color:#ff79c6">=</span><span style="color:#bd93f9">50</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        responses<span style="color:#ff79c6">.</span>append(response<span style="color:#ff79c6">.</span>choices[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>message<span style="color:#ff79c6">.</span>content)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> responses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Experiment: Same prompt, different temperatures</span>
+</span></span><span style="display:flex;"><span>    prompt <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Complete this sentence creatively: &#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;The robot looked at the sunset and felt&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;=&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">60</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;TEMPERATURE EXPERIMENT (OpenAI)&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;=&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">60</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> temp <span style="color:#ff79c6">in</span> [<span style="color:#bd93f9">0.0</span>, <span style="color:#bd93f9">0.5</span>, <span style="color:#bd93f9">1.0</span>, <span style="color:#bd93f9">1.5</span>]:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Temperature = </span><span style="color:#f1fa8c">{</span>temp<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">40</span>)
+</span></span><span style="display:flex;"><span>        responses <span style="color:#ff79c6">=</span> openai_generate(prompt, temperature<span style="color:#ff79c6">=</span>temp, n<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> i, r <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(responses, <span style="color:#bd93f9">1</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  </span><span style="color:#f1fa8c">{</span>i<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">. </span><span style="color:#f1fa8c">{</span>r[:<span style="color:#bd93f9">70</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">...&#34;</span>)
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<pre tabindex="0"><code>============================================================
+TEMPERATURE EXPERIMENT (OpenAI)
+============================================================
+
+Temperature = 0.0
+----------------------------------------
+  1. a surge of colors dance within its circuits, as if the vibrant hues of...
+  2. a surge of colors swirling within its circuits, as if the vibrant hues...
+  3. a surge of electric wonder, as if the vibrant hues of orange and pink ...
+
+Temperature = 0.5
+----------------------------------------
+  1. The robot looked at the sunset and felt a strange flicker of something...
+  2. a strange flicker of longing, as if the vibrant hues of orange and pin...
+  3. a surge of emotions it could not compute, as the vibrant hues of orang...
+
+Temperature = 1.0
+----------------------------------------
+  1. The robot looked at the sunset and felt an unexpected surge of warmth ...
+  2. a surge of electric nostalgia, as if the vibrant hues of orange and pu...
+  3. a strange flicker of warmth in its circuits, as if the vibrant hues of...
+
+Temperature = 1.5
+----------------------------------------
+  1. a strange resonance within its circuits, as if the fading hues of oran...
+  2. The robot looked at the sunset and felt a surge of iridescent data cou...
+  3. a wistful yearning, sparking echoes of distant memories encoded in its...
+</code></pre><h3 id="anthropic-python-sample">Anthropic Python Sample</h3>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># anthropic_generate.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> anthropic <span style="color:#ff79c6">import</span> Anthropic
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Initialize client</span>
+</span></span><span style="display:flex;"><span>anthropic_client <span style="color:#ff79c6">=</span> Anthropic(api_key<span style="color:#ff79c6">=</span>os<span style="color:#ff79c6">.</span>environ[<span style="color:#f1fa8c">&#34;ANTHROPIC_API_KEY&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">anthropic_generate</span>(prompt, temperature<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.0</span>, top_p<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1.0</span>, n<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Generate n completions with Anthropic.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Note: Anthropic&#39;s API accepts temperature in range [0, 1],
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    unlike OpenAI&#39;s [0, 2]. Values are clamped accordingly.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Clamp temperature to Anthropic&#39;s valid range</span>
+</span></span><span style="display:flex;"><span>    temperature <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">max</span>(<span style="color:#bd93f9">0.0</span>, <span style="color:#8be9fd;font-style:italic">min</span>(<span style="color:#bd93f9">1.0</span>, temperature))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    responses <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n):
+</span></span><span style="display:flex;"><span>        response <span style="color:#ff79c6">=</span> anthropic_client<span style="color:#ff79c6">.</span>messages<span style="color:#ff79c6">.</span>create(
+</span></span><span style="display:flex;"><span>            model<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;claude-3-5-haiku-20241022&#34;</span>,
+</span></span><span style="display:flex;"><span>            system <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;You are a creative writing assistant. When asked to &#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;complete a sentence, respond with ONLY the completion &#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;- no preamble, no alternatives, no explanation. Just &#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;continue the text naturally.&#34;</span>
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>            messages<span style="color:#ff79c6">=</span>[{<span style="color:#f1fa8c">&#34;role&#34;</span>: <span style="color:#f1fa8c">&#34;user&#34;</span>, <span style="color:#f1fa8c">&#34;content&#34;</span>: prompt}],
+</span></span><span style="display:flex;"><span>            temperature<span style="color:#ff79c6">=</span>temperature,
+</span></span><span style="display:flex;"><span>            top_p<span style="color:#ff79c6">=</span>top_p,
+</span></span><span style="display:flex;"><span>            max_tokens<span style="color:#ff79c6">=</span><span style="color:#bd93f9">50</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        responses<span style="color:#ff79c6">.</span>append(response<span style="color:#ff79c6">.</span>content[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>text)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> responses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Experiment: Same prompt, different temperatures</span>
+</span></span><span style="display:flex;"><span>    prompt <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Complete this sentence with a single continuation: &#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;The robot looked at the sunset and felt&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;=&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">60</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;TEMPERATURE EXPERIMENT (Anthropic Claude)&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;=&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">60</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> temp <span style="color:#ff79c6">in</span> [<span style="color:#bd93f9">0.0</span>, <span style="color:#bd93f9">0.3</span>, <span style="color:#bd93f9">0.7</span>, <span style="color:#bd93f9">1.0</span>]:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Temperature = </span><span style="color:#f1fa8c">{</span>temp<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">40</span>)
+</span></span><span style="display:flex;"><span>        responses <span style="color:#ff79c6">=</span> anthropic_generate(prompt, temperature<span style="color:#ff79c6">=</span>temp, n<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> i, r <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(responses, <span style="color:#bd93f9">1</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  </span><span style="color:#f1fa8c">{</span>i<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">. </span><span style="color:#f1fa8c">{</span>r[:<span style="color:#bd93f9">80</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">...&#34;</span>)
+</span></span></code></pre></div><p><strong>Output:</strong>
+Note: Since Anthropic&rsquo;s temperature range is 0.0–1.0, we test at 0.0, 0.3, 0.7, and 1.0.</p>
+<pre tabindex="0"><code>============================================================
+TEMPERATURE EXPERIMENT (Anthropic Claude)
+============================================================
+
+Temperature = 0.0
+----------------------------------------
+  1. a strange, inexplicable longing for something it could not understand, a whisper...
+  2. a strange, inexplicable longing for something it could not understand, a whisper...
+  3. a strange, inexplicable longing for something it could not understand, a whisper...
+
+Temperature = 0.3
+----------------------------------------
+  1. a strange, inexplicable longing for something it could not understand, a whisper...
+  2. a strange, unexpected warmth spreading through its circuits, as if something bey...
+  3. a strange, inexplicable longing for something it could not understand, a whisper...
+
+Temperature = 0.7
+----------------------------------------
+  1. a strange, inexplicable longing for something it could not understand, a whisper...
+  2. a strange, unexpected warmth spreading through its circuits, almost like what hu...
+  3. a strange, unexpected warmth spreading through its circuitry, almost like what h...
+
+Temperature = 1.0
+----------------------------------------
+  1. a strange warmth spreading through its circuits, wondering if this was what huma...
+  2. a strange, unfamiliar warmth spreading through its circuits, as if something bey...
+  3. a strange, inexplicable longing for something it could not name, a whisper of em...
+</code></pre><p><strong>What to observe:</strong></p>
+<ul>
+<li>At temperature 0, responses should be nearly identical (deterministic)</li>
+<li>At temperature 0.5, minor variations appear but core structure persists</li>
+<li>At temperature 1.0, genuine creativity emerges</li>
+<li>At temperature 1.5+ (OpenAI only), outputs become increasingly unpredictable</li>
+<li>Anthropic&rsquo;s maximum (1.0) produces roughly comparable variety to OpenAI&rsquo;s mid-range (~0.7–0.8)</li>
+</ul>
+<hr>
+<h2 id="when-to-use-which-a-decision-framework">When to Use Which: A Decision Framework</h2>
+<p>Based on both the mathematics and empirical testing, here&rsquo;s a practical guide:</p>
+<h3 id="use-low-temperature-0103-when">Use Low Temperature (0.1–0.3) When:</h3>
+<ul>
+<li><strong>Factual retrieval</strong>: &ldquo;What year was the Treaty of Westphalia signed?&rdquo;</li>
+<li><strong>Code generation</strong>: Syntax errors become more likely at high temperatures</li>
+<li><strong>Classification tasks</strong>: You want the model&rsquo;s highest-confidence answer</li>
+<li><strong>Structured output</strong>: JSON, XML, or other formats where deviation breaks parsing</li>
+</ul>
+<h3 id="use-medium-temperature-0508-when">Use Medium Temperature (0.5–0.8) When:</h3>
+<ul>
+<li><strong>Professional writing</strong>: Emails, reports, documentation</li>
+<li><strong>Summarization</strong>: Faithful but not robotic</li>
+<li><strong>Translation</strong>: Accuracy matters but natural phrasing helps</li>
+<li><strong>Explanations</strong>: Clear and engaging without hallucination risk</li>
+</ul>
+<h3 id="use-high-temperature-0910-for-anthropic-0915-for-openai-when">Use High Temperature (0.9–1.0 for Anthropic, 0.9–1.5 for OpenAI) When:</h3>
+<ul>
+<li><strong>Creative writing</strong>: Fiction, poetry, brainstorming</li>
+<li><strong>Ideation</strong>: Generating diverse options to choose from</li>
+<li><strong>Dialogue</strong>: Conversational responses that feel natural</li>
+<li><strong>Exploration</strong>: When you want to see what&rsquo;s possible</li>
+</ul>
+<h3 id="top-p-guidelines">Top-P Guidelines:</h3>
+<ul>
+<li><strong>Start with 0.9</strong>: A sensible default for most tasks</li>
+<li><strong>Reduce to 0.5–0.7</strong>: For more focused outputs when using higher temperatures</li>
+<li><strong>Keep at 1.0</strong>: When you want temperature to be the only control</li>
+<li><strong>Never use 0</strong>: This would include zero tokens</li>
+</ul>
+<hr>
+<h2 id="the-temperature-0-myth">The Temperature 0 Myth</h2>
+<p>A common misconception: &ldquo;Temperature 0 is deterministic.&rdquo; In theory, yes. The argmax of the logits always wins. In practice, floating-point arithmetic introduces subtle variations, and different implementations handle the edge case differently (<a href="#peng2023">
+  Peng et al., 2023
+</a>
+).</p>
+<p>Some providers implement &ldquo;almost zero&rdquo; (like 1e-8) rather than true zero. Some use a separate greedy decoding path. OpenAI&rsquo;s API accepts temperature=0 but may still show occasional variation in long outputs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># test_determinism.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> openai_generate <span style="color:#ff79c6">import</span> openai_generate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">test_determinism</span>(prompt, n_trials<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Test whether temperature=0 produces identical outputs.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    responses <span style="color:#ff79c6">=</span> openai_generate(prompt, temperature<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>, n<span style="color:#ff79c6">=</span>n_trials)
+</span></span><span style="display:flex;"><span>    unique_responses <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">set</span>(responses)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Unique responses at T=0: </span><span style="color:#f1fa8c">{</span><span style="color:#8be9fd;font-style:italic">len</span>(unique_responses)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> / </span><span style="color:#f1fa8c">{</span>n_trials<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">len</span>(unique_responses) <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Deterministic behavior confirmed!&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Response: </span><span style="color:#f1fa8c">{</span>responses[<span style="color:#bd93f9">0</span>][:<span style="color:#bd93f9">80</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">...&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Non-determinism detected!&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> r <span style="color:#ff79c6">in</span> unique_responses:
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  - </span><span style="color:#f1fa8c">{</span>r[:<span style="color:#bd93f9">60</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">...&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Simple prompt - likely deterministic</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Test 1: Simple math question&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">40</span>)
+</span></span><span style="display:flex;"><span>    test_determinism(<span style="color:#f1fa8c">&#34;What is 2 + 2?&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Longer, more creative prompt - more likely to show variation</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Test 2: Creative prompt (longer output)&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">40</span>)
+</span></span><span style="display:flex;"><span>    test_determinism(
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Write a paragraph about a robot discovering emotions.&#34;</span>,
+</span></span><span style="display:flex;"><span>        n_trials<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<pre tabindex="0"><code>Test 1: Simple math question
+----------------------------------------
+Unique responses at T=0: 1 / 10
+Deterministic behavior confirmed!
+  Response: 2 + 2 equals 4....
+
+Test 2: Creative prompt (longer output)
+----------------------------------------
+Unique responses at T=0: 2 / 5
+Non-determinism detected!
+  - In a dimly lit laboratory, a robot named AURA, designed for ...
+  - In a dimly lit laboratory, a robot named AURA, designed for ...
+</code></pre><p>For truly deterministic behavior, some APIs offer a separate <code>seed</code> parameter. Always check your provider&rsquo;s documentation.</p>
+<hr>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>Temperature and top-p aren&rsquo;t magic. They&rsquo;re straightforward mathematical transformations with predictable effects. Temperature exponentially reshapes the probability distribution; top-p dynamically truncates it. Together, they give you fine-grained control over the exploration-exploitation tradeoff that underlies all language generation.</p>
+<p>The key insight is that these parameters don&rsquo;t change what the model knows. They change how the model decides. A low-temperature model isn&rsquo;t smarter; it&rsquo;s more committed to its first instinct. A high-temperature model isn&rsquo;t more creative; it&rsquo;s more willing to take risks.</p>
+<p>Understanding this distinction helps you debug unexpected outputs. If your model keeps repeating itself, temperature might be too low. If it&rsquo;s generating nonsense, temperature might be too high. If it&rsquo;s ignoring plausible alternatives, top-p might be too restrictive. The mathematics tells you exactly where to look.</p>
+<hr>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/temperature-top-p-creativity-knobs" target="_blank" rel="noopener noreferrer">
+  Download the full code on GitHub
+</a>
+</p>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<p>These resources provide deeper technical details on sampling methods in language models.</p>
+<p><a id="goodfellow2016"></a>
+Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep learning</em>. MIT Press. <a href="https://mitpress.mit.edu/9780262035613/deep-learning/" target="_blank" rel="noopener noreferrer">
+  https://mitpress.mit.edu/9780262035613/deep-learning/
+</a>
+</p>
+<p><a id="hinton2015"></a>
+Hinton, G., Vinyals, O., &amp; Dean, J. (2015). Distilling the knowledge in a neural network. <em>arXiv preprint arXiv:1503.02531</em>. <a href="https://arxiv.org/abs/1503.02531" target="_blank" rel="noopener noreferrer">
+  https://arxiv.org/abs/1503.02531
+</a>
+</p>
+<p><a id="holtzman2020"></a>
+Holtzman, A., Buys, J., Du, L., Forbes, M., &amp; Choi, Y. (2020). The curious case of neural text degeneration. <em>Proceedings of the International Conference on Learning Representations (ICLR)</em>. <a href="https://arxiv.org/abs/1904.09751" target="_blank" rel="noopener noreferrer">
+  https://arxiv.org/abs/1904.09751
+</a>
+</p>
+<p><a id="jurafsky2023"></a>
+Jurafsky, D., &amp; Martin, J. H. (2023). <em>Speech and language processing</em> (3rd ed. draft). Stanford University. <a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener noreferrer">
+  https://web.stanford.edu/~jurafsky/slp3/
+</a>
+</p>
+<p><a id="openai2023"></a>
+OpenAI. (2023). API reference: Chat completions. <a href="https://platform.openai.com/docs/api-reference/chat" target="_blank" rel="noopener noreferrer">
+  https://platform.openai.com/docs/api-reference/chat
+</a>
+</p>
+<p><a id="peng2023"></a>
+Peng, B., Galley, M., He, P., Cheng, H., Xie, Y., Hu, Y., &hellip; &amp; Gao, J. (2023). Check your facts and try again: Improving large language models with external knowledge and automated feedback. <em>arXiv preprint arXiv:2302.12813</em>. <a href="https://arxiv.org/abs/2302.12813" target="_blank" rel="noopener noreferrer">
+  https://arxiv.org/abs/2302.12813
+</a>
+</p>
+<hr>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ai/" rel="tag">AI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/anthropic/" rel="tag">Anthropic</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/llm/" rel="tag">LLM</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/nucleus-sampling/" rel="tag">nucleus sampling</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/openai/" rel="tag">OpenAI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/probability/" rel="tag">probability</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/sampling/" rel="tag">sampling</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/softmax/" rel="tag">softmax</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/temperature/" rel="tag">temperature</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/top-p/" rel="tag">top-p</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
+<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru.com
+</a>
+, once the world&rsquo;s largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
+<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
+<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
+</body>
+</html>
