@@ -6,12 +6,12 @@
     <description>Recent content on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Dec 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 24 Dec 2025 12:00:00 -0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Temperature and Top-P: The Creativity Knobs</title>
       <link>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</link>
-      <pubDate>Thu, 25 Dec 2025 06:00:00 -0700</pubDate>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
       <guid>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</guid>
       <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./temperature-top-p-creativity-knobs.png&#34;&#xA;       alt=&#34;A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve&#34;&#xA;       width=&#34;250&#34;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Turn it up and things get weird.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;Every API call to &lt;a href=&#34;https://openai.com/api/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, &lt;a href=&#34;https://claude.com/platform/api&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, or any other LLM includes two parameters most people either ignore or tweak randomly: &lt;strong&gt;temperature&lt;/strong&gt; and &lt;strong&gt;top-p&lt;/strong&gt;. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p&gt;&#xA;&lt;p&gt;The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &amp;ldquo;Set temperature to 0.7 for creative writing&amp;rdquo; becomes tribal knowledge, passed down without explanation. Let&amp;rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Temperature doesn&amp;rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
     </item>

@@ -1,5 +1,5 @@
 +++
-date = '2025-12-25T06:00:00-07:00'
+date = '2025-12-24T12:00:00-08:00'
 draft = false
 title = "Temperature and Top-P: The Creativity Knobs"
 subtitle = "How sampling parameters shape AI personality"
