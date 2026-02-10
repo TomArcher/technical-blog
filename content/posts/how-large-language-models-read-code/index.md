@@ -8,7 +8,7 @@ draft = false
 title = "How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic"
 subtitle = "Exploring how large language models interpret code and what they miss"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "LLMs", "probability", "tokenization",]
+tags = ["AI", "LLM", "probability", "tokenization",]
 author = "Tom Archer"
 listThumb = "how-large-language-models-read-code.png"
 +++

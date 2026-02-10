@@ -8,7 +8,7 @@ draft = false
 title = "How Large Language Models (LLMs) Think: Turning Meaning into Math"
 subtitle = "Exploring how large language models use linear algebra to create geometric meaning"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "embeddings", "geometry", "linear algebra", "LLMs",]
+tags = ["AI", "embeddings", "geometry", "linear algebra", "LLM",]
 author = "Tom Archer"
 listThumb = "how-large-language-models-read-code-thumb.png"
 +++

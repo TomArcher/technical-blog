@@ -4,7 +4,7 @@ draft = false
 title = "How Large Language Models (LLMs) Tokenize Text: Why Words Aren't What You Think"
 subtitle = "Understanding how LLMs break language into pieces—and why it matters more than you realize"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "tokenization", "LLMs", "transformers", "NLP"]
+tags = ["AI", "tokenization", "LLM", "transformers", "NLP"]
 author = "Tom Archer"
 listThumb = "how-large-language-models-tokenize-text.png"
 +++

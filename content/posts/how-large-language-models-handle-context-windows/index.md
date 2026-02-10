@@ -4,7 +4,7 @@ draft = false
 title = "How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory"
 subtitle = "Exploring why longer context doesn't mean better memory and what happens when conversations grow"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "attention mechanisms", "context windows", "LLMs", "transformers"]
+tags = ["AI", "attention mechanisms", "context windows", "LLM", "transformers"]
 author = "Tom Archer"
 listThumb = "how-llms-handle-context-windows.png"
 +++

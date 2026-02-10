@@ -8,7 +8,7 @@ draft = false
 title = "How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding"
 subtitle = "Exploring how gradient descent and partial derivatives teach models to think"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "calculus", "gradient descent", "LLMs", "optimization",]
+tags = ["AI", "calculus", "gradient descent", "LLM", "optimization",]
 author = "Tom Archer"
 listThumb = "how-large-language-models-learn3.png"
 +++

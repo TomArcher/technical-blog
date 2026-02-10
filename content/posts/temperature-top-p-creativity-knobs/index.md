@@ -4,7 +4,7 @@ draft = false
 title = "Temperature and Top-P: The Creativity Knobs"
 subtitle = "How sampling parameters shape AI personality"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "Anthropic", "LLMs", "nucleus sampling", "OpenAI", "probability", "sampling", "softmax", "temperature", "top-p",]
+tags = ["AI", "Anthropic", "LLM", "nucleus sampling", "OpenAI", "probability", "sampling", "softmax", "temperature", "top-p",]
 author = "Tom Archer"
 listThumb = "temperature-top-p-creativity-knobs.png"
 +++
