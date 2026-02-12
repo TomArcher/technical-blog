@@ -99,7 +99,7 @@
     <header class="taxonomy-header">
       <h1>
         
-        1 "LLM" Post
+        7 "LLM" Posts
         </h1>
 
       
@@ -108,6 +108,55 @@
     
     
 
+    
+      
+      
+      
+      
+        
+        
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/how-large-language-models-know-things-they-were-never-taught/">
+              <img src="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught-thumb.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/how-large-language-models-know-things-they-were-never-taught/">How Large Language Models (LLMs) Know Things They Were Never Taught</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2026-02-09">
+                <strong>Feb 9, 2026</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/rag/">#RAG</a>, <a href="/tags/retrieval/">#retrieval</a>, <a href="/tags/web-search/">#web search</a>, <a href="/tags/tool-use/">#tool use</a>, <a href="/tags/context-windows/">#context windows</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>When you ask an LLM <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
+<p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p>
+<p>Identical question. Same underlying technology. Completely different answers. The difference isn&rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.</p>
+<p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &ldquo;know&rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model <em>learned</em> and what a model <em>read</em>.</p>
+<p>LLMs don&rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&rsquo;t learning; it&rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;A model with web search doesn&rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&rdquo;</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/how-large-language-models-know-things-they-were-never-taught/">Read more →</a></p>
+      </article>
     
       
       
@@ -162,8 +211,167 @@
         <p><a class="btn" href="/posts/temperature-top-p-creativity-knobs/">Read more →</a></p>
       </article>
     
+      
+      
+      
+      
+        
+        
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/how-large-language-models-tokenize-text/">
+              <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/how-large-language-models-tokenize-text/">How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2025-11-11">
+                <strong>Nov 11, 2025</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/tokenization/">#tokenization</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/transformers/">#transformers</a>, <a href="/tags/nlp/">#NLP</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
+<p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
+<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
+  Rumbelow &amp; Watkins, 2023
+</a>
+).</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;To a language model, text isn&rsquo;t a stream of words. It&rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&rdquo;</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/how-large-language-models-tokenize-text/">Read more →</a></p>
+      </article>
+    
+      
+      
+      
+      
+        
+        
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/how-large-language-models-handle-context-windows/">
+              <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/how-large-language-models-handle-context-windows/">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2025-11-10">
+                <strong>Nov 10, 2025</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/context-windows/">#context windows</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/transformers/">#transformers</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
+<p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
+<hr>
+<blockquote>
+<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/how-large-language-models-handle-context-windows/">Read more →</a></p>
+      </article>
+    
+      
+      
+      
+      
+        
+        
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/how-large-language-models-learn/">
+              <img src="/posts/how-large-language-models-learn/how-large-language-models-learn3.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/how-large-language-models-learn/">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2025-10-08">
+                <strong>Oct 8, 2025</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/calculus/">#calculus</a>, <a href="/tags/gradient-descent/">#gradient descent</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/optimization/">#optimization</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>When you interact with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, the model seems to respond instantly relative to the question&rsquo;s degree of difficulty. What&rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.</p>
+<p>Large language models don&rsquo;t memorize text. They <em>optimize</em> it. Behind that optimization lies calculus. I&rsquo;m not referring to the calculus you did with pencil and paper. I&rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.</p>
+<p>At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be <em>slightly less wrong.</em> The word &ldquo;slightly&rdquo; in this context is the essence of calculus.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.&rdquo;</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/how-large-language-models-learn/">Read more →</a></p>
+      </article>
+    
 
     
+<div class="pagination">
+	<span class="pagination__item pagination__item--current">1/2</span>
+	<a class="pagination__item pagination__item--next btn" href="/tags/llm/page/2/">»</a>
+</div>
   </div>
 </main>
 
@@ -273,7 +481,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
@@ -284,6 +491,8 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/retrieval/" title="Retrieval">Retrieval</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
@@ -293,8 +502,10 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool-use/" title="Tool Use">Tool Use</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
 	</div>
 </div>
 </aside>
@@ -303,7 +514,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			&copy; 2026 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

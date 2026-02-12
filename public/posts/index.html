@@ -100,6 +100,37 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/posts/how-large-language-models-know-things-they-were-never-taught/" rel="bookmark">
+			How Large Language Models (LLMs) Know Things They Were Never Taught
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+    <img src="./how-large-language-models-know-things-they-were-never-taught.png"
+        alt="A neural network with frozen weights receiving external documents being injected into its context window">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>The model didn't learn this. It just read it.</em>
+    </figcaption>
+</figure>
+<p>When you ask an LLM <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
+<p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p>
+<p>Identical question. Same underlying technology. Completely different answers. The difference isn&rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.</p>
+<p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &ldquo;know&rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model <em>learned</em> and what a model <em>read</em>.</p>
+<p>LLMs don&rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&rsquo;t learning; it&rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;A model with web search doesn&rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&rdquo;</em></p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-know-things-they-were-never-taught/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/posts/temperature-top-p-creativity-knobs/" rel="bookmark">
 			Temperature and Top-P: The Creativity Knobs
 			</a>
@@ -229,40 +260,6 @@
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/hash-collisions/">Read more…</a>
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/how-large-language-models-tokenize-text/" rel="bookmark">
-			How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-large-language-models-tokenize-text.png"
-       alt="Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.</em>
-  </figcaption>
-</figure>
-<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
-<p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
-<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
-  Rumbelow &amp; Watkins, 2023
-</a>
-).</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;To a language model, text isn&rsquo;t a stream of words. It&rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&rdquo;</em></p></blockquote>
-<hr>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-tokenize-text/">Read more…</a>
-	</div>
 </article>
 </main>
 
@@ -377,7 +374,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/llms/" title="LLMs">LLMs</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
@@ -388,6 +384,8 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/retrieval/" title="Retrieval">Retrieval</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
@@ -397,8 +395,10 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool-use/" title="Tool Use">Tool Use</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
 	</div>
 </div>
 </aside>
@@ -407,7 +407,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2025 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			&copy; 2026 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

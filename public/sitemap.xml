@@ -3,18 +3,45 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/tags/ai/</loc>
-    <lastmod>2025-12-24T12:00:00-08:00</lastmod>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</loc>
-    <lastmod>2025-12-24T12:00:00-08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/anthropic/</loc>
-    <lastmod>2025-12-24T12:00:00-08:00</lastmod>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-12-24T12:00:00-08:00</lastmod>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/context-windows/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/llm/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/rag/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/retrieval/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/tool-use/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/web-search/</loc>
+    <lastmod>2026-02-09T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/anthropic/</loc>
     <lastmod>2025-12-24T12:00:00-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/nucleus-sampling/</loc>
@@ -23,22 +50,13 @@
     <loc>http://localhost:1313/tags/openai/</loc>
     <lastmod>2025-12-24T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-12-24T12:00:00-08:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/probability/</loc>
     <lastmod>2025-12-24T12:00:00-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/sampling/</loc>
     <lastmod>2025-12-24T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-12-24T12:00:00-08:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/softmax/</loc>
-    <lastmod>2025-12-24T12:00:00-08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-12-24T12:00:00-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/temperature/</loc>
@@ -101,9 +119,6 @@
     <loc>http://localhost:1313/posts/how-large-language-models-tokenize-text/</loc>
     <lastmod>2025-11-11T06:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/llms/</loc>
-    <lastmod>2025-11-11T06:00:00-07:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/nlp/</loc>
     <lastmod>2025-11-11T06:00:00-07:00</lastmod>
   </url><url>
@@ -114,9 +129,6 @@
     <lastmod>2025-11-11T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/attention-mechanisms/</loc>
-    <lastmod>2025-11-10T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/context-windows/</loc>
     <lastmod>2025-11-10T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</loc>
