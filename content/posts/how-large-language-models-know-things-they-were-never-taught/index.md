@@ -1,6 +1,6 @@
 +++
 date = '2026-02-09T06:00:00-07:00'
-draft = true
+draft = false
 title = "How Large Language Models (LLMs) Know Things They Were Never Taught"
 subtitle = "Web search, RAG, and the illusion of current knowledge"
 categories = ["AI and the Mathematics of Language"]
