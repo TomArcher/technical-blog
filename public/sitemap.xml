@@ -233,6 +233,24 @@
     <loc>http://localhost:1313/posts/rain-paradox/</loc>
     <lastmod>2025-08-18T09:00:00-07:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/bias/</loc>
+    <lastmod>2025-02-25T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/falsification/</loc>
+    <lastmod>2025-02-25T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/reasoning/</loc>
+    <lastmod>2025-02-25T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/rlhf/</loc>
+    <lastmod>2025-02-25T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/scientific-method/</loc>
+    <lastmod>2025-02-25T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/cooperative-witness-problem/</loc>
+    <lastmod>2025-02-25T06:00:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/about/</loc>
   </url><url>
     <loc>http://localhost:1313/bio/</loc>

@@ -115,6 +115,55 @@
         <header class="post-header">
           
           
+            <a class="post-title-thumb" href="/posts/hash-collisions/">
+              <img src="/posts/hash-collisions/hash-collisions-thumb.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/hash-collisions/">Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2025-11-17">
+                <strong>Nov 17, 2025</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/essays-and-perspectives/">Essays and Perspectives</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/blockchain/">#blockchain</a>, <a href="/tags/cryptography/">#cryptography</a>, <a href="/tags/hashing/">#hashing</a>, <a href="/tags/passwords/">#passwords</a>, <a href="/tags/security/">#security</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
+  Stevens et al., 2017
+</a>
+). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
+<p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/hash-collisions/">Read more →</a></p>
+      </article>
+    
+      
+      
+      
+      
+        
+        
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
             <a class="post-title-thumb" href="/posts/how-large-language-models-tokenize-text/">
               <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="" loading="lazy">
             </a>
@@ -295,64 +344,11 @@
         <p><a class="btn" href="/posts/thermo-water-energy-balance/">Read more →</a></p>
       </article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/how-large-language-models-learn/">
-              <img src="/posts/how-large-language-models-learn/how-large-language-models-learn3.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              <a href="/posts/how-large-language-models-learn/">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2025-10-08">
-                <strong>Oct 8, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/calculus/">#calculus</a>, <a href="/tags/gradient-descent/">#gradient descent</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/optimization/">#optimization</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">
-<p>When you interact with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-  ChatGPT
-</a>
- or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
-  Claude
-</a>
-, the model seems to respond instantly relative to the question&rsquo;s degree of difficulty. What&rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.</p>
-<p>Large language models don&rsquo;t memorize text. They <em>optimize</em> it. Behind that optimization lies calculus. I&rsquo;m not referring to the calculus you did with pencil and paper. I&rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.</p>
-<p>At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be <em>slightly less wrong.</em> The word &ldquo;slightly&rdquo; in this context is the essence of calculus.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.&rdquo;</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/how-large-language-models-learn/">Read more →</a></p>
-      </article>
-    
 
     
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/">«</a>
-	<span class="pagination__item pagination__item--current">2/4</span>
+	<span class="pagination__item pagination__item--current">2/5</span>
 	<a class="pagination__item pagination__item--next btn" href="/page/3/">»</a>
 </div>
   </div>
@@ -442,6 +438,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention/" title="Attention">Attention</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
@@ -452,6 +449,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/discrete-mathematics/" title="Discrete Mathematics">Discrete Mathematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
@@ -470,6 +468,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/predicate-logic/" title="Predicate Logic">Predicate Logic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
@@ -478,6 +477,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/set-theory/" title="Set Theory">Set Theory</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>

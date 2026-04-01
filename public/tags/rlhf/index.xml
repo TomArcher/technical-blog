@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RLHF on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <link>http://localhost:1313/tags/rlhf/</link>
+    <description>Recent content in RLHF on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Feb 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/rlhf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Cooperative Witness Problem: Why LLMs Can&#39;t Falsify Your Ideas</title>
+      <link>http://localhost:1313/posts/cooperative-witness-problem/</link>
+      <pubDate>Tue, 25 Feb 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/cooperative-witness-problem/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./cooperative-witness-problem.png&#34;&#xA;       alt=&#34;An LLM enthusiastically agreeing with a human holding a sign that says 2+2=5&#34;&#xA;       width=&#34;250&#34;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Yes, and your reasoning is impeccable.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;A pattern has emerged on LinkedIn and Twitter that should concern anyone using LLMs for serious intellectual work. Smart, credentialed people announce breakthroughs developed &amp;ldquo;in collaboration with Claude&amp;rdquo; or &amp;ldquo;with GPT-4 as my research partner.&amp;rdquo; The claims are bold: new physics theories, novel mathematical proofs, revolutionary frameworks. The collaborator is always enthusiastic, always helpful, always validating.&lt;/p&gt;&#xA;&lt;p&gt;That&amp;rsquo;s the problem.&lt;/p&gt;&#xA;&lt;p&gt;LLMs are architecturally incapable of telling you that your idea is wrong. Not because they&amp;rsquo;re poorly trained or insufficiently intelligent, but because the mathematics of how they generate text optimizes for coherence and helpfulness, not truth. When you use an LLM as a research collaborator, you&amp;rsquo;re not getting a skeptical colleague who will poke holes in your reasoning. You&amp;rsquo;re getting a cooperative witness who will help you build the most convincing possible case for whatever you already believe.&lt;/p&gt;&#xA;&lt;p&gt;Don&amp;rsquo;t misunderstand me. LLMs represent one of the most significant technological breakthroughs in decades, with immediate and profound impact on nearly everyone who works with information. The focus of this blog has always been teaching the underpinnings of AI and showing how to use these tools in conjunction with Python, mathematics, and real-world problem solving. Understanding a tool&amp;rsquo;s limitations isn&amp;rsquo;t pessimism; it&amp;rsquo;s the prerequisite for using it well.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;The same architecture that makes LLMs helpful makes them dangerous. They&amp;rsquo;re trained to continue your reasoning, not to question it.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>

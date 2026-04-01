@@ -351,5 +351,40 @@
       <guid>http://localhost:1313/tags/productivity/</guid>
       <description></description>
     </item>
+    <item>
+      <title>Bias</title>
+      <link>http://localhost:1313/tags/bias/</link>
+      <pubDate>Tue, 25 Feb 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/bias/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Falsification</title>
+      <link>http://localhost:1313/tags/falsification/</link>
+      <pubDate>Tue, 25 Feb 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/falsification/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reasoning</title>
+      <link>http://localhost:1313/tags/reasoning/</link>
+      <pubDate>Tue, 25 Feb 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/reasoning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RLHF</title>
+      <link>http://localhost:1313/tags/rlhf/</link>
+      <pubDate>Tue, 25 Feb 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/rlhf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scientific Method</title>
+      <link>http://localhost:1313/tags/scientific-method/</link>
+      <pubDate>Tue, 25 Feb 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/scientific-method/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
