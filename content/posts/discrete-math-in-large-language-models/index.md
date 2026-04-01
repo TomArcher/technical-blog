@@ -4,7 +4,7 @@ draft = false
 title = "The Discrete Mathematics Hiding Inside LLMs"
 subtitle = "How set theory, predicate logic, and formal proofs show up in modern AI"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "attention", "embeddings", "discrete mathematics", "LLM", "predicate logic", "set theory", ]
+tags = ["AI", "attention mechanisms", "embeddings", "discrete mathematics", "LLM", "predicate logic", "set theory", ]
 author = "Tom Archer"
 listThumb = "discrete-math-in-large-language-models-th.png"
 +++

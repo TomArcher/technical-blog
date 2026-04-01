@@ -4,7 +4,7 @@ draft = false
 title = "How Large Language Models (LLMs) Know Things They Were Never Taught"
 subtitle = "Web search, RAG, and the illusion of current knowledge"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "LLM", "RAG", "retrieval", "web search", "tool use", "context windows"]
+tags = ["AI", "LLM", "RAG", "web search", "context windows"]
 author = "Tom Archer"
 listThumb = "how-large-language-models-know-things-they-were-never-taught-thumb.png"
 +++
