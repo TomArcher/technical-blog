@@ -3,24 +3,20 @@ title = "About Signal & Syntax"
 slug  = "about"
 +++
 
-For years, coding blogs followed a familiar pattern: a polished tutorial, fully working code, neat explanations. That style has its place, but today's developer reality looks different. We live in an era of **pair programming**, where AI is your partner from the first sketch of an idea to completion.
+Most writing about LLMs sits at one of two altitudes: high-level explainers aimed at executives and curious newcomers, or dense research papers aimed at other researchers. There's less writing in the middle — the altitude where working engineers actually operate, where you need to understand enough of what's happening under the hood to build and debug real systems, but not so much that you're replicating a PhD program.
+
+Signal & Syntax is an attempt at that middle altitude. Posts work through the mathematics and engineering underneath the models we're all building on: gradient descent, attention, tokenization, inference-time behavior, training infrastructure, evaluation, orchestration. The goal is to write about this material the way one engineer explains something to another — with enough rigor to be trustworthy, enough plain English to be readable, and enough specificity that the post helps you build something.
 
 ---
 
-> *"This blog isn't just about code. It's about how we think, prompt, and build with AI in the loop."*
+## What You'll Find Here
+
+- **Under the hood**: how components actually work. Attention mechanisms, tokenizer behavior, loss landscapes, numerical stability.
+- **Applied engineering**: how working systems are built. Orchestration patterns, evaluation frameworks, deployment considerations, production tradeoffs.
+- **The mathematics**: linear algebra, probability, and optimization — the foundations that make everything else make sense.
+- **Occasional essays**: reflections on the industry, the technology, and what it's like to build in this moment.
+
+## New Here? 
+Start with [How LLMs Read Code](https://tomarcher.io/posts/how-large-language-models-read-code/) for a representative post, or browse the **Categories** and **Tags** in the sidebar.
 
 ---
-
-At **Signal & Syntax**, I explore that new reality:
-
-- **Prompt → Output → Fix → Learn**: Posts aren't static tutorials. They're walkthroughs of how I use AI to explore solutions, refine them, and extract lessons along the way.
-- **AI as a Force Multiplier**: I use modern LLMs to accelerate analysis, drafting, and prototyping—never as a substitute for human judgment.
-- **Domain Knowledge First**: Real results come from understanding systems, users, and constraints, then encoding that context into prompts, tools, and evaluations.
-- **Creativity with Constraints**: Every limitation is a design input. I model, simulate, and iterate with checkpoints to keep progress measurable.
-- **Repeatability**: I favor reproducible workflows where I show the complete prompts that generated the code examples in each post.
-
-This lens shapes the posts you'll find here: hands-on guides, simulations, annotated prompts, and tools that turn insight into working software.
-
----
-
-**New here?** Start with [Should You Walk or Run in the Rain?](/posts/rain-paradox/) to see the methodology in action, or dive into [How LLMs Read Code](/posts/how-ai-reads-code/) for a deeper exploration of AI fundamentals.

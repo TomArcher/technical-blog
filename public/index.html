@@ -11,7 +11,7 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+	<title>SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="Tom Archer&#39;s technical blog">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
 
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/extra.css">
-	<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Signal & Syntax: Practical AI Coding with Tom Archer">
+	<link rel="alternate" type="application/rss+xml" href="/index.xml" title="SIGNAL & SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS">
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
@@ -52,9 +52,9 @@
 	<div class="container header__container">
 		
 	<div class="logo">
-		<a class="logo__link" href="/" title="Signal &amp; Syntax: Practical AI Coding with Tom Archer" rel="home">
+		<a class="logo__link" href="/" title="SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS" rel="home">
 			<div class="logo__item logo__text">
-					<div class="logo__title">Signal &amp; Syntax: Practical AI Coding with Tom Archer</div>
+					<div class="logo__title">SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</div>
 					
 				</div>
 		</a>
@@ -108,6 +108,55 @@
         
         
           
+            
+            
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/minimal-transformer/">
+              <img src="/posts/minimal-transformer/transformer.jpeg" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/minimal-transformer/">Implementing a Minimal Transformer in PyTorch</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2026-04-01">
+                <strong>Apr 1, 2026</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#Attention Mechanisms</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/nlp/">#NLP</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/transformers/">#Transformers</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
+<p>That claim turned out to be correct.</p>
+<p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
+<p>In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We&rsquo;ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.</p>
+<p>By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you&rsquo;ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.</p>
+<hr></div>
+
+        <p><a class="btn" href="/posts/minimal-transformer/">Read more →</a></p>
+      </article>
+    
+      
+      
+      
+      
+        
+        
+          
         
       
 
@@ -128,7 +177,7 @@
             <div class="post-meta">
               <time datetime="2026-03-31">
                 <strong>Mar 31, 2026</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention/">#attention</a>, <a href="/tags/embeddings/">#embeddings</a>, <a href="/tags/discrete-mathematics/">#discrete mathematics</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/predicate-logic/">#predicate logic</a>, <a href="/tags/set-theory/">#set theory</a></div>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/embeddings/">#embeddings</a>, <a href="/tags/discrete-mathematics/">#discrete mathematics</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/predicate-logic/">#predicate logic</a>, <a href="/tags/set-theory/">#set theory</a></div>
           </div>
         </header>
 
@@ -177,7 +226,7 @@
             <div class="post-meta">
               <time datetime="2026-02-09">
                 <strong>Feb 9, 2026</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/rag/">#RAG</a>, <a href="/tags/retrieval/">#retrieval</a>, <a href="/tags/web-search/">#web search</a>, <a href="/tags/tool-use/">#tool use</a>, <a href="/tags/context-windows/">#context windows</a></div>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/rag/">#RAG</a>, <a href="/tags/web-search/">#web search</a>, <a href="/tags/context-windows/">#context windows</a></div>
           </div>
         </header>
 
@@ -305,54 +354,6 @@
         <p><a class="btn" href="/posts/edmund-fitzgerald/">Read more →</a></p>
       </article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/birthday-paradox/">
-              <img src="/posts/birthday-paradox/birthday-paradox.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              <a href="/posts/birthday-paradox/">The Birthday Paradox in Production: When Random IDs Collide</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2025-11-28">
-                <strong>Nov 28, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/cryptography/">#cryptography</a>, <a href="/tags/databases/">#databases</a>, <a href="/tags/distributed-systems/">#distributed-systems</a>, <a href="/tags/probability/">#probability</a>, <a href="/tags/python/">#Python</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">
-<p>You generate a UUID. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
-<p>As I like to say, <em>common sense and intuition are the enemies of science</em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?</p>
-<p>Math shows us the uncomfortable truth: You&rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.</p>
-<p>You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&rsquo;t just a party trick; it&rsquo;s the same mathematics that determines when your &ldquo;guaranteed unique&rdquo; database IDs collide, why hash tables need careful sizing, and when your distributed system&rsquo;s assumptions break.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;In a room of 23 people, there&rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&rdquo;</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/birthday-paradox/">Read more →</a></p>
-      </article>
-    
 
     
 <div class="pagination">
@@ -370,19 +371,31 @@
     <div class="bio-wrap">
       
         <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax: Practical AI Coding with Tom Archer">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS">
         </a>
       
 
       
       
-        <div class="bio-text"><p>Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&amp;T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.</p>
-<p>Tom also helped build and run <a href="https://codeguru.com" target="_blank" rel="noopener noreferrer">
-  CodeGuru.com
+        <div class="bio-text"><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
+turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
+that outlives the feature request it started from.</p>
+<p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
+system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
+activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
+technology books, wrote 100+ articles for <em>.NET Programming Tips &amp; Techniques</em>, and helped run
+<a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru
 </a>
-, once the world&rsquo;s largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.</p>
-<p>While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he&rsquo;s always excited to hear about it.</p>
-<p>Connect with Tom today via <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+ (the largest Windows developer community of its era).</p>
+<p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
+structures that get concatenated with code samples at runtime and routed to generative models, with results
+injected back into the output. Nearly 100 articles have shipped through the system.</p>
+<p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+to inference-time behavior, from tokenization to training infrastructure.</p>
+<p>Connect with me on <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
   LinkedIn
 </a>
 .</p>
@@ -446,7 +459,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/attention/" title="Attention">Attention</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
@@ -481,7 +493,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/retrieval/" title="Retrieval">Retrieval</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
@@ -492,7 +503,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tool-use/" title="Tool Use">Tool Use</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
@@ -504,7 +514,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2026 Signal &amp; Syntax: Practical AI Coding with Tom Archer.
+			&copy; 2026 SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

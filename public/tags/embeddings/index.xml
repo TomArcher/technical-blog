@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Embeddings on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <title>Embeddings on SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
     <link>http://localhost:1313/tags/embeddings/</link>
-    <description>Recent content in Embeddings on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <description>Recent content in Embeddings on SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Oct 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/embeddings/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Discrete Mathematics Hiding Inside LLMs</title>
+      <link>http://localhost:1313/posts/discrete-math-in-large-language-models/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/discrete-math-in-large-language-models/</guid>
+      <description>&lt;figure style=&#34;margin: 0 20px 10px 20px; text-align: center;&#34;&gt;&#xA;    &lt;img src=&#34;./discrete-math-in-large-language-models.png&#34;&#xA;        alt=&#34;A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns&#34;&gt;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;        &lt;em&gt;It&#39;s true what they say: discrete math is everywhere you look.&lt;/em&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;A recent &lt;a href=&#34;https://www.linkedin.com/posts/activity-7435689322504167424-_v46&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  LinkedIn post&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&amp;rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&amp;rsquo;d expect.&lt;/p&gt;&#xA;&lt;p&gt;Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
     <item>
       <title>How Large Language Models (LLMs) Think: Turning Meaning into Math</title>
       <link>http://localhost:1313/posts/how-large-language-models-think/</link>

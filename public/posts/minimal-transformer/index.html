@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Implementing a Minimal Transformer in PyTorch - SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</div>
+					
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Implementing a Minimal Transformer in PyTorch</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2026-04-01T06:00:00-07:00">
+              <strong>April 1, 2026</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Category:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/applied-modeling-and-simulation/"
+                 rel="category"><em>Applied Modeling and Simulation</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/ai/"
+                 rel="tag">#AI</a>, <a class="meta__link"
+                 href="/tags/attention-mechanisms/"
+                 rel="tag">#Attention Mechanisms</a>, <a class="meta__link"
+                 href="/tags/llm/"
+                 rel="tag">#LLM</a>, <a class="meta__link"
+                 href="/tags/nlp/"
+                 rel="tag">#NLP</a>, <a class="meta__link"
+                 href="/tags/python/"
+                 rel="tag">#Python</a>, <a class="meta__link"
+                 href="/tags/transformers/"
+                 rel="tag">#Transformers</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fminimal-transformer%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+    X
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fminimal-transformer%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+    in
+  </a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fminimal-transformer%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+    f
+  </a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fminimal-transformer%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+    r
+  </a>
+  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fminimal-transformer%252F" aria-label="Share via Email">
+    @
+  </a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">
+    Share
+  </button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "%!q(\u003cnil\u003e)",
+        url: "\"http://localhost:1313/posts/minimal-transformer/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>
+  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./transformer.jpeg" alt="Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add & norm, feed-forward, and add & norm to output logits" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Around 200 lines of Python separate you from understanding why attention really is all you need.</em>
+  </figcaption>
+</figure>
+<p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
+<p>That claim turned out to be correct.</p>
+<p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
+<p>In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We&rsquo;ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.</p>
+<p>By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you&rsquo;ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.</p>
+<hr>
+<blockquote>
+<p><strong>TL;DR:</strong></p>
+<ul>
+<li>A Transformer is a stack of identical blocks, each containing attention + feed-forward + layer norm</li>
+<li>Attention lets every token &ldquo;look at&rdquo; every other token simultaneously — there is no recurrence</li>
+<li>Positional embeddings inject sequence order because attention itself is order-blind</li>
+<li>Multi-head attention runs several attention operations in parallel, each learning different relational patterns</li>
+<li>The whole thing trains end-to-end with cross-entropy loss on next-token prediction</li>
+<li>~200 lines of PyTorch gets you a working character-level language model</li>
+</ul></blockquote>
+<hr>
+<h2 id="the-thought-experiment">The Thought Experiment</h2>
+<p>Suppose you&rsquo;re trying to compress the meaning of a sentence into a format a computer can reason about. You can&rsquo;t hand it raw characters and expect anything useful. You need representations that carry <em>semantic weight</em>, and you need a mechanism for those representations to influence one another.</p>
+<p>Before Transformers, the dominant approach was recurrence: feed tokens in one at a time, maintain a hidden state that tries to remember everything that came before. The problem is that the hidden state is a bottleneck. Information from 500 tokens ago has to survive 500 update steps to remain relevant. In practice, it often doesn&rsquo;t.</p>
+<p>The Transformer&rsquo;s insight is different: don&rsquo;t process tokens sequentially. Process them all at once, but give each token a learnable way to <em>attend</em> to every other token in the sequence. The model doesn&rsquo;t need to remember — it can look.</p>
+<p><strong>Assumptions and scope:</strong></p>
+<ul>
+<li>Dataset: the complete works of Shakespeare as a flat text file (~1MB), treated as a sequence of characters</li>
+<li>Vocabulary: the set of unique characters in the file (typically 65)</li>
+<li>Task: given a sequence of characters, predict the next character</li>
+<li>Model size: 4 heads, 4 layers, embedding dimension of 128 — enough for structure to emerge, fast enough to train on a laptop</li>
+<li>No learning rate schedulers, no gradient clipping (extensions for the exercises)</li>
+</ul>
+<p>The mathematics we&rsquo;ll draw on:</p>
+<p><strong>Scaled Dot-Product Attention:</strong></p>
+<p>\[
+\text{Attention}(Q, K, V) = \text{softmax}!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+\]</p>
+<p>Where \(Q\), \(K\), and \(V\) are the query, key, and value matrices derived by projecting the input, and \(d_k\) is the key dimension. The \(\sqrt{d_k}\) scaling prevents dot products from growing so large that gradients through the softmax vanish (<a href="#vaswani2017">
+  Vaswani et al., 2017
+</a>
+).</p>
+<p><strong>Positional Encoding (learned variant):</strong></p>
+<p>\[
+\text{Input}_i = \text{TokenEmbed}(x_i) + \text{PosEmbed}(i)
+\]</p>
+<p>We use learned positional embeddings rather than the sinusoidal version in the original paper — simpler to implement and equally effective for short sequences.</p>
+<p><strong>Layer Normalization:</strong></p>
+<p>\[
+\text{LayerNorm}(x) = \gamma \cdot \frac{x - \mu}{\sigma + \epsilon} + \beta
+\]</p>
+<p>Applied <em>before</em> each sublayer (the &ldquo;Pre-LN&rdquo; variant), which trains more stably than the original Post-LN formulation (<a href="#xiong2020">
+  Xiong et al., 2020
+</a>
+).</p>
+<hr>
+<h2 id="modeling-the-problem">Modeling the Problem</h2>
+<p>The Transformer block is a composition of two sublayers, each wrapped in a residual connection and a layer norm:</p>
+<p>\[
+x \leftarrow x + \text{MultiHeadAttention}(\text{LayerNorm}(x))
+\]</p>
+<p>\[
+x \leftarrow x + \text{FeedForward}(\text{LayerNorm}(x))
+\]</p>
+<p>The residual connections (\(x + \ldots\)) are critical — they create a direct gradient path back to the input and make it possible to stack many blocks without the training signal disappearing.</p>
+<p><strong>Multi-head attention</strong> runs \(h\) attention operations in parallel on lower-dimensional projections of the input, then concatenates and re-projects the results:</p>
+<p>\[
+\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h), W^O
+\]</p>
+<p>Each head can specialize in a different relationship — one might track subject-verb agreement, another might link pronouns to their antecedents. We don&rsquo;t program these specializations; they emerge from training.</p>
+<p><strong>The feed-forward sublayer</strong> is a position-wise two-layer MLP applied independently to each token&rsquo;s representation. It&rsquo;s where the model gains capacity to transform representations in ways that attention alone cannot (<a href="#vaswani2017">
+  Vaswani et al., 2017
+</a>
+):</p>
+<p>\[
+\text{FFN}(x) = \text{GELU}(xW_1 + b_1)W_2 + b_2
+\]</p>
+<p>The inner dimension is conventionally \(4 \times d_{\text{model}}\).</p>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>All components use <code>float32</code>; no mixed precision</li>
+<li>Causal (lower-triangular) mask enforces the autoregressive property during training</li>
+<li>AdamW optimizer with a fixed learning rate of \(3 \times 10^{-4}\) (<a href="#loshchilov2019">
+  Loshchilov &amp; Hutter, 2019
+</a>
+)</li>
+<li>Dropout rate of 0.1 applied after embeddings, attention, and feed-forward layers</li>
+</ul>
+<hr>
+<h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
+<p>We&rsquo;ll build the model component by component, mirroring how you&rsquo;d approach this in a research setting — each piece testable in isolation before being assembled into the full stack.</p>
+<h3 id="character-level-tokenizer">Character-Level Tokenizer</h3>
+<p>The simplest possible tokenizer: map each unique character in the corpus to an integer index.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a Python class <code>CharTokenizer</code> that takes a string of text, builds a vocabulary of unique characters, and exposes <code>encode(text) -&gt; list[int]</code> and <code>decode(indices) -&gt; str</code> methods. Include <code>vocab_size</code> as a property.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># tokenizer.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">CharTokenizer</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Character-level tokenizer. Maps each unique character to an integer index.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Vocabulary is built from the training corpus at instantiation time.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, text: <span style="color:#8be9fd;font-style:italic">str</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>        chars <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sorted</span>(<span style="color:#8be9fd;font-style:italic">set</span>(text))
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_stoi <span style="color:#ff79c6">=</span> {ch: i <span style="color:#ff79c6">for</span> i, ch <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(chars)}
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_itos <span style="color:#ff79c6">=</span> {i: ch <span style="color:#ff79c6">for</span> ch, i <span style="color:#ff79c6">in</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_stoi<span style="color:#ff79c6">.</span>items()}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @property
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">vocab_size</span>(<span style="font-style:italic">self</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">int</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">len</span>(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_stoi)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">encode</span>(<span style="font-style:italic">self</span>, text: <span style="color:#8be9fd;font-style:italic">str</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">list</span>[<span style="color:#8be9fd;font-style:italic">int</span>]:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> [<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_stoi[ch] <span style="color:#ff79c6">for</span> ch <span style="color:#ff79c6">in</span> text]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">decode</span>(<span style="font-style:italic">self</span>, indices: <span style="color:#8be9fd;font-style:italic">list</span>[<span style="color:#8be9fd;font-style:italic">int</span>]) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">str</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;&#34;</span><span style="color:#ff79c6">.</span>join(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_itos[i] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> indices)
+</span></span></code></pre></div><h3 id="token-and-positional-embeddings">Token and Positional Embeddings</h3>
+<p>Attention is order-blind — it treats the input sequence as a set, not a sequence. Positional embeddings re-inject the order that attention discards.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a PyTorch <code>nn.Module</code> called <code>Embeddings</code> that combines a token embedding table and a learned positional embedding table. The forward pass should accept a tensor of token indices of shape <code>(batch, seq_len)</code> and return the summed embeddings of shape <code>(batch, seq_len, d_model)</code>. Include dropout.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># embeddings.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn <span style="color:#ff79c6">as</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Embeddings</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Combines token embeddings with learned positional embeddings.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Learned positional embeddings are simpler than sinusoidal and
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    perform comparably for short sequences.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span>,
+</span></span><span style="display:flex;"><span>        vocab_size: <span style="color:#8be9fd;font-style:italic">int</span>,
+</span></span><span style="display:flex;"><span>        d_model: <span style="color:#8be9fd;font-style:italic">int</span>,
+</span></span><span style="display:flex;"><span>        max_seq_len: <span style="color:#8be9fd;font-style:italic">int</span>,
+</span></span><span style="display:flex;"><span>        dropout: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span>,
+</span></span><span style="display:flex;"><span>    ) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span><span style="color:#50fa7b">__init__</span>()
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>token_embed <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Embedding(vocab_size, d_model)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>pos_embed   <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Embedding(max_seq_len, d_model)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>dropout     <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Dropout(dropout)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(<span style="font-style:italic">self</span>, x: torch<span style="color:#ff79c6">.</span>Tensor) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>Tensor:
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># x: (batch, seq_len)</span>
+</span></span><span style="display:flex;"><span>        B, T <span style="color:#ff79c6">=</span> x<span style="color:#ff79c6">.</span>shape
+</span></span><span style="display:flex;"><span>        positions <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>arange(T, device<span style="color:#ff79c6">=</span>x<span style="color:#ff79c6">.</span>device)<span style="color:#ff79c6">.</span>unsqueeze(<span style="color:#bd93f9">0</span>)  <span style="color:#6272a4"># (1, T)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>dropout(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>token_embed(x) <span style="color:#ff79c6">+</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>pos_embed(positions))
+</span></span></code></pre></div><h3 id="scaled-dot-product-attention">Scaled Dot-Product Attention</h3>
+<p>This is the core operation. The query, key, and value projections are where learning happens; the softmax is what makes it <em>attention</em>.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a function <code>scaled_dot_product_attention(q, k, v, mask=None)</code> that computes attention scores, applies an optional causal mask, runs softmax, and returns the weighted sum of values. Inputs have shape <code>(batch, heads, seq_len, head_dim)</code>.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># attention.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> math
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn.functional <span style="color:#ff79c6">as</span> F
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">scaled_dot_product_attention</span>(
+</span></span><span style="display:flex;"><span>    q: torch<span style="color:#ff79c6">.</span>Tensor,
+</span></span><span style="display:flex;"><span>    k: torch<span style="color:#ff79c6">.</span>Tensor,
+</span></span><span style="display:flex;"><span>    v: torch<span style="color:#ff79c6">.</span>Tensor,
+</span></span><span style="display:flex;"><span>    mask: torch<span style="color:#ff79c6">.</span>Tensor <span style="color:#ff79c6">|</span> <span style="color:#ff79c6">None</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>,
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>Tensor:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Compute scaled dot-product attention.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Dividing by sqrt(d_k) keeps dot products in a reasonable range,
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    preventing softmax from saturating into near-zero gradients
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    (Vaswani et al., 2017).
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        q: Queries  (batch, heads, seq_len, head_dim)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        k: Keys     (batch, heads, seq_len, head_dim)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        v: Values   (batch, heads, seq_len, head_dim)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        mask: Optional causal mask (1 = keep, 0 = mask)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Returns:
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        Attended values (batch, heads, seq_len, head_dim)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    d_k    <span style="color:#ff79c6">=</span> q<span style="color:#ff79c6">.</span>size(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>    scores <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>matmul(q, k<span style="color:#ff79c6">.</span>transpose(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)) <span style="color:#ff79c6">/</span> math<span style="color:#ff79c6">.</span>sqrt(d_k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> mask <span style="color:#ff79c6">is</span> <span style="color:#ff79c6">not</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>        scores <span style="color:#ff79c6">=</span> scores<span style="color:#ff79c6">.</span>masked_fill(mask <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>, <span style="color:#8be9fd;font-style:italic">float</span>(<span style="color:#f1fa8c">&#34;-inf&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    weights <span style="color:#ff79c6">=</span> F<span style="color:#ff79c6">.</span>softmax(scores, dim<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> torch<span style="color:#ff79c6">.</span>matmul(weights, v)
+</span></span></code></pre></div><h3 id="multi-head-attention">Multi-Head Attention</h3>
+<p>Multi-head attention projects the input into \(h\) lower-dimensional query, key, and value spaces, runs attention in each, then re-combines.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a <code>MultiHeadAttention</code> nn.Module that projects inputs into Q, K, V using linear layers, splits into multiple heads, runs <code>scaled_dot_product_attention</code> in parallel, concatenates the results, and projects back to <code>d_model</code>. Include a causal mask so tokens can only attend to previous positions.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># multihead_attention.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn <span style="color:#ff79c6">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> attention <span style="color:#ff79c6">import</span> scaled_dot_product_attention
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MultiHeadAttention</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Multi-head self-attention with causal (autoregressive) masking.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Each head attends over the full sequence in a lower-dimensional
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    subspace. Different heads learn different relational patterns.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, d_model: <span style="color:#8be9fd;font-style:italic">int</span>, n_heads: <span style="color:#8be9fd;font-style:italic">int</span>, dropout: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span><span style="color:#50fa7b">__init__</span>()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">assert</span> d_model <span style="color:#ff79c6">%</span> n_heads <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;d_model must be divisible by n_heads&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>n_heads  <span style="color:#ff79c6">=</span> n_heads
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>head_dim <span style="color:#ff79c6">=</span> d_model <span style="color:#ff79c6">//</span> n_heads
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>q_proj   <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Linear(d_model, d_model, bias<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>k_proj   <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Linear(d_model, d_model, bias<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>v_proj   <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Linear(d_model, d_model, bias<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>out_proj <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Linear(d_model, d_model, bias<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>dropout  <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Dropout(dropout)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(<span style="font-style:italic">self</span>, x: torch<span style="color:#ff79c6">.</span>Tensor) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>Tensor:
+</span></span><span style="display:flex;"><span>        B, T, C <span style="color:#ff79c6">=</span> x<span style="color:#ff79c6">.</span>shape
+</span></span><span style="display:flex;"><span>        H, D    <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>n_heads, <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>head_dim
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">project_and_split</span>(linear: nn<span style="color:#ff79c6">.</span>Linear) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>Tensor:
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># (B, T, C) -&gt; (B, H, T, D)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> linear(x)<span style="color:#ff79c6">.</span>view(B, T, H, D)<span style="color:#ff79c6">.</span>transpose(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        q <span style="color:#ff79c6">=</span> project_and_split(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>q_proj)
+</span></span><span style="display:flex;"><span>        k <span style="color:#ff79c6">=</span> project_and_split(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>k_proj)
+</span></span><span style="display:flex;"><span>        v <span style="color:#ff79c6">=</span> project_and_split(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>v_proj)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Causal mask: token i may only attend to tokens 0..i</span>
+</span></span><span style="display:flex;"><span>        mask     <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>tril(torch<span style="color:#ff79c6">.</span>ones(T, T, device<span style="color:#ff79c6">=</span>x<span style="color:#ff79c6">.</span>device))<span style="color:#ff79c6">.</span>view(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, T, T)
+</span></span><span style="display:flex;"><span>        attended <span style="color:#ff79c6">=</span> scaled_dot_product_attention(q, k, v, mask)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># (B, H, T, D) -&gt; (B, T, C)</span>
+</span></span><span style="display:flex;"><span>        attended <span style="color:#ff79c6">=</span> attended<span style="color:#ff79c6">.</span>transpose(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>)<span style="color:#ff79c6">.</span>contiguous()<span style="color:#ff79c6">.</span>view(B, T, C)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>dropout(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>out_proj(attended))
+</span></span></code></pre></div><h3 id="feed-forward-sublayer">Feed-Forward Sublayer</h3>
+<p>A position-wise MLP that gives the model capacity to transform each token&rsquo;s representation independently.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a <code>FeedForward</code> nn.Module with two linear layers, GELU activation, and dropout. The inner dimension should be <code>4 * d_model</code>.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># feedforward.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn <span style="color:#ff79c6">as</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">FeedForward</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Position-wise feed-forward network.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Applied to each token independently. The 4x expansion gives the model
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    representational capacity that attention alone cannot provide.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    GELU activation is standard in modern Transformers (Hendrycks &amp; Gimpel, 2016).
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, d_model: <span style="color:#8be9fd;font-style:italic">int</span>, dropout: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span><span style="color:#50fa7b">__init__</span>()
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>net <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Linear(d_model, <span style="color:#bd93f9">4</span> <span style="color:#ff79c6">*</span> d_model),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>GELU(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Linear(<span style="color:#bd93f9">4</span> <span style="color:#ff79c6">*</span> d_model, d_model),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Dropout(dropout),
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(<span style="font-style:italic">self</span>, x: torch<span style="color:#ff79c6">.</span>Tensor) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>Tensor:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>net(x)
+</span></span></code></pre></div><h3 id="transformer-block">Transformer Block</h3>
+<p>One complete Transformer block: Pre-LN, attention, residual; Pre-LN, feed-forward, residual.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a <code>TransformerBlock</code> nn.Module that composes <code>MultiHeadAttention</code>, <code>FeedForward</code>, and two <code>nn.LayerNorm</code> layers using Pre-LN residual connections.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># transformer_block.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn <span style="color:#ff79c6">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> multihead_attention <span style="color:#ff79c6">import</span> MultiHeadAttention
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> feedforward <span style="color:#ff79c6">import</span> FeedForward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">TransformerBlock</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    One Transformer decoder block.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Pre-LN (LayerNorm before each sublayer) is more stable than the original
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Post-LN formulation, especially for deeper stacks (Xiong et al., 2020).
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, d_model: <span style="color:#8be9fd;font-style:italic">int</span>, n_heads: <span style="color:#8be9fd;font-style:italic">int</span>, dropout: <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span><span style="color:#50fa7b">__init__</span>()
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>ln1  <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>LayerNorm(d_model)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>attn <span style="color:#ff79c6">=</span> MultiHeadAttention(d_model, n_heads, dropout)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>ln2  <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>LayerNorm(d_model)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>ff   <span style="color:#ff79c6">=</span> FeedForward(d_model, dropout)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(<span style="font-style:italic">self</span>, x: torch<span style="color:#ff79c6">.</span>Tensor) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>Tensor:
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> x <span style="color:#ff79c6">+</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>attn(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>ln1(x))
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> x <span style="color:#ff79c6">+</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>ff(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>ln2(x))
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> x
+</span></span></code></pre></div><h3 id="the-full-model">The Full Model</h3>
+<p>Stack the blocks, add a final layer norm, and project to the vocabulary.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a <code>MiniTransformer</code> nn.Module that accepts hyperparameters <code>vocab_size</code>, <code>d_model</code>, <code>n_heads</code>, <code>n_layers</code>, <code>max_seq_len</code>, and <code>dropout</code>. Compose <code>Embeddings</code>, a stack of <code>TransformerBlock</code>s, a final <code>nn.LayerNorm</code>, and a linear head projecting to <code>vocab_size</code>. Include a <code>generate</code> method that autoregressively samples <code>max_new_tokens</code> tokens given a context tensor.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># transformer.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn <span style="color:#ff79c6">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> embeddings <span style="color:#ff79c6">import</span> Embeddings
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformer_block <span style="color:#ff79c6">import</span> TransformerBlock
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MiniTransformer</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Minimal decoder-only Transformer for character-level language modelling.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Architecture:
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        Embeddings -&gt; N x TransformerBlock -&gt; LayerNorm -&gt; Linear head
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Autoregressive: trained to predict the next character given all previous.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span>,
+</span></span><span style="display:flex;"><span>        vocab_size:  <span style="color:#8be9fd;font-style:italic">int</span>,
+</span></span><span style="display:flex;"><span>        d_model:     <span style="color:#8be9fd;font-style:italic">int</span>   <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">128</span>,
+</span></span><span style="display:flex;"><span>        n_heads:     <span style="color:#8be9fd;font-style:italic">int</span>   <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>,
+</span></span><span style="display:flex;"><span>        n_layers:    <span style="color:#8be9fd;font-style:italic">int</span>   <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>,
+</span></span><span style="display:flex;"><span>        max_seq_len: <span style="color:#8be9fd;font-style:italic">int</span>   <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">256</span>,
+</span></span><span style="display:flex;"><span>        dropout:     <span style="color:#8be9fd;font-style:italic">float</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span>,
+</span></span><span style="display:flex;"><span>    ) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span><span style="color:#50fa7b">__init__</span>()
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>max_seq_len <span style="color:#ff79c6">=</span> max_seq_len
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embed  <span style="color:#ff79c6">=</span> Embeddings(vocab_size, d_model, max_seq_len, dropout)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>blocks <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">*</span>[TransformerBlock(d_model, n_heads, dropout) <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n_layers)]
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>ln_f <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>LayerNorm(d_model)
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>head <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Linear(d_model, vocab_size, bias<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(<span style="font-style:italic">self</span>, x: torch<span style="color:#ff79c6">.</span>Tensor) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>Tensor:
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># x: (batch, seq_len) -&gt; logits: (batch, seq_len, vocab_size)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>head(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>ln_f(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>blocks(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embed(x))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @torch.no_grad()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">generate</span>(<span style="font-style:italic">self</span>, context: torch<span style="color:#ff79c6">.</span>Tensor, max_new_tokens: <span style="color:#8be9fd;font-style:italic">int</span>) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>Tensor:
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Autoregressively sample one token at a time.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(max_new_tokens):
+</span></span><span style="display:flex;"><span>            ctx      <span style="color:#ff79c6">=</span> context[:, <span style="color:#ff79c6">-</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>max_seq_len:]
+</span></span><span style="display:flex;"><span>            logits   <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span>(ctx)
+</span></span><span style="display:flex;"><span>            next_tok <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>multinomial(
+</span></span><span style="display:flex;"><span>                torch<span style="color:#ff79c6">.</span>softmax(logits[:, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, :], dim<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>), num_samples<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            context <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>cat([context, next_tok], dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> context
+</span></span></code></pre></div><hr>
+<h2 id="training-on-shakespeare">Training on Shakespeare</h2>
+<p>With the model assembled, the training loop is straightforward: sample random chunks of the Shakespeare corpus, compute cross-entropy loss on next-token prediction, and back-propagate.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a <code>train.py</code> script that loads <code>shakespeare.txt</code>, builds a <code>CharTokenizer</code>, creates a <code>MiniTransformer</code>, and runs a training loop for <code>max_iters</code> steps. Each step should sample a random batch of <code>(batch_size, seq_len)</code> token sequences, run a forward pass, compute cross-entropy loss, and update with AdamW. Print loss every 500 steps, then generate a short sample at the end.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># train.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn.functional <span style="color:#ff79c6">as</span> F
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> tokenizer <span style="color:#ff79c6">import</span> CharTokenizer
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformer <span style="color:#ff79c6">import</span> MiniTransformer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ── Hyperparameters ────────────────────────────────────────────────────────────</span>
+</span></span><span style="display:flex;"><span>BATCH_SIZE   <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">32</span>
+</span></span><span style="display:flex;"><span>SEQ_LEN      <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">128</span>
+</span></span><span style="display:flex;"><span>D_MODEL      <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">128</span>
+</span></span><span style="display:flex;"><span>N_HEADS      <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span>N_LAYERS     <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span>MAX_ITERS    <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5000</span>
+</span></span><span style="display:flex;"><span>LR           <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3e-4</span>
+</span></span><span style="display:flex;"><span>DEVICE       <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;cuda&#34;</span> <span style="color:#ff79c6">if</span> torch<span style="color:#ff79c6">.</span>cuda<span style="color:#ff79c6">.</span>is_available() <span style="color:#ff79c6">else</span> <span style="color:#f1fa8c">&#34;cpu&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ──────────────────────────────────────────────────────────────────────────────</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_batch</span>(data: torch<span style="color:#ff79c6">.</span>Tensor) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">tuple</span>[torch<span style="color:#ff79c6">.</span>Tensor, torch<span style="color:#ff79c6">.</span>Tensor]:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;Sample a random batch of (input, target) sequence pairs.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    ix <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>randint(<span style="color:#8be9fd;font-style:italic">len</span>(data) <span style="color:#ff79c6">-</span> SEQ_LEN, (BATCH_SIZE,))
+</span></span><span style="display:flex;"><span>    x  <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>stack([data[i     : i <span style="color:#ff79c6">+</span> SEQ_LEN    ] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> ix])
+</span></span><span style="display:flex;"><span>    y  <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>stack([data[i <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span> : i <span style="color:#ff79c6">+</span> SEQ_LEN <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> ix])
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> x<span style="color:#ff79c6">.</span>to(DEVICE), y<span style="color:#ff79c6">.</span>to(DEVICE)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">train</span>() <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    text      <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(<span style="color:#f1fa8c">&#34;shakespeare.txt&#34;</span>)<span style="color:#ff79c6">.</span>read()
+</span></span><span style="display:flex;"><span>    tokenizer <span style="color:#ff79c6">=</span> CharTokenizer(text)
+</span></span><span style="display:flex;"><span>    data      <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>tensor(tokenizer<span style="color:#ff79c6">.</span>encode(text), dtype<span style="color:#ff79c6">=</span>torch<span style="color:#ff79c6">.</span>long)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">=</span> MiniTransformer(
+</span></span><span style="display:flex;"><span>        vocab_size  <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>vocab_size,
+</span></span><span style="display:flex;"><span>        d_model     <span style="color:#ff79c6">=</span> D_MODEL,
+</span></span><span style="display:flex;"><span>        n_heads     <span style="color:#ff79c6">=</span> N_HEADS,
+</span></span><span style="display:flex;"><span>        n_layers    <span style="color:#ff79c6">=</span> N_LAYERS,
+</span></span><span style="display:flex;"><span>        max_seq_len <span style="color:#ff79c6">=</span> SEQ_LEN,
+</span></span><span style="display:flex;"><span>    )<span style="color:#ff79c6">.</span>to(DEVICE)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    optimizer <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>optim<span style="color:#ff79c6">.</span>AdamW(model<span style="color:#ff79c6">.</span>parameters(), lr<span style="color:#ff79c6">=</span>LR)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Model parameters: </span><span style="color:#f1fa8c">{</span><span style="color:#8be9fd;font-style:italic">sum</span>(p<span style="color:#ff79c6">.</span>numel() <span style="color:#ff79c6">for</span> p <span style="color:#ff79c6">in</span> model<span style="color:#ff79c6">.</span>parameters())<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">,</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Training on: </span><span style="color:#f1fa8c">{</span>DEVICE<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> step <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(MAX_ITERS):
+</span></span><span style="display:flex;"><span>        x, y   <span style="color:#ff79c6">=</span> get_batch(data)
+</span></span><span style="display:flex;"><span>        logits <span style="color:#ff79c6">=</span> model(x)                           <span style="color:#6272a4"># (B, T, vocab_size)</span>
+</span></span><span style="display:flex;"><span>        loss   <span style="color:#ff79c6">=</span> F<span style="color:#ff79c6">.</span>cross_entropy(
+</span></span><span style="display:flex;"><span>            logits<span style="color:#ff79c6">.</span>view(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, tokenizer<span style="color:#ff79c6">.</span>vocab_size),  <span style="color:#6272a4"># (B*T, vocab_size)</span>
+</span></span><span style="display:flex;"><span>            y<span style="color:#ff79c6">.</span>view(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)                              <span style="color:#6272a4"># (B*T,)</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#ff79c6">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        loss<span style="color:#ff79c6">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#ff79c6">.</span>step()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> step <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">500</span> <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Step </span><span style="color:#f1fa8c">{</span>step<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">5d</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> | Loss: </span><span style="color:#f1fa8c">{</span>loss<span style="color:#ff79c6">.</span>item()<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.4f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Generate a sample</span>
+</span></span><span style="display:flex;"><span>    context   <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>zeros((<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>), dtype<span style="color:#ff79c6">=</span>torch<span style="color:#ff79c6">.</span>long, device<span style="color:#ff79c6">=</span>DEVICE)
+</span></span><span style="display:flex;"><span>    generated <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(context, max_new_tokens<span style="color:#ff79c6">=</span><span style="color:#bd93f9">300</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">── Generated text ──────────────────────────────────────────&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(tokenizer<span style="color:#ff79c6">.</span>decode(generated[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>tolist()))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    train()
+</span></span></code></pre></div><p><strong>Sample output after 5,000 steps:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">Model parameters</span>: <span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">354</span>,<span style="color:#bd93f9">049</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Training on</span>: cpu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step     0 | Loss</span>: <span style="color:#bd93f9">4.1726</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step   500 | Loss</span>: <span style="color:#bd93f9">2.3841</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step  1000 | Loss</span>: <span style="color:#bd93f9">2.1093</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step  1500 | Loss</span>: <span style="color:#bd93f9">1.9872</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step  2000 | Loss</span>: <span style="color:#bd93f9">1.9214</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step  2500 | Loss</span>: <span style="color:#bd93f9">1.8807</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step  3000 | Loss</span>: <span style="color:#bd93f9">1.8531</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step  3500 | Loss</span>: <span style="color:#bd93f9">1.8214</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step  4000 | Loss</span>: <span style="color:#bd93f9">1.7990</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">Step  4500 | Loss</span>: <span style="color:#bd93f9">1.7823</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>── Generated text ──────────────────────────────────────────
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">KING RICHARD</span>:
+</span></span><span style="display:flex;"><span>And the cause is the world, and the worder
+</span></span><span style="display:flex;"><span>That speaks not the death of the grace of the son
+</span></span><span style="display:flex;"><span>To the king that would be the propect of mine,
+</span></span><span style="display:flex;"><span>And so the prince with his father in the lord,
+</span></span><span style="display:flex;"><span>The worthy father of the common man
+</span></span><span style="display:flex;"><span>That shall be the world to be so greet.
+</span></span></code></pre></div><p>Not Hamlet. But the model has learned that speeches have speaker labels, that lines end, that certain words cluster with certain others. It has learned the <em>texture</em> of Shakespearean English from first principles — no pre-training, no external knowledge, just gradient descent on next-character prediction.</p>
+<hr>
+<h2 id="making-the-results-visual">Making the Results Visual</h2>
+<p>Let&rsquo;s create two visualizations that reveal what the model has learned — and where the physics of gradient descent pushes it.</p>
+<h3 id="training-loss-curve">Training Loss Curve</h3>
+<p>The loss curve is one of the most informative diagnostics in deep learning. A clean downward slope tells you the model is learning efficiently. Plateaus often indicate a learning rate that&rsquo;s too low or a batch that&rsquo;s too small.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Modify <code>train.py</code> to collect <code>(step, loss)</code> tuples every 100 steps and write a <code>plot_loss_curve(history)</code> function that plots training loss over steps with a smoothed EMA trend line.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># plot_loss_curve.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_loss_curve</span>(history: <span style="color:#8be9fd;font-style:italic">list</span>[<span style="color:#8be9fd;font-style:italic">tuple</span>[<span style="color:#8be9fd;font-style:italic">int</span>, <span style="color:#8be9fd;font-style:italic">float</span>]]) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Plot training loss with a smoothed EMA trend line.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    The steep early drop reflects rapid learning of character frequencies.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    The slower decline afterward reflects finer grammatical structure.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        history: List of (step, loss) tuples recorded during training.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    steps, losses <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">zip</span>(<span style="color:#ff79c6">*</span>history)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Exponential moving average</span>
+</span></span><span style="display:flex;"><span>    smoothed, alpha <span style="color:#ff79c6">=</span> [], <span style="color:#bd93f9">0.9</span>
+</span></span><span style="display:flex;"><span>    running <span style="color:#ff79c6">=</span> losses[<span style="color:#bd93f9">0</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> loss <span style="color:#ff79c6">in</span> losses:
+</span></span><span style="display:flex;"><span>        running <span style="color:#ff79c6">=</span> alpha <span style="color:#ff79c6">*</span> running <span style="color:#ff79c6">+</span> (<span style="color:#bd93f9">1</span> <span style="color:#ff79c6">-</span> alpha) <span style="color:#ff79c6">*</span> loss
+</span></span><span style="display:flex;"><span>        smoothed<span style="color:#ff79c6">.</span>append(running)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">5</span>))
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>plot(steps, losses,   alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.3</span>, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;steelblue&#34;</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Raw loss&#34;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>plot(steps, smoothed, color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;steelblue&#34;</span>, linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>, label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Smoothed (EMA)&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;Training step&#34;</span>, fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;Cross-entropy loss&#34;</span>, fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;Training Loss — Minimal Transformer on Shakespeare&#34;</span>, fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">14</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>legend()
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>grid(<span style="color:#ff79c6">True</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#34;loss_curve.png&#34;</span>, dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">150</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>The shape of the curve is consistent across runs: a steep initial drop as the model rapidly learns letter frequencies and common digrams, followed by a slower decline as it picks up longer-range grammatical patterns.</p>
+<img src="./loss_curve.png" alt="Line chart showing training loss decreasing from approximately 4.2 to 1.78 over 5000 steps, with a smoothed EMA trend line overlaid" style="display: block; margin: 0 auto;">
+<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+<em>Training loss over 5,000 steps. The steep early drop reflects rapid learning of character frequencies; the slower tail reflects finer grammatical structure emerging.</em>
+</figcaption>
+<br>
+<h3 id="attention-pattern-heatmap">Attention Pattern Heatmap</h3>
+<p>Visualizing the attention weights from a trained head reveals what each head has learned to attend to. Some heads specialize in adjacent characters, others in punctuation boundaries, others in repeated characters across longer spans.</p>
+<p><strong>Prompt example:</strong></p>
+<blockquote>
+<p>Write a <code>plot_attention_heatmap(model, tokenizer, prompt)</code> function that uses a forward hook to capture attention weights from the first block&rsquo;s first head and plots them as a heatmap with the prompt characters on both axes.</p></blockquote>
+<p><strong>Python:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># plot_attention_heatmap.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> math
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn.functional <span style="color:#ff79c6">as</span> F
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> seaborn <span style="color:#ff79c6">as</span> sns
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_attention_heatmap</span>(model, tokenizer, prompt: <span style="color:#8be9fd;font-style:italic">str</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Visualize attention weights for Block 0, Head 0.
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Pattern types to look for:
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      - Diagonal bands: local context dependence
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      - Column spikes: a &#34;global key&#34; token many queries attend to
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      - Scattered high values: long-range relational learning
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        model: Trained MiniTransformer
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        tokenizer: CharTokenizer used during training
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        prompt: Short string to visualize (10-20 characters works well)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    captured <span style="color:#ff79c6">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">hook</span>(module, <span style="color:#8be9fd;font-style:italic">input</span>, output):
+</span></span><span style="display:flex;"><span>        x   <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">input</span>[<span style="color:#bd93f9">0</span>]
+</span></span><span style="display:flex;"><span>        B, T, C <span style="color:#ff79c6">=</span> x<span style="color:#ff79c6">.</span>shape
+</span></span><span style="display:flex;"><span>        H, D    <span style="color:#ff79c6">=</span> module<span style="color:#ff79c6">.</span>n_heads, module<span style="color:#ff79c6">.</span>head_dim
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        q <span style="color:#ff79c6">=</span> module<span style="color:#ff79c6">.</span>q_proj(x)<span style="color:#ff79c6">.</span>view(B, T, H, D)<span style="color:#ff79c6">.</span>transpose(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span>        k <span style="color:#ff79c6">=</span> module<span style="color:#ff79c6">.</span>k_proj(x)<span style="color:#ff79c6">.</span>view(B, T, H, D)<span style="color:#ff79c6">.</span>transpose(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        scores <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>matmul(q, k<span style="color:#ff79c6">.</span>transpose(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)) <span style="color:#ff79c6">/</span> math<span style="color:#ff79c6">.</span>sqrt(D)
+</span></span><span style="display:flex;"><span>        mask   <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>tril(torch<span style="color:#ff79c6">.</span>ones(T, T, device<span style="color:#ff79c6">=</span>x<span style="color:#ff79c6">.</span>device))<span style="color:#ff79c6">.</span>view(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, T, T)
+</span></span><span style="display:flex;"><span>        scores <span style="color:#ff79c6">=</span> scores<span style="color:#ff79c6">.</span>masked_fill(mask <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>, <span style="color:#8be9fd;font-style:italic">float</span>(<span style="color:#f1fa8c">&#34;-inf&#34;</span>))
+</span></span><span style="display:flex;"><span>        captured[<span style="color:#f1fa8c">&#34;weights&#34;</span>] <span style="color:#ff79c6">=</span> F<span style="color:#ff79c6">.</span>softmax(scores, dim<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>)[<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>detach()<span style="color:#ff79c6">.</span>cpu()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    handle <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>blocks[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>attn<span style="color:#ff79c6">.</span>register_forward_hook(hook)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    model<span style="color:#ff79c6">.</span>eval()
+</span></span><span style="display:flex;"><span>    x <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>tensor([tokenizer<span style="color:#ff79c6">.</span>encode(prompt)], dtype<span style="color:#ff79c6">=</span>torch<span style="color:#ff79c6">.</span>long)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">with</span> torch<span style="color:#ff79c6">.</span>no_grad():
+</span></span><span style="display:flex;"><span>        model(x)
+</span></span><span style="display:flex;"><span>    handle<span style="color:#ff79c6">.</span>remove()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">8</span>))
+</span></span><span style="display:flex;"><span>    chars   <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">list</span>(prompt)
+</span></span><span style="display:flex;"><span>    weights <span style="color:#ff79c6">=</span> captured[<span style="color:#f1fa8c">&#34;weights&#34;</span>]<span style="color:#ff79c6">.</span>numpy()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sns<span style="color:#ff79c6">.</span>heatmap(
+</span></span><span style="display:flex;"><span>        weights, ax<span style="color:#ff79c6">=</span>ax,
+</span></span><span style="display:flex;"><span>        xticklabels<span style="color:#ff79c6">=</span>chars, yticklabels<span style="color:#ff79c6">=</span>chars,
+</span></span><span style="display:flex;"><span>        cmap<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Blues&#34;</span>, square<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, linewidths<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.3</span>,
+</span></span><span style="display:flex;"><span>        cbar_kws<span style="color:#ff79c6">=</span>{<span style="color:#f1fa8c">&#34;shrink&#34;</span>: <span style="color:#bd93f9">0.7</span>},
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;Attention weights — Block 0, Head 0&#34;</span>, fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">14</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;Key (attending from)&#34;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;Query (attending to)&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#34;attention_heatmap.png&#34;</span>, dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">150</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p>The strict lower-triangular structure in the heatmap is a direct consequence of the causal mask — every token above the diagonal is set to \(-\infty\) before softmax, so those weights are exactly zero. What remains shows the model&rsquo;s learned preferences: notice how it tends to assign high weight to spaces and punctuation marks, which serve as reliable syntactic anchors in the Shakespeare corpus.</p>
+<img src="./attention_heatmap.png" alt="Heatmap of attention weights for a short Shakespeare prompt, showing a lower-triangular structure with high weights concentrated near spaces and punctuation" style="display: block; margin: 0 auto;">
+<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+<em>Attention weights for Block 0, Head 0. The lower-triangular structure reflects the causal mask. High-weight columns near spaces and punctuation suggest this head has specialized in syntactic boundary detection.</em>
+</figcaption>
+<br>
+<h2 id="what-we-learned">What We Learned</h2>
+<p>Building this model end-to-end surfaces a number of things that are easy to miss when reading about Transformers at a higher level:</p>
+<ol>
+<li>
+<p><strong>Attention has no inherent notion of position.</strong> Without positional embeddings, a model would produce identical outputs for <code>&quot;the cat sat&quot;</code> and <code>&quot;sat cat the&quot;</code>. The embeddings are what inject order, and they are fully learned — not hardcoded.</p>
+</li>
+<li>
+<p><strong>The causal mask is load-bearing.</strong> Without it, each token during training would see its own target, making next-token prediction trivially easy and the trained model useless at generation time. The strict lower-triangular mask enforces the autoregressive property.</p>
+</li>
+<li>
+<p><strong>Residual connections are why you can go deep.</strong> Without them, gradients vanish over many layers. With them, there is always a direct path from the loss back to the first embedding layer, regardless of how many blocks sit in between.</p>
+</li>
+<li>
+<p><strong>Layer norm placement matters.</strong> Pre-LN (normalize before each sublayer) is noticeably more stable than the original Post-LN formulation — loss curves are smoother and the model is less sensitive to the choice of learning rate.</p>
+</li>
+<li>
+<p><strong>Cross-entropy on next-token prediction is everything.</strong> There is no separate &ldquo;language understanding&rdquo; objective. Syntax, style, and structure are learned as instrumental goals in service of predicting the next character.</p>
+</li>
+</ol>
+<hr>
+<h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
+<p><strong>Beginner Level:</strong></p>
+<ol>
+<li>
+<p><strong>Vocabulary size vs. quality:</strong> Swap the character-level tokenizer for a simple word-level one. How does the generated text change? How does training time change?</p>
+</li>
+<li>
+<p><strong>Temperature sampling:</strong> Add a <code>temperature</code> parameter to <code>generate()</code> that divides the logits before softmax. What happens to output quality as temperature approaches 0? As it exceeds 1?</p>
+</li>
+<li>
+<p><strong>Parameter count:</strong> Systematically vary <code>d_model</code> and <code>n_layers</code>. Plot model size vs. final loss after 5,000 steps. Where does the curve flatten?</p>
+</li>
+</ol>
+<p><strong>Intermediate Level:</strong></p>
+<ol>
+<li>
+<p><strong>Sinusoidal positional embeddings:</strong> Implement the sinusoidal variant from the original Vaswani et al. paper and compare loss curves against the learned version. Which converges faster?</p>
+</li>
+<li>
+<p><strong>Top-k sampling:</strong> Replace <code>torch.multinomial</code> in <code>generate()</code> with top-k sampling. How does restricting to the \(k\) highest-probability tokens affect the diversity/quality tradeoff?</p>
+</li>
+<li>
+<p><strong>Gradient clipping:</strong> Add <code>torch.nn.utils.clip_grad_norm_</code> to the training loop. Does it stabilize training when you increase <code>n_layers</code> to 8?</p>
+</li>
+</ol>
+<p><strong>Advanced Level:</strong></p>
+<ol>
+<li>
+<p><strong>Attention head specialization:</strong> Visualize all \(n_\text{heads} \times n_\text{layers}\) attention maps after training. Can you categorize the patterns? Do any heads consistently specialize in the same relationship across different inputs?</p>
+</li>
+<li>
+<p><strong>Scale to byte-pair encoding:</strong> Replace the character tokenizer with a BPE tokenizer (e.g., <code>tiktoken</code>) and retrain on a larger dataset. What architectural changes become necessary as vocabulary size grows?</p>
+</li>
+<li>
+<p><strong>KV-cache:</strong> Implement a key-value cache in <code>generate()</code> so previously computed keys and values aren&rsquo;t recomputed at each new token. What is the theoretical time complexity improvement at sequence length \(T\)?</p>
+</li>
+</ol>
+<hr>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>Every language model you&rsquo;ve used — from early GPT to the models powering today&rsquo;s AI assistants — is an elaboration of the architecture we built here. The elaborations matter enormously: scale, data, alignment techniques, inference optimizations. But they are additions, not replacements.</p>
+<p>The ~200 lines we wrote contain the essential ideas: attention as a learned routing mechanism, positional embeddings as a workaround for the model&rsquo;s spatial blindness, residual connections as a gradient highway, and the whole stack trained on the deceptively simple objective of predicting the next token.</p>
+<p>A brief note on lineage: the character-level Shakespeare setup is a tradition in this space. Andrej Karpathy&rsquo;s char-rnn and nanoGPT repos made it canonical, and the implementation here follows the same spirit — build the smallest thing that honestly demonstrates the idea. If you find yourself wanting to go deeper after this post, nanoGPT is the natural next stop.</p>
+<p>Shakespeare called the world a stage. With a Transformer, you can build a small model that has read every play he ever wrote and will, haltingly, try to add one more. It won&rsquo;t be good. But the machinery generating those imperfect lines is, at its core, the same machinery that drives the most capable AI systems ever built.</p>
+<hr>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/minimal-transformer" target="_blank" rel="noopener noreferrer">
+  Download the full code on GitHub
+</a>
+</p>
+<p>The Shakespeare corpus can be downloaded with:</p>
+<pre tabindex="0"><code>curl -o shakespeare.txt \
+  https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+</code></pre><hr>
+<h2 id="further-reading">Further Reading</h2>
+<p>These resources provide the theoretical foundations and historical context behind the implementation in this post.</p>
+<p><a id="ba2016"></a>
+Ba, J. L., Kiros, J. R., &amp; Hinton, G. E. (2016). Layer normalization. <em>arXiv preprint arXiv:1607.06450</em>.</p>
+<p><a id="hendrycks2016"></a>
+Hendrycks, D., &amp; Gimpel, K. (2016). Gaussian error linear units (GELUs). <em>arXiv preprint arXiv:1606.08415</em>.</p>
+<p><a id="karpathy2022"></a>
+Karpathy, A. (2022). <em>nanoGPT: The simplest, fastest repository for training/finetuning medium-sized GPTs.</em> <a href="https://github.com/karpathy/nanoGPT" target="_blank" rel="noopener noreferrer">
+  https://github.com/karpathy/nanoGPT
+</a>
+</p>
+<p><a id="loshchilov2019"></a>
+Loshchilov, I., &amp; Hutter, F. (2019). Decoupled weight decay regularization. <em>Proceedings of ICLR 2019</em>.</p>
+<p><a id="radford2019"></a>
+Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). Language models are unsupervised multitask learners. <em>OpenAI Blog</em>, 1(8).</p>
+<p><a id="vaswani2017"></a>
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems</em>, 30.</p>
+<p><a id="xiong2020"></a>
+Xiong, R., Yang, Y., He, D., Zheng, K., Zheng, S., Xing, C., Zhang, H., Lan, Y., Wang, L., &amp; Liu, T. Y. (2020). On layer normalization in the Transformer architecture. <em>Proceedings of ICML 2020</em>.</p>
+<hr>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ai/" rel="tag">AI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/attention-mechanisms/" rel="tag">Attention Mechanisms</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/llm/" rel="tag">LLM</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/nlp/" rel="tag">NLP</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/transformers/" rel="tag">Transformers</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
+turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
+that outlives the feature request it started from.</p>
+<p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
+system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
+activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
+technology books, wrote 100+ articles for <em>.NET Programming Tips &amp; Techniques</em>, and helped run
+<a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru
+</a>
+ (the largest Windows developer community of its era).</p>
+<p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
+structures that get concatenated with code samples at runtime and routed to generative models, with results
+injected back into the output. Nearly 100 articles have shipped through the system.</p>
+<p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+to inference-time behavior, from tokenization to training infrastructure.</p>
+<p>Connect with me on <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/discrete-mathematics/" title="Discrete Mathematics">Discrete Mathematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/predicate-logic/" title="Predicate Logic">Predicate Logic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/set-theory/" title="Set Theory">Set Theory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 baseURL = "https://tomarcher.io/"
 languageCode = "en-us"
-title = "Signal & Syntax: Practical AI Coding with Tom Archer"
+title = "SIGNAL & SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS"
 theme = "mainroad"
 ignoreFiles = ['^content/posts/.*/_private/']
 googleAnalytics = "G-7ZV2PMS61P"
@@ -18,13 +18,26 @@ googleAnalytics = "G-7ZV2PMS61P"
 
   # Short bio (first paragraph)
   bio = """
-  Tom Archer is a seasoned technical lead and engineering manager, as well as a software developer and technical author, with deep roots in Python, C++, Windows programming, and AI-driven automation. He has led teams and delivered software solutions for IBM, AT&T, Peachtree Software (Sage 500), and VeriSign. At Microsoft, Tom develops AI tools for technical documentation, drawing on decades of experience in both hands-on coding and guiding developer teams.
+  For forty years I've built platforms, not applications. Every time I've been asked to ship a product, the product has
+  turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
+  that outlives the feature request it started from.
 
-  Tom also helped build and run [CodeGuru.com](https://codeguru.com), once the world's largest Windows developer community. He has been recognized by Microsoft as a Visual C++ MVP and has written ten programming books and hundreds of online articles.
+  At AT&T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+  insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
+  system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
+  activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
+  technology books, wrote 100+ articles for *.NET Programming Tips & Techniques*, and helped run
+  [CodeGuru](http://codeguru.com) (the largest Windows developer community of its era).
 
-  While content in his current role at Microsoft, Tom believes there is always tomorrow to plan for. If you have a cool and interesting project, especially one that blends technology, creativity, and real-world impact on a fun team, he's always excited to hear about it.  
+  At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+  that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
+  structures that get concatenated with code samples at runtime and routed to generative models, with results
+  injected back into the output. Nearly 100 articles have shipped through the system.
 
-  Connect with Tom today via [LinkedIn](https://www.linkedin.com/in/tom-archer-dev/).
+  This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+  to inference-time behavior, from tokenization to training infrastructure.
+
+  Connect with me on [LinkedIn](https://www.linkedin.com/in/tom-archer-dev/).
   """
 
   # Load a small custom CSS file for the "READ MORE" button and separators

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Signal &amp; Syntax: Practical AI Coding with Tom Archer</title>
+    <title>Posts on SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
     <link>http://localhost:1313/posts/</link>
-    <description>Recent content in Posts on Signal &amp; Syntax: Practical AI Coding with Tom Archer</description>
+    <description>Recent content in Posts on SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 01 Apr 2026 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Implementing a Minimal Transformer in PyTorch</title>
+      <link>http://localhost:1313/posts/minimal-transformer/</link>
+      <pubDate>Wed, 01 Apr 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/minimal-transformer/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xA;  &lt;img src=&#34;./transformer.jpeg&#34; alt=&#34;Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add &amp; norm, feed-forward, and add &amp; norm to output logits&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xA;    &lt;em&gt;Around 200 lines of Python separate you from understanding why attention really is all you need.&lt;/em&gt;&#xA;  &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;In 2017, Vaswani et al. published &amp;ldquo;Attention Is All You Need,&amp;rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&amp;rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&amp;rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.&lt;/p&gt;&#xA;&lt;p&gt;That claim turned out to be correct.&lt;/p&gt;&#xA;&lt;p&gt;Most engineers who work &lt;em&gt;with&lt;/em&gt; language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand &lt;em&gt;why&lt;/em&gt; these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.&lt;/p&gt;&#xA;&lt;p&gt;In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We&amp;rsquo;ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.&lt;/p&gt;&#xA;&lt;p&gt;By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you&amp;rsquo;ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.&lt;/p&gt;&#xA;&lt;hr&gt;</description>
+    </item>
     <item>
       <title>The Discrete Mathematics Hiding Inside LLMs</title>
       <link>http://localhost:1313/posts/discrete-math-in-large-language-models/</link>
