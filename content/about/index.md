@@ -3,7 +3,7 @@ title = "About Signal & Syntax"
 slug  = "about"
 +++
 
-Most writing about LLMs sits at one of two altitudes: high-level explainers aimed at executives and curious newcomers, or dense research papers aimed at other researchers. There's less writing in the middle, the altitude where working engineers actually operate. You need to understand enough of what's happening under the hood to build and debug real systems, but not so much that you're replicating a PhD program.
+Most writing about LLMs sits at one of two altitudes: high-level explainers aimed at executives and curious newcomers, or dense research papers aimed at other researchers. There's less writing in the middle, where working engineers actually operate. Most engineers need to understand enough of what's happening under the hood to build and debug real systems, but not so much that they feel like they're replicating a PhD program.
 
 Signal & Syntax serves that middle altitude. Posts work through the mathematics and engineering underneath the models we're all building on: gradient descent, attention, tokenization, inference-time behavior, training infrastructure, evaluation, orchestration. The goal is to write about this material the way one engineer explains something to another, with enough rigor to be trustworthy, enough plain English to be readable, and enough specificity that the post helps you build something.
 
