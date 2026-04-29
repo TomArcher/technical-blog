@@ -10,9 +10,42 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK) - SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
+	<title>Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK) - Signal &amp; Syntax</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/posts/hash-collisions/">
+  <meta property="og:site_name" content="Signal & Syntax">
+  <meta property="og:title" content="Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)">
+  <meta property="og:description" content="In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
+Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than “unique” versus “not unique.”
+“In cryptography, ‘secure’ has always meant ‘secure for now’.”">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-11-17T06:00:00-07:00">
+    <meta property="article:modified_time" content="2025-11-17T06:00:00-07:00">
+    <meta property="article:tag" content="Blockchain">
+    <meta property="article:tag" content="Cryptography">
+    <meta property="article:tag" content="Hashing">
+    <meta property="article:tag" content="Passwords">
+    <meta property="article:tag" content="Security">
+
+		
+  <meta itemprop="name" content="Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)">
+  <meta itemprop="description" content="In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
+Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than “unique” versus “not unique.”
+“In cryptography, ‘secure’ has always meant ‘secure for now’.”">
+  <meta itemprop="datePublished" content="2025-11-17T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2025-11-17T06:00:00-07:00">
+  <meta itemprop="wordCount" content="4333">
+  <meta itemprop="keywords" content="Blockchain,Cryptography,Hashing,Passwords,Security">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)">
+  <meta name="twitter:description" content="In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
+Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than “unique” versus “not unique.”
+“In cryptography, ‘secure’ has always meant ‘secure for now’.”">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -122,7 +155,7 @@
 
       <div class="share">
   <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-collisions%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-collisions%252F&text=Hash%2bCollisions%253A%2bWhy%2bYour%2b%2527Unique%2527%2bFingerprints%2bAren%2527t%2b%2528And%2bWhy%2bThat%2527s%2bUsually%2bOK%2529" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
     X
   </a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-collisions%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
@@ -131,10 +164,10 @@
   <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-collisions%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
     f
   </a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-collisions%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-collisions%252F&title=Hash%2bCollisions%253A%2bWhy%2bYour%2b%2527Unique%2527%2bFingerprints%2bAren%2527t%2b%2528And%2bWhy%2bThat%2527s%2bUsually%2bOK%2529" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
     r
   </a>
-  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-collisions%252F" aria-label="Share via Email">
+  <a class="share__btn" href="mailto:?subject=Hash%2bCollisions%253A%2bWhy%2bYour%2b%2527Unique%2527%2bFingerprints%2bAren%2527t%2b%2528And%2bWhy%2bThat%2527s%2bUsually%2bOK%2529&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhash-collisions%252F" aria-label="Share via Email">
     @
   </a>
 
@@ -150,7 +183,7 @@
   btn.addEventListener('click', async () => {
     try {
       await navigator.share({
-        title: "%!q(\u003cnil\u003e)",
+        title: "\"Hash Collisions: Why Your 'Unique' Fingerprints Aren't (And Why That's Usually OK)\"",
         url: "\"http://localhost:1313/posts/hash-collisions/\""
       });
     } catch (_) {}
@@ -912,7 +945,7 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
     <div class="bio-wrap">
       
         <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
         </a>
       
 
@@ -1055,7 +1088,7 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2026 SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS.
+			&copy; 2026 Signal &amp; Syntax.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

@@ -10,9 +10,43 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Discrete Mathematics Hiding Inside LLMs - SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
+	<title>The Discrete Mathematics Hiding Inside LLMs - Signal &amp; Syntax</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/posts/discrete-math-in-large-language-models/">
+  <meta property="og:site_name" content="Signal & Syntax">
+  <meta property="og:title" content="The Discrete Mathematics Hiding Inside LLMs">
+  <meta property="og:description" content="It&#39;s true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
+Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.
+“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-31T06:00:00-07:00">
+    <meta property="article:modified_time" content="2026-03-31T06:00:00-07:00">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Attention Mechanisms">
+    <meta property="article:tag" content="Embeddings">
+    <meta property="article:tag" content="Discrete Mathematics">
+    <meta property="article:tag" content="LLM">
+    <meta property="article:tag" content="Predicate Logic">
+
+		
+  <meta itemprop="name" content="The Discrete Mathematics Hiding Inside LLMs">
+  <meta itemprop="description" content="It&#39;s true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
+Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.
+“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”">
+  <meta itemprop="datePublished" content="2026-03-31T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-03-31T06:00:00-07:00">
+  <meta itemprop="wordCount" content="2645">
+  <meta itemprop="keywords" content="AI,Attention Mechanisms,Embeddings,Discrete Mathematics,LLM,Predicate Logic,Set Theory">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Discrete Mathematics Hiding Inside LLMs">
+  <meta name="twitter:description" content="It&#39;s true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
+Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.
+“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -126,7 +160,7 @@
 
       <div class="share">
   <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fdiscrete-math-in-large-language-models%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fdiscrete-math-in-large-language-models%252F&text=The%2bDiscrete%2bMathematics%2bHiding%2bInside%2bLLMs" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
     X
   </a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fdiscrete-math-in-large-language-models%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
@@ -135,10 +169,10 @@
   <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fdiscrete-math-in-large-language-models%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
     f
   </a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fdiscrete-math-in-large-language-models%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fdiscrete-math-in-large-language-models%252F&title=The%2bDiscrete%2bMathematics%2bHiding%2bInside%2bLLMs" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
     r
   </a>
-  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fdiscrete-math-in-large-language-models%252F" aria-label="Share via Email">
+  <a class="share__btn" href="mailto:?subject=The%2bDiscrete%2bMathematics%2bHiding%2bInside%2bLLMs&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fdiscrete-math-in-large-language-models%252F" aria-label="Share via Email">
     @
   </a>
 
@@ -154,7 +188,7 @@
   btn.addEventListener('click', async () => {
     try {
       await navigator.share({
-        title: "%!q(\u003cnil\u003e)",
+        title: "\"The Discrete Mathematics Hiding Inside LLMs\"",
         url: "\"http://localhost:1313/posts/discrete-math-in-large-language-models/\""
       });
     } catch (_) {}
@@ -653,7 +687,7 @@ Press, O., Smith, N. A., &amp; Lewis, M. (2021). Train short, test long: Attenti
     <div class="bio-wrap">
       
         <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
         </a>
       
 
@@ -796,7 +830,7 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2026 SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS.
+			&copy; 2026 Signal &amp; Syntax.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

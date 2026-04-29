@@ -15,6 +15,9 @@ googleAnalytics = "G-7ZV2PMS61P"
   mainSections = ["posts"]
   description = "Tom Archer's technical blog"
   math = true
+  opengraph = true
+  twitter_cards = true
+  schema = true
 
   # Short bio (first paragraph)
   bio = """

@@ -10,9 +10,40 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Meeting Diet: An Optimization Approach to Your Calendar - SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
+	<title>The Meeting Diet: An Optimization Approach to Your Calendar - Signal &amp; Syntax</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/posts/meeting-diet/">
+  <meta property="og:site_name" content="Signal & Syntax">
+  <meta property="og:title" content="The Meeting Diet: An Optimization Approach to Your Calendar">
+  <meta property="og:description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
+“Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-28T05:00:00-07:00">
+    <meta property="article:modified_time" content="2025-08-28T05:00:00-07:00">
+    <meta property="article:tag" content="Optimization">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Scheduling">
+
+		
+  <meta itemprop="name" content="The Meeting Diet: An Optimization Approach to Your Calendar">
+  <meta itemprop="description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
+“Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
+  <meta itemprop="datePublished" content="2025-08-28T05:00:00-07:00">
+  <meta itemprop="dateModified" content="2025-08-28T05:00:00-07:00">
+  <meta itemprop="wordCount" content="1827">
+  <meta itemprop="keywords" content="Optimization,Python,Scheduling">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Meeting Diet: An Optimization Approach to Your Calendar">
+  <meta name="twitter:description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
+“Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -118,7 +149,7 @@
 
       <div class="share">
   <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F&text=The%2bMeeting%2bDiet%253A%2bAn%2bOptimization%2bApproach%2bto%2bYour%2bCalendar" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
     X
   </a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
@@ -127,10 +158,10 @@
   <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
     f
   </a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F&title=The%2bMeeting%2bDiet%253A%2bAn%2bOptimization%2bApproach%2bto%2bYour%2bCalendar" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
     r
   </a>
-  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F" aria-label="Share via Email">
+  <a class="share__btn" href="mailto:?subject=The%2bMeeting%2bDiet%253A%2bAn%2bOptimization%2bApproach%2bto%2bYour%2bCalendar&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fmeeting-diet%252F" aria-label="Share via Email">
     @
   </a>
 
@@ -146,7 +177,7 @@
   btn.addEventListener('click', async () => {
     try {
       await navigator.share({
-        title: "%!q(\u003cnil\u003e)",
+        title: "\"The Meeting Diet: An Optimization Approach to Your Calendar\"",
         url: "\"http://localhost:1313/posts/meeting-diet/\""
       });
     } catch (_) {}
@@ -511,7 +542,7 @@
     <div class="bio-wrap">
       
         <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
         </a>
       
 
@@ -654,7 +685,7 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2026 SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS.
+			&copy; 2026 Signal &amp; Syntax.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

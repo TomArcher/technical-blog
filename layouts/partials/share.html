@@ -1,6 +1,6 @@
 {{/* layouts/partials/share.html */}}
 {{- $url := .Permalink -}}
-{{- $title := cond (ne .Params.shareTitle "") .Params.shareTitle .Title -}}
+{{- $title := default .Title .Params.shareTitle -}}
 {{- $u := $url | urlquery -}}
 {{- $t := $title | urlquery -}}
 

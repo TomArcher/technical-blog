@@ -10,9 +10,45 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding - SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
+	<title>How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding - Signal &amp; Syntax</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/posts/how-large-language-models-learn/">
+  <meta property="og:site_name" content="Signal & Syntax">
+  <meta property="og:title" content="How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding">
+  <meta property="og:description" content="Meaning takes shape as the model learns to descend its own mathematical terrain.When you interact with a large language model (LLM) such as ChatGPTor Claude, the model seems to respond instantly relative to the question’s degree of difficulty. What’s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.
+Large language models don’t memorize text. They optimize it. Behind that optimization lies calculus. I’m not referring to the calculus you did with pencil and paper. I’m talking about a sprawling, automated version that computes millions of derivatives per second.
+At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be slightly less wrong. The word “slightly” in this context is the essence of calculus.
+“Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.”">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-08T06:00:00-07:00">
+    <meta property="article:modified_time" content="2025-10-08T06:00:00-07:00">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Calculus">
+    <meta property="article:tag" content="Gradient Descent">
+    <meta property="article:tag" content="LLM">
+    <meta property="article:tag" content="Optimization">
+
+		
+  <meta itemprop="name" content="How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding">
+  <meta itemprop="description" content="Meaning takes shape as the model learns to descend its own mathematical terrain.When you interact with a large language model (LLM) such as ChatGPTor Claude, the model seems to respond instantly relative to the question’s degree of difficulty. What’s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.
+Large language models don’t memorize text. They optimize it. Behind that optimization lies calculus. I’m not referring to the calculus you did with pencil and paper. I’m talking about a sprawling, automated version that computes millions of derivatives per second.
+At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be slightly less wrong. The word “slightly” in this context is the essence of calculus.
+“Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.”">
+  <meta itemprop="datePublished" content="2025-10-08T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2025-10-08T06:00:00-07:00">
+  <meta itemprop="wordCount" content="2889">
+  <meta itemprop="keywords" content="AI,Calculus,Gradient Descent,LLM,Optimization">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding">
+  <meta name="twitter:description" content="Meaning takes shape as the model learns to descend its own mathematical terrain.When you interact with a large language model (LLM) such as ChatGPTor Claude, the model seems to respond instantly relative to the question’s degree of difficulty. What’s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.
+Large language models don’t memorize text. They optimize it. Behind that optimization lies calculus. I’m not referring to the calculus you did with pencil and paper. I’m talking about a sprawling, automated version that computes millions of derivatives per second.
+At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be slightly less wrong. The word “slightly” in this context is the essence of calculus.
+“Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.”">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -122,7 +158,7 @@
 
       <div class="share">
   <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-learn%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-learn%252F&text=How%2bLarge%2bLanguage%2bModels%2b%2528LLMs%2529%2bLearn%253A%2bCalculus%2band%2bthe%2bSearch%2bfor%2bUnderstanding" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
     X
   </a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-learn%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
@@ -131,10 +167,10 @@
   <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-learn%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
     f
   </a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-learn%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-learn%252F&title=How%2bLarge%2bLanguage%2bModels%2b%2528LLMs%2529%2bLearn%253A%2bCalculus%2band%2bthe%2bSearch%2bfor%2bUnderstanding" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
     r
   </a>
-  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-learn%252F" aria-label="Share via Email">
+  <a class="share__btn" href="mailto:?subject=How%2bLarge%2bLanguage%2bModels%2b%2528LLMs%2529%2bLearn%253A%2bCalculus%2band%2bthe%2bSearch%2bfor%2bUnderstanding&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-learn%252F" aria-label="Share via Email">
     @
   </a>
 
@@ -150,7 +186,7 @@
   btn.addEventListener('click', async () => {
     try {
       await navigator.share({
-        title: "%!q(\u003cnil\u003e)",
+        title: "\"How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding\"",
         url: "\"http://localhost:1313/posts/how-large-language-models-learn/\""
       });
     } catch (_) {}
@@ -412,7 +448,7 @@ W_{new} = W_{old} - v_t
     <div class="bio-wrap">
       
         <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
         </a>
       
 
@@ -555,7 +591,7 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2026 SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS.
+			&copy; 2026 Signal &amp; Syntax.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

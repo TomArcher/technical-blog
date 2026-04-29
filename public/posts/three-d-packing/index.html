@@ -10,9 +10,41 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem - SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS</title>
+	<title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem - Signal &amp; Syntax</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/posts/three-d-packing/">
+  <meta property="og:site_name" content="Signal & Syntax">
+  <meta property="og:title" content="From Ice Shows to Algorithms: Cracking the Truck-Packing Problem">
+  <meta property="og:description" content="How do you fit it all in?My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
+“Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?”
+One day, the controller asked me if I could code a system that took, as input, the trucks’ 3D dimensions and the 3D dimensions (and weight) of every object to be packed. Back in the Turbo Pascal era, exploring 3D packing was painful. Today, with Python and AI-assisted scaffolding, it’s surprisingly approachable.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-20T09:00:00-07:00">
+    <meta property="article:modified_time" content="2025-08-20T09:00:00-07:00">
+    <meta property="article:tag" content="Algorithms">
+    <meta property="article:tag" content="Geometry">
+    <meta property="article:tag" content="Optimization">
+    <meta property="article:tag" content="Python">
+
+		
+  <meta itemprop="name" content="From Ice Shows to Algorithms: Cracking the Truck-Packing Problem">
+  <meta itemprop="description" content="How do you fit it all in?My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
+“Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?”
+One day, the controller asked me if I could code a system that took, as input, the trucks’ 3D dimensions and the 3D dimensions (and weight) of every object to be packed. Back in the Turbo Pascal era, exploring 3D packing was painful. Today, with Python and AI-assisted scaffolding, it’s surprisingly approachable.">
+  <meta itemprop="datePublished" content="2025-08-20T09:00:00-07:00">
+  <meta itemprop="dateModified" content="2025-08-20T09:00:00-07:00">
+  <meta itemprop="wordCount" content="2162">
+  <meta itemprop="keywords" content="Algorithms,Geometry,Optimization,Python">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="From Ice Shows to Algorithms: Cracking the Truck-Packing Problem">
+  <meta name="twitter:description" content="How do you fit it all in?My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
+“Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?”
+One day, the controller asked me if I could code a system that took, as input, the trucks’ 3D dimensions and the 3D dimensions (and weight) of every object to be packed. Back in the Turbo Pascal era, exploring 3D packing was painful. Today, with Python and AI-assisted scaffolding, it’s surprisingly approachable.">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -120,7 +152,7 @@
 
       <div class="share">
   <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthree-d-packing%252F&text=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthree-d-packing%252F&text=From%2bIce%2bShows%2bto%2bAlgorithms%253A%2bCracking%2bthe%2bTruck-Packing%2bProblem" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
     X
   </a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthree-d-packing%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
@@ -129,10 +161,10 @@
   <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthree-d-packing%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
     f
   </a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthree-d-packing%252F&title=%253Cno%2bvalue%253E" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthree-d-packing%252F&title=From%2bIce%2bShows%2bto%2bAlgorithms%253A%2bCracking%2bthe%2bTruck-Packing%2bProblem" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
     r
   </a>
-  <a class="share__btn" href="mailto:?subject=%253Cno%2bvalue%253E&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthree-d-packing%252F" aria-label="Share via Email">
+  <a class="share__btn" href="mailto:?subject=From%2bIce%2bShows%2bto%2bAlgorithms%253A%2bCracking%2bthe%2bTruck-Packing%2bProblem&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fthree-d-packing%252F" aria-label="Share via Email">
     @
   </a>
 
@@ -148,7 +180,7 @@
   btn.addEventListener('click', async () => {
     try {
       await navigator.share({
-        title: "%!q(\u003cnil\u003e)",
+        title: "\"From Ice Shows to Algorithms: Cracking the Truck-Packing Problem\"",
         url: "\"http://localhost:1313/posts/three-d-packing/\""
       });
     } catch (_) {}
@@ -563,7 +595,7 @@ color and label.</em></p></blockquote>
     <div class="bio-wrap">
       
         <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
         </a>
       
 
@@ -706,7 +738,7 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2026 SIGNAL &amp; SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS.
+			&copy; 2026 Signal &amp; Syntax.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
