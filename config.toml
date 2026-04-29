@@ -82,3 +82,11 @@ googleAnalytics = "G-7ZV2PMS61P"
     noClasses = true
     style = "dracula"
     lineNos = false
+
+[params.logo]
+  image = "img/logo/wordmark-light.svg"
+  title = false
+  subtitle = false
+
+[params.style.vars]
+  highlightColor = "#B7472A"

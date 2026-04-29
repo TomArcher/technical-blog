@@ -435,3 +435,32 @@ pre:hover .copy-button {
 .copy-button:hover {
     background-color: #3b4252;
 }
+
+/* Signal & Syntax wordmark sizing */
+.logo__img {
+  max-height: 140px !important;
+  width: auto !important;
+  height: 140px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.logo__imagebox,
+.logo__item {
+  height: 140px !important;
+  max-height: 140px !important;
+  overflow: visible !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+.logo {
+  min-height: 0 !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  text-align: center !important;
+}
+
+.logo__link {
+  display: inline-block !important;
+}
