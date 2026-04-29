@@ -3,28 +3,25 @@
 {{- $title := default .Title .Params.shareTitle -}}
 {{- $u := $url | urlquery -}}
 {{- $t := $title | urlquery -}}
+{{- /* mailto needs %20 for spaces, not + (RFC 6068) */ -}}
+{{- $mt := $t | replaceRE "\\+" "%20" -}}
+{{- $mu := $u | replaceRE "\\+" "%20" -}}
+
+{{- $twitter  := printf "https://twitter.com/intent/tweet?url=%s&text=%s" $u $t -}}
+{{- $linkedin := printf "https://www.linkedin.com/sharing/share-offsite/?url=%s" $u -}}
+{{- $facebook := printf "https://www.facebook.com/sharer/sharer.php?u=%s" $u -}}
+{{- $reddit   := printf "https://www.reddit.com/submit?url=%s&title=%s" $u $t -}}
+{{- $email    := printf "mailto:?subject=%s&body=%s" $mt $mu -}}
 
 <div class="share">
   <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url={{ $u }}&text={{ $t }}" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
-    X
-  </a>
-  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ $u }}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
-    in
-  </a>
-  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u={{ $u }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
-    f
-  </a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url={{ $u }}&title={{ $t }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
-    r
-  </a>
-  <a class="share__btn" href="mailto:?subject={{ $t }}&body={{ $u }}" aria-label="Share via Email">
-    @
-  </a>
+  <a class="share__btn" href="{{ $twitter  | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
+  <a class="share__btn" href="{{ $linkedin | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+  <a class="share__btn" href="{{ $facebook | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+  <a class="share__btn" href="{{ $reddit   | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
+  <a class="share__btn" href="{{ $email    | safeURL }}" aria-label="Share via Email">@</a>
 
-  <button class="share__btn share__btn--native" type="button" aria-label="Share">
-    Share
-  </button>
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">Share</button>
 </div>
 
 <script>
@@ -34,8 +31,8 @@
   btn.addEventListener('click', async () => {
     try {
       await navigator.share({
-        title: {{ printf "%q" $title }},
-        url: {{ printf "%q" $url }}
+        title: {{ $title | jsonify }},
+        url:   {{ $url   | jsonify }}
       });
     } catch (_) {}
   });
