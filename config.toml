@@ -1,6 +1,6 @@
 baseURL = "https://tomarcher.io/"
 languageCode = "en-us"
-title = "SIGNAL & SYNTAX: THE ENGINEERING UNDERNEATH THE MODELS"
+title = "Signal & Syntax"
 theme = "mainroad"
 ignoreFiles = ['^content/posts/.*/_private/']
 googleAnalytics = "G-7ZV2PMS61P"
