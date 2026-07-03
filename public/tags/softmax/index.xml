@@ -1,26 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Softmax on Signal &amp; Syntax</title>
-    <link>http://localhost:1313/tags/softmax/</link>
-    <description>Recent content in Softmax on Signal &amp; Syntax</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 08 May 2026 06:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/softmax/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Inside Attention, Part 1: The Mechanism</title>
-      <link>http://localhost:1313/posts/inside-attention-part-1/</link>
-      <pubDate>Fri, 08 May 2026 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/posts/inside-attention-part-1/</guid>
-      <description>&lt;figure style=&#34;margin: 0 20px 10px 20px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./inside-attention-part-1.png&#34;&#xD;&#xA;        alt=&#34;A robotic head in profile with attention mechanism concepts filling its mind: Q, K, V matrices flowing into softmax distributions, multi-head parallel structures fanning out from a central operation, attention weight heatmaps showing focus patterns between tokens, induction head circuits drawing arrows from second occurrences back to first occurrences in a sequence, all connecting to a tree growing from a seed labeled with the scaled dot-product attention formula&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Transformers are the foundation of modern large language models like ChatGPT, Claude, Gemini, and many image and audio models as well. However, if you want to understand transformers fully, you must first understand attention. The transformer architecture stacks attention layers between feedforward sublayers, wraps the whole thing in residual connections and layer normalization, and adds positional information so the model knows what order the tokens came in. Every one of those pieces matters, but the attention layer is the part that does the work of looking at other tokens and deciding what to absorb from them. Get attention wrong and the rest of the architecture has nothing to operate on.&lt;/p&gt;&#xA;&lt;p&gt;This post is the first of a three-part series on the attention mechanism. Part 1, this one, covers the operation itself: scaled dot-product attention, why we divide by (\sqrt{d_k}), multi-head attention, and what we have learned since 2017 about what those heads actually do. Part 2 covers masking and the function class it forces the model into, including why causal masking is what makes generation possible. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.&#xA;The 2017 paper, &lt;a href=&#34;#vaswani2017&#34;&gt;&#xD;&#xA;  Attention Is All You Need&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, is the seed of this series. The mechanism it described is small and elegant and fits on a page. Everything since has been the tree growing out of it: the math has held up, but the deployed system has acquired layers the paper did not anticipate. This post stays close to the seed. The rest of the series walks the branches.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
-      <title>Temperature and Top-P: The Creativity Knobs</title>
-      <link>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</link>
-      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
-      <guid>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</guid>
-      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./temperature-top-p-creativity-knobs.png&#34;&#xD;&#xA;       alt=&#34;A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Turn it up and things get weird.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Every API call to &lt;a href=&#34;https://openai.com/api/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, &lt;a href=&#34;https://claude.com/platform/api&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, or any other LLM includes two parameters most people either ignore or tweak randomly: &lt;strong&gt;temperature&lt;/strong&gt; and &lt;strong&gt;top-p&lt;/strong&gt;. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p&gt;&#xA;&lt;p&gt;The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &amp;ldquo;Set temperature to 0.7 for creative writing&amp;rdquo; becomes tribal knowledge, passed down without explanation. Let&amp;rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Temperature doesn&amp;rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Softmax on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/softmax/</link><description>Recent content in Softmax on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 24 Dec 2025 12:00:00 -0800</lastBuildDate><atom:link href="https://tomarcher.io/tags/softmax/index.xml" rel="self" type="application/rss+xml"/><item><title>Temperature and Top-P: The Creativity Knobs</title><link>https://tomarcher.io/posts/temperature-top-p-creativity-knobs/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/posts/temperature-top-p-creativity-knobs/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+ &lt;img src="./temperature-top-p-creativity-knobs.png"
+ alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
+ width="250"
+ style="display: block; margin: 0 auto;">
+ &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+ &lt;em>Turn it up and things get weird.&lt;/em>
+ &lt;/figcaption>
+&lt;/figure>
+&lt;p>Every API call to &lt;a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
+ ChatGPT
+&lt;/a>
+, &lt;a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
+ Claude
+&lt;/a>
+, or any other LLM includes two parameters most people either ignore or tweak randomly: &lt;strong>temperature&lt;/strong> and &lt;strong>top-p&lt;/strong>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p>
+&lt;p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.&lt;/p>
+&lt;p>I&amp;rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &amp;ldquo;Set temperature to 0.7 for creative writing&amp;rdquo; becomes tribal knowledge, passed down without explanation. Let&amp;rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.&lt;/p>
+&lt;hr>
+&lt;blockquote>
+&lt;p>&lt;em>&amp;ldquo;Temperature doesn&amp;rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
+&lt;hr></description></item></channel></rss>

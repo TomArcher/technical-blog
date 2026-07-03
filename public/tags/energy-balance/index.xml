@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Energy Balance on Signal &amp; Syntax</title>
-    <link>http://localhost:1313/tags/energy-balance/</link>
-    <description>Recent content in Energy Balance on Signal &amp; Syntax</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 12 Oct 2025 09:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/energy-balance/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</title>
-      <link>http://localhost:1313/posts/thermo-water-energy-balance/</link>
-      <pubDate>Sun, 12 Oct 2025 09:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/posts/thermo-water-energy-balance/</guid>
-      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./thermo-water-energy-balance.png&#34; &#xD;&#xA;       alt=&#34;Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background&#34; &#xD;&#xA;       width=&#34;250&#34; &#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&amp;rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.&lt;/p&gt;&#xA;&lt;p&gt;The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&amp;rsquo;s not coincidence; it&amp;rsquo;s thermodynamics.&lt;/p&gt;&#xA;&lt;p&gt;The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&amp;rsquo;s &lt;em&gt;specific heat&lt;/em&gt; is much higher.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Energy Balance on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/energy-balance/</link><description>Recent content in Energy Balance on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 12 Oct 2025 09:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/energy-balance/index.xml" rel="self" type="application/rss+xml"/><item><title>Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</title><link>https://tomarcher.io/posts/thermo-water-energy-balance/</link><pubDate>Sun, 12 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/thermo-water-energy-balance/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+ &lt;img src="./thermo-water-energy-balance.png" 
+ alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background" 
+ width="250" 
+ style="display: block; margin: 0 auto;">
+ &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+ &lt;em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.&lt;/em>
+ &lt;/figcaption>
+&lt;/figure>
+&lt;p>Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&amp;rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.&lt;/p>
+&lt;p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&amp;rsquo;s not coincidence; it&amp;rsquo;s thermodynamics.&lt;/p>
+&lt;p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&amp;rsquo;s &lt;em>specific heat&lt;/em> is much higher.&lt;/p>
+&lt;hr>
+&lt;blockquote>
+&lt;p>&lt;em>&amp;ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
+&lt;hr></description></item></channel></rss>

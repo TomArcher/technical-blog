@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Web Search on Signal &amp; Syntax</title>
-    <link>http://localhost:1313/tags/web-search/</link>
-    <description>Recent content in Web Search on Signal &amp; Syntax</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 09 Feb 2026 06:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/web-search/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>How Large Language Models (LLMs) Know Things They Were Never Taught</title>
-      <link>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</link>
-      <pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</guid>
-      <description>&lt;figure style=&#34;margin: 0 20px 10px 20px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./how-large-language-models-know-things-they-were-never-taught.png&#34;&#xD;&#xA;        alt=&#34;A neural network with frozen weights receiving external documents being injected into its context window&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;The model didn&#39;t learn this. It just read it.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you ask an LLM &lt;em&gt;without&lt;/em&gt; web search enabled a question like &amp;ldquo;What happened in the news this morning?&amp;rdquo;, the LLM will respond by telling you that it doesn&amp;rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.&lt;/p&gt;&#xA;&lt;p&gt;Conversely, ask an LLM &lt;em&gt;with&lt;/em&gt; web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.&lt;/p&gt;&#xA;&lt;p&gt;Identical question. Same underlying technology. Completely different answers. The difference isn&amp;rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.&lt;/p&gt;&#xA;&lt;p&gt;But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &amp;ldquo;know&amp;rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model &lt;em&gt;learned&lt;/em&gt; and what a model &lt;em&gt;read&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;LLMs don&amp;rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&amp;rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&amp;rsquo;t learning; it&amp;rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;A model with web search doesn&amp;rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web Search on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/web-search/</link><description>Recent content in Web Search on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 09 Feb 2026 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/web-search/index.xml" rel="self" type="application/rss+xml"/><item><title>How Large Language Models (LLMs) Know Things They Were Never Taught</title><link>https://tomarcher.io/posts/how-large-language-models-know-things-they-were-never-taught/</link><pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-know-things-they-were-never-taught/</guid><description>&lt;figure style="margin: 0 20px 10px 20px; text-align: center;">
+ &lt;img src="./how-large-language-models-know-things-they-were-never-taught.png"
+ alt="A neural network with frozen weights receiving external documents being injected into its context window">
+ &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+ &lt;em>The model didn't learn this. It just read it.&lt;/em>
+ &lt;/figcaption>
+&lt;/figure>
+&lt;p>When you ask an LLM &lt;em>without&lt;/em> web search enabled a question like &amp;ldquo;What happened in the news this morning?&amp;rdquo;, the LLM will respond by telling you that it doesn&amp;rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.&lt;/p>
+&lt;p>Conversely, ask an LLM &lt;em>with&lt;/em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.&lt;/p>
+&lt;p>Identical question. Same underlying technology. Completely different answers. The difference isn&amp;rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.&lt;/p>
+&lt;p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &amp;ldquo;know&amp;rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model &lt;em>learned&lt;/em> and what a model &lt;em>read&lt;/em>.&lt;/p>
+&lt;p>LLMs don&amp;rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&amp;rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&amp;rsquo;t learning; it&amp;rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.&lt;/p>
+&lt;hr>
+&lt;blockquote>
+&lt;p>&lt;em>&amp;ldquo;A model with web search doesn&amp;rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
+&lt;hr></description></item></channel></rss>

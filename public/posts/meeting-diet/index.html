@@ -1,685 +1,250 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7ZV2PMS61P');
-</script>
-
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Meeting Diet: An Optimization Approach to Your Calendar - Signal &amp; Syntax</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-		<meta property="og:url" content="http://localhost:1313/posts/meeting-diet/">
-  <meta property="og:site_name" content="Signal & Syntax">
-  <meta property="og:title" content="The Meeting Diet: An Optimization Approach to Your Calendar">
-  <meta property="og:description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
+<!doctype html><html class=no-js lang=en><head><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")</script><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>The Meeting Diet: An Optimization Approach to Your Calendar - Signal & Syntax</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:url" content="https://tomarcher.io/posts/meeting-diet/"><meta property="og:site_name" content="Signal & Syntax"><meta property="og:title" content="The Meeting Diet: An Optimization Approach to Your Calendar"><meta property="og:description" content="If you don't optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
 “Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
-The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-08-28T05:00:00-07:00">
-    <meta property="article:modified_time" content="2025-08-28T05:00:00-07:00">
-    <meta property="article:tag" content="Optimization">
-    <meta property="article:tag" content="Python">
-    <meta property="article:tag" content="Scheduling">
-
-		
-  <meta itemprop="name" content="The Meeting Diet: An Optimization Approach to Your Calendar">
-  <meta itemprop="description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-08-28T05:00:00-07:00"><meta property="article:modified_time" content="2025-08-28T05:00:00-07:00"><meta property="article:tag" content="Optimization"><meta property="article:tag" content="Python"><meta property="article:tag" content="Scheduling"><meta itemprop=name content="The Meeting Diet: An Optimization Approach to Your Calendar"><meta itemprop=description content="If you don't optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
 “Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
-The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
-  <meta itemprop="datePublished" content="2025-08-28T05:00:00-07:00">
-  <meta itemprop="dateModified" content="2025-08-28T05:00:00-07:00">
-  <meta itemprop="wordCount" content="1827">
-  <meta itemprop="keywords" content="Optimization,Python,Scheduling">
-		
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="The Meeting Diet: An Optimization Approach to Your Calendar">
-  <meta name="twitter:description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”"><meta itemprop=datePublished content="2025-08-28T05:00:00-07:00"><meta itemprop=dateModified content="2025-08-28T05:00:00-07:00"><meta itemprop=wordCount content="1827"><meta itemprop=keywords content="Optimization,Python,Scheduling"><meta name=twitter:card content="summary"><meta name=twitter:title content="The Meeting Diet: An Optimization Approach to Your Calendar"><meta name=twitter:description content="If you don't optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
 “Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
-The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/extra.css">
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-		
-
-	
-	<script>
-	window.MathJax = {
-	tex: {
-		inlineMath: [['\\(', '\\)']],
-		displayMath: [['\\[', '\\]']],
-		processEscapes: true,
-		processEnvironments: true
-	},
-	options: {
-		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-	}
-	};
-	</script>
-	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <link rel="stylesheet" href="/css/extra.css">
-    <script src="/js/copy-button.js"></script>
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" rel="home">
-			<div class="logo__item logo__imagebox">
-					<img class="logo__img" src="/img/logo/wordmark-light.svg">
-				</div>
-		</a>
-	</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/">
-				
-				<span class="menu__text">Blog</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">
-				
-				<span class="menu__text">About</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/bio/">
-				
-				<span class="menu__text">behind the code</span>
-				
-			</a>
-		</li>
-	</ul>
-</nav>
-
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main" role="main">
-  <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">The Meeting Diet: An Optimization Approach to Your Calendar</h1>
-
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-08-28T05:00:00-07:00">
-              <strong>August 28, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/applied-modeling-and-simulation/"
-                 rel="category"><em>Applied Modeling and Simulation</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/optimization/"
-                 rel="tag">#optimization</a>, <a class="meta__link"
-                 href="/tags/python/"
-                 rel="tag">#Python</a>, <a class="meta__link"
-                 href="/tags/scheduling/"
-                 rel="tag">#scheduling</a></p></div>
-
-      <div class="share">
-  <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fmeeting-diet%2F&amp;text=The&#43;Meeting&#43;Diet%3A&#43;An&#43;Optimization&#43;Approach&#43;to&#43;Your&#43;Calendar" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
-  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fmeeting-diet%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
-  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fmeeting-diet%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fmeeting-diet%2F&amp;title=The&#43;Meeting&#43;Diet%3A&#43;An&#43;Optimization&#43;Approach&#43;to&#43;Your&#43;Calendar" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
-  <a class="share__btn" href="mailto:?subject=The%20Meeting%20Diet%3A%20An%20Optimization%20Approach%20to%20Your%20Calendar&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fmeeting-diet%2F" aria-label="Share via Email">@</a>
-
-  <button class="share__btn share__btn--native" type="button" aria-label="Share">Share</button>
-</div>
-
-<script>
-(function () {
-  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
-  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
-  btn.addEventListener('click', async () => {
-    try {
-      await navigator.share({
-        title: "\"The Meeting Diet: An Optimization Approach to Your Calendar\"",
-        url:   "\"http://localhost:1313/posts/meeting-diet/\""
-      });
-    } catch (_) {}
-  });
-})();
-</script>  
-
-    </header>
-
-    <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./meeting-diet.png" alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>If you don't optimize your schedule, your schedule will optimize you. Badly</em>
-  </figcaption>
-</figure>
-<p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
-<hr>
-<p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
-  <strong>0/1 knapsack problem with two constraints</strong>
-</a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
-<hr>
-<h2 id="the-thought-experiment">The Thought Experiment</h2>
-<p>Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn&rsquo;t fear of missing out, it&rsquo;s fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to AI to summarize?</p>
-<p>Now add two constraints:</p>
-<ul>
-<li>A <strong>time budget</strong> (say, three hours of meetings per week).</li>
-<li>An <strong>energy budget</strong> (say, ten units of attention before you burn out).</li>
-</ul>
-<p>Your challenge: select the subset of meetings that maximizes total value without breaking either budget.</p>
-<p>This is precisely the <strong>0/1 knapsack problem with two constraints</strong>. The logic is simple, but the combinations can be overwhelming without computational help. That&rsquo;s where optimization libraries and AI to scaffold the boilerplate come in.</p>
-<h2 id="modeling-the-problem">Modeling the Problem</h2>
-<p>To simulate the problem accurately (but tractably), we make the following simplifications:</p>
-<p><strong>Assumptions:</strong></p>
-<ul>
-<li>Each meeting has three attributes: <code>value</code>, <code>time</code>, and <code>energy</code>.</li>
-<li>Meetings are indivisible. You either attend or skip (no partial credit).</li>
-<li>Time and energy budgets are hard caps (no overdraw allowed).</li>
-<li>All values are known and deterministic (no surprises this week).</li>
-</ul>
-<p>With these assumptions, our task is to implement a binary decision variable for each meeting and solve a maximization problem subject to dual constraints.</p>
-<hr>
-<h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
-<p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong>ILP</strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong>PuLP</strong>, a lightweight open-source Python library for linear and integer programming (ILP). It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
-<p><strong>Prompt:</strong></p>
-<hr>
-<blockquote>
-<p><em>Write Python code using PuLP to solve a 0/1 knapsack where each item (meeting) has a value, a time cost, and an energy cost. Maximize value under two constraints: total time &lt;= TIME_BUDGET and total energy &lt;= ENERGY_BUDGET. Return the chosen meetings, total value, and totals for time and energy.</em></p></blockquote>
-<hr>
-<p>As you can see, this prompt took a little bit of problem-domain knowledge: namely, the mathematics of a 0/1 knapsack with dual constraints. That&rsquo;s the pattern with good prompts: you bake in just enough structure (variables, objective, constraints) so the model knows what to build. From there, you iterate by adding practical details the solver actually needs:</p>
-<ul>
-<li>
-<p><strong>Data schema</strong>: Specify each meeting&rsquo;s fields (name, value, time, energy), units (minutes), and example rows.</p>
-</li>
-<li>
-<p><strong>Feasibility &amp; edge cases</strong>: What if no solution fits? What if time or energy is zero?</p>
-</li>
-<li>
-<p><strong>Determinism</strong>: Ask to print solver status and selected items in a stable order.</p>
-</li>
-<li>
-<p><strong>Output contract</strong>: Require totals (value, time, energy) and a compact table for copy/paste.</p>
-</li>
-<li>
-<p><strong>Extensibility</strong>: Mention optional constraints (mandatory meetings, conflicts/overlaps) so the code scaffolds for growth.</p>
-</li>
-</ul>
-<p>A stronger, next-iteration prompt might read:</p>
-<hr>
-<blockquote>
-<p><em>Write Python code with PuLP to solve a 0/1 knapsack over meetings. Each meeting is a dict with name (str), value (int), time (minutes, int), and energy (int). Maximize total value subject to sum(time) ≤ TIME_BUDGET and sum(energy) ≤ ENERGY_BUDGET. If infeasible, print ‘No feasible selection&rsquo;. Otherwise, print a sorted table of selected meetings with columns: Name, Value, Time, Energy; and then totals. Include a function solve_meeting_diet(meetings, time_budget, energy_budget) that returns (chosen, total_value, total_time, total_energy), and a main() with 5 sample meetings. Print solver status.</em></p></blockquote>
-<hr>
-<p>This keeps the math crisp, but adds the engineering guardrails that turn a first-draft script into something you can run, read, and extend.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> pulp <span style="color:#ff79c6">import</span> LpProblem, LpMaximize, LpVariable, lpSum, LpBinary
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">solve_meeting_diet</span>(meetings, time_budget, energy_budget):
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Decision variables</span>
-</span></span><span style="display:flex;"><span>    x <span style="color:#ff79c6">=</span> {
-</span></span><span style="display:flex;"><span>        m[<span style="color:#f1fa8c">&#34;name&#34;</span>]: LpVariable(cat<span style="color:#ff79c6">=</span>LpBinary, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;x_</span><span style="color:#f1fa8c">{</span>i<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> i, m <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(meetings)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Model</span>
-</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">=</span> LpProblem(<span style="color:#f1fa8c">&#34;MeetingDiet&#34;</span>, LpMaximize)
-</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">+=</span> lpSum(m[<span style="color:#f1fa8c">&#34;value&#34;</span>] <span style="color:#ff79c6">*</span> x[m[<span style="color:#f1fa8c">&#34;name&#34;</span>]] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Constraints</span>
-</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">+=</span> lpSum(
-</span></span><span style="display:flex;"><span>        m[<span style="color:#f1fa8c">&#34;time&#34;</span>] <span style="color:#ff79c6">*</span> x[m[<span style="color:#f1fa8c">&#34;name&#34;</span>]] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings
-</span></span><span style="display:flex;"><span>    ) <span style="color:#ff79c6">&lt;=</span> time_budget
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">+=</span> lpSum(
-</span></span><span style="display:flex;"><span>        m[<span style="color:#f1fa8c">&#34;energy&#34;</span>] <span style="color:#ff79c6">*</span> x[m[<span style="color:#f1fa8c">&#34;name&#34;</span>]] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings
-</span></span><span style="display:flex;"><span>    ) <span style="color:#ff79c6">&lt;=</span> energy_budget
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Solve</span>
-</span></span><span style="display:flex;"><span>    model<span style="color:#ff79c6">.</span>solve()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Gather results</span>
-</span></span><span style="display:flex;"><span>    attend <span style="color:#ff79c6">=</span> [m <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings <span style="color:#ff79c6">if</span> x[m[<span style="color:#f1fa8c">&#34;name&#34;</span>]]<span style="color:#ff79c6">.</span>value() <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span>]
-</span></span><span style="display:flex;"><span>    chosen_names <span style="color:#ff79c6">=</span> {m[<span style="color:#f1fa8c">&#34;name&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend}
-</span></span><span style="display:flex;"><span>    total_value <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sum</span>(m[<span style="color:#f1fa8c">&#34;value&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend)
-</span></span><span style="display:flex;"><span>    total_time <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sum</span>(m[<span style="color:#f1fa8c">&#34;time&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend)
-</span></span><span style="display:flex;"><span>    total_energy <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sum</span>(m[<span style="color:#f1fa8c">&#34;energy&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> attend, chosen_names, total_value, total_time, total_energy
-</span></span></code></pre></div><hr>
-<h3 id="under-the-hood-why-this-is-really-a-matrix-problem">Under the Hood: Why This Is Really a Matrix Problem</h3>
-<p>Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a <em>constraint matrix</em>.</p>
-<p>When you run the model, the solver crunches through that matrix using linear algebra techniques to find the best combination of 1s and 0s (attend vs skip). So while you don&rsquo;t see the math spelled out, the engine making it all work is pure matrix computation.</p>
-<hr>
-<h2 id="simulation-choosing-meetings">Simulation: Choosing Meetings</h2>
-<p>Let&rsquo;s run the model and print results. Here we prompt AI to write a simple main() block that reports which meetings were chosen and the totals.</p>
-<p><strong>Prompt:</strong></p>
-<hr>
-<blockquote>
-<p><em>Extend the PuLP meeting diet example by printing the selected meetings and totals for value, time, and energy.</em></p></blockquote>
-<p>I took the generated code, added some sample meetings, and ran the script.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
-</span></span><span style="display:flex;"><span>    meetings <span style="color:#ff79c6">=</span> [
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;Weekly Staff&#34;</span>,  <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">7</span>,  <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">60</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">3</span>},
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;Design Review&#34;</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">9</span>,  <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">90</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">6</span>},
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;1:1 Mentoring&#34;</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">8</span>,  <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">45</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">2</span>},
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;Vendor Pitch&#34;</span>,  <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">4</span>,  <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">30</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">2</span>},
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;Roadmap Sync&#34;</span>,  <span style="color:#f1fa8c">&#34;value&#34;</span>: <span style="color:#bd93f9">10</span>, <span style="color:#f1fa8c">&#34;time&#34;</span>: <span style="color:#bd93f9">50</span>, <span style="color:#f1fa8c">&#34;energy&#34;</span>: <span style="color:#bd93f9">4</span>},
-</span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    TIME_BUDGET <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">180</span>
-</span></span><span style="display:flex;"><span>    ENERGY_BUDGET <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    attend, chosen_names, total_value, total_time, total_energy <span style="color:#ff79c6">=</span> (
-</span></span><span style="display:flex;"><span>        solve_meeting_diet(
-</span></span><span style="display:flex;"><span>            meetings,
-</span></span><span style="display:flex;"><span>            TIME_BUDGET,
-</span></span><span style="display:flex;"><span>            ENERGY_BUDGET,
-</span></span><span style="display:flex;"><span>        )
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Selected meetings:&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> attend:
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(
-</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34; - </span><span style="color:#f1fa8c">{</span>m[<span style="color:#f1fa8c">&#39;name&#39;</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> &#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;(v=</span><span style="color:#f1fa8c">{</span>m[<span style="color:#f1fa8c">&#39;value&#39;</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, t=</span><span style="color:#f1fa8c">{</span>m[<span style="color:#f1fa8c">&#39;time&#39;</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">m, e=</span><span style="color:#f1fa8c">{</span>m[<span style="color:#f1fa8c">&#39;energy&#39;</span>]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">)&#34;</span>
-</span></span><span style="display:flex;"><span>        )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Total value = </span><span style="color:#f1fa8c">{</span>total_value<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Total time  = </span><span style="color:#f1fa8c">{</span>total_time<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> minutes&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Total energy= </span><span style="color:#f1fa8c">{</span>total_energy<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> units&#34;</span>)
-</span></span></code></pre></div><br/>
-<p><strong>Sample Output:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Result <span style="color:#ff79c6">-</span> Optimal solution found
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Objective value:                25.<span style="color:#50fa7b">00000000</span>
-</span></span><span style="display:flex;"><span>Enumerated nodes:               0
-</span></span><span style="display:flex;"><span>Total iterations:               0
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">Time</span> (CPU seconds):             0.<span style="color:#50fa7b">01</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">Time</span> (Wallclock seconds):       0.<span style="color:#50fa7b">01</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Option <span style="color:#ff79c6">for</span> printingOptions changed from normal to all
-</span></span><span style="display:flex;"><span>Total <span style="color:#50fa7b">time</span> (CPU seconds):       0.<span style="color:#50fa7b">03</span>   (Wallclock seconds):       0.<span style="color:#50fa7b">03</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Selected meetings:
-</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">-</span> Weekly <span style="color:#50fa7b">Staff</span> (v<span style="color:#ff79c6">=</span>7, t<span style="color:#ff79c6">=</span>60m, e<span style="color:#ff79c6">=</span>3)
-</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">-</span> 1:1 <span style="color:#50fa7b">Mentoring</span> (v<span style="color:#ff79c6">=</span>8, t<span style="color:#ff79c6">=</span>45m, e<span style="color:#ff79c6">=</span>2)
-</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">-</span> Roadmap <span style="color:#50fa7b">Sync</span> (v<span style="color:#ff79c6">=</span>10, t<span style="color:#ff79c6">=</span>50m, e<span style="color:#ff79c6">=</span>4)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Total value <span style="color:#ff79c6">=</span> 25
-</span></span><span style="display:flex;"><span>Total time  <span style="color:#ff79c6">=</span> 155 minutes
-</span></span><span style="display:flex;"><span>Total energy<span style="color:#ff79c6">=</span> 9 units
-</span></span></code></pre></div><hr>
-<h2 id="making-the-results-visual">Making the Results Visual</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="Plot of Meeting Value Efficiency (Chosen vs. Skipped)" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings to attend under the time and energy budgets and red bars marking those to decline.</em>
-  </figcaption>
-</figure>
-<p>At first, I asked the AI for a quick visualization. The initial result was a plain vertical bar chart: it technically worked, but it looked generic and wasn&rsquo;t presentation-ready. Specifically, I realized the graph needed to:</p>
-<ul>
-<li>Sort meetings by efficiency</li>
-<li>Show labels clearly</li>
-<li>Differentiate meetings to attend vs decline with a legend</li>
-</ul>
-<p><strong>Prompt:</strong></p>
-<hr>
-<blockquote>
-<p><em>Using matplotlib, plot a horizontal bar chart of meetings sorted by value-per-minute. Color attended meetings green and declined meetings red. Add a legend, gridlines, and numeric labels at the end of each bar. Use a clear title and make the chart presentation-quality.</em></p></blockquote>
-<hr>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_meetings</span>(
-</span></span><span style="display:flex;"><span>    meetings,
-</span></span><span style="display:flex;"><span>    chosen_names,
-</span></span><span style="display:flex;"><span>    title<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Meeting Value Efficiency (Attend vs Decline)&#34;</span>,
-</span></span><span style="display:flex;"><span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">from</span> matplotlib.patches <span style="color:#ff79c6">import</span> Patch
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Compute value-per-minute ratios (avoid div-by-zero)</span>
-</span></span><span style="display:flex;"><span>    names   <span style="color:#ff79c6">=</span> [m[<span style="color:#f1fa8c">&#34;name&#34;</span>] <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings]
-</span></span><span style="display:flex;"><span>    ratios <span style="color:#ff79c6">=</span> [
-</span></span><span style="display:flex;"><span>        (m[<span style="color:#f1fa8c">&#34;value&#34;</span>] <span style="color:#ff79c6">/</span> m[<span style="color:#f1fa8c">&#34;time&#34;</span>]) <span style="color:#ff79c6">if</span> m[<span style="color:#f1fa8c">&#34;time&#34;</span>] <span style="color:#ff79c6">else</span> <span style="color:#bd93f9">0.0</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings
-</span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    status <span style="color:#ff79c6">=</span> [
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Attend&#34;</span> <span style="color:#ff79c6">if</span> m[<span style="color:#f1fa8c">&#34;name&#34;</span>] <span style="color:#ff79c6">in</span> chosen_names <span style="color:#ff79c6">else</span> <span style="color:#f1fa8c">&#34;Decline&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> m <span style="color:#ff79c6">in</span> meetings
-</span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Sort by ratio (desc) for a cleaner story</span>
-</span></span><span style="display:flex;"><span>    order <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sorted</span>(
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#8be9fd;font-style:italic">len</span>(meetings)),
-</span></span><span style="display:flex;"><span>        key<span style="color:#ff79c6">=</span><span style="color:#ff79c6">lambda</span> i: ratios[i],
-</span></span><span style="display:flex;"><span>        reverse<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>    names_sorted  <span style="color:#ff79c6">=</span> [names[i] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> order]
-</span></span><span style="display:flex;"><span>    ratios_sorted <span style="color:#ff79c6">=</span> [ratios[i] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> order]
-</span></span><span style="display:flex;"><span>    status_sorted <span style="color:#ff79c6">=</span> [status[i] <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> order]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Color map</span>
-</span></span><span style="display:flex;"><span>    colors <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;Attend&#34;</span>: <span style="color:#f1fa8c">&#34;#2ca02c&#34;</span>,  <span style="color:#6272a4"># green</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#f1fa8c">&#34;Decline&#34;</span>: <span style="color:#f1fa8c">&#34;#d62728&#34;</span>}  <span style="color:#6272a4"># red</span>
-</span></span><span style="display:flex;"><span>    bar_colors <span style="color:#ff79c6">=</span> [colors[s] <span style="color:#ff79c6">for</span> s <span style="color:#ff79c6">in</span> status_sorted]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Figure</span>
-</span></span><span style="display:flex;"><span>    fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">6</span>), dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">120</span>)
-</span></span><span style="display:flex;"><span>    bars <span style="color:#ff79c6">=</span> ax<span style="color:#ff79c6">.</span>barh(names_sorted, 
-</span></span><span style="display:flex;"><span>                   ratios_sorted, 
-</span></span><span style="display:flex;"><span>                   color<span style="color:#ff79c6">=</span>bar_colors, 
-</span></span><span style="display:flex;"><span>                   edgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;black&#34;</span>, 
-</span></span><span style="display:flex;"><span>                   linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.5</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Labels &amp; title</span>
-</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;Value per Minute (higher is better)&#34;</span>, labelpad<span style="color:#ff79c6">=</span><span style="color:#bd93f9">8</span>)
-</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_title(title, pad<span style="color:#ff79c6">=</span><span style="color:#bd93f9">12</span>, fontweight<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;bold&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Grid for readability</span>
-</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>xaxis<span style="color:#ff79c6">.</span>grid(<span style="color:#ff79c6">True</span>, linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;--&#34;</span>, alpha<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.35</span>)
-</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>set_axisbelow(<span style="color:#ff79c6">True</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Show values at end of bars</span>
-</span></span><span style="display:flex;"><span>    xmax <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">max</span>(ratios_sorted) <span style="color:#ff79c6">if</span> ratios_sorted <span style="color:#ff79c6">else</span> <span style="color:#bd93f9">0.0</span>
-</span></span><span style="display:flex;"><span>    pad <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.02</span> <span style="color:#ff79c6">*</span> (xmax <span style="color:#ff79c6">if</span> xmax <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">else</span> <span style="color:#bd93f9">1.0</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> bar, r <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(bars, ratios_sorted):
-</span></span><span style="display:flex;"><span>        ax<span style="color:#ff79c6">.</span>text(bar<span style="color:#ff79c6">.</span>get_width() <span style="color:#ff79c6">+</span> pad, bar<span style="color:#ff79c6">.</span>get_y() <span style="color:#ff79c6">+</span> bar<span style="color:#ff79c6">.</span>get_height()<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>r<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>, va<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;center&#34;</span>, ha<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;left&#34;</span>, fontsize<span style="color:#ff79c6">=</span><span style="color:#bd93f9">9</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Legend</span>
-</span></span><span style="display:flex;"><span>    legend_handles <span style="color:#ff79c6">=</span> [
-</span></span><span style="display:flex;"><span>        Patch(
-</span></span><span style="display:flex;"><span>            facecolor<span style="color:#ff79c6">=</span>colors[<span style="color:#f1fa8c">&#34;Attend&#34;</span>],
-</span></span><span style="display:flex;"><span>            edgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;black&#34;</span>,
-</span></span><span style="display:flex;"><span>            label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Attend&#34;</span>,
-</span></span><span style="display:flex;"><span>        ),
-</span></span><span style="display:flex;"><span>        Patch(
-</span></span><span style="display:flex;"><span>            facecolor<span style="color:#ff79c6">=</span>colors[<span style="color:#f1fa8c">&#34;Decline&#34;</span>],
-</span></span><span style="display:flex;"><span>            edgecolor<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;black&#34;</span>,
-</span></span><span style="display:flex;"><span>            label<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Decline&#34;</span>,
-</span></span><span style="display:flex;"><span>        ),
-</span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>legend(
-</span></span><span style="display:flex;"><span>        handles<span style="color:#ff79c6">=</span>legend_handles,
-</span></span><span style="display:flex;"><span>        frameon<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>,
-</span></span><span style="display:flex;"><span>        loc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;lower right&#34;</span>,
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Invert y to have highest ratio on top</span>
-</span></span><span style="display:flex;"><span>    ax<span style="color:#ff79c6">.</span>invert_yaxis()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Tight layout; extra space for long labels</span>
-</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
-</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>subplots_adjust(left<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.28</span>, right<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.95</span>, top<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.9</span>, bottom<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.12</span>)
-</span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
-</span></span></code></pre></div><hr>
-<h2 id="what-we-learned">What We Learned</h2>
-<p>By modeling your calendar as a knapsack, you can quantify trade-offs instead of relying on gut feel. We also learned how to craft precise AI prompts that generate optimization code, and how to refine those prompts to add reporting and visualization. The big win: you now have a framework for saying no with math.</p>
-<hr>
-<h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
-<p>Ready to push this further? Try these extensions:</p>
-<h3 id="beginner-level-quick-fixes--calibration">Beginner Level: Quick Fixes &amp; Calibration</h3>
-<ul>
-<li>
-<p><strong>Mandatory meetings:</strong> Add a constraint that Weekly Staff must always be selected.</p>
-</li>
-<li>
-<p><strong>Budget tuning:</strong> Run the model with TIME_BUDGET = 120, 180, 240 and see how choices shift.</p>
-</li>
-<li>
-<p><strong>Energy-only mode:</strong> Ignore time constraint; see which meetings blow up your energy budget first.</p>
-</li>
-</ul>
-<hr>
-<h3 id="intermediate-level-geometry--body-modeling">Intermediate Level: Geometry &amp; Body Modeling</h3>
-<ul>
-<li>
-<p><strong>Overlaps:</strong> Add a constraint to forbid selecting two meetings that overlap in time.</p>
-</li>
-<li>
-<p><strong>Daily limits:</strong> Add a rule like “no more than 2 hours of meetings per day.”</p>
-</li>
-<li>
-<p><strong>Context switching:</strong> Penalize picking too many short meetings.</p>
-</li>
-</ul>
-<hr>
-<h3 id="advanced-level-environment--stochasticity">Advanced Level: Environment &amp; Stochasticity</h3>
-<ul>
-<li>
-<p><strong>Uncertain values:</strong> Sample meeting values from a probability distribution (e.g., Normal).</p>
-</li>
-<li>
-<p><strong>Monte Carlo:</strong> Run 100 simulations of random meeting values and see which meetings are most often chosen.</p>
-</li>
-<li>
-<p><strong>Multi-objective optimization:</strong> Balance value against “fatigue penalty” explicitly.</p>
-</li>
-</ul>
-<hr>
-<h2 id="closing-thoughts">Closing Thoughts</h2>
-<p>Meetings don&rsquo;t have to consume your week. With a little optimization, you can put your calendar on a diet that actually helps you get healthier at work. To paraphrase the old expression, <strong>run your calendar, or your calendar will run you</strong>.</p>
-<hr>
-<h2 id="try-it-yourself">Try It Yourself</h2>
-<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/meeting-diet" target="_blank" rel="noopener noreferrer">
-  Download the full code on GitHub
-</a>
-</p>
-    </div>
-    <footer class="post__footer">
-      
-<div class="post__tags tags clearfix">
-	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
-	<ul class="tags__list">
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/optimization/" rel="tag">optimization</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/scheduling/" rel="tag">scheduling</a>
-		</li>
-	</ul>
-</div>
-      
-    </footer>
-  </article>
-</main>
-
-
-
-
-			</div>
-			<aside class="sidebar"><div class="widget widget-bio">
-  <h4 class="widget__title">Behind the Code</h4>
-  <div class="widget__content">
-
-    <div class="bio-wrap">
-      
-        <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
-        </a>
-      
-
-      
-      
-        <div class="bio-text"><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/extra.css><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=192x192 href=/android-chrome-192x192.png><link rel=icon type=image/png sizes=512x512 href=/android-chrome-512x512.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV2PMS61P"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")}</script><script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/css/extra.css><script src=/js/copy-button.js></script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/img/logo/wordmark-light.svg></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/><span class=menu__text>Blog</span></a></li><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li><li class=menu__item><a class=menu__link href=/bio/><span class=menu__text>behind the code</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>The Meeting Diet: An Optimization Approach to Your Calendar</h1><div class="post__meta meta"><p class=meta__line><time datetime=2025-08-28T05:00:00-07:00><strong>August 28, 2025</strong>
+</time>&nbsp;•&nbsp;
+<strong>Category:</strong>&nbsp;<a class=meta__link href=/categories/applied-modeling-and-simulation/ rel=category><em>Applied Modeling and Simulation</em></a>&nbsp;•&nbsp;
+<strong>Tags:</strong>&nbsp;<a class=meta__link href=/tags/optimization/ rel=tag>#optimization</a>, <a class=meta__link href=/tags/python/ rel=tag>#Python</a>, <a class=meta__link href=/tags/scheduling/ rel=tag>#scheduling</a></p></div><div class=share><span class=share__label>Share:</span>
+<a class=share__btn href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fmeeting-diet%2F&amp;text=The+Meeting+Diet%3A+An+Optimization+Approach+to+Your+Calendar" target=_blank rel="noopener noreferrer" aria-label="Share on X">X</a>
+<a class=share__btn href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fmeeting-diet%2F" target=_blank rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+<a class=share__btn href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftomarcher.io%2Fposts%2Fmeeting-diet%2F" target=_blank rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+<a class=share__btn href="https://www.reddit.com/submit?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fmeeting-diet%2F&amp;title=The+Meeting+Diet%3A+An+Optimization+Approach+to+Your+Calendar" target=_blank rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
+<a class=share__btn href="mailto:?subject=The%20Meeting%20Diet%3A%20An%20Optimization%20Approach%20to%20Your%20Calendar&amp;body=https%3A%2F%2Ftomarcher.io%2Fposts%2Fmeeting-diet%2F" aria-label="Share via Email">@</a>
+<button class="share__btn share__btn--native" type=button aria-label=Share>Share</button></div><script>(function(){const e=document.currentScript.previousElementSibling.querySelector(".share__btn--native");if(!e||!navigator.share){e&&(e.style.display="none");return}e.addEventListener("click",async()=>{try{await navigator.share({title:'"The Meeting Diet: An Optimization Approach to Your Calendar"',url:'"https://tomarcher.io/posts/meeting-diet/"'})}catch{}})})()</script></header><div class="content post__content clearfix"><figure style="float:right;margin:0 20px 10px;width:250px;text-align:center"><img src=./meeting-diet.png alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width=250 style="display:block;margin:0 auto"><figcaption style=font-size:.9em;color:#555;margin-top:5px><em>If you don't optimize your schedule, your schedule will optimize you. Badly</em></figcaption></figure><p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p><hr><blockquote><p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote><hr><p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href=https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem target=_blank rel="noopener noreferrer"><strong>0/1 knapsack problem with two constraints</strong>
+</a>, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p><hr><h2 id=the-thought-experiment>The Thought Experiment</h2><p>Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn&rsquo;t fear of missing out, it&rsquo;s fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to AI to summarize?</p><p>Now add two constraints:</p><ul><li>A <strong>time budget</strong> (say, three hours of meetings per week).</li><li>An <strong>energy budget</strong> (say, ten units of attention before you burn out).</li></ul><p>Your challenge: select the subset of meetings that maximizes total value without breaking either budget.</p><p>This is precisely the <strong>0/1 knapsack problem with two constraints</strong>. The logic is simple, but the combinations can be overwhelming without computational help. That&rsquo;s where optimization libraries and AI to scaffold the boilerplate come in.</p><h2 id=modeling-the-problem>Modeling the Problem</h2><p>To simulate the problem accurately (but tractably), we make the following simplifications:</p><p><strong>Assumptions:</strong></p><ul><li>Each meeting has three attributes: <code>value</code>, <code>time</code>, and <code>energy</code>.</li><li>Meetings are indivisible. You either attend or skip (no partial credit).</li><li>Time and energy budgets are hard caps (no overdraw allowed).</li><li>All values are known and deterministic (no surprises this week).</li></ul><p>With these assumptions, our task is to implement a binary decision variable for each meeting and solve a maximization problem subject to dual constraints.</p><hr><h2 id=using-ai-to-scaffold-the-code>Using AI to Scaffold the Code</h2><p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong>ILP</strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong>PuLP</strong>, a lightweight open-source Python library for linear and integer programming (ILP). It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p><p><strong>Prompt:</strong></p><hr><blockquote><p><em>Write Python code using PuLP to solve a 0/1 knapsack where each item (meeting) has a value, a time cost, and an energy cost. Maximize value under two constraints: total time &lt;= TIME_BUDGET and total energy &lt;= ENERGY_BUDGET. Return the chosen meetings, total value, and totals for time and energy.</em></p></blockquote><hr><p>As you can see, this prompt took a little bit of problem-domain knowledge: namely, the mathematics of a 0/1 knapsack with dual constraints. That&rsquo;s the pattern with good prompts: you bake in just enough structure (variables, objective, constraints) so the model knows what to build. From there, you iterate by adding practical details the solver actually needs:</p><ul><li><p><strong>Data schema</strong>: Specify each meeting&rsquo;s fields (name, value, time, energy), units (minutes), and example rows.</p></li><li><p><strong>Feasibility & edge cases</strong>: What if no solution fits? What if time or energy is zero?</p></li><li><p><strong>Determinism</strong>: Ask to print solver status and selected items in a stable order.</p></li><li><p><strong>Output contract</strong>: Require totals (value, time, energy) and a compact table for copy/paste.</p></li><li><p><strong>Extensibility</strong>: Mention optional constraints (mandatory meetings, conflicts/overlaps) so the code scaffolds for growth.</p></li></ul><p>A stronger, next-iteration prompt might read:</p><hr><blockquote><p><em>Write Python code with PuLP to solve a 0/1 knapsack over meetings. Each meeting is a dict with name (str), value (int), time (minutes, int), and energy (int). Maximize total value subject to sum(time) ≤ TIME_BUDGET and sum(energy) ≤ ENERGY_BUDGET. If infeasible, print ‘No feasible selection&rsquo;. Otherwise, print a sorted table of selected meetings with columns: Name, Value, Time, Energy; and then totals. Include a function solve_meeting_diet(meetings, time_budget, energy_budget) that returns (chosen, total_value, total_time, total_energy), and a main() with 5 sample meetings. Print solver status.</em></p></blockquote><hr><p>This keeps the math crisp, but adds the engineering guardrails that turn a first-draft script into something you can run, read, and extend.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>from</span> pulp <span style=color:#ff79c6>import</span> LpProblem, LpMaximize, LpVariable, lpSum, LpBinary
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>solve_meeting_diet</span>(meetings, time_budget, energy_budget):
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Decision variables</span>
+</span></span><span style=display:flex><span>    x <span style=color:#ff79c6>=</span> {
+</span></span><span style=display:flex><span>        m[<span style=color:#f1fa8c>&#34;name&#34;</span>]: LpVariable(cat<span style=color:#ff79c6>=</span>LpBinary, name<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;x_</span><span style=color:#f1fa8c>{</span>i<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>for</span> i, m <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>enumerate</span>(meetings)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Model</span>
+</span></span><span style=display:flex><span>    model <span style=color:#ff79c6>=</span> LpProblem(<span style=color:#f1fa8c>&#34;MeetingDiet&#34;</span>, LpMaximize)
+</span></span><span style=display:flex><span>    model <span style=color:#ff79c6>+=</span> lpSum(m[<span style=color:#f1fa8c>&#34;value&#34;</span>] <span style=color:#ff79c6>*</span> x[m[<span style=color:#f1fa8c>&#34;name&#34;</span>]] <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> meetings)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Constraints</span>
+</span></span><span style=display:flex><span>    model <span style=color:#ff79c6>+=</span> lpSum(
+</span></span><span style=display:flex><span>        m[<span style=color:#f1fa8c>&#34;time&#34;</span>] <span style=color:#ff79c6>*</span> x[m[<span style=color:#f1fa8c>&#34;name&#34;</span>]] <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> meetings
+</span></span><span style=display:flex><span>    ) <span style=color:#ff79c6>&lt;=</span> time_budget
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    model <span style=color:#ff79c6>+=</span> lpSum(
+</span></span><span style=display:flex><span>        m[<span style=color:#f1fa8c>&#34;energy&#34;</span>] <span style=color:#ff79c6>*</span> x[m[<span style=color:#f1fa8c>&#34;name&#34;</span>]] <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> meetings
+</span></span><span style=display:flex><span>    ) <span style=color:#ff79c6>&lt;=</span> energy_budget
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Solve</span>
+</span></span><span style=display:flex><span>    model<span style=color:#ff79c6>.</span>solve()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Gather results</span>
+</span></span><span style=display:flex><span>    attend <span style=color:#ff79c6>=</span> [m <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> meetings <span style=color:#ff79c6>if</span> x[m[<span style=color:#f1fa8c>&#34;name&#34;</span>]]<span style=color:#ff79c6>.</span>value() <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>1</span>]
+</span></span><span style=display:flex><span>    chosen_names <span style=color:#ff79c6>=</span> {m[<span style=color:#f1fa8c>&#34;name&#34;</span>] <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> attend}
+</span></span><span style=display:flex><span>    total_value <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>sum</span>(m[<span style=color:#f1fa8c>&#34;value&#34;</span>] <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> attend)
+</span></span><span style=display:flex><span>    total_time <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>sum</span>(m[<span style=color:#f1fa8c>&#34;time&#34;</span>] <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> attend)
+</span></span><span style=display:flex><span>    total_energy <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>sum</span>(m[<span style=color:#f1fa8c>&#34;energy&#34;</span>] <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> attend)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> attend, chosen_names, total_value, total_time, total_energy
+</span></span></code></pre></div><hr><h3 id=under-the-hood-why-this-is-really-a-matrix-problem>Under the Hood: Why This Is Really a Matrix Problem</h3><p>Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a <em>constraint matrix</em>.</p><p>When you run the model, the solver crunches through that matrix using linear algebra techniques to find the best combination of 1s and 0s (attend vs skip). So while you don&rsquo;t see the math spelled out, the engine making it all work is pure matrix computation.</p><hr><h2 id=simulation-choosing-meetings>Simulation: Choosing Meetings</h2><p>Let&rsquo;s run the model and print results. Here we prompt AI to write a simple main() block that reports which meetings were chosen and the totals.</p><p><strong>Prompt:</strong></p><hr><blockquote><p><em>Extend the PuLP meeting diet example by printing the selected meetings and totals for value, time, and energy.</em></p></blockquote><p>I took the generated code, added some sample meetings, and ran the script.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>main</span>():
+</span></span><span style=display:flex><span>    meetings <span style=color:#ff79c6>=</span> [
+</span></span><span style=display:flex><span>        {<span style=color:#f1fa8c>&#34;name&#34;</span>: <span style=color:#f1fa8c>&#34;Weekly Staff&#34;</span>,  <span style=color:#f1fa8c>&#34;value&#34;</span>: <span style=color:#bd93f9>7</span>,  <span style=color:#f1fa8c>&#34;time&#34;</span>: <span style=color:#bd93f9>60</span>, <span style=color:#f1fa8c>&#34;energy&#34;</span>: <span style=color:#bd93f9>3</span>},
+</span></span><span style=display:flex><span>        {<span style=color:#f1fa8c>&#34;name&#34;</span>: <span style=color:#f1fa8c>&#34;Design Review&#34;</span>, <span style=color:#f1fa8c>&#34;value&#34;</span>: <span style=color:#bd93f9>9</span>,  <span style=color:#f1fa8c>&#34;time&#34;</span>: <span style=color:#bd93f9>90</span>, <span style=color:#f1fa8c>&#34;energy&#34;</span>: <span style=color:#bd93f9>6</span>},
+</span></span><span style=display:flex><span>        {<span style=color:#f1fa8c>&#34;name&#34;</span>: <span style=color:#f1fa8c>&#34;1:1 Mentoring&#34;</span>, <span style=color:#f1fa8c>&#34;value&#34;</span>: <span style=color:#bd93f9>8</span>,  <span style=color:#f1fa8c>&#34;time&#34;</span>: <span style=color:#bd93f9>45</span>, <span style=color:#f1fa8c>&#34;energy&#34;</span>: <span style=color:#bd93f9>2</span>},
+</span></span><span style=display:flex><span>        {<span style=color:#f1fa8c>&#34;name&#34;</span>: <span style=color:#f1fa8c>&#34;Vendor Pitch&#34;</span>,  <span style=color:#f1fa8c>&#34;value&#34;</span>: <span style=color:#bd93f9>4</span>,  <span style=color:#f1fa8c>&#34;time&#34;</span>: <span style=color:#bd93f9>30</span>, <span style=color:#f1fa8c>&#34;energy&#34;</span>: <span style=color:#bd93f9>2</span>},
+</span></span><span style=display:flex><span>        {<span style=color:#f1fa8c>&#34;name&#34;</span>: <span style=color:#f1fa8c>&#34;Roadmap Sync&#34;</span>,  <span style=color:#f1fa8c>&#34;value&#34;</span>: <span style=color:#bd93f9>10</span>, <span style=color:#f1fa8c>&#34;time&#34;</span>: <span style=color:#bd93f9>50</span>, <span style=color:#f1fa8c>&#34;energy&#34;</span>: <span style=color:#bd93f9>4</span>},
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    TIME_BUDGET <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>180</span>
+</span></span><span style=display:flex><span>    ENERGY_BUDGET <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>10</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    attend, chosen_names, total_value, total_time, total_energy <span style=color:#ff79c6>=</span> (
+</span></span><span style=display:flex><span>        solve_meeting_diet(
+</span></span><span style=display:flex><span>            meetings,
+</span></span><span style=display:flex><span>            TIME_BUDGET,
+</span></span><span style=display:flex><span>            ENERGY_BUDGET,
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Selected meetings:&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> attend:
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd;font-style:italic>print</span>(
+</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34; - </span><span style=color:#f1fa8c>{</span>m[<span style=color:#f1fa8c>&#39;name&#39;</span>]<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c> &#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;(v=</span><span style=color:#f1fa8c>{</span>m[<span style=color:#f1fa8c>&#39;value&#39;</span>]<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>, t=</span><span style=color:#f1fa8c>{</span>m[<span style=color:#f1fa8c>&#39;time&#39;</span>]<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>m, e=</span><span style=color:#f1fa8c>{</span>m[<span style=color:#f1fa8c>&#39;energy&#39;</span>]<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>)&#34;</span>
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>Total value = </span><span style=color:#f1fa8c>{</span>total_value<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;Total time  = </span><span style=color:#f1fa8c>{</span>total_time<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c> minutes&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;Total energy= </span><span style=color:#f1fa8c>{</span>total_energy<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c> units&#34;</span>)
+</span></span></code></pre></div><br><p><strong>Sample Output:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Result <span style=color:#ff79c6>-</span> Optimal solution found
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Objective value:                25.<span style=color:#50fa7b>00000000</span>
+</span></span><span style=display:flex><span>Enumerated nodes:               0
+</span></span><span style=display:flex><span>Total iterations:               0
+</span></span><span style=display:flex><span><span style=color:#50fa7b>Time</span> (CPU seconds):             0.<span style=color:#50fa7b>01</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>Time</span> (Wallclock seconds):       0.<span style=color:#50fa7b>01</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Option <span style=color:#ff79c6>for</span> printingOptions changed from normal to all
+</span></span><span style=display:flex><span>Total <span style=color:#50fa7b>time</span> (CPU seconds):       0.<span style=color:#50fa7b>03</span>   (Wallclock seconds):       0.<span style=color:#50fa7b>03</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Selected meetings:
+</span></span><span style=display:flex><span> <span style=color:#ff79c6>-</span> Weekly <span style=color:#50fa7b>Staff</span> (v<span style=color:#ff79c6>=</span>7, t<span style=color:#ff79c6>=</span>60m, e<span style=color:#ff79c6>=</span>3)
+</span></span><span style=display:flex><span> <span style=color:#ff79c6>-</span> 1:1 <span style=color:#50fa7b>Mentoring</span> (v<span style=color:#ff79c6>=</span>8, t<span style=color:#ff79c6>=</span>45m, e<span style=color:#ff79c6>=</span>2)
+</span></span><span style=display:flex><span> <span style=color:#ff79c6>-</span> Roadmap <span style=color:#50fa7b>Sync</span> (v<span style=color:#ff79c6>=</span>10, t<span style=color:#ff79c6>=</span>50m, e<span style=color:#ff79c6>=</span>4)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Total value <span style=color:#ff79c6>=</span> 25
+</span></span><span style=display:flex><span>Total time  <span style=color:#ff79c6>=</span> 155 minutes
+</span></span><span style=display:flex><span>Total energy<span style=color:#ff79c6>=</span> 9 units
+</span></span></code></pre></div><hr><h2 id=making-the-results-visual>Making the Results Visual</h2><figure style="float:right;margin:0 20px 10px;width:400px;text-align:center"><img src=./plot.png alt="Plot of Meeting Value Efficiency (Chosen vs. Skipped)" width=400 style="display:block;margin:0 auto"><figcaption style=font-size:.9em;color:#555;margin-top:5px><em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings to attend under the time and energy budgets and red bars marking those to decline.</em></figcaption></figure><p>At first, I asked the AI for a quick visualization. The initial result was a plain vertical bar chart: it technically worked, but it looked generic and wasn&rsquo;t presentation-ready. Specifically, I realized the graph needed to:</p><ul><li>Sort meetings by efficiency</li><li>Show labels clearly</li><li>Differentiate meetings to attend vs decline with a legend</li></ul><p><strong>Prompt:</strong></p><hr><blockquote><p><em>Using matplotlib, plot a horizontal bar chart of meetings sorted by value-per-minute. Color attended meetings green and declined meetings red. Add a legend, gridlines, and numeric labels at the end of each bar. Use a clear title and make the chart presentation-quality.</em></p></blockquote><hr><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>plot_meetings</span>(
+</span></span><span style=display:flex><span>    meetings,
+</span></span><span style=display:flex><span>    chosen_names,
+</span></span><span style=display:flex><span>    title<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;Meeting Value Efficiency (Attend vs Decline)&#34;</span>,
+</span></span><span style=display:flex><span>):
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>import</span> matplotlib.pyplot <span style=color:#ff79c6>as</span> plt
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>from</span> matplotlib.patches <span style=color:#ff79c6>import</span> Patch
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Compute value-per-minute ratios (avoid div-by-zero)</span>
+</span></span><span style=display:flex><span>    names   <span style=color:#ff79c6>=</span> [m[<span style=color:#f1fa8c>&#34;name&#34;</span>] <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> meetings]
+</span></span><span style=display:flex><span>    ratios <span style=color:#ff79c6>=</span> [
+</span></span><span style=display:flex><span>        (m[<span style=color:#f1fa8c>&#34;value&#34;</span>] <span style=color:#ff79c6>/</span> m[<span style=color:#f1fa8c>&#34;time&#34;</span>]) <span style=color:#ff79c6>if</span> m[<span style=color:#f1fa8c>&#34;time&#34;</span>] <span style=color:#ff79c6>else</span> <span style=color:#bd93f9>0.0</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> meetings
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    status <span style=color:#ff79c6>=</span> [
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Attend&#34;</span> <span style=color:#ff79c6>if</span> m[<span style=color:#f1fa8c>&#34;name&#34;</span>] <span style=color:#ff79c6>in</span> chosen_names <span style=color:#ff79c6>else</span> <span style=color:#f1fa8c>&#34;Decline&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>for</span> m <span style=color:#ff79c6>in</span> meetings
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Sort by ratio (desc) for a cleaner story</span>
+</span></span><span style=display:flex><span>    order <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>sorted</span>(
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd;font-style:italic>range</span>(<span style=color:#8be9fd;font-style:italic>len</span>(meetings)),
+</span></span><span style=display:flex><span>        key<span style=color:#ff79c6>=</span><span style=color:#ff79c6>lambda</span> i: ratios[i],
+</span></span><span style=display:flex><span>        reverse<span style=color:#ff79c6>=</span><span style=color:#ff79c6>True</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    names_sorted  <span style=color:#ff79c6>=</span> [names[i] <span style=color:#ff79c6>for</span> i <span style=color:#ff79c6>in</span> order]
+</span></span><span style=display:flex><span>    ratios_sorted <span style=color:#ff79c6>=</span> [ratios[i] <span style=color:#ff79c6>for</span> i <span style=color:#ff79c6>in</span> order]
+</span></span><span style=display:flex><span>    status_sorted <span style=color:#ff79c6>=</span> [status[i] <span style=color:#ff79c6>for</span> i <span style=color:#ff79c6>in</span> order]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Color map</span>
+</span></span><span style=display:flex><span>    colors <span style=color:#ff79c6>=</span> {<span style=color:#f1fa8c>&#34;Attend&#34;</span>: <span style=color:#f1fa8c>&#34;#2ca02c&#34;</span>,  <span style=color:#6272a4># green</span>
+</span></span><span style=display:flex><span>              <span style=color:#f1fa8c>&#34;Decline&#34;</span>: <span style=color:#f1fa8c>&#34;#d62728&#34;</span>}  <span style=color:#6272a4># red</span>
+</span></span><span style=display:flex><span>    bar_colors <span style=color:#ff79c6>=</span> [colors[s] <span style=color:#ff79c6>for</span> s <span style=color:#ff79c6>in</span> status_sorted]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Figure</span>
+</span></span><span style=display:flex><span>    fig, ax <span style=color:#ff79c6>=</span> plt<span style=color:#ff79c6>.</span>subplots(figsize<span style=color:#ff79c6>=</span>(<span style=color:#bd93f9>10</span>, <span style=color:#bd93f9>6</span>), dpi<span style=color:#ff79c6>=</span><span style=color:#bd93f9>120</span>)
+</span></span><span style=display:flex><span>    bars <span style=color:#ff79c6>=</span> ax<span style=color:#ff79c6>.</span>barh(names_sorted, 
+</span></span><span style=display:flex><span>                   ratios_sorted, 
+</span></span><span style=display:flex><span>                   color<span style=color:#ff79c6>=</span>bar_colors, 
+</span></span><span style=display:flex><span>                   edgecolor<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;black&#34;</span>, 
+</span></span><span style=display:flex><span>                   linewidth<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.5</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Labels &amp; title</span>
+</span></span><span style=display:flex><span>    ax<span style=color:#ff79c6>.</span>set_xlabel(<span style=color:#f1fa8c>&#34;Value per Minute (higher is better)&#34;</span>, labelpad<span style=color:#ff79c6>=</span><span style=color:#bd93f9>8</span>)
+</span></span><span style=display:flex><span>    ax<span style=color:#ff79c6>.</span>set_title(title, pad<span style=color:#ff79c6>=</span><span style=color:#bd93f9>12</span>, fontweight<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;bold&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Grid for readability</span>
+</span></span><span style=display:flex><span>    ax<span style=color:#ff79c6>.</span>xaxis<span style=color:#ff79c6>.</span>grid(<span style=color:#ff79c6>True</span>, linestyle<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;--&#34;</span>, alpha<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.35</span>)
+</span></span><span style=display:flex><span>    ax<span style=color:#ff79c6>.</span>set_axisbelow(<span style=color:#ff79c6>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Show values at end of bars</span>
+</span></span><span style=display:flex><span>    xmax <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>max</span>(ratios_sorted) <span style=color:#ff79c6>if</span> ratios_sorted <span style=color:#ff79c6>else</span> <span style=color:#bd93f9>0.0</span>
+</span></span><span style=display:flex><span>    pad <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>0.02</span> <span style=color:#ff79c6>*</span> (xmax <span style=color:#ff79c6>if</span> xmax <span style=color:#ff79c6>&gt;</span> <span style=color:#bd93f9>0</span> <span style=color:#ff79c6>else</span> <span style=color:#bd93f9>1.0</span>)
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> bar, r <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>zip</span>(bars, ratios_sorted):
+</span></span><span style=display:flex><span>        ax<span style=color:#ff79c6>.</span>text(bar<span style=color:#ff79c6>.</span>get_width() <span style=color:#ff79c6>+</span> pad, bar<span style=color:#ff79c6>.</span>get_y() <span style=color:#ff79c6>+</span> bar<span style=color:#ff79c6>.</span>get_height()<span style=color:#ff79c6>/</span><span style=color:#bd93f9>2</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>{</span>r<span style=color:#f1fa8c>:</span><span style=color:#f1fa8c>.2f</span><span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>, va<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;center&#34;</span>, ha<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;left&#34;</span>, fontsize<span style=color:#ff79c6>=</span><span style=color:#bd93f9>9</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Legend</span>
+</span></span><span style=display:flex><span>    legend_handles <span style=color:#ff79c6>=</span> [
+</span></span><span style=display:flex><span>        Patch(
+</span></span><span style=display:flex><span>            facecolor<span style=color:#ff79c6>=</span>colors[<span style=color:#f1fa8c>&#34;Attend&#34;</span>],
+</span></span><span style=display:flex><span>            edgecolor<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;black&#34;</span>,
+</span></span><span style=display:flex><span>            label<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;Attend&#34;</span>,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>        Patch(
+</span></span><span style=display:flex><span>            facecolor<span style=color:#ff79c6>=</span>colors[<span style=color:#f1fa8c>&#34;Decline&#34;</span>],
+</span></span><span style=display:flex><span>            edgecolor<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;black&#34;</span>,
+</span></span><span style=display:flex><span>            label<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;Decline&#34;</span>,
+</span></span><span style=display:flex><span>        ),
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    ax<span style=color:#ff79c6>.</span>legend(
+</span></span><span style=display:flex><span>        handles<span style=color:#ff79c6>=</span>legend_handles,
+</span></span><span style=display:flex><span>        frameon<span style=color:#ff79c6>=</span><span style=color:#ff79c6>False</span>,
+</span></span><span style=display:flex><span>        loc<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;lower right&#34;</span>,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Invert y to have highest ratio on top</span>
+</span></span><span style=display:flex><span>    ax<span style=color:#ff79c6>.</span>invert_yaxis()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Tight layout; extra space for long labels</span>
+</span></span><span style=display:flex><span>    plt<span style=color:#ff79c6>.</span>tight_layout()
+</span></span><span style=display:flex><span>    plt<span style=color:#ff79c6>.</span>subplots_adjust(left<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.28</span>, right<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.95</span>, top<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.9</span>, bottom<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.12</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#ff79c6>.</span>show()
+</span></span></code></pre></div><hr><h2 id=what-we-learned>What We Learned</h2><p>By modeling your calendar as a knapsack, you can quantify trade-offs instead of relying on gut feel. We also learned how to craft precise AI prompts that generate optimization code, and how to refine those prompts to add reporting and visualization. The big win: you now have a framework for saying no with math.</p><hr><h2 id=exercises-for-the-reader>Exercises for the Reader</h2><p>Ready to push this further? Try these extensions:</p><h3 id=beginner-level-quick-fixes--calibration>Beginner Level: Quick Fixes & Calibration</h3><ul><li><p><strong>Mandatory meetings:</strong> Add a constraint that Weekly Staff must always be selected.</p></li><li><p><strong>Budget tuning:</strong> Run the model with TIME_BUDGET = 120, 180, 240 and see how choices shift.</p></li><li><p><strong>Energy-only mode:</strong> Ignore time constraint; see which meetings blow up your energy budget first.</p></li></ul><hr><h3 id=intermediate-level-geometry--body-modeling>Intermediate Level: Geometry & Body Modeling</h3><ul><li><p><strong>Overlaps:</strong> Add a constraint to forbid selecting two meetings that overlap in time.</p></li><li><p><strong>Daily limits:</strong> Add a rule like “no more than 2 hours of meetings per day.”</p></li><li><p><strong>Context switching:</strong> Penalize picking too many short meetings.</p></li></ul><hr><h3 id=advanced-level-environment--stochasticity>Advanced Level: Environment & Stochasticity</h3><ul><li><p><strong>Uncertain values:</strong> Sample meeting values from a probability distribution (e.g., Normal).</p></li><li><p><strong>Monte Carlo:</strong> Run 100 simulations of random meeting values and see which meetings are most often chosen.</p></li><li><p><strong>Multi-objective optimization:</strong> Balance value against “fatigue penalty” explicitly.</p></li></ul><hr><h2 id=closing-thoughts>Closing Thoughts</h2><p>Meetings don&rsquo;t have to consume your week. With a little optimization, you can put your calendar on a diet that actually helps you get healthier at work. To paraphrase the old expression, <strong>run your calendar, or your calendar will run you</strong>.</p><hr><h2 id=try-it-yourself>Try It Yourself</h2><p><a href=https://github.com/TomArcher/technical-blog-examples/tree/main/meeting-diet target=_blank rel="noopener noreferrer">Download the full code on GitHub</a></p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 000-6 3 3 0 000 6"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/optimization/ rel=tag>optimization</a></li><li class=tags__item><a class="tags__link btn" href=/tags/python/ rel=tag>Python</a></li><li class=tags__item><a class="tags__link btn" href=/tags/scheduling/ rel=tag>scheduling</a></li></ul></div></footer></article></main></div><aside class=sidebar><div class="widget widget-bio"><h4 class=widget__title>Behind the Code</h4><div class=widget__content><div class=bio-wrap><a class=bio-avatar-link href=/bio/><img class=bio-avatar src=/img/avatar.png alt="Avatar of Signal & Syntax"></a><div class=bio-text><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
 turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
-that outlives the feature request it started from.</p>
-<p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+that outlives the feature request it started from.</p><p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
 insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
 system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
 activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
-technology books, wrote 100+ articles for <em>.NET Programming Tips &amp; Techniques</em>, and helped run
-<a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
-  CodeGuru
-</a>
- (the largest Windows developer community of its era).</p>
-<p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+technology books, wrote 100+ articles for <em>.NET Programming Tips & Techniques</em>, and helped run
+<a href=http://codeguru.com target=_blank rel="noopener noreferrer">CodeGuru
+</a>(the largest Windows developer community of its era).</p><p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
 that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
 structures that get concatenated with code samples at runtime and routed to generative models, with results
-injected back into the output. Nearly 100 articles have shipped through the system.</p>
-<p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
-to inference-time behavior, from tokenization to training infrastructure.</p>
-<p>Connect with me on <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
-  LinkedIn
-</a>
-.</p>
-</div>
-      
-    </div>
-
-    
-    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
-  </div>
-</div>
-<div class="widget widget-disclaimer">
-  <h4 class="widget__title">Disclaimer</h4>
-  <div class="widget__content">
-    <p>
-      The content on this blog represents my personal views and opinions only. It is not intended to represent
-      the views, positions, or strategies of my employer or any other organization with which I may be associated.
-      All content is provided “as is” without warranty of any kind.
-    </p>
-  </div>
-</div>
-<div class="widget widget-social">
-  <h4 class="widget__title">Connect</h4>
-  <div class="widget__content">
-    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
-        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
-          
-        </a>
-      </li><li>
-        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
-          
-        </a>
-      </li><li>
-        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
-          
-        </a>
-      </li></ul>
-  </div>
-</div>
-<div class="widget-categories widget">
-	<h4 class="widget__title">Categories</h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-taglist widget">
-	<h4 class="widget__title">Tags</h4>
-	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/discrete-mathematics/" title="Discrete Mathematics">Discrete Mathematics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/predicate-logic/" title="Predicate Logic">Predicate Logic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/set-theory/" title="Set Theory">Set Theory</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2026 Signal &amp; Syntax.
-			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-<script src="/js/copy-button.js"></script>
-</body>
-</html>
+injected back into the output. Nearly 100 articles have shipped through the system.</p><p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+to inference-time behavior, from tokenization to training infrastructure.</p><p>Connect with me on <a href=https://www.linkedin.com/in/tom-archer-dev/ target=_blank rel="noopener noreferrer">LinkedIn
+</a>.</p></div></div><p class=more><a class=link-more href=/bio/>Read more →</a></p></div></div><div class="widget widget-disclaimer"><h4 class=widget__title>Disclaimer</h4><div class=widget__content><p>The content on this blog represents my personal views and opinions only. It is not intended to represent
+the views, positions, or strategies of my employer or any other organization with which I may be associated.
+All content is provided “as is” without warranty of any kind.</p></div></div><div class="widget widget-social"><h4 class=widget__title>Connect</h4><div class=widget__content><ul class=social-list style=list-style:none;padding:0;margin:0;display:flex;gap:.6rem><li><a href=https://github.com/tomarcher aria-label=GitHub rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 008.21 23.9c.6.11.82-.26.82-.58V21.3c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93.0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17.0.0 1.01-.32 3.3 1.23a11.4 11.4.0 016.01.0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22.0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0012 .5z"/></svg></a></li><li><a href=https://www.linkedin.com/in/tom-archer-dev/ aria-label=LinkedIn rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45H16.9v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85.0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54.0 4.2 2.33 4.2 5.36v6.36zM5.34 7.43a2.06 2.06.0 110-4.12 2.06 2.06.0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li><li><a href=/index.xml aria-label=RSS rel=noopener style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18.0 110-4.36 2.18 2.18.0 010 4.36zM4 9.82v3.27a7.73 7.73.0 017.73 7.73H15c0-6.05-4.95-11-11-11zm0-4v3.27c8.27.0 15 6.73 15 15h3.27C22.27 14.03 14.06 5.82 4 5.82z"/></svg></a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai-and-the-mathematics-of-language/>AI and the Mathematics of Language</a></li><li class=widget__item><a class=widget__link href=/categories/applied-modeling-and-simulation/>Applied Modeling and Simulation</a></li><li class=widget__item><a class=widget__link href=/categories/essays-and-perspectives/>Essays and Perspectives</a></li><li class=widget__item><a class=widget__link href=/categories/python-techniques-and-tooling/>Python Techniques and Tooling</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title>Tags</h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/algorithms/ title=Algorithms>Algorithms</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/anthropic/ title=Anthropic>Anthropic</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/attention-mechanisms/ title="Attention Mechanisms">Attention Mechanisms</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/biology/ title=Biology>Biology</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/blockchain/ title=Blockchain>Blockchain</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/calculus/ title=Calculus>Calculus</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/code-organization/ title="Code Organization">Code Organization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/context-windows/ title="Context Windows">Context Windows</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cryptography/ title=Cryptography>Cryptography</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/data-parsing/ title="Data Parsing">Data Parsing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/databases/ title=Databases>Databases</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/design-patterns/ title="Design Patterns">Design Patterns</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/discrete-mathematics/ title="Discrete Mathematics">Discrete Mathematics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/distributed-systems/ title=Distributed-Systems>Distributed-Systems</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/economics/ title=Economics>Economics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/embeddings/ title=Embeddings>Embeddings</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/energy-balance/ title="Energy Balance">Energy Balance</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/geometry/ title=Geometry>Geometry</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/gradient-descent/ title="Gradient Descent">Gradient Descent</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hashing/ title=Hashing>Hashing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/innovation/ title=Innovation>Innovation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/kinematics/ title=Kinematics>Kinematics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/linear-algebra/ title="Linear Algebra">Linear Algebra</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/llm/ title=LLM>LLM</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/nlp/ title=NLP>NLP</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/nucleus-sampling/ title="Nucleus Sampling">Nucleus Sampling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/numerical-methods/ title="Numerical Methods">Numerical Methods</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/optimization/ title=Optimization>Optimization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/passwords/ title=Passwords>Passwords</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/physics/ title=Physics>Physics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/predicate-logic/ title="Predicate Logic">Predicate Logic</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/probability/ title=Probability>Probability</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/productivity/ title=Productivity>Productivity</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/python/ title=Python>Python</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/rag/ title=RAG>RAG</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/sampling/ title=Sampling>Sampling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/scheduling/ title=Scheduling>Scheduling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/security/ title=Security>Security</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/set-theory/ title="Set Theory">Set Theory</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/softmax/ title=Softmax>Softmax</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/symbolic-math/ title="Symbolic Math">Symbolic Math</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/sympy/ title=SymPy>SymPy</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/temperature/ title=Temperature>Temperature</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/thermodynamics/ title=Thermodynamics>Thermodynamics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/tokenization/ title=Tokenization>Tokenization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/top-p/ title=Top-P>Top-P</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/transformers/ title=Transformers>Transformers</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/web-search/ title="Web Search">Web Search</a></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 Signal & Syntax.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/js/menu.js></script><script src=/js/copy-button.js></script></body></html>

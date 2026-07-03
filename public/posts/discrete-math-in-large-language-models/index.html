@@ -1,352 +1,115 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7ZV2PMS61P');
-</script>
-
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Discrete Mathematics Hiding Inside LLMs - Signal &amp; Syntax</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-		<meta property="og:url" content="http://localhost:1313/posts/discrete-math-in-large-language-models/">
-  <meta property="og:site_name" content="Signal & Syntax">
-  <meta property="og:title" content="The Discrete Mathematics Hiding Inside LLMs">
-  <meta property="og:description" content="It&#39;s true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
+<!doctype html><html class=no-js lang=en><head><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")</script><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>The Discrete Mathematics Hiding Inside LLMs - Signal & Syntax</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:url" content="https://tomarcher.io/posts/discrete-math-in-large-language-models/"><meta property="og:site_name" content="Signal & Syntax"><meta property="og:title" content="The Discrete Mathematics Hiding Inside LLMs"><meta property="og:description" content="It's true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
 Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.
-“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-03-31T06:00:00-07:00">
-    <meta property="article:modified_time" content="2026-03-31T06:00:00-07:00">
-    <meta property="article:tag" content="AI">
-    <meta property="article:tag" content="Attention Mechanisms">
-    <meta property="article:tag" content="Embeddings">
-    <meta property="article:tag" content="Discrete Mathematics">
-    <meta property="article:tag" content="LLM">
-    <meta property="article:tag" content="Predicate Logic">
-
-		
-  <meta itemprop="name" content="The Discrete Mathematics Hiding Inside LLMs">
-  <meta itemprop="description" content="It&#39;s true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
+“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-03-31T06:00:00-07:00"><meta property="article:modified_time" content="2026-03-31T06:00:00-07:00"><meta property="article:tag" content="AI"><meta property="article:tag" content="Attention Mechanisms"><meta property="article:tag" content="Embeddings"><meta property="article:tag" content="Discrete Mathematics"><meta property="article:tag" content="LLM"><meta property="article:tag" content="Predicate Logic"><meta itemprop=name content="The Discrete Mathematics Hiding Inside LLMs"><meta itemprop=description content="It's true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
 Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.
-“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”">
-  <meta itemprop="datePublished" content="2026-03-31T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-03-31T06:00:00-07:00">
-  <meta itemprop="wordCount" content="2645">
-  <meta itemprop="keywords" content="AI,Attention Mechanisms,Embeddings,Discrete Mathematics,LLM,Predicate Logic,Set Theory">
-		
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="The Discrete Mathematics Hiding Inside LLMs">
-  <meta name="twitter:description" content="It&#39;s true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
+“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”"><meta itemprop=datePublished content="2026-03-31T06:00:00-07:00"><meta itemprop=dateModified content="2026-03-31T06:00:00-07:00"><meta itemprop=wordCount content="2645"><meta itemprop=keywords content="AI,Attention Mechanisms,Embeddings,Discrete Mathematics,LLM,Predicate Logic,Set Theory"><meta name=twitter:card content="summary"><meta name=twitter:title content="The Discrete Mathematics Hiding Inside LLMs"><meta name=twitter:description content="It's true what they say: discrete math is everywhere you look.A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.
 Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.
-“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/extra.css">
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-		
-
-	
-	<script>
-	window.MathJax = {
-	tex: {
-		inlineMath: [['\\(', '\\)']],
-		displayMath: [['\\[', '\\]']],
-		processEscapes: true,
-		processEnvironments: true
-	},
-	options: {
-		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-	}
-	};
-	</script>
-	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <link rel="stylesheet" href="/css/extra.css">
-    <script src="/js/copy-button.js"></script>
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" rel="home">
-			<div class="logo__item logo__imagebox">
-					<img class="logo__img" src="/img/logo/wordmark-light.svg">
-				</div>
-		</a>
-	</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/">
-				
-				<span class="menu__text">Blog</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">
-				
-				<span class="menu__text">About</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/bio/">
-				
-				<span class="menu__text">behind the code</span>
-				
-			</a>
-		</li>
-	</ul>
-</nav>
-
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main" role="main">
-  <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">The Discrete Mathematics Hiding Inside LLMs</h1>
-
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2026-03-31T06:00:00-07:00">
-              <strong>March 31, 2026</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/attention-mechanisms/"
-                 rel="tag">#attention mechanisms</a>, <a class="meta__link"
-                 href="/tags/embeddings/"
-                 rel="tag">#embeddings</a>, <a class="meta__link"
-                 href="/tags/discrete-mathematics/"
-                 rel="tag">#discrete mathematics</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/predicate-logic/"
-                 rel="tag">#predicate logic</a>, <a class="meta__link"
-                 href="/tags/set-theory/"
-                 rel="tag">#set theory</a></p></div>
-
-      <div class="share">
-  <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fdiscrete-math-in-large-language-models%2F&amp;text=The&#43;Discrete&#43;Mathematics&#43;Hiding&#43;Inside&#43;LLMs" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
-  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fdiscrete-math-in-large-language-models%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
-  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fdiscrete-math-in-large-language-models%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fdiscrete-math-in-large-language-models%2F&amp;title=The&#43;Discrete&#43;Mathematics&#43;Hiding&#43;Inside&#43;LLMs" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
-  <a class="share__btn" href="mailto:?subject=The%20Discrete%20Mathematics%20Hiding%20Inside%20LLMs&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fdiscrete-math-in-large-language-models%2F" aria-label="Share via Email">@</a>
-
-  <button class="share__btn share__btn--native" type="button" aria-label="Share">Share</button>
-</div>
-
-<script>
-(function () {
-  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
-  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
-  btn.addEventListener('click', async () => {
-    try {
-      await navigator.share({
-        title: "\"The Discrete Mathematics Hiding Inside LLMs\"",
-        url:   "\"http://localhost:1313/posts/discrete-math-in-large-language-models/\""
-      });
-    } catch (_) {}
-  });
-})();
-</script>  
-
-    </header>
-
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
-    <img src="./discrete-math-in-large-language-models.png"
-        alt="A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>It's true what they say: discrete math is everywhere you look.</em>
-    </figcaption>
-</figure>
-<p>A recent <a href="https://www.linkedin.com/posts/activity-7435689322504167424-_v46" target="_blank" rel="noopener noreferrer">
-  LinkedIn post
-</a>
- from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
-<p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&rdquo;</em></p></blockquote>
-<hr>
-<p>This post explores how core discrete mathematics concepts appear in LLM architecture and operation. You&rsquo;ll see set theory in token selection, predicate logic in attention mechanisms, Boolean algebra in prompt constraints, proof structure in chain-of-thought reasoning, and modular arithmetic in positional encoding. If you&rsquo;ve followed my earlier posts on <a href="/posts/how-large-language-models-think/">
-  how LLMs think
-</a>
- and <a href="/posts/how-large-language-models-learn/">
-  how they learn
-</a>
-, you&rsquo;ve already seen the calculus and linear algebra. This post adds the discrete layer.</p>
-<blockquote>
-<p><strong>TL;DR:</strong></p>
-<ul>
-<li>Attention mechanisms behave like soft, differentiable versions of predicate evaluation over tokens</li>
-<li>Token filtering (top-k, top-p) can be understood through set construction and intersection</li>
-<li>Masking operations are Boolean algebra applied to sequences</li>
-<li>Chain-of-thought prompting often resembles informal proof structure found in training data</li>
-<li>Positional encoding uses periodic functions, echoing the cyclic behavior seen in modular arithmetic</li>
-<li>Understanding these connections clarifies why certain prompting strategies work</li>
-<li>Discrete math isn’t separate from AI; it shows up as continuous approximations inside the architecture</li>
-</ul></blockquote>
-<hr>
-<h2 id="predicate-logic-in-attention">Predicate Logic in Attention</h2>
-<p>In discrete mathematics, predicate logic extends Boolean logic with quantifiers and variables. Instead of just “true or false,” you can express statements like:</p>
-<p>\[
+“Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.”"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/extra.css><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=192x192 href=/android-chrome-192x192.png><link rel=icon type=image/png sizes=512x512 href=/android-chrome-512x512.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV2PMS61P"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")}</script><script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/css/extra.css><script src=/js/copy-button.js></script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/img/logo/wordmark-light.svg></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/><span class=menu__text>Blog</span></a></li><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li><li class=menu__item><a class=menu__link href=/bio/><span class=menu__text>behind the code</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>The Discrete Mathematics Hiding Inside LLMs</h1><div class="post__meta meta"><p class=meta__line><time datetime=2026-03-31T06:00:00-07:00><strong>March 31, 2026</strong>
+</time>&nbsp;•&nbsp;
+<strong>Category:</strong>&nbsp;<a class=meta__link href=/categories/ai-and-the-mathematics-of-language/ rel=category><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
+<strong>Tags:</strong>&nbsp;<a class=meta__link href=/tags/ai/ rel=tag>#AI</a>, <a class=meta__link href=/tags/attention-mechanisms/ rel=tag>#attention mechanisms</a>, <a class=meta__link href=/tags/embeddings/ rel=tag>#embeddings</a>, <a class=meta__link href=/tags/discrete-mathematics/ rel=tag>#discrete mathematics</a>, <a class=meta__link href=/tags/llm/ rel=tag>#LLM</a>, <a class=meta__link href=/tags/predicate-logic/ rel=tag>#predicate logic</a>, <a class=meta__link href=/tags/set-theory/ rel=tag>#set theory</a></p></div><div class=share><span class=share__label>Share:</span>
+<a class=share__btn href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fdiscrete-math-in-large-language-models%2F&amp;text=The+Discrete+Mathematics+Hiding+Inside+LLMs" target=_blank rel="noopener noreferrer" aria-label="Share on X">X</a>
+<a class=share__btn href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fdiscrete-math-in-large-language-models%2F" target=_blank rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+<a class=share__btn href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftomarcher.io%2Fposts%2Fdiscrete-math-in-large-language-models%2F" target=_blank rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+<a class=share__btn href="https://www.reddit.com/submit?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fdiscrete-math-in-large-language-models%2F&amp;title=The+Discrete+Mathematics+Hiding+Inside+LLMs" target=_blank rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
+<a class=share__btn href="mailto:?subject=The%20Discrete%20Mathematics%20Hiding%20Inside%20LLMs&amp;body=https%3A%2F%2Ftomarcher.io%2Fposts%2Fdiscrete-math-in-large-language-models%2F" aria-label="Share via Email">@</a>
+<button class="share__btn share__btn--native" type=button aria-label=Share>Share</button></div><script>(function(){const e=document.currentScript.previousElementSibling.querySelector(".share__btn--native");if(!e||!navigator.share){e&&(e.style.display="none");return}e.addEventListener("click",async()=>{try{await navigator.share({title:'"The Discrete Mathematics Hiding Inside LLMs"',url:'"https://tomarcher.io/posts/discrete-math-in-large-language-models/"'})}catch{}})})()</script></header><div class="content post__content clearfix"><figure style="margin:0 20px 10px;text-align:center"><img src=./discrete-math-in-large-language-models.png alt="A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns"><figcaption style=font-size:.9em;color:#555;margin-top:5px><em>It's true what they say: discrete math is everywhere you look.</em></figcaption></figure><p>A recent <a href=https://www.linkedin.com/posts/activity-7435689322504167424-_v46 target=_blank rel="noopener noreferrer">LinkedIn post
+</a>from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p><p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.</p><hr><blockquote><p><em>&ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&rdquo;</em></p></blockquote><hr><p>This post explores how core discrete mathematics concepts appear in LLM architecture and operation. You&rsquo;ll see set theory in token selection, predicate logic in attention mechanisms, Boolean algebra in prompt constraints, proof structure in chain-of-thought reasoning, and modular arithmetic in positional encoding. If you&rsquo;ve followed my earlier posts on <a href=/posts/how-large-language-models-think/>how LLMs think
+</a>and <a href=/posts/how-large-language-models-learn/>how they learn
+</a>, you&rsquo;ve already seen the calculus and linear algebra. This post adds the discrete layer.</p><blockquote><p><strong>TL;DR:</strong></p><ul><li>Attention mechanisms behave like soft, differentiable versions of predicate evaluation over tokens</li><li>Token filtering (top-k, top-p) can be understood through set construction and intersection</li><li>Masking operations are Boolean algebra applied to sequences</li><li>Chain-of-thought prompting often resembles informal proof structure found in training data</li><li>Positional encoding uses periodic functions, echoing the cyclic behavior seen in modular arithmetic</li><li>Understanding these connections clarifies why certain prompting strategies work</li><li>Discrete math isn’t separate from AI; it shows up as continuous approximations inside the architecture</li></ul></blockquote><hr><h2 id=predicate-logic-in-attention>Predicate Logic in Attention</h2><p>In discrete mathematics, predicate logic extends Boolean logic with quantifiers and variables. Instead of just “true or false,” you can express statements like:</p><p>\[
 \forall x \in S : P(x) \rightarrow Q(x)
-\]</p>
-<p>“For all \(x\) in set \(S\), if \(P(x)\) is true, then \(Q(x)\) follows.”</p>
-<p>Large language models do not execute predicate logic in this formal sense. They are not constructing symbolic expressions, assigning truth values, or applying inference rules step by step. But the <em>structure</em> of predicate logic shows up in how they process language. This structure appears most clearly in attention mechanisms. Recall that attention computes a weighted sum over tokens in the context. Each token evaluates how relevant other tokens are and aggregates information accordingly. Rather than applying a discrete predicate that returns true or false, attention computes a <em>continuous relevance score</em>.</p>
-<p>Here’s the standard attention formula:</p>
-<p>\[
+\]</p><p>“For all \(x\) in set \(S\), if \(P(x)\) is true, then \(Q(x)\) follows.”</p><p>Large language models do not execute predicate logic in this formal sense. They are not constructing symbolic expressions, assigning truth values, or applying inference rules step by step. But the <em>structure</em> of predicate logic shows up in how they process language. This structure appears most clearly in attention mechanisms. Recall that attention computes a weighted sum over tokens in the context. Each token evaluates how relevant other tokens are and aggregates information accordingly. Rather than applying a discrete predicate that returns true or false, attention computes a <em>continuous relevance score</em>.</p><p>Here’s the standard attention formula:</p><p>\[
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-\]</p>
-<p>We can interpret this through a predicate-logic lens:</p>
-<ul>
-<li><strong>Query (Q)</strong>: a learned representation of “what I’m looking for”</li>
-<li><strong>Keys (K)</strong>: representations of what each token “offers”</li>
-<li><strong>\(QK^T\)</strong>: a similarity score measuring how well each token matches that intent</li>
-<li><strong>softmax</strong>: converts those scores into a probability distribution</li>
-<li><strong>Values (V)</strong>: the information extracted from relevant tokens</li>
-</ul>
-<p>Viewed this way, attention behaves like a <em>soft, differentiable scan over a set of tokens</em>, where each element is evaluated for relevance and contributes proportionally to the result. Instead of: “Select all tokens where \(P(x)\) is \(true\)” the model effectively does: “Assign each token a degree of relevance based on how well it matches a learned pattern, then aggregate accordingly” This is not predicate logic in the formal sense. But it is a close structural analogue: evaluating a condition across a set and acting on the results. The difference is that everything is continuous, probabilistic, and learned rather than discrete and symbolic. That shift, from crisp logical predicates to soft geometric approximations, is where modern AI lives.</p>
-<h4 id="python">Python</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">attention_as_predicate_logic</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Demonstrate how attention implements predicate-like selection.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Simplified example: 5 tokens, embedding dimension 4</span>
-</span></span><span style="display:flex;"><span>    tokens <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;The&#34;</span>, <span style="color:#f1fa8c">&#34;cat&#34;</span>, <span style="color:#f1fa8c">&#34;sat&#34;</span>, <span style="color:#f1fa8c">&#34;on&#34;</span>, <span style="color:#f1fa8c">&#34;mat&#34;</span>]
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Pretend embeddings (in reality these are learned)</span>
-</span></span><span style="display:flex;"><span>    embeddings <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Query: &#34;I&#39;m looking for nouns&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># In reality, this is learned; here we&#39;ll simulate</span>
-</span></span><span style="display:flex;"><span>    query <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array([<span style="color:#bd93f9">0.1</span>, <span style="color:#bd93f9">0.8</span>, <span style="color:#bd93f9">0.2</span>, <span style="color:#bd93f9">0.1</span>])  <span style="color:#6272a4"># &#34;noun-detecting&#34; query</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Keys: what each token &#34;advertises&#34;</span>
-</span></span><span style="display:flex;"><span>    keys <span style="color:#ff79c6">=</span> embeddings  <span style="color:#6272a4"># Simplified: keys = embeddings</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Compute relevance scores (QK^T)</span>
-</span></span><span style="display:flex;"><span>    scores <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>dot(keys, query)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Softmax to get attention weights</span>
-</span></span><span style="display:flex;"><span>    weights <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>exp(scores) <span style="color:#ff79c6">/</span> np<span style="color:#ff79c6">.</span>sum(np<span style="color:#ff79c6">.</span>exp(scores))
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Predicate: &#39;Which tokens are relevant to my query?&#39;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Token</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">Score</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">Weight&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">40</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> token, score, weight <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">zip</span>(tokens, scores, weights):
-</span></span><span style="display:flex;"><span>        bar <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;█&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">int</span>(weight <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">30</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>token<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">{</span>score<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">{</span>weight<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2%</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> </span><span style="color:#f1fa8c">{</span>bar<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Attention implements: ∀x ∈ context : relevance(x) → weight(x)&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>attention_as_predicate_logic()
-</span></span></code></pre></div><p>The attention mechanism doesn&rsquo;t use explicit logical symbols, but it computes the same structure: evaluate a predicate across all elements, then act on the results.</p>
-<hr>
-<h2 id="set-operations-in-token-selection">Set Operations in Token Selection</h2>
-<p>Set theory is foundational to discrete mathematics. Union, intersection, complement, and membership define how collections relate to each other.</p>
-<p>Token selection in LLMs is set theory applied to vocabularies.</p>
-<p><strong>Top-k sampling</strong> selects the k highest-probability tokens:</p>
-<p>\[
+\]</p><p>We can interpret this through a predicate-logic lens:</p><ul><li><strong>Query (Q)</strong>: a learned representation of “what I’m looking for”</li><li><strong>Keys (K)</strong>: representations of what each token “offers”</li><li><strong>\(QK^T\)</strong>: a similarity score measuring how well each token matches that intent</li><li><strong>softmax</strong>: converts those scores into a probability distribution</li><li><strong>Values (V)</strong>: the information extracted from relevant tokens</li></ul><p>Viewed this way, attention behaves like a <em>soft, differentiable scan over a set of tokens</em>, where each element is evaluated for relevance and contributes proportionally to the result. Instead of: “Select all tokens where \(P(x)\) is \(true\)” the model effectively does: “Assign each token a degree of relevance based on how well it matches a learned pattern, then aggregate accordingly” This is not predicate logic in the formal sense. But it is a close structural analogue: evaluating a condition across a set and acting on the results. The difference is that everything is continuous, probabilistic, and learned rather than discrete and symbolic. That shift, from crisp logical predicates to soft geometric approximations, is where modern AI lives.</p><h4 id=python>Python</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>import</span> numpy <span style=color:#ff79c6>as</span> np
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>attention_as_predicate_logic</span>():
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Demonstrate how attention implements predicate-like selection.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Simplified example: 5 tokens, embedding dimension 4</span>
+</span></span><span style=display:flex><span>    tokens <span style=color:#ff79c6>=</span> [<span style=color:#f1fa8c>&#34;The&#34;</span>, <span style=color:#f1fa8c>&#34;cat&#34;</span>, <span style=color:#f1fa8c>&#34;sat&#34;</span>, <span style=color:#f1fa8c>&#34;on&#34;</span>, <span style=color:#f1fa8c>&#34;mat&#34;</span>]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Pretend embeddings (in reality these are learned)</span>
+</span></span><span style=display:flex><span>    embeddings <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>random<span style=color:#ff79c6>.</span>randn(<span style=color:#bd93f9>5</span>, <span style=color:#bd93f9>4</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Query: &#34;I&#39;m looking for nouns&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># In reality, this is learned; here we&#39;ll simulate</span>
+</span></span><span style=display:flex><span>    query <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>array([<span style=color:#bd93f9>0.1</span>, <span style=color:#bd93f9>0.8</span>, <span style=color:#bd93f9>0.2</span>, <span style=color:#bd93f9>0.1</span>])  <span style=color:#6272a4># &#34;noun-detecting&#34; query</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Keys: what each token &#34;advertises&#34;</span>
+</span></span><span style=display:flex><span>    keys <span style=color:#ff79c6>=</span> embeddings  <span style=color:#6272a4># Simplified: keys = embeddings</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Compute relevance scores (QK^T)</span>
+</span></span><span style=display:flex><span>    scores <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>dot(keys, query)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Softmax to get attention weights</span>
+</span></span><span style=display:flex><span>    weights <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>exp(scores) <span style=color:#ff79c6>/</span> np<span style=color:#ff79c6>.</span>sum(np<span style=color:#ff79c6>.</span>exp(scores))
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Predicate: &#39;Which tokens are relevant to my query?&#39;</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Token</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>Score</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>Weight&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;-&#34;</span> <span style=color:#ff79c6>*</span> <span style=color:#bd93f9>40</span>)
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> token, score, weight <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>zip</span>(tokens, scores, weights):
+</span></span><span style=display:flex><span>        bar <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;█&#34;</span> <span style=color:#ff79c6>*</span> <span style=color:#8be9fd;font-style:italic>int</span>(weight <span style=color:#ff79c6>*</span> <span style=color:#bd93f9>30</span>)
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>{</span>token<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>{</span>score<span style=color:#f1fa8c>:</span><span style=color:#f1fa8c>.2f</span><span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>{</span>weight<span style=color:#f1fa8c>:</span><span style=color:#f1fa8c>.2%</span><span style=color:#f1fa8c>}</span><span style=color:#f1fa8c> </span><span style=color:#f1fa8c>{</span>bar<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>Attention implements: ∀x ∈ context : relevance(x) → weight(x)&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>attention_as_predicate_logic()
+</span></span></code></pre></div><p>The attention mechanism doesn&rsquo;t use explicit logical symbols, but it computes the same structure: evaluate a predicate across all elements, then act on the results.</p><hr><h2 id=set-operations-in-token-selection>Set Operations in Token Selection</h2><p>Set theory is foundational to discrete mathematics. Union, intersection, complement, and membership define how collections relate to each other.</p><p>Token selection in LLMs is set theory applied to vocabularies.</p><p><strong>Top-k sampling</strong> selects the k highest-probability tokens:</p><p>\[
 S_k = {t \in V : \text{rank}(P(t)) \leq k}
-\]</p>
-<p>This is set construction with a membership predicate. &ldquo;The set of all tokens in vocabulary \(V\) whose probability rank is at most \(k\).&rdquo;</p>
-<p><strong>Top-p (nucleus) sampling</strong> selects tokens until cumulative probability exceeds \(p\):</p>
-<p>\[
-S_p = {t_1, t_2, &hellip;, t_m} \text{ where } \sum_{i=1}^{m} P(t_i) \geq p
-\]</p>
-<p>This is building a set by accumulation until a threshold condition is met.</p>
-<p><strong>Combining methods</strong> is set intersection:</p>
-<p>\[
+\]</p><p>This is set construction with a membership predicate. &ldquo;The set of all tokens in vocabulary \(V\) whose probability rank is at most \(k\).&rdquo;</p><p><strong>Top-p (nucleus) sampling</strong> selects tokens until cumulative probability exceeds \(p\):</p><p>\[
+S_p = {t_1, t_2, &mldr;, t_m} \text{ where } \sum_{i=1}^{m} P(t_i) \geq p
+\]</p><p>This is building a set by accumulation until a threshold condition is met.</p><p><strong>Combining methods</strong> is set intersection:</p><p>\[
 S_{final} = S_k \cap S_p
-\]</p>
-<p>&ldquo;Tokens that are both in the top-k and contribute to the top-p cumulative probability.&rdquo;</p>
-<h4 id="python-1">Python</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">token_selection_as_sets</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Show how top-k and top-p sampling are set operations.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Vocabulary with probabilities</span>
-</span></span><span style="display:flex;"><span>    vocab <span style="color:#ff79c6">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;the&#34;</span>: <span style="color:#bd93f9">0.25</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;a&#34;</span>: <span style="color:#bd93f9">0.18</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;cat&#34;</span>: <span style="color:#bd93f9">0.15</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;dog&#34;</span>: <span style="color:#bd93f9">0.12</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;sat&#34;</span>: <span style="color:#bd93f9">0.10</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;ran&#34;</span>: <span style="color:#bd93f9">0.08</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;quickly&#34;</span>: <span style="color:#bd93f9">0.05</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;slowly&#34;</span>: <span style="color:#bd93f9">0.04</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;yesterday&#34;</span>: <span style="color:#bd93f9">0.02</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;tomorrow&#34;</span>: <span style="color:#bd93f9">0.01</span>,
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Sort by probability</span>
-</span></span><span style="display:flex;"><span>    sorted_vocab <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">sorted</span>(vocab<span style="color:#ff79c6">.</span>items(), key<span style="color:#ff79c6">=</span><span style="color:#ff79c6">lambda</span> x: <span style="color:#ff79c6">-</span>x[<span style="color:#bd93f9">1</span>])
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Top-k: select top 5 tokens</span>
-</span></span><span style="display:flex;"><span>    k <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>
-</span></span><span style="display:flex;"><span>    top_k_set <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">set</span>(token <span style="color:#ff79c6">for</span> token, _ <span style="color:#ff79c6">in</span> sorted_vocab[:k])
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Top-p: select until cumulative probability &gt;= 0.7</span>
-</span></span><span style="display:flex;"><span>    p <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.7</span>
-</span></span><span style="display:flex;"><span>    top_p_set <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">set</span>()
-</span></span><span style="display:flex;"><span>    cumulative <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> token, prob <span style="color:#ff79c6">in</span> sorted_vocab:
-</span></span><span style="display:flex;"><span>        top_p_set<span style="color:#ff79c6">.</span>add(token)
-</span></span><span style="display:flex;"><span>        cumulative <span style="color:#ff79c6">+=</span> prob
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> cumulative <span style="color:#ff79c6">&gt;=</span> p:
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">break</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Set operations</span>
-</span></span><span style="display:flex;"><span>    intersection <span style="color:#ff79c6">=</span> top_k_set <span style="color:#ff79c6">&amp;</span> top_p_set
-</span></span><span style="display:flex;"><span>    union <span style="color:#ff79c6">=</span> top_k_set <span style="color:#ff79c6">|</span> top_p_set
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Set Theory in Token Selection:</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Top-k (k=5):     </span><span style="color:#f1fa8c">{</span>top_k_set<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Top-p (p=0.7):   </span><span style="color:#f1fa8c">{</span>top_p_set<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Intersection:    </span><span style="color:#f1fa8c">{</span>intersection<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Union:           </span><span style="color:#f1fa8c">{</span>union<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Final sampling pool = Top-k ∩ Top-p = </span><span style="color:#f1fa8c">{</span>intersection<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>token_selection_as_sets()
-</span></span></code></pre></div><h4 id="output">Output</h4>
-<pre tabindex="0"><code>Set Theory in Token Selection:
+\]</p><p>&ldquo;Tokens that are both in the top-k and contribute to the top-p cumulative probability.&rdquo;</p><h4 id=python-1>Python</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>token_selection_as_sets</span>():
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Show how top-k and top-p sampling are set operations.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Vocabulary with probabilities</span>
+</span></span><span style=display:flex><span>    vocab <span style=color:#ff79c6>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;the&#34;</span>: <span style=color:#bd93f9>0.25</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;a&#34;</span>: <span style=color:#bd93f9>0.18</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;cat&#34;</span>: <span style=color:#bd93f9>0.15</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;dog&#34;</span>: <span style=color:#bd93f9>0.12</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;sat&#34;</span>: <span style=color:#bd93f9>0.10</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;ran&#34;</span>: <span style=color:#bd93f9>0.08</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;quickly&#34;</span>: <span style=color:#bd93f9>0.05</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;slowly&#34;</span>: <span style=color:#bd93f9>0.04</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;yesterday&#34;</span>: <span style=color:#bd93f9>0.02</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;tomorrow&#34;</span>: <span style=color:#bd93f9>0.01</span>,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Sort by probability</span>
+</span></span><span style=display:flex><span>    sorted_vocab <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>sorted</span>(vocab<span style=color:#ff79c6>.</span>items(), key<span style=color:#ff79c6>=</span><span style=color:#ff79c6>lambda</span> x: <span style=color:#ff79c6>-</span>x[<span style=color:#bd93f9>1</span>])
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Top-k: select top 5 tokens</span>
+</span></span><span style=display:flex><span>    k <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>5</span>
+</span></span><span style=display:flex><span>    top_k_set <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>set</span>(token <span style=color:#ff79c6>for</span> token, _ <span style=color:#ff79c6>in</span> sorted_vocab[:k])
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Top-p: select until cumulative probability &gt;= 0.7</span>
+</span></span><span style=display:flex><span>    p <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>0.7</span>
+</span></span><span style=display:flex><span>    top_p_set <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>set</span>()
+</span></span><span style=display:flex><span>    cumulative <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> token, prob <span style=color:#ff79c6>in</span> sorted_vocab:
+</span></span><span style=display:flex><span>        top_p_set<span style=color:#ff79c6>.</span>add(token)
+</span></span><span style=display:flex><span>        cumulative <span style=color:#ff79c6>+=</span> prob
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>if</span> cumulative <span style=color:#ff79c6>&gt;=</span> p:
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>break</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Set operations</span>
+</span></span><span style=display:flex><span>    intersection <span style=color:#ff79c6>=</span> top_k_set <span style=color:#ff79c6>&amp;</span> top_p_set
+</span></span><span style=display:flex><span>    union <span style=color:#ff79c6>=</span> top_k_set <span style=color:#ff79c6>|</span> top_p_set
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Set Theory in Token Selection:</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;Top-k (k=5):     </span><span style=color:#f1fa8c>{</span>top_k_set<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;Top-p (p=0.7):   </span><span style=color:#f1fa8c>{</span>top_p_set<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;Intersection:    </span><span style=color:#f1fa8c>{</span>intersection<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;Union:           </span><span style=color:#f1fa8c>{</span>union<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>Final sampling pool = Top-k ∩ Top-p = </span><span style=color:#f1fa8c>{</span>intersection<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>token_selection_as_sets()
+</span></span></code></pre></div><h4 id=output>Output</h4><pre tabindex=0><code>Set Theory in Token Selection:
 
 Top-k (k=5):     {&#39;the&#39;, &#39;a&#39;, &#39;cat&#39;, &#39;dog&#39;, &#39;sat&#39;}
 Top-p (p=0.7):   {&#39;the&#39;, &#39;a&#39;, &#39;cat&#39;, &#39;dog&#39;}
@@ -354,60 +117,47 @@ Intersection:    {&#39;the&#39;, &#39;a&#39;, &#39;cat&#39;, &#39;dog&#39;}
 Union:           {&#39;the&#39;, &#39;a&#39;, &#39;cat&#39;, &#39;dog&#39;, &#39;sat&#39;}
 
 Final sampling pool = Top-k ∩ Top-p = {&#39;the&#39;, &#39;a&#39;, &#39;cat&#39;, &#39;dog&#39;}
-</code></pre><p>The vocabulary is the universal set. Every sampling method defines a subset. Combining methods is combining sets.</p>
-<hr>
-<h2 id="boolean-algebra-in-masking">Boolean Algebra in Masking</h2>
-<p>Boolean algebra deals with operations on true/false values: AND, OR, NOT, XOR. In LLMs, masking operations apply Boolean logic to sequences.</p>
-<p><strong>Attention masking</strong> prevents tokens from attending to certain positions:</p>
-<ul>
-<li><strong>Causal mask</strong>: Token at position i can only attend to positions ≤ i</li>
-<li><strong>Padding mask</strong>: Ignore padding tokens entirely</li>
-<li><strong>Custom masks</strong>: Task-specific attention patterns</li>
-</ul>
-<p>These are Boolean matrices. A 1 means &ldquo;allowed,&rdquo; a 0 means &ldquo;blocked.&rdquo;</p>
-<h4 id="python-2">Python</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">boolean_masking</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Show how attention masking is Boolean algebra.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    seq_len <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>
-</span></span><span style="display:flex;"><span>    tokens <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;The&#34;</span>, <span style="color:#f1fa8c">&#34;cat&#34;</span>, <span style="color:#f1fa8c">&#34;sat&#34;</span>, <span style="color:#f1fa8c">&#34;on&#34;</span>, <span style="color:#f1fa8c">&#34;mat&#34;</span>]
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Causal mask: lower triangular matrix</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Token i can attend to tokens 0, 1, ..., i</span>
-</span></span><span style="display:flex;"><span>    causal_mask <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>tril(np<span style="color:#ff79c6">.</span>ones((seq_len, seq_len), dtype<span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">int</span>))
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Causal Mask (Boolean matrix):&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Can token[row] attend to token[col]?</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>join(tokens))
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> i, token <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(tokens):
-</span></span><span style="display:flex;"><span>        row <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>join(<span style="color:#8be9fd;font-style:italic">str</span>(x) <span style="color:#ff79c6">for</span> x <span style="color:#ff79c6">in</span> causal_mask[i])
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>token<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">{</span>row<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Padding mask example</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Suppose last token is padding</span>
-</span></span><span style="display:flex;"><span>    padding_mask <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array([<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>])  <span style="color:#6272a4"># 0 = ignore</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Padding mask: </span><span style="color:#f1fa8c">{</span>padding_mask<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;(1 = real token, 0 = padding)&#34;</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Combined mask: AND operation</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Can attend only if causal allows AND token is not padding</span>
-</span></span><span style="display:flex;"><span>    combined <span style="color:#ff79c6">=</span> causal_mask <span style="color:#ff79c6">*</span> padding_mask  <span style="color:#6272a4"># Broadcasting</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Combined mask (causal AND not-padding):&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>join(tokens))
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> i, token <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(tokens):
-</span></span><span style="display:flex;"><span>        row <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>join(<span style="color:#8be9fd;font-style:italic">str</span>(x) <span style="color:#ff79c6">for</span> x <span style="color:#ff79c6">in</span> combined[i])
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>token<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">{</span>row<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Mask combination is Boolean AND: combined = causal ∧ padding&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>boolean_masking()
-</span></span></code></pre></div><h4 id="output-1">Output</h4>
-<pre tabindex="0"><code>Causal Mask (Boolean matrix):
+</code></pre><p>The vocabulary is the universal set. Every sampling method defines a subset. Combining methods is combining sets.</p><hr><h2 id=boolean-algebra-in-masking>Boolean Algebra in Masking</h2><p>Boolean algebra deals with operations on true/false values: AND, OR, NOT, XOR. In LLMs, masking operations apply Boolean logic to sequences.</p><p><strong>Attention masking</strong> prevents tokens from attending to certain positions:</p><ul><li><strong>Causal mask</strong>: Token at position i can only attend to positions ≤ i</li><li><strong>Padding mask</strong>: Ignore padding tokens entirely</li><li><strong>Custom masks</strong>: Task-specific attention patterns</li></ul><p>These are Boolean matrices. A 1 means &ldquo;allowed,&rdquo; a 0 means &ldquo;blocked.&rdquo;</p><h4 id=python-2>Python</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>boolean_masking</span>():
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Show how attention masking is Boolean algebra.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>import</span> numpy <span style=color:#ff79c6>as</span> np
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    seq_len <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>5</span>
+</span></span><span style=display:flex><span>    tokens <span style=color:#ff79c6>=</span> [<span style=color:#f1fa8c>&#34;The&#34;</span>, <span style=color:#f1fa8c>&#34;cat&#34;</span>, <span style=color:#f1fa8c>&#34;sat&#34;</span>, <span style=color:#f1fa8c>&#34;on&#34;</span>, <span style=color:#f1fa8c>&#34;mat&#34;</span>]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Causal mask: lower triangular matrix</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Token i can attend to tokens 0, 1, ..., i</span>
+</span></span><span style=display:flex><span>    causal_mask <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>tril(np<span style=color:#ff79c6>.</span>ones((seq_len, seq_len), dtype<span style=color:#ff79c6>=</span><span style=color:#8be9fd;font-style:italic>int</span>))
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Causal Mask (Boolean matrix):&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Can token[row] attend to token[col]?</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>&#34;</span> <span style=color:#ff79c6>+</span> <span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>&#34;</span><span style=color:#ff79c6>.</span>join(tokens))
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> i, token <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>enumerate</span>(tokens):
+</span></span><span style=display:flex><span>        row <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>&#34;</span><span style=color:#ff79c6>.</span>join(<span style=color:#8be9fd;font-style:italic>str</span>(x) <span style=color:#ff79c6>for</span> x <span style=color:#ff79c6>in</span> causal_mask[i])
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>{</span>token<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>{</span>row<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Padding mask example</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Suppose last token is padding</span>
+</span></span><span style=display:flex><span>    padding_mask <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>array([<span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>0</span>])  <span style=color:#6272a4># 0 = ignore</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>Padding mask: </span><span style=color:#f1fa8c>{</span>padding_mask<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;(1 = real token, 0 = padding)&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Combined mask: AND operation</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Can attend only if causal allows AND token is not padding</span>
+</span></span><span style=display:flex><span>    combined <span style=color:#ff79c6>=</span> causal_mask <span style=color:#ff79c6>*</span> padding_mask  <span style=color:#6272a4># Broadcasting</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>Combined mask (causal AND not-padding):&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>&#34;</span> <span style=color:#ff79c6>+</span> <span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>&#34;</span><span style=color:#ff79c6>.</span>join(tokens))
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> i, token <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>enumerate</span>(tokens):
+</span></span><span style=display:flex><span>        row <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>&#34;</span><span style=color:#ff79c6>.</span>join(<span style=color:#8be9fd;font-style:italic>str</span>(x) <span style=color:#ff79c6>for</span> x <span style=color:#ff79c6>in</span> combined[i])
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>{</span>token<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>{</span>row<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>Mask combination is Boolean AND: combined = causal ∧ padding&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>boolean_masking()
+</span></span></code></pre></div><h4 id=output-1>Output</h4><pre tabindex=0><code>Causal Mask (Boolean matrix):
 Can token[row] attend to token[col]?
 
 	The	cat	sat	on	mat
@@ -429,402 +179,148 @@ on	1	1	1	1	0
 mat	1	1	1	1	0
 
 Mask combination is Boolean AND: combined = causal ∧ padding
-</code></pre><p>Every masking operation is Boolean algebra applied element-wise to matrices.</p>
-<hr>
-<h2 id="proof-structure-in-chain-of-thought">Proof Structure in Chain-of-Thought</h2>
-<p>Formal proofs in discrete mathematics follow a structure: state assumptions, apply inference rules step by step, derive conclusions. Each step must follow logically from previous steps.</p>
-<p>Chain-of-thought (CoT) prompting <a href="#wei2022">
-  (Wei et al., 2022)
-</a>
- mirrors this structure. Instead of asking for an answer directly, you ask the model to reason step by step:</p>
-<p><strong>Direct prompt:</strong></p>
-<blockquote>
-<p>What is 17 × 24?</p></blockquote>
-<p><strong>Chain-of-thought prompt:</strong></p>
-<blockquote>
-<p>What is 17 × 24? Think step by step.</p></blockquote>
-<p>The step-by-step response resembles a proof:</p>
-<ol>
-<li><strong>Given</strong>: 17 × 24</li>
-<li><strong>Decompose</strong>: 17 × 24 = 17 × (20 + 4)</li>
-<li><strong>Distribute</strong>: = (17 × 20) + (17 × 4)</li>
-<li><strong>Compute</strong>: = 340 + 68</li>
-<li><strong>Conclude</strong>: = 408</li>
-</ol>
-<p>This is the same structure as a mathematical proof:</p>
-<ol>
-<li><strong>Premises</strong>: What we&rsquo;re given</li>
-<li><strong>Inference steps</strong>: Apply rules to derive new facts</li>
-<li><strong>Conclusion</strong>: Final result</li>
-</ol>
-<h4 id="python-3">Python</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">proof_structure_in_cot</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Compare formal proof structure to chain-of-thought.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Formal proof structure</span>
-</span></span><span style="display:flex;"><span>    formal_proof <span style="color:#ff79c6">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Given&#34;</span>: <span style="color:#f1fa8c">&#34;Prove that if n is even, then n² is even&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Assume&#34;</span>: <span style="color:#f1fa8c">&#34;Let n be even. Then n = 2k for some integer k.&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Derive&#34;</span>: <span style="color:#f1fa8c">&#34;n² = (2k)² = 4k² = 2(2k²)&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Conclude&#34;</span>: <span style="color:#f1fa8c">&#34;Since n² = 2(2k²) and 2k² is an integer, n² is even. QED&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Chain-of-thought structure</span>
-</span></span><span style="display:flex;"><span>    cot_response <span style="color:#ff79c6">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Given&#34;</span>: <span style="color:#f1fa8c">&#34;Calculate the total cost of 3 items at $17.50 each with 8% tax&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Step 1&#34;</span>: <span style="color:#f1fa8c">&#34;First, find the subtotal: 3 × $17.50 = $52.50&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Step 2&#34;</span>: <span style="color:#f1fa8c">&#34;Next, calculate the tax: $52.50 × 0.08 = $4.20&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;Conclude&#34;</span>: <span style="color:#f1fa8c">&#34;Total cost: $52.50 + $4.20 = $56.70&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Formal Proof Structure:&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">50</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> step, content <span style="color:#ff79c6">in</span> formal_proof<span style="color:#ff79c6">.</span>items():
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  </span><span style="color:#f1fa8c">{</span>step<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">: </span><span style="color:#f1fa8c">{</span>content<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n\n</span><span style="color:#f1fa8c">Chain-of-Thought Structure:&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">50</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> step, content <span style="color:#ff79c6">in</span> cot_response<span style="color:#ff79c6">.</span>items():
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  </span><span style="color:#f1fa8c">{</span>step<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">: </span><span style="color:#f1fa8c">{</span>content<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n\n</span><span style="color:#f1fa8c">Both follow: Premises → Inference Steps → Conclusion&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>proof_structure_in_cot()
-</span></span></code></pre></div><p>Why does CoT improve accuracy? One hypothesis: the model&rsquo;s training data contains many examples of step-by-step reasoning (textbooks, tutorials, Stack Overflow answers). By prompting for explicit steps, you&rsquo;re activating patterns the model learned from structured explanations rather than patterns it learned from direct Q&amp;A.</p>
-<p>The proof structure isn&rsquo;t just an analogy. It&rsquo;s a shared pattern that appears in training data and gets activated by step-by-step prompts.</p>
-<hr>
-<h2 id="modular-arithmetic-in-positional-encoding">Modular Arithmetic in Positional Encoding</h2>
-<p>Modular arithmetic is central to discrete mathematics. The clock &ldquo;wraps around&rdquo; from 12 to 1. Cryptographic systems like RSA depend entirely on properties of modular exponentiation.</p>
-<p>Positional encoding in transformers uses similar periodic structures.</p>
-<p>The original transformer paper (<a href="#vaswani2017">
-  Vaswani et al., 2017
-</a>
-) used sinusoidal positional encodings:</p>
-<p>\[
+</code></pre><p>Every masking operation is Boolean algebra applied element-wise to matrices.</p><hr><h2 id=proof-structure-in-chain-of-thought>Proof Structure in Chain-of-Thought</h2><p>Formal proofs in discrete mathematics follow a structure: state assumptions, apply inference rules step by step, derive conclusions. Each step must follow logically from previous steps.</p><p>Chain-of-thought (CoT) prompting <a href=#wei2022>(Wei et al., 2022)
+</a>mirrors this structure. Instead of asking for an answer directly, you ask the model to reason step by step:</p><p><strong>Direct prompt:</strong></p><blockquote><p>What is 17 × 24?</p></blockquote><p><strong>Chain-of-thought prompt:</strong></p><blockquote><p>What is 17 × 24? Think step by step.</p></blockquote><p>The step-by-step response resembles a proof:</p><ol><li><strong>Given</strong>: 17 × 24</li><li><strong>Decompose</strong>: 17 × 24 = 17 × (20 + 4)</li><li><strong>Distribute</strong>: = (17 × 20) + (17 × 4)</li><li><strong>Compute</strong>: = 340 + 68</li><li><strong>Conclude</strong>: = 408</li></ol><p>This is the same structure as a mathematical proof:</p><ol><li><strong>Premises</strong>: What we&rsquo;re given</li><li><strong>Inference steps</strong>: Apply rules to derive new facts</li><li><strong>Conclusion</strong>: Final result</li></ol><h4 id=python-3>Python</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>proof_structure_in_cot</span>():
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Compare formal proof structure to chain-of-thought.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Formal proof structure</span>
+</span></span><span style=display:flex><span>    formal_proof <span style=color:#ff79c6>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Given&#34;</span>: <span style=color:#f1fa8c>&#34;Prove that if n is even, then n² is even&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Assume&#34;</span>: <span style=color:#f1fa8c>&#34;Let n be even. Then n = 2k for some integer k.&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Derive&#34;</span>: <span style=color:#f1fa8c>&#34;n² = (2k)² = 4k² = 2(2k²)&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Conclude&#34;</span>: <span style=color:#f1fa8c>&#34;Since n² = 2(2k²) and 2k² is an integer, n² is even. QED&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Chain-of-thought structure</span>
+</span></span><span style=display:flex><span>    cot_response <span style=color:#ff79c6>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Given&#34;</span>: <span style=color:#f1fa8c>&#34;Calculate the total cost of 3 items at $17.50 each with 8% tax&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Step 1&#34;</span>: <span style=color:#f1fa8c>&#34;First, find the subtotal: 3 × $17.50 = $52.50&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Step 2&#34;</span>: <span style=color:#f1fa8c>&#34;Next, calculate the tax: $52.50 × 0.08 = $4.20&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;Conclude&#34;</span>: <span style=color:#f1fa8c>&#34;Total cost: $52.50 + $4.20 = $56.70&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Formal Proof Structure:&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;-&#34;</span> <span style=color:#ff79c6>*</span> <span style=color:#bd93f9>50</span>)
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> step, content <span style=color:#ff79c6>in</span> formal_proof<span style=color:#ff79c6>.</span>items():
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;  </span><span style=color:#f1fa8c>{</span>step<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>: </span><span style=color:#f1fa8c>{</span>content<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n\n</span><span style=color:#f1fa8c>Chain-of-Thought Structure:&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;-&#34;</span> <span style=color:#ff79c6>*</span> <span style=color:#bd93f9>50</span>)
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> step, content <span style=color:#ff79c6>in</span> cot_response<span style=color:#ff79c6>.</span>items():
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;  </span><span style=color:#f1fa8c>{</span>step<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>: </span><span style=color:#f1fa8c>{</span>content<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n\n</span><span style=color:#f1fa8c>Both follow: Premises → Inference Steps → Conclusion&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>proof_structure_in_cot()
+</span></span></code></pre></div><p>Why does CoT improve accuracy? One hypothesis: the model&rsquo;s training data contains many examples of step-by-step reasoning (textbooks, tutorials, Stack Overflow answers). By prompting for explicit steps, you&rsquo;re activating patterns the model learned from structured explanations rather than patterns it learned from direct Q&amp;A.</p><p>The proof structure isn&rsquo;t just an analogy. It&rsquo;s a shared pattern that appears in training data and gets activated by step-by-step prompts.</p><hr><h2 id=modular-arithmetic-in-positional-encoding>Modular Arithmetic in Positional Encoding</h2><p>Modular arithmetic is central to discrete mathematics. The clock &ldquo;wraps around&rdquo; from 12 to 1. Cryptographic systems like RSA depend entirely on properties of modular exponentiation.</p><p>Positional encoding in transformers uses similar periodic structures.</p><p>The original transformer paper (<a href=#vaswani2017>
+Vaswani et al., 2017
+</a>) used sinusoidal positional encodings:</p><p>\[
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right)
 \]
 \[
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
-\]</p>
-<p>These are periodic functions. As position increases, the values cycle through patterns at different frequencies. Each dimension captures periodicity at a different scale, similar to how different moduli in modular arithmetic create different cycle lengths.</p>
-<p>More recent work has explored alternatives like ALiBi <a href="#press2021">
-  (Press et al., 2021)
-</a>
-, but the principle remains: periodic or relative structures encode position.</p>
-<h4 id="python-4">Python</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">positional_encoding_periodicity</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Show the periodic structure in positional encodings.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">positional_encoding</span>(pos, d_model<span style="color:#ff79c6">=</span><span style="color:#bd93f9">16</span>):
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Compute positional encoding for a single position.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>        pe <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>zeros(d_model)
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">0</span>, d_model, <span style="color:#bd93f9">2</span>):
-</span></span><span style="display:flex;"><span>            denominator <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10000</span> <span style="color:#ff79c6">**</span> (i <span style="color:#ff79c6">/</span> d_model)
-</span></span><span style="display:flex;"><span>            pe[i] <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(pos <span style="color:#ff79c6">/</span> denominator)
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> i <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&lt;</span> d_model:
-</span></span><span style="display:flex;"><span>                pe[i <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>cos(pos <span style="color:#ff79c6">/</span> denominator)
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> pe
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Show how different dimensions have different periods</span>
-</span></span><span style="display:flex;"><span>    positions <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">20</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Positional Encoding Values (selected dimensions):</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Position</span><span style="color:#f1fa8c">\t</span><span style="color:#f1fa8c">Dim 0</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">Dim 4</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">Dim 8&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;-&#34;</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">55</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> pos <span style="color:#ff79c6">in</span> positions:
-</span></span><span style="display:flex;"><span>        pe <span style="color:#ff79c6">=</span> positional_encoding(pos)
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>pos<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">{</span>pe[<span style="color:#bd93f9">0</span>]<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">+.3f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">{</span>pe[<span style="color:#bd93f9">4</span>]<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">+.3f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\t\t</span><span style="color:#f1fa8c">{</span>pe[<span style="color:#bd93f9">8</span>]<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">+.3f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">Dimension 0 cycles fastest (short period)&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Higher dimensions cycle slower (longer period)&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Like different moduli creating different cycle lengths&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>positional_encoding_periodicity()
-</span></span></code></pre></div><p>The connection to modular arithmetic is structural: both create periodic patterns that encode position or equivalence classes. In RSA, you compute \(m^e \mod n\). In positional encoding, you compute \(\sin(pos / \text{scale})\). Both use periodic functions to encode information in a bounded, cyclic way.</p>
-<hr>
-<h2 id="why-these-connections-matter">Why These Connections Matter</h2>
-<p>Understanding the discrete mathematics inside LLMs isn&rsquo;t just intellectual curiosity. It has practical implications.</p>
-<p><strong>Prompting strategies make more sense.</strong> Chain-of-thought works because it activates proof-like patterns. Asking for specific formats works because you&rsquo;re constraining the output set. Understanding the underlying structure helps you design better prompts.</p>
-<p><strong>Debugging becomes clearer.</strong> When a model fails at a reasoning task, you can ask: which step in the implicit proof went wrong? Where did the set membership predicate misfire? The discrete math lens gives you a vocabulary for analyzing failures.</p>
-<p><strong>Architecture choices make more sense.</strong> Why sinusoidal positional encodings? Because periodic functions encode position without bound while maintaining relative distance information. The modular arithmetic structure is the answer.</p>
-<p><strong>The foundations connect.</strong> Discrete math, linear algebra, calculus, probability: these aren&rsquo;t separate subjects that happen to appear in ML. They&rsquo;re interconnected views of the same structures. Attention is both a weighted sum (linear algebra) and a predicate evaluation (discrete math) and a probability distribution (statistics).</p>
-<hr>
-<h2 id="from-abstraction-to-application">From Abstraction to Application</h2>
-<p>When I first encountered set theory and predicate logic in a discrete mathematics course, the applications weren&rsquo;t obvious. Venn diagrams and truth tables felt disconnected from writing software.</p>
-<p>The connection became clear when I started digging into how LLMs actually work. The same structures keep appearing, just implemented in continuous approximations rather than crisp symbolic form:</p>
-<p>This is not a set of literal equivalences, but a set of structural analogies that help explain how these systems behave.</p>
-<table>
-  <thead>
-      <tr>
-          <th>Discrete Math Lens</th>
-          <th>What It Helps Explain in LLMs</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Predicate logic</td>
-          <td>Attention as soft relevance evaluation</td>
-      </tr>
-      <tr>
-          <td>Set theory</td>
-          <td>Token selection and sampling</td>
-      </tr>
-      <tr>
-          <td>Boolean algebra</td>
-          <td>Masking and constraints</td>
-      </tr>
-      <tr>
-          <td>Proof structure</td>
-          <td>Chain-of-thought reasoning patterns</td>
-      </tr>
-      <tr>
-          <td>Cyclic structures (like modular arithmetic)</td>
-          <td>Positional encoding</td>
-      </tr>
-  </tbody>
-</table>
-<p>The abstractions aren&rsquo;t abstract. They&rsquo;re the scaffolding that neural networks approximate at scale.</p>
-<hr>
-<h2 id="closing-thoughts">Closing Thoughts</h2>
-<p>The conversation that started this post discussed how discrete mathematics connects to real software engineering. For AI systems, the answer is unambiguous: discrete math is embedded in the architecture.</p>
-<p>This doesn&rsquo;t mean you need a discrete math course to use LLMs. But if you want to understand why they work, why certain prompting strategies succeed, and why certain failures occur, the discrete structures provide clarity. Attention isn&rsquo;t magic; it&rsquo;s predicate evaluation. Token selection isn&rsquo;t arbitrary; it&rsquo;s set construction. Chain-of-thought isn&rsquo;t a trick; it&rsquo;s proof structure.</p>
-<p>The foundations were always there. Modern AI just implements them at scale.</p>
-<hr>
-<p><strong>If you&rsquo;ve followed this series from <a href="/posts/how-large-language-models-read-code">
-  how LLMs read code
-</a>
- through <a href="/posts/how-large-language-models-think">
-  how they think
-</a>
-, <a href="/posts/how-large-language-models-learn">
-  how they learn
-</a>
-, and <a href="/posts/how-large-language-models-handle-context-windows">
-  how they handle context
-</a>
-, you&rsquo;ve seen the calculus, linear algebra, and probability. This post adds the discrete layer. The mathematics of language isn&rsquo;t one subject. It&rsquo;s all of them, working together.</strong></p>
-<hr>
-<h2 id="further-reading">Further Reading</h2>
-<p>These resources provide deeper context on the mathematical foundations of transformers and attention mechanisms.</p>
-<p><a id="vaswani2017"></a>
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., &hellip; &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems</em>, 30. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/1706.03762
-</a>
-</p>
-<p><a id="wei2022"></a>
-Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., &hellip; &amp; Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. <em>Advances in Neural Information Processing Systems</em>, 35. <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2201.11903
-</a>
-</p>
-<p><a id="press2021"></a>
-Press, O., Smith, N. A., &amp; Lewis, M. (2021). Train short, test long: Attention with linear biases enables input length generalization. <em>arXiv preprint arXiv:2108.12409</em>. <a href="https://arxiv.org/abs/2108.12409" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2108.12409
-</a>
-</p>
-<hr>
-    </div>
-    <footer class="post__footer">
-      
-<div class="post__tags tags clearfix">
-	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
-	<ul class="tags__list">
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/ai/" rel="tag">AI</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/attention-mechanisms/" rel="tag">attention mechanisms</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/embeddings/" rel="tag">embeddings</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/discrete-mathematics/" rel="tag">discrete mathematics</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/llm/" rel="tag">LLM</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/predicate-logic/" rel="tag">predicate logic</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/set-theory/" rel="tag">set theory</a>
-		</li>
-	</ul>
-</div>
-      
-    </footer>
-  </article>
-</main>
-
-
-
-
-			</div>
-			<aside class="sidebar"><div class="widget widget-bio">
-  <h4 class="widget__title">Behind the Code</h4>
-  <div class="widget__content">
-
-    <div class="bio-wrap">
-      
-        <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
-        </a>
-      
-
-      
-      
-        <div class="bio-text"><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
+\]</p><p>These are periodic functions. As position increases, the values cycle through patterns at different frequencies. Each dimension captures periodicity at a different scale, similar to how different moduli in modular arithmetic create different cycle lengths.</p><p>More recent work has explored alternatives like ALiBi <a href=#press2021>(Press et al., 2021)
+</a>, but the principle remains: periodic or relative structures encode position.</p><h4 id=python-4>Python</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>positional_encoding_periodicity</span>():
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Show the periodic structure in positional encodings.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>import</span> numpy <span style=color:#ff79c6>as</span> np
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>positional_encoding</span>(pos, d_model<span style=color:#ff79c6>=</span><span style=color:#bd93f9>16</span>):
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;&#34;&#34;Compute positional encoding for a single position.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        pe <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>zeros(d_model)
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>for</span> i <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>range</span>(<span style=color:#bd93f9>0</span>, d_model, <span style=color:#bd93f9>2</span>):
+</span></span><span style=display:flex><span>            denominator <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>10000</span> <span style=color:#ff79c6>**</span> (i <span style=color:#ff79c6>/</span> d_model)
+</span></span><span style=display:flex><span>            pe[i] <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>sin(pos <span style=color:#ff79c6>/</span> denominator)
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>if</span> i <span style=color:#ff79c6>+</span> <span style=color:#bd93f9>1</span> <span style=color:#ff79c6>&lt;</span> d_model:
+</span></span><span style=display:flex><span>                pe[i <span style=color:#ff79c6>+</span> <span style=color:#bd93f9>1</span>] <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>cos(pos <span style=color:#ff79c6>/</span> denominator)
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>return</span> pe
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Show how different dimensions have different periods</span>
+</span></span><span style=display:flex><span>    positions <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>range</span>(<span style=color:#bd93f9>20</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Positional Encoding Values (selected dimensions):</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Position</span><span style=color:#f1fa8c>\t</span><span style=color:#f1fa8c>Dim 0</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>Dim 4</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>Dim 8&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;-&#34;</span> <span style=color:#ff79c6>*</span> <span style=color:#bd93f9>55</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> pos <span style=color:#ff79c6>in</span> positions:
+</span></span><span style=display:flex><span>        pe <span style=color:#ff79c6>=</span> positional_encoding(pos)
+</span></span><span style=display:flex><span>        <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>{</span>pos<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>{</span>pe[<span style=color:#bd93f9>0</span>]<span style=color:#f1fa8c>:</span><span style=color:#f1fa8c>+.3f</span><span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>{</span>pe[<span style=color:#bd93f9>4</span>]<span style=color:#f1fa8c>:</span><span style=color:#f1fa8c>+.3f</span><span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>\t\t</span><span style=color:#f1fa8c>{</span>pe[<span style=color:#bd93f9>8</span>]<span style=color:#f1fa8c>:</span><span style=color:#f1fa8c>+.3f</span><span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>Dimension 0 cycles fastest (short period)&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Higher dimensions cycle slower (longer period)&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#34;Like different moduli creating different cycle lengths&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>positional_encoding_periodicity()
+</span></span></code></pre></div><p>The connection to modular arithmetic is structural: both create periodic patterns that encode position or equivalence classes. In RSA, you compute \(m^e \mod n\). In positional encoding, you compute \(\sin(pos / \text{scale})\). Both use periodic functions to encode information in a bounded, cyclic way.</p><hr><h2 id=why-these-connections-matter>Why These Connections Matter</h2><p>Understanding the discrete mathematics inside LLMs isn&rsquo;t just intellectual curiosity. It has practical implications.</p><p><strong>Prompting strategies make more sense.</strong> Chain-of-thought works because it activates proof-like patterns. Asking for specific formats works because you&rsquo;re constraining the output set. Understanding the underlying structure helps you design better prompts.</p><p><strong>Debugging becomes clearer.</strong> When a model fails at a reasoning task, you can ask: which step in the implicit proof went wrong? Where did the set membership predicate misfire? The discrete math lens gives you a vocabulary for analyzing failures.</p><p><strong>Architecture choices make more sense.</strong> Why sinusoidal positional encodings? Because periodic functions encode position without bound while maintaining relative distance information. The modular arithmetic structure is the answer.</p><p><strong>The foundations connect.</strong> Discrete math, linear algebra, calculus, probability: these aren&rsquo;t separate subjects that happen to appear in ML. They&rsquo;re interconnected views of the same structures. Attention is both a weighted sum (linear algebra) and a predicate evaluation (discrete math) and a probability distribution (statistics).</p><hr><h2 id=from-abstraction-to-application>From Abstraction to Application</h2><p>When I first encountered set theory and predicate logic in a discrete mathematics course, the applications weren&rsquo;t obvious. Venn diagrams and truth tables felt disconnected from writing software.</p><p>The connection became clear when I started digging into how LLMs actually work. The same structures keep appearing, just implemented in continuous approximations rather than crisp symbolic form:</p><p>This is not a set of literal equivalences, but a set of structural analogies that help explain how these systems behave.</p><table><thead><tr><th>Discrete Math Lens</th><th>What It Helps Explain in LLMs</th></tr></thead><tbody><tr><td>Predicate logic</td><td>Attention as soft relevance evaluation</td></tr><tr><td>Set theory</td><td>Token selection and sampling</td></tr><tr><td>Boolean algebra</td><td>Masking and constraints</td></tr><tr><td>Proof structure</td><td>Chain-of-thought reasoning patterns</td></tr><tr><td>Cyclic structures (like modular arithmetic)</td><td>Positional encoding</td></tr></tbody></table><p>The abstractions aren&rsquo;t abstract. They&rsquo;re the scaffolding that neural networks approximate at scale.</p><hr><h2 id=closing-thoughts>Closing Thoughts</h2><p>The conversation that started this post discussed how discrete mathematics connects to real software engineering. For AI systems, the answer is unambiguous: discrete math is embedded in the architecture.</p><p>This doesn&rsquo;t mean you need a discrete math course to use LLMs. But if you want to understand why they work, why certain prompting strategies succeed, and why certain failures occur, the discrete structures provide clarity. Attention isn&rsquo;t magic; it&rsquo;s predicate evaluation. Token selection isn&rsquo;t arbitrary; it&rsquo;s set construction. Chain-of-thought isn&rsquo;t a trick; it&rsquo;s proof structure.</p><p>The foundations were always there. Modern AI just implements them at scale.</p><hr><p><strong>If you&rsquo;ve followed this series from <a href=/posts/how-large-language-models-read-code>how LLMs read code
+</a>through <a href=/posts/how-large-language-models-think>how they think
+</a>, <a href=/posts/how-large-language-models-learn>how they learn
+</a>, and <a href=/posts/how-large-language-models-handle-context-windows>how they handle context
+</a>, you&rsquo;ve seen the calculus, linear algebra, and probability. This post adds the discrete layer. The mathematics of language isn&rsquo;t one subject. It&rsquo;s all of them, working together.</strong></p><hr><h2 id=further-reading>Further Reading</h2><p>These resources provide deeper context on the mathematical foundations of transformers and attention mechanisms.</p><p><a id=vaswani2017></a>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., &mldr; & Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems</em>, 30. <a href=https://arxiv.org/abs/1706.03762 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/1706.03762</a></p><p><a id=wei2022></a>Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., &mldr; & Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. <em>Advances in Neural Information Processing Systems</em>, 35. <a href=https://arxiv.org/abs/2201.11903 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/2201.11903</a></p><p><a id=press2021></a>Press, O., Smith, N. A., & Lewis, M. (2021). Train short, test long: Attention with linear biases enables input length generalization. <em>arXiv preprint arXiv:2108.12409</em>. <a href=https://arxiv.org/abs/2108.12409 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/2108.12409</a></p><hr></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 000-6 3 3 0 000 6"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/ai/ rel=tag>AI</a></li><li class=tags__item><a class="tags__link btn" href=/tags/attention-mechanisms/ rel=tag>attention mechanisms</a></li><li class=tags__item><a class="tags__link btn" href=/tags/embeddings/ rel=tag>embeddings</a></li><li class=tags__item><a class="tags__link btn" href=/tags/discrete-mathematics/ rel=tag>discrete mathematics</a></li><li class=tags__item><a class="tags__link btn" href=/tags/llm/ rel=tag>LLM</a></li><li class=tags__item><a class="tags__link btn" href=/tags/predicate-logic/ rel=tag>predicate logic</a></li><li class=tags__item><a class="tags__link btn" href=/tags/set-theory/ rel=tag>set theory</a></li></ul></div></footer></article></main></div><aside class=sidebar><div class="widget widget-bio"><h4 class=widget__title>Behind the Code</h4><div class=widget__content><div class=bio-wrap><a class=bio-avatar-link href=/bio/><img class=bio-avatar src=/img/avatar.png alt="Avatar of Signal & Syntax"></a><div class=bio-text><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
 turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
-that outlives the feature request it started from.</p>
-<p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+that outlives the feature request it started from.</p><p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
 insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
 system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
 activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
-technology books, wrote 100+ articles for <em>.NET Programming Tips &amp; Techniques</em>, and helped run
-<a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
-  CodeGuru
-</a>
- (the largest Windows developer community of its era).</p>
-<p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+technology books, wrote 100+ articles for <em>.NET Programming Tips & Techniques</em>, and helped run
+<a href=http://codeguru.com target=_blank rel="noopener noreferrer">CodeGuru
+</a>(the largest Windows developer community of its era).</p><p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
 that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
 structures that get concatenated with code samples at runtime and routed to generative models, with results
-injected back into the output. Nearly 100 articles have shipped through the system.</p>
-<p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
-to inference-time behavior, from tokenization to training infrastructure.</p>
-<p>Connect with me on <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
-  LinkedIn
-</a>
-.</p>
-</div>
-      
-    </div>
-
-    
-    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
-  </div>
-</div>
-<div class="widget widget-disclaimer">
-  <h4 class="widget__title">Disclaimer</h4>
-  <div class="widget__content">
-    <p>
-      The content on this blog represents my personal views and opinions only. It is not intended to represent
-      the views, positions, or strategies of my employer or any other organization with which I may be associated.
-      All content is provided “as is” without warranty of any kind.
-    </p>
-  </div>
-</div>
-<div class="widget widget-social">
-  <h4 class="widget__title">Connect</h4>
-  <div class="widget__content">
-    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
-        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
-          
-        </a>
-      </li><li>
-        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
-          
-        </a>
-      </li><li>
-        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
-          
-        </a>
-      </li></ul>
-  </div>
-</div>
-<div class="widget-categories widget">
-	<h4 class="widget__title">Categories</h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-taglist widget">
-	<h4 class="widget__title">Tags</h4>
-	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/discrete-mathematics/" title="Discrete Mathematics">Discrete Mathematics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/predicate-logic/" title="Predicate Logic">Predicate Logic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/set-theory/" title="Set Theory">Set Theory</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2026 Signal &amp; Syntax.
-			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-<script src="/js/copy-button.js"></script>
-</body>
-</html>
+injected back into the output. Nearly 100 articles have shipped through the system.</p><p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+to inference-time behavior, from tokenization to training infrastructure.</p><p>Connect with me on <a href=https://www.linkedin.com/in/tom-archer-dev/ target=_blank rel="noopener noreferrer">LinkedIn
+</a>.</p></div></div><p class=more><a class=link-more href=/bio/>Read more →</a></p></div></div><div class="widget widget-disclaimer"><h4 class=widget__title>Disclaimer</h4><div class=widget__content><p>The content on this blog represents my personal views and opinions only. It is not intended to represent
+the views, positions, or strategies of my employer or any other organization with which I may be associated.
+All content is provided “as is” without warranty of any kind.</p></div></div><div class="widget widget-social"><h4 class=widget__title>Connect</h4><div class=widget__content><ul class=social-list style=list-style:none;padding:0;margin:0;display:flex;gap:.6rem><li><a href=https://github.com/tomarcher aria-label=GitHub rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 008.21 23.9c.6.11.82-.26.82-.58V21.3c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93.0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17.0.0 1.01-.32 3.3 1.23a11.4 11.4.0 016.01.0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22.0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0012 .5z"/></svg></a></li><li><a href=https://www.linkedin.com/in/tom-archer-dev/ aria-label=LinkedIn rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45H16.9v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85.0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54.0 4.2 2.33 4.2 5.36v6.36zM5.34 7.43a2.06 2.06.0 110-4.12 2.06 2.06.0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li><li><a href=/index.xml aria-label=RSS rel=noopener style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18.0 110-4.36 2.18 2.18.0 010 4.36zM4 9.82v3.27a7.73 7.73.0 017.73 7.73H15c0-6.05-4.95-11-11-11zm0-4v3.27c8.27.0 15 6.73 15 15h3.27C22.27 14.03 14.06 5.82 4 5.82z"/></svg></a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai-and-the-mathematics-of-language/>AI and the Mathematics of Language</a></li><li class=widget__item><a class=widget__link href=/categories/applied-modeling-and-simulation/>Applied Modeling and Simulation</a></li><li class=widget__item><a class=widget__link href=/categories/essays-and-perspectives/>Essays and Perspectives</a></li><li class=widget__item><a class=widget__link href=/categories/python-techniques-and-tooling/>Python Techniques and Tooling</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title>Tags</h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/algorithms/ title=Algorithms>Algorithms</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/anthropic/ title=Anthropic>Anthropic</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/attention-mechanisms/ title="Attention Mechanisms">Attention Mechanisms</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/biology/ title=Biology>Biology</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/blockchain/ title=Blockchain>Blockchain</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/calculus/ title=Calculus>Calculus</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/code-organization/ title="Code Organization">Code Organization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/context-windows/ title="Context Windows">Context Windows</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cryptography/ title=Cryptography>Cryptography</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/data-parsing/ title="Data Parsing">Data Parsing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/databases/ title=Databases>Databases</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/design-patterns/ title="Design Patterns">Design Patterns</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/discrete-mathematics/ title="Discrete Mathematics">Discrete Mathematics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/distributed-systems/ title=Distributed-Systems>Distributed-Systems</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/economics/ title=Economics>Economics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/embeddings/ title=Embeddings>Embeddings</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/energy-balance/ title="Energy Balance">Energy Balance</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/geometry/ title=Geometry>Geometry</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/gradient-descent/ title="Gradient Descent">Gradient Descent</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hashing/ title=Hashing>Hashing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/innovation/ title=Innovation>Innovation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/kinematics/ title=Kinematics>Kinematics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/linear-algebra/ title="Linear Algebra">Linear Algebra</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/llm/ title=LLM>LLM</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/nlp/ title=NLP>NLP</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/nucleus-sampling/ title="Nucleus Sampling">Nucleus Sampling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/numerical-methods/ title="Numerical Methods">Numerical Methods</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/optimization/ title=Optimization>Optimization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/passwords/ title=Passwords>Passwords</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/physics/ title=Physics>Physics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/predicate-logic/ title="Predicate Logic">Predicate Logic</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/probability/ title=Probability>Probability</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/productivity/ title=Productivity>Productivity</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/python/ title=Python>Python</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/rag/ title=RAG>RAG</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/sampling/ title=Sampling>Sampling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/scheduling/ title=Scheduling>Scheduling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/security/ title=Security>Security</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/set-theory/ title="Set Theory">Set Theory</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/softmax/ title=Softmax>Softmax</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/symbolic-math/ title="Symbolic Math">Symbolic Math</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/sympy/ title=SymPy>SymPy</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/temperature/ title=Temperature>Temperature</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/thermodynamics/ title=Thermodynamics>Thermodynamics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/tokenization/ title=Tokenization>Tokenization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/top-p/ title=Top-P>Top-P</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/transformers/ title=Transformers>Transformers</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/web-search/ title="Web Search">Web Search</a></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 Signal & Syntax.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/js/menu.js></script><script src=/js/copy-button.js></script></body></html>

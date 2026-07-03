@@ -1,19 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>OpenAI on Signal &amp; Syntax</title>
-    <link>http://localhost:1313/tags/openai/</link>
-    <description>Recent content in OpenAI on Signal &amp; Syntax</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 24 Dec 2025 12:00:00 -0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/openai/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Temperature and Top-P: The Creativity Knobs</title>
-      <link>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</link>
-      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
-      <guid>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</guid>
-      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./temperature-top-p-creativity-knobs.png&#34;&#xD;&#xA;       alt=&#34;A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Turn it up and things get weird.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Every API call to &lt;a href=&#34;https://openai.com/api/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, &lt;a href=&#34;https://claude.com/platform/api&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, or any other LLM includes two parameters most people either ignore or tweak randomly: &lt;strong&gt;temperature&lt;/strong&gt; and &lt;strong&gt;top-p&lt;/strong&gt;. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p&gt;&#xA;&lt;p&gt;The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &amp;ldquo;Set temperature to 0.7 for creative writing&amp;rdquo; becomes tribal knowledge, passed down without explanation. Let&amp;rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Temperature doesn&amp;rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OpenAI on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/openai/</link><description>Recent content in OpenAI on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 24 Dec 2025 12:00:00 -0800</lastBuildDate><atom:link href="https://tomarcher.io/tags/openai/index.xml" rel="self" type="application/rss+xml"/><item><title>Temperature and Top-P: The Creativity Knobs</title><link>https://tomarcher.io/posts/temperature-top-p-creativity-knobs/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/posts/temperature-top-p-creativity-knobs/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+ &lt;img src="./temperature-top-p-creativity-knobs.png"
+ alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
+ width="250"
+ style="display: block; margin: 0 auto;">
+ &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+ &lt;em>Turn it up and things get weird.&lt;/em>
+ &lt;/figcaption>
+&lt;/figure>
+&lt;p>Every API call to &lt;a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
+ ChatGPT
+&lt;/a>
+, &lt;a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
+ Claude
+&lt;/a>
+, or any other LLM includes two parameters most people either ignore or tweak randomly: &lt;strong>temperature&lt;/strong> and &lt;strong>top-p&lt;/strong>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p>
+&lt;p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.&lt;/p>
+&lt;p>I&amp;rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &amp;ldquo;Set temperature to 0.7 for creative writing&amp;rdquo; becomes tribal knowledge, passed down without explanation. Let&amp;rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.&lt;/p>
+&lt;hr>
+&lt;blockquote>
+&lt;p>&lt;em>&amp;ldquo;Temperature doesn&amp;rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
+&lt;hr></description></item></channel></rss>

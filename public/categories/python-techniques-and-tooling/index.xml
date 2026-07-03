@@ -1,33 +1,48 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Python Techniques and Tooling on Signal &amp; Syntax</title>
-    <link>http://localhost:1313/categories/python-techniques-and-tooling/</link>
-    <description>Recent content in Python Techniques and Tooling on Signal &amp; Syntax</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 17 Sep 2025 13:00:00 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/python-techniques-and-tooling/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Numeric Parsing in Python with Integer Division and Modulus</title>
-      <link>http://localhost:1313/posts/python-integer-division-and-modulus/</link>
-      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
-      <guid>http://localhost:1313/posts/python-integer-division-and-modulus/</guid>
-      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./python-integer-division-and-modulus.png&#34;&#xD;&#xA;       alt=&#34;Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Parse fixed-width numbers with // and % for speed and clarity.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong&gt;numeric parsing with integer division (&lt;code&gt;//&lt;/code&gt;) and modulus (&lt;code&gt;%&lt;/code&gt;)&lt;/strong&gt; is the better option.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
-      <title>Using SymPy in Python When NumPy Isn&#39;t Enough</title>
-      <link>http://localhost:1313/posts/python-sympy-vs-numpy/</link>
-      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
-      <guid>http://localhost:1313/posts/python-sympy-vs-numpy/</guid>
-      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;  &#xD;&#xA;  &lt;img src=&#34;./sympy.png&#34; alt=&#34;Sympy official log of a snake coiled around a cube with mathematical symbols&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;  &#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;  &#xD;&#xA;    &lt;em&gt;SymPy provides symbolic computation and precision techniques for Python developers&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;  &#xD;&#xA;&lt;/figure&gt;  &#xD;&#xA;&lt;p&gt;Most of us reach for &lt;a href=&#34;https://numpy.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  NumPy&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; whenever math shows up in a project. But sometimes, you don&amp;rsquo;t want approximate answers, you want exact math. That&amp;rsquo;s when you pull &lt;a href=&#34;https://sympy.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  SymPy&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; out of your programmer&amp;rsquo;s toolkit and get to work.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.&lt;/p&gt;&#xA;&lt;p&gt;In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Floats guess. SymPy knows.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This is where SymPy shines. To see the difference between &lt;strong&gt;floating-point approximations&lt;/strong&gt; (Python or NumPy) and &lt;strong&gt;symbolic precision&lt;/strong&gt; (SymPy), let&amp;rsquo;s look at a simple but very real example from finance.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Using Python Dispatch Tables for Cleaner Validation</title>
-      <link>http://localhost:1313/posts/python-dispatch-maps/</link>
-      <pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate>
-      <guid>http://localhost:1313/posts/python-dispatch-maps/</guid>
-      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./python-dispatch-maps.png&#34; alt=&#34;Python Tip of the Week logo: Python Post-it note on monitor&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Let&amp;rsquo;s be honest: argument validation code is rarely the proudest part of anyone&amp;rsquo;s repo.&lt;/p&gt;&#xA;&lt;p&gt;Most of us start with the usual suspects:&lt;/p&gt;&#xA;&lt;p&gt;❌ The dreaded &lt;em&gt;inverted-V&lt;/em&gt; tower of &lt;code&gt;if/else&lt;/code&gt; statements&lt;br&gt;&#xA;❌ A graveyard of guard clauses scattered line after line&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Both work fine… until they don&amp;rsquo;t. Then you&amp;rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.&lt;/p&gt;&#xA;&lt;p&gt;There&amp;rsquo;s a better way: &lt;strong&gt;dispatch tables&lt;/strong&gt;!&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python Techniques and Tooling on Signal &amp; Syntax</title><link>https://tomarcher.io/categories/python-techniques-and-tooling/</link><description>Recent content in Python Techniques and Tooling on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 17 Sep 2025 13:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/categories/python-techniques-and-tooling/index.xml" rel="self" type="application/rss+xml"/><item><title>Numeric Parsing in Python with Integer Division and Modulus</title><link>https://tomarcher.io/posts/python-integer-division-and-modulus/</link><pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/python-integer-division-and-modulus/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+ &lt;img src="./python-integer-division-and-modulus.png"
+ alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
+ width="250"
+ style="display: block; margin: 0 auto;">
+ &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+ &lt;em>Parse fixed-width numbers with // and % for speed and clarity.&lt;/em>
+ &lt;/figcaption>
+&lt;/figure>
+&lt;p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong>numeric parsing with integer division (&lt;code>//&lt;/code>) and modulus (&lt;code>%&lt;/code>)&lt;/strong> is the better option.&lt;/p>
+&lt;hr>
+&lt;blockquote>
+&lt;p>&lt;em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em>&lt;/p>&lt;/blockquote>
+&lt;hr></description></item><item><title>Using SymPy in Python When NumPy Isn't Enough</title><link>https://tomarcher.io/posts/python-sympy-vs-numpy/</link><pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate><guid>https://tomarcher.io/posts/python-sympy-vs-numpy/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;"> 
+ &lt;img src="./sympy.png" alt="Sympy official log of a snake coiled around a cube with mathematical symbols" width="250" style="display: block; margin: 0 auto;"> 
+ &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;"> 
+ &lt;em>SymPy provides symbolic computation and precision techniques for Python developers&lt;/em>
+ &lt;/figcaption> 
+&lt;/figure> 
+&lt;p>Most of us reach for &lt;a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
+ NumPy
+&lt;/a>
+ whenever math shows up in a project. But sometimes, you don&amp;rsquo;t want approximate answers, you want exact math. That&amp;rsquo;s when you pull &lt;a href="https://sympy.org/" target="_blank" rel="noopener noreferrer">
+ SymPy
+&lt;/a>
+ out of your programmer&amp;rsquo;s toolkit and get to work.&lt;/p>
+&lt;p>It&amp;rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.&lt;/p>
+&lt;p>In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.&lt;/p>
+&lt;hr>
+&lt;blockquote>
+&lt;p>&lt;em>&amp;ldquo;Floats guess. SymPy knows.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
+&lt;hr>
+&lt;p>This is where SymPy shines. To see the difference between &lt;strong>floating-point approximations&lt;/strong> (Python or NumPy) and &lt;strong>symbolic precision&lt;/strong> (SymPy), let&amp;rsquo;s look at a simple but very real example from finance.&lt;/p></description></item><item><title>Using Python Dispatch Tables for Cleaner Validation</title><link>https://tomarcher.io/posts/python-dispatch-maps/</link><pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate><guid>https://tomarcher.io/posts/python-dispatch-maps/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+ &lt;img src="./python-dispatch-maps.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
+ &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+ &lt;em>Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.&lt;/em>
+ &lt;/figcaption>
+&lt;/figure>
+&lt;p>Let&amp;rsquo;s be honest: argument validation code is rarely the proudest part of anyone&amp;rsquo;s repo.&lt;/p>
+&lt;p>Most of us start with the usual suspects:&lt;/p>
+&lt;p>❌ The dreaded &lt;em>inverted-V&lt;/em> tower of &lt;code>if/else&lt;/code> statements&lt;br>
+❌ A graveyard of guard clauses scattered line after line&lt;/p>
+&lt;hr>
+&lt;blockquote>
+&lt;p>&lt;em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.&lt;/em>&lt;/p>&lt;/blockquote>
+&lt;hr>
+&lt;p>Both work fine… until they don&amp;rsquo;t. Then you&amp;rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.&lt;/p>
+&lt;p>There&amp;rsquo;s a better way: &lt;strong>dispatch tables&lt;/strong>!&lt;/p></description></item></channel></rss>

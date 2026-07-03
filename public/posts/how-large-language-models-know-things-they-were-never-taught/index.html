@@ -1,627 +1,251 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7ZV2PMS61P');
-</script>
-
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>How Large Language Models (LLMs) Know Things They Were Never Taught - Signal &amp; Syntax</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-		<meta property="og:url" content="http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/">
-  <meta property="og:site_name" content="Signal & Syntax">
-  <meta property="og:title" content="How Large Language Models (LLMs) Know Things They Were Never Taught">
-  <meta property="og:description" content="The model didn&#39;t learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
+<!doctype html><html class=no-js lang=en><head><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")</script><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>How Large Language Models (LLMs) Know Things They Were Never Taught - Signal & Syntax</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:url" content="https://tomarcher.io/posts/how-large-language-models-know-things-they-were-never-taught/"><meta property="og:site_name" content="Signal & Syntax"><meta property="og:title" content="How Large Language Models (LLMs) Know Things They Were Never Taught"><meta property="og:description" content="The model didn't learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
 Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.
 Identical question. Same underlying technology. Completely different answers. The difference isn’t that one model is smarter or more current than the other. The difference is whether web search was triggered.
 But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly “know” what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model learned and what a model read.
 LLMs don’t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don’t learn from your conversations. But they can access external information and reason over it within their context window. This isn’t learning; it’s reading. And understanding that difference changes how you think about what these systems can and cannot do.
-“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-02-09T06:00:00-07:00">
-    <meta property="article:modified_time" content="2026-02-09T06:00:00-07:00">
-    <meta property="article:tag" content="AI">
-    <meta property="article:tag" content="LLM">
-    <meta property="article:tag" content="RAG">
-    <meta property="article:tag" content="Web Search">
-    <meta property="article:tag" content="Context Windows">
-
-		
-  <meta itemprop="name" content="How Large Language Models (LLMs) Know Things They Were Never Taught">
-  <meta itemprop="description" content="The model didn&#39;t learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
+“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-02-09T06:00:00-07:00"><meta property="article:modified_time" content="2026-02-09T06:00:00-07:00"><meta property="article:tag" content="AI"><meta property="article:tag" content="LLM"><meta property="article:tag" content="RAG"><meta property="article:tag" content="Web Search"><meta property="article:tag" content="Context Windows"><meta itemprop=name content="How Large Language Models (LLMs) Know Things They Were Never Taught"><meta itemprop=description content="The model didn't learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
 Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.
 Identical question. Same underlying technology. Completely different answers. The difference isn’t that one model is smarter or more current than the other. The difference is whether web search was triggered.
 But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly “know” what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model learned and what a model read.
 LLMs don’t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don’t learn from your conversations. But they can access external information and reason over it within their context window. This isn’t learning; it’s reading. And understanding that difference changes how you think about what these systems can and cannot do.
-“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”">
-  <meta itemprop="datePublished" content="2026-02-09T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-02-09T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3490">
-  <meta itemprop="keywords" content="AI,LLM,RAG,Web Search,Context Windows">
-		
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="How Large Language Models (LLMs) Know Things They Were Never Taught">
-  <meta name="twitter:description" content="The model didn&#39;t learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
+“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”"><meta itemprop=datePublished content="2026-02-09T06:00:00-07:00"><meta itemprop=dateModified content="2026-02-09T06:00:00-07:00"><meta itemprop=wordCount content="3490"><meta itemprop=keywords content="AI,LLM,RAG,Web Search,Context Windows"><meta name=twitter:card content="summary"><meta name=twitter:title content="How Large Language Models (LLMs) Know Things They Were Never Taught"><meta name=twitter:description content="The model didn't learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
 Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.
 Identical question. Same underlying technology. Completely different answers. The difference isn’t that one model is smarter or more current than the other. The difference is whether web search was triggered.
 But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly “know” what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model learned and what a model read.
 LLMs don’t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don’t learn from your conversations. But they can access external information and reason over it within their context window. This isn’t learning; it’s reading. And understanding that difference changes how you think about what these systems can and cannot do.
-“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/extra.css">
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-		
-
-	
-	<script>
-	window.MathJax = {
-	tex: {
-		inlineMath: [['\\(', '\\)']],
-		displayMath: [['\\[', '\\]']],
-		processEscapes: true,
-		processEnvironments: true
-	},
-	options: {
-		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-	}
-	};
-	</script>
-	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <link rel="stylesheet" href="/css/extra.css">
-    <script src="/js/copy-button.js"></script>
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" rel="home">
-			<div class="logo__item logo__imagebox">
-					<img class="logo__img" src="/img/logo/wordmark-light.svg">
-				</div>
-		</a>
-	</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/">
-				
-				<span class="menu__text">Blog</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">
-				
-				<span class="menu__text">About</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/bio/">
-				
-				<span class="menu__text">behind the code</span>
-				
-			</a>
-		</li>
-	</ul>
-</nav>
-
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main" role="main">
-  <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">How Large Language Models (LLMs) Know Things They Were Never Taught</h1>
-
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2026-02-09T06:00:00-07:00">
-              <strong>February 9, 2026</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/rag/"
-                 rel="tag">#RAG</a>, <a class="meta__link"
-                 href="/tags/web-search/"
-                 rel="tag">#web search</a>, <a class="meta__link"
-                 href="/tags/context-windows/"
-                 rel="tag">#context windows</a></p></div>
-
-      <div class="share">
-  <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F&amp;text=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Know&#43;Things&#43;They&#43;Were&#43;Never&#43;Taught" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
-  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
-  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F&amp;title=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Know&#43;Things&#43;They&#43;Were&#43;Never&#43;Taught" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
-  <a class="share__btn" href="mailto:?subject=How%20Large%20Language%20Models%20%28LLMs%29%20Know%20Things%20They%20Were%20Never%20Taught&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F" aria-label="Share via Email">@</a>
-
-  <button class="share__btn share__btn--native" type="button" aria-label="Share">Share</button>
-</div>
-
-<script>
-(function () {
-  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
-  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
-  btn.addEventListener('click', async () => {
-    try {
-      await navigator.share({
-        title: "\"How Large Language Models (LLMs) Know Things They Were Never Taught\"",
-        url:   "\"http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/\""
-      });
-    } catch (_) {}
-  });
-})();
-</script>  
-
-    </header>
-
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
-    <img src="./how-large-language-models-know-things-they-were-never-taught.png"
-        alt="A neural network with frozen weights receiving external documents being injected into its context window">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>The model didn't learn this. It just read it.</em>
-    </figcaption>
-</figure>
-<p>When you ask an LLM <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
-<p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p>
-<p>Identical question. Same underlying technology. Completely different answers. The difference isn&rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.</p>
-<p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &ldquo;know&rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model <em>learned</em> and what a model <em>read</em>.</p>
-<p>LLMs don&rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&rsquo;t learning; it&rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;A model with web search doesn&rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&rdquo;</em></p></blockquote>
-<hr>
-<p>This post explores how modern LLMs access information beyond their training data through web search, retrieval-augmented generation (RAG), and tool use. You&rsquo;ll see how these mechanisms work, why they&rsquo;re fundamentally different from learning, and what that means for the reliability and limitations of AI systems. If you haven&rsquo;t read my post on <a href="/posts/how-large-language-models-handle-context-windows/">
-  how LLMs handle context windows
-</a>
-, start there; everything in this post builds on that foundation.</p>
-<blockquote>
-<p><strong>TL;DR:</strong></p>
-<ul>
-<li>LLM weights are frozen after training; chatting with them doesn&rsquo;t update their knowledge</li>
-<li>The <em>Web search</em> mechanism injects retrieved text into the context window before generation</li>
-<li>RAG (Retrieval-Augmented Generation) does the same thing with private document stores</li>
-<li>The model reasons over the injected text using its frozen capabilities</li>
-<li>This is pattern matching over dynamic context, not learning</li>
-<li>Retrieval quality determines answer quality; the model can&rsquo;t fix bad retrieval</li>
-<li>Citations and source attribution come from the retrieved text, not model memory</li>
-<li>Understanding this distinction helps you use these tools more effectively</li>
-</ul></blockquote>
-<hr>
-<h2 id="the-frozen-weights-problem">The Frozen Weights Problem</h2>
-<p>In my post on <a href="/posts/how-large-language-models-learn/">
-  how LLMs learn
-</a>
-, I explained how gradient descent adjusts model weights during training. Each weight update encodes a tiny piece of learned pattern, and after billions of updates, the model captures the statistical structure of language.</p>
-<p>But here&rsquo;s the critical point: <strong>that process stops when training ends.</strong></p>
-<p>When you interact with any LLM, you&rsquo;re using a model with completely fixed weights. The parameters that determine how the model processes text haven&rsquo;t changed since the training run finished. Your conversations don&rsquo;t update them. Your corrections don&rsquo;t update them. Nothing you do updates them.</p>
-<p>This creates an obvious problem. The model&rsquo;s knowledge has a cutoff date. Anything that happened after training is invisible to the weights. Ask about an event from last week, and the model&rsquo;s internal knowledge simply doesn&rsquo;t include it.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># This is what the model &#34;knows&#34; from training</span>
-</span></span><span style="display:flex;"><span>training_knowledge <span style="color:#ff79c6">=</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;events_before_cutoff&#34;</span>: <span style="color:#ff79c6">True</span>,   <span style="color:#6272a4"># Encoded in weights</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;events_after_cutoff&#34;</span>: <span style="color:#ff79c6">False</span>,   <span style="color:#6272a4"># Not in weights</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;your_conversations&#34;</span>: <span style="color:#ff79c6">False</span>,    <span style="color:#6272a4"># Never encoded</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;corrections_you_made&#34;</span>: <span style="color:#ff79c6">False</span>   <span style="color:#6272a4"># Never encoded</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>So how do models answer questions about current events?</p>
-<hr>
-<h2 id="retrieval-reading-instead-of-knowing">Retrieval: Reading Instead of Knowing</h2>
-<p>The solution is elegantly simple: instead of updating the model&rsquo;s weights, inject relevant information into its context window.</p>
-<p>Recall from my <a href="/posts/how-large-language-models-handle-context-windows/">
-  context windows post
-</a>
- that every API call is stateless. The model processes whatever text you send it, generates a response, and forgets everything. There&rsquo;s no persistent memory between calls.</p>
-<p>This same mechanism enables retrieval. Before the model generates a response, an external system:</p>
-<ol>
-<li>Takes your question</li>
-<li>Searches for relevant information (web pages, documents, databases)</li>
-<li>Retrieves the most relevant results</li>
-<li>Injects those results into the context window</li>
-<li>Sends the augmented prompt to the model</li>
-</ol>
-<p>The model then reasons over both your question and the retrieved information, producing an answer grounded in text it just &ldquo;read&rdquo; rather than knowledge it &ldquo;learned.&rdquo;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Simplified retrieval flow</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">answer_with_retrieval</span>(user_question, search_function, llm):
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Step 1: Search for relevant information</span>
-</span></span><span style="display:flex;"><span>    search_results <span style="color:#ff79c6">=</span> search_function(user_question)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Step 2: Build augmented prompt</span>
-</span></span><span style="display:flex;"><span>    augmented_prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Use the following information to answer the question.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Retrieved Information:
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    </span><span style="color:#f1fa8c">{</span>search_results<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Question: </span><span style="color:#f1fa8c">{</span>user_question<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Answer based on the retrieved information:
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Step 3: Model reasons over the augmented context</span>
-</span></span><span style="display:flex;"><span>    response <span style="color:#ff79c6">=</span> llm<span style="color:#ff79c6">.</span>generate(augmented_prompt)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> response
-</span></span></code></pre></div><p>This is the core insight: <strong>the model&rsquo;s capabilities are frozen, but its inputs are dynamic.</strong> A model trained in 2023 can answer questions about 2025 events because those events are injected as text, not because the model learned about them.</p>
-<hr>
-<h2 id="web-search-real-time-information-retrieval">Web Search: Real-Time Information Retrieval</h2>
-<p>When you ask an LLM with web search enabled a question about current events, something like this happens behind the scenes:</p>
-<ol>
-<li>
-<p><strong>Query Generation:</strong> The model (or a specialized component) converts your question into one or more search queries. &ldquo;Who won the Super Bowl last week?&rdquo; might become the search query <code>Super Bowl 2026 winner</code>.</p>
-</li>
-<li>
-<p><strong>Web Search Execution:</strong> An external search system (not the LLM itself) queries the web and retrieves relevant pages. This is standard information retrieval, similar to what happens when you use a search engine such as Google or DuckDuckGo.</p>
-</li>
-<li>
-<p><strong>Content Extraction:</strong> The retrieved web pages are processed to extract relevant text. Full HTML pages are too long and noisy, so systems extract article text, key facts, or relevant snippets.</p>
-</li>
-<li>
-<p><strong>Context Injection:</strong> The extracted content is formatted and injected into the prompt sent to the LLM. The model now &ldquo;sees&rdquo; current information as part of its input.</p>
-</li>
-<li>
-<p><strong>Grounded Generation:</strong> The LLM generates a response based on both your question and the retrieved content. Citations typically reference the retrieved sources.</p>
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span>    <span style="color:#6272a4"># Conceptual web search augmentation</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">web_search_augmented_response</span>(user_query, llm):
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Generate search queries from user question</span>
-</span></span><span style="display:flex;"><span>        search_queries <span style="color:#ff79c6">=</span> generate_search_queries(user_query)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Execute web searches</span>
-</span></span><span style="display:flex;"><span>        web_results <span style="color:#ff79c6">=</span> []
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> query <span style="color:#ff79c6">in</span> search_queries:
-</span></span><span style="display:flex;"><span>            results <span style="color:#ff79c6">=</span> web_search(query)
-</span></span><span style="display:flex;"><span>            web_results<span style="color:#ff79c6">.</span>extend(results)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Extract and deduplicate relevant content</span>
-</span></span><span style="display:flex;"><span>        extracted_content <span style="color:#ff79c6">=</span> extract_relevant_text(web_results)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Format for injection</span>
-</span></span><span style="display:flex;"><span>        context <span style="color:#ff79c6">=</span> format_search_results(extracted_content)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Build the augmented prompt</span>
-</span></span><span style="display:flex;"><span>        prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        You have access to the following web search results:
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        </span><span style="color:#f1fa8c">{</span>context<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        Based on these search results, answer the following question.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        Cite your sources.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        Question: </span><span style="color:#f1fa8c">{</span>user_query<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Generate response</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> llm<span style="color:#ff79c6">.</span>generate(prompt)
-</span></span></code></pre></div><p>The model itself never &ldquo;searched&rdquo; anything. It received search results as text and reasoned over them. The intelligence is in how the model processes and synthesizes the retrieved information, but the information itself came from outside.</p>
-<hr>
-<h2 id="rag-retrieval-augmented-generation">RAG: Retrieval-Augmented Generation</h2>
-<p>RAG applies the same principle to private or specialized document collections. Instead of searching the web, RAG systems search a curated knowledge base.</p>
-<p>The canonical RAG pipeline (<a href="#lewis2020">
-  Lewis et al., 2020
-</a>
-) consists of:</p>
-<ol>
-<li>
-<p><strong>Document Chunking:</strong> Large documents are split into smaller, semantically meaningful chunks. A 50-page PDF might become 200 chunks of roughly 500 tokens each.</p>
-</li>
-<li>
-<p><strong>Embedding Generation:</strong> Each chunk is converted to a dense vector (embedding) using a model like OpenAI&rsquo;s <code>text-embedding-ada-002</code> or open-source alternatives. These embeddings capture semantic meaning; similar content produces similar vectors.</p>
-</li>
-<li>
-<p><strong>Vector Storage:</strong> Embeddings are stored in a vector database (Pinecone, Weaviate, Chroma, FAISS) that enables fast similarity search.</p>
-</li>
-<li>
-<p><strong>Query Embedding:</strong> When a user asks a question, the question is also embedded into the same vector space.</p>
-</li>
-<li>
-<p><strong>Similarity Search:</strong> The system finds the document chunks whose embeddings are most similar to the query embedding. This typically uses cosine similarity or approximate nearest neighbor search.</p>
-</li>
-<li>
-<p><strong>Context Construction:</strong> The top-k most relevant chunks are retrieved and formatted as context for the LLM.</p>
-</li>
-<li>
-<p><strong>Augmented Generation:</strong> The LLM receives both the user&rsquo;s question and the retrieved context, generating a response grounded in the retrieved documents.</p>
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">from</span> typing <span style="color:#ff79c6">import</span> List, Tuple
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">SimpleRAG</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, embedding_model, llm):
-</span></span><span style="display:flex;"><span>            <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embedding_model <span style="color:#ff79c6">=</span> embedding_model
-</span></span><span style="display:flex;"><span>            <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>llm <span style="color:#ff79c6">=</span> llm
-</span></span><span style="display:flex;"><span>            <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>documents <span style="color:#ff79c6">=</span> []
-</span></span><span style="display:flex;"><span>            <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embeddings <span style="color:#ff79c6">=</span> []
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">add_documents</span>(<span style="font-style:italic">self</span>, documents: List[<span style="color:#8be9fd;font-style:italic">str</span>]):
-</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;&#34;&#34;Chunk and embed documents.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> doc <span style="color:#ff79c6">in</span> documents:
-</span></span><span style="display:flex;"><span>                chunks <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>chunk_document(doc)
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> chunk <span style="color:#ff79c6">in</span> chunks:
-</span></span><span style="display:flex;"><span>                    embedding <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embedding_model<span style="color:#ff79c6">.</span>embed(chunk)
-</span></span><span style="display:flex;"><span>                    <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>documents<span style="color:#ff79c6">.</span>append(chunk)
-</span></span><span style="display:flex;"><span>                    <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embeddings<span style="color:#ff79c6">.</span>append(embedding)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>            <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embeddings <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embeddings)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">chunk_document</span>(<span style="font-style:italic">self</span>, doc: <span style="color:#8be9fd;font-style:italic">str</span>, chunk_size: <span style="color:#8be9fd;font-style:italic">int</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">500</span>) <span style="color:#ff79c6">-&gt;</span> List[<span style="color:#8be9fd;font-style:italic">str</span>]:
-</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;&#34;&#34;Split document into chunks.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>            words <span style="color:#ff79c6">=</span> doc<span style="color:#ff79c6">.</span>split()
-</span></span><span style="display:flex;"><span>            chunks <span style="color:#ff79c6">=</span> []
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">0</span>, <span style="color:#8be9fd;font-style:italic">len</span>(words), chunk_size):
-</span></span><span style="display:flex;"><span>                chunk <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39; &#39;</span><span style="color:#ff79c6">.</span>join(words[i:i <span style="color:#ff79c6">+</span> chunk_size])
-</span></span><span style="display:flex;"><span>                chunks<span style="color:#ff79c6">.</span>append(chunk)
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> chunks
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">retrieve</span>(<span style="font-style:italic">self</span>, query: <span style="color:#8be9fd;font-style:italic">str</span>, top_k: <span style="color:#8be9fd;font-style:italic">int</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>) <span style="color:#ff79c6">-&gt;</span> List[Tuple[<span style="color:#8be9fd;font-style:italic">str</span>, <span style="color:#8be9fd;font-style:italic">float</span>]]:
-</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;&#34;&#34;Find most relevant chunks for a query.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>            query_embedding <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embedding_model<span style="color:#ff79c6">.</span>embed(query)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># Cosine similarity</span>
-</span></span><span style="display:flex;"><span>            similarities <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>dot(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embeddings, query_embedding) <span style="color:#ff79c6">/</span> (
-</span></span><span style="display:flex;"><span>                np<span style="color:#ff79c6">.</span>linalg<span style="color:#ff79c6">.</span>norm(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embeddings, axis<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">*</span> 
-</span></span><span style="display:flex;"><span>                np<span style="color:#ff79c6">.</span>linalg<span style="color:#ff79c6">.</span>norm(query_embedding)
-</span></span><span style="display:flex;"><span>            )
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># Get top-k indices</span>
-</span></span><span style="display:flex;"><span>            top_indices <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>argsort(similarities)[<span style="color:#ff79c6">-</span>top_k:][::<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> [(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>documents[i], similarities[i]) <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> top_indices]
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">query</span>(<span style="font-style:italic">self</span>, user_question: <span style="color:#8be9fd;font-style:italic">str</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">str</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;&#34;&#34;Answer a question using RAG.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># Retrieve relevant chunks</span>
-</span></span><span style="display:flex;"><span>            retrieved <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>retrieve(user_question)
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># Format context</span>
-</span></span><span style="display:flex;"><span>            context <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n\n</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>join([
-</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;[Relevance: </span><span style="color:#f1fa8c">{</span>score<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">]</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">{</span>doc<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span> 
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> doc, score <span style="color:#ff79c6">in</span> retrieved
-</span></span><span style="display:flex;"><span>            ])
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># Build prompt</span>
-</span></span><span style="display:flex;"><span>            prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            Use the following retrieved documents to answer the question.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            If the documents don&#39;t contain relevant information, say so.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            Retrieved Documents:
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            </span><span style="color:#f1fa8c">{</span>context<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            Question: </span><span style="color:#f1fa8c">{</span>user_question<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            Answer:
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>llm<span style="color:#ff79c6">.</span>generate(prompt)
-</span></span></code></pre></div><hr>
-<h2 id="the-embedding-space-connection">The Embedding Space Connection</h2>
-<p>RAG relies heavily on the embedding concepts I covered in <a href="/posts/how-large-language-models-think/">
-  How LLMs Think
-</a>
-. The same geometric principles apply:</p>
-<p><strong>Semantic Similarity as Distance:</strong> Documents about similar topics cluster together in embedding space. When you search for &ldquo;quarterly revenue projections,&rdquo; the retrieval system finds chunks that are geometrically close to that query, even if they use different words like &ldquo;Q3 financial forecasts.&rdquo;</p>
-<p><strong>The Curse of Vocabulary Mismatch:</strong> Traditional keyword search fails when queries and documents use different terminology. Embedding-based retrieval handles this gracefully because semantically similar content maps to nearby vectors regardless of exact wording.</p>
-<p><strong>Relevance vs. Correctness:</strong> Here&rsquo;s a critical limitation: embedding similarity measures <em>relevance</em>, not <em>correctness</em>. A document chunk might be highly relevant to your question while containing outdated or incorrect information. The retrieval system has no way to verify factual accuracy; it only measures semantic similarity.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Embedding similarity doesn&#39;t guarantee correctness</span>
-</span></span><span style="display:flex;"><span>query <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;What is the population of Tokyo?&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Both chunks might have high similarity scores</span>
-</span></span><span style="display:flex;"><span>chunk_a <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Tokyo&#39;s population is approximately 14 million.&#34;</span>  <span style="color:#6272a4"># Correct</span>
-</span></span><span style="display:flex;"><span>chunk_b <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Tokyo&#39;s population exceeds 50 million people.&#34;</span>    <span style="color:#6272a4"># Incorrect</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># The retrieval system can&#39;t tell which is accurate</span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Both are semantically relevant to the query</span>
-</span></span></code></pre></div><hr>
-<h2 id="what-the-model-actually-does">What the Model Actually Does</h2>
-<p>Once relevant content is retrieved and injected, what does the model do with it? This is where the frozen capabilities come into play.</p>
-<p><strong>Pattern Matching Over Retrieved Text:</strong> The model applies the same attention mechanisms and pattern recognition it uses for any text. It doesn&rsquo;t &ldquo;know&rdquo; the retrieved content is special; it simply processes it as part of the input sequence.</p>
-<p><strong>Synthesis and Reasoning:</strong> The model can combine information from multiple retrieved chunks, identify contradictions, extract specific facts, and generate coherent summaries. These capabilities were learned during training; retrieval just provides new material to apply them to.</p>
-<p><strong>Citation Generation:</strong> When models cite sources, they&rsquo;re typically extracting attribution information from the retrieved text itself. The citation &ldquo;according to the New York Times&rdquo; appears because that phrase (or the source URL) was present in the retrieved content.</p>
-<p><strong>No Fact Verification:</strong> The model cannot independently verify whether retrieved information is accurate. If the retrieval returns outdated or incorrect content, the model will confidently present that information as fact. Garbage in, garbage out.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># The model processes retrieved content like any other text</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">model_processing</span>(prompt_with_retrieved_content):
-</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    The model doesn&#39;t treat retrieved content specially.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    It applies the same attention and generation mechanisms.
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Tokenize everything</span>
-</span></span><span style="display:flex;"><span>    tokens <span style="color:#ff79c6">=</span> tokenize(prompt_with_retrieved_content)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Apply attention across all tokens</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Retrieved content participates in attention like any other text</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> layer <span style="color:#ff79c6">in</span> transformer_layers:
-</span></span><span style="display:flex;"><span>        tokens <span style="color:#ff79c6">=</span> layer<span style="color:#ff79c6">.</span>attention(tokens)
-</span></span><span style="display:flex;"><span>        tokens <span style="color:#ff79c6">=</span> layer<span style="color:#ff79c6">.</span>feedforward(tokens)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Generate response token by token</span>
-</span></span><span style="display:flex;"><span>    response <span style="color:#ff79c6">=</span> []
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> <span style="color:#ff79c6">not</span> done:
-</span></span><span style="display:flex;"><span>        next_token <span style="color:#ff79c6">=</span> sample_next_token(tokens)
-</span></span><span style="display:flex;"><span>        response<span style="color:#ff79c6">.</span>append(next_token)
-</span></span><span style="display:flex;"><span>        tokens <span style="color:#ff79c6">=</span> append(tokens, next_token)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> response
-</span></span></code></pre></div><hr>
-<h2 id="why-this-isnt-learning">Why This Isn&rsquo;t Learning</h2>
-<p>The distinction between retrieval and learning is fundamental:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Aspect</th>
-          <th>Learning (Training)</th>
-          <th>Retrieval (Inference)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Weights</td>
-          <td>Updated via gradient descent</td>
-          <td>Completely frozen</td>
-      </tr>
-      <tr>
-          <td>Duration</td>
-          <td>Persists permanently</td>
-          <td>Exists only for one request</td>
-      </tr>
-      <tr>
-          <td>Scope</td>
-          <td>Affects all future responses</td>
-          <td>Affects only current response</td>
-      </tr>
-      <tr>
-          <td>Cost</td>
-          <td>Enormous (millions of dollars)</td>
-          <td>Minimal (milliseconds)</td>
-      </tr>
-      <tr>
-          <td>Information</td>
-          <td>Compressed into parameters</td>
-          <td>Present as literal text</td>
-      </tr>
-  </tbody>
-</table>
-<p>When a model learns something during training, that knowledge becomes part of its weights. It&rsquo;s compressed, abstracted, and available for all future interactions. The model doesn&rsquo;t need to &ldquo;look up&rdquo; that information; it&rsquo;s encoded in the parameters.</p>
-<p>When a model retrieves something at inference time, that knowledge exists only as text in the current context window. It&rsquo;s not compressed or abstracted. The model reads it, reasons over it, and then forgets it completely when the conversation ends.</p>
-<p>This is why retrieval-augmented models can &ldquo;know&rdquo; current events while still having a knowledge cutoff. The cutoff applies to the weights; retrieval has no cutoff because it accesses live information.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Learning vs Retrieval</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">LearningVsRetrieval</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>):
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Weights encode learned knowledge (frozen at inference)</span>
-</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>weights <span style="color:#ff79c6">=</span> train_on_data_before_cutoff()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Retrieval provides dynamic knowledge</span>
-</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>retrieval_system <span style="color:#ff79c6">=</span> SearchEngine()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">answer_from_weights</span>(<span style="font-style:italic">self</span>, question):
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Limited to training data cutoff.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>forward_pass(question)  <span style="color:#6272a4"># Uses frozen weights</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">answer_with_retrieval</span>(<span style="font-style:italic">self</span>, question):
-</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Can access current information.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>        retrieved <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>retrieval_system<span style="color:#ff79c6">.</span>search(question)
-</span></span><span style="display:flex;"><span>        augmented <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>retrieved<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\n\n</span><span style="color:#f1fa8c">Question: </span><span style="color:#f1fa8c">{</span>question<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>forward_pass(augmented)  <span style="color:#6272a4"># Same frozen weights</span>
-</span></span></code></pre></div><hr>
-<h2 id="tool-use-generalizing-beyond-text">Tool Use: Generalizing Beyond Text</h2>
-<p>Web search and RAG are specific instances of a broader capability: <strong>tool use</strong>. Modern LLMs can interact with external systems to gather information or perform actions.</p>
-<p>The pattern is consistent:</p>
-<ol>
-<li>The model generates a structured request (search query, API call, code to execute)</li>
-<li>An external system executes the request</li>
-<li>Results are returned to the model as text</li>
-<li>The model reasons over the results</li>
-</ol>
-<p><strong>Examples of Tool Use:</strong></p>
-<ul>
-<li><strong>Code Execution</strong>: Model generates Python code, a sandbox executes it, output returns as text</li>
-<li><strong>Calculator</strong>: Model requests a calculation, external system computes it precisely</li>
-<li><strong>Database Query</strong>: Model generates SQL, database executes it, results return as text</li>
-<li><strong>API Calls</strong>: Model generates API requests, external systems execute them, responses return as text</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Tool use follows the same retrieval pattern</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">tool_augmented_response</span>(user_query, llm, tools):
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Model decides which tool to use and how</span>
-</span></span><span style="display:flex;"><span>    tool_call <span style="color:#ff79c6">=</span> llm<span style="color:#ff79c6">.</span>generate_tool_call(user_query, available_tools<span style="color:#ff79c6">=</span>tools)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># External system executes the tool</span>
-</span></span><span style="display:flex;"><span>    tool_result <span style="color:#ff79c6">=</span> execute_tool(tool_call)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Results injected back into context</span>
-</span></span><span style="display:flex;"><span>    augmented_prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Tool Used: </span><span style="color:#f1fa8c">{</span>tool_call<span style="color:#ff79c6">.</span>tool_name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Tool Input: </span><span style="color:#f1fa8c">{</span>tool_call<span style="color:#ff79c6">.</span>input<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Tool Output: </span><span style="color:#f1fa8c">{</span>tool_result<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Original Question: </span><span style="color:#f1fa8c">{</span>user_query<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    Based on the tool output, provide your answer:
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> llm<span style="color:#ff79c6">.</span>generate(augmented_prompt)
-</span></span></code></pre></div><p>The model&rsquo;s role is generating appropriate tool calls and reasoning over results. The actual computation or retrieval happens externally. This separation is important: the model can&rsquo;t execute code directly or access databases directly. It can only request that external systems do so.</p>
-<hr>
-<h2 id="limitations-of-retrieval-augmented-systems">Limitations of Retrieval-Augmented Systems</h2>
-<p>Understanding how retrieval works reveals its limitations:</p>
-<h3 id="retrieval-quality-bounds-answer-quality">Retrieval Quality Bounds Answer Quality</h3>
-<p>If the retrieval system returns irrelevant or incorrect documents, the model can&rsquo;t recover. It has no independent way to verify information. A confidently wrong source produces a confidently wrong answer.</p>
-<h3 id="context-window-constraints">Context Window Constraints</h3>
-<p>Retrieved content consumes context window space. You can&rsquo;t inject an entire Wikipedia into the prompt. Systems must balance breadth (more sources) against depth (more content per source) within fixed token limits.</p>
-<h3 id="latency-costs">Latency Costs</h3>
-<p>Every retrieval step adds latency. Web search takes time. Vector database queries take time. For real-time applications, these delays accumulate.</p>
-<h3 id="retrieval-doesnt-fix-reasoning-failures">Retrieval Doesn&rsquo;t Fix Reasoning Failures</h3>
-<p>If a model struggles with a particular type of reasoning (say, multi-step math), retrieval won&rsquo;t help. You can retrieve a textbook chapter on algebra, but the model still needs to apply that knowledge correctly.</p>
-<h3 id="hallucination-persists">Hallucination Persists</h3>
-<p>Models can still hallucinate even with retrieved content. They might misread the retrieved text, combine information incorrectly, or generate details not present in any source.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Retrieval doesn&#39;t prevent all failure modes</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">retrieval_limitations</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Problem 1: Bad retrieval</span>
-</span></span><span style="display:flex;"><span>    query <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Latest election results&#34;</span>
-</span></span><span style="display:flex;"><span>    retrieved <span style="color:#ff79c6">=</span> search(query)  <span style="color:#6272a4"># Returns outdated 2020 results</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Model will confidently report wrong information</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Problem 2: Correct retrieval, bad reasoning</span>
-</span></span><span style="display:flex;"><span>    query <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;What is 15</span><span style="color:#f1fa8c">% o</span><span style="color:#f1fa8c">f the revenue mentioned in this report?&#34;</span>
-</span></span><span style="display:flex;"><span>    retrieved <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Q3 revenue was $4.2 million&#34;</span>  <span style="color:#6272a4"># Correct retrieval</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Model might still compute 15% incorrectly</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Problem 3: Hallucination despite retrieval</span>
-</span></span><span style="display:flex;"><span>    query <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;What did the CEO say about expansion?&#34;</span>
-</span></span><span style="display:flex;"><span>    retrieved <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;The CEO discussed growth strategies&#34;</span>  <span style="color:#6272a4"># Vague</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Model might invent specific quotes not in the source</span>
-</span></span></code></pre></div><hr>
-<h2 id="practical-implications">Practical Implications</h2>
-<p>Understanding the retrieval mechanism helps you use these systems more effectively:</p>
-<h3 id="trust-retrieved-information-cautiously">Trust Retrieved Information Cautiously</h3>
-<p>Just because a model cites a source doesn&rsquo;t mean it interpreted that source correctly. Verify important claims by checking the original source.</p>
-<h3 id="understand-citation-limitations">Understand Citation Limitations</h3>
-<p>Citations reflect what was retrieved, not what the model independently verified. A citation to a reputable source doesn&rsquo;t guarantee the model&rsquo;s interpretation is accurate.</p>
-<h3 id="recognize-fresh-vs-learned-knowledge">Recognize Fresh vs. Learned Knowledge</h3>
-<p>When a model answers a question about current events, that knowledge is ephemeral. Ask the same question in a new conversation, and the model might retrieve different sources and give a different answer.</p>
-<h3 id="design-prompts-accordingly">Design Prompts Accordingly</h3>
-<p>For questions where retrieval is active, you can guide what gets searched by being specific. &ldquo;According to recent news reports&rdquo; vs. &ldquo;According to scientific studies&rdquo; might trigger different search strategies.</p>
-<h3 id="dont-expect-persistence">Don&rsquo;t Expect Persistence</h3>
-<p>Information from retrieved sources doesn&rsquo;t persist between conversations. Each new chat starts fresh, requiring new retrieval for current information.</p>
-<hr>
-<h2 id="the-architecture-of-augmented-llms">The Architecture of Augmented LLMs</h2>
-<p>Modern AI assistants combine multiple components:</p>
-<pre><code>┌─────────────────────────────────────────────────────────────┐
+“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/extra.css><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=192x192 href=/android-chrome-192x192.png><link rel=icon type=image/png sizes=512x512 href=/android-chrome-512x512.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV2PMS61P"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")}</script><script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/css/extra.css><script src=/js/copy-button.js></script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/img/logo/wordmark-light.svg></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/><span class=menu__text>Blog</span></a></li><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li><li class=menu__item><a class=menu__link href=/bio/><span class=menu__text>behind the code</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>How Large Language Models (LLMs) Know Things They Were Never Taught</h1><div class="post__meta meta"><p class=meta__line><time datetime=2026-02-09T06:00:00-07:00><strong>February 9, 2026</strong>
+</time>&nbsp;•&nbsp;
+<strong>Category:</strong>&nbsp;<a class=meta__link href=/categories/ai-and-the-mathematics-of-language/ rel=category><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
+<strong>Tags:</strong>&nbsp;<a class=meta__link href=/tags/ai/ rel=tag>#AI</a>, <a class=meta__link href=/tags/llm/ rel=tag>#LLM</a>, <a class=meta__link href=/tags/rag/ rel=tag>#RAG</a>, <a class=meta__link href=/tags/web-search/ rel=tag>#web search</a>, <a class=meta__link href=/tags/context-windows/ rel=tag>#context windows</a></p></div><div class=share><span class=share__label>Share:</span>
+<a class=share__btn href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F&amp;text=How+Large+Language+Models+%28LLMs%29+Know+Things+They+Were+Never+Taught" target=_blank rel="noopener noreferrer" aria-label="Share on X">X</a>
+<a class=share__btn href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F" target=_blank rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+<a class=share__btn href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F" target=_blank rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+<a class=share__btn href="https://www.reddit.com/submit?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F&amp;title=How+Large+Language+Models+%28LLMs%29+Know+Things+They+Were+Never+Taught" target=_blank rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
+<a class=share__btn href="mailto:?subject=How%20Large%20Language%20Models%20%28LLMs%29%20Know%20Things%20They%20Were%20Never%20Taught&amp;body=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F" aria-label="Share via Email">@</a>
+<button class="share__btn share__btn--native" type=button aria-label=Share>Share</button></div><script>(function(){const e=document.currentScript.previousElementSibling.querySelector(".share__btn--native");if(!e||!navigator.share){e&&(e.style.display="none");return}e.addEventListener("click",async()=>{try{await navigator.share({title:'"How Large Language Models (LLMs) Know Things They Were Never Taught"',url:'"https://tomarcher.io/posts/how-large-language-models-know-things-they-were-never-taught/"'})}catch{}})})()</script></header><div class="content post__content clearfix"><figure style="margin:0 20px 10px;text-align:center"><img src=./how-large-language-models-know-things-they-were-never-taught.png alt="A neural network with frozen weights receiving external documents being injected into its context window"><figcaption style=font-size:.9em;color:#555;margin-top:5px><em>The model didn't learn this. It just read it.</em></figcaption></figure><p>When you ask an LLM <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p><p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p><p>Identical question. Same underlying technology. Completely different answers. The difference isn&rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.</p><p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &ldquo;know&rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model <em>learned</em> and what a model <em>read</em>.</p><p>LLMs don&rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&rsquo;t learning; it&rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.</p><hr><blockquote><p><em>&ldquo;A model with web search doesn&rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&rdquo;</em></p></blockquote><hr><p>This post explores how modern LLMs access information beyond their training data through web search, retrieval-augmented generation (RAG), and tool use. You&rsquo;ll see how these mechanisms work, why they&rsquo;re fundamentally different from learning, and what that means for the reliability and limitations of AI systems. If you haven&rsquo;t read my post on <a href=/posts/how-large-language-models-handle-context-windows/>how LLMs handle context windows
+</a>, start there; everything in this post builds on that foundation.</p><blockquote><p><strong>TL;DR:</strong></p><ul><li>LLM weights are frozen after training; chatting with them doesn&rsquo;t update their knowledge</li><li>The <em>Web search</em> mechanism injects retrieved text into the context window before generation</li><li>RAG (Retrieval-Augmented Generation) does the same thing with private document stores</li><li>The model reasons over the injected text using its frozen capabilities</li><li>This is pattern matching over dynamic context, not learning</li><li>Retrieval quality determines answer quality; the model can&rsquo;t fix bad retrieval</li><li>Citations and source attribution come from the retrieved text, not model memory</li><li>Understanding this distinction helps you use these tools more effectively</li></ul></blockquote><hr><h2 id=the-frozen-weights-problem>The Frozen Weights Problem</h2><p>In my post on <a href=/posts/how-large-language-models-learn/>how LLMs learn
+</a>, I explained how gradient descent adjusts model weights during training. Each weight update encodes a tiny piece of learned pattern, and after billions of updates, the model captures the statistical structure of language.</p><p>But here&rsquo;s the critical point: <strong>that process stops when training ends.</strong></p><p>When you interact with any LLM, you&rsquo;re using a model with completely fixed weights. The parameters that determine how the model processes text haven&rsquo;t changed since the training run finished. Your conversations don&rsquo;t update them. Your corrections don&rsquo;t update them. Nothing you do updates them.</p><p>This creates an obvious problem. The model&rsquo;s knowledge has a cutoff date. Anything that happened after training is invisible to the weights. Ask about an event from last week, and the model&rsquo;s internal knowledge simply doesn&rsquo;t include it.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># This is what the model &#34;knows&#34; from training</span>
+</span></span><span style=display:flex><span>training_knowledge <span style=color:#ff79c6>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;events_before_cutoff&#34;</span>: <span style=color:#ff79c6>True</span>,   <span style=color:#6272a4># Encoded in weights</span>
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;events_after_cutoff&#34;</span>: <span style=color:#ff79c6>False</span>,   <span style=color:#6272a4># Not in weights</span>
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;your_conversations&#34;</span>: <span style=color:#ff79c6>False</span>,    <span style=color:#6272a4># Never encoded</span>
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;corrections_you_made&#34;</span>: <span style=color:#ff79c6>False</span>   <span style=color:#6272a4># Never encoded</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>So how do models answer questions about current events?</p><hr><h2 id=retrieval-reading-instead-of-knowing>Retrieval: Reading Instead of Knowing</h2><p>The solution is elegantly simple: instead of updating the model&rsquo;s weights, inject relevant information into its context window.</p><p>Recall from my <a href=/posts/how-large-language-models-handle-context-windows/>context windows post
+</a>that every API call is stateless. The model processes whatever text you send it, generates a response, and forgets everything. There&rsquo;s no persistent memory between calls.</p><p>This same mechanism enables retrieval. Before the model generates a response, an external system:</p><ol><li>Takes your question</li><li>Searches for relevant information (web pages, documents, databases)</li><li>Retrieves the most relevant results</li><li>Injects those results into the context window</li><li>Sends the augmented prompt to the model</li></ol><p>The model then reasons over both your question and the retrieved information, producing an answer grounded in text it just &ldquo;read&rdquo; rather than knowledge it &ldquo;learned.&rdquo;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># Simplified retrieval flow</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>answer_with_retrieval</span>(user_question, search_function, llm):
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Step 1: Search for relevant information</span>
+</span></span><span style=display:flex><span>    search_results <span style=color:#ff79c6>=</span> search_function(user_question)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Step 2: Build augmented prompt</span>
+</span></span><span style=display:flex><span>    augmented_prompt <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Use the following information to answer the question.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Retrieved Information:
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    </span><span style=color:#f1fa8c>{</span>search_results<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Question: </span><span style=color:#f1fa8c>{</span>user_question<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Answer based on the retrieved information:
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Step 3: Model reasons over the augmented context</span>
+</span></span><span style=display:flex><span>    response <span style=color:#ff79c6>=</span> llm<span style=color:#ff79c6>.</span>generate(augmented_prompt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> response
+</span></span></code></pre></div><p>This is the core insight: <strong>the model&rsquo;s capabilities are frozen, but its inputs are dynamic.</strong> A model trained in 2023 can answer questions about 2025 events because those events are injected as text, not because the model learned about them.</p><hr><h2 id=web-search-real-time-information-retrieval>Web Search: Real-Time Information Retrieval</h2><p>When you ask an LLM with web search enabled a question about current events, something like this happens behind the scenes:</p><ol><li><p><strong>Query Generation:</strong> The model (or a specialized component) converts your question into one or more search queries. &ldquo;Who won the Super Bowl last week?&rdquo; might become the search query <code>Super Bowl 2026 winner</code>.</p></li><li><p><strong>Web Search Execution:</strong> An external search system (not the LLM itself) queries the web and retrieves relevant pages. This is standard information retrieval, similar to what happens when you use a search engine such as Google or DuckDuckGo.</p></li><li><p><strong>Content Extraction:</strong> The retrieved web pages are processed to extract relevant text. Full HTML pages are too long and noisy, so systems extract article text, key facts, or relevant snippets.</p></li><li><p><strong>Context Injection:</strong> The extracted content is formatted and injected into the prompt sent to the LLM. The model now &ldquo;sees&rdquo; current information as part of its input.</p></li><li><p><strong>Grounded Generation:</strong> The LLM generates a response based on both your question and the retrieved content. Citations typically reference the retrieved sources.</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Python data-lang=Python><span style=display:flex><span>    <span style=color:#6272a4># Conceptual web search augmentation</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>web_search_augmented_response</span>(user_query, llm):
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Generate search queries from user question</span>
+</span></span><span style=display:flex><span>        search_queries <span style=color:#ff79c6>=</span> generate_search_queries(user_query)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Execute web searches</span>
+</span></span><span style=display:flex><span>        web_results <span style=color:#ff79c6>=</span> []
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>for</span> query <span style=color:#ff79c6>in</span> search_queries:
+</span></span><span style=display:flex><span>            results <span style=color:#ff79c6>=</span> web_search(query)
+</span></span><span style=display:flex><span>            web_results<span style=color:#ff79c6>.</span>extend(results)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Extract and deduplicate relevant content</span>
+</span></span><span style=display:flex><span>        extracted_content <span style=color:#ff79c6>=</span> extract_relevant_text(web_results)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Format for injection</span>
+</span></span><span style=display:flex><span>        context <span style=color:#ff79c6>=</span> format_search_results(extracted_content)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Build the augmented prompt</span>
+</span></span><span style=display:flex><span>        prompt <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>        You have access to the following web search results:
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>        </span><span style=color:#f1fa8c>{</span>context<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>        Based on these search results, answer the following question.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>        Cite your sources.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>        Question: </span><span style=color:#f1fa8c>{</span>user_query<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>        &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Generate response</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>return</span> llm<span style=color:#ff79c6>.</span>generate(prompt)
+</span></span></code></pre></div><p>The model itself never &ldquo;searched&rdquo; anything. It received search results as text and reasoned over them. The intelligence is in how the model processes and synthesizes the retrieved information, but the information itself came from outside.</p><hr><h2 id=rag-retrieval-augmented-generation>RAG: Retrieval-Augmented Generation</h2><p>RAG applies the same principle to private or specialized document collections. Instead of searching the web, RAG systems search a curated knowledge base.</p><p>The canonical RAG pipeline (<a href=#lewis2020>
+Lewis et al., 2020
+</a>) consists of:</p><ol><li><p><strong>Document Chunking:</strong> Large documents are split into smaller, semantically meaningful chunks. A 50-page PDF might become 200 chunks of roughly 500 tokens each.</p></li><li><p><strong>Embedding Generation:</strong> Each chunk is converted to a dense vector (embedding) using a model like OpenAI&rsquo;s <code>text-embedding-ada-002</code> or open-source alternatives. These embeddings capture semantic meaning; similar content produces similar vectors.</p></li><li><p><strong>Vector Storage:</strong> Embeddings are stored in a vector database (Pinecone, Weaviate, Chroma, FAISS) that enables fast similarity search.</p></li><li><p><strong>Query Embedding:</strong> When a user asks a question, the question is also embedded into the same vector space.</p></li><li><p><strong>Similarity Search:</strong> The system finds the document chunks whose embeddings are most similar to the query embedding. This typically uses cosine similarity or approximate nearest neighbor search.</p></li><li><p><strong>Context Construction:</strong> The top-k most relevant chunks are retrieved and formatted as context for the LLM.</p></li><li><p><strong>Augmented Generation:</strong> The LLM receives both the user&rsquo;s question and the retrieved context, generating a response grounded in the retrieved documents.</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>    <span style=color:#ff79c6>import</span> numpy <span style=color:#ff79c6>as</span> np
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>from</span> typing <span style=color:#ff79c6>import</span> List, Tuple
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>class</span> <span style=color:#50fa7b>SimpleRAG</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>__init__</span>(<span style=font-style:italic>self</span>, embedding_model, llm):
+</span></span><span style=display:flex><span>            <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embedding_model <span style=color:#ff79c6>=</span> embedding_model
+</span></span><span style=display:flex><span>            <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>llm <span style=color:#ff79c6>=</span> llm
+</span></span><span style=display:flex><span>            <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>documents <span style=color:#ff79c6>=</span> []
+</span></span><span style=display:flex><span>            <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embeddings <span style=color:#ff79c6>=</span> []
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>add_documents</span>(<span style=font-style:italic>self</span>, documents: List[<span style=color:#8be9fd;font-style:italic>str</span>]):
+</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#34;&#34;&#34;Chunk and embed documents.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>for</span> doc <span style=color:#ff79c6>in</span> documents:
+</span></span><span style=display:flex><span>                chunks <span style=color:#ff79c6>=</span> <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>chunk_document(doc)
+</span></span><span style=display:flex><span>                <span style=color:#ff79c6>for</span> chunk <span style=color:#ff79c6>in</span> chunks:
+</span></span><span style=display:flex><span>                    embedding <span style=color:#ff79c6>=</span> <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embedding_model<span style=color:#ff79c6>.</span>embed(chunk)
+</span></span><span style=display:flex><span>                    <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>documents<span style=color:#ff79c6>.</span>append(chunk)
+</span></span><span style=display:flex><span>                    <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embeddings<span style=color:#ff79c6>.</span>append(embedding)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>            <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embeddings <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>array(<span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embeddings)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>chunk_document</span>(<span style=font-style:italic>self</span>, doc: <span style=color:#8be9fd;font-style:italic>str</span>, chunk_size: <span style=color:#8be9fd;font-style:italic>int</span> <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>500</span>) <span style=color:#ff79c6>-&gt;</span> List[<span style=color:#8be9fd;font-style:italic>str</span>]:
+</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#34;&#34;&#34;Split document into chunks.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>            words <span style=color:#ff79c6>=</span> doc<span style=color:#ff79c6>.</span>split()
+</span></span><span style=display:flex><span>            chunks <span style=color:#ff79c6>=</span> []
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>for</span> i <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>range</span>(<span style=color:#bd93f9>0</span>, <span style=color:#8be9fd;font-style:italic>len</span>(words), chunk_size):
+</span></span><span style=display:flex><span>                chunk <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39; &#39;</span><span style=color:#ff79c6>.</span>join(words[i:i <span style=color:#ff79c6>+</span> chunk_size])
+</span></span><span style=display:flex><span>                chunks<span style=color:#ff79c6>.</span>append(chunk)
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>return</span> chunks
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>retrieve</span>(<span style=font-style:italic>self</span>, query: <span style=color:#8be9fd;font-style:italic>str</span>, top_k: <span style=color:#8be9fd;font-style:italic>int</span> <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>5</span>) <span style=color:#ff79c6>-&gt;</span> List[Tuple[<span style=color:#8be9fd;font-style:italic>str</span>, <span style=color:#8be9fd;font-style:italic>float</span>]]:
+</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#34;&#34;&#34;Find most relevant chunks for a query.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>            query_embedding <span style=color:#ff79c6>=</span> <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embedding_model<span style=color:#ff79c6>.</span>embed(query)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>            <span style=color:#6272a4># Cosine similarity</span>
+</span></span><span style=display:flex><span>            similarities <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>dot(<span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embeddings, query_embedding) <span style=color:#ff79c6>/</span> (
+</span></span><span style=display:flex><span>                np<span style=color:#ff79c6>.</span>linalg<span style=color:#ff79c6>.</span>norm(<span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>embeddings, axis<span style=color:#ff79c6>=</span><span style=color:#bd93f9>1</span>) <span style=color:#ff79c6>*</span> 
+</span></span><span style=display:flex><span>                np<span style=color:#ff79c6>.</span>linalg<span style=color:#ff79c6>.</span>norm(query_embedding)
+</span></span><span style=display:flex><span>            )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>            <span style=color:#6272a4># Get top-k indices</span>
+</span></span><span style=display:flex><span>            top_indices <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>argsort(similarities)[<span style=color:#ff79c6>-</span>top_k:][::<span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>return</span> [(<span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>documents[i], similarities[i]) <span style=color:#ff79c6>for</span> i <span style=color:#ff79c6>in</span> top_indices]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>query</span>(<span style=font-style:italic>self</span>, user_question: <span style=color:#8be9fd;font-style:italic>str</span>) <span style=color:#ff79c6>-&gt;</span> <span style=color:#8be9fd;font-style:italic>str</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#34;&#34;&#34;Answer a question using RAG.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#6272a4># Retrieve relevant chunks</span>
+</span></span><span style=display:flex><span>            retrieved <span style=color:#ff79c6>=</span> <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>retrieve(user_question)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>            <span style=color:#6272a4># Format context</span>
+</span></span><span style=display:flex><span>            context <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>\n\n</span><span style=color:#f1fa8c>&#34;</span><span style=color:#ff79c6>.</span>join([
+</span></span><span style=display:flex><span>                <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;[Relevance: </span><span style=color:#f1fa8c>{</span>score<span style=color:#f1fa8c>:</span><span style=color:#f1fa8c>.2f</span><span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>]</span><span style=color:#f1fa8c>\n</span><span style=color:#f1fa8c>{</span>doc<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span> 
+</span></span><span style=display:flex><span>                <span style=color:#ff79c6>for</span> doc, score <span style=color:#ff79c6>in</span> retrieved
+</span></span><span style=display:flex><span>            ])
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>            <span style=color:#6272a4># Build prompt</span>
+</span></span><span style=display:flex><span>            prompt <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>            Use the following retrieved documents to answer the question.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>            If the documents don&#39;t contain relevant information, say so.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>            Retrieved Documents:
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>            </span><span style=color:#f1fa8c>{</span>context<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>            Question: </span><span style=color:#f1fa8c>{</span>user_question<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>            Answer:
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>            &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>return</span> <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>llm<span style=color:#ff79c6>.</span>generate(prompt)
+</span></span></code></pre></div><hr><h2 id=the-embedding-space-connection>The Embedding Space Connection</h2><p>RAG relies heavily on the embedding concepts I covered in <a href=/posts/how-large-language-models-think/>How LLMs Think
+</a>. The same geometric principles apply:</p><p><strong>Semantic Similarity as Distance:</strong> Documents about similar topics cluster together in embedding space. When you search for &ldquo;quarterly revenue projections,&rdquo; the retrieval system finds chunks that are geometrically close to that query, even if they use different words like &ldquo;Q3 financial forecasts.&rdquo;</p><p><strong>The Curse of Vocabulary Mismatch:</strong> Traditional keyword search fails when queries and documents use different terminology. Embedding-based retrieval handles this gracefully because semantically similar content maps to nearby vectors regardless of exact wording.</p><p><strong>Relevance vs. Correctness:</strong> Here&rsquo;s a critical limitation: embedding similarity measures <em>relevance</em>, not <em>correctness</em>. A document chunk might be highly relevant to your question while containing outdated or incorrect information. The retrieval system has no way to verify factual accuracy; it only measures semantic similarity.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># Embedding similarity doesn&#39;t guarantee correctness</span>
+</span></span><span style=display:flex><span>query <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;What is the population of Tokyo?&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Both chunks might have high similarity scores</span>
+</span></span><span style=display:flex><span>chunk_a <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;Tokyo&#39;s population is approximately 14 million.&#34;</span>  <span style=color:#6272a4># Correct</span>
+</span></span><span style=display:flex><span>chunk_b <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;Tokyo&#39;s population exceeds 50 million people.&#34;</span>    <span style=color:#6272a4># Incorrect</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># The retrieval system can&#39;t tell which is accurate</span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Both are semantically relevant to the query</span>
+</span></span></code></pre></div><hr><h2 id=what-the-model-actually-does>What the Model Actually Does</h2><p>Once relevant content is retrieved and injected, what does the model do with it? This is where the frozen capabilities come into play.</p><p><strong>Pattern Matching Over Retrieved Text:</strong> The model applies the same attention mechanisms and pattern recognition it uses for any text. It doesn&rsquo;t &ldquo;know&rdquo; the retrieved content is special; it simply processes it as part of the input sequence.</p><p><strong>Synthesis and Reasoning:</strong> The model can combine information from multiple retrieved chunks, identify contradictions, extract specific facts, and generate coherent summaries. These capabilities were learned during training; retrieval just provides new material to apply them to.</p><p><strong>Citation Generation:</strong> When models cite sources, they&rsquo;re typically extracting attribution information from the retrieved text itself. The citation &ldquo;according to the New York Times&rdquo; appears because that phrase (or the source URL) was present in the retrieved content.</p><p><strong>No Fact Verification:</strong> The model cannot independently verify whether retrieved information is accurate. If the retrieval returns outdated or incorrect content, the model will confidently present that information as fact. Garbage in, garbage out.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># The model processes retrieved content like any other text</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>model_processing</span>(prompt_with_retrieved_content):
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    The model doesn&#39;t treat retrieved content specially.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    It applies the same attention and generation mechanisms.
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Tokenize everything</span>
+</span></span><span style=display:flex><span>    tokens <span style=color:#ff79c6>=</span> tokenize(prompt_with_retrieved_content)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Apply attention across all tokens</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Retrieved content participates in attention like any other text</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> layer <span style=color:#ff79c6>in</span> transformer_layers:
+</span></span><span style=display:flex><span>        tokens <span style=color:#ff79c6>=</span> layer<span style=color:#ff79c6>.</span>attention(tokens)
+</span></span><span style=display:flex><span>        tokens <span style=color:#ff79c6>=</span> layer<span style=color:#ff79c6>.</span>feedforward(tokens)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Generate response token by token</span>
+</span></span><span style=display:flex><span>    response <span style=color:#ff79c6>=</span> []
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>while</span> <span style=color:#ff79c6>not</span> done:
+</span></span><span style=display:flex><span>        next_token <span style=color:#ff79c6>=</span> sample_next_token(tokens)
+</span></span><span style=display:flex><span>        response<span style=color:#ff79c6>.</span>append(next_token)
+</span></span><span style=display:flex><span>        tokens <span style=color:#ff79c6>=</span> append(tokens, next_token)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> response
+</span></span></code></pre></div><hr><h2 id=why-this-isnt-learning>Why This Isn&rsquo;t Learning</h2><p>The distinction between retrieval and learning is fundamental:</p><table><thead><tr><th>Aspect</th><th>Learning (Training)</th><th>Retrieval (Inference)</th></tr></thead><tbody><tr><td>Weights</td><td>Updated via gradient descent</td><td>Completely frozen</td></tr><tr><td>Duration</td><td>Persists permanently</td><td>Exists only for one request</td></tr><tr><td>Scope</td><td>Affects all future responses</td><td>Affects only current response</td></tr><tr><td>Cost</td><td>Enormous (millions of dollars)</td><td>Minimal (milliseconds)</td></tr><tr><td>Information</td><td>Compressed into parameters</td><td>Present as literal text</td></tr></tbody></table><p>When a model learns something during training, that knowledge becomes part of its weights. It&rsquo;s compressed, abstracted, and available for all future interactions. The model doesn&rsquo;t need to &ldquo;look up&rdquo; that information; it&rsquo;s encoded in the parameters.</p><p>When a model retrieves something at inference time, that knowledge exists only as text in the current context window. It&rsquo;s not compressed or abstracted. The model reads it, reasons over it, and then forgets it completely when the conversation ends.</p><p>This is why retrieval-augmented models can &ldquo;know&rdquo; current events while still having a knowledge cutoff. The cutoff applies to the weights; retrieval has no cutoff because it accesses live information.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># Learning vs Retrieval</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>LearningVsRetrieval</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>__init__</span>(<span style=font-style:italic>self</span>):
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Weights encode learned knowledge (frozen at inference)</span>
+</span></span><span style=display:flex><span>        <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>weights <span style=color:#ff79c6>=</span> train_on_data_before_cutoff()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Retrieval provides dynamic knowledge</span>
+</span></span><span style=display:flex><span>        <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>retrieval_system <span style=color:#ff79c6>=</span> SearchEngine()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>answer_from_weights</span>(<span style=font-style:italic>self</span>, question):
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;&#34;&#34;Limited to training data cutoff.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>return</span> <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>forward_pass(question)  <span style=color:#6272a4># Uses frozen weights</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>answer_with_retrieval</span>(<span style=font-style:italic>self</span>, question):
+</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;&#34;&#34;Can access current information.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        retrieved <span style=color:#ff79c6>=</span> <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>retrieval_system<span style=color:#ff79c6>.</span>search(question)
+</span></span><span style=display:flex><span>        augmented <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;</span><span style=color:#f1fa8c>{</span>retrieved<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>\n\n</span><span style=color:#f1fa8c>Question: </span><span style=color:#f1fa8c>{</span>question<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>return</span> <span style=font-style:italic>self</span><span style=color:#ff79c6>.</span>forward_pass(augmented)  <span style=color:#6272a4># Same frozen weights</span>
+</span></span></code></pre></div><hr><h2 id=tool-use-generalizing-beyond-text>Tool Use: Generalizing Beyond Text</h2><p>Web search and RAG are specific instances of a broader capability: <strong>tool use</strong>. Modern LLMs can interact with external systems to gather information or perform actions.</p><p>The pattern is consistent:</p><ol><li>The model generates a structured request (search query, API call, code to execute)</li><li>An external system executes the request</li><li>Results are returned to the model as text</li><li>The model reasons over the results</li></ol><p><strong>Examples of Tool Use:</strong></p><ul><li><strong>Code Execution</strong>: Model generates Python code, a sandbox executes it, output returns as text</li><li><strong>Calculator</strong>: Model requests a calculation, external system computes it precisely</li><li><strong>Database Query</strong>: Model generates SQL, database executes it, results return as text</li><li><strong>API Calls</strong>: Model generates API requests, external systems execute them, responses return as text</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># Tool use follows the same retrieval pattern</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>tool_augmented_response</span>(user_query, llm, tools):
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Model decides which tool to use and how</span>
+</span></span><span style=display:flex><span>    tool_call <span style=color:#ff79c6>=</span> llm<span style=color:#ff79c6>.</span>generate_tool_call(user_query, available_tools<span style=color:#ff79c6>=</span>tools)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># External system executes the tool</span>
+</span></span><span style=display:flex><span>    tool_result <span style=color:#ff79c6>=</span> execute_tool(tool_call)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Results injected back into context</span>
+</span></span><span style=display:flex><span>    augmented_prompt <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Tool Used: </span><span style=color:#f1fa8c>{</span>tool_call<span style=color:#ff79c6>.</span>tool_name<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Tool Input: </span><span style=color:#f1fa8c>{</span>tool_call<span style=color:#ff79c6>.</span>input<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Tool Output: </span><span style=color:#f1fa8c>{</span>tool_result<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Original Question: </span><span style=color:#f1fa8c>{</span>user_query<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    Based on the tool output, provide your answer:
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> llm<span style=color:#ff79c6>.</span>generate(augmented_prompt)
+</span></span></code></pre></div><p>The model&rsquo;s role is generating appropriate tool calls and reasoning over results. The actual computation or retrieval happens externally. This separation is important: the model can&rsquo;t execute code directly or access databases directly. It can only request that external systems do so.</p><hr><h2 id=limitations-of-retrieval-augmented-systems>Limitations of Retrieval-Augmented Systems</h2><p>Understanding how retrieval works reveals its limitations:</p><h3 id=retrieval-quality-bounds-answer-quality>Retrieval Quality Bounds Answer Quality</h3><p>If the retrieval system returns irrelevant or incorrect documents, the model can&rsquo;t recover. It has no independent way to verify information. A confidently wrong source produces a confidently wrong answer.</p><h3 id=context-window-constraints>Context Window Constraints</h3><p>Retrieved content consumes context window space. You can&rsquo;t inject an entire Wikipedia into the prompt. Systems must balance breadth (more sources) against depth (more content per source) within fixed token limits.</p><h3 id=latency-costs>Latency Costs</h3><p>Every retrieval step adds latency. Web search takes time. Vector database queries take time. For real-time applications, these delays accumulate.</p><h3 id=retrieval-doesnt-fix-reasoning-failures>Retrieval Doesn&rsquo;t Fix Reasoning Failures</h3><p>If a model struggles with a particular type of reasoning (say, multi-step math), retrieval won&rsquo;t help. You can retrieve a textbook chapter on algebra, but the model still needs to apply that knowledge correctly.</p><h3 id=hallucination-persists>Hallucination Persists</h3><p>Models can still hallucinate even with retrieved content. They might misread the retrieved text, combine information incorrectly, or generate details not present in any source.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># Retrieval doesn&#39;t prevent all failure modes</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>retrieval_limitations</span>():
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Problem 1: Bad retrieval</span>
+</span></span><span style=display:flex><span>    query <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;Latest election results&#34;</span>
+</span></span><span style=display:flex><span>    retrieved <span style=color:#ff79c6>=</span> search(query)  <span style=color:#6272a4># Returns outdated 2020 results</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Model will confidently report wrong information</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Problem 2: Correct retrieval, bad reasoning</span>
+</span></span><span style=display:flex><span>    query <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;What is 15</span><span style=color:#f1fa8c>% o</span><span style=color:#f1fa8c>f the revenue mentioned in this report?&#34;</span>
+</span></span><span style=display:flex><span>    retrieved <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;Q3 revenue was $4.2 million&#34;</span>  <span style=color:#6272a4># Correct retrieval</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Model might still compute 15% incorrectly</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Problem 3: Hallucination despite retrieval</span>
+</span></span><span style=display:flex><span>    query <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;What did the CEO say about expansion?&#34;</span>
+</span></span><span style=display:flex><span>    retrieved <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;The CEO discussed growth strategies&#34;</span>  <span style=color:#6272a4># Vague</span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Model might invent specific quotes not in the source</span>
+</span></span></code></pre></div><hr><h2 id=practical-implications>Practical Implications</h2><p>Understanding the retrieval mechanism helps you use these systems more effectively:</p><h3 id=trust-retrieved-information-cautiously>Trust Retrieved Information Cautiously</h3><p>Just because a model cites a source doesn&rsquo;t mean it interpreted that source correctly. Verify important claims by checking the original source.</p><h3 id=understand-citation-limitations>Understand Citation Limitations</h3><p>Citations reflect what was retrieved, not what the model independently verified. A citation to a reputable source doesn&rsquo;t guarantee the model&rsquo;s interpretation is accurate.</p><h3 id=recognize-fresh-vs-learned-knowledge>Recognize Fresh vs. Learned Knowledge</h3><p>When a model answers a question about current events, that knowledge is ephemeral. Ask the same question in a new conversation, and the model might retrieve different sources and give a different answer.</p><h3 id=design-prompts-accordingly>Design Prompts Accordingly</h3><p>For questions where retrieval is active, you can guide what gets searched by being specific. &ldquo;According to recent news reports&rdquo; vs. &ldquo;According to scientific studies&rdquo; might trigger different search strategies.</p><h3 id=dont-expect-persistence>Don&rsquo;t Expect Persistence</h3><p>Information from retrieved sources doesn&rsquo;t persist between conversations. Each new chat starts fresh, requiring new retrieval for current information.</p><hr><h2 id=the-architecture-of-augmented-llms>The Architecture of Augmented LLMs</h2><p>Modern AI assistants combine multiple components:</p><pre><code>┌─────────────────────────────────────────────────────────────┐
 │                      User Interface                          │
 └─────────────────────┬───────────────────────────────────────┘
                       │
@@ -650,254 +274,75 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 │  - Generates responses                                       │
 │  - Synthesizes retrieved information                         │
 └─────────────────────────────────────────────────────────────┘
-</code></pre>
-<p>The LLM itself is just one component. The orchestration layer decides when to retrieve, what to retrieve, and how to present retrieved information. This is where much of the system intelligence actually lives.</p>
-<hr>
-<h2 id="closing-thoughts">Closing Thoughts</h2>
-<p>The ability for LLMs to access current information through retrieval is genuinely useful. It extends frozen models far beyond their training data cutoffs and enables grounded responses that cite real sources.</p>
-<p>But it&rsquo;s crucial to understand what&rsquo;s actually happening. The model isn&rsquo;t learning about current events. It isn&rsquo;t updating its knowledge. It&rsquo;s reading dynamically retrieved text and applying its frozen capabilities to that text.</p>
-<p>This distinction matters for trust calibration. A model answering from its trained weights has seen that information millions of times across many sources. A model answering from retrieval is basing its response on whatever happened to be retrieved for that specific query. The reliability profiles are different.</p>
-<p>It also matters for understanding failures. When a retrieval-augmented model gives a wrong answer about current events, the problem might be the retrieval (wrong sources), the interpretation (model misread the source), or both. Debugging requires understanding where in the pipeline the failure occurred.</p>
-<p>After working with these systems extensively, I&rsquo;ve come to see retrieval augmentation as giving models a form of open-book exam capability. They can look things up, but they can&rsquo;t learn during the exam. Their reasoning abilities are fixed; only their inputs are dynamic. Understanding that constraint is key to using these tools effectively.</p>
-<hr>
-<p><strong>If you&rsquo;ve followed this series from <a href="/posts/how-large-language-models-read-code">
-  how LLMs read code
-</a>
- through <a href="/posts/how-large-language-models-think">
-  how they think
-</a>
-, <a href="/posts/how-large-language-models-learn">
-  how they learn
-</a>
-, <a href="/posts/how-large-language-models-handle-context-windows">
-  how they handle context
-</a>
-, <a href="/posts/how-large-language-models-tokenize-text">
-  how they tokenize
-</a>
-, and <a href="/posts/temperature-top-p-creativity-knobs">
-  how sampling works
-</a>
-, you now have the complete picture: from raw text to tokens to embeddings to attention to learning to generation to augmentation. These systems are remarkable for what they can do, and understanding their mechanisms helps you appreciate both their power and their limitations.</strong></p>
-<hr>
-<h2 id="further-reading">Further Reading</h2>
-<p>These resources provide deeper technical details on retrieval-augmented generation and related techniques.</p>
-<p><a id="guu2020"></a>Guu, K., Lee, K., Tung, Z., Pasupat, P., &amp; Chang, M. W. (2020). REALM: Retrieval-augmented language model pre-training. <em>Proceedings of the 37th International Conference on Machine Learning</em>. <a href="https://arxiv.org/abs/2002.08909" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2002.08909
-</a>
-</p>
-<p><a id="izacard2022"></a>Izacard, G., Lewis, P., Lomeli, M., Hosseini, L., Petroni, F., Schick, T., &hellip; &amp; Grave, E. (2022). Atlas: Few-shot learning with retrieval augmented language models. <em>arXiv preprint arXiv:2208.03299</em>. <a href="https://arxiv.org/abs/2208.03299" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2208.03299
-</a>
-</p>
-<p><a id="karpukhin2020"></a>Karpukhin, V., Oğuz, B., Min, S., Lewis, P., Wu, L., Edunov, S., &hellip; &amp; Yih, W. T. (2020). Dense passage retrieval for open-domain question answering. <em>Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing</em>. <a href="https://arxiv.org/abs/2004.04906" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2004.04906
-</a>
-</p>
-<p><a id="lewis2020"></a>Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., &hellip; &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>Advances in Neural Information Processing Systems</em>, 33. <a href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2005.11401
-</a>
-</p>
-<p><a id="mialon2023"></a>Mialon, G., Dessì, R., Lomeli, M., Nalmpantis, C., Pasunuru, R., Raileanu, R., &hellip; &amp; Scialom, T. (2023). Augmented language models: A survey. <em>arXiv preprint arXiv:2302.07842</em>. <a href="https://arxiv.org/abs/2302.07842" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2302.07842
-</a>
-</p>
-<p><a id="schick2023"></a>Schick, T., Dwivedi-Yu, J., Dessì, R., Raileanu, R., Lomeli, M., Zettlemoyer, L., &hellip; &amp; Scialom, T. (2023). Toolformer: Language models can teach themselves to use tools. <em>arXiv preprint arXiv:2302.04761</em>. <a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2302.04761
-</a>
-</p>
-<hr>
-    </div>
-    <footer class="post__footer">
-      
-<div class="post__tags tags clearfix">
-	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
-	<ul class="tags__list">
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/ai/" rel="tag">AI</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/llm/" rel="tag">LLM</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/rag/" rel="tag">RAG</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/web-search/" rel="tag">web search</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/context-windows/" rel="tag">context windows</a>
-		</li>
-	</ul>
-</div>
-      
-    </footer>
-  </article>
-</main>
-
-
-
-
-			</div>
-			<aside class="sidebar"><div class="widget widget-bio">
-  <h4 class="widget__title">Behind the Code</h4>
-  <div class="widget__content">
-
-    <div class="bio-wrap">
-      
-        <a class="bio-avatar-link" href="/bio/">
-          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
-        </a>
-      
-
-      
-      
-        <div class="bio-text"><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
+</code></pre><p>The LLM itself is just one component. The orchestration layer decides when to retrieve, what to retrieve, and how to present retrieved information. This is where much of the system intelligence actually lives.</p><hr><h2 id=closing-thoughts>Closing Thoughts</h2><p>The ability for LLMs to access current information through retrieval is genuinely useful. It extends frozen models far beyond their training data cutoffs and enables grounded responses that cite real sources.</p><p>But it&rsquo;s crucial to understand what&rsquo;s actually happening. The model isn&rsquo;t learning about current events. It isn&rsquo;t updating its knowledge. It&rsquo;s reading dynamically retrieved text and applying its frozen capabilities to that text.</p><p>This distinction matters for trust calibration. A model answering from its trained weights has seen that information millions of times across many sources. A model answering from retrieval is basing its response on whatever happened to be retrieved for that specific query. The reliability profiles are different.</p><p>It also matters for understanding failures. When a retrieval-augmented model gives a wrong answer about current events, the problem might be the retrieval (wrong sources), the interpretation (model misread the source), or both. Debugging requires understanding where in the pipeline the failure occurred.</p><p>After working with these systems extensively, I&rsquo;ve come to see retrieval augmentation as giving models a form of open-book exam capability. They can look things up, but they can&rsquo;t learn during the exam. Their reasoning abilities are fixed; only their inputs are dynamic. Understanding that constraint is key to using these tools effectively.</p><hr><p><strong>If you&rsquo;ve followed this series from <a href=/posts/how-large-language-models-read-code>how LLMs read code
+</a>through <a href=/posts/how-large-language-models-think>how they think
+</a>, <a href=/posts/how-large-language-models-learn>how they learn
+</a>, <a href=/posts/how-large-language-models-handle-context-windows>how they handle context
+</a>, <a href=/posts/how-large-language-models-tokenize-text>how they tokenize
+</a>, and <a href=/posts/temperature-top-p-creativity-knobs>how sampling works
+</a>, you now have the complete picture: from raw text to tokens to embeddings to attention to learning to generation to augmentation. These systems are remarkable for what they can do, and understanding their mechanisms helps you appreciate both their power and their limitations.</strong></p><hr><h2 id=further-reading>Further Reading</h2><p>These resources provide deeper technical details on retrieval-augmented generation and related techniques.</p><p><a id=guu2020></a>Guu, K., Lee, K., Tung, Z., Pasupat, P., & Chang, M. W. (2020). REALM: Retrieval-augmented language model pre-training. <em>Proceedings of the 37th International Conference on Machine Learning</em>. <a href=https://arxiv.org/abs/2002.08909 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/2002.08909</a></p><p><a id=izacard2022></a>Izacard, G., Lewis, P., Lomeli, M., Hosseini, L., Petroni, F., Schick, T., &mldr; & Grave, E. (2022). Atlas: Few-shot learning with retrieval augmented language models. <em>arXiv preprint arXiv:2208.03299</em>. <a href=https://arxiv.org/abs/2208.03299 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/2208.03299</a></p><p><a id=karpukhin2020></a>Karpukhin, V., Oğuz, B., Min, S., Lewis, P., Wu, L., Edunov, S., &mldr; & Yih, W. T. (2020). Dense passage retrieval for open-domain question answering. <em>Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing</em>. <a href=https://arxiv.org/abs/2004.04906 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/2004.04906</a></p><p><a id=lewis2020></a>Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., &mldr; & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>Advances in Neural Information Processing Systems</em>, 33. <a href=https://arxiv.org/abs/2005.11401 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/2005.11401</a></p><p><a id=mialon2023></a>Mialon, G., Dessì, R., Lomeli, M., Nalmpantis, C., Pasunuru, R., Raileanu, R., &mldr; & Scialom, T. (2023). Augmented language models: A survey. <em>arXiv preprint arXiv:2302.07842</em>. <a href=https://arxiv.org/abs/2302.07842 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/2302.07842</a></p><p><a id=schick2023></a>Schick, T., Dwivedi-Yu, J., Dessì, R., Raileanu, R., Lomeli, M., Zettlemoyer, L., &mldr; & Scialom, T. (2023). Toolformer: Language models can teach themselves to use tools. <em>arXiv preprint arXiv:2302.04761</em>. <a href=https://arxiv.org/abs/2302.04761 target=_blank rel="noopener noreferrer">https://arxiv.org/abs/2302.04761</a></p><hr></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 000-6 3 3 0 000 6"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/ai/ rel=tag>AI</a></li><li class=tags__item><a class="tags__link btn" href=/tags/llm/ rel=tag>LLM</a></li><li class=tags__item><a class="tags__link btn" href=/tags/rag/ rel=tag>RAG</a></li><li class=tags__item><a class="tags__link btn" href=/tags/web-search/ rel=tag>web search</a></li><li class=tags__item><a class="tags__link btn" href=/tags/context-windows/ rel=tag>context windows</a></li></ul></div></footer></article></main></div><aside class=sidebar><div class="widget widget-bio"><h4 class=widget__title>Behind the Code</h4><div class=widget__content><div class=bio-wrap><a class=bio-avatar-link href=/bio/><img class=bio-avatar src=/img/avatar.png alt="Avatar of Signal & Syntax"></a><div class=bio-text><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
 turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
-that outlives the feature request it started from.</p>
-<p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+that outlives the feature request it started from.</p><p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
 insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
 system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
 activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
-technology books, wrote 100+ articles for <em>.NET Programming Tips &amp; Techniques</em>, and helped run
-<a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
-  CodeGuru
-</a>
- (the largest Windows developer community of its era).</p>
-<p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+technology books, wrote 100+ articles for <em>.NET Programming Tips & Techniques</em>, and helped run
+<a href=http://codeguru.com target=_blank rel="noopener noreferrer">CodeGuru
+</a>(the largest Windows developer community of its era).</p><p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
 that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
 structures that get concatenated with code samples at runtime and routed to generative models, with results
-injected back into the output. Nearly 100 articles have shipped through the system.</p>
-<p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
-to inference-time behavior, from tokenization to training infrastructure.</p>
-<p>Connect with me on <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
-  LinkedIn
-</a>
-.</p>
-</div>
-      
-    </div>
-
-    
-    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
-  </div>
-</div>
-<div class="widget widget-disclaimer">
-  <h4 class="widget__title">Disclaimer</h4>
-  <div class="widget__content">
-    <p>
-      The content on this blog represents my personal views and opinions only. It is not intended to represent
-      the views, positions, or strategies of my employer or any other organization with which I may be associated.
-      All content is provided “as is” without warranty of any kind.
-    </p>
-  </div>
-</div>
-<div class="widget widget-social">
-  <h4 class="widget__title">Connect</h4>
-  <div class="widget__content">
-    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
-        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
-          
-        </a>
-      </li><li>
-        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
-          
-        </a>
-      </li><li>
-        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
-          
-        </a>
-      </li></ul>
-  </div>
-</div>
-<div class="widget-categories widget">
-	<h4 class="widget__title">Categories</h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-taglist widget">
-	<h4 class="widget__title">Tags</h4>
-	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/discrete-mathematics/" title="Discrete Mathematics">Discrete Mathematics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/predicate-logic/" title="Predicate Logic">Predicate Logic</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/set-theory/" title="Set Theory">Set Theory</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2026 Signal &amp; Syntax.
-			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-<script src="/js/copy-button.js"></script>
-</body>
-</html>
+injected back into the output. Nearly 100 articles have shipped through the system.</p><p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+to inference-time behavior, from tokenization to training infrastructure.</p><p>Connect with me on <a href=https://www.linkedin.com/in/tom-archer-dev/ target=_blank rel="noopener noreferrer">LinkedIn
+</a>.</p></div></div><p class=more><a class=link-more href=/bio/>Read more →</a></p></div></div><div class="widget widget-disclaimer"><h4 class=widget__title>Disclaimer</h4><div class=widget__content><p>The content on this blog represents my personal views and opinions only. It is not intended to represent
+the views, positions, or strategies of my employer or any other organization with which I may be associated.
+All content is provided “as is” without warranty of any kind.</p></div></div><div class="widget widget-social"><h4 class=widget__title>Connect</h4><div class=widget__content><ul class=social-list style=list-style:none;padding:0;margin:0;display:flex;gap:.6rem><li><a href=https://github.com/tomarcher aria-label=GitHub rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 008.21 23.9c.6.11.82-.26.82-.58V21.3c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93.0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17.0.0 1.01-.32 3.3 1.23a11.4 11.4.0 016.01.0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22.0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0012 .5z"/></svg></a></li><li><a href=https://www.linkedin.com/in/tom-archer-dev/ aria-label=LinkedIn rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45H16.9v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85.0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54.0 4.2 2.33 4.2 5.36v6.36zM5.34 7.43a2.06 2.06.0 110-4.12 2.06 2.06.0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li><li><a href=/index.xml aria-label=RSS rel=noopener style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18.0 110-4.36 2.18 2.18.0 010 4.36zM4 9.82v3.27a7.73 7.73.0 017.73 7.73H15c0-6.05-4.95-11-11-11zm0-4v3.27c8.27.0 15 6.73 15 15h3.27C22.27 14.03 14.06 5.82 4 5.82z"/></svg></a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai-and-the-mathematics-of-language/>AI and the Mathematics of Language</a></li><li class=widget__item><a class=widget__link href=/categories/applied-modeling-and-simulation/>Applied Modeling and Simulation</a></li><li class=widget__item><a class=widget__link href=/categories/essays-and-perspectives/>Essays and Perspectives</a></li><li class=widget__item><a class=widget__link href=/categories/python-techniques-and-tooling/>Python Techniques and Tooling</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title>Tags</h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/algorithms/ title=Algorithms>Algorithms</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/anthropic/ title=Anthropic>Anthropic</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/attention-mechanisms/ title="Attention Mechanisms">Attention Mechanisms</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/biology/ title=Biology>Biology</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/blockchain/ title=Blockchain>Blockchain</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/calculus/ title=Calculus>Calculus</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/code-organization/ title="Code Organization">Code Organization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/context-windows/ title="Context Windows">Context Windows</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cryptography/ title=Cryptography>Cryptography</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/data-parsing/ title="Data Parsing">Data Parsing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/databases/ title=Databases>Databases</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/design-patterns/ title="Design Patterns">Design Patterns</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/discrete-mathematics/ title="Discrete Mathematics">Discrete Mathematics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/distributed-systems/ title=Distributed-Systems>Distributed-Systems</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/economics/ title=Economics>Economics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/embeddings/ title=Embeddings>Embeddings</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/energy-balance/ title="Energy Balance">Energy Balance</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/geometry/ title=Geometry>Geometry</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/gradient-descent/ title="Gradient Descent">Gradient Descent</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hashing/ title=Hashing>Hashing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/innovation/ title=Innovation>Innovation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/kinematics/ title=Kinematics>Kinematics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/linear-algebra/ title="Linear Algebra">Linear Algebra</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/llm/ title=LLM>LLM</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/nlp/ title=NLP>NLP</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/nucleus-sampling/ title="Nucleus Sampling">Nucleus Sampling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/numerical-methods/ title="Numerical Methods">Numerical Methods</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/optimization/ title=Optimization>Optimization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/passwords/ title=Passwords>Passwords</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/physics/ title=Physics>Physics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/predicate-logic/ title="Predicate Logic">Predicate Logic</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/probability/ title=Probability>Probability</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/productivity/ title=Productivity>Productivity</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/python/ title=Python>Python</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/rag/ title=RAG>RAG</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/sampling/ title=Sampling>Sampling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/scheduling/ title=Scheduling>Scheduling</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/security/ title=Security>Security</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/set-theory/ title="Set Theory">Set Theory</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/softmax/ title=Softmax>Softmax</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/symbolic-math/ title="Symbolic Math">Symbolic Math</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/sympy/ title=SymPy>SymPy</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/temperature/ title=Temperature>Temperature</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/thermodynamics/ title=Thermodynamics>Thermodynamics</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/tokenization/ title=Tokenization>Tokenization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/top-p/ title=Top-P>Top-P</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/transformers/ title=Transformers>Transformers</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/web-search/ title="Web Search">Web Search</a></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 Signal & Syntax.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/js/menu.js></script><script src=/js/copy-button.js></script></body></html>
