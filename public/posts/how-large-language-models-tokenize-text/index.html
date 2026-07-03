@@ -79,7 +79,6 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 	}
 	};
 	</script>
-	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <link rel="stylesheet" href="/css/extra.css">
@@ -158,25 +157,13 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 
       <div class="share">
   <span class="share__label">Share:</span>
-  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text%252F&text=How%2bLarge%2bLanguage%2bModels%2b%2528LLMs%2529%2bTokenize%2bText%253A%2bWhy%2bWords%2bAren%2527t%2bWhat%2bYou%2bThink" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
-    X
-  </a>
-  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
-    in
-  </a>
-  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text%252F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
-    f
-  </a>
-  <a class="share__btn" href="https://www.reddit.com/submit?url=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text%252F&title=How%2bLarge%2bLanguage%2bModels%2b%2528LLMs%2529%2bTokenize%2bText%253A%2bWhy%2bWords%2bAren%2527t%2bWhat%2bYou%2bThink" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
-    r
-  </a>
-  <a class="share__btn" href="mailto:?subject=How%2bLarge%2bLanguage%2bModels%2b%2528LLMs%2529%2bTokenize%2bText%253A%2bWhy%2bWords%2bAren%2527t%2bWhat%2bYou%2bThink&body=http%253A%252F%252Flocalhost%253A1313%252Fposts%252Fhow-large-language-models-tokenize-text%252F" aria-label="Share via Email">
-    @
-  </a>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-tokenize-text%2F&amp;text=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Tokenize&#43;Text%3A&#43;Why&#43;Words&#43;Aren%27t&#43;What&#43;You&#43;Think" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-tokenize-text%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-tokenize-text%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-tokenize-text%2F&amp;title=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Tokenize&#43;Text%3A&#43;Why&#43;Words&#43;Aren%27t&#43;What&#43;You&#43;Think" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
+  <a class="share__btn" href="mailto:?subject=How%20Large%20Language%20Models%20%28LLMs%29%20Tokenize%20Text%3A%20Why%20Words%20Aren%27t%20What%20You%20Think&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-tokenize-text%2F" aria-label="Share via Email">@</a>
 
-  <button class="share__btn share__btn--native" type="button" aria-label="Share">
-    Share
-  </button>
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">Share</button>
 </div>
 
 <script>
@@ -187,13 +174,12 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
     try {
       await navigator.share({
         title: "\"How Large Language Models (LLMs) Tokenize Text: Why Words Aren't What You Think\"",
-        url: "\"http://localhost:1313/posts/how-large-language-models-tokenize-text/\""
+        url:   "\"http://localhost:1313/posts/how-large-language-models-tokenize-text/\""
       });
     } catch (_) {}
   });
 })();
-</script>
-  
+</script>  
 
     </header>
 
@@ -890,7 +876,9 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>

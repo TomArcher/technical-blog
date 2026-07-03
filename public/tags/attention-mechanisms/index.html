@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Attention Mechanisms">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-04-01T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-04-01T06:00:00-07:00">
+  <meta itemprop="datePublished" content="2026-05-08T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-05-08T06:00:00-07:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Attention Mechanisms">
@@ -61,7 +61,6 @@
 	}
 	};
 	</script>
-	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <link rel="stylesheet" href="/css/extra.css">
@@ -120,7 +119,7 @@
     <header class="taxonomy-header">
       <h1>
         
-        3 "Attention Mechanisms" Posts
+        4 "Attention Mechanisms" Posts
         </h1>
 
       
@@ -129,6 +128,59 @@
     
     
 
+    
+      
+      
+      
+      
+        
+        
+          
+            
+            
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/inside-attention-part-1/">
+              <img src="/posts/inside-attention-part-1/inside-attention-part-1-th.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/inside-attention-part-1/">Inside Attention, Part 1: The Mechanism</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2026-05-08">
+                <strong>May 8, 2026</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/transformers/">#transformers</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/softmax/">#softmax</a>, <a href="/tags/interpretability/">#interpretability</a>, <a href="/tags/induction-heads/">#induction heads</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>Transformers are the foundation of modern large language models like ChatGPT, Claude, Gemini, and many image and audio models as well. However, if you want to understand transformers fully, you must first understand attention. The transformer architecture stacks attention layers between feedforward sublayers, wraps the whole thing in residual connections and layer normalization, and adds positional information so the model knows what order the tokens came in. Every one of those pieces matters, but the attention layer is the part that does the work of looking at other tokens and deciding what to absorb from them. Get attention wrong and the rest of the architecture has nothing to operate on.</p>
+<p>This post is the first of a three-part series on the attention mechanism. Part 1, this one, covers the operation itself: scaled dot-product attention, why we divide by (\sqrt{d_k}), multi-head attention, and what we have learned since 2017 about what those heads actually do. Part 2 covers masking and the function class it forces the model into, including why causal masking is what makes generation possible. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
+The 2017 paper, <a href="#vaswani2017">
+  Attention Is All You Need
+</a>
+, is the seed of this series. The mechanism it described is small and elegant and fits on a page. Everything since has been the tree growing out of it: the math has held up, but the deployed system has acquired layers the paper did not anticipate. This post stays close to the seed. The rest of the series walks the branches.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&rdquo;</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/inside-attention-part-1/">Read more →</a></p>
+      </article>
     
       
       
@@ -400,7 +452,9 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>

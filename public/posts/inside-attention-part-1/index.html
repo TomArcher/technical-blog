@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Inside Attention, Part 1: The Mechanism - Signal &amp; Syntax</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/posts/inside-attention-part-1/">
+  <meta property="og:site_name" content="Signal & Syntax">
+  <meta property="og:title" content="Inside Attention, Part 1: The Mechanism">
+  <meta property="og:description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.Transformers are the foundation of modern large language models like ChatGPT, Claude, Gemini, and many image and audio models as well. However, if you want to understand transformers fully, you must first understand attention. The transformer architecture stacks attention layers between feedforward sublayers, wraps the whole thing in residual connections and layer normalization, and adds positional information so the model knows what order the tokens came in. Every one of those pieces matters, but the attention layer is the part that does the work of looking at other tokens and deciding what to absorb from them. Get attention wrong and the rest of the architecture has nothing to operate on.
+This post is the first of a three-part series on the attention mechanism. Part 1, this one, covers the operation itself: scaled dot-product attention, why we divide by (\sqrt{d_k}), multi-head attention, and what we have learned since 2017 about what those heads actually do. Part 2 covers masking and the function class it forces the model into, including why causal masking is what makes generation possible. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention. The 2017 paper, Attention Is All You Need, is the seed of this series. The mechanism it described is small and elegant and fits on a page. Everything since has been the tree growing out of it: the math has held up, but the deployed system has acquired layers the paper did not anticipate. This post stays close to the seed. The rest of the series walks the branches.
+“Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-05-08T06:00:00-07:00">
+    <meta property="article:modified_time" content="2026-05-08T06:00:00-07:00">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Attention Mechanisms">
+    <meta property="article:tag" content="Transformers">
+    <meta property="article:tag" content="LLM">
+    <meta property="article:tag" content="Softmax">
+    <meta property="article:tag" content="Interpretability">
+
+		
+  <meta itemprop="name" content="Inside Attention, Part 1: The Mechanism">
+  <meta itemprop="description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.Transformers are the foundation of modern large language models like ChatGPT, Claude, Gemini, and many image and audio models as well. However, if you want to understand transformers fully, you must first understand attention. The transformer architecture stacks attention layers between feedforward sublayers, wraps the whole thing in residual connections and layer normalization, and adds positional information so the model knows what order the tokens came in. Every one of those pieces matters, but the attention layer is the part that does the work of looking at other tokens and deciding what to absorb from them. Get attention wrong and the rest of the architecture has nothing to operate on.
+This post is the first of a three-part series on the attention mechanism. Part 1, this one, covers the operation itself: scaled dot-product attention, why we divide by (\sqrt{d_k}), multi-head attention, and what we have learned since 2017 about what those heads actually do. Part 2 covers masking and the function class it forces the model into, including why causal masking is what makes generation possible. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention. The 2017 paper, Attention Is All You Need, is the seed of this series. The mechanism it described is small and elegant and fits on a page. Everything since has been the tree growing out of it: the math has held up, but the deployed system has acquired layers the paper did not anticipate. This post stays close to the seed. The rest of the series walks the branches.
+“Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
+  <meta itemprop="datePublished" content="2026-05-08T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-05-08T06:00:00-07:00">
+  <meta itemprop="wordCount" content="3918">
+  <meta itemprop="keywords" content="AI,Attention Mechanisms,Transformers,LLM,Softmax,Interpretability,Induction Heads">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Inside Attention, Part 1: The Mechanism">
+  <meta name="twitter:description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.Transformers are the foundation of modern large language models like ChatGPT, Claude, Gemini, and many image and audio models as well. However, if you want to understand transformers fully, you must first understand attention. The transformer architecture stacks attention layers between feedforward sublayers, wraps the whole thing in residual connections and layer normalization, and adds positional information so the model knows what order the tokens came in. Every one of those pieces matters, but the attention layer is the part that does the work of looking at other tokens and deciding what to absorb from them. Get attention wrong and the rest of the architecture has nothing to operate on.
+This post is the first of a three-part series on the attention mechanism. Part 1, this one, covers the operation itself: scaled dot-product attention, why we divide by (\sqrt{d_k}), multi-head attention, and what we have learned since 2017 about what those heads actually do. Part 2 covers masking and the function class it forces the model into, including why causal masking is what makes generation possible. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention. The 2017 paper, Attention Is All You Need, is the seed of this series. The mechanism it described is small and elegant and fits on a page. Everything since has been the tree growing out of it: the math has held up, but the deployed system has acquired layers the paper did not anticipate. This post stays close to the seed. The rest of the series walks the branches.
+“Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/logo/wordmark-light.svg">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">Inside Attention, Part 1: The Mechanism</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2026-05-08T06:00:00-07:00">
+              <strong>May 8, 2026</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Category:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/ai-and-the-mathematics-of-language/"
+                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/ai/"
+                 rel="tag">#AI</a>, <a class="meta__link"
+                 href="/tags/attention-mechanisms/"
+                 rel="tag">#attention mechanisms</a>, <a class="meta__link"
+                 href="/tags/transformers/"
+                 rel="tag">#transformers</a>, <a class="meta__link"
+                 href="/tags/llm/"
+                 rel="tag">#LLM</a>, <a class="meta__link"
+                 href="/tags/softmax/"
+                 rel="tag">#softmax</a>, <a class="meta__link"
+                 href="/tags/interpretability/"
+                 rel="tag">#interpretability</a>, <a class="meta__link"
+                 href="/tags/induction-heads/"
+                 rel="tag">#induction heads</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Finside-attention-part-1%2F&amp;text=Inside&#43;Attention%2C&#43;Part&#43;1%3A&#43;The&#43;Mechanism" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Finside-attention-part-1%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Finside-attention-part-1%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Finside-attention-part-1%2F&amp;title=Inside&#43;Attention%2C&#43;Part&#43;1%3A&#43;The&#43;Mechanism" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
+  <a class="share__btn" href="mailto:?subject=Inside%20Attention%2C%20Part%201%3A%20The%20Mechanism&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Finside-attention-part-1%2F" aria-label="Share via Email">@</a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">Share</button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "\"Inside Attention, Part 1: The Mechanism\"",
+        url:   "\"http://localhost:1313/posts/inside-attention-part-1/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    <img src="./inside-attention-part-1.png"
+        alt="A robotic head in profile with attention mechanism concepts filling its mind: Q, K, V matrices flowing into softmax distributions, multi-head parallel structures fanning out from a central operation, attention weight heatmaps showing focus patterns between tokens, induction head circuits drawing arrows from second occurrences back to first occurrences in a sequence, all connecting to a tree growing from a seed labeled with the scaled dot-product attention formula">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.</em>
+    </figcaption>
+</figure>
+<p>Transformers are the foundation of modern large language models like ChatGPT, Claude, Gemini, and many image and audio models as well. However, if you want to understand transformers fully, you must first understand attention. The transformer architecture stacks attention layers between feedforward sublayers, wraps the whole thing in residual connections and layer normalization, and adds positional information so the model knows what order the tokens came in. Every one of those pieces matters, but the attention layer is the part that does the work of looking at other tokens and deciding what to absorb from them. Get attention wrong and the rest of the architecture has nothing to operate on.</p>
+<p>This post is the first of a three-part series on the attention mechanism. Part 1, this one, covers the operation itself: scaled dot-product attention, why we divide by (\sqrt{d_k}), multi-head attention, and what we have learned since 2017 about what those heads actually do. Part 2 covers masking and the function class it forces the model into, including why causal masking is what makes generation possible. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
+The 2017 paper, <a href="#vaswani2017">
+  Attention Is All You Need
+</a>
+, is the seed of this series. The mechanism it described is small and elegant and fits on a page. Everything since has been the tree growing out of it: the math has held up, but the deployed system has acquired layers the paper did not anticipate. This post stays close to the seed. The rest of the series walks the branches.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&rdquo;</em></p></blockquote>
+<hr>
+<p>This post explores the attention operation as it appears in the original paper and as it is understood today. You will see the variance argument behind the \(\sqrt{d_k}\) scaling, the parameter-budget structure of multi-head attention, and the post-2017 mechanistic interpretability work that identified specific algorithms running inside trained models. If you have followed my earlier posts on how LLMs think and how they learn, you have already seen the calculus, linear algebra, and probability that surround attention. This post goes inside the operation itself.</p>
+<blockquote>
+<p><strong>TL;DR:</strong></p>
+<ul>
+<li>Attention computes a content-based weighted aggregation: similarity scores between queries and keys, softmaxed into a distribution, applied to values</li>
+<li>The \(\sqrt{d_k}\) scaling exists because dot-product variance grows linearly with \(d_k\), and unscaled softmax saturates toward one-hot at large \(d_k\), which collapses gradients</li>
+<li>Multi-head attention is a parameter-budget-neutral split that creates room for parallel specialization</li>
+<li>What heads actually learn after training has been studied empirically since 2019; the cleanest result is the induction head, a two-layer circuit that implements a match-and-copy algorithm and is widely believed to underlie in-context learning</li>
+<li>The mechanism is not just a learned similarity function; it is a substrate on which identifiable algorithms emerge</li>
+</ul></blockquote>
+<hr>
+<h2 id="the-equation">The Equation</h2>
+<p>Attention takes a sequence of token representations and produces a new sequence in which each position is a weighted blend of all the others. The blend is content-based: tokens decide for themselves how much of every other token to absorb.</p>
+<p>The <a href="#vaswani2017">
+  Vaswani paper
+</a>
+ states the operation in one equation:</p>
+<p>\[
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\]</p>
+<p>Three matrices, all derived from the input by separate learned linear projections.</p>
+<ul>
+<li>Query (Q): what each position is looking for</li>
+<li>Key (K): what each position offers as a match target</li>
+<li>Value (V): what each position contributes if it is matched</li>
+</ul>
+<p>The product \(QK^T\) is the matrix of all pairwise similarity scores. Softmax turns each row of that matrix into a probability distribution over positions. Multiplying by \(V\) blends the value vectors using those probabilities.</p>
+<p><strong>Python</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">softmax</span>(x, axis<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>):
+</span></span><span style="display:flex;"><span>    x <span style="color:#ff79c6">=</span> x <span style="color:#ff79c6">-</span> x<span style="color:#ff79c6">.</span>max(axis<span style="color:#ff79c6">=</span>axis, keepdims<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>    e <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>exp(x)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> e <span style="color:#ff79c6">/</span> e<span style="color:#ff79c6">.</span>sum(axis<span style="color:#ff79c6">=</span>axis, keepdims<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">attention</span>(Q, K, V):
+</span></span><span style="display:flex;"><span>    d_k <span style="color:#ff79c6">=</span> Q<span style="color:#ff79c6">.</span>shape[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]
+</span></span><span style="display:flex;"><span>    scores <span style="color:#ff79c6">=</span> Q <span style="color:#ff79c6">@</span> K<span style="color:#ff79c6">.</span>T <span style="color:#ff79c6">/</span> np<span style="color:#ff79c6">.</span>sqrt(d_k)
+</span></span><span style="display:flex;"><span>    weights <span style="color:#ff79c6">=</span> softmax(scores, axis<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> weights <span style="color:#ff79c6">@</span> V, weights
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>seq_len, d_model <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">8</span>
+</span></span><span style="display:flex;"><span>X <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(seq_len, d_model)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>W_Q <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(d_model, d_model) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.1</span>
+</span></span><span style="display:flex;"><span>W_K <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(d_model, d_model) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.1</span>
+</span></span><span style="display:flex;"><span>W_V <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(d_model, d_model) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Q, K, V <span style="color:#ff79c6">=</span> X <span style="color:#ff79c6">@</span> W_Q, X <span style="color:#ff79c6">@</span> W_K, X <span style="color:#ff79c6">@</span> W_V
+</span></span><span style="display:flex;"><span>out, weights <span style="color:#ff79c6">=</span> attention(Q, K, V)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Attention weights (rows sum to 1):&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(np<span style="color:#ff79c6">.</span>round(weights, <span style="color:#bd93f9">3</span>))
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<pre tabindex="0"><code>Attention weights (rows sum to 1):
+[[0.177 0.213 0.174 0.175 0.261]
+ [0.198 0.201 0.197 0.2   0.204]
+ [0.219 0.197 0.23  0.196 0.158]
+ [0.203 0.198 0.203 0.194 0.201]
+ [0.199 0.186 0.184 0.226 0.204]]
+</code></pre><p>The thing to internalize is that nothing here is hand-coded. \(W_Q\), \(W_K\), and \(W_V\) are parameters the optimizer learns. Whatever notion of &ldquo;matching&rdquo; the model needs to do its job, it has to discover and encode in those three matrices. The architecture provides the operation; training provides the content.</p>
+<hr>
+<h2 id="the-sqrtd_k-scaling">The \(\sqrt(d_k)\) Scaling</h2>
+<p>The scaling factor looks like an implementation detail. It is not. Removing it breaks training at any reasonable model dimension.
+The Vaswani paper offers exactly one sentence of motivation, in section 3.2.1: &ldquo;We suspect that for large values of (d_k), the dot products grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients.&rdquo; That is correct, and it is asserted rather than derived. The derivation is short and worth working through.
+Suppose the entries of (Q) and (K) are roughly independent with mean 0 and variance 1. A single entry of (QK^T) is a sum of (d_k) products of independent unit-variance variables. The variance of that sum is the sum of the variances:
+[
+\text{Var}(q \cdot k) = \sum_{i=1}^{d_k} \text{Var}(q_i k_i) \approx d_k
+]
+Standard deviation is therefore (\sqrt{d_k}). When (d_k = 64), raw scores have standard deviation 8. When (d_k = 1024), standard deviation is 32. Push values that large into a softmax and the distribution collapses toward one-hot: one position takes nearly all the mass, others round to zero. Once that happens, gradients with respect to non-winning positions become tiny, and the model stops getting useful learning signal from them.
+Dividing by (\sqrt{d_k}) cancels the variance growth and keeps softmax in a usable regime.
+Python</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>seed(<span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">show_scaling_effect</span>(d_k, n_tokens<span style="color:#ff79c6">=</span><span style="color:#bd93f9">512</span>):
+</span></span><span style="display:flex;"><span>    Q <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(n_tokens, d_k)
+</span></span><span style="display:flex;"><span>    K <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(n_tokens, d_k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    raw <span style="color:#ff79c6">=</span> Q <span style="color:#ff79c6">@</span> K<span style="color:#ff79c6">.</span>T
+</span></span><span style="display:flex;"><span>    scaled <span style="color:#ff79c6">=</span> raw <span style="color:#ff79c6">/</span> np<span style="color:#ff79c6">.</span>sqrt(d_k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sm_raw <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>exp(raw[<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">-</span> raw[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>max())
+</span></span><span style="display:flex;"><span>    sm_raw <span style="color:#ff79c6">/=</span> sm_raw<span style="color:#ff79c6">.</span>sum()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sm_scaled <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>exp(scaled[<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">-</span> scaled[<span style="color:#bd93f9">0</span>]<span style="color:#ff79c6">.</span>max())
+</span></span><span style="display:flex;"><span>    sm_scaled <span style="color:#ff79c6">/=</span> sm_scaled<span style="color:#ff79c6">.</span>sum()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;d_k = </span><span style="color:#f1fa8c">{</span>d_k<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">&gt;4</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Raw    QK^T variance: </span><span style="color:#f1fa8c">{</span>raw<span style="color:#ff79c6">.</span>var()<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">&gt;8.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Scaled QK^T variance: </span><span style="color:#f1fa8c">{</span>scaled<span style="color:#ff79c6">.</span>var()<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">&gt;8.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Raw    softmax max weight: </span><span style="color:#f1fa8c">{</span>sm_raw<span style="color:#ff79c6">.</span>max()<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.4f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Scaled softmax max weight: </span><span style="color:#f1fa8c">{</span>sm_scaled<span style="color:#ff79c6">.</span>max()<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.4f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> d_k <span style="color:#ff79c6">in</span> [<span style="color:#bd93f9">16</span>, <span style="color:#bd93f9">64</span>, <span style="color:#bd93f9">256</span>, <span style="color:#bd93f9">1024</span>]:
+</span></span><span style="display:flex;"><span>    show_scaling_effect(d_k)
+</span></span></code></pre></div><p>Output</p>
+<pre tabindex="0"><code>d_k =   16
+  Raw    QK^T variance:    15.85
+  Scaled QK^T variance:     0.99
+  Raw    softmax max weight: 0.5720
+  Scaled softmax max weight: 0.0422
+
+d_k =   64
+  Raw    QK^T variance:    63.86
+  Scaled QK^T variance:     1.00
+  Raw    softmax max weight: 0.9911
+  Scaled softmax max weight: 0.0346
+
+d_k =  256
+  Raw    QK^T variance:   256.00
+  Scaled QK^T variance:     1.00
+  Raw    softmax max weight: 0.9997
+  Scaled softmax max weight: 0.0346
+
+d_k = 1024
+  Raw    QK^T variance:  1021.38
+  Scaled QK^T variance:     1.00
+  Raw    softmax max weight: 1.0000
+  Scaled softmax max weight: 0.0249
+</code></pre><p>Variance grows linearly in (d_k) on the unscaled side and stays at 1 on the scaled side. By (d_k = 64) the unscaled softmax is already heavily concentrated. By (d_k = 256) it is essentially one-hot.
+The &ldquo;small gradients&rdquo; argument is the second half of the story. The Jacobian of softmax has the form (\partial y_i / \partial x_j = y_i(\delta_{ij} - y_j)). When the distribution is uniform, every input position receives a meaningful share of gradient. When the distribution is saturated, almost all of the Jacobian&rsquo;s mass is concentrated on the row and column of the dominant position. Non-dominant positions become invisible to the optimizer.
+The cleanest way to see this is to measure two things at the same (d_k): how spread the softmax distribution is, and how concentrated the gradient flow is.
+Python</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">softmax_jacobian</span>(x):
+</span></span><span style="display:flex;"><span>    y <span style="color:#ff79c6">=</span> softmax(x, axis<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> np<span style="color:#ff79c6">.</span>diag(y) <span style="color:#ff79c6">-</span> np<span style="color:#ff79c6">.</span>outer(y, y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">effective_positions</span>(p):
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># exp(entropy): how many positions effectively receive weight</span>
+</span></span><span style="display:flex;"><span>    H <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span>np<span style="color:#ff79c6">.</span>sum(p <span style="color:#ff79c6">*</span> np<span style="color:#ff79c6">.</span>log(p <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1e-30</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> np<span style="color:#ff79c6">.</span>exp(H)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>seed(<span style="color:#bd93f9">7</span>)
+</span></span><span style="display:flex;"><span>d_k, n <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">256</span>, <span style="color:#bd93f9">64</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Q <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(d_k)
+</span></span><span style="display:flex;"><span>K <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(n, d_k)
+</span></span><span style="display:flex;"><span>raw_logits <span style="color:#ff79c6">=</span> K <span style="color:#ff79c6">@</span> Q
+</span></span><span style="display:flex;"><span>scaled_logits <span style="color:#ff79c6">=</span> raw_logits <span style="color:#ff79c6">/</span> np<span style="color:#ff79c6">.</span>sqrt(d_k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p_raw <span style="color:#ff79c6">=</span> softmax(raw_logits)
+</span></span><span style="display:flex;"><span>p_scaled <span style="color:#ff79c6">=</span> softmax(scaled_logits)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>J_raw <span style="color:#ff79c6">=</span> softmax_jacobian(raw_logits)
+</span></span><span style="display:flex;"><span>J_scaled <span style="color:#ff79c6">=</span> softmax_jacobian(scaled_logits)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Column sum of |J[:, j]| = total gradient flowing back through input j</span>
+</span></span><span style="display:flex;"><span>flow_raw <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>abs(J_raw)<span style="color:#ff79c6">.</span>sum(axis<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>flow_scaled <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>abs(J_scaled)<span style="color:#ff79c6">.</span>sum(axis<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Effective positions receiving signal (exp of entropy):&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Raw    : </span><span style="color:#f1fa8c">{</span>effective_positions(p_raw)<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">&gt;5.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">  out of </span><span style="color:#f1fa8c">{</span>n<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Scaled : </span><span style="color:#f1fa8c">{</span>effective_positions(p_scaled)<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">&gt;5.2f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">  out of </span><span style="color:#f1fa8c">{</span>n<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>()
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Top-1 share of total gradient flow:&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Raw    : </span><span style="color:#f1fa8c">{</span>flow_raw<span style="color:#ff79c6">.</span>max() <span style="color:#ff79c6">/</span> flow_raw<span style="color:#ff79c6">.</span>sum()<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.4f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  Scaled : </span><span style="color:#f1fa8c">{</span>flow_scaled<span style="color:#ff79c6">.</span>max() <span style="color:#ff79c6">/</span> flow_scaled<span style="color:#ff79c6">.</span>sum()<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.4f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span></code></pre></div><p>Output</p>
+<pre tabindex="0"><code>Effective positions receiving signal (exp of entropy):
+  Raw    :  1.96  out of 64
+  Scaled : 48.08  out of 64
+
+Top-1 share of total gradient flow:
+  Raw    : 0.4778
+  Scaled : 0.0525
+</code></pre><h2 id="the-sqrtd_k-correction-is-numerical-hygiene-not-architectural-cleverness-the-papers-one-sentence-assertion-has-a-clean-derivation-behind-it-and-skipping-the-derivation-is-the-kind-of-thing-that-hides-where-actual-fragility-lives-in-a-deep-network">Two numbers tell the whole story. Without scaling, attention spreads its weight across about 2 effective positions out of 64, and 48% of the gradient signal funnels through a single input. With scaling, attention spreads across roughly 48 effective positions and gradient flows evenly. The scaled version trains. The unscaled version cannot, because most of the inputs have no learning signal reaching them.
+The (\sqrt{d_k}) correction is numerical hygiene, not architectural cleverness. The paper&rsquo;s one-sentence assertion has a clean derivation behind it, and skipping the derivation is the kind of thing that hides where actual fragility lives in a deep network.</h2>
+<p>Multi-Head Attention
+A single attention operation can only learn one similarity function at a time. Whatever pattern (W_Q) and (W_K) encode is the pattern that head looks for. Real language has many simultaneous structures: subject-verb agreement, coreference, syntactic dependency, topical similarity, positional rhythm. One similarity function will not capture all of them.
+Multi-head attention runs several attention operations in parallel, each with its own learned projections, then concatenates the outputs and projects back down to the model dimension.
+[
+\text{MultiHead}(X) = \text{Concat}(\text{head}_1, \ldots, \text{head}<em>h), W^O
+]
+[
+\text{head}<em>i = \text{Attention}(X W_i^Q,, X W_i^K,, X W_i^V)
+]
+The parameter budget is the part most explanations skip. (h) heads of dimension (d</em>{\text{model}} / h) have, in total, the same parameter count as a single head of dimension (d</em>{\text{model}}). The split is what matters, not the scale. Each head sees a lower-dimensional projection of the input and is forced to specialize on whatever pattern fits in that subspace. The architecture rewards diversity by construction: redundant heads waste parameters.
+Python</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">multi_head_attention</span>(X, n_heads<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>):
+</span></span><span style="display:flex;"><span>    seq_len, d_model <span style="color:#ff79c6">=</span> X<span style="color:#ff79c6">.</span>shape
+</span></span><span style="display:flex;"><span>    d_head <span style="color:#ff79c6">=</span> d_model <span style="color:#ff79c6">//</span> n_heads
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    W_Q <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(d_model, d_model) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.1</span>
+</span></span><span style="display:flex;"><span>    W_K <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(d_model, d_model) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.1</span>
+</span></span><span style="display:flex;"><span>    W_V <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(d_model, d_model) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.1</span>
+</span></span><span style="display:flex;"><span>    W_O <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(d_model, d_model) <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">0.1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Q <span style="color:#ff79c6">=</span> (X <span style="color:#ff79c6">@</span> W_Q)<span style="color:#ff79c6">.</span>reshape(seq_len, n_heads, d_head)
+</span></span><span style="display:flex;"><span>    K <span style="color:#ff79c6">=</span> (X <span style="color:#ff79c6">@</span> W_K)<span style="color:#ff79c6">.</span>reshape(seq_len, n_heads, d_head)
+</span></span><span style="display:flex;"><span>    V <span style="color:#ff79c6">=</span> (X <span style="color:#ff79c6">@</span> W_V)<span style="color:#ff79c6">.</span>reshape(seq_len, n_heads, d_head)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    head_outputs <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> h <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n_heads):
+</span></span><span style="display:flex;"><span>        Qh, Kh, Vh <span style="color:#ff79c6">=</span> Q[:, h, :], K[:, h, :], V[:, h, :]
+</span></span><span style="display:flex;"><span>        scores <span style="color:#ff79c6">=</span> Qh <span style="color:#ff79c6">@</span> Kh<span style="color:#ff79c6">.</span>T <span style="color:#ff79c6">/</span> np<span style="color:#ff79c6">.</span>sqrt(d_head)
+</span></span><span style="display:flex;"><span>        weights <span style="color:#ff79c6">=</span> softmax(scores)
+</span></span><span style="display:flex;"><span>        head_outputs<span style="color:#ff79c6">.</span>append(weights <span style="color:#ff79c6">@</span> Vh)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    concat <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>concatenate(head_outputs, axis<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> concat <span style="color:#ff79c6">@</span> W_O
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>seed(<span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span>X <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>randn(<span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">32</span>)
+</span></span><span style="display:flex;"><span>out <span style="color:#ff79c6">=</span> multi_head_attention(X, n_heads<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Input shape:  </span><span style="color:#f1fa8c">{</span>X<span style="color:#ff79c6">.</span>shape<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Output shape: </span><span style="color:#f1fa8c">{</span>out<span style="color:#ff79c6">.</span>shape<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span></code></pre></div><p>Output</p>
+<pre tabindex="0"><code>Input shape:  (8, 32)
+Output shape: (8, 32)
+</code></pre><h2 id="the-paper-proposed-multi-head-attention-as-a-hypothesis-it-expected-the-architecture-to-permit-different-kinds-of-attention-patterns-to-coexist-what-heads-actually-learn-was-not-answered-in-the-paper-it-was-answered-later">The paper proposed multi-head attention as a hypothesis: it expected the architecture to permit different kinds of attention patterns to coexist. What heads actually learn was not answered in the paper. It was answered later.</h2>
+<p>What Heads Actually Learn
+The first wave of work on attention head behavior, in 2019, looked at trained BERT and machine translation models and asked what individual heads were doing (Voita et al., 2019; Clark et al., 2019). The findings were partial but striking. Many heads attended to the previous token, the next token, the start of the sequence, or special tokens like <code>[CLS]</code> and <code>[SEP]</code>. Some heads tracked syntactic relations: the head of a noun phrase, the matching bracket, the subject of a verb. Some tracked coreference. A substantial fraction of heads were not interpretable, and many could be pruned without measurable performance loss.
+That was a useful first pass, but the more consequential result came from a different direction. In 2021 and 2022, researchers in mechanistic interpretability set out to fully reverse-engineer specific circuits inside small transformers (Elhage et al., 2021; Olsson et al., 2022). They were not just identifying which positions a head paid attention to. They were identifying the algorithm a circuit implemented and proving it by ablation.
+The cleanest result from that work is the induction head.
+An induction head is a two-layer circuit that implements a simple algorithm: given a context that contains a previous instance of the current token, predict whatever followed that previous instance. If the model has seen <code>... A B ... A</code>, the induction head circuit predicts <code>B</code>.
+The mechanism takes two layers of attention working in composition.
+Layer 1 hosts a previous-token head. Every position attends to the position immediately before it and copies information about that previous token into its own residual stream. After layer 1, the position holding token <code>B</code> (after the first <code>A</code>) has effectively been annotated with &ldquo;the token before me was <code>A</code>.&rdquo;
+Layer 2 hosts the induction head proper. At each position, the query asks &ldquo;I am token (T), find positions whose previous token was (T).&rdquo; Because layer 1 wrote previous-token information into every position&rsquo;s keys, the match is well-defined. The query lights up at the position holding <code>B</code>. The value at that position carries information about <code>B</code> itself, which gets copied into the current position&rsquo;s residual stream and biases the next-token prediction toward <code>B</code>.
+This is more than a similarity heuristic. It is a learned algorithm composed across two attention layers, and the same circuit appears in transformers trained from scratch on different data and architectures. We can sketch the attention pattern that this circuit produces by hand and see why it works.
+Python</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;A&#39;</span>, <span style="color:#f1fa8c">&#39;B&#39;</span>, <span style="color:#f1fa8c">&#39;C&#39;</span>, <span style="color:#f1fa8c">&#39;D&#39;</span>, <span style="color:#f1fa8c">&#39;A&#39;</span>, <span style="color:#f1fa8c">&#39;B&#39;</span>]
+</span></span><span style="display:flex;"><span>n <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">len</span>(tokens)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Layer 1: previous-token head. Each position attends to position-1.</span>
+</span></span><span style="display:flex;"><span>layer1 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>zeros((n, n))
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n):
+</span></span><span style="display:flex;"><span>    layer1[i, <span style="color:#8be9fd;font-style:italic">max</span>(<span style="color:#bd93f9">0</span>, i <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>)] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Layer 2: induction head. Position i (current token T) attends to</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># position j where token[j-1] == T. After layer 1, position j&#39;s keys</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># advertise &#34;I follow token[j-1]&#34;, so this match is well-defined.</span>
+</span></span><span style="display:flex;"><span>layer2 <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>zeros((n, n))
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n):
+</span></span><span style="display:flex;"><span>    current <span style="color:#ff79c6">=</span> tokens[i]
+</span></span><span style="display:flex;"><span>    matches <span style="color:#ff79c6">=</span> [j <span style="color:#ff79c6">for</span> j <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">1</span>, i <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">if</span> tokens[j <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">==</span> current]
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> matches:
+</span></span><span style="display:flex;"><span>        w <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">/</span> <span style="color:#8be9fd;font-style:italic">len</span>(matches)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> j <span style="color:#ff79c6">in</span> matches:
+</span></span><span style="display:flex;"><span>            layer2[i, j] <span style="color:#ff79c6">=</span> w
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>        layer2[i, i] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Sequence:&#34;</span>, <span style="color:#f1fa8c">&#34; &#34;</span><span style="color:#ff79c6">.</span>join(tokens))
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>()
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Layer 2 attention (induction head):&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;       &#34;</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;    &#34;</span><span style="color:#ff79c6">.</span>join(<span style="color:#8be9fd;font-style:italic">str</span>(i) <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n)))
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n):
+</span></span><span style="display:flex;"><span>    row <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;  &#34;</span><span style="color:#ff79c6">.</span>join(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>layer2[i,j]<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">.1f</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">for</span> j <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(n))
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;  </span><span style="color:#f1fa8c">{</span>i<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">(</span><span style="color:#f1fa8c">{</span>tokens[i]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">): </span><span style="color:#f1fa8c">{</span>row<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span></code></pre></div><p>Output</p>
+<pre tabindex="0"><code>Sequence: A B C D A B
+
+Layer 2 attention (induction head):
+       0    1    2    3    4    5
+  0(A): 1.0  0.0  0.0  0.0  0.0  0.0
+  1(B): 0.0  1.0  0.0  0.0  0.0  0.0
+  2(C): 0.0  0.0  1.0  0.0  0.0  0.0
+  3(D): 0.0  0.0  0.0  1.0  0.0  0.0
+  4(A): 0.0  1.0  0.0  0.0  0.0  0.0
+  5(B): 0.0  0.0  1.0  0.0  0.0  0.0
+</code></pre><h2 id="a-footnote-on-tooling-working-with-these-circuits-in-real-models-is-much-easier-with-transformerlens-an-open-source-python-library-specifically-built-for-this-kind-of-analysis-the-hand-constructed-sketch-above-shows-what-the-pattern-looks-like-in-principle-transformerlens-lets-you-observe-it-in-trained-gpt-2-and-other-open-weight-models">The pattern at row 4, the second <code>A</code>, is the whole point. The head attends to position 1, which holds token <code>B</code>, the token that followed <code>A</code> last time. The same pattern appears at row 5, where the second <code>B</code> attends to position 2 (token <code>C</code>), the token that followed <code>B</code> last time. The circuit has effectively built a one-shot lookup table from earlier in the sequence.
+This matters because the induction head is one of the few mechanistically explained accounts we have for in-context learning, the property that lets a model adapt to patterns inside a single prompt without parameter updates. When you give a model a few examples of a task in context and it generalizes, the induction circuit is doing some of that work, recognizing the local pattern and copying its continuation.
+The induction head story has continued to develop. Later work has extended it to selective induction circuits that choose between competing patterns, function-vector heads that store reusable computations, and more sophisticated multi-layer compositions (Sanford et al., 2024). But induction heads were the first interpretable algorithm we knew was being implemented inside a trained transformer, and they remain the cleanest example of the substrate that multi-head attention provides for emergent computation.
+A footnote on tooling: working with these circuits in real models is much easier with TransformerLens, an open-source Python library specifically built for this kind of analysis. The hand-constructed sketch above shows what the pattern looks like in principle. TransformerLens lets you observe it in trained GPT-2 and other open-weight models.</h2>
+<h2 id="most-of-what-happens-inside-attention-is-still-not-interpretable-the-work-since-2019-has-identified-specific-circuits-and-head-roles-but-it-has-not-produced-a-complete-map-a-trained-transformer-at-scale-runs-many-heads-whose-function-we-cannot-describe-the-mechanism-is-open-enough-that-what-it-learns-continues-to-surprise-the-people-studying-it">Why the Mechanism Has the Shape It Does
+Five facts about the operation tie together once you have walked through the pieces.
+The Q, K, V split is not redundant. Three separate projections give the model independent control over what it queries with, what it offers as a match target, and what it contributes when matched. A single shared projection would tie those roles together and lose expressive power. The cost is three weight matrices instead of one. The benefit is that the function each token serves can change depending on what other tokens are looking for.
+The (\sqrt{d_k}) scaling is what makes attention trainable at scale. Without it, anything past a small embedding dimension produces saturated softmax distributions and starves most positions of gradient. The scaling has no effect on the operation&rsquo;s expressiveness; it preserves trainability. In hindsight it is the kind of fix that obviously had to exist for the architecture to work at all, and the fact that it appeared in the original paper at the right strength is one of the things that paper got right.
+Multi-head attention is a structural bet on diversity. Splitting the model dimension across heads with the same total parameter count creates pressure for each head to do something different. A model that wasted parameters on redundant heads would lose to one that did not, so trained models exhibit the specialization the architecture invites.
+Attention is a substrate for algorithms, not just a similarity function. This is the lesson of induction heads. The mechanism is general enough that simple algorithms can be expressed as circuits across a few layers, and training reliably finds them. The model is not just learning to look at related words; it is learning to compose attention heads into computations.
+Most of what happens inside attention is still not interpretable. The work since 2019 has identified specific circuits and head roles, but it has not produced a complete map. A trained transformer at scale runs many heads whose function we cannot describe. The mechanism is open enough that what it learns continues to surprise the people studying it.</h2>
+<h2 id="the-seed-and-tree-metaphor-is-meant-to-capture-this-exact-relationship-the-seed-is-small-the-tree-is-large-the-work-of-understanding-the-system-is-the-work-of-seeing-how-the-structures-in-the-seed-grew-into-the-algorithms-running-on-the-branches">From the Paper to the Mechanism Today
+The 2017 paper is small. What we have learned about the mechanism since then is large. The table below maps each component of the operation to what we now understand it to provide.
+Mechanism Component	What It Provides
+Q, K, V split	Independent control over query, match target, and value contribution
+(\sqrt{d_k}) scaling	Variance normalization that keeps softmax in a trainable regime
+Multi-head attention	Parameter-equivalent split that creates room for parallel specialization
+Stacked attention layers	Substrate on which two-layer circuits like induction heads emerge
+Trained head behavior	Identifiable algorithms and patterns, not just learned similarity functions
+The seed and tree metaphor is meant to capture this exact relationship. The seed is small. The tree is large. The work of understanding the system is the work of seeing how the structures in the seed grew into the algorithms running on the branches.</h2>
+<h2 id="part-3-then-turns-to-the-production-stack-the-mechanism-in-this-post-does-not-run-in-deployed-models-exactly-as-described-the-kv-cache-problem-multi-query-and-grouped-query-attention-sliding-window-attention-and-flash-attention-are-the-engineering-layer-that-exists-because-the-textbook-formula-does-not-survive-scale">What Comes Next
+Part 2 of this series moves to masking. The mechanism described above is symmetric: every position attends to every other position. Real transformers almost never use it that way. The decoder-only architecture that defines GPT, Llama, Mistral, and most current open-weight models uses causal masking, which restricts each position to attend only to its predecessors. That single structural choice is what makes generation possible. It also constrains what kinds of functions the model can learn, in ways the Vaswani paper does not articulate but which run further than the architecture itself. The function-class consequences of training a model to predict each token from its predecessors, on text that human authors wrote to flow continuously, are deeper than they look. That is one of the questions Part 2 sets up.
+Part 3 then turns to the production stack. The mechanism in this post does not run in deployed models exactly as described. The KV cache problem, multi-query and grouped-query attention, sliding window attention, and Flash Attention are the engineering layer that exists because the textbook formula does not survive scale.</h2>
+<h2 id="attention-is-one-equation-understanding-what-it-does-is-the-work-of-the-years-that-followed">Closing Thoughts
+The 2017 paper gave us an operation that fits on a page. What we have learned since is that this operation is more capable than its inventors fully knew. The (\sqrt{d_k}) scaling has a derivation behind its one-sentence justification. Multi-head attention turned out to be a substrate for emergent algorithms, not just a way to mix similarity functions. Specific circuits like induction heads now have mechanistic explanations, and those explanations are part of how we understand in-context learning at all.
+Attention is one equation. Understanding what it does is the work of the years that followed.</h2>
+<h2 id="the-discrete-math-post-in-this-series-argued-that-calculus-linear-algebra-probability-and-discrete-mathematics-are-not-separate-subjects-in-modern-ai-but-interconnected-views-of-the-same-structures-attention-is-the-cleanest-place-to-see-that-argument-made-concrete-it-is-a-linear-algebra-operation-a-probability-distribution-a-soft-predicate-and-a-substrate-for-learned-algorithms-all-at-once-part-2-will-look-at-what-that-substrate-is-allowed-to-see-and-what-changes-when-we-restrict-its-view">The discrete math post in this series argued that calculus, linear algebra, probability, and discrete mathematics are not separate subjects in modern AI but interconnected views of the same structures. Attention is the cleanest place to see that argument made concrete. It is a linear algebra operation, a probability distribution, a soft predicate, and a substrate for learned algorithms, all at once. Part 2 will look at what that substrate is allowed to see, and what changes when we restrict its view.</h2>
+<h2 id="sanford-c-hsu-d--telgarsky-m-2024-transformers-parallel-computation-and-logarithmic-depth-proceedings-of-icml-2024">Further Reading
+These are the primary sources behind the architecture and the mechanistic interpretability findings discussed above.
+<a id="vaswani2017"></a>
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017). Attention is all you need. Advances in Neural Information Processing Systems, 30. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">
+  https://arxiv.org/abs/1706.03762
+</a>
+
+<a id="voita2019"></a>
+Voita, E., Talbot, D., Moiseev, F., Sennrich, R., &amp; Titov, I. (2019). Analyzing multi-head self-attention: Specialized heads do the heavy lifting, the rest can be pruned. Proceedings of ACL 2019. <a href="https://arxiv.org/abs/1905.09418" target="_blank" rel="noopener noreferrer">
+  https://arxiv.org/abs/1905.09418
+</a>
+
+<a id="clark2019"></a>
+Clark, K., Khandelwal, U., Levy, O., &amp; Manning, C. D. (2019). What does BERT look at? An analysis of BERT&rsquo;s attention. Proceedings of the 2019 ACL Workshop BlackboxNLP. <a href="https://arxiv.org/abs/1906.04341" target="_blank" rel="noopener noreferrer">
+  https://arxiv.org/abs/1906.04341
+</a>
+
+<a id="elhage2021"></a>
+Elhage, N., Nanda, N., Olsson, C., Henighan, T., Joseph, N., Mann, B., Askell, A., Bai, Y., Chen, A., Conerly, T., DasSarma, N., Drain, D., Ganguli, D., Hatfield-Dodds, Z., Hernandez, D., Jones, A., Kernion, J., Lovitt, L., Ndousse, K., Amodei, D., Brown, T., Clark, J., Kaplan, J., McCandlish, S., &amp; Olah, C. (2021). A mathematical framework for transformer circuits. Transformer Circuits Thread. <a href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener noreferrer">
+  https://transformer-circuits.pub/2021/framework/index.html
+</a>
+
+<a id="olsson2022"></a>
+Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., Mann, B., Askell, A., Bai, Y., Chen, A., Conerly, T., Drain, D., Ganguli, D., Hatfield-Dodds, Z., Hernandez, D., Johnston, S., Jones, A., Kernion, J., Lovitt, L., Ndousse, K., Amodei, D., Brown, T., Clark, J., Kaplan, J., McCandlish, S., &amp; Olah, C. (2022). In-context learning and induction heads. Transformer Circuits Thread. <a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html" target="_blank" rel="noopener noreferrer">
+  https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
+</a>
+
+<a id="sanford2024"></a>
+Sanford, C., Hsu, D., &amp; Telgarsky, M. (2024). Transformers, parallel computation, and logarithmic depth. Proceedings of ICML 2024. <a href="https://arxiv.org/abs/2402.09268" target="_blank" rel="noopener noreferrer">
+  https://arxiv.org/abs/2402.09268
+</a>
+</h2>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ai/" rel="tag">AI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/attention-mechanisms/" rel="tag">attention mechanisms</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/transformers/" rel="tag">transformers</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/llm/" rel="tag">LLM</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/softmax/" rel="tag">softmax</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/interpretability/" rel="tag">interpretability</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/induction-heads/" rel="tag">induction heads</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
+turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
+that outlives the feature request it started from.</p>
+<p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
+system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
+activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
+technology books, wrote 100+ articles for <em>.NET Programming Tips &amp; Techniques</em>, and helped run
+<a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru
+</a>
+ (the largest Windows developer community of its era).</p>
+<p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
+structures that get concatenated with code samples at runtime and routed to generative models, with results
+injected back into the output. Nearly 100 articles have shipped through the system.</p>
+<p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+to inference-time behavior, from tokenization to training infrastructure.</p>
+<p>Connect with me on <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/discrete-mathematics/" title="Discrete Mathematics">Discrete Mathematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/predicate-logic/" title="Predicate Logic">Predicate Logic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/set-theory/" title="Set Theory">Set Theory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 Signal &amp; Syntax.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
+</body>
+</html>

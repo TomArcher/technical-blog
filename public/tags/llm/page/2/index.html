@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="LLM">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-04-01T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-04-01T06:00:00-07:00">
+  <meta itemprop="datePublished" content="2026-05-08T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-05-08T06:00:00-07:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="LLM">
@@ -61,7 +61,6 @@
 	}
 	};
 	</script>
-	<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <link rel="stylesheet" href="/css/extra.css">
@@ -120,7 +119,7 @@
     <header class="taxonomy-header">
       <h1>
         
-        9 "LLM" Posts
+        10 "LLM" Posts
         </h1>
 
       
@@ -129,6 +128,56 @@
     
     
 
+    
+      
+      
+      
+      
+        
+        
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/how-large-language-models-tokenize-text/">
+              <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/how-large-language-models-tokenize-text/">How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2025-11-11">
+                <strong>Nov 11, 2025</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/tokenization/">#tokenization</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/transformers/">#transformers</a>, <a href="/tags/nlp/">#NLP</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
+<p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
+<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
+  Rumbelow &amp; Watkins, 2023
+</a>
+).</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;To a language model, text isn&rsquo;t a stream of words. It&rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&rdquo;</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/how-large-language-models-tokenize-text/">Read more →</a></p>
+      </article>
     
       
       
@@ -457,7 +506,9 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>

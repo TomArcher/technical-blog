@@ -3,43 +3,55 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/tags/ai/</loc>
-    <lastmod>2026-04-01T06:00:00-07:00</lastmod>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/applied-modeling-and-simulation/</loc>
-    <lastmod>2026-04-01T06:00:00-07:00</lastmod>
+    <loc>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/attention-mechanisms/</loc>
-    <lastmod>2026-04-01T06:00:00-07:00</lastmod>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/induction-heads/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/inside-attention-part-1/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/interpretability/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/llm/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/softmax/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/transformers/</loc>
+    <lastmod>2026-05-08T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/applied-modeling-and-simulation/</loc>
     <lastmod>2026-04-01T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/minimal-transformer/</loc>
     <lastmod>2026-04-01T06:00:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/llm/</loc>
-    <lastmod>2026-04-01T06:00:00-07:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/nlp/</loc>
-    <lastmod>2026-04-01T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-04-01T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/python/</loc>
     <lastmod>2026-04-01T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-04-01T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-04-01T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/transformers/</loc>
-    <lastmod>2026-04-01T06:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</loc>
-    <lastmod>2026-03-31T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/discrete-mathematics/</loc>
     <lastmod>2026-03-31T06:00:00-07:00</lastmod>
@@ -81,9 +93,6 @@
     <lastmod>2025-12-24T12:00:00-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/sampling/</loc>
-    <lastmod>2025-12-24T12:00:00-08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/softmax/</loc>
     <lastmod>2025-12-24T12:00:00-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/temperature/</loc>
