@@ -30,7 +30,7 @@ The roadmap is public because I want readers to know where the project is going,
 The roadmap is public because I want readers to know where the project is going, and because a public roadmap is a commitment device. It updates as I learn things that change the plan, so the “planned” section is not a fixed order or a promise of dates. Consider it an honest snapshot of what I intend to write next, subject to revision when the material teaches me something.">
   <meta itemprop="datePublished" content="2026-08-22T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-08-22T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1474">
+  <meta itemprop="wordCount" content="1366">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Start Here: The Signal & Syntax Roadmap">
@@ -176,10 +176,22 @@ The roadmap is public because I want readers to know where the project is going,
 
 <h2 id="categories">Categories</h2>
 <p>The blog is organized into four categories, each doing different work.</p>
-<p><strong>AI and the Mathematics of Language.</strong> The core of the project. Each post uses a specific mathematical lens (discrete math, linear algebra, probability, calculus, geometry) to explain how large language models work. Read together, they build a compound picture of how these systems represent, process, and generate language. Individual posts stand on their own, but the category as a whole is a sustained argument that the mathematics of language is not one subject but several, working together.</p>
-<p><strong>Applied Modeling and Simulation.</strong> Physics, probability, and engineering problems worked through with code. This category is where I explore modeling as a craft, using specific problems as anchors for broader techniques.</p>
-<p><strong>Essays and Perspectives.</strong> Occasional pieces that step back from the technical material to reflect on process, career direction, or observations about the field.</p>
-<p><strong>Python Techniques and Tooling.</strong> Focused posts on specific Python patterns, libraries, or comparisons between tools. Smaller in scope than the technical or modeling posts, but useful reference material.</p>
+<p><strong><a href="/categories/ai-and-the-mathematics-of-language/">
+  AI and the Mathematics of Language
+</a>
+</strong>: The core of the project. Each post uses a specific mathematical lens (discrete math, linear algebra, probability, calculus, geometry) to explain how large language models work. Read together, they build a compound picture of how these systems represent, process, and generate language. Individual posts stand on their own, but the category as a whole is a sustained argument that the mathematics of language is not one subject but several, working together.</p>
+<p><strong><a href="/categories/applied-modeling-and-simulation/">
+  Applied Modeling and Simulation
+</a>
+</strong>: Physics, probability, and engineering problems worked through with code. This category is where I explore modeling as a craft, using specific problems as anchors for broader techniques.</p>
+<p><strong><a href="/categories/essays-and-perspectives/">
+  Essays and Perspectives
+</a>
+</strong>: Occasional pieces that step back from the technical material to reflect on process, career direction, or observations about the field.</p>
+<p><strong><a href="/categories/python-techniques-and-tooling/">
+  Python Techniques and Tooling
+</a>
+</strong>: Focused posts on specific Python patterns, libraries, or comparisons between tools. Smaller in scope than the technical or modeling posts, but useful reference material.</p>
 <hr>
 <h2 id="published">Published</h2>
 <h3 id="ai-and-the-mathematics-of-language">AI and the Mathematics of Language</h3>
@@ -208,14 +220,6 @@ The roadmap is public because I want readers to know where the project is going,
   How Large Language Models Learn
 </a>
 . Gradient descent, backpropagation, and calculus in motion: how models improve through billions of derivative calculations.</p>
-</li>
-<li>
-<p><strong>Inside Attention: A Three-Part Sub-Series.</strong> A dedicated arc on the attention mechanism that builds on everything above. Part 1 is drafted and in pre-publication review.</p>
-<ul>
-<li>Part 1: The Mechanism. Scaled dot-product attention, the variance argument behind \(\sqrt{d_k}\), multi-head attention, and what interpretability research has shown about what attention heads actually learn.</li>
-<li>Part 2: Masking and the Function Class. Causal vs. bidirectional masking, why the decoder-only architecture won, and how the choice of mask constrains the function class the model can learn.</li>
-<li>Part 3: The Production Stack. The KV cache problem, multi-query and grouped-query attention, sliding window attention, and Flash Attention—the engineering layer that exists because the textbook formula does not survive scale.</li>
-</ul>
 </li>
 <li>
 <p><a href="/posts/how-large-language-models-handle-context-windows/">

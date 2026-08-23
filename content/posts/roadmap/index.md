@@ -19,13 +19,13 @@ The roadmap is public because I want readers to know where the project is going,
 
 The blog is organized into four categories, each doing different work.
 
-**AI and the Mathematics of Language.** The core of the project. Each post uses a specific mathematical lens (discrete math, linear algebra, probability, calculus, geometry) to explain how large language models work. Read together, they build a compound picture of how these systems represent, process, and generate language. Individual posts stand on their own, but the category as a whole is a sustained argument that the mathematics of language is not one subject but several, working together.
+**[AI and the Mathematics of Language](/categories/ai-and-the-mathematics-of-language/)**: The core of the project. Each post uses a specific mathematical lens (discrete math, linear algebra, probability, calculus, geometry) to explain how large language models work. Read together, they build a compound picture of how these systems represent, process, and generate language. Individual posts stand on their own, but the category as a whole is a sustained argument that the mathematics of language is not one subject but several, working together.
 
-**Applied Modeling and Simulation.** Physics, probability, and engineering problems worked through with code. This category is where I explore modeling as a craft, using specific problems as anchors for broader techniques.
+**[Applied Modeling and Simulation](/categories/applied-modeling-and-simulation/)**: Physics, probability, and engineering problems worked through with code. This category is where I explore modeling as a craft, using specific problems as anchors for broader techniques.
 
-**Essays and Perspectives.** Occasional pieces that step back from the technical material to reflect on process, career direction, or observations about the field.
+**[Essays and Perspectives](/categories/essays-and-perspectives/)**: Occasional pieces that step back from the technical material to reflect on process, career direction, or observations about the field.
 
-**Python Techniques and Tooling.** Focused posts on specific Python patterns, libraries, or comparisons between tools. Smaller in scope than the technical or modeling posts, but useful reference material.
+**[Python Techniques and Tooling](/categories/python-techniques-and-tooling/)**: Focused posts on specific Python patterns, libraries, or comparisons between tools. Smaller in scope than the technical or modeling posts, but useful reference material.
 
 ---
 
@@ -42,11 +42,6 @@ This sequence walks through different mathematical views of how LLMs work. Readi
 - [How Large Language Models Think](/posts/how-large-languag-models-think/). Embeddings, linear algebra, and the geometry of meaning: how tokens become vectors and vectors navigate high-dimensional semantic space.
 
 - [How Large Language Models Learn](/posts/how-large-languag-models-learn/). Gradient descent, backpropagation, and calculus in motion: how models improve through billions of derivative calculations.
-
-- **Inside Attention: A Three-Part Sub-Series.** A dedicated arc on the attention mechanism that builds on everything above. Part 1 is drafted and in pre-publication review.
-  - Part 1: The Mechanism. Scaled dot-product attention, the variance argument behind \\(\sqrt{d_k}\\), multi-head attention, and what interpretability research has shown about what attention heads actually learn.
-  - Part 2: Masking and the Function Class. Causal vs. bidirectional masking, why the decoder-only architecture won, and how the choice of mask constrains the function class the model can learn.
-  - Part 3: The Production Stack. The KV cache problem, multi-query and grouped-query attention, sliding window attention, and Flash Attention—the engineering layer that exists because the textbook formula does not survive scale.
 
 - [How Large Language Models Handle Context Windows](/posts/how-large-language-models-handle-context-windows/). What a context window is, how it constrains what models can attend to, why longer is not always better, and the mathematics of attention dilution.
 
