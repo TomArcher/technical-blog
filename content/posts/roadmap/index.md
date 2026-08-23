@@ -44,7 +44,7 @@ This sequence walks through different mathematical views of how LLMs work. Readi
 - [How Large Language Models Learn](/posts/how-large-languag-models-learn/). Gradient descent, backpropagation, and calculus in motion: how models improve through billions of derivative calculations.
 
 - **Inside Attention: A Three-Part Sub-Series.** A dedicated arc on the attention mechanism that builds on everything above. Part 1 is drafted and in pre-publication review.
-  - Part 1: The Mechanism. Scaled dot-product attention, the variance argument behind √d_k, multi-head attention, and what interpretability research has shown about what attention heads actually learn.
+  - Part 1: The Mechanism. Scaled dot-product attention, the variance argument behind \\(\sqrt{d_k}\\), multi-head attention, and what interpretability research has shown about what attention heads actually learn.
   - Part 2: Masking and the Function Class. Causal vs. bidirectional masking, why the decoder-only architecture won, and how the choice of mask constrains the function class the model can learn.
   - Part 3: The Production Stack. The KV cache problem, multi-query and grouped-query attention, sliding window attention, and Flash Attention—the engineering layer that exists because the textbook formula does not survive scale.
 
@@ -94,7 +94,7 @@ This sequence walks through different mathematical views of how LLMs work. Readi
 
 **Inside Attention (three-part sub-series within AI and the Mathematics of Language).** A dedicated arc on the attention mechanism, split across three posts because a single post could not do the material justice.
 
-- *Part 1: The Mechanism.* Scaled dot-product attention, the variance argument behind √d_k, multi-head attention, and what interpretability research has shown about what attention heads actually learn. Drafted; in pre-publication review.
+- *Part 1: The Mechanism.* Scaled dot-product attention, the variance argument behind \\(\sqrt{d_k}\\), multi-head attention, and what interpretability research has shown about what attention heads actually learn. Drafted; in pre-publication review.
 
 - *Part 2: Masking and the Function Class.* Causal vs. bidirectional masking, why the decoder-only architecture won, and how the choice of mask constrains the function class the model can learn. Outlined.
 
