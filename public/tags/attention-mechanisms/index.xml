@@ -1,36 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Attention Mechanisms on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/attention-mechanisms/</link><description>Recent content in Attention Mechanisms on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/attention-mechanisms/index.xml" rel="self" type="application/rss+xml"/><item><title>The Discrete Mathematics Hiding Inside LLMs</title><link>https://tomarcher.io/posts/discrete-math-in-large-language-models/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/discrete-math-in-large-language-models/</guid><description>&lt;figure style="margin: 0 20px 10px 20px; text-align: center;">
- &lt;img src="./discrete-math-in-large-language-models.png"
- alt="A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>It's true what they say: discrete math is everywhere you look.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>A recent &lt;a href="https://www.linkedin.com/posts/activity-7435689322504167424-_v46" target="_blank" rel="noopener noreferrer">
- LinkedIn post
-&lt;/a>
- from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&amp;rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&amp;rsquo;d expect.&lt;/p>
-&lt;p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory</title><link>https://tomarcher.io/posts/how-large-language-models-handle-context-windows/</link><pubDate>Mon, 10 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-handle-context-windows/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-llms-handle-context-windows.png"
- alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens"
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Context windows create the illusion of memory through mathematical attention, not storage.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you have a long conversation with a large language model (LLM) such as &lt;a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
- ChatGPT
-&lt;/a>
- or &lt;a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
- Claude
-&lt;/a>
-, it feels like the model remembers everything you&amp;rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &amp;ldquo;know&amp;rdquo; what you talked about pages ago.&lt;/p>
-&lt;p>But here&amp;rsquo;s the uncomfortable truth: the model doesn&amp;rsquo;t remember anything. It&amp;rsquo;s not storing your conversation in memory the way a database would. Instead, it&amp;rsquo;s &lt;strong>rereading the entire conversation from the beginning every single time you send a message.&lt;/strong>&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;A context window isn&amp;rsquo;t memory. It&amp;rsquo;s a performance where the model rereads its lines before every response.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Attention Mechanisms on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/tags/attention-mechanisms/</link>
+    <description>Recent content in Attention Mechanisms on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/attention-mechanisms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Discrete Mathematics Hiding Inside LLMs</title>
+      <link>http://localhost:1313/posts/discrete-math-in-large-language-models/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/discrete-math-in-large-language-models/</guid>
+      <description>&lt;figure style=&#34;margin: 0 20px 10px 20px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./discrete-math-in-large-language-models.png&#34;&#xD;&#xA;        alt=&#34;A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;It&#39;s true what they say: discrete math is everywhere you look.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;A recent &lt;a href=&#34;https://www.linkedin.com/posts/activity-7435689322504167424-_v46&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  LinkedIn post&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&amp;rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&amp;rsquo;d expect.&lt;/p&gt;&#xA;&lt;p&gt;Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</title>
+      <link>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</link>
+      <pubDate>Mon, 10 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./how-llms-handle-context-windows.png&#34;&#xD;&#xA;       alt=&#34;Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Context windows create the illusion of memory through mathematical attention, not storage.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you have a long conversation with a large language model (LLM) such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, it feels like the model remembers everything you&amp;rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &amp;ldquo;know&amp;rdquo; what you talked about pages ago.&lt;/p&gt;&#xA;&lt;p&gt;But here&amp;rsquo;s the uncomfortable truth: the model doesn&amp;rsquo;t remember anything. It&amp;rsquo;s not storing your conversation in memory the way a database would. Instead, it&amp;rsquo;s &lt;strong&gt;rereading the entire conversation from the beginning every single time you send a message.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;A context window isn&amp;rsquo;t memory. It&amp;rsquo;s a performance where the model rereads its lines before every response.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>

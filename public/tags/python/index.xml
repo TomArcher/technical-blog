@@ -1,150 +1,89 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/python/</link><description>Recent content in Python on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 30 Nov 2025 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments</title><link>https://tomarcher.io/posts/edmund-fitzgerald/</link><pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/edmund-fitzgerald/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./edmund-fitzgerald.jpeg" alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Originally appearing on his 1976 album, &lt;em>Summertime Dream&lt;/em>, &amp;ldquo;The Wreck of the Edmund Fitzgerald&amp;rdquo; is a powerful ballad written and performed by folk singer &lt;a href="#lightfoot1976">
- Gordon Lightfoot
-&lt;/a>
-. In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: &amp;ldquo;The lake, it is said, never gives up her dead.&amp;rdquo; Following the singer&amp;rsquo;s death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard&amp;rsquo;s Hot Rock and Alternative category.&lt;/p>
-&lt;p>Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn&amp;rsquo;t give up her dead, and the science behind it is as haunting as the song itself.&lt;/p>
-&lt;p>It turns out that line is not poetic license. It&amp;rsquo;s physics.&lt;/p>
-&lt;p>When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they stayed down. Not because of some mystical property of the Great Lakes, but because of a perfect storm of temperature, pressure, and biology that we can model mathematically.&lt;/p>
-&lt;hr>
-&lt;p>&lt;em>Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.&lt;/em>&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>The Birthday Paradox in Production: When Random IDs Collide</title><link>https://tomarcher.io/posts/birthday-paradox/</link><pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/birthday-paradox/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./birthday-paradox.png" alt="Multiple database servers with overlapping ID bubbles showing collision zones" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>You generate a UUID. It&amp;rsquo;s 128 bits total, with 122 bits of randomness. That&amp;rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?&lt;/p>
-&lt;p>As I like to say, &lt;em>common sense and intuition are the enemies of science&lt;/em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&amp;rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?&lt;/p>
-&lt;p>Math shows us the uncomfortable truth: You&amp;rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&amp;rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&amp;rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&amp;rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.&lt;/p>
-&lt;p>You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&amp;rsquo;t just a party trick; it&amp;rsquo;s the same mathematics that determines when your &amp;ldquo;guaranteed unique&amp;rdquo; database IDs collide, why hash tables need careful sizing, and when your distributed system&amp;rsquo;s assumptions break.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;In a room of 23 people, there&amp;rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</title><link>https://tomarcher.io/posts/safe-distance-in-traffic/</link><pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/safe-distance-in-traffic/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./safe-distance-in-traffic-vertical-arrows.png" alt="Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Following distance isn't just space, it's time in motion.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the &lt;strong>three-second rule&lt;/strong> and its validity. As I&amp;rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Three seconds is a rule of thumb. Physics reveals the truth.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</title><link>https://tomarcher.io/posts/thermo-water-energy-balance/</link><pubDate>Sun, 12 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/thermo-water-energy-balance/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./thermo-water-energy-balance.png" 
- alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background" 
- width="250" 
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&amp;rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.&lt;/p>
-&lt;p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&amp;rsquo;s not coincidence; it&amp;rsquo;s thermodynamics.&lt;/p>
-&lt;p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&amp;rsquo;s &lt;em>specific heat&lt;/em> is much higher.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Numeric Parsing in Python with Integer Division and Modulus</title><link>https://tomarcher.io/posts/python-integer-division-and-modulus/</link><pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/python-integer-division-and-modulus/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./python-integer-division-and-modulus.png"
- alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Parse fixed-width numbers with // and % for speed and clarity.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong>numeric parsing with integer division (&lt;code>//&lt;/code>) and modulus (&lt;code>%&lt;/code>)&lt;/strong> is the better option.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Using SymPy in Python When NumPy Isn't Enough</title><link>https://tomarcher.io/posts/python-sympy-vs-numpy/</link><pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate><guid>https://tomarcher.io/posts/python-sympy-vs-numpy/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;"> 
- &lt;img src="./sympy.png" alt="Sympy official log of a snake coiled around a cube with mathematical symbols" width="250" style="display: block; margin: 0 auto;"> 
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;"> 
- &lt;em>SymPy provides symbolic computation and precision techniques for Python developers&lt;/em>
- &lt;/figcaption> 
-&lt;/figure> 
-&lt;p>Most of us reach for &lt;a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
- NumPy
-&lt;/a>
- whenever math shows up in a project. But sometimes, you don&amp;rsquo;t want approximate answers, you want exact math. That&amp;rsquo;s when you pull &lt;a href="https://sympy.org/" target="_blank" rel="noopener noreferrer">
- SymPy
-&lt;/a>
- out of your programmer&amp;rsquo;s toolkit and get to work.&lt;/p>
-&lt;p>It&amp;rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.&lt;/p>
-&lt;p>In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Floats guess. SymPy knows.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>This is where SymPy shines. To see the difference between &lt;strong>floating-point approximations&lt;/strong> (Python or NumPy) and &lt;strong>symbolic precision&lt;/strong> (SymPy), let&amp;rsquo;s look at a simple but very real example from finance.&lt;/p></description></item><item><title>The Five-Second Rule Explored with Math &amp; Python</title><link>https://tomarcher.io/posts/five-second-rule/</link><pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/five-second-rule/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./five-second-rule-explored.png" alt="Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Forget the five-second rule. Germs transfer instantly, and we can prove it with math.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.&lt;/p></description></item><item><title>The Meeting Diet: An Optimization Approach to Your Calendar</title><link>https://tomarcher.io/posts/meeting-diet/</link><pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/meeting-diet/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./meeting-diet.png" alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>If you don't optimize your schedule, your schedule will optimize you. Badly&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to &lt;em>quantify&lt;/em> that choice?&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>&lt;strong>The good news: math can help.&lt;/strong> By modeling your schedule as a &lt;a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
- &lt;strong>0/1 knapsack problem with two constraints&lt;/strong>
-&lt;/a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&amp;rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &amp;ldquo;meeting diet.&amp;rdquo;&lt;/p></description></item><item><title>Using Python Dispatch Tables for Cleaner Validation</title><link>https://tomarcher.io/posts/python-dispatch-maps/</link><pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate><guid>https://tomarcher.io/posts/python-dispatch-maps/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./python-dispatch-maps.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Let&amp;rsquo;s be honest: argument validation code is rarely the proudest part of anyone&amp;rsquo;s repo.&lt;/p>
-&lt;p>Most of us start with the usual suspects:&lt;/p>
-&lt;p>❌ The dreaded &lt;em>inverted-V&lt;/em> tower of &lt;code>if/else&lt;/code> statements&lt;br>
-❌ A graveyard of guard clauses scattered line after line&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>Both work fine… until they don&amp;rsquo;t. Then you&amp;rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.&lt;/p>
-&lt;p>There&amp;rsquo;s a better way: &lt;strong>dispatch tables&lt;/strong>!&lt;/p></description></item><item><title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</title><link>https://tomarcher.io/posts/three-d-packing/</link><pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/three-d-packing/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./three-d-packing.png" alt="3D Bin Packing" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>How do you fit it all in?&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>My first full-time programming job was for &lt;strong>Holiday on Ice&lt;/strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&amp;rsquo;s crew was efficiently loading trucks for the next city.&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>One day, the controller asked me if I could code a system that took, as input, the trucks&amp;rsquo; &lt;strong>3D dimensions&lt;/strong> and the &lt;strong>3D dimensions (and weight)&lt;/strong> of every object to be packed. Back in the &lt;strong>Turbo Pascal&lt;/strong> era, exploring 3D packing was painful. Today, with &lt;strong>Python&lt;/strong> and &lt;strong>AI-assisted scaffolding&lt;/strong>, it&amp;rsquo;s surprisingly approachable.&lt;/p></description></item><item><title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</title><link>https://tomarcher.io/posts/rain-paradox/</link><pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/rain-paradox/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./rain-paradox.png" alt="Rain Paradox: Walk or Run?" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>To walk or to run. That is the question.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Early in my programming career, I came across a coding challenge that stuck with me for many years:&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;If it&amp;rsquo;s raining, will you stay drier by walking or running through it?&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>At the time, I didn&amp;rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&amp;rsquo;t about recursion or memory management. It was about &lt;strong>getting wet&lt;/strong>, and &lt;strong>how fast you move through falling rain&lt;/strong>.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/tags/python/</link>
+    <description>Recent content in Python on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 30 Nov 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments</title>
+      <link>http://localhost:1313/posts/edmund-fitzgerald/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/edmund-fitzgerald/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./edmund-fitzgerald.jpeg&#34; alt=&#34;Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;At 530 feet and 39°F, physics ensures Gordon Lightfoot&#39;s evocative lyric remains literally true.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Originally appearing on his 1976 album, &lt;em&gt;Summertime Dream&lt;/em&gt;, &amp;ldquo;The Wreck of the Edmund Fitzgerald&amp;rdquo; is a powerful ballad written and performed by folk singer &lt;a href=&#34;#lightfoot1976&#34;&gt;&#xD;&#xA;  Gordon Lightfoot&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;. In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: &amp;ldquo;The lake, it is said, never gives up her dead.&amp;rdquo; Following the singer&amp;rsquo;s death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard&amp;rsquo;s Hot Rock and Alternative category.&lt;/p&gt;&#xA;&lt;p&gt;Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn&amp;rsquo;t give up her dead, and the science behind it is as haunting as the song itself.&lt;/p&gt;&#xA;&lt;p&gt;It turns out that line is not poetic license. It&amp;rsquo;s physics.&lt;/p&gt;&#xA;&lt;p&gt;When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they stayed down. Not because of some mystical property of the Great Lakes, but because of a perfect storm of temperature, pressure, and biology that we can model mathematically.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>The Birthday Paradox in Production: When Random IDs Collide</title>
+      <link>http://localhost:1313/posts/birthday-paradox/</link>
+      <pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/birthday-paradox/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./birthday-paradox.png&#34; alt=&#34;Multiple database servers with overlapping ID bubbles showing collision zones&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;You generate a UUID. It&amp;rsquo;s 128 bits total, with 122 bits of randomness. That&amp;rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?&lt;/p&gt;&#xA;&lt;p&gt;As I like to say, &lt;em&gt;common sense and intuition are the enemies of science&lt;/em&gt;. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&amp;rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?&lt;/p&gt;&#xA;&lt;p&gt;Math shows us the uncomfortable truth: You&amp;rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&amp;rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&amp;rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&amp;rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.&lt;/p&gt;&#xA;&lt;p&gt;You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&amp;rsquo;t just a party trick; it&amp;rsquo;s the same mathematics that determines when your &amp;ldquo;guaranteed unique&amp;rdquo; database IDs collide, why hash tables need careful sizing, and when your distributed system&amp;rsquo;s assumptions break.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;In a room of 23 people, there&amp;rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</title>
+      <link>http://localhost:1313/posts/safe-distance-in-traffic/</link>
+      <pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/safe-distance-in-traffic/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./safe-distance-in-traffic-vertical-arrows.png&#34; alt=&#34;Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Following distance isn&#39;t just space, it&#39;s time in motion.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the &lt;strong&gt;three-second rule&lt;/strong&gt; and its validity. As I&amp;rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Three seconds is a rule of thumb. Physics reveals the truth.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</title>
+      <link>http://localhost:1313/posts/thermo-water-energy-balance/</link>
+      <pubDate>Sun, 12 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/thermo-water-energy-balance/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./thermo-water-energy-balance.png&#34; &#xD;&#xA;       alt=&#34;Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background&#34; &#xD;&#xA;       width=&#34;250&#34; &#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&amp;rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.&lt;/p&gt;&#xA;&lt;p&gt;The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&amp;rsquo;s not coincidence; it&amp;rsquo;s thermodynamics.&lt;/p&gt;&#xA;&lt;p&gt;The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&amp;rsquo;s &lt;em&gt;specific heat&lt;/em&gt; is much higher.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Numeric Parsing in Python with Integer Division and Modulus</title>
+      <link>http://localhost:1313/posts/python-integer-division-and-modulus/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/python-integer-division-and-modulus/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./python-integer-division-and-modulus.png&#34;&#xD;&#xA;       alt=&#34;Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Parse fixed-width numbers with // and % for speed and clarity.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong&gt;numeric parsing with integer division (&lt;code&gt;//&lt;/code&gt;) and modulus (&lt;code&gt;%&lt;/code&gt;)&lt;/strong&gt; is the better option.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Using SymPy in Python When NumPy Isn&#39;t Enough</title>
+      <link>http://localhost:1313/posts/python-sympy-vs-numpy/</link>
+      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/python-sympy-vs-numpy/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;  &#xD;&#xA;  &lt;img src=&#34;./sympy.png&#34; alt=&#34;Sympy official log of a snake coiled around a cube with mathematical symbols&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;  &#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;  &#xD;&#xA;    &lt;em&gt;SymPy provides symbolic computation and precision techniques for Python developers&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;  &#xD;&#xA;&lt;/figure&gt;  &#xD;&#xA;&lt;p&gt;Most of us reach for &lt;a href=&#34;https://numpy.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  NumPy&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; whenever math shows up in a project. But sometimes, you don&amp;rsquo;t want approximate answers, you want exact math. That&amp;rsquo;s when you pull &lt;a href=&#34;https://sympy.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  SymPy&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; out of your programmer&amp;rsquo;s toolkit and get to work.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.&lt;/p&gt;&#xA;&lt;p&gt;In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Floats guess. SymPy knows.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This is where SymPy shines. To see the difference between &lt;strong&gt;floating-point approximations&lt;/strong&gt; (Python or NumPy) and &lt;strong&gt;symbolic precision&lt;/strong&gt; (SymPy), let&amp;rsquo;s look at a simple but very real example from finance.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Five-Second Rule Explored with Math &amp; Python</title>
+      <link>http://localhost:1313/posts/five-second-rule/</link>
+      <pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/five-second-rule/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./five-second-rule-explored.png&#34; alt=&#34;Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Forget the five-second rule. Germs transfer instantly, and we can prove it with math.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Meeting Diet: An Optimization Approach to Your Calendar</title>
+      <link>http://localhost:1313/posts/meeting-diet/</link>
+      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/meeting-diet/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./meeting-diet.png&#34; alt=&#34;Professional woman pausing outside a conference room labeled &#39;Meeting in Progress&#39;, deciding whether to attend&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;If you don&#39;t optimize your schedule, your schedule will optimize you. Badly&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to &lt;em&gt;quantify&lt;/em&gt; that choice?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;strong&gt;The good news: math can help.&lt;/strong&gt; By modeling your schedule as a &lt;a href=&#34;https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  &lt;strong&gt;0/1 knapsack problem with two constraints&lt;/strong&gt;&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&amp;rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &amp;ldquo;meeting diet.&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using Python Dispatch Tables for Cleaner Validation</title>
+      <link>http://localhost:1313/posts/python-dispatch-maps/</link>
+      <pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate>
+      <guid>http://localhost:1313/posts/python-dispatch-maps/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./python-dispatch-maps.png&#34; alt=&#34;Python Tip of the Week logo: Python Post-it note on monitor&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Let&amp;rsquo;s be honest: argument validation code is rarely the proudest part of anyone&amp;rsquo;s repo.&lt;/p&gt;&#xA;&lt;p&gt;Most of us start with the usual suspects:&lt;/p&gt;&#xA;&lt;p&gt;❌ The dreaded &lt;em&gt;inverted-V&lt;/em&gt; tower of &lt;code&gt;if/else&lt;/code&gt; statements&lt;br&gt;&#xA;❌ A graveyard of guard clauses scattered line after line&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Both work fine… until they don&amp;rsquo;t. Then you&amp;rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.&lt;/p&gt;&#xA;&lt;p&gt;There&amp;rsquo;s a better way: &lt;strong&gt;dispatch tables&lt;/strong&gt;!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</title>
+      <link>http://localhost:1313/posts/three-d-packing/</link>
+      <pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/three-d-packing/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./three-d-packing.png&#34; alt=&#34;3D Bin Packing&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;How do you fit it all in?&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;My first full-time programming job was for &lt;strong&gt;Holiday on Ice&lt;/strong&gt;, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&amp;rsquo;s crew was efficiently loading trucks for the next city.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;One day, the controller asked me if I could code a system that took, as input, the trucks&amp;rsquo; &lt;strong&gt;3D dimensions&lt;/strong&gt; and the &lt;strong&gt;3D dimensions (and weight)&lt;/strong&gt; of every object to be packed. Back in the &lt;strong&gt;Turbo Pascal&lt;/strong&gt; era, exploring 3D packing was painful. Today, with &lt;strong&gt;Python&lt;/strong&gt; and &lt;strong&gt;AI-assisted scaffolding&lt;/strong&gt;, it&amp;rsquo;s surprisingly approachable.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</title>
+      <link>http://localhost:1313/posts/rain-paradox/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/rain-paradox/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./rain-paradox.png&#34; alt=&#34;Rain Paradox: Walk or Run?&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;To walk or to run. That is the question.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Early in my programming career, I came across a coding challenge that stuck with me for many years:&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;If it&amp;rsquo;s raining, will you stay drier by walking or running through it?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;At the time, I didn&amp;rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&amp;rsquo;t about recursion or memory management. It was about &lt;strong&gt;getting wet&lt;/strong&gt;, and &lt;strong&gt;how fast you move through falling rain&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,1 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on Signal &amp; Syntax</title><link>https://tomarcher.io/categories/</link><description>Recent content in Categories on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>AI and the Mathematics of Language</title><link>https://tomarcher.io/categories/ai-and-the-mathematics-of-language/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/categories/ai-and-the-mathematics-of-language/</guid><description/></item><item><title>Applied Modeling and Simulation</title><link>https://tomarcher.io/categories/applied-modeling-and-simulation/</link><pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/categories/applied-modeling-and-simulation/</guid><description/></item><item><title>Essays and Perspectives</title><link>https://tomarcher.io/categories/essays-and-perspectives/</link><pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/categories/essays-and-perspectives/</guid><description/></item><item><title>Python Techniques and Tooling</title><link>https://tomarcher.io/categories/python-techniques-and-tooling/</link><pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate><guid>https://tomarcher.io/categories/python-techniques-and-tooling/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/categories/</link>
+    <description>Recent content in Categories on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI and the Mathematics of Language</title>
+      <link>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/ai-and-the-mathematics-of-language/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Applied Modeling and Simulation</title>
+      <link>http://localhost:1313/categories/applied-modeling-and-simulation/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/applied-modeling-and-simulation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Essays and Perspectives</title>
+      <link>http://localhost:1313/categories/essays-and-perspectives/</link>
+      <pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/essays-and-perspectives/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python Techniques and Tooling</title>
+      <link>http://localhost:1313/categories/python-techniques-and-tooling/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/categories/python-techniques-and-tooling/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

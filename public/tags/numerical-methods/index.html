@@ -1,68 +1,350 @@
-<!doctype html><html class=no-js lang=en><head><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")</script><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Numerical Methods - Signal & Syntax</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:url" content="https://tomarcher.io/tags/numerical-methods/"><meta property="og:site_name" content="Signal & Syntax"><meta property="og:title" content="Numerical Methods"><meta property="og:description" content="Tom Archer's technical blog"><meta property="og:locale" content="en_us"><meta property="og:type" content="website"><meta itemprop=name content="Numerical Methods"><meta itemprop=description content="Tom Archer's technical blog"><meta itemprop=datePublished content="2025-09-17T13:00:00-07:00"><meta itemprop=dateModified content="2025-09-17T13:00:00-07:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Numerical Methods"><meta name=twitter:description content="Tom Archer's technical blog"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/extra.css><link rel=alternate type=application/rss+xml href=/tags/numerical-methods/index.xml title="Signal & Syntax"><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=192x192 href=/android-chrome-192x192.png><link rel=icon type=image/png sizes=512x512 href=/android-chrome-512x512.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV2PMS61P"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")}</script><script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/css/extra.css><script src=/js/copy-button.js></script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/img/logo/wordmark-light.svg></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
-<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/><span class=menu__text>Blog</span></a></li><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li><li class=menu__item><a class=menu__link href=/bio/><span class=menu__text>behind the code</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><div class=posts-list><header class=taxonomy-header><h1>1 "Numerical Methods" Post</h1></header><article class="post post--has-title-thumb"><header class=post-header><a class=post-title-thumb href=/posts/python-integer-division-and-modulus/><img src=/posts/python-integer-division-and-modulus/python-integer-division-and-modulus.png alt loading=lazy></a><div class=post-header-text><h2 class=post-title><a href=/posts/python-integer-division-and-modulus/>Numeric Parsing in Python with Integer Division and Modulus</a></h2><div class=post-meta><time datetime=2025-09-17><strong>Sep 17, 2025</strong>
-</time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href=/categories/python-techniques-and-tooling/>Python Techniques and Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href=/tags/data-parsing/>#data parsing</a>, <a href=/tags/numerical-methods/>#numerical methods</a>, <a href=/tags/python/>#Python</a></div></div></header><div class=post-summary><p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, <strong>numeric parsing with integer division (<code>//</code>) and modulus (<code>%</code>)</strong> is the better option.</p><hr><blockquote><p><em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.</em></p></blockquote><hr></div><p><a class=btn href=/posts/python-integer-division-and-modulus/>Read more →</a></p></article></div></main></div><aside class=sidebar><div class="widget widget-bio"><h4 class=widget__title>Behind the Code</h4><div class=widget__content><div class=bio-wrap><a class=bio-avatar-link href=/bio/><img class=bio-avatar src=/img/avatar.png alt="Avatar of Signal & Syntax"></a><div class=bio-text><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Numerical Methods - Signal &amp; Syntax</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/tags/numerical-methods/">
+  <meta property="og:site_name" content="Signal & Syntax">
+  <meta property="og:title" content="Numerical Methods">
+  <meta property="og:description" content="Tom Archer&#39;s technical blog">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+		
+  <meta itemprop="name" content="Numerical Methods">
+  <meta itemprop="description" content="Tom Archer&#39;s technical blog">
+  <meta itemprop="datePublished" content="2025-09-17T13:00:00-07:00">
+  <meta itemprop="dateModified" content="2025-09-17T13:00:00-07:00">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Numerical Methods">
+  <meta name="twitter:description" content="Tom Archer&#39;s technical blog">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+	<link rel="alternate" type="application/rss+xml" href="/tags/numerical-methods/index.xml" title="Signal & Syntax">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/logo/wordmark-light.svg">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/posts/roadmap/">
+				
+				<span class="menu__text">Roadmap</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <div class="posts-list">
+    
+    <header class="taxonomy-header">
+      <h1>
+        
+        1 "Numerical Methods" Post
+        </h1>
+
+      
+    </header>
+
+    
+    
+
+    
+      
+      
+      
+      
+        
+        
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/python-integer-division-and-modulus/">
+              <img src="/posts/python-integer-division-and-modulus/python-integer-division-and-modulus.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/python-integer-division-and-modulus/">Numeric Parsing in Python with Integer Division and Modulus</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2025-09-17">
+                <strong>Sep 17, 2025</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/data-parsing/">#data parsing</a>, <a href="/tags/numerical-methods/">#numerical methods</a>, <a href="/tags/python/">#Python</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, <strong>numeric parsing with integer division (<code>//</code>) and modulus (<code>%</code>)</strong> is the better option.</p>
+<hr>
+<blockquote>
+<p><em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/python-integer-division-and-modulus/">Read more →</a></p>
+      </article>
+    
+
+    
+  </div>
+</main>
+
+			</div>
+			
+<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
 turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
-that outlives the feature request it started from.</p><p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+that outlives the feature request it started from.</p>
+<p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
 insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
 system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
 activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
-technology books, wrote 100+ articles for <em>.NET Programming Tips & Techniques</em>, and helped run
-<a href=http://codeguru.com target=_blank rel="noopener noreferrer">CodeGuru
-</a>(the largest Windows developer community of its era).</p><p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+technology books, wrote 100+ articles for <em>.NET Programming Tips &amp; Techniques</em>, and helped run
+<a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru
+</a>
+ (the largest Windows developer community of its era).</p>
+<p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
 that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
 structures that get concatenated with code samples at runtime and routed to generative models, with results
-injected back into the output. Nearly 100 articles have shipped through the system.</p><p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
-to inference-time behavior, from tokenization to training infrastructure.</p><p>Connect with me on <a href=https://www.linkedin.com/in/tom-archer-dev/ target=_blank rel="noopener noreferrer">LinkedIn
-</a>.</p></div></div><p class=more><a class=link-more href=/bio/>Read more →</a></p></div></div><div class="widget widget-disclaimer"><h4 class=widget__title>Disclaimer</h4><div class=widget__content><p>The content on this blog represents my personal views and opinions only. It is not intended to represent
-the views, positions, or strategies of my employer or any other organization with which I may be associated.
-All content is provided “as is” without warranty of any kind.</p></div></div><div class="widget widget-social"><h4 class=widget__title>Connect</h4><div class=widget__content><ul class=social-list style=list-style:none;padding:0;margin:0;display:flex;gap:.6rem><li><a href=https://github.com/tomarcher aria-label=GitHub rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 008.21 23.9c.6.11.82-.26.82-.58V21.3c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93.0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17.0.0 1.01-.32 3.3 1.23a11.4 11.4.0 016.01.0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22.0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0012 .5z"/></svg></a></li><li><a href=https://www.linkedin.com/in/tom-archer-dev/ aria-label=LinkedIn rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45H16.9v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85.0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54.0 4.2 2.33 4.2 5.36v6.36zM5.34 7.43a2.06 2.06.0 110-4.12 2.06 2.06.0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li><li><a href=/index.xml aria-label=RSS rel=noopener style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18.0 110-4.36 2.18 2.18.0 010 4.36zM4 9.82v3.27a7.73 7.73.0 017.73 7.73H15c0-6.05-4.95-11-11-11zm0-4v3.27c8.27.0 15 6.73 15 15h3.27C22.27 14.03 14.06 5.82 4 5.82z"/></svg></a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai-and-the-mathematics-of-language/>AI and the Mathematics of Language</a></li><li class=widget__item><a class=widget__link href=/categories/applied-modeling-and-simulation/>Applied Modeling and Simulation</a></li><li class=widget__item><a class=widget__link href=/categories/essays-and-perspectives/>Essays and Perspectives</a></li><li class=widget__item><a class=widget__link href=/categories/python-techniques-and-tooling/>Python Techniques and Tooling</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title>Tags</h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/algorithms/ title=Algorithms>Algorithms</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/anthropic/ title=Anthropic>Anthropic</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/attention-mechanisms/ title="Attention Mechanisms">Attention Mechanisms</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/biology/ title=Biology>Biology</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/blockchain/ title=Blockchain>Blockchain</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/calculus/ title=Calculus>Calculus</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/code-organization/ title="Code Organization">Code Organization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/context-windows/ title="Context Windows">Context Windows</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cryptography/ title=Cryptography>Cryptography</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/data-parsing/ title="Data Parsing">Data Parsing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/databases/ title=Databases>Databases</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/design-patterns/ title="Design Patterns">Design Patterns</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/discrete-mathematics/ title="Discrete Mathematics">Discrete Mathematics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/distributed-systems/ title=Distributed-Systems>Distributed-Systems</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/economics/ title=Economics>Economics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/embeddings/ title=Embeddings>Embeddings</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/energy-balance/ title="Energy Balance">Energy Balance</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/geometry/ title=Geometry>Geometry</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/gradient-descent/ title="Gradient Descent">Gradient Descent</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hashing/ title=Hashing>Hashing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/innovation/ title=Innovation>Innovation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/kinematics/ title=Kinematics>Kinematics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/linear-algebra/ title="Linear Algebra">Linear Algebra</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/llm/ title=LLM>LLM</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/nlp/ title=NLP>NLP</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/nucleus-sampling/ title="Nucleus Sampling">Nucleus Sampling</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/numerical-methods/ title="Numerical Methods">Numerical Methods</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/optimization/ title=Optimization>Optimization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/passwords/ title=Passwords>Passwords</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/physics/ title=Physics>Physics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/predicate-logic/ title="Predicate Logic">Predicate Logic</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/probability/ title=Probability>Probability</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/productivity/ title=Productivity>Productivity</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/python/ title=Python>Python</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/rag/ title=RAG>RAG</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/sampling/ title=Sampling>Sampling</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/scheduling/ title=Scheduling>Scheduling</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/security/ title=Security>Security</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/set-theory/ title="Set Theory">Set Theory</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/softmax/ title=Softmax>Softmax</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/symbolic-math/ title="Symbolic Math">Symbolic Math</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/sympy/ title=SymPy>SymPy</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/temperature/ title=Temperature>Temperature</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/thermodynamics/ title=Thermodynamics>Thermodynamics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/tokenization/ title=Tokenization>Tokenization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/top-p/ title=Top-P>Top-P</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/transformers/ title=Transformers>Transformers</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/web-search/ title="Web Search">Web Search</a></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 Signal & Syntax.
-<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/js/menu.js></script><script src=/js/copy-button.js></script></body></html>
+injected back into the output. Nearly 100 articles have shipped through the system.</p>
+<p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+to inference-time behavior, from tokenization to training infrastructure.</p>
+<p>Connect with me on <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/discrete-mathematics/" title="Discrete Mathematics">Discrete Mathematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/predicate-logic/" title="Predicate Logic">Predicate Logic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/set-theory/" title="Set Theory">Set Theory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 Signal &amp; Syntax.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
+</body>
+</html>

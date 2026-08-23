@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biology on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/biology/</link><description>Recent content in Biology on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 30 Nov 2025 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/biology/index.xml" rel="self" type="application/rss+xml"/><item><title>The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments</title><link>https://tomarcher.io/posts/edmund-fitzgerald/</link><pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/edmund-fitzgerald/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./edmund-fitzgerald.jpeg" alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Originally appearing on his 1976 album, &lt;em>Summertime Dream&lt;/em>, &amp;ldquo;The Wreck of the Edmund Fitzgerald&amp;rdquo; is a powerful ballad written and performed by folk singer &lt;a href="#lightfoot1976">
- Gordon Lightfoot
-&lt;/a>
-. In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: &amp;ldquo;The lake, it is said, never gives up her dead.&amp;rdquo; Following the singer&amp;rsquo;s death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard&amp;rsquo;s Hot Rock and Alternative category.&lt;/p>
-&lt;p>Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn&amp;rsquo;t give up her dead, and the science behind it is as haunting as the song itself.&lt;/p>
-&lt;p>It turns out that line is not poetic license. It&amp;rsquo;s physics.&lt;/p>
-&lt;p>When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they stayed down. Not because of some mystical property of the Great Lakes, but because of a perfect storm of temperature, pressure, and biology that we can model mathematically.&lt;/p>
-&lt;hr>
-&lt;p>&lt;em>Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.&lt;/em>&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Biology on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/tags/biology/</link>
+    <description>Recent content in Biology on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 30 Nov 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/biology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments</title>
+      <link>http://localhost:1313/posts/edmund-fitzgerald/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/edmund-fitzgerald/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./edmund-fitzgerald.jpeg&#34; alt=&#34;Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;At 530 feet and 39°F, physics ensures Gordon Lightfoot&#39;s evocative lyric remains literally true.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Originally appearing on his 1976 album, &lt;em&gt;Summertime Dream&lt;/em&gt;, &amp;ldquo;The Wreck of the Edmund Fitzgerald&amp;rdquo; is a powerful ballad written and performed by folk singer &lt;a href=&#34;#lightfoot1976&#34;&gt;&#xD;&#xA;  Gordon Lightfoot&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;. In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: &amp;ldquo;The lake, it is said, never gives up her dead.&amp;rdquo; Following the singer&amp;rsquo;s death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard&amp;rsquo;s Hot Rock and Alternative category.&lt;/p&gt;&#xA;&lt;p&gt;Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn&amp;rsquo;t give up her dead, and the science behind it is as haunting as the song itself.&lt;/p&gt;&#xA;&lt;p&gt;It turns out that line is not poetic license. It&amp;rsquo;s physics.&lt;/p&gt;&#xA;&lt;p&gt;When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they stayed down. Not because of some mystical property of the Great Lakes, but because of a perfect storm of temperature, pressure, and biology that we can model mathematically.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>

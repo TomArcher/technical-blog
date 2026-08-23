@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Parsing on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/data-parsing/</link><description>Recent content in Data Parsing on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 17 Sep 2025 13:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/data-parsing/index.xml" rel="self" type="application/rss+xml"/><item><title>Numeric Parsing in Python with Integer Division and Modulus</title><link>https://tomarcher.io/posts/python-integer-division-and-modulus/</link><pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/python-integer-division-and-modulus/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./python-integer-division-and-modulus.png"
- alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Parse fixed-width numbers with // and % for speed and clarity.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong>numeric parsing with integer division (&lt;code>//&lt;/code>) and modulus (&lt;code>%&lt;/code>)&lt;/strong> is the better option.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Parsing on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/tags/data-parsing/</link>
+    <description>Recent content in Data Parsing on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Sep 2025 13:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/data-parsing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Numeric Parsing in Python with Integer Division and Modulus</title>
+      <link>http://localhost:1313/posts/python-integer-division-and-modulus/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/python-integer-division-and-modulus/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./python-integer-division-and-modulus.png&#34;&#xD;&#xA;       alt=&#34;Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Parse fixed-width numbers with // and % for speed and clarity.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong&gt;numeric parsing with integer division (&lt;code&gt;//&lt;/code&gt;) and modulus (&lt;code&gt;%&lt;/code&gt;)&lt;/strong&gt; is the better option.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>

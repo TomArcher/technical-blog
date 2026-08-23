@@ -56,6 +56,10 @@ googleAnalytics = "G-7ZV2PMS61P"
     url = "/"
     weight = 2
   [[menu.main]]
+    name = "Roadmap"
+    url  = "/posts/roadmap/"
+    weight = 5
+  [[menu.main]]
     name = "About"
     url  = "/about/"
     weight = 10

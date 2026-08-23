@@ -1,242 +1,862 @@
-<!doctype html><html class=no-js lang=en><head><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")</script><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory - Signal & Syntax</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:url" content="https://tomarcher.io/posts/how-large-language-models-handle-context-windows/"><meta property="og:site_name" content="Signal & Syntax"><meta property="og:title" content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory"><meta property="og:description" content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7ZV2PMS61P');
+</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory - Signal &amp; Syntax</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/posts/how-large-language-models-handle-context-windows/">
+  <meta property="og:site_name" content="Signal & Syntax">
+  <meta property="og:title" content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory">
+  <meta property="og:description" content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
 But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.
-“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-11-10T06:00:00-07:00"><meta property="article:modified_time" content="2025-11-10T06:00:00-07:00"><meta property="article:tag" content="AI"><meta property="article:tag" content="Attention Mechanisms"><meta property="article:tag" content="Context Windows"><meta property="article:tag" content="LLM"><meta property="article:tag" content="Transformers"><meta itemprop=name content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory"><meta itemprop=description content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
+“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-11-10T06:00:00-07:00">
+    <meta property="article:modified_time" content="2025-11-10T06:00:00-07:00">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Attention Mechanisms">
+    <meta property="article:tag" content="Context Windows">
+    <meta property="article:tag" content="LLM">
+    <meta property="article:tag" content="Transformers">
+
+		
+  <meta itemprop="name" content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory">
+  <meta itemprop="description" content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
 But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.
-“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”"><meta itemprop=datePublished content="2025-11-10T06:00:00-07:00"><meta itemprop=dateModified content="2025-11-10T06:00:00-07:00"><meta itemprop=wordCount content="3704"><meta itemprop=keywords content="AI,Attention Mechanisms,Context Windows,LLM,Transformers"><meta name=twitter:card content="summary"><meta name=twitter:title content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory"><meta name=twitter:description content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
+“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”">
+  <meta itemprop="datePublished" content="2025-11-10T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2025-11-10T06:00:00-07:00">
+  <meta itemprop="wordCount" content="3704">
+  <meta itemprop="keywords" content="AI,Attention Mechanisms,Context Windows,LLM,Transformers">
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory">
+  <meta name="twitter:description" content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
 But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.
-“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/extra.css><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=192x192 href=/android-chrome-192x192.png><link rel=icon type=image/png sizes=512x512 href=/android-chrome-512x512.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZV2PMS61P"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-7ZV2PMS61P")}</script><script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link rel=stylesheet href=/css/extra.css><script src=/js/copy-button.js></script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/img/logo/wordmark-light.svg></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
-<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/><span class=menu__text>Blog</span></a></li><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li><li class=menu__item><a class=menu__link href=/bio/><span class=menu__text>behind the code</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory</h1><div class="post__meta meta"><p class=meta__line><time datetime=2025-11-10T06:00:00-07:00><strong>November 10, 2025</strong>
-</time>&nbsp;•&nbsp;
-<strong>Category:</strong>&nbsp;<a class=meta__link href=/categories/ai-and-the-mathematics-of-language/ rel=category><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-<strong>Tags:</strong>&nbsp;<a class=meta__link href=/tags/ai/ rel=tag>#AI</a>, <a class=meta__link href=/tags/attention-mechanisms/ rel=tag>#attention mechanisms</a>, <a class=meta__link href=/tags/context-windows/ rel=tag>#context windows</a>, <a class=meta__link href=/tags/llm/ rel=tag>#LLM</a>, <a class=meta__link href=/tags/transformers/ rel=tag>#transformers</a></p></div><div class=share><span class=share__label>Share:</span>
-<a class=share__btn href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-handle-context-windows%2F&amp;text=How+Large+Language+Models+%28LLMs%29+Handle+Context+Windows%3A+The+Memory+That+Isn%27t+Memory" target=_blank rel="noopener noreferrer" aria-label="Share on X">X</a>
-<a class=share__btn href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-handle-context-windows%2F" target=_blank rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
-<a class=share__btn href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-handle-context-windows%2F" target=_blank rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
-<a class=share__btn href="https://www.reddit.com/submit?url=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-handle-context-windows%2F&amp;title=How+Large+Language+Models+%28LLMs%29+Handle+Context+Windows%3A+The+Memory+That+Isn%27t+Memory" target=_blank rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
-<a class=share__btn href="mailto:?subject=How%20Large%20Language%20Models%20%28LLMs%29%20Handle%20Context%20Windows%3A%20The%20Memory%20That%20Isn%27t%20Memory&amp;body=https%3A%2F%2Ftomarcher.io%2Fposts%2Fhow-large-language-models-handle-context-windows%2F" aria-label="Share via Email">@</a>
-<button class="share__btn share__btn--native" type=button aria-label=Share>Share</button></div><script>(function(){const e=document.currentScript.previousElementSibling.querySelector(".share__btn--native");if(!e||!navigator.share){e&&(e.style.display="none");return}e.addEventListener("click",async()=>{try{await navigator.share({title:`"How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory"`,url:'"https://tomarcher.io/posts/how-large-language-models-handle-context-windows/"'})}catch{}})})()</script></header><div class="content post__content clearfix"><figure style="float:right;margin:0 20px 10px;width:250px;text-align:center"><img src=./how-llms-handle-context-windows.png alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens" width=250 style="display:block;margin:0 auto"><figcaption style=font-size:.9em;color:#555;margin-top:5px><em>Context windows create the illusion of memory through mathematical attention, not storage.</em></figcaption></figure><p>When you have a long conversation with a large language model (LLM) such as <a href=https://chatgpt.com/ target=_blank rel="noopener noreferrer">ChatGPT
-</a>or <a href=https://claude.ai/new target=_blank rel="noopener noreferrer">Claude
-</a>, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p><p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p><hr><blockquote><p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote><hr><p>This post explores what context windows actually are, how they work mathematically, why they have limits, and what happens when those limits are reached. For a foundation in how models represent meaning, start with <a href=/posts/how-ai-turns-meaning-into-math/>How LLMs Think: Turning Meaning into Math
-</a>.</p><hr><h2 id=the-api-vs-web-interface-where-memory-really-lives>The API vs. Web Interface: Where &ldquo;Memory&rdquo; Really Lives</h2><p>Before diving into context windows, it&rsquo;s crucial to understand a fundamental architectural distinction that most users never see.</p><h3 id=the-raw-api-has-no-memory><strong>The Raw API Has No Memory</strong></h3><p>When you call an LLM API directly, each request is completely independent:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># Call 1</span>
-</span></span><span style=display:flex><span>response <span style=color:#ff79c6>=</span> openai<span style=color:#ff79c6>.</span>chat<span style=color:#ff79c6>.</span>completions<span style=color:#ff79c6>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;gpt-4&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#ff79c6>=</span>[
-</span></span><span style=display:flex><span>        {
-</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#34;role&#34;</span>: <span style=color:#f1fa8c>&#34;user&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#34;content&#34;</span>: <span style=color:#f1fa8c>&#34;What country is Paris in?&#34;</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    ]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#6272a4># Response: &#34;France&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4># Call 2 (completely separate request)</span>
-</span></span><span style=display:flex><span>response <span style=color:#ff79c6>=</span> openai<span style=color:#ff79c6>.</span>chat<span style=color:#ff79c6>.</span>completions<span style=color:#ff79c6>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;gpt-4&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#ff79c6>=</span>[
-</span></span><span style=display:flex><span>        {
-</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#34;role&#34;</span>: <span style=color:#f1fa8c>&#34;user&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#34;content&#34;</span>: <span style=color:#f1fa8c>&#34;Repeat the last country name&#34;</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    ]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#6272a4># Response: &#34;I don&#39;t have context about a previous country name...&#34;</span>
-</span></span></code></pre></div><p>The API is <strong>stateless</strong>. The model truly has no memory between calls. Each request starts from zero.</p><h3 id=web-interfaces-create-the-illusion><strong>Web Interfaces Create the Illusion</strong></h3><p>The ChatGPT or Claude <strong>web interface</strong> maintains conversation continuity by:</p><ol><li><strong>Storing the conversation history</strong> in the application layer (not in the model)</li><li><strong>Sending the entire history</strong> with each new message</li><li><strong>Managing what fits</strong> within the context window</li></ol><p>Here&rsquo;s what actually happens behind the scenes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#6272a4># Your first message</span>
-</span></span><span style=display:flex><span>conversation <span style=color:#ff79c6>=</span> [
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;role&#34;</span>: <span style=color:#f1fa8c>&#34;user&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;content&#34;</span>: <span style=color:#f1fa8c>&#34;What country is Paris in?&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>response <span style=color:#ff79c6>=</span> api_call(conversation)
-</span></span><span style=display:flex><span><span style=color:#6272a4># Model responds: &#34;France&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4># Application stores the response</span>
-</span></span><span style=display:flex><span>conversation<span style=color:#ff79c6>.</span>append(
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;role&#34;</span>: <span style=color:#f1fa8c>&#34;assistant&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;content&#34;</span>: <span style=color:#f1fa8c>&#34;France&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4># Your second message</span>
-</span></span><span style=display:flex><span>conversation<span style=color:#ff79c6>.</span>append(
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;role&#34;</span>: <span style=color:#f1fa8c>&#34;user&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#f1fa8c>&#34;content&#34;</span>: <span style=color:#f1fa8c>&#34;Repeat the last country&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4># The web interface sends ALL of this to the API:</span>
-</span></span><span style=display:flex><span>response <span style=color:#ff79c6>=</span> api_call(conversation)
-</span></span><span style=display:flex><span><span style=color:#6272a4># [</span>
-</span></span><span style=display:flex><span><span style=color:#6272a4>#   {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;What country is Paris in?&#34;},</span>
-</span></span><span style=display:flex><span><span style=color:#6272a4>#   {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;France&#34;},</span>
-</span></span><span style=display:flex><span><span style=color:#6272a4>#   {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Repeat the last country&#34;}</span>
-</span></span><span style=display:flex><span><span style=color:#6272a4># ]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4># Now the model can answer &#34;France&#34; because it sees</span>
-</span></span><span style=display:flex><span><span style=color:#6272a4># the full conversation</span>
-</span></span></code></pre></div><p><strong>The key insight:</strong> The model itself stores nothing. The application manages conversation history and decides what to include in each API request. The context window is simply the maximum amount of conversation history that <strong>can</strong> be sent at once.</p><p>Think of it like talking to someone with amnesia, but you&rsquo;re reading them their diary first. They don&rsquo;t remember yesterday. They&rsquo;re just responding to what you showed them right now.</p><hr><h2 id=what-is-a-context-window>What Is a Context Window?</h2><p>A context window is <strong>how many tokens the model can process at once</strong>. Think of it as the model&rsquo;s field of vision where everything within that window can influence the next token it predicts.</p><p>Modern models have impressive context windows:</p><ul><li><strong>GPT-4</strong>: 128,000 tokens (~96,000 words)</li><li><strong>Claude 3</strong>: 200,000 tokens (~150,000 words)</li><li><strong>Gemini 1.5</strong>: 1,000,000 tokens (~750,000 words)</li></ul><p>These numbers sound enormous. An entire novel fits easily. But bigger isn&rsquo;t always better, and the way models &ldquo;use&rdquo; this space reveals fundamental constraints.</p><hr><h2 id=the-illusion-of-memory>The Illusion of Memory</h2><p>Now that you understand the architecture, here&rsquo;s what actually happens during a web interface conversation:</p><p><strong>Turn 1:</strong> You send a message. The application sends it to the API. The model processes it and responds.</p><p><strong>Turn 2:</strong> You send another message. The application takes <strong>your first message + the model&rsquo;s first response + your second message</strong> and sends all of it to the API. The model processes everything to generate its second response.</p><p><strong>Turn 3:</strong> The application sends <strong>everything from turns 1 and 2 plus your new message</strong> to the API. The model processes it all.</p><p>By turn 10, the model is processing thousands of tokens every single time, rereading the entire conversation thread from scratch. It&rsquo;s not looking up stored facts. It&rsquo;s <strong>recomputing attention over everything you&rsquo;ve ever said in that session</strong>.</p><p>This is why &ldquo;memory&rdquo; in LLMs is an illusion. The model performs pattern matching across the visible conversation, not retrieval from storage. The web interface maintains the conversation history, but the model itself remembers nothing.</p><hr><h2 id=how-attention-creates-the-illusion>How Attention Creates the Illusion</h2><p>The mechanism that makes this work is the <strong>attention mechanism</strong>, specifically <strong>self-attention</strong>, as defined in the foundational paper &ldquo;Attention Is All You Need&rdquo; (<a href=#vaswani2017>
-Vaswani et al., 2017
-</a>). When processing token \(i\) in the sequence, the model computes how much attention to pay to every previous token \(j\).</p><p>The attention score between two tokens is computed as:</p><p>\[
+“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/extra.css">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+		
+
+	
+	<script>
+	window.MathJax = {
+	tex: {
+		inlineMath: [['\\(', '\\)']],
+		displayMath: [['\\[', '\\]']],
+		processEscapes: true,
+		processEnvironments: true
+	},
+	options: {
+		skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+	};
+	</script>
+	<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="/js/copy-button.js"></script>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/logo/wordmark-light.svg">
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/posts/roadmap/">
+				
+				<span class="menu__text">Roadmap</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/bio/">
+				
+				<span class="menu__text">behind the code</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</h1>
+
+      <div class="post__meta meta"><p class="meta__line">
+            <time datetime="2025-11-10T06:00:00-07:00">
+              <strong>November 10, 2025</strong>
+            </time>&nbsp;•&nbsp;
+            <strong>Category:</strong>&nbsp;<a class="meta__link"
+                 href="/categories/ai-and-the-mathematics-of-language/"
+                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
+            <strong>Tags:</strong>&nbsp;<a class="meta__link"
+                 href="/tags/ai/"
+                 rel="tag">#AI</a>, <a class="meta__link"
+                 href="/tags/attention-mechanisms/"
+                 rel="tag">#attention mechanisms</a>, <a class="meta__link"
+                 href="/tags/context-windows/"
+                 rel="tag">#context windows</a>, <a class="meta__link"
+                 href="/tags/llm/"
+                 rel="tag">#LLM</a>, <a class="meta__link"
+                 href="/tags/transformers/"
+                 rel="tag">#transformers</a></p></div>
+
+      <div class="share">
+  <span class="share__label">Share:</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-handle-context-windows%2F&amp;text=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Handle&#43;Context&#43;Windows%3A&#43;The&#43;Memory&#43;That&#43;Isn%27t&#43;Memory" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-handle-context-windows%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+  <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-handle-context-windows%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+  <a class="share__btn" href="https://www.reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-handle-context-windows%2F&amp;title=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Handle&#43;Context&#43;Windows%3A&#43;The&#43;Memory&#43;That&#43;Isn%27t&#43;Memory" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">r</a>
+  <a class="share__btn" href="mailto:?subject=How%20Large%20Language%20Models%20%28LLMs%29%20Handle%20Context%20Windows%3A%20The%20Memory%20That%20Isn%27t%20Memory&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-handle-context-windows%2F" aria-label="Share via Email">@</a>
+
+  <button class="share__btn share__btn--native" type="button" aria-label="Share">Share</button>
+</div>
+
+<script>
+(function () {
+  const btn = document.currentScript.previousElementSibling.querySelector('.share__btn--native');
+  if (!btn || !navigator.share) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: "\"How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory\"",
+        url:   "\"http://localhost:1313/posts/how-large-language-models-handle-context-windows/\""
+      });
+    } catch (_) {}
+  });
+})();
+</script>  
+
+    </header>
+
+    <div class="content post__content clearfix">
+      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./how-llms-handle-context-windows.png"
+       alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens"
+       width="250"
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
+  </figcaption>
+</figure>
+<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
+<p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
+<hr>
+<blockquote>
+<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<hr>
+<p>This post explores what context windows actually are, how they work mathematically, why they have limits, and what happens when those limits are reached. For a foundation in how models represent meaning, start with <a href="/posts/how-ai-turns-meaning-into-math/">
+  How LLMs Think: Turning Meaning into Math
+</a>
+.</p>
+<hr>
+<h2 id="the-api-vs-web-interface-where-memory-really-lives">The API vs. Web Interface: Where &ldquo;Memory&rdquo; Really Lives</h2>
+<p>Before diving into context windows, it&rsquo;s crucial to understand a fundamental architectural distinction that most users never see.</p>
+<h3 id="the-raw-api-has-no-memory"><strong>The Raw API Has No Memory</strong></h3>
+<p>When you call an LLM API directly, each request is completely independent:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Call 1</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#ff79c6">=</span> openai<span style="color:#ff79c6">.</span>chat<span style="color:#ff79c6">.</span>completions<span style="color:#ff79c6">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;gpt-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#ff79c6">=</span>[
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;role&#34;</span>: <span style="color:#f1fa8c">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;content&#34;</span>: <span style="color:#f1fa8c">&#34;What country is Paris in?&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Response: &#34;France&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Call 2 (completely separate request)</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#ff79c6">=</span> openai<span style="color:#ff79c6">.</span>chat<span style="color:#ff79c6">.</span>completions<span style="color:#ff79c6">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;gpt-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#ff79c6">=</span>[
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;role&#34;</span>: <span style="color:#f1fa8c">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;content&#34;</span>: <span style="color:#f1fa8c">&#34;Repeat the last country name&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Response: &#34;I don&#39;t have context about a previous country name...&#34;</span>
+</span></span></code></pre></div><p>The API is <strong>stateless</strong>. The model truly has no memory between calls. Each request starts from zero.</p>
+<h3 id="web-interfaces-create-the-illusion"><strong>Web Interfaces Create the Illusion</strong></h3>
+<p>The ChatGPT or Claude <strong>web interface</strong> maintains conversation continuity by:</p>
+<ol>
+<li><strong>Storing the conversation history</strong> in the application layer (not in the model)</li>
+<li><strong>Sending the entire history</strong> with each new message</li>
+<li><strong>Managing what fits</strong> within the context window</li>
+</ol>
+<p>Here&rsquo;s what actually happens behind the scenes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Your first message</span>
+</span></span><span style="display:flex;"><span>conversation <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;role&#34;</span>: <span style="color:#f1fa8c">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;content&#34;</span>: <span style="color:#f1fa8c">&#34;What country is Paris in?&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>response <span style="color:#ff79c6">=</span> api_call(conversation)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Model responds: &#34;France&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Application stores the response</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append(
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;role&#34;</span>: <span style="color:#f1fa8c">&#34;assistant&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;content&#34;</span>: <span style="color:#f1fa8c">&#34;France&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Your second message</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append(
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;role&#34;</span>: <span style="color:#f1fa8c">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;content&#34;</span>: <span style="color:#f1fa8c">&#34;Repeat the last country&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># The web interface sends ALL of this to the API:</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#ff79c6">=</span> api_call(conversation)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># [</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#   {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;What country is Paris in?&#34;},</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#   {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;France&#34;},</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#   {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Repeat the last country&#34;}</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Now the model can answer &#34;France&#34; because it sees</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># the full conversation</span>
+</span></span></code></pre></div><p><strong>The key insight:</strong> The model itself stores nothing. The application manages conversation history and decides what to include in each API request. The context window is simply the maximum amount of conversation history that <strong>can</strong> be sent at once.</p>
+<p>Think of it like talking to someone with amnesia, but you&rsquo;re reading them their diary first. They don&rsquo;t remember yesterday. They&rsquo;re just responding to what you showed them right now.</p>
+<hr>
+<h2 id="what-is-a-context-window">What Is a Context Window?</h2>
+<p>A context window is <strong>how many tokens the model can process at once</strong>. Think of it as the model&rsquo;s field of vision where everything within that window can influence the next token it predicts.</p>
+<p>Modern models have impressive context windows:</p>
+<ul>
+<li><strong>GPT-4</strong>: 128,000 tokens (~96,000 words)</li>
+<li><strong>Claude 3</strong>: 200,000 tokens (~150,000 words)</li>
+<li><strong>Gemini 1.5</strong>: 1,000,000 tokens (~750,000 words)</li>
+</ul>
+<p>These numbers sound enormous. An entire novel fits easily. But bigger isn&rsquo;t always better, and the way models &ldquo;use&rdquo; this space reveals fundamental constraints.</p>
+<hr>
+<h2 id="the-illusion-of-memory">The Illusion of Memory</h2>
+<p>Now that you understand the architecture, here&rsquo;s what actually happens during a web interface conversation:</p>
+<p><strong>Turn 1:</strong> You send a message. The application sends it to the API. The model processes it and responds.</p>
+<p><strong>Turn 2:</strong> You send another message. The application takes <strong>your first message + the model&rsquo;s first response + your second message</strong> and sends all of it to the API. The model processes everything to generate its second response.</p>
+<p><strong>Turn 3:</strong> The application sends <strong>everything from turns 1 and 2 plus your new message</strong> to the API. The model processes it all.</p>
+<p>By turn 10, the model is processing thousands of tokens every single time, rereading the entire conversation thread from scratch. It&rsquo;s not looking up stored facts. It&rsquo;s <strong>recomputing attention over everything you&rsquo;ve ever said in that session</strong>.</p>
+<p>This is why &ldquo;memory&rdquo; in LLMs is an illusion. The model performs pattern matching across the visible conversation, not retrieval from storage. The web interface maintains the conversation history, but the model itself remembers nothing.</p>
+<hr>
+<h2 id="how-attention-creates-the-illusion">How Attention Creates the Illusion</h2>
+<p>The mechanism that makes this work is the <strong>attention mechanism</strong>, specifically <strong>self-attention</strong>, as defined in the foundational paper &ldquo;Attention Is All You Need&rdquo; (<a href="#vaswani2017">
+  Vaswani et al., 2017
+</a>
+). When processing token \(i\) in the sequence, the model computes how much attention to pay to every previous token \(j\).</p>
+<p>The attention score between two tokens is computed as:</p>
+<p>\[
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-\]</p><p>Where:</p><ul><li>\(Q\) = query (what the current token is looking for)</li><li>\(K\) = keys (what each previous token can offer)</li><li>\(V\) = values (the actual content of those tokens)</li><li>\(d_k\) = dimensionality of the key vectors (scaling factor)</li></ul><p>For every new token the model generates, it computes attention across <strong>every token in the context window</strong>. If your conversation is 10,000 tokens long, that&rsquo;s 10,000 attention calculations per new token. For a visual explanation of how attention mechanisms work in practice, see <a href=#alammar2018>Alammar (2018)
-</a>.</p><hr><h2 id=the-quadratic-cost-problem>The Quadratic Cost Problem</h2><p>Here&rsquo;s where the math gets brutal. As shown in the original Transformer paper (<a href=#vaswani2017>
-Vaswani et al., 2017
-</a>), attention scales <strong>quadratically</strong> with sequence length.</p><p>If you double the conversation length:</p><ul><li>The model has to compute \(2n\) queries</li><li>Against \(2n\) keys</li><li>Resulting in \((2n)^2 = 4n^2\) operations</li></ul><p><strong>Doubling the context requires 4× the computation.</strong></p><p>This is why context windows have hard limits. It&rsquo;s not just storage. It&rsquo;s computational cost. Processing a 128k token conversation requires computing roughly <strong>16 billion attention scores</strong> for a single response token.</p><div style="float:right;width:40%;margin:0 0 1em 1em;padding:.5em;background-color:#f8f8f8;border:1px solid #ddd;font-size:.9em"><div style=text-align:center><strong>Why not just store previous computations?</strong><br><br></div>The model could cache some calculations, and modern implementations do use a <strong>KV cache</strong> (key-value cache) to avoid recomputing keys and values for tokens that haven't changed. But this only helps with computational cost. It doesn't solve the fundamental attention problem. The model still has to compute attention weights across the entire cached context for every new token.</div><hr><h2 id=what-gets-lost-the-attention-dilution-problem>What Gets Lost: The Attention Dilution Problem</h2><p>Even within the context window, not all tokens are treated equally. The <em>softmax</em> function in the attention mechanism creates a <strong>probability distribution</strong> over all previous tokens.</p><p>As the context grows:</p><ul><li>Attention gets <strong>spread thinner</strong> across more tokens</li><li>Older tokens receive <strong>exponentially less attention</strong></li><li>The model effectively &ldquo;forgets&rdquo; details from early in the conversation</li></ul><p>Think of it like a spotlight with fixed brightness. In a small room, everything is illuminated clearly. In a stadium, that same spotlight becomes a dim glow barely reaching the far corners.</p><p>This is why models often lose track of instructions or details mentioned 50,000 tokens ago, even though those tokens are technically still in the context window being sent by the application.</p><hr><h2 id=why-this-isnt-like-human-memory>Why This Isn&rsquo;t Like Human Memory</h2><p>It&rsquo;s tempting to compare LLM context to human memory. After all, both seem to &ldquo;remember&rdquo; past conversations. But the mechanisms are fundamentally different.</p><p><strong>Human memory consolidates and abstracts.</strong> You might forget the details of an argument with a friend from years ago, but you remember the emotional aftermath: &ldquo;I don&rsquo;t like Bob.&rdquo; That&rsquo;s a <strong>learned fact</strong> stored independently of the original experience. You&rsquo;ve compressed the memory, extracted its essence, and stored that abstraction.</p><p><strong>LLMs don&rsquo;t consolidate anything.</strong> When information falls outside the context window, there&rsquo;s no residual memory, no learned preference, no compressed representation. The model has <strong>complete amnesia</strong>. It&rsquo;s not that it forgot the details but remembers the gist. It has <strong>zero knowledge</strong> that the conversation ever happened.</p><p>Think of it this way: Your brain transforms experiences into lasting neural patterns that persist independently. An LLM&rsquo;s &ldquo;memory&rdquo; is the text itself, being reread. Remove the text, and the memory vanishes completely.</p><p>This is why context windows are better compared to <strong>working memory</strong> (like keeping a phone number in your head) rather than <strong>long-term memory</strong> (like knowing your childhood address). The moment you stop actively thinking about that phone number, it&rsquo;s gone unless you encoded it into long-term storage. LLMs have working memory (the context window) but no mechanism to encode conversations into long-term storage.</p><p>The weights trained into the model represent <strong>general patterns from training data</strong>, not memories of <strong>your specific conversations</strong>. Those weights are frozen. Your chat doesn&rsquo;t update them. This is why every new conversation starts from zero, and why <strong>the model never truly &ldquo;learns&rdquo; from talking to you</strong>.</p><hr><h2 id=positional-encodings-teaching-order-without-counting>Positional Encodings: Teaching Order Without Counting</h2><p>One of the stranger aspects of context windows is that <strong>transformers have no inherent sense of token order</strong>. The attention mechanism is permutation-invariant. It doesn&rsquo;t naturally know that &ldquo;The cat chased the mouse&rdquo; is different from &ldquo;The mouse chased the cat.&rdquo;</p><p>To solve this, models use <strong>positional encodings</strong> that inject order information into each token&rsquo;s representation. The original Transformer architecture (<a href=#vaswani2017>
-Vaswani et al., 2017
-</a>) used <strong>absolute positional encodings</strong> with sinusoidal functions:</p><p>\[
+\]</p>
+<p>Where:</p>
+<ul>
+<li>\(Q\) = query (what the current token is looking for)</li>
+<li>\(K\) = keys (what each previous token can offer)</li>
+<li>\(V\) = values (the actual content of those tokens)</li>
+<li>\(d_k\) = dimensionality of the key vectors (scaling factor)</li>
+</ul>
+<p>For every new token the model generates, it computes attention across <strong>every token in the context window</strong>. If your conversation is 10,000 tokens long, that&rsquo;s 10,000 attention calculations per new token. For a visual explanation of how attention mechanisms work in practice, see <a href="#alammar2018">
+  Alammar (2018)
+</a>
+.</p>
+<hr>
+<h2 id="the-quadratic-cost-problem">The Quadratic Cost Problem</h2>
+<p>Here&rsquo;s where the math gets brutal. As shown in the original Transformer paper (<a href="#vaswani2017">
+  Vaswani et al., 2017
+</a>
+), attention scales <strong>quadratically</strong> with sequence length.</p>
+<p>If you double the conversation length:</p>
+<ul>
+<li>The model has to compute \(2n\) queries</li>
+<li>Against \(2n\) keys</li>
+<li>Resulting in \((2n)^2 = 4n^2\) operations</li>
+</ul>
+<p><strong>Doubling the context requires 4× the computation.</strong></p>
+<p>This is why context windows have hard limits. It&rsquo;s not just storage. It&rsquo;s computational cost. Processing a 128k token conversation requires computing roughly <strong>16 billion attention scores</strong> for a single response token.</p>
+<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
+    <div style="text-align: center;"><strong>Why not just store previous computations?</strong><br><br></div>
+    The model could cache some calculations, and modern implementations do use a <strong>KV cache</strong> (key-value cache) to avoid recomputing keys and values for tokens that haven't changed. But this only helps with computational cost. It doesn't solve the fundamental attention problem. The model still has to compute attention weights across the entire cached context for every new token.
+</div>
+<hr>
+<h2 id="what-gets-lost-the-attention-dilution-problem">What Gets Lost: The Attention Dilution Problem</h2>
+<p>Even within the context window, not all tokens are treated equally. The <em>softmax</em> function in the attention mechanism creates a <strong>probability distribution</strong> over all previous tokens.</p>
+<p>As the context grows:</p>
+<ul>
+<li>Attention gets <strong>spread thinner</strong> across more tokens</li>
+<li>Older tokens receive <strong>exponentially less attention</strong></li>
+<li>The model effectively &ldquo;forgets&rdquo; details from early in the conversation</li>
+</ul>
+<p>Think of it like a spotlight with fixed brightness. In a small room, everything is illuminated clearly. In a stadium, that same spotlight becomes a dim glow barely reaching the far corners.</p>
+<p>This is why models often lose track of instructions or details mentioned 50,000 tokens ago, even though those tokens are technically still in the context window being sent by the application.</p>
+<hr>
+<h2 id="why-this-isnt-like-human-memory">Why This Isn&rsquo;t Like Human Memory</h2>
+<p>It&rsquo;s tempting to compare LLM context to human memory. After all, both seem to &ldquo;remember&rdquo; past conversations. But the mechanisms are fundamentally different.</p>
+<p><strong>Human memory consolidates and abstracts.</strong> You might forget the details of an argument with a friend from years ago, but you remember the emotional aftermath: &ldquo;I don&rsquo;t like Bob.&rdquo; That&rsquo;s a <strong>learned fact</strong> stored independently of the original experience. You&rsquo;ve compressed the memory, extracted its essence, and stored that abstraction.</p>
+<p><strong>LLMs don&rsquo;t consolidate anything.</strong> When information falls outside the context window, there&rsquo;s no residual memory, no learned preference, no compressed representation. The model has <strong>complete amnesia</strong>. It&rsquo;s not that it forgot the details but remembers the gist. It has <strong>zero knowledge</strong> that the conversation ever happened.</p>
+<p>Think of it this way: Your brain transforms experiences into lasting neural patterns that persist independently. An LLM&rsquo;s &ldquo;memory&rdquo; is the text itself, being reread. Remove the text, and the memory vanishes completely.</p>
+<p>This is why context windows are better compared to <strong>working memory</strong> (like keeping a phone number in your head) rather than <strong>long-term memory</strong> (like knowing your childhood address). The moment you stop actively thinking about that phone number, it&rsquo;s gone unless you encoded it into long-term storage. LLMs have working memory (the context window) but no mechanism to encode conversations into long-term storage.</p>
+<p>The weights trained into the model represent <strong>general patterns from training data</strong>, not memories of <strong>your specific conversations</strong>. Those weights are frozen. Your chat doesn&rsquo;t update them. This is why every new conversation starts from zero, and why <strong>the model never truly &ldquo;learns&rdquo; from talking to you</strong>.</p>
+<hr>
+<h2 id="positional-encodings-teaching-order-without-counting">Positional Encodings: Teaching Order Without Counting</h2>
+<p>One of the stranger aspects of context windows is that <strong>transformers have no inherent sense of token order</strong>. The attention mechanism is permutation-invariant. It doesn&rsquo;t naturally know that &ldquo;The cat chased the mouse&rdquo; is different from &ldquo;The mouse chased the cat.&rdquo;</p>
+<p>To solve this, models use <strong>positional encodings</strong> that inject order information into each token&rsquo;s representation. The original Transformer architecture (<a href="#vaswani2017">
+  Vaswani et al., 2017
+</a>
+) used <strong>absolute positional encodings</strong> with sinusoidal functions:</p>
+<p>\[
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 \]
 \[
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
-\]</p><p>Where \(pos\) is the token&rsquo;s position, \(i\) is the dimension index, and \(d_{model}\) is the model&rsquo;s dimensionality. These sinusoidal functions create unique patterns for each position that the model learns to interpret.</p><p><strong>Relative positional encodings</strong> (<a href=#shaw2018>
-Shaw et al., 2018
-</a>; <a href=#dai2019>Dai et al., 2019
-</a>) instead encode the <strong>distance</strong> between tokens rather than absolute positions. This helps with longer contexts because the model learns &ldquo;token A is 5 positions before token B&rdquo; rather than &ldquo;token A is at position 1,247.&rdquo;</p><p>But both approaches degrade at extreme distances. A token 100,000 positions away has such a different positional encoding that attention scores become unreliable.</p><hr><h2 id=what-happens-when-context-fills-up>What Happens When Context Fills Up</h2><p>When your conversation exceeds the context window, the web interface (not the model) must employ strategies to manage what gets sent:</p><h3 id=1-truncation-sliding-window><strong>1. Truncation (Sliding Window)</strong></h3><p>The application drops the oldest tokens from what it sends to the API. The model processes only the most recent \(N\) tokens.</p><p><strong>Problem:</strong> You lose the beginning of the conversation entirely. Instructions given in message 1 vanish if the conversation grows long enough. The application literally can&rsquo;t send them anymore because they don&rsquo;t fit in the context window.</p><h3 id=2-summarization><strong>2. Summarization</strong></h3><p>Some systems automatically summarize older portions of the conversation and replace them with condensed versions in what gets sent to the API.</p><p><strong>Problem:</strong> Summarization is lossy. Nuance, specific examples, and precise wording disappear. The model is now reasoning over <em>a summary of your conversation</em> rather than your actual words.</p><h3 id=3-retrieval-augmented-generation-rag><strong>3. Retrieval-Augmented Generation (RAG)</strong></h3><p>The application stores the full conversation in an external database and retrieves relevant chunks to include in the API call.</p><p><strong>Problem:</strong> Retrieval is imperfect. The system has to guess which past messages are relevant. It might retrieve the wrong context or miss critical information.</p><hr><h2 id=the-kv-cache-optimization>The KV Cache Optimization</h2><p>Modern implementations use a clever optimization called <strong>key-value caching</strong>. Instead of recomputing the keys and values for every token in the context on every forward pass, the model caches them.</p><p>Here&rsquo;s the efficiency gain:</p><p><strong>Without KV cache:</strong></p><ul><li>Process 10,000 tokens: compute 10,000 queries, 10,000 keys, 10,000 values</li><li>Generate token 1: compute attention over all 10,000</li><li>Generate token 2: <strong>recompute everything again</strong> plus the new token</li></ul><p><strong>With KV cache:</strong></p><ul><li>Process 10,000 tokens once: cache the 10,000 keys and values</li><li>Generate token 1: compute 1 new query, reuse cached keys/values</li><li>Generate token 2: compute 1 new query, reuse all cached keys/values plus token 1&rsquo;s cache</li></ul><p>This dramatically reduces computational cost, but it increases <strong>memory cost</strong>. Storing 100,000 cached key-value pairs for a 70-billion-parameter model requires gigabytes of GPU memory.</p><p>There&rsquo;s always a trade-off: speed vs. memory vs. context length.</p><hr><h2 id=why-longer-context-doesnt-mean-better-performance>Why Longer Context Doesn&rsquo;t Mean Better Performance</h2><p>You&rsquo;d think a 1 million token context window would be strictly better than a 100k token window. But research shows diminishing returns and sometimes <strong>worse performance</strong> with extreme context lengths:</p><p><strong>Attention dilution:</strong> With more tokens competing for attention, each individual token receives less focus.</p><p><strong>Positional encoding degradation:</strong> Encoding schemes that work well at 10k tokens break down at 500k tokens.</p><p><strong>&ldquo;Lost in the middle&rdquo; phenomenon:</strong> Studies show models perform worst on information buried in the middle of very long contexts (<a href=#liu2023>
-Liu et al., 2023
-</a>). They attend well to the beginning (recency bias inverted by training) and the end (recency bias), but lose track of the middle.</p><p><strong>Increased hallucination:</strong> With more context to &ldquo;manage,&rdquo; models sometimes confabulate connections between distant, unrelated parts of the conversation.</p><hr><h2 id=visualizing-attention-across-context>Visualizing Attention Across Context</h2><p>Attention weight distribution is easier to understand visually. For a comprehensive visual explanation of how attention mechanisms work, see <a href=#alammar2018>Alammar (2018)
-</a>.</p><p>Below is a simplified simulation showing how attention weights decay across growing context lengths:</p><h3 id=python-version>Python Version</h3><p>Here&rsquo;s a conceptual Python example showing how attention weights distribute across a growing context:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>import</span> numpy <span style=color:#ff79c6>as</span> np
-</span></span><span style=display:flex><span><span style=color:#ff79c6>import</span> matplotlib.pyplot <span style=color:#ff79c6>as</span> plt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>attention_weights</span>(context_length, query_position):
-</span></span><span style=display:flex><span>    positions <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>arange(context_length)
-</span></span><span style=display:flex><span>    recency <span style=color:#ff79c6>=</span> np<span style=color:#ff79c6>.</span>exp(<span style=color:#ff79c6>-</span><span style=color:#bd93f9>0.001</span> <span style=color:#ff79c6>*</span> (query_position <span style=color:#ff79c6>-</span> positions))
-</span></span><span style=display:flex><span>    distance_penalty <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>1.0</span> <span style=color:#ff79c6>/</span> (
-</span></span><span style=display:flex><span>        <span style=color:#bd93f9>1.0</span> <span style=color:#ff79c6>+</span> <span style=color:#bd93f9>0.00001</span> <span style=color:#ff79c6>*</span> (query_position <span style=color:#ff79c6>-</span> positions) <span style=color:#ff79c6>**</span> <span style=color:#bd93f9>2</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    weights <span style=color:#ff79c6>=</span> recency <span style=color:#ff79c6>*</span> distance_penalty
-</span></span><span style=display:flex><span>    weights <span style=color:#ff79c6>=</span> weights <span style=color:#ff79c6>/</span> weights<span style=color:#ff79c6>.</span>sum()
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> weights
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>fig, axes <span style=color:#ff79c6>=</span> plt<span style=color:#ff79c6>.</span>subplots(<span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>3</span>, figsize<span style=color:#ff79c6>=</span>(<span style=color:#bd93f9>15</span>, <span style=color:#bd93f9>4</span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ff79c6>for</span> idx, ctx_len <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>enumerate</span>([<span style=color:#bd93f9>1000</span>, <span style=color:#bd93f9>10000</span>, <span style=color:#bd93f9>100000</span>]):
-</span></span><span style=display:flex><span>    query_pos <span style=color:#ff79c6>=</span> ctx_len <span style=color:#ff79c6>-</span> <span style=color:#bd93f9>1</span>
-</span></span><span style=display:flex><span>    weights <span style=color:#ff79c6>=</span> attention_weights(ctx_len, query_pos)
-</span></span><span style=display:flex><span>    axes[idx]<span style=color:#ff79c6>.</span>plot(weights)
-</span></span><span style=display:flex><span>    axes[idx]<span style=color:#ff79c6>.</span>set_title(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#39;Context Length: </span><span style=color:#f1fa8c>{</span>ctx_len<span style=color:#f1fa8c>:</span><span style=color:#f1fa8c>,</span><span style=color:#f1fa8c>}</span><span style=color:#f1fa8c> tokens&#39;</span>)
-</span></span><span style=display:flex><span>    axes[idx]<span style=color:#ff79c6>.</span>set_xlabel(<span style=color:#f1fa8c>&#39;Token Position&#39;</span>)
-</span></span><span style=display:flex><span>    axes[idx]<span style=color:#ff79c6>.</span>set_ylabel(<span style=color:#f1fa8c>&#39;Attention Weight&#39;</span>)
-</span></span><span style=display:flex><span>    axes[idx]<span style=color:#ff79c6>.</span>set_yscale(<span style=color:#f1fa8c>&#39;log&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>plt<span style=color:#ff79c6>.</span>tight_layout()
-</span></span><span style=display:flex><span>plt<span style=color:#ff79c6>.</span>show()
-</span></span></code></pre></div><p><strong>What the plot reveals:</strong> As context grows, attention spreads across exponentially more tokens, creating a flatter, noisier distribution. The signal-to-noise ratio degrades.</p><p><img src=./visualizing-attention-across-context-python.png alt></p><h3 id=matlab-version>MATLAB Version</h3><p>To reproduce the same curve in MATLAB, use the following script:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-matlab data-lang=matlab><span style=display:flex><span><span style=color:#ff79c6>function</span> <span style=color:#50fa7b>visualize_attention_decay</span>()
-</span></span><span style=display:flex><span>    figure(<span style=color:#f1fa8c>&#39;Position&#39;</span>, [<span style=color:#bd93f9>100</span> <span style=color:#bd93f9>100</span> <span style=color:#bd93f9>1200</span> <span style=color:#bd93f9>400</span>]);
-</span></span><span style=display:flex><span>    context_lengths = [<span style=color:#bd93f9>1000</span>, <span style=color:#bd93f9>10000</span>, <span style=color:#bd93f9>100000</span>];
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> <span style=color:#8be9fd;font-style:italic>i</span> = <span style=color:#bd93f9>1</span>:<span style=color:#8be9fd;font-style:italic>length</span>(context_lengths)
-</span></span><span style=display:flex><span>        ctx_len = context_lengths(<span style=color:#8be9fd;font-style:italic>i</span>);
-</span></span><span style=display:flex><span>        query_pos = ctx_len;
-</span></span><span style=display:flex><span>        positions = <span style=color:#bd93f9>1</span>:ctx_len;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        recency = <span style=color:#8be9fd;font-style:italic>exp</span>(<span style=color:#ff79c6>-</span><span style=color:#bd93f9>0.001</span> <span style=color:#ff79c6>*</span> (query_pos <span style=color:#ff79c6>-</span> positions));
-</span></span><span style=display:flex><span>        distance_penalty = <span style=color:#bd93f9>1</span> <span style=color:#ff79c6>./</span> <span style=color:#6272a4>...</span>
-</span></span><span style=display:flex><span>            (<span style=color:#bd93f9>1</span> <span style=color:#ff79c6>+</span> <span style=color:#bd93f9>0.00001</span> <span style=color:#ff79c6>*</span> (query_pos <span style=color:#ff79c6>-</span> positions) <span style=color:#ff79c6>.^</span> <span style=color:#bd93f9>2</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        weights = recency <span style=color:#ff79c6>.*</span> distance_penalty;
-</span></span><span style=display:flex><span>        weights = weights <span style=color:#ff79c6>/</span> sum(weights);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        subplot(<span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>3</span>, <span style=color:#8be9fd;font-style:italic>i</span>);
-</span></span><span style=display:flex><span>        semilogy(positions, weights, <span style=color:#6272a4>...</span>
-</span></span><span style=display:flex><span>            <span style=color:#f1fa8c>&#39;LineWidth&#39;</span>, <span style=color:#bd93f9>1.5</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        title([<span style=color:#f1fa8c>&#39;Context Length: &#39;</span>, <span style=color:#6272a4>...</span>
-</span></span><span style=display:flex><span>            num2str(ctx_len)]);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        xlabel(<span style=color:#f1fa8c>&#39;Token Position&#39;</span>);
-</span></span><span style=display:flex><span>        ylabel(<span style=color:#f1fa8c>&#39;Attention Weight (log scale)&#39;</span>);
-</span></span><span style=display:flex><span>        grid on;
-</span></span><span style=display:flex><span>    <span style=color:#ff79c6>end</span>
-</span></span><span style=display:flex><span><span style=color:#ff79c6>end</span>
-</span></span></code></pre></div><p>This produces the same curve, showing that as the number of tokens grows, older tokens fade into near-zero significance.</p><p><img src=./visualizing-attention-across-context-matlab.png alt></p><hr><h2 id=retrieval-augmented-generation-rag>Retrieval-Augmented Generation (RAG)</h2><p>RAG bridges the gap between finite context and long-term knowledge. Instead of depending on the model&rsquo;s internal attention, RAG systems perform <strong>semantic retrieval</strong> to inject only the most relevant information into each API call.</p><ol><li><strong>Chunking</strong> text or conversation history into semantically meaningful segments.</li><li><strong>Embedding</strong> each chunk into a vector space.</li><li><strong>Retrieving</strong> top-k relevant segments using cosine similarity.</li><li><strong>Composing</strong> a dynamic prompt with the query and retrieved context.</li><li><strong>Generating</strong> an answer grounded in that retrieved material.</li></ol><p>This scales almost logarithmically with data size, though retrieval accuracy becomes the bottleneck. If the retrieval misses a key piece of context, the response quality collapses.</p><p>Recent work on context compression models and adaptive retrieval improves this by predicting relevance before querying (<a href=#jiang2023>
-Jiang et al., 2023
-</a>). GPT-4&rsquo;s emerging memory features and Claude&rsquo;s &ldquo;Artifacts&rdquo; hint at this direction with persistent, embedded summaries that act as <em>latent conversation memory</em>.</p><hr><h2 id=context-windows-in-practice>Context Windows in Practice</h2><figure style="float:right;margin:0 20px 10px;width:400px;text-align:center"><img src=./plot.png alt="Horizontal bar chart showing context window requirements across nine use cases, categorized as short context sufficient (green), long context valuable (blue), and long context problematic (orange), with token ranges from hundreds to millions on a logarithmic scale" width=400 style="display:block;margin:0 auto"><figcaption style=font-size:.9em;color:#555;margin-top:5px><em>Context requirements vary by task. Short contexts work best for focused tasks like code completion, while massive contexts often perform worse than retrieval-based approaches for complex reasoning.</em></figcaption></figure><p>Different use cases have different context needs:</p><p><strong>Short context sufficient:</strong></p><ul><li>Code completion (hundreds of tokens)</li><li>Customer service chatbots (thousands of tokens)</li><li>Translation (thousands of tokens)</li></ul><p><strong>Long context valuable:</strong></p><ul><li>Document analysis (tens of thousands of tokens)</li><li>Long conversation threads (tens of thousands of tokens)</li><li>Codebase understanding (hundreds of thousands of tokens)</li></ul><p><strong>Long context problematic:</strong></p><ul><li>Complex reasoning across many documents (attention dilution)</li><li>Extracting specific facts from massive context (retrieval more effective)</li><li>Maintaining consistent state over very long interactions (external memory better)</li></ul><p>The key insight: <strong>long context is a tool, not a solution</strong>. For many tasks, structured retrieval or explicit memory systems outperform simply cramming everything into the context window.</p><hr><h2 id=the-future-beyond-attention>The Future: Beyond Attention</h2><p>Researchers are pushing beyond quadratic attention toward architectures that combine <strong>efficiency, persistence, and abstraction</strong>.</p><p><strong>1. Linearized and Hybrid Attention</strong>
-Models like <strong>Mamba</strong> (<a href=#gu2023>
-Gu & Dao, 2023
-</a>) and <strong>RWKV</strong> (<a href=#peng2023>
-Peng et al., 2023
-</a>) merge recurrent updates with attention-style gating, keeping a compact &ldquo;state trace&rdquo; instead of recomputing pairwise attention. They process input almost linearly with sequence length, hinting at a path to true scalability.</p><p><strong>2. Modular Memory Architectures</strong>
-Upcoming designs experiment with distinct submodules for short-term reasoning, factual recall, and abstract summaries. Instead of one monolithic attention map, different &ldquo;memory heads&rdquo; specialize, which is closer to how human cognition distributes recall.</p><p><strong>3. Hierarchical Context</strong>
-Multi-scale models use local attention for fine detail and upper layers for long-span summaries, compressing sequences without losing coherence. The model reasons hierarchically, the way we summarize and then recall the gist.</p><p><strong>4. Neuro-symbolic Integration</strong>
-Long-term context may eventually blend neural pattern recognition with symbolic memory. Rather than rereading raw text, future systems could retrieve <em>structured knowledge graphs</em>, giving them durable, compositional recall.</p><p>The direction is clear: the next breakthroughs won&rsquo;t simply extend context. They&rsquo;ll <strong>reshape what it means to have context at all</strong>.</p><hr><h2 id=prompt-engineering-and-context-windows>Prompt Engineering and Context Windows</h2><p>Knowing how attention fades helps you design prompts that survive long contexts. Prompt engineering is really attention sculpting: placing information where the model is most likely to &ldquo;see&rdquo; it.</p><p>Reinforce key details near the end. Recency bias makes the last tokens disproportionately influential. Group related instructions so directives are not scattered. Prefer concise summaries over raw dumps of conversation. Repeat critical goals near the output boundary to keep them in focus.</p><p>For example, if you&rsquo;re asking the model to analyze a long document and extract specific facts, place your extraction criteria at the <em>end</em> of the prompt, after the document text. This ensures the model &ldquo;sees&rdquo; your requirements with maximum attention when generating its response.</p><p>In practice, the tail of your prompt is prime real estate. The closer critical details are to the end, the more reliably they guide the response.</p><hr><h2 id=gpt-4-vs-claude-long-context-behavior>GPT-4 vs. Claude: Long Context Behavior</h2><p>Both GPT-4 (128k tokens) and Claude 3 (200k) handle extended sequences gracefully, but they show distinct personalities when context stretches toward the limit.</p><p><strong>Claude 3</strong> tends to preserve <em>semantic coherence</em>. It paraphrases well and often retains conceptual meaning even when exact phrases drift out of focus. However, its precision drops past 150k tokens where quotes blur, and substitutions appear. Claude maintains tone consistency remarkably well, suggesting active summarization before truncation.</p><p><strong>GPT-4</strong> leans toward <em>syntactic fidelity</em>. It reproduces exact code and phrasing more accurately and resists paraphrasing. Yet it&rsquo;s more brittle with unstructured input; when order or hierarchy is lost, GPT-4&rsquo;s logical scaffolding weakens faster. On complex reasoning tasks, though, it often outperforms Claude because its tighter attention preserves logical dependencies.</p><p>In short, Claude remembers <strong>the idea</strong>, GPT-4 remembers <strong>the wording</strong>. This difference is a reflection of how each platform balances summarization and exact recall.</p><hr><h2 id=closing-thoughts>Closing Thoughts</h2><p>Longer context windows don&rsquo;t create memory; they create <em>the appearance</em> of memory. They expand the stage on which attention performs but don&rsquo;t change the nature of the act. The real progress will come from systems that know what to retain, what to retrieve, and what to ignore.</p><p>After years of building AI tools for documentation at Microsoft, I&rsquo;ve learned that this pattern isn&rsquo;t a flaw; it&rsquo;s a design choice. The model isn&rsquo;t forgetful; it&rsquo;s efficient. It reads everything you show it, decides what matters mathematically, and writes a response based on the clarity of what&rsquo;s in view right now.</p><p>Understanding that transforms how you work with LLMs. You restate. You summarize. You keep the spotlight pointed where you need it. Because when you realize that an LLM&rsquo;s memory is simply its present context, you stop wishing for something it doesn&rsquo;t have, and start mastering what it actually does.</p><hr><p><strong>If you&rsquo;ve followed this series from <a href=/posts/how-large-language-models-read-code>how LLMs read code
-</a>through <a href=/posts/how-large-language-models-think>how they think
-</a>and <a href=/posts/how-large-language-models-learn>how they learn
-</a>, you now understand the full picture: pattern recognition through probability, geometric meaning through linear algebra, improvement through calculus, and the illusion of memory through attention. What emerges is a system that&rsquo;s powerful precisely because of, not despite, its constraints.</strong></p><hr><h2 id=try-it-yourself>Try It Yourself</h2><p><a href=https://github.com/TomArcher/technical-blog-examples/tree/main/how-large-language-models-handle-context-windows target=_blank rel="noopener noreferrer">Download the full code on GitHub</a></p><hr><h2 id=further-reading>Further Reading</h2><p>If you want to dive deeper into the mathematics and architecture of context windows:</p><p><a id=alammar2018></a></p><ul><li>Alammar, J. (2018). <a href=http://jalammar.github.io/illustrated-transformer/ target=_blank rel="noopener noreferrer">The Illustrated Transformer
-</a>.<br><em>Excellent visual explanation of attention mechanisms and how transformers process sequences. Highly accessible introduction to the concepts.</em></li></ul><p><a id=dai2019></a></p><ul><li>Dai, Z., Yang, Z., Yang, Y., et al. (2019). <a href=https://arxiv.org/abs/1901.02860 target=_blank rel="noopener noreferrer">Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context
-</a>. <em>Proceedings of ACL 2019</em>.<br><em>Proposes techniques for extending context beyond fixed windows, including relative positional encodings and segment-level recurrence.</em></li></ul><p><a id=gu2023></a></p><ul><li>Gu, A., & Dao, T. (2023). <a href=https://arxiv.org/abs/2312.00752 target=_blank rel="noopener noreferrer">Mamba: Linear-Time Sequence Modeling with Selective State Spaces
-</a>. <em>arXiv preprint</em>.<br><em>Introduces state space models that achieve linear-time processing while maintaining competitive performance with transformers.</em></li></ul><p><a id=jiang2023></a></p><ul><li>Jiang, Z., et al. (2023). <a href=https://arxiv.org/abs/2310.05736 target=_blank rel="noopener noreferrer">LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models
-</a>. <em>arXiv preprint</em>.<br><em>Introduces prompt compression techniques that maintain semantic meaning while reducing token count.</em></li></ul><p><a id=liu2023></a></p><ul><li>Liu, N. F., Lin, K., Hewitt, J., et al. (2023). <a href=https://arxiv.org/abs/2307.03172 target=_blank rel="noopener noreferrer">Lost in the Middle: How Language Models Use Long Contexts
-</a>. <em>arXiv preprint</em>.<br><em>Empirical study showing that LLMs perform worst on information in the middle of very long contexts, with best performance at the beginning and end.</em></li></ul><p><a id=peng2023></a></p><ul><li>Peng, B., Alcaide, E., Anthony, Q., et al. (2023). <a href=https://arxiv.org/abs/2305.13048 target=_blank rel="noopener noreferrer">RWKV: Reinventing RNNs for the Transformer Era
-</a>. <em>arXiv preprint</em>.<br><em>Proposes a linear-complexity alternative to transformers that combines RNN efficiency with transformer-like performance.</em></li></ul><p><a id=shaw2018></a></p><ul><li>Shaw, P., Uszkoreit, J., & Vaswani, A. (2018). <a href=https://arxiv.org/abs/1803.02155 target=_blank rel="noopener noreferrer">Self-Attention with Relative Position Representations
-</a>. <em>Proceedings of NAACL-HLT 2018</em>.<br><em>Introduces relative positional encodings that help models handle longer contexts more effectively.</em></li></ul><p><a id=tay2022></a></p><ul><li>Tay, Y., Dehghani, M., Bahri, D., & Metzler, D. (2022). <a href=https://dl.acm.org/doi/10.1145/3530811 target=_blank rel="noopener noreferrer">Efficient Transformers: A Survey
-</a>. <em>ACM Computing Surveys</em>, 55(6), 1-28.<br><em>Comprehensive survey of attention alternatives and efficiency techniques for transformers, covering sparse attention, linear attention, and other scaling approaches.</em></li></ul><p><a id=vaswani2017></a></p><ul><li>Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). <a href=https://arxiv.org/abs/1706.03762 target=_blank rel="noopener noreferrer">Attention Is All You Need
-</a>. <em>Advances in Neural Information Processing Systems</em>, 30.<br><em>The foundational paper that introduced the Transformer architecture and the attention mechanism. Essential reading for understanding how context windows work mathematically.</em></li></ul><hr></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 000-6 3 3 0 000 6"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/ai/ rel=tag>AI</a></li><li class=tags__item><a class="tags__link btn" href=/tags/attention-mechanisms/ rel=tag>attention mechanisms</a></li><li class=tags__item><a class="tags__link btn" href=/tags/context-windows/ rel=tag>context windows</a></li><li class=tags__item><a class="tags__link btn" href=/tags/llm/ rel=tag>LLM</a></li><li class=tags__item><a class="tags__link btn" href=/tags/transformers/ rel=tag>transformers</a></li></ul></div></footer></article></main></div><aside class=sidebar><div class="widget widget-bio"><h4 class=widget__title>Behind the Code</h4><div class=widget__content><div class=bio-wrap><a class=bio-avatar-link href=/bio/><img class=bio-avatar src=/img/avatar.png alt="Avatar of Signal & Syntax"></a><div class=bio-text><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
+\]</p>
+<p>Where \(pos\) is the token&rsquo;s position, \(i\) is the dimension index, and \(d_{model}\) is the model&rsquo;s dimensionality. These sinusoidal functions create unique patterns for each position that the model learns to interpret.</p>
+<p><strong>Relative positional encodings</strong> (<a href="#shaw2018">
+  Shaw et al., 2018
+</a>
+; <a href="#dai2019">
+  Dai et al., 2019
+</a>
+) instead encode the <strong>distance</strong> between tokens rather than absolute positions. This helps with longer contexts because the model learns &ldquo;token A is 5 positions before token B&rdquo; rather than &ldquo;token A is at position 1,247.&rdquo;</p>
+<p>But both approaches degrade at extreme distances. A token 100,000 positions away has such a different positional encoding that attention scores become unreliable.</p>
+<hr>
+<h2 id="what-happens-when-context-fills-up">What Happens When Context Fills Up</h2>
+<p>When your conversation exceeds the context window, the web interface (not the model) must employ strategies to manage what gets sent:</p>
+<h3 id="1-truncation-sliding-window"><strong>1. Truncation (Sliding Window)</strong></h3>
+<p>The application drops the oldest tokens from what it sends to the API. The model processes only the most recent \(N\) tokens.</p>
+<p><strong>Problem:</strong> You lose the beginning of the conversation entirely. Instructions given in message 1 vanish if the conversation grows long enough. The application literally can&rsquo;t send them anymore because they don&rsquo;t fit in the context window.</p>
+<h3 id="2-summarization"><strong>2. Summarization</strong></h3>
+<p>Some systems automatically summarize older portions of the conversation and replace them with condensed versions in what gets sent to the API.</p>
+<p><strong>Problem:</strong> Summarization is lossy. Nuance, specific examples, and precise wording disappear. The model is now reasoning over <em>a summary of your conversation</em> rather than your actual words.</p>
+<h3 id="3-retrieval-augmented-generation-rag"><strong>3. Retrieval-Augmented Generation (RAG)</strong></h3>
+<p>The application stores the full conversation in an external database and retrieves relevant chunks to include in the API call.</p>
+<p><strong>Problem:</strong> Retrieval is imperfect. The system has to guess which past messages are relevant. It might retrieve the wrong context or miss critical information.</p>
+<hr>
+<h2 id="the-kv-cache-optimization">The KV Cache Optimization</h2>
+<p>Modern implementations use a clever optimization called <strong>key-value caching</strong>. Instead of recomputing the keys and values for every token in the context on every forward pass, the model caches them.</p>
+<p>Here&rsquo;s the efficiency gain:</p>
+<p><strong>Without KV cache:</strong></p>
+<ul>
+<li>Process 10,000 tokens: compute 10,000 queries, 10,000 keys, 10,000 values</li>
+<li>Generate token 1: compute attention over all 10,000</li>
+<li>Generate token 2: <strong>recompute everything again</strong> plus the new token</li>
+</ul>
+<p><strong>With KV cache:</strong></p>
+<ul>
+<li>Process 10,000 tokens once: cache the 10,000 keys and values</li>
+<li>Generate token 1: compute 1 new query, reuse cached keys/values</li>
+<li>Generate token 2: compute 1 new query, reuse all cached keys/values plus token 1&rsquo;s cache</li>
+</ul>
+<p>This dramatically reduces computational cost, but it increases <strong>memory cost</strong>. Storing 100,000 cached key-value pairs for a 70-billion-parameter model requires gigabytes of GPU memory.</p>
+<p>There&rsquo;s always a trade-off: speed vs. memory vs. context length.</p>
+<hr>
+<h2 id="why-longer-context-doesnt-mean-better-performance">Why Longer Context Doesn&rsquo;t Mean Better Performance</h2>
+<p>You&rsquo;d think a 1 million token context window would be strictly better than a 100k token window. But research shows diminishing returns and sometimes <strong>worse performance</strong> with extreme context lengths:</p>
+<p><strong>Attention dilution:</strong> With more tokens competing for attention, each individual token receives less focus.</p>
+<p><strong>Positional encoding degradation:</strong> Encoding schemes that work well at 10k tokens break down at 500k tokens.</p>
+<p><strong>&ldquo;Lost in the middle&rdquo; phenomenon:</strong> Studies show models perform worst on information buried in the middle of very long contexts (<a href="#liu2023">
+  Liu et al., 2023
+</a>
+). They attend well to the beginning (recency bias inverted by training) and the end (recency bias), but lose track of the middle.</p>
+<p><strong>Increased hallucination:</strong> With more context to &ldquo;manage,&rdquo; models sometimes confabulate connections between distant, unrelated parts of the conversation.</p>
+<hr>
+<h2 id="visualizing-attention-across-context">Visualizing Attention Across Context</h2>
+<p>Attention weight distribution is easier to understand visually. For a comprehensive visual explanation of how attention mechanisms work, see <a href="#alammar2018">
+  Alammar (2018)
+</a>
+.</p>
+<p>Below is a simplified simulation showing how attention weights decay across growing context lengths:</p>
+<h3 id="python-version">Python Version</h3>
+<p>Here&rsquo;s a conceptual Python example showing how attention weights distribute across a growing context:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">attention_weights</span>(context_length, query_position):
+</span></span><span style="display:flex;"><span>    positions <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(context_length)
+</span></span><span style="display:flex;"><span>    recency <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>exp(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">0.001</span> <span style="color:#ff79c6">*</span> (query_position <span style="color:#ff79c6">-</span> positions))
+</span></span><span style="display:flex;"><span>    distance_penalty <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">/</span> (
+</span></span><span style="display:flex;"><span>        <span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">0.00001</span> <span style="color:#ff79c6">*</span> (query_position <span style="color:#ff79c6">-</span> positions) <span style="color:#ff79c6">**</span> <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    weights <span style="color:#ff79c6">=</span> recency <span style="color:#ff79c6">*</span> distance_penalty
+</span></span><span style="display:flex;"><span>    weights <span style="color:#ff79c6">=</span> weights <span style="color:#ff79c6">/</span> weights<span style="color:#ff79c6">.</span>sum()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> weights
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, axes <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">3</span>, figsize<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">15</span>, <span style="color:#bd93f9">4</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> idx, ctx_len <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>([<span style="color:#bd93f9">1000</span>, <span style="color:#bd93f9">10000</span>, <span style="color:#bd93f9">100000</span>]):
+</span></span><span style="display:flex;"><span>    query_pos <span style="color:#ff79c6">=</span> ctx_len <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>    weights <span style="color:#ff79c6">=</span> attention_weights(ctx_len, query_pos)
+</span></span><span style="display:flex;"><span>    axes[idx]<span style="color:#ff79c6">.</span>plot(weights)
+</span></span><span style="display:flex;"><span>    axes[idx]<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#39;Context Length: </span><span style="color:#f1fa8c">{</span>ctx_len<span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">,</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> tokens&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[idx]<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#39;Token Position&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[idx]<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#39;Attention Weight&#39;</span>)
+</span></span><span style="display:flex;"><span>    axes[idx]<span style="color:#ff79c6">.</span>set_yscale(<span style="color:#f1fa8c">&#39;log&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
+</span></span></code></pre></div><p><strong>What the plot reveals:</strong> As context grows, attention spreads across exponentially more tokens, creating a flatter, noisier distribution. The signal-to-noise ratio degrades.</p>
+<p><img src="./visualizing-attention-across-context-python.png" alt=""></p>
+<h3 id="matlab-version">MATLAB Version</h3>
+<p>To reproduce the same curve in MATLAB, use the following script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span><span style="color:#ff79c6">function</span> <span style="color:#50fa7b">visualize_attention_decay</span>()
+</span></span><span style="display:flex;"><span>    figure(<span style="color:#f1fa8c">&#39;Position&#39;</span>, [<span style="color:#bd93f9">100</span> <span style="color:#bd93f9">100</span> <span style="color:#bd93f9">1200</span> <span style="color:#bd93f9">400</span>]);
+</span></span><span style="display:flex;"><span>    context_lengths = [<span style="color:#bd93f9">1000</span>, <span style="color:#bd93f9">10000</span>, <span style="color:#bd93f9">100000</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> <span style="color:#8be9fd;font-style:italic">i</span> = <span style="color:#bd93f9">1</span>:<span style="color:#8be9fd;font-style:italic">length</span>(context_lengths)
+</span></span><span style="display:flex;"><span>        ctx_len = context_lengths(<span style="color:#8be9fd;font-style:italic">i</span>);
+</span></span><span style="display:flex;"><span>        query_pos = ctx_len;
+</span></span><span style="display:flex;"><span>        positions = <span style="color:#bd93f9">1</span>:ctx_len;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        recency = <span style="color:#8be9fd;font-style:italic">exp</span>(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">0.001</span> <span style="color:#ff79c6">*</span> (query_pos <span style="color:#ff79c6">-</span> positions));
+</span></span><span style="display:flex;"><span>        distance_penalty = <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">./</span> <span style="color:#6272a4">...</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#bd93f9">1</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">0.00001</span> <span style="color:#ff79c6">*</span> (query_pos <span style="color:#ff79c6">-</span> positions) <span style="color:#ff79c6">.^</span> <span style="color:#bd93f9">2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        weights = recency <span style="color:#ff79c6">.*</span> distance_penalty;
+</span></span><span style="display:flex;"><span>        weights = weights <span style="color:#ff79c6">/</span> sum(weights);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        subplot(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">3</span>, <span style="color:#8be9fd;font-style:italic">i</span>);
+</span></span><span style="display:flex;"><span>        semilogy(positions, weights, <span style="color:#6272a4">...</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;LineWidth&#39;</span>, <span style="color:#bd93f9">1.5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        title([<span style="color:#f1fa8c">&#39;Context Length: &#39;</span>, <span style="color:#6272a4">...</span>
+</span></span><span style="display:flex;"><span>            num2str(ctx_len)]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        xlabel(<span style="color:#f1fa8c">&#39;Token Position&#39;</span>);
+</span></span><span style="display:flex;"><span>        ylabel(<span style="color:#f1fa8c">&#39;Attention Weight (log scale)&#39;</span>);
+</span></span><span style="display:flex;"><span>        grid on;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre></div><p>This produces the same curve, showing that as the number of tokens grows, older tokens fade into near-zero significance.</p>
+<p><img src="./visualizing-attention-across-context-matlab.png" alt=""></p>
+<hr>
+<h2 id="retrieval-augmented-generation-rag">Retrieval-Augmented Generation (RAG)</h2>
+<p>RAG bridges the gap between finite context and long-term knowledge. Instead of depending on the model&rsquo;s internal attention, RAG systems perform <strong>semantic retrieval</strong> to inject only the most relevant information into each API call.</p>
+<ol>
+<li><strong>Chunking</strong> text or conversation history into semantically meaningful segments.</li>
+<li><strong>Embedding</strong> each chunk into a vector space.</li>
+<li><strong>Retrieving</strong> top-k relevant segments using cosine similarity.</li>
+<li><strong>Composing</strong> a dynamic prompt with the query and retrieved context.</li>
+<li><strong>Generating</strong> an answer grounded in that retrieved material.</li>
+</ol>
+<p>This scales almost logarithmically with data size, though retrieval accuracy becomes the bottleneck. If the retrieval misses a key piece of context, the response quality collapses.</p>
+<p>Recent work on context compression models and adaptive retrieval improves this by predicting relevance before querying (<a href="#jiang2023">
+  Jiang et al., 2023
+</a>
+). GPT-4&rsquo;s emerging memory features and Claude&rsquo;s &ldquo;Artifacts&rdquo; hint at this direction with persistent, embedded summaries that act as <em>latent conversation memory</em>.</p>
+<hr>
+<h2 id="context-windows-in-practice">Context Windows in Practice</h2>
+<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
+  <img src="./plot.png" alt="Horizontal bar chart showing context window requirements across nine use cases, categorized as short context sufficient (green), long context valuable (blue), and long context problematic (orange), with token ranges from hundreds to millions on a logarithmic scale" width="400" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Context requirements vary by task. Short contexts work best for focused tasks like code completion, while massive contexts often perform worse than retrieval-based approaches for complex reasoning.</em>
+  </figcaption>
+</figure>
+<p>Different use cases have different context needs:</p>
+<p><strong>Short context sufficient:</strong></p>
+<ul>
+<li>Code completion (hundreds of tokens)</li>
+<li>Customer service chatbots (thousands of tokens)</li>
+<li>Translation (thousands of tokens)</li>
+</ul>
+<p><strong>Long context valuable:</strong></p>
+<ul>
+<li>Document analysis (tens of thousands of tokens)</li>
+<li>Long conversation threads (tens of thousands of tokens)</li>
+<li>Codebase understanding (hundreds of thousands of tokens)</li>
+</ul>
+<p><strong>Long context problematic:</strong></p>
+<ul>
+<li>Complex reasoning across many documents (attention dilution)</li>
+<li>Extracting specific facts from massive context (retrieval more effective)</li>
+<li>Maintaining consistent state over very long interactions (external memory better)</li>
+</ul>
+<p>The key insight: <strong>long context is a tool, not a solution</strong>. For many tasks, structured retrieval or explicit memory systems outperform simply cramming everything into the context window.</p>
+<hr>
+<h2 id="the-future-beyond-attention">The Future: Beyond Attention</h2>
+<p>Researchers are pushing beyond quadratic attention toward architectures that combine <strong>efficiency, persistence, and abstraction</strong>.</p>
+<p><strong>1. Linearized and Hybrid Attention</strong>
+Models like <strong>Mamba</strong> (<a href="#gu2023">
+  Gu &amp; Dao, 2023
+</a>
+) and <strong>RWKV</strong> (<a href="#peng2023">
+  Peng et al., 2023
+</a>
+) merge recurrent updates with attention-style gating, keeping a compact &ldquo;state trace&rdquo; instead of recomputing pairwise attention. They process input almost linearly with sequence length, hinting at a path to true scalability.</p>
+<p><strong>2. Modular Memory Architectures</strong>
+Upcoming designs experiment with distinct submodules for short-term reasoning, factual recall, and abstract summaries. Instead of one monolithic attention map, different &ldquo;memory heads&rdquo; specialize, which is closer to how human cognition distributes recall.</p>
+<p><strong>3. Hierarchical Context</strong>
+Multi-scale models use local attention for fine detail and upper layers for long-span summaries, compressing sequences without losing coherence. The model reasons hierarchically, the way we summarize and then recall the gist.</p>
+<p><strong>4. Neuro-symbolic Integration</strong>
+Long-term context may eventually blend neural pattern recognition with symbolic memory. Rather than rereading raw text, future systems could retrieve <em>structured knowledge graphs</em>, giving them durable, compositional recall.</p>
+<p>The direction is clear: the next breakthroughs won&rsquo;t simply extend context. They&rsquo;ll <strong>reshape what it means to have context at all</strong>.</p>
+<hr>
+<h2 id="prompt-engineering-and-context-windows">Prompt Engineering and Context Windows</h2>
+<p>Knowing how attention fades helps you design prompts that survive long contexts. Prompt engineering is really attention sculpting: placing information where the model is most likely to &ldquo;see&rdquo; it.</p>
+<p>Reinforce key details near the end. Recency bias makes the last tokens disproportionately influential. Group related instructions so directives are not scattered. Prefer concise summaries over raw dumps of conversation. Repeat critical goals near the output boundary to keep them in focus.</p>
+<p>For example, if you&rsquo;re asking the model to analyze a long document and extract specific facts, place your extraction criteria at the <em>end</em> of the prompt, after the document text. This ensures the model &ldquo;sees&rdquo; your requirements with maximum attention when generating its response.</p>
+<p>In practice, the tail of your prompt is prime real estate. The closer critical details are to the end, the more reliably they guide the response.</p>
+<hr>
+<h2 id="gpt-4-vs-claude-long-context-behavior">GPT-4 vs. Claude: Long Context Behavior</h2>
+<p>Both GPT-4 (128k tokens) and Claude 3 (200k) handle extended sequences gracefully, but they show distinct personalities when context stretches toward the limit.</p>
+<p><strong>Claude 3</strong> tends to preserve <em>semantic coherence</em>. It paraphrases well and often retains conceptual meaning even when exact phrases drift out of focus. However, its precision drops past 150k tokens where quotes blur, and substitutions appear. Claude maintains tone consistency remarkably well, suggesting active summarization before truncation.</p>
+<p><strong>GPT-4</strong> leans toward <em>syntactic fidelity</em>. It reproduces exact code and phrasing more accurately and resists paraphrasing. Yet it&rsquo;s more brittle with unstructured input; when order or hierarchy is lost, GPT-4&rsquo;s logical scaffolding weakens faster. On complex reasoning tasks, though, it often outperforms Claude because its tighter attention preserves logical dependencies.</p>
+<p>In short, Claude remembers <strong>the idea</strong>, GPT-4 remembers <strong>the wording</strong>. This difference is a reflection of how each platform balances summarization and exact recall.</p>
+<hr>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>Longer context windows don&rsquo;t create memory; they create <em>the appearance</em> of memory. They expand the stage on which attention performs but don&rsquo;t change the nature of the act. The real progress will come from systems that know what to retain, what to retrieve, and what to ignore.</p>
+<p>After years of building AI tools for documentation at Microsoft, I&rsquo;ve learned that this pattern isn&rsquo;t a flaw; it&rsquo;s a design choice. The model isn&rsquo;t forgetful; it&rsquo;s efficient. It reads everything you show it, decides what matters mathematically, and writes a response based on the clarity of what&rsquo;s in view right now.</p>
+<p>Understanding that transforms how you work with LLMs. You restate. You summarize. You keep the spotlight pointed where you need it. Because when you realize that an LLM&rsquo;s memory is simply its present context, you stop wishing for something it doesn&rsquo;t have, and start mastering what it actually does.</p>
+<hr>
+<p><strong>If you&rsquo;ve followed this series from <a href="/posts/how-large-language-models-read-code">
+  how LLMs read code
+</a>
+ through <a href="/posts/how-large-language-models-think">
+  how they think
+</a>
+ and <a href="/posts/how-large-language-models-learn">
+  how they learn
+</a>
+, you now understand the full picture: pattern recognition through probability, geometric meaning through linear algebra, improvement through calculus, and the illusion of memory through attention. What emerges is a system that&rsquo;s powerful precisely because of, not despite, its constraints.</strong></p>
+<hr>
+<h2 id="try-it-yourself">Try It Yourself</h2>
+<p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/how-large-language-models-handle-context-windows" target="_blank" rel="noopener noreferrer">
+  Download the full code on GitHub
+</a>
+</p>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<p>If you want to dive deeper into the mathematics and architecture of context windows:</p>
+<p><a id="alammar2018"></a></p>
+<ul>
+<li>Alammar, J. (2018). <a href="http://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer">
+  The Illustrated Transformer
+</a>
+.<br>
+<em>Excellent visual explanation of attention mechanisms and how transformers process sequences. Highly accessible introduction to the concepts.</em></li>
+</ul>
+<p><a id="dai2019"></a></p>
+<ul>
+<li>Dai, Z., Yang, Z., Yang, Y., et al. (2019). <a href="https://arxiv.org/abs/1901.02860" target="_blank" rel="noopener noreferrer">
+  Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context
+</a>
+. <em>Proceedings of ACL 2019</em>.<br>
+<em>Proposes techniques for extending context beyond fixed windows, including relative positional encodings and segment-level recurrence.</em></li>
+</ul>
+<p><a id="gu2023"></a></p>
+<ul>
+<li>Gu, A., &amp; Dao, T. (2023). <a href="https://arxiv.org/abs/2312.00752" target="_blank" rel="noopener noreferrer">
+  Mamba: Linear-Time Sequence Modeling with Selective State Spaces
+</a>
+. <em>arXiv preprint</em>.<br>
+<em>Introduces state space models that achieve linear-time processing while maintaining competitive performance with transformers.</em></li>
+</ul>
+<p><a id="jiang2023"></a></p>
+<ul>
+<li>Jiang, Z., et al. (2023). <a href="https://arxiv.org/abs/2310.05736" target="_blank" rel="noopener noreferrer">
+  LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models
+</a>
+. <em>arXiv preprint</em>.<br>
+<em>Introduces prompt compression techniques that maintain semantic meaning while reducing token count.</em></li>
+</ul>
+<p><a id="liu2023"></a></p>
+<ul>
+<li>Liu, N. F., Lin, K., Hewitt, J., et al. (2023). <a href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">
+  Lost in the Middle: How Language Models Use Long Contexts
+</a>
+. <em>arXiv preprint</em>.<br>
+<em>Empirical study showing that LLMs perform worst on information in the middle of very long contexts, with best performance at the beginning and end.</em></li>
+</ul>
+<p><a id="peng2023"></a></p>
+<ul>
+<li>Peng, B., Alcaide, E., Anthony, Q., et al. (2023). <a href="https://arxiv.org/abs/2305.13048" target="_blank" rel="noopener noreferrer">
+  RWKV: Reinventing RNNs for the Transformer Era
+</a>
+. <em>arXiv preprint</em>.<br>
+<em>Proposes a linear-complexity alternative to transformers that combines RNN efficiency with transformer-like performance.</em></li>
+</ul>
+<p><a id="shaw2018"></a></p>
+<ul>
+<li>Shaw, P., Uszkoreit, J., &amp; Vaswani, A. (2018). <a href="https://arxiv.org/abs/1803.02155" target="_blank" rel="noopener noreferrer">
+  Self-Attention with Relative Position Representations
+</a>
+. <em>Proceedings of NAACL-HLT 2018</em>.<br>
+<em>Introduces relative positional encodings that help models handle longer contexts more effectively.</em></li>
+</ul>
+<p><a id="tay2022"></a></p>
+<ul>
+<li>Tay, Y., Dehghani, M., Bahri, D., &amp; Metzler, D. (2022). <a href="https://dl.acm.org/doi/10.1145/3530811" target="_blank" rel="noopener noreferrer">
+  Efficient Transformers: A Survey
+</a>
+. <em>ACM Computing Surveys</em>, 55(6), 1-28.<br>
+<em>Comprehensive survey of attention alternatives and efficiency techniques for transformers, covering sparse attention, linear attention, and other scaling approaches.</em></li>
+</ul>
+<p><a id="vaswani2017"></a></p>
+<ul>
+<li>Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">
+  Attention Is All You Need
+</a>
+. <em>Advances in Neural Information Processing Systems</em>, 30.<br>
+<em>The foundational paper that introduced the Transformer architecture and the attention mechanism. Essential reading for understanding how context windows work mathematically.</em></li>
+</ul>
+<hr>
+    </div>
+    <footer class="post__footer">
+      
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M4 0h8s2 0 4 2l15 15s2 2 0 4L21 31s-2 2-4 0L2 16s-2-2-2-4V3s0-3 4-3m3 10a3 3 0 0 0 0-6 3 3 0 0 0 0 6"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ai/" rel="tag">AI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/attention-mechanisms/" rel="tag">attention mechanisms</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/context-windows/" rel="tag">context windows</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/llm/" rel="tag">LLM</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/transformers/" rel="tag">transformers</a>
+		</li>
+	</ul>
+</div>
+      
+    </footer>
+  </article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget widget-bio">
+  <h4 class="widget__title">Behind the Code</h4>
+  <div class="widget__content">
+
+    <div class="bio-wrap">
+      
+        <a class="bio-avatar-link" href="/bio/">
+          <img class="bio-avatar" src="/img/avatar.png" alt="Avatar of Signal &amp; Syntax">
+        </a>
+      
+
+      
+      
+        <div class="bio-text"><p>For forty years I&rsquo;ve built platforms, not applications. Every time I&rsquo;ve been asked to ship a product, the product has
 turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
-that outlives the feature request it started from.</p><p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
+that outlives the feature request it started from.</p>
+<p>At AT&amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
 insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
 system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
 activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
-technology books, wrote 100+ articles for <em>.NET Programming Tips & Techniques</em>, and helped run
-<a href=http://codeguru.com target=_blank rel="noopener noreferrer">CodeGuru
-</a>(the largest Windows developer community of its era).</p><p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
+technology books, wrote 100+ articles for <em>.NET Programming Tips &amp; Techniques</em>, and helped run
+<a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
+  CodeGuru
+</a>
+ (the largest Windows developer community of its era).</p>
+<p>At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
 that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
 structures that get concatenated with code samples at runtime and routed to generative models, with results
-injected back into the output. Nearly 100 articles have shipped through the system.</p><p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
-to inference-time behavior, from tokenization to training infrastructure.</p><p>Connect with me on <a href=https://www.linkedin.com/in/tom-archer-dev/ target=_blank rel="noopener noreferrer">LinkedIn
-</a>.</p></div></div><p class=more><a class=link-more href=/bio/>Read more →</a></p></div></div><div class="widget widget-disclaimer"><h4 class=widget__title>Disclaimer</h4><div class=widget__content><p>The content on this blog represents my personal views and opinions only. It is not intended to represent
-the views, positions, or strategies of my employer or any other organization with which I may be associated.
-All content is provided “as is” without warranty of any kind.</p></div></div><div class="widget widget-social"><h4 class=widget__title>Connect</h4><div class=widget__content><ul class=social-list style=list-style:none;padding:0;margin:0;display:flex;gap:.6rem><li><a href=https://github.com/tomarcher aria-label=GitHub rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 008.21 23.9c.6.11.82-.26.82-.58V21.3c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93.0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17.0.0 1.01-.32 3.3 1.23a11.4 11.4.0 016.01.0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22.0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0012 .5z"/></svg></a></li><li><a href=https://www.linkedin.com/in/tom-archer-dev/ aria-label=LinkedIn rel="me noopener" target=_blank style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45H16.9v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85.0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54.0 4.2 2.33 4.2 5.36v6.36zM5.34 7.43a2.06 2.06.0 110-4.12 2.06 2.06.0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li><li><a href=/index.xml aria-label=RSS rel=noopener style=display:inline-flex;align-items:center;gap:.4rem><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18.0 110-4.36 2.18 2.18.0 010 4.36zM4 9.82v3.27a7.73 7.73.0 017.73 7.73H15c0-6.05-4.95-11-11-11zm0-4v3.27c8.27.0 15 6.73 15 15h3.27C22.27 14.03 14.06 5.82 4 5.82z"/></svg></a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title>Categories</h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai-and-the-mathematics-of-language/>AI and the Mathematics of Language</a></li><li class=widget__item><a class=widget__link href=/categories/applied-modeling-and-simulation/>Applied Modeling and Simulation</a></li><li class=widget__item><a class=widget__link href=/categories/essays-and-perspectives/>Essays and Perspectives</a></li><li class=widget__item><a class=widget__link href=/categories/python-techniques-and-tooling/>Python Techniques and Tooling</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title>Tags</h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/algorithms/ title=Algorithms>Algorithms</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/anthropic/ title=Anthropic>Anthropic</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/attention-mechanisms/ title="Attention Mechanisms">Attention Mechanisms</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/biology/ title=Biology>Biology</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/blockchain/ title=Blockchain>Blockchain</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/calculus/ title=Calculus>Calculus</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/code-organization/ title="Code Organization">Code Organization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/context-windows/ title="Context Windows">Context Windows</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cryptography/ title=Cryptography>Cryptography</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/data-parsing/ title="Data Parsing">Data Parsing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/databases/ title=Databases>Databases</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/design-patterns/ title="Design Patterns">Design Patterns</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/discrete-mathematics/ title="Discrete Mathematics">Discrete Mathematics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/distributed-systems/ title=Distributed-Systems>Distributed-Systems</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/economics/ title=Economics>Economics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/embeddings/ title=Embeddings>Embeddings</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/energy-balance/ title="Energy Balance">Energy Balance</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/geometry/ title=Geometry>Geometry</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/gradient-descent/ title="Gradient Descent">Gradient Descent</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hashing/ title=Hashing>Hashing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/innovation/ title=Innovation>Innovation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/kinematics/ title=Kinematics>Kinematics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/linear-algebra/ title="Linear Algebra">Linear Algebra</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/llm/ title=LLM>LLM</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/nlp/ title=NLP>NLP</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/nucleus-sampling/ title="Nucleus Sampling">Nucleus Sampling</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/numerical-methods/ title="Numerical Methods">Numerical Methods</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/optimization/ title=Optimization>Optimization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/passwords/ title=Passwords>Passwords</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/physics/ title=Physics>Physics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/predicate-logic/ title="Predicate Logic">Predicate Logic</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/probability/ title=Probability>Probability</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/productivity/ title=Productivity>Productivity</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/python/ title=Python>Python</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/rag/ title=RAG>RAG</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/sampling/ title=Sampling>Sampling</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/scheduling/ title=Scheduling>Scheduling</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/security/ title=Security>Security</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/set-theory/ title="Set Theory">Set Theory</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/softmax/ title=Softmax>Softmax</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/symbolic-math/ title="Symbolic Math">Symbolic Math</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/sympy/ title=SymPy>SymPy</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/temperature/ title=Temperature>Temperature</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/thermodynamics/ title=Thermodynamics>Thermodynamics</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/tokenization/ title=Tokenization>Tokenization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/top-p/ title=Top-P>Top-P</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/transformers/ title=Transformers>Transformers</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/web-search/ title="Web Search">Web Search</a></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 Signal & Syntax.
-<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/js/menu.js></script><script src=/js/copy-button.js></script></body></html>
+injected back into the output. Nearly 100 articles have shipped through the system.</p>
+<p>This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
+to inference-time behavior, from tokenization to training infrastructure.</p>
+<p>Connect with me on <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+  LinkedIn
+</a>
+.</p>
+</div>
+      
+    </div>
+
+    
+    <p class="more"><a class="link-more" href="/bio/">Read more →</a></p>
+  </div>
+</div>
+<div class="widget widget-disclaimer">
+  <h4 class="widget__title">Disclaimer</h4>
+  <div class="widget__content">
+    <p>
+      The content on this blog represents my personal views and opinions only. It is not intended to represent
+      the views, positions, or strategies of my employer or any other organization with which I may be associated.
+      All content is provided “as is” without warranty of any kind.
+    </p>
+  </div>
+</div>
+<div class="widget widget-social">
+  <h4 class="widget__title">Connect</h4>
+  <div class="widget__content">
+    <ul class="social-list" style="list-style:none; padding:0; margin:0; display:flex; gap:.6rem;"><li>
+        <a href="https://github.com/tomarcher" aria-label="GitHub" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.47 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="https://www.linkedin.com/in/tom-archer-dev/" aria-label="LinkedIn" rel="me noopener" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.67H9.37V9h3.41v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.2 2.33 4.2 5.36v6.36ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          
+        </a>
+      </li><li>
+        <a href="/index.xml" aria-label="RSS" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1 0-4.36 2.18 2.18 0 0 1 0 4.36Zm-2.18-8v3.27a7.73 7.73 0 0 1 7.73 7.73h3.27c0-6.05-4.95-11-11-11Zm0-4v3.27c8.27 0 15 6.73 15 15h3.27c0-10.06-8.21-18.27-18.27-18.27Z"/></svg>
+          
+        </a>
+      </li></ul>
+  </div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/essays-and-perspectives/">Essays and Perspectives</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/context-windows/" title="Context Windows">Context Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cryptography/" title="Cryptography">Cryptography</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-parsing/" title="Data Parsing">Data Parsing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/databases/" title="Databases">Databases</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/design-patterns/" title="Design Patterns">Design Patterns</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/discrete-mathematics/" title="Discrete Mathematics">Discrete Mathematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/distributed-systems/" title="Distributed-Systems">Distributed-Systems</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/economics/" title="Economics">Economics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeddings/" title="Embeddings">Embeddings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/energy-balance/" title="Energy Balance">Energy Balance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nlp/" title="NLP">NLP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nucleus-sampling/" title="Nucleus Sampling">Nucleus Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/numerical-methods/" title="Numerical Methods">Numerical Methods</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/optimization/" title="Optimization">Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/passwords/" title="Passwords">Passwords</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/physics/" title="Physics">Physics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/predicate-logic/" title="Predicate Logic">Predicate Logic</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability/" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/productivity/" title="Productivity">Productivity</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rag/" title="RAG">RAG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sampling/" title="Sampling">Sampling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scheduling/" title="Scheduling">Scheduling</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/security/" title="Security">Security</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/set-theory/" title="Set Theory">Set Theory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/softmax/" title="Softmax">Softmax</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/symbolic-math/" title="Symbolic Math">Symbolic Math</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sympy/" title="SymPy">SymPy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/temperature/" title="Temperature">Temperature</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/thermodynamics/" title="Thermodynamics">Thermodynamics</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tokenization/" title="Tokenization">Tokenization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/top-p/" title="Top-P">Top-P</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/transformers/" title="Transformers">Transformers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-search/" title="Web Search">Web Search</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 Signal &amp; Syntax.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/copy-button.js"></script>
+</body>
+</html>

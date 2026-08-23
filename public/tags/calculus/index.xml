@@ -1,22 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Calculus on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/calculus/</link><description>Recent content in Calculus on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 08 Oct 2025 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/calculus/index.xml" rel="self" type="application/rss+xml"/><item><title>How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</title><link>https://tomarcher.io/posts/how-large-language-models-learn/</link><pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-learn/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-large-language-models-learn3.png"
- alt="Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding."
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Meaning takes shape as the model learns to descend its own mathematical terrain.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you interact with a large language model (LLM) such as &lt;a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
- ChatGPT
-&lt;/a>
- or &lt;a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
- Claude
-&lt;/a>
-, the model seems to respond instantly relative to the question&amp;rsquo;s degree of difficulty. What&amp;rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.&lt;/p>
-&lt;p>Large language models don&amp;rsquo;t memorize text. They &lt;em>optimize&lt;/em> it. Behind that optimization lies calculus. I&amp;rsquo;m not referring to the calculus you did with pencil and paper. I&amp;rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.&lt;/p>
-&lt;p>At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be &lt;em>slightly less wrong.&lt;/em> The word &amp;ldquo;slightly&amp;rdquo; in this context is the essence of calculus.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Calculus on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/tags/calculus/</link>
+    <description>Recent content in Calculus on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Oct 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/calculus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</title>
+      <link>http://localhost:1313/posts/how-large-language-models-learn/</link>
+      <pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-learn/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./how-large-language-models-learn3.png&#34;&#xD;&#xA;       alt=&#34;Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding.&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Meaning takes shape as the model learns to descend its own mathematical terrain.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you interact with a large language model (LLM) such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, the model seems to respond instantly relative to the question&amp;rsquo;s degree of difficulty. What&amp;rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.&lt;/p&gt;&#xA;&lt;p&gt;Large language models don&amp;rsquo;t memorize text. They &lt;em&gt;optimize&lt;/em&gt; it. Behind that optimization lies calculus. I&amp;rsquo;m not referring to the calculus you did with pencil and paper. I&amp;rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.&lt;/p&gt;&#xA;&lt;p&gt;At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be &lt;em&gt;slightly less wrong.&lt;/em&gt; The word &amp;ldquo;slightly&amp;rdquo; in this context is the essence of calculus.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>

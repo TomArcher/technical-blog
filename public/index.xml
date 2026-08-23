@@ -1,340 +1,180 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Signal &amp; Syntax</title><link>https://tomarcher.io/</link><description>Recent content on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/index.xml" rel="self" type="application/rss+xml"/><item><title>The Discrete Mathematics Hiding Inside LLMs</title><link>https://tomarcher.io/posts/discrete-math-in-large-language-models/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/discrete-math-in-large-language-models/</guid><description>&lt;figure style="margin: 0 20px 10px 20px; text-align: center;">
- &lt;img src="./discrete-math-in-large-language-models.png"
- alt="A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>It's true what they say: discrete math is everywhere you look.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>A recent &lt;a href="https://www.linkedin.com/posts/activity-7435689322504167424-_v46" target="_blank" rel="noopener noreferrer">
- LinkedIn post
-&lt;/a>
- from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&amp;rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&amp;rsquo;d expect.&lt;/p>
-&lt;p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>How Large Language Models (LLMs) Know Things They Were Never Taught</title><link>https://tomarcher.io/posts/how-large-language-models-know-things-they-were-never-taught/</link><pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-know-things-they-were-never-taught/</guid><description>&lt;figure style="margin: 0 20px 10px 20px; text-align: center;">
- &lt;img src="./how-large-language-models-know-things-they-were-never-taught.png"
- alt="A neural network with frozen weights receiving external documents being injected into its context window">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>The model didn't learn this. It just read it.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you ask an LLM &lt;em>without&lt;/em> web search enabled a question like &amp;ldquo;What happened in the news this morning?&amp;rdquo;, the LLM will respond by telling you that it doesn&amp;rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.&lt;/p>
-&lt;p>Conversely, ask an LLM &lt;em>with&lt;/em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.&lt;/p>
-&lt;p>Identical question. Same underlying technology. Completely different answers. The difference isn&amp;rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.&lt;/p>
-&lt;p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &amp;ldquo;know&amp;rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model &lt;em>learned&lt;/em> and what a model &lt;em>read&lt;/em>.&lt;/p>
-&lt;p>LLMs don&amp;rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&amp;rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&amp;rsquo;t learning; it&amp;rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;A model with web search doesn&amp;rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Temperature and Top-P: The Creativity Knobs</title><link>https://tomarcher.io/posts/temperature-top-p-creativity-knobs/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/posts/temperature-top-p-creativity-knobs/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./temperature-top-p-creativity-knobs.png"
- alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Turn it up and things get weird.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Every API call to &lt;a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
- ChatGPT
-&lt;/a>
-, &lt;a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
- Claude
-&lt;/a>
-, or any other LLM includes two parameters most people either ignore or tweak randomly: &lt;strong>temperature&lt;/strong> and &lt;strong>top-p&lt;/strong>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p>
-&lt;p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.&lt;/p>
-&lt;p>I&amp;rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &amp;ldquo;Set temperature to 0.7 for creative writing&amp;rdquo; becomes tribal knowledge, passed down without explanation. Let&amp;rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Temperature doesn&amp;rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments</title><link>https://tomarcher.io/posts/edmund-fitzgerald/</link><pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/edmund-fitzgerald/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./edmund-fitzgerald.jpeg" alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Originally appearing on his 1976 album, &lt;em>Summertime Dream&lt;/em>, &amp;ldquo;The Wreck of the Edmund Fitzgerald&amp;rdquo; is a powerful ballad written and performed by folk singer &lt;a href="#lightfoot1976">
- Gordon Lightfoot
-&lt;/a>
-. In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: &amp;ldquo;The lake, it is said, never gives up her dead.&amp;rdquo; Following the singer&amp;rsquo;s death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard&amp;rsquo;s Hot Rock and Alternative category.&lt;/p>
-&lt;p>Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn&amp;rsquo;t give up her dead, and the science behind it is as haunting as the song itself.&lt;/p>
-&lt;p>It turns out that line is not poetic license. It&amp;rsquo;s physics.&lt;/p>
-&lt;p>When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they stayed down. Not because of some mystical property of the Great Lakes, but because of a perfect storm of temperature, pressure, and biology that we can model mathematically.&lt;/p>
-&lt;hr>
-&lt;p>&lt;em>Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.&lt;/em>&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>The Birthday Paradox in Production: When Random IDs Collide</title><link>https://tomarcher.io/posts/birthday-paradox/</link><pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/birthday-paradox/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./birthday-paradox.png" alt="Multiple database servers with overlapping ID bubbles showing collision zones" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>You generate a UUID. It&amp;rsquo;s 128 bits total, with 122 bits of randomness. That&amp;rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?&lt;/p>
-&lt;p>As I like to say, &lt;em>common sense and intuition are the enemies of science&lt;/em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&amp;rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?&lt;/p>
-&lt;p>Math shows us the uncomfortable truth: You&amp;rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&amp;rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&amp;rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&amp;rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.&lt;/p>
-&lt;p>You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&amp;rsquo;t just a party trick; it&amp;rsquo;s the same mathematics that determines when your &amp;ldquo;guaranteed unique&amp;rdquo; database IDs collide, why hash tables need careful sizing, and when your distributed system&amp;rsquo;s assumptions break.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;In a room of 23 people, there&amp;rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Hash Collisions: Why Your 'Unique' Fingerprints Aren't (And Why That's Usually OK)</title><link>https://tomarcher.io/posts/hash-collisions/</link><pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/hash-collisions/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
- &lt;img src="./hash-collisions.png"
- alt="Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes"
- width="400"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&amp;rsquo;t create truly unique fingerprints (&lt;a href="#stevens2017">
- Stevens et al., 2017
-&lt;/a>
-). This &amp;ldquo;SHAttered&amp;rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.&lt;/p>
-&lt;p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &amp;ldquo;unique&amp;rdquo; versus &amp;ldquo;not unique.&amp;rdquo;&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;In cryptography, &amp;lsquo;secure&amp;rsquo; has always meant &amp;lsquo;secure for now&amp;rsquo;.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>How Large Language Models (LLMs) Tokenize Text: Why Words Aren't What You Think</title><link>https://tomarcher.io/posts/how-large-language-models-tokenize-text/</link><pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-tokenize-text/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-large-language-models-tokenize-text.png"
- alt="Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens"
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you type &amp;ldquo;I love programming&amp;rdquo; into ChatGPT, you might assume the model reads three words. It doesn&amp;rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.&lt;/p>
-&lt;p>When you ask Claude to count the letters in the word &amp;ldquo;strawberry,&amp;rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &amp;ldquo;strawberry&amp;rdquo; as a complete unit. It saw tokens like &lt;code>&amp;quot;str&amp;quot;&lt;/code>, &lt;code>&amp;quot;aw&amp;quot;&lt;/code>, &lt;code>&amp;quot;berry&amp;quot;&lt;/code> and tried to reason about letters it couldn&amp;rsquo;t directly access.&lt;/p>
-&lt;p>And when early GPT-3 users discovered that typing &amp;ldquo;SolidGoldMagikarp&amp;rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&amp;rsquo;t the model&amp;rsquo;s training. It was a &lt;strong>glitch token&lt;/strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (&lt;a href="#rumbelow2023">
- Rumbelow &amp;amp; Watkins, 2023
-&lt;/a>
-).&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;To a language model, text isn&amp;rsquo;t a stream of words. It&amp;rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn't Memory</title><link>https://tomarcher.io/posts/how-large-language-models-handle-context-windows/</link><pubDate>Mon, 10 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-handle-context-windows/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-llms-handle-context-windows.png"
- alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens"
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Context windows create the illusion of memory through mathematical attention, not storage.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you have a long conversation with a large language model (LLM) such as &lt;a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
- ChatGPT
-&lt;/a>
- or &lt;a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
- Claude
-&lt;/a>
-, it feels like the model remembers everything you&amp;rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &amp;ldquo;know&amp;rdquo; what you talked about pages ago.&lt;/p>
-&lt;p>But here&amp;rsquo;s the uncomfortable truth: the model doesn&amp;rsquo;t remember anything. It&amp;rsquo;s not storing your conversation in memory the way a database would. Instead, it&amp;rsquo;s &lt;strong>rereading the entire conversation from the beginning every single time you send a message.&lt;/strong>&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;A context window isn&amp;rsquo;t memory. It&amp;rsquo;s a performance where the model rereads its lines before every response.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</title><link>https://tomarcher.io/posts/safe-distance-in-traffic/</link><pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/safe-distance-in-traffic/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./safe-distance-in-traffic-vertical-arrows.png" alt="Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Following distance isn't just space, it's time in motion.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the &lt;strong>three-second rule&lt;/strong> and its validity. As I&amp;rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Three seconds is a rule of thumb. Physics reveals the truth.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</title><link>https://tomarcher.io/posts/thermo-water-energy-balance/</link><pubDate>Sun, 12 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/thermo-water-energy-balance/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./thermo-water-energy-balance.png" 
- alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background" 
- width="250" 
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&amp;rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.&lt;/p>
-&lt;p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&amp;rsquo;s not coincidence; it&amp;rsquo;s thermodynamics.&lt;/p>
-&lt;p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&amp;rsquo;s &lt;em>specific heat&lt;/em> is much higher.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</title><link>https://tomarcher.io/posts/how-large-language-models-learn/</link><pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-learn/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-large-language-models-learn3.png"
- alt="Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding."
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Meaning takes shape as the model learns to descend its own mathematical terrain.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you interact with a large language model (LLM) such as &lt;a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
- ChatGPT
-&lt;/a>
- or &lt;a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
- Claude
-&lt;/a>
-, the model seems to respond instantly relative to the question&amp;rsquo;s degree of difficulty. What&amp;rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.&lt;/p>
-&lt;p>Large language models don&amp;rsquo;t memorize text. They &lt;em>optimize&lt;/em> it. Behind that optimization lies calculus. I&amp;rsquo;m not referring to the calculus you did with pencil and paper. I&amp;rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.&lt;/p>
-&lt;p>At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be &lt;em>slightly less wrong.&lt;/em> The word &amp;ldquo;slightly&amp;rdquo; in this context is the essence of calculus.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>How Large Language Models (LLMs) Think: Turning Meaning into Math</title><link>https://tomarcher.io/posts/how-large-language-models-think/</link><pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-think/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-large-language-models-read-code.png" 
- alt="Digital artwork showing vector/matrix math with the output being words, symbolizing that AI generates words from linear algebra operations." 
- width="250" 
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Meaning takes shape in mathematics long before it reaches words.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you enter a sentence into a Large Language Model (LLM) such as &lt;a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
- ChatGPT
-&lt;/a>
- or &lt;a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
- Claude
-&lt;/a>
-, the model does not process words as language. It represents them as numbers.&lt;/p>
-&lt;p>Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.&lt;/p>
-&lt;p>This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</title><link>https://tomarcher.io/posts/how-large-language-models-read-code/</link><pubDate>Mon, 06 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-read-code/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-large-language-models-read-code.png" 
- alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
- width="250" 
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>AI reads code as patterns, not instructions.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;When an AI system &amp;lsquo;understands&amp;rsquo; code, it is not executing logic; it is modeling probability.&lt;/em>&amp;rdquo;&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Numeric Parsing in Python with Integer Division and Modulus</title><link>https://tomarcher.io/posts/python-integer-division-and-modulus/</link><pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/python-integer-division-and-modulus/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./python-integer-division-and-modulus.png"
- alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Parse fixed-width numbers with // and % for speed and clarity.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong>numeric parsing with integer division (&lt;code>//&lt;/code>) and modulus (&lt;code>%&lt;/code>)&lt;/strong> is the better option.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Using SymPy in Python When NumPy Isn't Enough</title><link>https://tomarcher.io/posts/python-sympy-vs-numpy/</link><pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate><guid>https://tomarcher.io/posts/python-sympy-vs-numpy/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;"> 
- &lt;img src="./sympy.png" alt="Sympy official log of a snake coiled around a cube with mathematical symbols" width="250" style="display: block; margin: 0 auto;"> 
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;"> 
- &lt;em>SymPy provides symbolic computation and precision techniques for Python developers&lt;/em>
- &lt;/figcaption> 
-&lt;/figure> 
-&lt;p>Most of us reach for &lt;a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
- NumPy
-&lt;/a>
- whenever math shows up in a project. But sometimes, you don&amp;rsquo;t want approximate answers, you want exact math. That&amp;rsquo;s when you pull &lt;a href="https://sympy.org/" target="_blank" rel="noopener noreferrer">
- SymPy
-&lt;/a>
- out of your programmer&amp;rsquo;s toolkit and get to work.&lt;/p>
-&lt;p>It&amp;rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.&lt;/p>
-&lt;p>In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Floats guess. SymPy knows.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>This is where SymPy shines. To see the difference between &lt;strong>floating-point approximations&lt;/strong> (Python or NumPy) and &lt;strong>symbolic precision&lt;/strong> (SymPy), let&amp;rsquo;s look at a simple but very real example from finance.&lt;/p></description></item><item><title>The Five-Second Rule Explored with Math &amp; Python</title><link>https://tomarcher.io/posts/five-second-rule/</link><pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/five-second-rule/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./five-second-rule-explored.png" alt="Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Forget the five-second rule. Germs transfer instantly, and we can prove it with math.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.&lt;/p></description></item><item><title>The Meeting Diet: An Optimization Approach to Your Calendar</title><link>https://tomarcher.io/posts/meeting-diet/</link><pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/meeting-diet/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./meeting-diet.png" alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>If you don't optimize your schedule, your schedule will optimize you. Badly&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to &lt;em>quantify&lt;/em> that choice?&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>&lt;strong>The good news: math can help.&lt;/strong> By modeling your schedule as a &lt;a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
- &lt;strong>0/1 knapsack problem with two constraints&lt;/strong>
-&lt;/a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&amp;rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &amp;ldquo;meeting diet.&amp;rdquo;&lt;/p></description></item><item><title>Using Python Dispatch Tables for Cleaner Validation</title><link>https://tomarcher.io/posts/python-dispatch-maps/</link><pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate><guid>https://tomarcher.io/posts/python-dispatch-maps/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./python-dispatch-maps.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Let&amp;rsquo;s be honest: argument validation code is rarely the proudest part of anyone&amp;rsquo;s repo.&lt;/p>
-&lt;p>Most of us start with the usual suspects:&lt;/p>
-&lt;p>❌ The dreaded &lt;em>inverted-V&lt;/em> tower of &lt;code>if/else&lt;/code> statements&lt;br>
-❌ A graveyard of guard clauses scattered line after line&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>Both work fine… until they don&amp;rsquo;t. Then you&amp;rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.&lt;/p>
-&lt;p>There&amp;rsquo;s a better way: &lt;strong>dispatch tables&lt;/strong>!&lt;/p></description></item><item><title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</title><link>https://tomarcher.io/posts/three-d-packing/</link><pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/three-d-packing/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./three-d-packing.png" alt="3D Bin Packing" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>How do you fit it all in?&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>My first full-time programming job was for &lt;strong>Holiday on Ice&lt;/strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&amp;rsquo;s crew was efficiently loading trucks for the next city.&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>One day, the controller asked me if I could code a system that took, as input, the trucks&amp;rsquo; &lt;strong>3D dimensions&lt;/strong> and the &lt;strong>3D dimensions (and weight)&lt;/strong> of every object to be packed. Back in the &lt;strong>Turbo Pascal&lt;/strong> era, exploring 3D packing was painful. Today, with &lt;strong>Python&lt;/strong> and &lt;strong>AI-assisted scaffolding&lt;/strong>, it&amp;rsquo;s surprisingly approachable.&lt;/p></description></item><item><title>From Solow to ChatGPT: Why Total Factor Productivity Can't Keep Up With Generative AI</title><link>https://tomarcher.io/posts/tfp-chatgpt/</link><pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/tfp-chatgpt/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./tfp-chatgpt.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Our tools for measuring progress were built for factories, not for AI.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn&amp;rsquo;t that show up in our productivity statistics?&lt;/p>
-&lt;p>Economists have long relied on a metric called &lt;strong>Total Factor Productivity (TFP)&lt;/strong> to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>You can see the &lt;del>computer age&lt;/del> generative AI everywhere but in the productivity statistics.&lt;/em>&lt;/p>
-&lt;p>&lt;em>(Adapted from Robert Solow, 1987)&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</title><link>https://tomarcher.io/posts/rain-paradox/</link><pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/rain-paradox/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./rain-paradox.png" alt="Rain Paradox: Walk or Run?" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>To walk or to run. That is the question.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Early in my programming career, I came across a coding challenge that stuck with me for many years:&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;If it&amp;rsquo;s raining, will you stay drier by walking or running through it?&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>At the time, I didn&amp;rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&amp;rsquo;t about recursion or memory management. It was about &lt;strong>getting wet&lt;/strong>, and &lt;strong>how fast you move through falling rain&lt;/strong>.&lt;/p></description></item><item><title>About Signal &amp; Syntax</title><link>https://tomarcher.io/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tomarcher.io/about/</guid><description>&lt;p>Most writing about LLMs sits at one of two altitudes: high-level explainers aimed at executives and curious newcomers, or dense research papers aimed at other researchers. There&amp;rsquo;s less writing in the middle, where working engineers actually operate. Most engineers need to understand enough of what&amp;rsquo;s happening under the hood to build and debug real systems, but not so much that they feel like they&amp;rsquo;re replicating a PhD program.&lt;/p>
-&lt;p>Signal &amp;amp; Syntax serves that middle altitude. Posts work through the mathematics and engineering underneath the models we&amp;rsquo;re all building on: gradient descent, attention, tokenization, inference-time behavior, training infrastructure, evaluation, orchestration. The goal is to write about this material the way one engineer explains something to another, with enough rigor to be trustworthy, enough plain English to be readable, and enough specificity that the post helps you build something.&lt;/p></description></item><item><title>Behind the Code: Tom's Story</title><link>https://tomarcher.io/bio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tomarcher.io/bio/</guid><description>&lt;div class="about-bio">
- 
- 
-
- &lt;div class="bio-text">
- &lt;p>For forty years I&amp;rsquo;ve built platforms, not applications. Every time I&amp;rsquo;ve been asked to ship a product, the product has
-turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
-that outlives the feature request it started from.&lt;/p>
-&lt;p>At AT&amp;amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
-insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
-system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
-activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
-technology books, wrote 100+ articles for &lt;em>.NET Programming Tips &amp;amp; Techniques&lt;/em>, and helped run
-&lt;a href="http://codeguru.com" target="_blank" rel="noopener noreferrer">
- CodeGuru
-&lt;/a>
- (the largest Windows developer community of its era).&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Signal &amp; Syntax</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Start Here: The Signal &amp; Syntax Roadmap</title>
+      <link>http://localhost:1313/posts/roadmap/</link>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/roadmap/</guid>
+      <description>&lt;p&gt;Signal &amp;amp; Syntax works through the mathematics, mechanics, and engineering of large language models from first principles, with a secondary interest in applied modeling and simulation. Each post is written to stand on its own, but many of them also fit into a larger arc. This page is where those arcs are visible in one place.&lt;/p&gt;&#xA;&lt;p&gt;The roadmap is public because I want readers to know where the project is going, and because a public roadmap is a commitment device. It updates as I learn things that change the plan, so the &amp;ldquo;planned&amp;rdquo; section is not a fixed order or a promise of dates. Consider it an honest snapshot of what I intend to write next, subject to revision when the material teaches me something.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Discrete Mathematics Hiding Inside LLMs</title>
+      <link>http://localhost:1313/posts/discrete-math-in-large-language-models/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/discrete-math-in-large-language-models/</guid>
+      <description>&lt;figure style=&#34;margin: 0 20px 10px 20px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./discrete-math-in-large-language-models.png&#34;&#xD;&#xA;        alt=&#34;A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;It&#39;s true what they say: discrete math is everywhere you look.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;A recent &lt;a href=&#34;https://www.linkedin.com/posts/activity-7435689322504167424-_v46&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  LinkedIn post&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&amp;rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&amp;rsquo;d expect.&lt;/p&gt;&#xA;&lt;p&gt;Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Know Things They Were Never Taught</title>
+      <link>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</link>
+      <pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</guid>
+      <description>&lt;figure style=&#34;margin: 0 20px 10px 20px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./how-large-language-models-know-things-they-were-never-taught.png&#34;&#xD;&#xA;        alt=&#34;A neural network with frozen weights receiving external documents being injected into its context window&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;The model didn&#39;t learn this. It just read it.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you ask an LLM &lt;em&gt;without&lt;/em&gt; web search enabled a question like &amp;ldquo;What happened in the news this morning?&amp;rdquo;, the LLM will respond by telling you that it doesn&amp;rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.&lt;/p&gt;&#xA;&lt;p&gt;Conversely, ask an LLM &lt;em&gt;with&lt;/em&gt; web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.&lt;/p&gt;&#xA;&lt;p&gt;Identical question. Same underlying technology. Completely different answers. The difference isn&amp;rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.&lt;/p&gt;&#xA;&lt;p&gt;But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &amp;ldquo;know&amp;rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model &lt;em&gt;learned&lt;/em&gt; and what a model &lt;em&gt;read&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;LLMs don&amp;rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&amp;rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&amp;rsquo;t learning; it&amp;rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;A model with web search doesn&amp;rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Temperature and Top-P: The Creativity Knobs</title>
+      <link>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./temperature-top-p-creativity-knobs.png&#34;&#xD;&#xA;       alt=&#34;A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Turn it up and things get weird.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Every API call to &lt;a href=&#34;https://openai.com/api/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, &lt;a href=&#34;https://claude.com/platform/api&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, or any other LLM includes two parameters most people either ignore or tweak randomly: &lt;strong&gt;temperature&lt;/strong&gt; and &lt;strong&gt;top-p&lt;/strong&gt;. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p&gt;&#xA;&lt;p&gt;The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &amp;ldquo;Set temperature to 0.7 for creative writing&amp;rdquo; becomes tribal knowledge, passed down without explanation. Let&amp;rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Temperature doesn&amp;rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments</title>
+      <link>http://localhost:1313/posts/edmund-fitzgerald/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/edmund-fitzgerald/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./edmund-fitzgerald.jpeg&#34; alt=&#34;Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;At 530 feet and 39°F, physics ensures Gordon Lightfoot&#39;s evocative lyric remains literally true.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Originally appearing on his 1976 album, &lt;em&gt;Summertime Dream&lt;/em&gt;, &amp;ldquo;The Wreck of the Edmund Fitzgerald&amp;rdquo; is a powerful ballad written and performed by folk singer &lt;a href=&#34;#lightfoot1976&#34;&gt;&#xD;&#xA;  Gordon Lightfoot&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;. In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: &amp;ldquo;The lake, it is said, never gives up her dead.&amp;rdquo; Following the singer&amp;rsquo;s death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard&amp;rsquo;s Hot Rock and Alternative category.&lt;/p&gt;&#xA;&lt;p&gt;Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn&amp;rsquo;t give up her dead, and the science behind it is as haunting as the song itself.&lt;/p&gt;&#xA;&lt;p&gt;It turns out that line is not poetic license. It&amp;rsquo;s physics.&lt;/p&gt;&#xA;&lt;p&gt;When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they stayed down. Not because of some mystical property of the Great Lakes, but because of a perfect storm of temperature, pressure, and biology that we can model mathematically.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>The Birthday Paradox in Production: When Random IDs Collide</title>
+      <link>http://localhost:1313/posts/birthday-paradox/</link>
+      <pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/birthday-paradox/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./birthday-paradox.png&#34; alt=&#34;Multiple database servers with overlapping ID bubbles showing collision zones&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;You generate a UUID. It&amp;rsquo;s 128 bits total, with 122 bits of randomness. That&amp;rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?&lt;/p&gt;&#xA;&lt;p&gt;As I like to say, &lt;em&gt;common sense and intuition are the enemies of science&lt;/em&gt;. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&amp;rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?&lt;/p&gt;&#xA;&lt;p&gt;Math shows us the uncomfortable truth: You&amp;rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&amp;rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&amp;rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&amp;rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.&lt;/p&gt;&#xA;&lt;p&gt;You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&amp;rsquo;t just a party trick; it&amp;rsquo;s the same mathematics that determines when your &amp;ldquo;guaranteed unique&amp;rdquo; database IDs collide, why hash tables need careful sizing, and when your distributed system&amp;rsquo;s assumptions break.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;In a room of 23 people, there&amp;rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</title>
+      <link>http://localhost:1313/posts/hash-collisions/</link>
+      <pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/hash-collisions/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./hash-collisions.png&#34;&#xD;&#xA;       alt=&#34;Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes&#34;&#xD;&#xA;       width=&#34;400&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&amp;rsquo;t create truly unique fingerprints (&lt;a href=&#34;#stevens2017&#34;&gt;&#xD;&#xA;  Stevens et al., 2017&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;). This &amp;ldquo;SHAttered&amp;rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.&lt;/p&gt;&#xA;&lt;p&gt;Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &amp;ldquo;unique&amp;rdquo; versus &amp;ldquo;not unique.&amp;rdquo;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;In cryptography, &amp;lsquo;secure&amp;rsquo; has always meant &amp;lsquo;secure for now&amp;rsquo;.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</title>
+      <link>http://localhost:1313/posts/how-large-language-models-tokenize-text/</link>
+      <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-tokenize-text/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./how-large-language-models-tokenize-text.png&#34;&#xD;&#xA;       alt=&#34;Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you type &amp;ldquo;I love programming&amp;rdquo; into ChatGPT, you might assume the model reads three words. It doesn&amp;rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.&lt;/p&gt;&#xA;&lt;p&gt;When you ask Claude to count the letters in the word &amp;ldquo;strawberry,&amp;rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &amp;ldquo;strawberry&amp;rdquo; as a complete unit. It saw tokens like &lt;code&gt;&amp;quot;str&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;aw&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;berry&amp;quot;&lt;/code&gt; and tried to reason about letters it couldn&amp;rsquo;t directly access.&lt;/p&gt;&#xA;&lt;p&gt;And when early GPT-3 users discovered that typing &amp;ldquo;SolidGoldMagikarp&amp;rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&amp;rsquo;t the model&amp;rsquo;s training. It was a &lt;strong&gt;glitch token&lt;/strong&gt;: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (&lt;a href=&#34;#rumbelow2023&#34;&gt;&#xD;&#xA;  Rumbelow &amp;amp; Watkins, 2023&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;).&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;To a language model, text isn&amp;rsquo;t a stream of words. It&amp;rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</title>
+      <link>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</link>
+      <pubDate>Mon, 10 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./how-llms-handle-context-windows.png&#34;&#xD;&#xA;       alt=&#34;Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Context windows create the illusion of memory through mathematical attention, not storage.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you have a long conversation with a large language model (LLM) such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, it feels like the model remembers everything you&amp;rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &amp;ldquo;know&amp;rdquo; what you talked about pages ago.&lt;/p&gt;&#xA;&lt;p&gt;But here&amp;rsquo;s the uncomfortable truth: the model doesn&amp;rsquo;t remember anything. It&amp;rsquo;s not storing your conversation in memory the way a database would. Instead, it&amp;rsquo;s &lt;strong&gt;rereading the entire conversation from the beginning every single time you send a message.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;A context window isn&amp;rsquo;t memory. It&amp;rsquo;s a performance where the model rereads its lines before every response.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough</title>
+      <link>http://localhost:1313/posts/safe-distance-in-traffic/</link>
+      <pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/safe-distance-in-traffic/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./safe-distance-in-traffic-vertical-arrows.png&#34; alt=&#34;Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Following distance isn&#39;t just space, it&#39;s time in motion.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the &lt;strong&gt;three-second rule&lt;/strong&gt; and its validity. As I&amp;rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Three seconds is a rule of thumb. Physics reveals the truth.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast</title>
+      <link>http://localhost:1313/posts/thermo-water-energy-balance/</link>
+      <pubDate>Sun, 12 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/thermo-water-energy-balance/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./thermo-water-energy-balance.png&#34; &#xD;&#xA;       alt=&#34;Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background&#34; &#xD;&#xA;       width=&#34;250&#34; &#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&amp;rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.&lt;/p&gt;&#xA;&lt;p&gt;The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&amp;rsquo;s not coincidence; it&amp;rsquo;s thermodynamics.&lt;/p&gt;&#xA;&lt;p&gt;The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&amp;rsquo;s &lt;em&gt;specific heat&lt;/em&gt; is much higher.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</title>
+      <link>http://localhost:1313/posts/how-large-language-models-learn/</link>
+      <pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-learn/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./how-large-language-models-learn3.png&#34;&#xD;&#xA;       alt=&#34;Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding.&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Meaning takes shape as the model learns to descend its own mathematical terrain.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you interact with a large language model (LLM) such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, the model seems to respond instantly relative to the question&amp;rsquo;s degree of difficulty. What&amp;rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.&lt;/p&gt;&#xA;&lt;p&gt;Large language models don&amp;rsquo;t memorize text. They &lt;em&gt;optimize&lt;/em&gt; it. Behind that optimization lies calculus. I&amp;rsquo;m not referring to the calculus you did with pencil and paper. I&amp;rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.&lt;/p&gt;&#xA;&lt;p&gt;At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be &lt;em&gt;slightly less wrong.&lt;/em&gt; The word &amp;ldquo;slightly&amp;rdquo; in this context is the essence of calculus.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Think: Turning Meaning into Math</title>
+      <link>http://localhost:1313/posts/how-large-language-models-think/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-think/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./how-large-language-models-read-code.png&#34; &#xD;&#xA;    alt=&#34;Digital artwork showing vector/matrix math with the output being words, symbolizing that AI generates words from linear algebra operations.&#34; &#xD;&#xA;    width=&#34;250&#34; &#xD;&#xA;    style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;Meaning takes shape in mathematics long before it reaches words.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you enter a sentence into a Large Language Model (LLM) such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, the model does not process words as language. It represents them as numbers.&lt;/p&gt;&#xA;&lt;p&gt;Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.&lt;/p&gt;&#xA;&lt;p&gt;This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</title>
+      <link>http://localhost:1313/posts/how-large-language-models-read-code/</link>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-read-code/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./how-large-language-models-read-code.png&#34; &#xD;&#xA;    alt=&#34;Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic.&#34; &#xD;&#xA;    width=&#34;250&#34; &#xD;&#xA;    style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;AI reads code as patterns, not instructions.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;When an AI system &amp;lsquo;understands&amp;rsquo; code, it is not executing logic; it is modeling probability.&lt;/em&gt;&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Numeric Parsing in Python with Integer Division and Modulus</title>
+      <link>http://localhost:1313/posts/python-integer-division-and-modulus/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/python-integer-division-and-modulus/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./python-integer-division-and-modulus.png&#34;&#xD;&#xA;       alt=&#34;Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Parse fixed-width numbers with // and % for speed and clarity.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, &lt;strong&gt;numeric parsing with integer division (&lt;code&gt;//&lt;/code&gt;) and modulus (&lt;code&gt;%&lt;/code&gt;)&lt;/strong&gt; is the better option.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Using SymPy in Python When NumPy Isn&#39;t Enough</title>
+      <link>http://localhost:1313/posts/python-sympy-vs-numpy/</link>
+      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/python-sympy-vs-numpy/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;  &#xD;&#xA;  &lt;img src=&#34;./sympy.png&#34; alt=&#34;Sympy official log of a snake coiled around a cube with mathematical symbols&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;  &#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;  &#xD;&#xA;    &lt;em&gt;SymPy provides symbolic computation and precision techniques for Python developers&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;  &#xD;&#xA;&lt;/figure&gt;  &#xD;&#xA;&lt;p&gt;Most of us reach for &lt;a href=&#34;https://numpy.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  NumPy&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; whenever math shows up in a project. But sometimes, you don&amp;rsquo;t want approximate answers, you want exact math. That&amp;rsquo;s when you pull &lt;a href=&#34;https://sympy.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  SymPy&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; out of your programmer&amp;rsquo;s toolkit and get to work.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.&lt;/p&gt;&#xA;&lt;p&gt;In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Floats guess. SymPy knows.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This is where SymPy shines. To see the difference between &lt;strong&gt;floating-point approximations&lt;/strong&gt; (Python or NumPy) and &lt;strong&gt;symbolic precision&lt;/strong&gt; (SymPy), let&amp;rsquo;s look at a simple but very real example from finance.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Five-Second Rule Explored with Math &amp; Python</title>
+      <link>http://localhost:1313/posts/five-second-rule/</link>
+      <pubDate>Thu, 04 Sep 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/five-second-rule/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./five-second-rule-explored.png&#34; alt=&#34;Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Forget the five-second rule. Germs transfer instantly, and we can prove it with math.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Meeting Diet: An Optimization Approach to Your Calendar</title>
+      <link>http://localhost:1313/posts/meeting-diet/</link>
+      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/meeting-diet/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./meeting-diet.png&#34; alt=&#34;Professional woman pausing outside a conference room labeled &#39;Meeting in Progress&#39;, deciding whether to attend&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;If you don&#39;t optimize your schedule, your schedule will optimize you. Badly&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to &lt;em&gt;quantify&lt;/em&gt; that choice?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;strong&gt;The good news: math can help.&lt;/strong&gt; By modeling your schedule as a &lt;a href=&#34;https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  &lt;strong&gt;0/1 knapsack problem with two constraints&lt;/strong&gt;&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&amp;rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &amp;ldquo;meeting diet.&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using Python Dispatch Tables for Cleaner Validation</title>
+      <link>http://localhost:1313/posts/python-dispatch-maps/</link>
+      <pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate>
+      <guid>http://localhost:1313/posts/python-dispatch-maps/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./python-dispatch-maps.png&#34; alt=&#34;Python Tip of the Week logo: Python Post-it note on monitor&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Let&amp;rsquo;s be honest: argument validation code is rarely the proudest part of anyone&amp;rsquo;s repo.&lt;/p&gt;&#xA;&lt;p&gt;Most of us start with the usual suspects:&lt;/p&gt;&#xA;&lt;p&gt;❌ The dreaded &lt;em&gt;inverted-V&lt;/em&gt; tower of &lt;code&gt;if/else&lt;/code&gt; statements&lt;br&gt;&#xA;❌ A graveyard of guard clauses scattered line after line&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Both work fine… until they don&amp;rsquo;t. Then you&amp;rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.&lt;/p&gt;&#xA;&lt;p&gt;There&amp;rsquo;s a better way: &lt;strong&gt;dispatch tables&lt;/strong&gt;!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</title>
+      <link>http://localhost:1313/posts/three-d-packing/</link>
+      <pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/three-d-packing/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./three-d-packing.png&#34; alt=&#34;3D Bin Packing&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;How do you fit it all in?&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;My first full-time programming job was for &lt;strong&gt;Holiday on Ice&lt;/strong&gt;, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&amp;rsquo;s crew was efficiently loading trucks for the next city.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;One day, the controller asked me if I could code a system that took, as input, the trucks&amp;rsquo; &lt;strong&gt;3D dimensions&lt;/strong&gt; and the &lt;strong&gt;3D dimensions (and weight)&lt;/strong&gt; of every object to be packed. Back in the &lt;strong&gt;Turbo Pascal&lt;/strong&gt; era, exploring 3D packing was painful. Today, with &lt;strong&gt;Python&lt;/strong&gt; and &lt;strong&gt;AI-assisted scaffolding&lt;/strong&gt;, it&amp;rsquo;s surprisingly approachable.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI</title>
+      <link>http://localhost:1313/posts/tfp-chatgpt/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/tfp-chatgpt/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./tfp-chatgpt.png&#34; alt=&#34;Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI.&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;Our tools for measuring progress were built for factories, not for AI.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn&amp;rsquo;t that show up in our productivity statistics?&lt;/p&gt;&#xA;&lt;p&gt;Economists have long relied on a metric called &lt;strong&gt;Total Factor Productivity (TFP)&lt;/strong&gt; to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;You can see the &lt;del&gt;computer age&lt;/del&gt; generative AI everywhere but in the productivity statistics.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;(Adapted from Robert Solow, 1987)&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</title>
+      <link>http://localhost:1313/posts/rain-paradox/</link>
+      <pubDate>Mon, 18 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/rain-paradox/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./rain-paradox.png&#34; alt=&#34;Rain Paradox: Walk or Run?&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;To walk or to run. That is the question.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Early in my programming career, I came across a coding challenge that stuck with me for many years:&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;If it&amp;rsquo;s raining, will you stay drier by walking or running through it?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;At the time, I didn&amp;rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&amp;rsquo;t about recursion or memory management. It was about &lt;strong&gt;getting wet&lt;/strong&gt;, and &lt;strong&gt;how fast you move through falling rain&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About Signal &amp; Syntax</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Most writing about LLMs sits at one of two altitudes: high-level explainers aimed at executives and curious newcomers, or dense research papers aimed at other researchers. There&amp;rsquo;s less writing in the middle, where working engineers actually operate. Most engineers need to understand enough of what&amp;rsquo;s happening under the hood to build and debug real systems, but not so much that they feel like they&amp;rsquo;re replicating a PhD program.&lt;/p&gt;&#xA;&lt;p&gt;Signal &amp;amp; Syntax serves that middle altitude. Posts work through the mathematics and engineering underneath the models we&amp;rsquo;re all building on: gradient descent, attention, tokenization, inference-time behavior, training infrastructure, evaluation, orchestration. The goal is to write about this material the way one engineer explains something to another, with enough rigor to be trustworthy, enough plain English to be readable, and enough specificity that the post helps you build something.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Behind the Code: Tom&#39;s Story</title>
+      <link>http://localhost:1313/bio/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/bio/</guid>
+      <description>&lt;div class=&#34;about-bio&#34;&gt;&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;&#xD;&#xA;  &lt;div class=&#34;bio-text&#34;&gt;&#xD;&#xA;     &lt;p&gt;For forty years I&amp;rsquo;ve built platforms, not applications. Every time I&amp;rsquo;ve been asked to ship a product, the product has&#xA;turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine&#xA;that outlives the feature request it started from.&lt;/p&gt;&#xA;&lt;p&gt;At AT&amp;amp;T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic&#xA;insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution&#xA;system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device&#xA;activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine&#xA;technology books, wrote 100+ articles for &lt;em&gt;.NET Programming Tips &amp;amp; Techniques&lt;/em&gt;, and helped run&#xA;&lt;a href=&#34;http://codeguru.com&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  CodeGuru&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; (the largest Windows developer community of its era).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

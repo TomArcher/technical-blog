@@ -1,32 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Geometry on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/geometry/</link><description>Recent content in Geometry on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 07 Oct 2025 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/geometry/index.xml" rel="self" type="application/rss+xml"/><item><title>How Large Language Models (LLMs) Think: Turning Meaning into Math</title><link>https://tomarcher.io/posts/how-large-language-models-think/</link><pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-think/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-large-language-models-read-code.png" 
- alt="Digital artwork showing vector/matrix math with the output being words, symbolizing that AI generates words from linear algebra operations." 
- width="250" 
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>Meaning takes shape in mathematics long before it reaches words.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you enter a sentence into a Large Language Model (LLM) such as &lt;a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
- ChatGPT
-&lt;/a>
- or &lt;a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
- Claude
-&lt;/a>
-, the model does not process words as language. It represents them as numbers.&lt;/p>
-&lt;p>Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.&lt;/p>
-&lt;p>This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</title><link>https://tomarcher.io/posts/three-d-packing/</link><pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/three-d-packing/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./three-d-packing.png" alt="3D Bin Packing" width="250" style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>How do you fit it all in?&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>My first full-time programming job was for &lt;strong>Holiday on Ice&lt;/strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&amp;rsquo;s crew was efficiently loading trucks for the next city.&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr>
-&lt;p>One day, the controller asked me if I could code a system that took, as input, the trucks&amp;rsquo; &lt;strong>3D dimensions&lt;/strong> and the &lt;strong>3D dimensions (and weight)&lt;/strong> of every object to be packed. Back in the &lt;strong>Turbo Pascal&lt;/strong> era, exploring 3D packing was painful. Today, with &lt;strong>Python&lt;/strong> and &lt;strong>AI-assisted scaffolding&lt;/strong>, it&amp;rsquo;s surprisingly approachable.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geometry on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/tags/geometry/</link>
+    <description>Recent content in Geometry on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Oct 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/geometry/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Large Language Models (LLMs) Think: Turning Meaning into Math</title>
+      <link>http://localhost:1313/posts/how-large-language-models-think/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-think/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./how-large-language-models-read-code.png&#34; &#xD;&#xA;    alt=&#34;Digital artwork showing vector/matrix math with the output being words, symbolizing that AI generates words from linear algebra operations.&#34; &#xD;&#xA;    width=&#34;250&#34; &#xD;&#xA;    style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;Meaning takes shape in mathematics long before it reaches words.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you enter a sentence into a Large Language Model (LLM) such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, the model does not process words as language. It represents them as numbers.&lt;/p&gt;&#xA;&lt;p&gt;Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.&lt;/p&gt;&#xA;&lt;p&gt;This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</title>
+      <link>http://localhost:1313/posts/three-d-packing/</link>
+      <pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/three-d-packing/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./three-d-packing.png&#34; alt=&#34;3D Bin Packing&#34; width=&#34;250&#34; style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;How do you fit it all in?&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;My first full-time programming job was for &lt;strong&gt;Holiday on Ice&lt;/strong&gt;, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&amp;rsquo;s crew was efficiently loading trucks for the next city.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;One day, the controller asked me if I could code a system that took, as input, the trucks&amp;rsquo; &lt;strong&gt;3D dimensions&lt;/strong&gt; and the &lt;strong&gt;3D dimensions (and weight)&lt;/strong&gt; of every object to be packed. Back in the &lt;strong&gt;Turbo Pascal&lt;/strong&gt; era, exploring 3D packing was painful. Today, with &lt;strong&gt;Python&lt;/strong&gt; and &lt;strong&gt;AI-assisted scaffolding&lt;/strong&gt;, it&amp;rsquo;s surprisingly approachable.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

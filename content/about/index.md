@@ -16,7 +16,15 @@ Signal & Syntax serves that middle altitude. Posts work through the mathematics 
 - **The mathematics**: linear algebra, probability, and optimization — the foundations that make everything else make sense.
 - **Occasional essays**: reflections on the industry, the technology, and what it's like to build in this moment.
 
+---
+
 ## New Here? 
-Start with [How LLMs Read Code](https://tomarcher.io/posts/how-large-language-models-read-code/) for a representative post, or browse the **Categories** and **Tags** in the sidebar.
+Start with [How LLMs Read Code](/posts/how-large-language-models-read-code/) for a representative post, or browse the **Categories** and **Tags** in the sidebar.
+
+---
+
+## Roadmap
+
+Signal & Syntax is organized around a growing set of topics that build on one another. Check out the [Roadmap](/roadmap/) to see what's already been published, what's coming next, and how the posts fit together.
 
 ---

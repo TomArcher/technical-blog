@@ -1,1 +1,362 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/</link><description>Recent content in Tags on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>AI</title><link>https://tomarcher.io/tags/ai/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/ai/</guid><description/></item><item><title>Attention Mechanisms</title><link>https://tomarcher.io/tags/attention-mechanisms/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/attention-mechanisms/</guid><description/></item><item><title>Discrete Mathematics</title><link>https://tomarcher.io/tags/discrete-mathematics/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/discrete-mathematics/</guid><description/></item><item><title>Embeddings</title><link>https://tomarcher.io/tags/embeddings/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/embeddings/</guid><description/></item><item><title>LLM</title><link>https://tomarcher.io/tags/llm/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/llm/</guid><description/></item><item><title>Predicate Logic</title><link>https://tomarcher.io/tags/predicate-logic/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/predicate-logic/</guid><description/></item><item><title>Set Theory</title><link>https://tomarcher.io/tags/set-theory/</link><pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/set-theory/</guid><description/></item><item><title>Context Windows</title><link>https://tomarcher.io/tags/context-windows/</link><pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/context-windows/</guid><description/></item><item><title>RAG</title><link>https://tomarcher.io/tags/rag/</link><pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/rag/</guid><description/></item><item><title>Web Search</title><link>https://tomarcher.io/tags/web-search/</link><pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/web-search/</guid><description/></item><item><title>Anthropic</title><link>https://tomarcher.io/tags/anthropic/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/tags/anthropic/</guid><description/></item><item><title>Nucleus Sampling</title><link>https://tomarcher.io/tags/nucleus-sampling/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/tags/nucleus-sampling/</guid><description/></item><item><title>OpenAI</title><link>https://tomarcher.io/tags/openai/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/tags/openai/</guid><description/></item><item><title>Probability</title><link>https://tomarcher.io/tags/probability/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/tags/probability/</guid><description/></item><item><title>Sampling</title><link>https://tomarcher.io/tags/sampling/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/tags/sampling/</guid><description/></item><item><title>Softmax</title><link>https://tomarcher.io/tags/softmax/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/tags/softmax/</guid><description/></item><item><title>Temperature</title><link>https://tomarcher.io/tags/temperature/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/tags/temperature/</guid><description/></item><item><title>Top-P</title><link>https://tomarcher.io/tags/top-p/</link><pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate><guid>https://tomarcher.io/tags/top-p/</guid><description/></item><item><title>Biology</title><link>https://tomarcher.io/tags/biology/</link><pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/biology/</guid><description/></item><item><title>Physics</title><link>https://tomarcher.io/tags/physics/</link><pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/physics/</guid><description/></item><item><title>Python</title><link>https://tomarcher.io/tags/python/</link><pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/python/</guid><description/></item><item><title>Thermodynamics</title><link>https://tomarcher.io/tags/thermodynamics/</link><pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/thermodynamics/</guid><description/></item><item><title>Cryptography</title><link>https://tomarcher.io/tags/cryptography/</link><pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/cryptography/</guid><description/></item><item><title>Databases</title><link>https://tomarcher.io/tags/databases/</link><pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/databases/</guid><description/></item><item><title>Distributed-Systems</title><link>https://tomarcher.io/tags/distributed-systems/</link><pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/distributed-systems/</guid><description/></item><item><title>Blockchain</title><link>https://tomarcher.io/tags/blockchain/</link><pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/blockchain/</guid><description/></item><item><title>Hashing</title><link>https://tomarcher.io/tags/hashing/</link><pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/hashing/</guid><description/></item><item><title>Passwords</title><link>https://tomarcher.io/tags/passwords/</link><pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/passwords/</guid><description/></item><item><title>Security</title><link>https://tomarcher.io/tags/security/</link><pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/security/</guid><description/></item><item><title>NLP</title><link>https://tomarcher.io/tags/nlp/</link><pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/nlp/</guid><description/></item><item><title>Tokenization</title><link>https://tomarcher.io/tags/tokenization/</link><pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/tokenization/</guid><description/></item><item><title>Transformers</title><link>https://tomarcher.io/tags/transformers/</link><pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/transformers/</guid><description/></item><item><title>Kinematics</title><link>https://tomarcher.io/tags/kinematics/</link><pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/kinematics/</guid><description/></item><item><title>Energy Balance</title><link>https://tomarcher.io/tags/energy-balance/</link><pubDate>Sun, 12 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/energy-balance/</guid><description/></item><item><title>Calculus</title><link>https://tomarcher.io/tags/calculus/</link><pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/calculus/</guid><description/></item><item><title>Gradient Descent</title><link>https://tomarcher.io/tags/gradient-descent/</link><pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/gradient-descent/</guid><description/></item><item><title>Optimization</title><link>https://tomarcher.io/tags/optimization/</link><pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/optimization/</guid><description/></item><item><title>Geometry</title><link>https://tomarcher.io/tags/geometry/</link><pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/geometry/</guid><description/></item><item><title>Linear Algebra</title><link>https://tomarcher.io/tags/linear-algebra/</link><pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/linear-algebra/</guid><description/></item><item><title>Data Parsing</title><link>https://tomarcher.io/tags/data-parsing/</link><pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/data-parsing/</guid><description/></item><item><title>Numerical Methods</title><link>https://tomarcher.io/tags/numerical-methods/</link><pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/numerical-methods/</guid><description/></item><item><title>Symbolic Math</title><link>https://tomarcher.io/tags/symbolic-math/</link><pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate><guid>https://tomarcher.io/tags/symbolic-math/</guid><description/></item><item><title>SymPy</title><link>https://tomarcher.io/tags/sympy/</link><pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate><guid>https://tomarcher.io/tags/sympy/</guid><description/></item><item><title>Scheduling</title><link>https://tomarcher.io/tags/scheduling/</link><pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/scheduling/</guid><description/></item><item><title>Code Organization</title><link>https://tomarcher.io/tags/code-organization/</link><pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate><guid>https://tomarcher.io/tags/code-organization/</guid><description/></item><item><title>Design Patterns</title><link>https://tomarcher.io/tags/design-patterns/</link><pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate><guid>https://tomarcher.io/tags/design-patterns/</guid><description/></item><item><title>Algorithms</title><link>https://tomarcher.io/tags/algorithms/</link><pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/algorithms/</guid><description/></item><item><title>Economics</title><link>https://tomarcher.io/tags/economics/</link><pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/economics/</guid><description/></item><item><title>Innovation</title><link>https://tomarcher.io/tags/innovation/</link><pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/innovation/</guid><description/></item><item><title>Productivity</title><link>https://tomarcher.io/tags/productivity/</link><pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate><guid>https://tomarcher.io/tags/productivity/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Mar 2026 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI</title>
+      <link>http://localhost:1313/tags/ai/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Attention Mechanisms</title>
+      <link>http://localhost:1313/tags/attention-mechanisms/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/attention-mechanisms/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Discrete Mathematics</title>
+      <link>http://localhost:1313/tags/discrete-mathematics/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/discrete-mathematics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Embeddings</title>
+      <link>http://localhost:1313/tags/embeddings/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/embeddings/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>http://localhost:1313/tags/llm/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Predicate Logic</title>
+      <link>http://localhost:1313/tags/predicate-logic/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/predicate-logic/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Set Theory</title>
+      <link>http://localhost:1313/tags/set-theory/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/set-theory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Context Windows</title>
+      <link>http://localhost:1313/tags/context-windows/</link>
+      <pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/context-windows/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RAG</title>
+      <link>http://localhost:1313/tags/rag/</link>
+      <pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/rag/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web Search</title>
+      <link>http://localhost:1313/tags/web-search/</link>
+      <pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/web-search/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Anthropic</title>
+      <link>http://localhost:1313/tags/anthropic/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/tags/anthropic/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nucleus Sampling</title>
+      <link>http://localhost:1313/tags/nucleus-sampling/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/tags/nucleus-sampling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OpenAI</title>
+      <link>http://localhost:1313/tags/openai/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/tags/openai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Probability</title>
+      <link>http://localhost:1313/tags/probability/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/tags/probability/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sampling</title>
+      <link>http://localhost:1313/tags/sampling/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/tags/sampling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Softmax</title>
+      <link>http://localhost:1313/tags/softmax/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/tags/softmax/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Temperature</title>
+      <link>http://localhost:1313/tags/temperature/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/tags/temperature/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Top-P</title>
+      <link>http://localhost:1313/tags/top-p/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/tags/top-p/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Biology</title>
+      <link>http://localhost:1313/tags/biology/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/biology/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Physics</title>
+      <link>http://localhost:1313/tags/physics/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/physics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://localhost:1313/tags/python/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Thermodynamics</title>
+      <link>http://localhost:1313/tags/thermodynamics/</link>
+      <pubDate>Sun, 30 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/thermodynamics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cryptography</title>
+      <link>http://localhost:1313/tags/cryptography/</link>
+      <pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Databases</title>
+      <link>http://localhost:1313/tags/databases/</link>
+      <pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/databases/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Distributed-Systems</title>
+      <link>http://localhost:1313/tags/distributed-systems/</link>
+      <pubDate>Fri, 28 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/distributed-systems/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blockchain</title>
+      <link>http://localhost:1313/tags/blockchain/</link>
+      <pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/blockchain/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hashing</title>
+      <link>http://localhost:1313/tags/hashing/</link>
+      <pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/hashing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Passwords</title>
+      <link>http://localhost:1313/tags/passwords/</link>
+      <pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/passwords/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>http://localhost:1313/tags/security/</link>
+      <pubDate>Mon, 17 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NLP</title>
+      <link>http://localhost:1313/tags/nlp/</link>
+      <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/nlp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tokenization</title>
+      <link>http://localhost:1313/tags/tokenization/</link>
+      <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/tokenization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Transformers</title>
+      <link>http://localhost:1313/tags/transformers/</link>
+      <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/transformers/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kinematics</title>
+      <link>http://localhost:1313/tags/kinematics/</link>
+      <pubDate>Thu, 23 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/kinematics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Energy Balance</title>
+      <link>http://localhost:1313/tags/energy-balance/</link>
+      <pubDate>Sun, 12 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/energy-balance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Calculus</title>
+      <link>http://localhost:1313/tags/calculus/</link>
+      <pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/calculus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gradient Descent</title>
+      <link>http://localhost:1313/tags/gradient-descent/</link>
+      <pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/gradient-descent/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optimization</title>
+      <link>http://localhost:1313/tags/optimization/</link>
+      <pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/optimization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Geometry</title>
+      <link>http://localhost:1313/tags/geometry/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/geometry/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linear Algebra</title>
+      <link>http://localhost:1313/tags/linear-algebra/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/linear-algebra/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Parsing</title>
+      <link>http://localhost:1313/tags/data-parsing/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/data-parsing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Numerical Methods</title>
+      <link>http://localhost:1313/tags/numerical-methods/</link>
+      <pubDate>Wed, 17 Sep 2025 13:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/numerical-methods/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Symbolic Math</title>
+      <link>http://localhost:1313/tags/symbolic-math/</link>
+      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/symbolic-math/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SymPy</title>
+      <link>http://localhost:1313/tags/sympy/</link>
+      <pubDate>Fri, 05 Sep 2025 11:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/sympy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scheduling</title>
+      <link>http://localhost:1313/tags/scheduling/</link>
+      <pubDate>Thu, 28 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/scheduling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Code Organization</title>
+      <link>http://localhost:1313/tags/code-organization/</link>
+      <pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate>
+      <guid>http://localhost:1313/tags/code-organization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Design Patterns</title>
+      <link>http://localhost:1313/tags/design-patterns/</link>
+      <pubDate>Fri, 22 Aug 2025 10:38:20 -0700</pubDate>
+      <guid>http://localhost:1313/tags/design-patterns/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Algorithms</title>
+      <link>http://localhost:1313/tags/algorithms/</link>
+      <pubDate>Wed, 20 Aug 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Economics</title>
+      <link>http://localhost:1313/tags/economics/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/economics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Innovation</title>
+      <link>http://localhost:1313/tags/innovation/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/innovation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Productivity</title>
+      <link>http://localhost:1313/tags/productivity/</link>
+      <pubDate>Tue, 19 Aug 2025 05:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/productivity/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

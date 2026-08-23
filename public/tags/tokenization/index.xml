@@ -1,32 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tokenization on Signal &amp; Syntax</title><link>https://tomarcher.io/tags/tokenization/</link><description>Recent content in Tokenization on Signal &amp; Syntax</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 11 Nov 2025 06:00:00 -0700</lastBuildDate><atom:link href="https://tomarcher.io/tags/tokenization/index.xml" rel="self" type="application/rss+xml"/><item><title>How Large Language Models (LLMs) Tokenize Text: Why Words Aren't What You Think</title><link>https://tomarcher.io/posts/how-large-language-models-tokenize-text/</link><pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-tokenize-text/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-large-language-models-tokenize-text.png"
- alt="Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens"
- width="250"
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>When you type &amp;ldquo;I love programming&amp;rdquo; into ChatGPT, you might assume the model reads three words. It doesn&amp;rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.&lt;/p>
-&lt;p>When you ask Claude to count the letters in the word &amp;ldquo;strawberry,&amp;rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &amp;ldquo;strawberry&amp;rdquo; as a complete unit. It saw tokens like &lt;code>&amp;quot;str&amp;quot;&lt;/code>, &lt;code>&amp;quot;aw&amp;quot;&lt;/code>, &lt;code>&amp;quot;berry&amp;quot;&lt;/code> and tried to reason about letters it couldn&amp;rsquo;t directly access.&lt;/p>
-&lt;p>And when early GPT-3 users discovered that typing &amp;ldquo;SolidGoldMagikarp&amp;rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&amp;rsquo;t the model&amp;rsquo;s training. It was a &lt;strong>glitch token&lt;/strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (&lt;a href="#rumbelow2023">
- Rumbelow &amp;amp; Watkins, 2023
-&lt;/a>
-).&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;To a language model, text isn&amp;rsquo;t a stream of words. It&amp;rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;hr></description></item><item><title>How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</title><link>https://tomarcher.io/posts/how-large-language-models-read-code/</link><pubDate>Mon, 06 Oct 2025 09:00:00 -0700</pubDate><guid>https://tomarcher.io/posts/how-large-language-models-read-code/</guid><description>&lt;figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
- &lt;img src="./how-large-language-models-read-code.png" 
- alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
- width="250" 
- style="display: block; margin: 0 auto;">
- &lt;figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
- &lt;em>AI reads code as patterns, not instructions.&lt;/em>
- &lt;/figcaption>
-&lt;/figure>
-&lt;p>Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.&lt;/p>
-&lt;hr>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;When an AI system &amp;lsquo;understands&amp;rsquo; code, it is not executing logic; it is modeling probability.&lt;/em>&amp;rdquo;&lt;/p>&lt;/blockquote>
-&lt;hr></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tokenization on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/tags/tokenization/</link>
+    <description>Recent content in Tokenization on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Nov 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tokenization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</title>
+      <link>http://localhost:1313/posts/how-large-language-models-tokenize-text/</link>
+      <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-tokenize-text/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;./how-large-language-models-tokenize-text.png&#34;&#xD;&#xA;       alt=&#34;Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens&#34;&#xD;&#xA;       width=&#34;250&#34;&#xD;&#xA;       style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;  &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;    &lt;em&gt;LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.&lt;/em&gt;&#xD;&#xA;  &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;When you type &amp;ldquo;I love programming&amp;rdquo; into ChatGPT, you might assume the model reads three words. It doesn&amp;rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.&lt;/p&gt;&#xA;&lt;p&gt;When you ask Claude to count the letters in the word &amp;ldquo;strawberry,&amp;rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &amp;ldquo;strawberry&amp;rdquo; as a complete unit. It saw tokens like &lt;code&gt;&amp;quot;str&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;aw&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;berry&amp;quot;&lt;/code&gt; and tried to reason about letters it couldn&amp;rsquo;t directly access.&lt;/p&gt;&#xA;&lt;p&gt;And when early GPT-3 users discovered that typing &amp;ldquo;SolidGoldMagikarp&amp;rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&amp;rsquo;t the model&amp;rsquo;s training. It was a &lt;strong&gt;glitch token&lt;/strong&gt;: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (&lt;a href=&#34;#rumbelow2023&#34;&gt;&#xD;&#xA;  Rumbelow &amp;amp; Watkins, 2023&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;).&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;To a language model, text isn&amp;rsquo;t a stream of words. It&amp;rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</title>
+      <link>http://localhost:1313/posts/how-large-language-models-read-code/</link>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-read-code/</guid>
+      <description>&lt;figure style=&#34;float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;&#34;&gt;&#xD;&#xA;    &lt;img src=&#34;./how-large-language-models-read-code.png&#34; &#xD;&#xA;    alt=&#34;Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic.&#34; &#xD;&#xA;    width=&#34;250&#34; &#xD;&#xA;    style=&#34;display: block; margin: 0 auto;&#34;&gt;&#xD;&#xA;    &lt;figcaption style=&#34;font-size: 0.9em; color: #555; margin-top: 5px;&#34;&gt;&#xD;&#xA;        &lt;em&gt;AI reads code as patterns, not instructions.&lt;/em&gt;&#xD;&#xA;    &lt;/figcaption&gt;&#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;p&gt;Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;&amp;ldquo;When an AI system &amp;lsquo;understands&amp;rsquo; code, it is not executing logic; it is modeling probability.&lt;/em&gt;&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>
