@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Induction Heads">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-05-08T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-05-08T06:00:00-07:00">
+  <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Induction Heads">
@@ -88,6 +88,13 @@
 			<a class="menu__link" href="/">
 				
 				<span class="menu__text">Blog</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/posts/roadmap/">
+				
+				<span class="menu__text">Roadmap</span>
 				
 			</a>
 		</li>
@@ -157,9 +164,9 @@
             </h2>
 
             <div class="post-meta">
-              <time datetime="2026-05-08">
-                <strong>May 8, 2026</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/transformers/">#transformers</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/softmax/">#softmax</a>, <a href="/tags/interpretability/">#interpretability</a>, <a href="/tags/induction-heads/">#induction heads</a></div>
+              <time datetime="2026-08-22">
+                <strong>Aug 22, 2026</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/induction-heads/">#induction heads</a>, <a href="/tags/interpretability/">#interpretability</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/softmax/">#softmax</a>, <a href="/tags/transformers/">#transformers</a></div>
           </div>
         </header>
 
@@ -168,12 +175,12 @@
         
         
         <div class="post-summary">
-<p>Transformers are the foundation of modern large language models like ChatGPT, Claude, Gemini, and many image and audio models as well. However, if you want to understand transformers fully, you must first understand attention. The transformer architecture stacks attention layers between feedforward sublayers, wraps the whole thing in residual connections and layer normalization, and adds positional information so the model knows what order the tokens came in. Every one of those pieces matters, but the attention layer is the part that does the work of looking at other tokens and deciding what to absorb from them. Get attention wrong and the rest of the architecture has nothing to operate on.</p>
-<p>This post is the first of a three-part series on the attention mechanism. Part 1, this one, covers the operation itself: scaled dot-product attention, why we divide by (\sqrt{d_k}), multi-head attention, and what we have learned since 2017 about what those heads actually do. Part 2 covers masking and the function class it forces the model into, including why causal masking is what makes generation possible. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
-The 2017 paper, <a href="#vaswani2017">
+<p>The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
+<p>This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.</p>
+<p>The 2017 paper, <a href="#vaswani2017">
   Attention Is All You Need
 </a>
-, is the seed of this series. The mechanism it described is small and elegant and fits on a page. Everything since has been the tree growing out of it: the math has held up, but the deployed system has acquired layers the paper did not anticipate. This post stays close to the seed. The rest of the series walks the branches.</p>
+ is the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&rdquo;</em></p></blockquote>

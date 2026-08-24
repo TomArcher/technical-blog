@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Posts">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-08-22T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-08-22T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
@@ -124,6 +124,68 @@
 	<header class="main__header">
 		<h1 class="main__title">Posts</h1>
 	</header><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/how-large-language-models-handle-context-windows/" rel="bookmark">
+			How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./how-llms-handle-context-windows.png"
+       alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens"
+       width="250"
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
+  </figcaption>
+</figure>
+<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
+<p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
+<hr>
+<blockquote>
+<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-handle-context-windows/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/safe-distance-in-traffic/" rel="bookmark">
+			Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./safe-distance-in-traffic-vertical-arrows.png" alt="Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Following distance isn't just space, it's time in motion.</em>
+  </figcaption>
+</figure>
+<p>While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the <strong>three-second rule</strong> and its validity. As I&rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Three seconds is a rule of thumb. Physics reveals the truth.&rdquo;</em></p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/safe-distance-in-traffic/">Read more…</a>
+	</div>
+</article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
@@ -227,64 +289,6 @@
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-think/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/how-large-language-models-read-code/" rel="bookmark">
-			How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-language-models-read-code.png" 
-    alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
-    width="250" 
-    style="display: block; margin: 0 auto;">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>AI reads code as patterns, not instructions.</em>
-    </figcaption>
-</figure>
-<p>Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;When an AI system &lsquo;understands&rsquo; code, it is not executing logic; it is modeling probability.</em>&rdquo;</p></blockquote>
-<hr>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-read-code/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/python-integer-division-and-modulus/" rel="bookmark">
-			Numeric Parsing in Python with Integer Division and Modulus
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./python-integer-division-and-modulus.png"
-       alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Parse fixed-width numbers with // and % for speed and clarity.</em>
-  </figcaption>
-</figure>
-<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, <strong>numeric parsing with integer division (<code>//</code>) and modulus (<code>%</code>)</strong> is the better option.</p>
-<hr>
-<blockquote>
-<p><em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.</em></p></blockquote>
-<hr>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/python-integer-division-and-modulus/">Read more…</a>
 	</div>
 </article>
 </main>
@@ -410,7 +414,9 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>

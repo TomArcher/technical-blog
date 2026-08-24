@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Posts">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-08-22T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-08-22T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
@@ -127,6 +127,38 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/posts/inside-attention-part-1/" rel="bookmark">
+			Inside Attention, Part 1: The Mechanism
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+    <img src="./transformer-architecture.png"
+        alt="Diagram of the transformer architecture showing token and positional embeddings, multi-head self-attention, feedforward networks, residual connections, layer normalization, and output projection for next-token prediction">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.</em>
+    </figcaption>
+</figure>
+<p>The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
+<p>This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.</p>
+<p>The 2017 paper, <a href="#vaswani2017">
+  Attention Is All You Need
+</a>
+ is the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&rdquo;</em></p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/inside-attention-part-1/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/posts/roadmap/" rel="bookmark">
 			Start Here: The Signal &amp; Syntax Roadmap
 			</a>
@@ -139,6 +171,33 @@
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/roadmap/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/minimal-transformer/" rel="bookmark">
+			Implementing a Minimal Transformer in PyTorch
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./transformer.jpeg" alt="Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add & norm, feed-forward, and add & norm to output logits" width="250" style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Around 200 lines of Python separate you from understanding why attention really is all you need.</em>
+  </figcaption>
+</figure>
+<p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
+<p>That claim turned out to be correct.</p>
+<p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
+<p>In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We&rsquo;ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.</p>
+<p>By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you&rsquo;ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.</p>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/minimal-transformer/">Read more…</a>
 	</div>
 </article><article class="list__item post">
 	
@@ -201,77 +260,6 @@
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-know-things-they-were-never-taught/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/temperature-top-p-creativity-knobs/" rel="bookmark">
-			Temperature and Top-P: The Creativity Knobs
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./temperature-top-p-creativity-knobs.png"
-       alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Turn it up and things get weird.</em>
-  </figcaption>
-</figure>
-<p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
-  ChatGPT
-</a>
-, <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
-  Claude
-</a>
-, or any other LLM includes two parameters most people either ignore or tweak randomly: <strong>temperature</strong> and <strong>top-p</strong>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
-<p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.</p>
-<p>I&rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &ldquo;Set temperature to 0.7 for creative writing&rdquo; becomes tribal knowledge, passed down without explanation. Let&rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Temperature doesn&rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&rdquo;</em></p></blockquote>
-<hr>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/temperature-top-p-creativity-knobs/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/edmund-fitzgerald/" rel="bookmark">
-			The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./edmund-fitzgerald.jpeg" alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true.</em>
-  </figcaption>
-</figure>
-<p>Originally appearing on his 1976 album, <em>Summertime Dream</em>, &ldquo;The Wreck of the Edmund Fitzgerald&rdquo; is a powerful ballad written and performed by folk singer <a href="#lightfoot1976">
-  Gordon Lightfoot
-</a>
-. In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: &ldquo;The lake, it is said, never gives up her dead.&rdquo; Following the singer&rsquo;s death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard&rsquo;s Hot Rock and Alternative category.</p>
-<p>Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn&rsquo;t give up her dead, and the science behind it is as haunting as the song itself.</p>
-<p>It turns out that line is not poetic license. It&rsquo;s physics.</p>
-<p>When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they stayed down. Not because of some mystical property of the Great Lakes, but because of a perfect storm of temperature, pressure, and biology that we can model mathematically.</p>
-<hr>
-<p><em>Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.</em></p>
-<hr>
-<blockquote>
-<p><em>&ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&rdquo;</em></p></blockquote>
-<hr>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/edmund-fitzgerald/">Read more…</a>
 	</div>
 </article>
 </main>
@@ -396,7 +384,9 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>

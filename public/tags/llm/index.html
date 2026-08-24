@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="LLM">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-03-31T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-03-31T06:00:00-07:00">
+  <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="LLM">
@@ -126,7 +126,7 @@
     <header class="taxonomy-header">
       <h1>
         
-        8 "LLM" Posts
+        10 "LLM" Posts
         </h1>
 
       
@@ -135,6 +135,108 @@
     
     
 
+    
+      
+      
+      
+      
+        
+        
+          
+            
+            
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/inside-attention-part-1/">
+              <img src="/posts/inside-attention-part-1/inside-attention-part-1-th.png" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/inside-attention-part-1/">Inside Attention, Part 1: The Mechanism</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2026-08-22">
+                <strong>Aug 22, 2026</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/induction-heads/">#induction heads</a>, <a href="/tags/interpretability/">#interpretability</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/softmax/">#softmax</a>, <a href="/tags/transformers/">#transformers</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
+<p>This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.</p>
+<p>The 2017 paper, <a href="#vaswani2017">
+  Attention Is All You Need
+</a>
+ is the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&rdquo;</em></p></blockquote>
+<hr></div>
+
+        <p><a class="btn" href="/posts/inside-attention-part-1/">Read more →</a></p>
+      </article>
+    
+      
+      
+      
+      
+        
+        
+          
+            
+            
+          
+        
+      
+
+      <article class="post post--has-title-thumb">
+        <header class="post-header">
+          
+          
+            <a class="post-title-thumb" href="/posts/minimal-transformer/">
+              <img src="/posts/minimal-transformer/transformer.jpeg" alt="" loading="lazy">
+            </a>
+          
+
+          <div class="post-header-text">
+            <h2 class="post-title">
+              <a href="/posts/minimal-transformer/">Implementing a Minimal Transformer in PyTorch</a>
+            </h2>
+
+            <div class="post-meta">
+              <time datetime="2026-04-01">
+                <strong>Apr 1, 2026</strong>
+              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#Attention Mechanisms</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/nlp/">#NLP</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/transformers/">#Transformers</a></div>
+          </div>
+        </header>
+
+        
+        
+        
+        
+        <div class="post-summary">
+<p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
+<p>That claim turned out to be correct.</p>
+<p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
+<p>In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We&rsquo;ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.</p>
+<p>By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you&rsquo;ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.</p>
+<hr></div>
+
+        <p><a class="btn" href="/posts/minimal-transformer/">Read more →</a></p>
+      </article>
     
       
       
@@ -287,108 +389,6 @@
         <p><a class="btn" href="/posts/temperature-top-p-creativity-knobs/">Read more →</a></p>
       </article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/how-large-language-models-tokenize-text/">
-              <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              <a href="/posts/how-large-language-models-tokenize-text/">How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2025-11-11">
-                <strong>Nov 11, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/tokenization/">#tokenization</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/transformers/">#transformers</a>, <a href="/tags/nlp/">#NLP</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">
-<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
-<p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
-<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
-  Rumbelow &amp; Watkins, 2023
-</a>
-).</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;To a language model, text isn&rsquo;t a stream of words. It&rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&rdquo;</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/how-large-language-models-tokenize-text/">Read more →</a></p>
-      </article>
-    
-      
-      
-      
-      
-        
-        
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/how-large-language-models-handle-context-windows/">
-              <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              <a href="/posts/how-large-language-models-handle-context-windows/">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2025-11-10">
-                <strong>Nov 10, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/context-windows/">#context windows</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/transformers/">#transformers</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">
-<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-  ChatGPT
-</a>
- or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
-  Claude
-</a>
-, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
-<p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
-<hr>
-<blockquote>
-<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/how-large-language-models-handle-context-windows/">Read more →</a></p>
-      </article>
-    
 
     
 <div class="pagination">
@@ -513,7 +513,9 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>

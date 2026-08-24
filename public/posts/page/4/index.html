@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Posts">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-08-22T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-08-22T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
@@ -127,6 +127,64 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/posts/how-large-language-models-read-code/" rel="bookmark">
+			How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+    <img src="./how-large-language-models-read-code.png" 
+    alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
+    width="250" 
+    style="display: block; margin: 0 auto;">
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>AI reads code as patterns, not instructions.</em>
+    </figcaption>
+</figure>
+<p>Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
+<hr>
+<blockquote>
+<p><em>&ldquo;When an AI system &lsquo;understands&rsquo; code, it is not executing logic; it is modeling probability.</em>&rdquo;</p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-read-code/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/python-integer-division-and-modulus/" rel="bookmark">
+			Numeric Parsing in Python with Integer Division and Modulus
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
+  <img src="./python-integer-division-and-modulus.png"
+       alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
+       width="250"
+       style="display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+    <em>Parse fixed-width numbers with // and % for speed and clarity.</em>
+  </figcaption>
+</figure>
+<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, <strong>numeric parsing with integer division (<code>//</code>) and modulus (<code>%</code>)</strong> is the better option.</p>
+<hr>
+<blockquote>
+<p><em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.</em></p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/python-integer-division-and-modulus/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/posts/python-sympy-vs-numpy/" rel="bookmark">
 			Using SymPy in Python When NumPy Isn&#39;t Enough
 			</a>
@@ -214,63 +272,6 @@
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/meeting-diet/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/python-dispatch-maps/" rel="bookmark">
-			Using Python Dispatch Tables for Cleaner Validation
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./python-dispatch-maps.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.</em>
-  </figcaption>
-</figure>
-<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
-<p>Most of us start with the usual suspects:</p>
-<p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
-❌ A graveyard of guard clauses scattered line after line</p>
-<hr>
-<blockquote>
-<p><em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.</em></p></blockquote>
-<hr>
-<p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
-<p>There&rsquo;s a better way: <strong>dispatch tables</strong>!</p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/python-dispatch-maps/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/three-d-packing/" rel="bookmark">
-			From Ice Shows to Algorithms: Cracking the Truck-Packing Problem
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./three-d-packing.png" alt="3D Bin Packing" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>How do you fit it all in?</em>
-  </figcaption>
-</figure>
-<p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
-<blockquote>
-<p><em>&ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&rdquo;</em></p></blockquote>
-<hr>
-<p>One day, the controller asked me if I could code a system that took, as input, the trucks&rsquo; <strong>3D dimensions</strong> and the <strong>3D dimensions (and weight)</strong> of every object to be packed. Back in the <strong>Turbo Pascal</strong> era, exploring 3D packing was painful. Today, with <strong>Python</strong> and <strong>AI-assisted scaffolding</strong>, it&rsquo;s surprisingly approachable.</p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/three-d-packing/">Read more…</a>
 	</div>
 </article>
 </main>
@@ -396,7 +397,9 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/geometry/" title="Geometry">Geometry</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gradient-descent/" title="Gradient Descent">Gradient Descent</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hashing/" title="Hashing">Hashing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/induction-heads/" title="Induction Heads">Induction Heads</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/innovation/" title="Innovation">Innovation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interpretability/" title="Interpretability">Interpretability</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kinematics/" title="Kinematics">Kinematics</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linear-algebra/" title="Linear Algebra">Linear Algebra</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/llm/" title="LLM">LLM</a>
