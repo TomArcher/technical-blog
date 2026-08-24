@@ -1,6 +1,6 @@
 +++
 date = '2026-08-22T06:00:00-07:00'
-draft = true
+draft = false
 title = "Inside Attention, Part 1: The Mechanism"
 subtitle = "What 'Attention Is All You Need' defined, and what we have learned since about how it works"
 categories = ["AI and the Mathematics of Language"]

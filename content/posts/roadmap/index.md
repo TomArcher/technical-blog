@@ -45,6 +45,8 @@ This sequence walks through different mathematical views of how LLMs work. Readi
 
 - [How Large Language Models Handle Context Windows](/posts/how-large-language-models-handle-context-windows/). What a context window is, how it constrains what models can attend to, why longer is not always better, and the mathematics of attention dilution.
 
+- [Inside Attention, Part 1: The Mechanism](/posts/inside-attention-part-1/). Scaled dot-product attention, the variance argument behind \\(\sqrt{d_k}\\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn.
+
 - [How Large Language Models Know Things They Were Never Taught](/posts/how-large-language-models-know-things-they-were-never-taught/). Emergence, generalization, retrieval-augmented generation, and the distinction between what models learned (frozen in weights) and what they can read (injected into context).
 
 - [The Discrete Mathematics Hiding Inside LLMs](/posts/discrete-math-in-large-language-models/). How set theory, predicate logic, Boolean algebra, and modular arithmetic show up inside transformer architectures—not as separate concerns but as continuous approximations of discrete structures.
@@ -88,8 +90,6 @@ This sequence walks through different mathematical views of how LLMs work. Readi
 ## In Progress
 
 **Inside Attention (three-part sub-series within AI and the Mathematics of Language).** A dedicated arc on the attention mechanism, split across three posts because a single post could not do the material justice.
-
-- *Part 1: The Mechanism.* Scaled dot-product attention, the variance argument behind \\(\sqrt{d_k}\\), multi-head attention, and what interpretability research has shown about what attention heads actually learn. Drafted; in pre-publication review.
 
 - *Part 2: Masking and the Function Class.* Causal vs. bidirectional masking, why the decoder-only architecture won, and how the choice of mask constrains the function class the model can learn. Outlined.
 
