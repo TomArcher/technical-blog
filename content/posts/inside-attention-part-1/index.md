@@ -17,6 +17,18 @@ listThumb = "inside-attention-part-1-thumb.png"
     </figcaption>
 </figure>
 
+<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
+    <div style="text-align: center;"><strong>What You'll Learn</strong><br><br></div>
+After reading this post, you'll be able to explain:
+
+- What queries, keys, and values do
+- How scaled dot-product attention works
+- Why attention divides by \\(\sqrt{d_k}\\)
+- Why transformers use multiple heads
+- What attention heads actually learn
+- How induction heads enable pattern copying
+</div>
+
 The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.
 
 This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \\(\sqrt{d_k}\\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
@@ -34,15 +46,10 @@ The 2017 paper, [Attention Is All You Need](#vaswani2017) is the seed of this se
 This post explores the attention operation as it appears in the original paper and as it is understood today. You will see the variance argument behind the \\(\sqrt{d_k}\\) scaling, the parameter-budget structure of multi-head attention, and the post-2017 mechanistic interpretability work that identified specific algorithms running inside trained models. If you have followed my earlier posts on how LLMs think and how they learn, you have already seen the calculus, linear algebra, and probability that surround attention. This post goes inside the operation itself.
 
 > **TL;DR:**
-
 > * Attention computes a content-based weighted aggregation: similarity scores between queries and keys, softmaxed into a distribution, applied to values
-> 
 > * The \\(\sqrt{d_k}\\) scaling exists because dot-product variance grows linearly with \\(d_k\\), and unscaled softmax saturates toward one-hot at large \\(d_k\\), which collapses gradients
-> 
 > * Multi-head attention is a parameter-budget-neutral split that creates room for parallel specialization
-> 
 > * What heads actually learn after training has been studied empirically since 2019; the cleanest result is the induction head, a circuit that implements a match-and-copy algorithm and provides one mechanistic account of an important form of in-context learning
-> 
 > * The mechanism is not just a learned similarity function; it is a substrate on which identifiable algorithms emerge
 
 ---
@@ -117,7 +124,7 @@ The thing to internalize is that nothing here is hand-coded. \\(W_Q\\), \\(W_K\\
 
 ---
 
-## The \\(\sqrt(d_k)\\) Scaling
+## The \\(\sqrt{d_k}\\) Scaling
 
 The scaling factor looks like an implementation detail. It is not. Without it, the variance of the dot products grows with the key dimension, pushing softmax toward saturation and making optimization increasingly difficult as \\(\sqrt{d_k}\\) grows.
 

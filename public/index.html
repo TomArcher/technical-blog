@@ -203,6 +203,18 @@
         
         
         <div class="post-summary">
+<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
+    <div style="text-align: center;"><strong>What You'll Learn</strong><br><br></div>
+After reading this post, you'll be able to explain:
+<ul>
+<li>What queries, keys, and values do</li>
+<li>How scaled dot-product attention works</li>
+<li>Why attention divides by \(\sqrt{d_k}\)</li>
+<li>Why transformers use multiple heads</li>
+<li>What attention heads actually learn</li>
+<li>How induction heads enable pattern copying</li>
+</ul>
+</div>
 <p>The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
 <p>This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.</p>
 <p>The 2017 paper, <a href="#vaswani2017">
