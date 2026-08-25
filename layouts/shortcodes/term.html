@@ -1,0 +1,15 @@
+{{- $key := .Get 0 -}}
+{{- $entry := index site.Data.glossary $key -}}
+
+{{- if $entry -}}
+{{- $display := $key -}}
+
+{{- if ge (len .Params) 2 -}}
+{{- $display = .Get 1 -}}
+{{- end -}}
+
+<a class="glossary-term" href="{{ printf "/glossary/#%s" $key | relURL }}" data-definition="{{ $entry.definition }}">{{
+    $display }}</a>
+{{- else -}}
+{{- errorf "Glossary term '%s' was not found in data/glossary.yaml" $key -}}
+{{- end -}}

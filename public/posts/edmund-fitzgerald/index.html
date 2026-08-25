@@ -88,6 +88,7 @@ Note: This post contains scientific discussion of decomposition and forensic pat
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -194,12 +195,22 @@ Note: This post contains scientific discussion of decomposition and forensic pat
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./edmund-fitzgerald.jpeg" alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/edmund-fitzgerald/edmund-fitzgerald.jpeg" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/edmund-fitzgerald/edmund-fitzgerald.jpeg" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>At 530 feet and 39°F, physics ensures Gordon Lightfoot&#39;s evocative lyric remains literally true.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Originally appearing on his 1976 album, <em>Summertime Dream</em>, &ldquo;The Wreck of the Edmund Fitzgerald&rdquo; is a powerful ballad written and performed by folk singer <a href="#lightfoot1976">
   Gordon Lightfoot
 </a>
@@ -213,14 +224,14 @@ Note: This post contains scientific discussion of decomposition and forensic pat
 <blockquote>
 <p><em>&ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&rdquo;</em></p></blockquote>
 <hr>
-<p>In this post, we&rsquo;ll explore the disturbing science behind this phenomenon, building a computational model that explains why bodies don&rsquo;t surface in extreme cold, deep water. You&rsquo;ll learn how temperature affects decomposition rates using the Arrhenius equation, how pressure follows Boyle&rsquo;s Law to compress gases, and why Lake Superior&rsquo;s specific conditions create a perfect preservation environment. We&rsquo;ll validate our model against known recovery data from maritime disasters and explore what variables matter most in determining whether a body will ever surface.</p>
+<p>In this post, we&rsquo;ll explore the disturbing science behind this phenomenon, building a computational model that explains why bodies don&rsquo;t surface in extreme cold, deep water. You&rsquo;ll learn how temperature affects decomposition rates using the <a class="glossary-term" href="/glossary/#arrhenius-equation" data-definition="An equation describing how the rate of a chemical reaction changes with temperature, with reaction rates generally increasing as temperature rises.">Arrhenius equation</a>, how pressure follows <a class="glossary-term" href="/glossary/#boyles-law" data-definition="The principle that, at constant temperature, the volume of a gas varies inversely with its pressure.">Boyle&#39;s Law</a> to compress gases, and why Lake Superior&rsquo;s specific conditions create a perfect preservation environment. We&rsquo;ll validate our model against known recovery data from maritime disasters and explore what variables matter most in determining whether a body will ever surface.</p>
 <blockquote>
 <p><strong>TL;DR:</strong></p>
 <ul>
 <li>Bodies float due to decomposition gases reducing overall density</li>
 <li>At 4°C, bacterial activity drops 75-90%, slowing gas production</li>
 <li>At 530 feet, pressure compresses any gas to 1/16th volume</li>
-<li>Lake Superior&rsquo;s cold + depth means bodies never generate enough buoyancy</li>
+<li>Lake Superior&rsquo;s cold + depth means bodies never generate enough <a class="glossary-term" href="/glossary/#buoyancy" data-definition="The upward force exerted by a fluid on an immersed object, opposing the object&#39;s weight.">buoyancy</a></li>
 <li>The physics applies to any deep, cold water environment</li>
 </ul></blockquote>
 <hr>
@@ -245,7 +256,7 @@ Note: This post contains scientific discussion of decomposition and forensic pat
 <li>Standard body composition: ~\(985 {kg}/{m^3}\) initial density</li>
 <li>Decomposition follows predictable bacterial growth curves</li>
 <li>Gas production proportional to bacterial activity</li>
-<li>Gases follow ideal gas law under pressure</li>
+<li>Gases follow <a class="glossary-term" href="/glossary/#ideal-gas-law" data-definition="An equation relating the pressure, volume, temperature, and amount of an idealized gas, commonly written as PV = nRT.">ideal gas law</a> under pressure</li>
 <li>Water density increases with depth (~\(1.044 {kg}/{m^3}\) at 500 feet)</li>
 </ul>
 <p>The key processes to model:</p>
@@ -279,7 +290,7 @@ P_1V_1 = P_2V_2
 <p>Let&rsquo;s begin by creating a function to model how temperature affects decomposition.</p>
 <p><strong>Prompt example:</strong></p>
 <blockquote>
-<p>Create a function <code>decomposition_rate(temp_celsius, baseline_rate=0.15)</code> that uses Q10 temperature coefficient (typically 2.5 for biological processes) to adjust decomposition rate based on temperature. Use 20°C as the reference temperature. Include docstrings explaining the physics behind each calculation.</p></blockquote>
+<p>Create a function <code>decomposition_rate(temp_celsius, baseline_rate=0.15)</code> that uses <a class="glossary-term" href="/glossary/#q10-temperature-coefficient" data-definition="A measure of how much the rate of a biological or chemical process changes for each 10°C change in temperature.">Q10 temperature coefficient</a> (typically 2.5 for biological processes) to adjust decomposition rate based on temperature. Use 20°C as the reference temperature. Include docstrings explaining the physics behind each calculation.</p></blockquote>
 <p><strong>Python:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># decomposition_rate.py</span>
 </span></span><span style="display:flex;"><span>
@@ -745,10 +756,26 @@ P_1V_1 = P_2V_2
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    plot_density_evolution()
 </span></span></code></pre></div><p>The visualization reveals the brutal mathematics: at the Edmund Fitzgerald&rsquo;s depth, bodies barely become less dense over time. The combination of extreme cold (slowing decomposition by 90%) and extreme pressure (compressing gases to 6% of surface volume) creates an inescapable physics trap.</p>
-<img src="./plot_density_evolution.png" alt="Graph showing body density over time at different depths, with Edmund Fitzgerald depth highlighted" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>Body density evolution at different depths. The Edmund Fitzgerald depth (162m) shows minimal density change even after a year.</em>
-</figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/edmund-fitzgerald/plot_density_evolution.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/edmund-fitzgerald/plot_density_evolution.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Body density evolution at different depths. The Edmund Fitzgerald depth (162m) shows minimal density change even after a year.</em>
+    </figcaption>
+    
+
+</figure>
+
 <br>
 <h3 id="surfacing-zone-map">Surfacing Zone Map</h3>
 <p>Now let&rsquo;s create a contour map showing the sharp transition between depths where bodies can surface versus where they remain permanently submerged.</p>
@@ -800,10 +827,26 @@ P_1V_1 = P_2V_2
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    plot_surfacing_zones()
 </span></span></code></pre></div><p>This contour map shows the sharp transition between depths where recovery is possible versus impossible. Below about 100 meters in Superior&rsquo;s 4°C water, physics ensures bodies remain permanently submerged.</p>
-<img src="./plot_surfacing_zones.png" alt="Depth vs time contour map showing zones where bodies will surface (light) vs remain submerged (dark)" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>Surfacing zones in Lake Superior. Light areas indicate conditions where bodies eventually surface. The Edmund Fitzgerald's depth is well into the "never surface" zone.</em>
-</figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/edmund-fitzgerald/plot_surfacing_zones.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/edmund-fitzgerald/plot_surfacing_zones.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Surfacing zones in Lake Superior. Light areas indicate conditions where bodies eventually surface. The Edmund Fitzgerald&#39;s depth is well into the &#39;never surface&#39; zone.</em>
+    </figcaption>
+    
+
+</figure>
+
 <br>
 <h2 id="what-we-learned">What We Learned</h2>
 <p>Gordon Lightfoot&rsquo;s lyric captures a scientific truth due to the following conditions:</p>
@@ -845,7 +888,7 @@ P_1V_1 = P_2V_2
 <p><strong>Current modeling</strong>: Add lake currents that might move bodies to shallower water over time.</p>
 </li>
 <li>
-<p><strong>Adipocere formation</strong>: Model how &ldquo;grave wax&rdquo; formation further prevents decomposition in cold, anaerobic conditions (<a href="#ubelaker2011">
+<p><strong>Adipocere formation</strong>: Model how &ldquo;grave wax&rdquo; formation further prevents decomposition in cold, <a class="glossary-term" href="/glossary/#anaerobic" data-definition="Occurring in the absence of oxygen.">anaerobic</a> conditions (<a href="#ubelaker2011">
   Ubelaker &amp; Zarenko, 2011
 </a>
 ).</p>
@@ -857,7 +900,7 @@ P_1V_1 = P_2V_2
 <p><strong>Probabilistic model</strong>: Account for variation in body composition (fat percentage, clothing, trapped air).</p>
 </li>
 <li>
-<p><strong>Thermocline dynamics</strong>: Model seasonal thermocline movement and its effect on bodies at marginal depths.</p>
+<p><strong>Thermocline dynamics</strong>: Model seasonal <a class="glossary-term" href="/glossary/#thermocline" data-definition="A layer in a body of water where temperature changes rapidly with depth, separating warmer surface water from colder deep water.">thermocline</a> movement and its effect on bodies at marginal depths.</p>
 </li>
 <li>
 <p><strong>Historical validation</strong>: Compare model predictions against known body recovery data from other Great Lakes shipwrecks at various depths.</p>
@@ -1087,5 +1130,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

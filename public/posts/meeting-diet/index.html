@@ -78,6 +78,7 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -182,27 +183,37 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./meeting-diet.png" alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>If you don't optimize your schedule, your schedule will optimize you. Badly</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/meeting-diet/meeting-diet.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/meeting-diet/meeting-diet.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>If you don&#39;t optimize your schedule, your schedule will optimize you. Badly</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
 <hr>
 <p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
-  <strong>0/1 knapsack problem with two constraints</strong>
+  <strong><a class="glossary-term" href="/glossary/#multidimensional-knapsack" data-definition="A generalization of the knapsack problem in which each item consumes multiple limited resources and the goal is to maximize total value without exceeding any resource constraint.">0/1 knapsack problem with two constraints</a></strong>
 </a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
+, you can treat meetings like items with value, time cost, and energy cost. Classic <a class="glossary-term" href="/glossary/#optimization" data-definition="The process of finding the best solution to a problem according to a defined objective while satisfying specified constraints.">optimization</a> techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a <a class="glossary-term" href="/glossary/#simulation" data-definition="The use of a computational model to imitate the behavior of a system so that its outcomes can be explored or analyzed.">simulation</a> to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
 <hr>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
 <p>Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn&rsquo;t fear of missing out, it&rsquo;s fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to AI to summarize?</p>
 <p>Now add two constraints:</p>
 <ul>
-<li>A <strong>time budget</strong> (say, three hours of meetings per week).</li>
+<li>A <strong><a class="glossary-term" href="/glossary/#constraint" data-definition="A condition or limit that a valid solution to an optimization problem must satisfy.">time budget</a></strong> (say, three hours of meetings per week).</li>
 <li>An <strong>energy budget</strong> (say, ten units of attention before you burn out).</li>
 </ul>
 <p>Your challenge: select the subset of meetings that maximizes total value without breaking either budget.</p>
@@ -214,12 +225,12 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 <li>Each meeting has three attributes: <code>value</code>, <code>time</code>, and <code>energy</code>.</li>
 <li>Meetings are indivisible. You either attend or skip (no partial credit).</li>
 <li>Time and energy budgets are hard caps (no overdraw allowed).</li>
-<li>All values are known and deterministic (no surprises this week).</li>
+<li>All values are known and <a class="glossary-term" href="/glossary/#deterministic" data-definition="Describes a model or process whose inputs completely determine its outcome, without randomness.">deterministic</a> (no surprises this week).</li>
 </ul>
-<p>With these assumptions, our task is to implement a binary decision variable for each meeting and solve a maximization problem subject to dual constraints.</p>
+<p>With these assumptions, our task is to implement a <a class="glossary-term" href="/glossary/#binary-decision-variable" data-definition="A decision variable restricted to the values 0 and 1, commonly used to represent choices such as select or reject.">binary decision variable</a> for each meeting and solve a <a class="glossary-term" href="/glossary/#maximization" data-definition="An optimization objective that seeks the feasible solution producing the largest possible value of an objective function.">maximization problem</a> subject to dual constraints.</p>
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
-<p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong>ILP</strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong>PuLP</strong>, a lightweight open-source Python library for linear and integer programming (ILP). It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
+<p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong><a class="glossary-term" href="/glossary/#integer-linear-programming" data-definition="An optimization method in which the objective and constraints are linear and some or all decision variables are restricted to integer values.">ILP</a></strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong><a class="glossary-term" href="/glossary/#pulp" data-definition="An open-source Python library for defining and solving linear and integer optimization problems.">PuLP</a></strong>, a lightweight open-source Python library for <a class="glossary-term" href="/glossary/#integer-linear-programming" data-definition="An optimization method in which the objective and constraints are linear and some or all decision variables are restricted to integer values.">linear and integer programming</a> (ILP). It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
 <p><strong>Prompt:</strong></p>
 <hr>
 <blockquote>
@@ -284,8 +295,8 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> attend, chosen_names, total_value, total_time, total_energy
 </span></span></code></pre></div><hr>
 <h3 id="under-the-hood-why-this-is-really-a-matrix-problem">Under the Hood: Why This Is Really a Matrix Problem</h3>
-<p>Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a <em>constraint matrix</em>.</p>
-<p>When you run the model, the solver crunches through that matrix using linear algebra techniques to find the best combination of 1s and 0s (attend vs skip). So while you don&rsquo;t see the math spelled out, the engine making it all work is pure matrix computation.</p>
+<p>Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a <em><a class="glossary-term" href="/glossary/#constraint-matrix" data-definition="A matrix containing the coefficients that describe how decision variables participate in the constraints of an optimization model.">constraint matrix</a></em>.</p>
+<p>When you run the model, the solver crunches through that matrix using <a class="glossary-term" href="/glossary/#linear-algebra" data-definition="The branch of mathematics concerned with vectors, matrices, linear transformations, and the relationships among them.">linear algebra</a> techniques to find the best combination of 1s and 0s (attend vs skip). So while you don&rsquo;t see the math spelled out, the engine making it all work is pure matrix computation.</p>
 <hr>
 <h2 id="simulation-choosing-meetings">Simulation: Choosing Meetings</h2>
 <p>Let&rsquo;s run the model and print results. Here we prompt AI to write a simple main() block that reports which meetings were chosen and the totals.</p>
@@ -347,12 +358,26 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 </span></span><span style="display:flex;"><span>Total energy<span style="color:#ff79c6">=</span> 9 units
 </span></span></code></pre></div><hr>
 <h2 id="making-the-results-visual">Making the Results Visual</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="Plot of Meeting Value Efficiency (Chosen vs. Skipped)" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings to attend under the time and energy budgets and red bars marking those to decline.</em>
-  </figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/meeting-diet/plot.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/meeting-diet/plot.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Each bar shows a meeting&#39;s value-to-time ratio, with green bars marking the meetings to attend under the time and energy budgets and red bars marking those to decline.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>At first, I asked the AI for a quick visualization. The initial result was a plain vertical bar chart: it technically worked, but it looked generic and wasn&rsquo;t presentation-ready. Specifically, I realized the graph needed to:</p>
 <ul>
 <li>Sort meetings by efficiency</li>
@@ -484,13 +509,13 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 <h3 id="advanced-level-environment--stochasticity">Advanced Level: Environment &amp; Stochasticity</h3>
 <ul>
 <li>
-<p><strong>Uncertain values:</strong> Sample meeting values from a probability distribution (e.g., Normal).</p>
+<p><strong>Uncertain values:</strong> Sample meeting values from a <a class="glossary-term" href="/glossary/#probability-distribution" data-definition="A mathematical description of the possible outcomes of a random process and the probabilities associated with those outcomes.">probability distribution</a> (e.g., Normal).</p>
 </li>
 <li>
-<p><strong>Monte Carlo:</strong> Run 100 simulations of random meeting values and see which meetings are most often chosen.</p>
+<p><strong><a class="glossary-term" href="/glossary/#monte-carlo" data-definition="A computational technique that repeatedly samples random inputs to estimate the range, likelihood, or statistical properties of possible outcomes.">Monte Carlo</a>:</strong> Run 100 simulations of random meeting values and see which meetings are most often chosen.</p>
 </li>
 <li>
-<p><strong>Multi-objective optimization:</strong> Balance value against “fatigue penalty” explicitly.</p>
+<p><strong><a class="glossary-term" href="/glossary/#multi-objective-optimization" data-definition="Optimization involving two or more objectives that may compete with one another, requiring trade-offs among possible solutions.">Multi-objective optimization</a>:</strong> Balance value against “fatigue penalty” explicitly.</p>
 </li>
 </ul>
 <hr>
@@ -688,5 +713,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

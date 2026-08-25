@@ -33,7 +33,7 @@
 “Three seconds is a rule of thumb. Physics reveals the truth.”">
   <meta itemprop="datePublished" content="2025-10-23T09:00:00-07:00">
   <meta itemprop="dateModified" content="2025-10-23T09:00:00-07:00">
-  <meta itemprop="wordCount" content="1978">
+  <meta itemprop="wordCount" content="1982">
   <meta itemprop="keywords" content="Kinematics,Physics,Python">
 		
   <meta name="twitter:card" content="summary">
@@ -75,6 +75,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -179,21 +180,31 @@
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./safe-distance-in-traffic-vertical-arrows.png" alt="Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Following distance isn't just space, it's time in motion.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/safe-distance-in-traffic/safe-distance-in-traffic-vertical-arrows.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/safe-distance-in-traffic/safe-distance-in-traffic-vertical-arrows.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Following distance isn&#39;t just space, it&#39;s time in motion.</em>
+    </figcaption>
+    
+
 </figure>
-<p>While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the <strong>three-second rule</strong> and its validity. As I&rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.</p>
+
+<p>While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the <strong><a class="glossary-term" href="/glossary/#three-second-rule" data-definition="A driving guideline that recommends maintaining at least three seconds of travel time between your vehicle and the vehicle ahead.">three-second rule</a></strong> and its validity. As I&rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Three seconds is a rule of thumb. Physics reveals the truth.&rdquo;</em></p></blockquote>
 <hr>
 <p>I have always found that kind of rule fascinating because it is both universal and situational. It works whether you are cruising at 25 mph through town or flying down I-5 at 75 mph. At least, that is what the driver&rsquo;s manuals claim. But how does it hold up when you actually model two cars in motion: one stopping suddenly, the other reacting with a delay? That is where the math and a little Python simulation come in.</p>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
-<p>Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn&rsquo;t just brake; it <strong>comes to an immediate stop</strong> after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. The question becomes: how much <strong>time headway</strong> (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?</p>
-<p>This scenario is far harsher than the standard &ldquo;braking distance&rdquo; example you see in driver&rsquo;s ed. When the lead car stops instantly, there&rsquo;s no gradual deceleration, no brake lights glowing in time to react; there&rsquo;s just physics and the driver&rsquo;s delay. In this version, reaction time dominates everything. Every tenth of a second eats up more road, and if the following car&rsquo;s tires or brakes aren&rsquo;t perfect, even three seconds might not be enough.</p>
+<p>Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn&rsquo;t just brake; it <strong>comes to an immediate stop</strong> after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. The question becomes: how much <strong><a class="glossary-term" href="/glossary/#time-headway" data-definition="The time interval between two moving vehicles passing the same point, commonly used to express following distance independently of speed.">time headway</a></strong> (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?</p>
+<p>This scenario is far harsher than the standard &ldquo;braking distance&rdquo; example you see in driver&rsquo;s ed. When the lead car stops instantly, there&rsquo;s no gradual <a class="glossary-term" href="/glossary/#deceleration" data-definition="Acceleration that reduces an object&#39;s speed, such as the negative acceleration produced when a vehicle brakes.">deceleration</a>, no brake lights glowing in time to react; there&rsquo;s just physics and the driver&rsquo;s delay. In this version, <a class="glossary-term" href="/glossary/#reaction-time" data-definition="The elapsed time between perceiving an event and beginning a physical response to it.">reaction time</a> dominates everything. Every tenth of a second eats up more road, and if the following car&rsquo;s tires or brakes aren&rsquo;t perfect, even three seconds might not be enough.</p>
 <hr>
 <h2 id="modeling-the-problem">Modeling the Problem</h2>
 <p>To make the problem solvable, we model the leader&rsquo;s <strong>instantaneous stop</strong> as having zero forward motion after time zero, while the follower continues at a constant speed until reaction time elapses, then brakes at a fixed deceleration rate.</p>
@@ -204,8 +215,8 @@
 <li>The follower continues at full speed during the reaction delay, then begins braking at a constant rate.</li>
 <li>The goal is to find the minimum headway time (in seconds) or distance (in feet) needed to prevent impact.</li>
 </ol>
-<p>The follower&rsquo;s stopping distance is given by the classic <a href="https://en.wikipedia.org/wiki/Kinematics" target="_blank" rel="noopener noreferrer">
-  kinematic
+<p>The follower&rsquo;s <a class="glossary-term" href="/glossary/#stopping-distance" data-definition="The total distance traveled from recognizing the need to stop until the object comes to rest, including both reaction and braking distance.">stopping distance</a> is given by the classic <a href="https://en.wikipedia.org/wiki/Kinematics" target="_blank" rel="noopener noreferrer">
+  <a class="glossary-term" href="/glossary/#kinematics" data-definition="The branch of mechanics that describes motion using quantities such as position, velocity, acceleration, and time without considering the forces causing the motion.">kinematic</a>
 </a>
  equation:</p>
 <p>\[
@@ -233,7 +244,7 @@ h \ge \tau + \frac{v}{2a_F}
 <li><code>required_headway_instant_stop(v_mph: np.ndarray | float, tau: float = 1.5, a_f: float = 19.7) -&gt; np.ndarray</code>: computes the minimum time headway (seconds) to avoid collision if the lead car stops instantly, using <code>h = tau + v/(2*a_f)</code> where <code>v</code> is in ft/s.</li>
 <li><code>print_headway_table(speeds_mph: Iterable[float], conditions: Dict[str, float], tau: float = 1.5) -&gt; None</code>: prints a table of required headway for each condition and speed, using formatted output like <code>&quot;{mph:&gt;3.0f} mph → {h:.2f} s&quot;</code>.</li>
 </ol>
-<p>Use clear docstrings, vectorized math, and match standard Python formatting and type hints exactly. Output only the Python code.</p></blockquote>
+<p>Use clear docstrings, <a class="glossary-term" href="/glossary/#vectorization" data-definition="The technique of applying an operation to an entire array of values at once rather than processing individual elements with explicit loops.">vectorized</a> math, and match standard Python formatting and type hints exactly. Output only the Python code.</p></blockquote>
 <p><strong>Python</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> __future__ <span style="color:#ff79c6">import</span> annotations
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
@@ -312,15 +323,26 @@ h \ge \tau + \frac{v}{2a_F}
 </span></span><span style="display:flex;"><span><span style="color:#bd93f9">70</span> mph → 9.28 s
 </span></span></code></pre></div><hr>
 <h2 id="making-the-results-visual">Making the Results Visual</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" 
-       alt="Line chart of minimum headway time versus speed for dry, wet, and icy roads, with a dashed 3-second rule line showing that lower friction and higher speed require more time." 
-       width="400" 
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Time-based following rules scale with speed, but the coefficient of friction between the tires and the road and the driver's reaction time set the real safety margin.</em>
-  </figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/safe-distance-in-traffic/plot.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/safe-distance-in-traffic/plot.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Time-based following rules scale with speed, but the {{&lt; term &#34;coefficient-of-friction&#34; &#34;coefficient of friction&#34; &gt;}} between the tires and the road and the driver&#39;s reaction time set the real safety margin.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>A plot brings this vividly to life: three upward curves showing how the safe following time rises sharply with speed, and exponentially with slipperiness. The dashed &ldquo;3-second rule&rdquo; line slices through them, safe in good weather but hopeless on ice.</p>
 <p><strong>Prompt example:</strong></p>
 <blockquote>
@@ -388,7 +410,7 @@ h \ge \tau + \frac{v}{2a_F}
 </span></span></code></pre></div><hr>
 <h2 id="what-we-learned">What We Learned</h2>
 <p>The three-second rule is designed for normal <strong>shared deceleration</strong> scenarios, where both the lead car and trailing car slow at roughly the same rate. In that situation, the gap scales nicely with speed because each car&rsquo;s braking distance grows with the square of velocity, and both are still moving while braking. Both take longer to stop, but they take longer together.</p>
-<p>In an <strong>instantaneous stop</strong> scenario, though, the lead car doesn&rsquo;t slow; it disappears from the equation. Only the trailing car continues moving, and that changes everything. When speed doubles, kinetic energy (and thus required stopping distance) goes up by a factor of four, but reaction delay still burns the same fixed amount of time. At 70 mph, you travel about 100 feet every second, so 1.5 seconds of reaction time eats up 150 feet before your brakes even engage. By the time you begin slowing, you&rsquo;ve already closed most of the &ldquo;three-second&rdquo; buffer.</p>
+<p>In an <strong>instantaneous stop</strong> scenario, though, the lead car doesn&rsquo;t slow; it disappears from the equation. Only the trailing car continues moving, and that changes everything. When speed doubles, <a class="glossary-term" href="/glossary/#kinetic-energy" data-definition="The energy an object possesses because of its motion, proportional to its mass and the square of its velocity.">kinetic energy</a> (and thus required stopping distance) goes up by a factor of four, but reaction delay still burns the same fixed amount of time. At 70 mph, you travel about 100 feet every second, so 1.5 seconds of reaction time eats up 150 feet before your brakes even engage. By the time you begin slowing, you&rsquo;ve already closed most of the &ldquo;three-second&rdquo; buffer.</p>
 <p>A constant time gap assumes shared deceleration. Once you remove that assumption, it stops being a safety cushion and becomes a countdown. The three-second rule scales fine for shared braking, but not for the catastrophic instant-stop case we modeled.</p>
 <hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
@@ -414,7 +436,7 @@ h \ge \tau + \frac{v}{2a_F}
 <p><strong>Advanced Level: Environment &amp; Stochasticity</strong></p>
 <ol>
 <li>
-<p><strong>Monte Carlo simulation</strong>: Randomize reaction time, braking rates, and initial speeds to simulate thousands of driver pairs and estimate collision probability.</p>
+<p><strong><a class="glossary-term" href="/glossary/#monte-carlo-simulation" data-definition="A computational technique that uses repeated random sampling to estimate probabilities, outcomes, or other properties of a system.">Monte Carlo simulation</a></strong>: Randomize reaction time, braking rates, and initial speeds to simulate thousands of driver pairs and estimate <a class="glossary-term" href="/glossary/#collision-probability" data-definition="The probability that at least two independently selected values from a finite space are identical.">collision probability</a>.</p>
 </li>
 <li>
 <p><strong>Sensor delay modeling</strong>: Add an extra 0.2-second lag for radar-based adaptive cruise control and see whether &ldquo;three seconds&rdquo; still holds.</p>
@@ -616,5 +638,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

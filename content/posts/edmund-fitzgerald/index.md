@@ -8,12 +8,12 @@ author = "Tom Archer"
 listThumb = "edmund-fitzgerald.jpeg"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./edmund-fitzgerald.jpeg" alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="edmund-fitzgerald.jpeg"
+    alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site"
+    label="Open full-size edmund fitzgerald"
+    caption="At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true."
+>}}
 
 Originally appearing on his 1976 album, *Summertime Dream*, "The Wreck of the Edmund Fitzgerald" is a powerful ballad written and performed by folk singer [Gordon Lightfoot](#lightfoot1976). In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: "The lake, it is said, never gives up her dead." Following the singer's death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard's Hot Rock and Alternative category. 
 
@@ -35,13 +35,13 @@ When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they st
 
 <!--more-->
 
-In this post, we'll explore the disturbing science behind this phenomenon, building a computational model that explains why bodies don't surface in extreme cold, deep water. You'll learn how temperature affects decomposition rates using the Arrhenius equation, how pressure follows Boyle's Law to compress gases, and why Lake Superior's specific conditions create a perfect preservation environment. We'll validate our model against known recovery data from maritime disasters and explore what variables matter most in determining whether a body will ever surface.
+In this post, we'll explore the disturbing science behind this phenomenon, building a computational model that explains why bodies don't surface in extreme cold, deep water. You'll learn how temperature affects decomposition rates using the {{< term "arrhenius-equation" "Arrhenius equation" >}}, how pressure follows {{< term "boyles-law" "Boyle's Law" >}} to compress gases, and why Lake Superior's specific conditions create a perfect preservation environment. We'll validate our model against known recovery data from maritime disasters and explore what variables matter most in determining whether a body will ever surface.
 
 > **TL;DR:**
 > - Bodies float due to decomposition gases reducing overall density
 > - At 4°C, bacterial activity drops 75-90%, slowing gas production  
 > - At 530 feet, pressure compresses any gas to 1/16th volume
-> - Lake Superior's cold + depth means bodies never generate enough buoyancy
+> - Lake Superior's cold + depth means bodies never generate enough {{< term "buoyancy" "buoyancy" >}}
 > - The physics applies to any deep, cold water environment
 
 ---
@@ -65,7 +65,7 @@ The question of whether a body will float is ultimately about density. When the 
 - Standard body composition: ~\\(985 {kg}/{m^3}\\) initial density
 - Decomposition follows predictable bacterial growth curves
 - Gas production proportional to bacterial activity
-- Gases follow ideal gas law under pressure
+- Gases follow {{< term "ideal-gas-law" "ideal gas law" >}} under pressure
 - Water density increases with depth (~\\(1.044 {kg}/{m^3}\\) at 500 feet)
 
 The key processes to model:
@@ -110,7 +110,7 @@ Let's begin by creating a function to model how temperature affects decompositio
 
 **Prompt example:**
 
-> Create a function `decomposition_rate(temp_celsius, baseline_rate=0.15)` that uses Q10 temperature coefficient (typically 2.5 for biological processes) to adjust decomposition rate based on temperature. Use 20°C as the reference temperature. Include docstrings explaining the physics behind each calculation.
+> Create a function `decomposition_rate(temp_celsius, baseline_rate=0.15)` that uses {{< term "q10-temperature-coefficient" "Q10 temperature coefficient" >}} (typically 2.5 for biological processes) to adjust decomposition rate based on temperature. Use 20°C as the reference temperature. Include docstrings explaining the physics behind each calculation.
 
 **Python:**
 ```python
@@ -643,10 +643,12 @@ if __name__ == "__main__":
 
 The visualization reveals the brutal mathematics: at the Edmund Fitzgerald's depth, bodies barely become less dense over time. The combination of extreme cold (slowing decomposition by 90%) and extreme pressure (compressing gases to 6% of surface volume) creates an inescapable physics trap.
 
-<img src="./plot_density_evolution.png" alt="Graph showing body density over time at different depths, with Edmund Fitzgerald depth highlighted" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>Body density evolution at different depths. The Edmund Fitzgerald depth (162m) shows minimal density change even after a year.</em>
-</figcaption>
+{{< lightbox
+    src="plot_density_evolution.png"
+    alt="Line chart showing body density over one year at depths of 10, 50, 100, 162, and 200 meters, with surface and deep-water density reference lines"
+    label="Open full-size body density evolution chart"
+    caption="Body density evolution at different depths. The Edmund Fitzgerald depth (162m) shows minimal density change even after a year."
+>}}
 
 <br>
 
@@ -707,10 +709,12 @@ if __name__ == "__main__":
 
 This contour map shows the sharp transition between depths where recovery is possible versus impossible. Below about 100 meters in Superior's 4°C water, physics ensures bodies remain permanently submerged.
 
-<img src="./plot_surfacing_zones.png" alt="Depth vs time contour map showing zones where bodies will surface (light) vs remain submerged (dark)" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>Surfacing zones in Lake Superior. Light areas indicate conditions where bodies eventually surface. The Edmund Fitzgerald's depth is well into the "never surface" zone.</em>
-</figcaption>
+{{< lightbox
+    src="plot_surfacing_zones.png"
+    alt="Depth-versus-time chart showing surfacing conditions in Lake Superior over one year, with the Edmund Fitzgerald's 162-meter depth below the plotted range"
+    label="Open full-size Lake Superior surfacing zones chart"
+    caption="Surfacing zones in Lake Superior. Light areas indicate conditions where bodies eventually surface. The Edmund Fitzgerald's depth is well into the 'never surface' zone."
+>}}
 
 <br>
 
@@ -746,13 +750,13 @@ The Edmund Fitzgerald's crew remains with their ship not due to mystery or mytho
 
 2. **Current modeling**: Add lake currents that might move bodies to shallower water over time.
 
-3. **Adipocere formation**: Model how "grave wax" formation further prevents decomposition in cold, anaerobic conditions ([Ubelaker & Zarenko, 2011](#ubelaker2011)).
+3. **Adipocere formation**: Model how "grave wax" formation further prevents decomposition in cold, {{< term "anaerobic" "anaerobic" >}} conditions ([Ubelaker & Zarenko, 2011](#ubelaker2011)).
 
 **Advanced Level:**
 
 1. **Probabilistic model**: Account for variation in body composition (fat percentage, clothing, trapped air).
 
-2. **Thermocline dynamics**: Model seasonal thermocline movement and its effect on bodies at marginal depths.
+2. **Thermocline dynamics**: Model seasonal {{< term "thermocline" "thermocline" >}} movement and its effect on bodies at marginal depths.
 
 3. **Historical validation**: Compare model predictions against known body recovery data from other Great Lakes shipwrecks at various depths.
 

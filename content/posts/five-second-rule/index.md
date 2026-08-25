@@ -8,12 +8,12 @@ author = "Tom Archer"
 listThumb = "five-second-rule-explored.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./five-second-rule-explored.png" alt="Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Forget the five-second rule. Germs transfer instantly, and we can prove it with math.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="five-second-rule-explored.png"
+    alt="Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off"
+    label="Open full-size five second rule explored"
+    caption="Forget the five-second rule. Germs transfer instantly, and we can prove it with math."
+>}}
 
 You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.  
 
@@ -52,7 +52,7 @@ foods are more welcoming than others:
 Multiply these together and you get a number that tells you how hospitable
 your food is to germs.
 
-Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like pouring sand into a jar: the first handful drops in quickly, but as the jar fills, you have to shake and settle it to fit more. That tapering-off is what our rate constant \\(\beta\\) represents.
+Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like pouring sand into a jar: the first handful drops in quickly, but as the jar fills, you have to shake and settle it to fit more. That tapering-off is what our {{< term "rate-constant" "rate constant" >}} \\(\beta\\) represents.
 
 ---
 
@@ -77,7 +77,7 @@ at how it changes second by second.
 
 ### Why the First Second Matters
 
-To see how fast germs are transferring at any moment, we look at the derivative:
+To see how fast germs are transferring at any moment, we look at the {{< term "derivative" "derivative" >}}:
 
 \\[
 G'(t) = \rho \cdot A \cdot \alpha \cdot m \cdot s \cdot \beta \cdot e^{-\beta t}
@@ -103,7 +103,7 @@ When prompting AI for this model, we do not just say "simulate germs." For bette
 
 ---
 
-> *Write a Python function germs(t, rho, A, alpha, moisture, surface, beta) that calculates bacteria transfer over time. Use an exponential approach so germs arrive quickly at first, then taper off. Also write safe_time() that returns the time needed to reach a threshold L.*
+> *Write a Python function germs(t, rho, A, alpha, moisture, surface, beta) that calculates bacteria transfer over time. Use an {{< term "exponential-function" "exponential" >}} approach so germs arrive quickly at first, then taper off. Also write safe_time() that returns the time needed to reach a threshold L.*
 
 ---
 
@@ -152,7 +152,7 @@ To keep things tidy, we can group efficiency factors into a `TransferParams` obj
 
 ---
 
-> *Write a Python dataclass `TransferParams` that holds `alpha`, `moisture`, `surface`, and `beta`. Add a property that returns their combined product `k`.*
+> *Write a Python {{< term "dataclass" "dataclass" >}} `TransferParams` that holds `alpha`, `moisture`, `surface`, and `beta`. Add a property that returns their combined product `k`.*
 
 ---
 
@@ -224,12 +224,12 @@ Safe time for L=50.0 germs: 1.23s
 
 ## Making the Results Visual
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="Line plot showing how germs accumulate on food over 10 seconds with a steep rise at the start and then leveling off" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>The curve shows bacteria transfer to food over time: a rapid rise in the first seconds followed by a slow flattening as the germ ceiling is reached.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="plot.png"
+    alt="Line plot showing how germs accumulate on food over 10 seconds with a steep rise at the start and then leveling off"
+    label="Open full-size plot"
+    caption="The curve shows bacteria transfer to food over time: a rapid rise in the first seconds followed by a slow flattening as the germ ceiling is reached."
+>}}
 
 A graph makes the story vivid. We sample times between 0 and 10 seconds, run them through `germs()`, and plot the results. For easier visual consumption, we add a dashed red line for the threshold `L` and a vertical dotted line for the crossing point.  
 
@@ -306,9 +306,9 @@ From the AI side, we saw how careful prompting matters. The clearer the assumpti
 
 ### Advanced Level: Environment and Stochasticity
 
-1. **Random dirt:** Use probability distributions for surface contamination.  
+1. **Random dirt:** Use {{< term "probability-distribution" "probability distributions" >}} for surface contamination.  
 2. **Climate effects:** Let β vary with humidity.  
-3. **Monte Carlo:** Run 1,000 drops and chart the spread.  
+3. **{{< term "monte-carlo-simulation" "Monte Carlo" >}}:** Run 1,000 drops and chart the spread.  
 
 ## Closing Thoughts
 

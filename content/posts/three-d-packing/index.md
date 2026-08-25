@@ -8,12 +8,12 @@ author = "Tom Archer"
 listThumb = "three-d-packing.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./three-d-packing.png" alt="3D Bin Packing" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>How do you fit it all in?</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="three-d-packing.png"
+    alt="3D Bin Packing"
+    label="Open full-size three d packing"
+    caption="How do you fit it all in?"
+>}}
 
 My first full-time programming job was for **Holiday on Ice**, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show's crew was efficiently loading trucks for the next city.  
 
@@ -44,7 +44,7 @@ Imagine a truck interior sized **H × W × D** (height, width, depth) and a set 
 - **Respect the truck bounds** (no sticking out).  
 - Optionally **consider weight** and stacking rules.  
 
-Real-world simple? Not really. Computationally, it's a classic **3D bin-packing** problem. On the scale of computational complexity, this problem is extremely difficult (**NP-hard**), meaning there's no known fast way to always find the perfect solution. Instead, we rely on heuristics, which are clever shortcuts that deliver good (though not guaranteed optimal) results quickly.  
+Real-world simple? Not really. Computationally, it's a classic **{{< term "three-dimensional-bin-packing" "3D bin-packing" >}}** problem. On the scale of computational complexity, this problem is extremely difficult (**{{< term "np-hard" "NP-hard" >}}**), meaning there's no known fast way to always find the perfect solution. Instead, we rely on {{< term "heuristic" "heuristics" >}}, which are clever shortcuts that deliver good (though not guaranteed optimal) results quickly.  
 
 It's like trying to figure out every possible way to load groceries into your car trunk. You could test every arrangement, but that would take forever, so instead you look for smart tricks to get a good result quickly. Tricks such as loading heavy items first, stacking boxes neatly, and filling gaps with small bags.  
 
@@ -56,9 +56,9 @@ To simulate the problem, we make the following simplifications:
 
 - The truck is a perfect cuboid with fixed dimensions.
 - Each box is also a cuboid with (height, width, depth, weight).
-- Boxes may only be rotated in **axis-aligned orientations** (6 total).  
+- Boxes may only be rotated in **{{< term "axis-aligned" "axis-aligned orientations" >}}** (6 total).  
 - Free space is tracked as rectangular subspaces (split after each placement).
-- Goal: maximize volume utilization, while optionally considering stacking rules.
+- Goal: maximize {{< term "volume-utilization" "volume utilization" >}}, while optionally considering stacking rules.
 
 ---
 
@@ -248,12 +248,12 @@ The packing function produces a sequential plan showing where each crate ends up
 
 ## Making the Results Visual
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="3D Bin Packing" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>3D visualization of packed items inside the truck, showing width, depth, and height alignment based on a heuristic best-guess for efficiency.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="plot.png"
+    alt="3D Bin Packing"
+    label="Open full-size plot"
+    caption="3D visualization of packed items inside the truck, showing width, depth, and height alignment based on a heuristic best-guess for efficiency."
+>}}
 
 By plotting the packed truck, we move beyond raw placement data and can see whether the packing logic produces a layout that makes sense in three dimensions. A list of coordinates and sizes may be correct mathematically, but it’s not easy to judge efficiency or orientation without a visual check. A 3D plot gives immediate feedback on how the boxes sit within the container: whether they fit, whether they stack as expected, and how well the available space is being used. This makes it much easier to spot mistakes in the algorithm, such as items standing on the wrong axis, overlapping, or leaving gaps that should have been filled.
 
@@ -376,11 +376,11 @@ def plot_truck_packing(truck: Dimensions, placements: List[Placement]):
 
 ## What We Learned
 
-So what did we actually learn from tackling this truck-packing problem with AI? First, prompt engineering really does matter. The clearer and more constrained the prompt, the closer the AI's first draft will be to something usable, saving time on rework.
+So what did we actually learn from tackling this truck-packing problem with AI? First, {{< term "prompt-engineering" "prompt engineering" >}} really does matter. The clearer and more constrained the prompt, the closer the AI's first draft will be to something usable, saving time on rework.
 
 Second, we should remember that this is an **NP-hard problem**. No matter how clever we are, we're not going to get perfect solutions every time. Therefore, the practical goal is heuristics that give us "good enough" answers **fast**.
 
-Finally, we saw how **greedy placement rules** and **guillotine-style splits** can provide practical packing strategies, and how visualization is key to making the results feel intuitive rather than just lines of coordinates.
+Finally, we saw how **{{< term "greedy-algorithm" "greedy placement rules" >}}** and **{{< term "guillotine-split" "guillotine-style splits" >}}** can provide practical packing strategies, and how visualization is key to making the results feel intuitive rather than just lines of coordinates.
 
 ---
 
@@ -408,17 +408,17 @@ The best way to internalize a concept like 3D packing is to get your hands dirty
 
 ### Advanced Level: Environment & Stochasticity
 
-1. Implement simulated annealing or genetic algorithms to search better packings.
+1. Implement {{< term "simulated-annealing" "simulated annealing" >}} or {{< term "genetic-algorithm" "genetic algorithms" >}} to search better packings.
 
 1. Add real-world rules like axle load balancing or fragile stacking.
 
-1. Scale up to thousands of boxes with Monte Carlo heuristics.
+1. Scale up to thousands of boxes with {{< term "monte-carlo" "Monte Carlo" >}} heuristics.
 
 ---
 
 ## Closing Thoughts
 
-Packing trucks may seem like grunt work, but it's really a microcosm of **optimization problems**: finite resources, constraints, tradeoffs. The thrill of solving them, especially with today's AI scaffolding, is the same thrill that first drew me to programming back at Holiday on Ice.
+Packing trucks may seem like grunt work, but it's really a microcosm of **{{< term "optimization" "optimization problems" >}}**: finite resources, constraints, tradeoffs. The thrill of solving them, especially with today's AI scaffolding, is the same thrill that first drew me to programming back at Holiday on Ice.
 
 ---
 

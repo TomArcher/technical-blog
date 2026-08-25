@@ -37,7 +37,7 @@ The butter versus margarine comparison is a staple example in nutrition science.
 “A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.”">
   <meta itemprop="datePublished" content="2025-10-12T09:00:00-07:00">
   <meta itemprop="dateModified" content="2025-10-12T09:00:00-07:00">
-  <meta itemprop="wordCount" content="2943">
+  <meta itemprop="wordCount" content="2877">
   <meta itemprop="keywords" content="Energy Balance,Python,Thermodynamics">
 		
   <meta name="twitter:card" content="summary">
@@ -81,6 +81,7 @@ The butter versus margarine comparison is a staple example in nutrition science.
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -185,48 +186,49 @@ The butter versus margarine comparison is a staple example in nutrition science.
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./thermo-water-energy-balance.png" 
-       alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background" 
-       width="250" 
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/thermo-water-energy-balance/thermo-water-energy-balance.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/thermo-water-energy-balance/thermo-water-energy-balance.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.</p>
-<p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&rsquo;s not coincidence; it&rsquo;s thermodynamics.</p>
-<p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&rsquo;s <em>specific heat</em> is much higher.</p>
+<p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&rsquo;s not coincidence; it&rsquo;s <a class="glossary-term" href="/glossary/#thermodynamics" data-definition="The branch of physics concerned with energy, heat, work, temperature, and the ways energy is transferred and transformed.">thermodynamics</a>.</p>
+<p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&rsquo;s <em><a class="glossary-term" href="/glossary/#specific-heat" data-definition="The amount of energy required to raise the temperature of a unit mass of a substance by one degree.">specific heat</a></em> is much higher.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&rdquo;</em></p></blockquote>
 <hr>
-<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
-    <div style="text-align: center;"><strong>Specific heat vs. heat capacity</strong><br><br></div>
-    <strong>Specific heat</strong> measures how much energy it takes to raise <strong>one gram of a substance</strong> by one degree. 
-    <strong>Heat capacity</strong> is the total energy needed to warm the <strong>entire object by one degree</strong>. 
-    In this post, "specific heat" refers to the <em>intensive property</em> of materials like water, while "heat capacity" applies to the <em>extensive property</em> of the pool as a whole.
-</div>
-<p>A swimming pool works the same way, just scaled up thousands of times. Its massive water content means it has enormous heat capacity where warming takes a long time because every degree requires tremendous energy. Cooling happens faster, though, because evaporation and night radiation pull energy out far more efficiently than the sun can replace it.</p>
+<p>A swimming pool works the same way, just scaled up thousands of times. Its massive water content means it has enormous <a class="glossary-term" href="/glossary/#heat-capacity" data-definition="The amount of energy required to raise the temperature of an entire object or system by one degree.">heat capacity</a> where warming takes a long time because every degree requires tremendous energy. Cooling happens faster, though, because <a class="glossary-term" href="/glossary/#evaporation" data-definition="The process by which molecules at the surface of a liquid escape into the gas phase.">evaporation</a> and night radiation pull energy out far more efficiently than the sun can replace it.</p>
 <p>In this post, we will turn that intuition into a simple Python model that explains exactly why water warms so slowly but cools so fast.</p>
 <hr>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
 <p>Imagine a shallow pool sitting in the desert sun. During the day, it absorbs energy from sunlight, and at night it loses energy to the air and sky. The surprising part is not that both happen, but that the rates are so uneven.</p>
 <p>The pool&rsquo;s heat capacity acts like a huge thermal battery; it takes time to charge. The cooling process, on the other hand, is driven by evaporation. Each gram of water that evaporates carries away about 2.45 kilojoules of energy, and with enough dry air and a light breeze, those losses pile up quickly.</p>
-<p>The same logic explains why a pat of margarine melts more slowly than butter. Water is a powerful heat sink, and evaporation is a powerful energy thief. Put them together, and you have a recipe for long warmups and quick cooldowns.</p>
+<p>The same logic explains why a pat of margarine melts more slowly than butter. Water is a powerful <a class="glossary-term" href="/glossary/#heat-sink" data-definition="A material, object, or system that absorbs and stores or dissipates thermal energy.">heat sink</a>, and evaporation is a powerful energy thief. Put them together, and you have a recipe for long warmups and quick cooldowns.</p>
 <hr>
 <h2 id="modeling-the-problem">Modeling the Problem</h2>
-<p>We will treat the water as a well mixed control volume with a single temperature. The surface exchanges heat with the air through convection, with the sky through longwave radiation, and with the sun through shortwave absorption. Evaporation removes energy proportional to the rate at which vapor escapes.</p>
+<p>We will treat the water as a well mixed <a class="glossary-term" href="/glossary/#control-volume" data-definition="A defined region of space used to analyze the flow and conservation of quantities such as mass and energy.">control volume</a> with a single temperature. The surface exchanges heat with the air through <a class="glossary-term" href="/glossary/#convection" data-definition="Heat transfer involving the motion of a fluid, such as air moving across the surface of water.">convection</a>, with the sky through <a class="glossary-term" href="/glossary/#longwave-radiation" data-definition="Thermal electromagnetic radiation emitted by objects because of their temperature, primarily at infrared wavelengths.">longwave radiation</a>, and with the sun through <a class="glossary-term" href="/glossary/#shortwave-radiation" data-definition="Electromagnetic radiation at relatively short wavelengths, including most of the solar energy reaching Earth&#39;s surface.">shortwave absorption</a>. Evaporation removes energy proportional to the rate at which vapor escapes.</p>
 <p><strong>Assumptions:</strong></p>
 <ul>
-<li>The water is well mixed with no stratification. This means that the water&rsquo;s temperature is assumed to be uniform throughout, rather than layered (or stratified). In real life, large bodies of water often stratify, meaning warmer, lighter water floats on top while cooler, denser water sinks.</li>
+<li>The water is well mixed with no <a class="glossary-term" href="/glossary/#thermal-stratification" data-definition="The formation of layers within a fluid at different temperatures, often with warmer, less dense fluid above cooler, denser fluid.">stratification</a>. This means that the water&rsquo;s temperature is assumed to be uniform throughout, rather than layered (or stratified). In real life, large bodies of water often stratify, meaning warmer, lighter water floats on top while cooler, denser water sinks.</li>
 <li>Conduction through walls and floor is small compared with surface fluxes. In other words, most heat exchange happens through the surface where the water meets the air, not through the pool&rsquo;s sides or bottom. This fact allows us to ignore the smaller conductive losses into the ground or walls.</li>
-<li>Shortwave absorption is a constant fraction of incident irradiance. The sunlight that hits the surface is partly reflected and partly absorbed. Here, we assume that a fixed portion (often 85–90%) is absorbed as heat, rather than modeling how absorption varies with sun angle or surface color.</li>
-<li>Longwave exchange follows the Stefan–Boltzmann law with an effective sky temperature. The pool radiates heat upward to the sky, and the sky radiates a smaller amount back. We model this as a simple radiation balance using the Stefan–Boltzmann law, where the &ldquo;sky temperature&rdquo; represents the average radiative temperature of the atmosphere above.</li>
+<li>Shortwave absorption is a constant fraction of incident <a class="glossary-term" href="/glossary/#irradiance" data-definition="The radiant power received by a surface per unit area, commonly measured in watts per square meter.">irradiance</a>. The sunlight that hits the surface is partly reflected and partly absorbed. Here, we assume that a fixed portion (often 85–90%) is absorbed as heat, rather than modeling how absorption varies with sun angle or surface color.</li>
+<li>Longwave exchange follows the <a class="glossary-term" href="/glossary/#stefan-boltzmann-law" data-definition="A physical law stating that the thermal radiation emitted by an idealized surface is proportional to the fourth power of its absolute temperature.">Stefan–Boltzmann law</a> with an effective sky temperature. The pool radiates heat upward to the sky, and the sky radiates a smaller amount back. We model this as a simple radiation balance using the Stefan–Boltzmann law, where the &ldquo;sky temperature&rdquo; represents the average radiative temperature of the atmosphere above.</li>
 <li>Evaporation follows a bulk aerodynamic relationship that depends on humidity gradient and wind. The rate of evaporation depends on how dry the air is and how quickly air moves over the surface. Wind helps carry away moist air, increasing evaporation, while higher humidity slows it down.</li>
-<li>Weather varies smoothly over the day and repeats during the simulation window. Instead of using random or hourly data, we assume repeating daily cycles for temperature, humidity, sunlight, and wind. This simplifies the simulation while still capturing the main diurnal pattern of heating and cooling.</li>
+<li>Weather varies smoothly over the day and repeats during the simulation window. Instead of using random or hourly data, we assume repeating daily cycles for temperature, humidity, sunlight, and wind. This simplifies the simulation while still capturing the main <a class="glossary-term" href="/glossary/#diurnal-cycle" data-definition="A pattern that repeats approximately every 24 hours, such as daily changes in temperature, sunlight, humidity, or wind.">diurnal</a> pattern of heating and cooling.</li>
 </ul>
-<p>The <strong>energy balance</strong> is defined as follows using the standard form of the surface energy balance used throughout thermodynamics, climatology, and environmental engineering. In academic terms, this is the first-law (conservation of energy) equation for a control volume, applied to a water surface.</p>
+<p>The <strong>energy balance</strong> is defined as follows using the standard form of the surface energy balance used throughout thermodynamics, climatology, and environmental engineering. In academic terms, this is the first-law (<a class="glossary-term" href="/glossary/#conservation-of-energy" data-definition="The principle that energy cannot be created or destroyed, only transferred or transformed from one form to another.">conservation of energy</a>) equation for a control volume, applied to a water surface.</p>
 <p>\[
 C \frac{dT}{dt} = Q_{\text{solar}} + Q_{\text{convective}} + Q_{\text{radiative}} + Q_{\text{evaporative}}
 \]</p>
@@ -261,7 +263,7 @@ Q_{\text{evaporative}} = -L_v \dot{m}_{\text{evap}}
 <p>Define these constants (SI units):</p>
 <ul>
 <li><code>SIGMA = 5.670374419e-8</code>  # Stefan–Boltzmann W·m^-2·K^-4</li>
-<li><code>LV = 2.45e6</code>             # latent heat of vaporization J·kg^-1</li>
+<li><code>LV = 2.45e6</code>             # <a class="glossary-term" href="/glossary/#latent-heat-of-vaporization" data-definition="The energy required to convert a unit mass of liquid into vapor without changing its temperature.">latent heat of vaporization</a> J·kg^-1</li>
 <li><code>CP = 4186.0</code>             # specific heat of water J·kg^-1·K^-1</li>
 <li><code>RHO = 1000.0</code>            # density of water kg·m^-3</li>
 </ul>
@@ -353,7 +355,7 @@ and return <code>k_evap * A * grad * (1.0 + beta_wind * wind)</code>.</li>
 <h2 id="simulation-diurnal-heating-and-night-cooling">Simulation: Diurnal Heating and Night Cooling</h2>
 <p><strong>Prompt example:</strong> Now we tell AI to generate a fairly tractable function to simulate the diurnal heating and cooling of a body of water over a specified number of days. Note how specific I have to be in order to get the code I need.</p>
 <blockquote>
-<p>Write a single Python function <code>simulate(days=14, dt=3600.0, cover=False, seed_temp_C=24.0)</code> that performs a forward Euler simulation of a well mixed water body under diurnal forcing. Output only valid Python code.</p>
+<p>Write a single Python function <code>simulate(days=14, dt=3600.0, cover=False, seed_temp_C=24.0)</code> that performs a <a class="glossary-term" href="/glossary/#forward-euler" data-definition="A numerical integration method that estimates the next state of a system using its current value and current rate of change.">forward Euler</a> simulation of a well mixed water body under diurnal forcing. Output only valid Python code.</p>
 <p>Requirements:</p>
 <ol>
 <li>
@@ -530,12 +532,26 @@ and return <code>k_evap * A * grad * (1.0 + beta_wind * wind)</code>.</li>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">Final temperature cover</span>: <span style="color:#bd93f9">86.8</span> °F (30.5 °C)
 </span></span></code></pre></div><hr>
 <h2 id="making-the-results-visual">Making the Results Visual</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-    <img src="./plot.png" alt="Line plot showing how germs accumulate on food over 10 seconds with a steep rise at the start and then leveling off" width="400" style="display: block; margin: 0 auto;">
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/thermo-water-energy-balance/plot.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/thermo-water-energy-balance/plot.png" alt="">
+
+    </a>
+
+    
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
         <em>Water temperature over 14 days under diurnal forcing for open vs covered conditions (left axis °F, right axis °C). The cover reduces nighttime losses from evaporation and longwave radiation, raising the average temperature and narrowing the daily swing compared with the open surface.</em>
     </figcaption>
+    
+
 </figure>
+
 <p><strong>Prompt example:</strong> A picture makes the mechanism obvious. Here I ask AI to generate the Python code to plot the two temperature curves on the same axes to compare warming with and without a cover.</p>
 <blockquote>
 <p>Write a Python function named plot_runs_dual_axis(run_open, run_cov) that uses Matplotlib to plot two temperature time series with Fahrenheit on the left (primary) y-axis and Celsius on the right (secondary) y-axis.</p>
@@ -643,7 +659,7 @@ where <code>hours_*</code> are hour vectors, and <code>Tw_*_C</code> are water t
 <p>Implement a simple controller that applies a cover based on forecasted night conditions and a target minimum temperature.</p>
 </li>
 <li>
-<p>Couple the model to a small heat pump with a coefficient of performance and schedule it when losses are smallest.</p>
+<p>Couple the model to a small heat pump with a <a class="glossary-term" href="/glossary/#coefficient-of-performance" data-definition="The ratio of useful heating or cooling delivered by a system to the energy required to operate it.">coefficient of performance</a> and schedule it when losses are smallest.</p>
 </li>
 </ol>
 <hr>
@@ -840,5 +856,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

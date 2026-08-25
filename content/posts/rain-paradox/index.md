@@ -8,12 +8,12 @@ author = "Tom Archer"
 listThumb = "rain-paradox.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./rain-paradox.png" alt="Rain Paradox: Walk or Run?" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>To walk or to run. That is the question.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="rain-paradox.png"
+    alt="Rain Paradox: Walk or Run?"
+    label="Open full-size rain paradox"
+    caption="To walk or to run. That is the question."
+>}}
 
 Early in my programming career, I came across a coding challenge that stuck with me for many years:
 
@@ -42,7 +42,7 @@ The paradox lies in competing intuitions:
 - More time in rain = more wetness.
 - Moving faster = more frontal exposure.
 
-What made this problem compelling was that there wasn’t an obvious answer and no way (back then) to definitively prove which effect dominated. It was a thought experiment we debated endlessly with hand-waving.
+What made this problem compelling was that there wasn’t an obvious answer and no way (back then) to definitively prove which effect dominated. It was a {{< term "thought-experiment" "thought experiment" >}} we debated endlessly with hand-waving.
 
 But now, with Python, generative AI, and a (virtual) rainy afternoon to spare, I can finally simulate this problem to **know the answer**.
 
@@ -61,7 +61,7 @@ To simulate the problem accurately (but tractably), we make the following simpli
 - Rain hits the top based on time exposed, and the front based on distance traveled.
 - Rain from behind and sides is ignored.
 
-This converts the real-world complexity into a discrete physical model driven by surface area, velocity, and time.
+This converts the real-world complexity into a {{< term "discrete-model" "discrete physical model" >}} driven by {{< term "surface-area" "surface area" >}}, {{< term "velocity" "velocity" >}}, and time.
 
 ---
 
@@ -71,7 +71,7 @@ I start by prompting an AI model to sketch out a basic algorithm:
 
 ---
 
-> *Write a Python simulation to model how wet a person gets in the 
+> *Write a Python {{< term "simulation" "simulation" >}} to model how wet a person gets in the 
 rain depending on their walking or running speed. Assume a 
 person is a rectangular block with a top area and front area. 
 Rain falls vertically at a steady rate. Calculate drops hitting 
@@ -223,14 +223,14 @@ Speed: 30.0 ft/s -> Wetness: 8476 drops
 
 ## Making the Results Visual
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt=" Plot showing Wettness versus Speed in Rain" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>The simulation is clear: Running gets you less wet, consistently.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="plot.png"
+    alt="Plot showing Wettness versus Speed in Rain"
+    label="Open full-size plot"
+    caption="The simulation is clear: Running gets you less wet, consistently."
+>}}
 
-In the rain paradox article, the purpose of plotting is to make the underlying math and simulation results easier to grasp at a glance. While numbers and formulas can show how exposure changes with speed, a chart conveys the tradeoff much more intuitively. By plotting wetness against speed, readers can quickly see how running reduces exposure up to a point, and how the curve eventually levels off. Adding a horizontal asymptote makes it clear that no matter how fast you move, there’s a hard limit set by the rain hitting only the front of the body. This visual element turns an abstract thought experiment into something concrete, bridging the gap between the code and the real-world intuition.
+In the rain paradox article, the purpose of plotting is to make the underlying math and simulation results easier to grasp at a glance. While numbers and formulas can show how exposure changes with speed, a chart conveys the tradeoff much more intuitively. By plotting wetness against speed, readers can quickly see how running reduces exposure up to a point, and how the curve eventually levels off. Adding a horizontal {{< term "asymptote" "asymptote" >}} makes it clear that no matter how fast you move, there’s a hard limit set by the rain hitting only the front of the body. This visual element turns an abstract thought experiment into something concrete, bridging the gap between the code and the real-world intuition.
 
 The prompt that drives this visualization — *“Add a matplotlib function that plots wetness vs. speed, including a horizontal asymptote for the minimum frontal-only exposure.”* — focuses the AI not on generic plotting, but on a graph tailored to the paradox itself. It ensures that the plot shows not just the raw relationship between variables, but also highlights the boundary condition that gives the problem its nuance. By guiding the AI in this way, the visualization becomes more than just a chart: it becomes a teaching tool that reinforces the central insight of the paradox.
 
@@ -315,7 +315,7 @@ Then, refine the AI's output to ensure it matches the math.
 ### Beginner Level: Quick Fixes & Calibration
 
 1. **Unit check:** Verify that each term in the wetness equation resolves 
-   to "drops." Work through the dimensional analysis: intensity is in 
+   to "drops." Work through the {{< term "dimensional-analysis" "dimensional analysis" >}}: intensity is in 
    drops/ft²/s, areas are in ft², distances are in ft, and speeds are in 
    ft/s. Making sure these cancel properly is a good exercise in unit 
    consistency.  
@@ -338,7 +338,7 @@ Then, refine the AI's output to ensure it matches the math.
    Compare wetness outcomes from this smoother shape versus the rectangular 
    one, and discuss which feels more realistic.  
 1. **Hunch angle:** Add a tilt angle that decreases top area and increases 
-   frontal area. You can use simple trigonometry to project the areas based 
+   frontal area. You can use simple {{< term "trigonometry" "trigonometry" >}} to project the areas based 
    on the angle. Plotting wetness across different posture angles could 
    reveal the "best" stance in the rain.  
 1. **Variable distance:** Run scenarios at 50, 200, 500, and 1000 ft to see 
@@ -348,18 +348,18 @@ Then, refine the AI's output to ensure it matches the math.
 
 ---
 
-### Advanced Level: Environment & Stochasticity
+### Advanced Level: Environment & {{< term "stochastic" "Stochasticity" >}}
 
 1. **Wind:** Add a horizontal wind component. Now raindrops fall at an angle 
-   (vector \((u, 0, -fall\_speed)\)), so the effective frontal area changes. 
+   ({{< term "vector" "vector" >}} \((u, 0, -fall\_speed)\)), so the effective frontal area changes. 
    This turns the simple vertical model into a 3D vector problem. You’ll see 
    that wind can make running sideways into the rain much worse.  
-1. **Monte Carlo rain:** Instead of continuous flux, simulate drops randomly 
-   with a Poisson process in space-time. Each drop has a chance of hitting 
+1. **{{< term "monte-carlo-simulation" "Monte Carlo" >}} rain:** Instead of continuous flux, simulate drops randomly 
+   with a {{< term "poisson-process" "Poisson process" >}} in space-time. Each drop has a chance of hitting 
    the person’s projected area. Run many trials and average the results to 
    approximate the analytic model. This adds randomness to the story.  
 1. **Drop size distribution:** Sample raindrop diameters from a realistic 
-   distribution (meteorology papers often use log-normal). Larger drops carry 
+   distribution (meteorology papers often use {{< term "log-normal-distribution" "log-normal" >}}). Larger drops carry 
    more volume and can be weighted more heavily in the wetness score. Try 
    mixing small drizzle with a few large drops to see how totals shift.  
 

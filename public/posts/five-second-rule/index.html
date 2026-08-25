@@ -78,6 +78,7 @@ The truth is much more interesting than the myth. Germs do transfer gradually, b
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -182,12 +183,22 @@ The truth is much more interesting than the myth. Germs do transfer gradually, b
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./five-second-rule-explored.png" alt="Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Forget the five-second rule. Germs transfer instantly, and we can prove it with math.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/five-second-rule/five-second-rule-explored.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/five-second-rule/five-second-rule-explored.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Forget the five-second rule. Germs transfer instantly, and we can prove it with math.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.</p>
 <hr>
 <blockquote>
@@ -213,7 +224,7 @@ foods are more welcoming than others:</p>
 </ul>
 <p>Multiply these together and you get a number that tells you how hospitable
 your food is to germs.</p>
-<p>Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like pouring sand into a jar: the first handful drops in quickly, but as the jar fills, you have to shake and settle it to fit more. That tapering-off is what our rate constant \(\beta\) represents.</p>
+<p>Finally, germs do not arrive linearly. They rush in fast at first, then slow down as the easy-to-transfer germs make the jump. It is like pouring sand into a jar: the first handful drops in quickly, but as the jar fills, you have to shake and settle it to fit more. That tapering-off is what our <a class="glossary-term" href="/glossary/#rate-constant" data-definition="A parameter that determines how quickly a process changes over time in a mathematical rate model.">rate constant</a> \(\beta\) represents.</p>
 <hr>
 <h3 id="turning-logic-into-math">Turning Logic Into Math</h3>
 <p>All of this can be expressed as a function of time, \(t\), that tells us the
@@ -229,7 +240,7 @@ Defining the function is only half the fun. The real payoff comes from looking
 at how it changes second by second.</p>
 <hr>
 <h3 id="why-the-first-second-matters">Why the First Second Matters</h3>
-<p>To see how fast germs are transferring at any moment, we look at the derivative:</p>
+<p>To see how fast germs are transferring at any moment, we look at the <a class="glossary-term" href="/glossary/#derivative" data-definition="A measure of how quickly a function changes with respect to one of its variables, such as how a quantity changes over time.">derivative</a>:</p>
 <p>\[
 G&rsquo;(t) = \rho \cdot A \cdot \alpha \cdot m \cdot s \cdot \beta \cdot e^{-\beta t}
 \]</p>
@@ -248,7 +259,7 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 <p><strong>Prompt example:</strong></p>
 <hr>
 <blockquote>
-<p><em>Write a Python function germs(t, rho, A, alpha, moisture, surface, beta) that calculates bacteria transfer over time. Use an exponential approach so germs arrive quickly at first, then taper off. Also write safe_time() that returns the time needed to reach a threshold L.</em></p></blockquote>
+<p><em>Write a Python function germs(t, rho, A, alpha, moisture, surface, beta) that calculates bacteria transfer over time. Use an <a class="glossary-term" href="/glossary/#exponential-function" data-definition="A function in which a variable appears in the exponent, commonly used to model processes that grow or decay at rates proportional to their current state.">exponential</a> approach so germs arrive quickly at first, then taper off. Also write safe_time() that returns the time needed to reach a threshold L.</em></p></blockquote>
 <hr>
 <p><strong>Python:</strong></p>
 <p>These functions are the backbone. The <code>germs()</code> function gives the germ count at any time. The <code>safe_time()</code> function for the time to cross a danger line.</p>
@@ -287,7 +298,7 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 <p><strong>Prompt example:</strong></p>
 <hr>
 <blockquote>
-<p><em>Write a Python dataclass <code>TransferParams</code> that holds <code>alpha</code>, <code>moisture</code>, <code>surface</code>, and <code>beta</code>. Add a property that returns their combined product <code>k</code>.</em></p></blockquote>
+<p><em>Write a Python <a class="glossary-term" href="/glossary/#dataclass" data-definition="A Python class designed primarily to store data, with common methods such as initialization automatically generated from declared fields.">dataclass</a> <code>TransferParams</code> that holds <code>alpha</code>, <code>moisture</code>, <code>surface</code>, and <code>beta</code>. Add a property that returns their combined product <code>k</code>.</em></p></blockquote>
 <hr>
 <p>This makes experiments much cleaner: no messy parameter lists every time you call a function.</p>
 <p><strong>Python:</strong></p>
@@ -337,12 +348,26 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">Germs after 10s</span>: <span style="color:#bd93f9">79.97</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">Safe time for L=50.0 germs</span>: <span style="color:#bd93f9">1.</span>23s
 </span></span></code></pre></div><h2 id="making-the-results-visual">Making the Results Visual</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="Line plot showing how germs accumulate on food over 10 seconds with a steep rise at the start and then leveling off" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>The curve shows bacteria transfer to food over time: a rapid rise in the first seconds followed by a slow flattening as the germ ceiling is reached.</em>
-  </figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/five-second-rule/plot.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/five-second-rule/plot.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>The curve shows bacteria transfer to food over time: a rapid rise in the first seconds followed by a slow flattening as the germ ceiling is reached.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>A graph makes the story vivid. We sample times between 0 and 10 seconds, run them through <code>germs()</code>, and plot the results. For easier visual consumption, we add a dashed red line for the threshold <code>L</code> and a vertical dotted line for the crossing point.</p>
 <p><strong>Prompt example:</strong></p>
 <hr>
@@ -407,9 +432,9 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 </ol>
 <h3 id="advanced-level-environment-and-stochasticity">Advanced Level: Environment and Stochasticity</h3>
 <ol>
-<li><strong>Random dirt:</strong> Use probability distributions for surface contamination.</li>
+<li><strong>Random dirt:</strong> Use <a class="glossary-term" href="/glossary/#probability-distribution" data-definition="A mathematical description of the possible outcomes of a random process and the probabilities associated with those outcomes.">probability distributions</a> for surface contamination.</li>
 <li><strong>Climate effects:</strong> Let β vary with humidity.</li>
-<li><strong>Monte Carlo:</strong> Run 1,000 drops and chart the spread.</li>
+<li><strong><a class="glossary-term" href="/glossary/#monte-carlo-simulation" data-definition="A computational technique that uses repeated random sampling to estimate probabilities, outcomes, or other properties of a system.">Monte Carlo</a>:</strong> Run 1,000 drops and chart the spread.</li>
 </ol>
 <h2 id="closing-thoughts">Closing Thoughts</h2>
 <p>Next time you drop a cookie, don’t chant &ldquo;five seconds&rdquo; like a protective spell. Germs don&rsquo;t wait for your permission. Transfer begins the instant food hits the floor.</p>
@@ -604,5 +629,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

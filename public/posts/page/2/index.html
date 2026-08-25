@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -134,22 +135,29 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./temperature-top-p-creativity-knobs.png"
-       alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Turn it up and things get weird.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Turn it up and things get weird.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
 , <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
-, or any other LLM includes two parameters most people either ignore or tweak randomly: <strong>temperature</strong> and <strong>top-p</strong>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
+, or any other <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> includes two parameters most people either ignore or tweak randomly: <a class="glossary-term" href="/glossary/#temperature" data-definition="A sampling parameter that rescales a model&#39;s logits before softmax, controlling how concentrated or spread out the resulting token probabilities are.">temperature</a> and <a class="glossary-term" href="/glossary/#top-p" data-definition="A sampling parameter that restricts token selection to the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold.">top-p</a>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
 <p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.</p>
 <p>I&rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &ldquo;Set temperature to 0.7 for creative writing&rdquo; becomes tribal knowledge, passed down without explanation. Let&rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.</p>
 <hr>
@@ -171,12 +179,22 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./edmund-fitzgerald.jpeg" alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/edmund-fitzgerald/edmund-fitzgerald.jpeg" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/edmund-fitzgerald/edmund-fitzgerald.jpeg" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>At 530 feet and 39°F, physics ensures Gordon Lightfoot&#39;s evocative lyric remains literally true.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Originally appearing on his 1976 album, <em>Summertime Dream</em>, &ldquo;The Wreck of the Edmund Fitzgerald&rdquo; is a powerful ballad written and performed by folk singer <a href="#lightfoot1976">
   Gordon Lightfoot
 </a>
@@ -205,16 +223,26 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./birthday-paradox.png" alt="Multiple database servers with overlapping ID bubbles showing collision zones" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/birthday-paradox/birthday-paradox.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/birthday-paradox/birthday-paradox.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
+    </figcaption>
+    
+
 </figure>
-<p>You generate a UUID. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
+
+<p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
 <p>As I like to say, <em>common sense and intuition are the enemies of science</em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?</p>
 <p>Math shows us the uncomfortable truth: You&rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.</p>
-<p>You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&rsquo;t just a party trick; it&rsquo;s the same mathematics that determines when your &ldquo;guaranteed unique&rdquo; database IDs collide, why hash tables need careful sizing, and when your distributed system&rsquo;s assumptions break.</p>
+<p>You might know that the <a class="glossary-term" href="/glossary/#birthday-paradox" data-definition="The counterintuitive result that collisions become likely after selecting only about the square root of the number of possible values.">birthday paradox</a> proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&rsquo;t just a party trick; it&rsquo;s the same mathematics that determines when your &ldquo;guaranteed unique&rdquo; database IDs collide, why <a class="glossary-term" href="/glossary/#hash-table" data-definition="A data structure that uses a hash function to map keys to locations where their associated values can be stored and retrieved.">hash tables</a> need careful sizing, and when your <a class="glossary-term" href="/glossary/#distributed-system" data-definition="A system whose components run on multiple networked computers and coordinate to perform a common task.">distributed system</a>&rsquo;s assumptions break.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;In a room of 23 people, there&rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&rdquo;</em></p></blockquote>
@@ -234,20 +262,27 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./hash-collisions.png"
-       alt="Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes"
-       width="400"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/hash-collisions/hash-collisions.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/hash-collisions/hash-collisions.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
+    </figcaption>
+    
+
 </figure>
-<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
+
+<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
   Stevens et al., 2017
 </a>
 ). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
-<p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
+<p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while <a class="glossary-term" href="/glossary/#hash-collision" data-definition="A situation in which two different inputs produce the same hash value.">collisions</a> are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</em></p></blockquote>
@@ -267,18 +302,25 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-large-language-models-tokenize-text.png"
-       alt="Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
 <p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
-<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
+<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong><a class="glossary-term" href="/glossary/#glitch-token" data-definition="A token that produces unusual or unreliable model behavior because its learned representation is missing, weak, or otherwise anomalous.">glitch token</a></strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
   Rumbelow &amp; Watkins, 2023
 </a>
 ).</p>
@@ -461,5 +503,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

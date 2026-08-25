@@ -8,12 +8,12 @@ author = "Tom Archer"
 listThumb = "meeting-diet.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./meeting-diet.png" alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>If you don't optimize your schedule, your schedule will optimize you. Badly</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="meeting-diet.png"
+    alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend"
+    label="Open full-size meeting diet"
+    caption="If you don't optimize your schedule, your schedule will optimize you. Badly"
+>}}
 
 
 Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to *quantify* that choice?
@@ -24,7 +24,7 @@ Every week your calendar fills with more meeting invites than you can reasonably
 
 ---
 
-**The good news: math can help.** By modeling your schedule as a [**0/1 knapsack problem with two constraints**](https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem), you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal "meeting diet."
+**The good news: math can help.** By modeling your schedule as a [**{{< term "multidimensional-knapsack" "0/1 knapsack problem with two constraints" >}}**](https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem), you can treat meetings like items with value, time cost, and energy cost. Classic {{< term "optimization" "optimization" >}} techniques then help decide which meetings to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a {{< term "simulation" "simulation" >}} to visualize your optimal "meeting diet."
 
 <!--more-->
 
@@ -36,7 +36,7 @@ Imagine you have ten meetings on your calendar this week. Each one consumes a ce
 
 Now add two constraints:  
 
-- A **time budget** (say, three hours of meetings per week).  
+- A **{{< term "constraint" "time budget" >}}** (say, three hours of meetings per week).  
 - An **energy budget** (say, ten units of attention before you burn out).  
 
 Your challenge: select the subset of meetings that maximizes total value without breaking either budget.  
@@ -52,15 +52,15 @@ To simulate the problem accurately (but tractably), we make the following simpli
 - Each meeting has three attributes: `value`, `time`, and `energy`.  
 - Meetings are indivisible. You either attend or skip (no partial credit).  
 - Time and energy budgets are hard caps (no overdraw allowed).  
-- All values are known and deterministic (no surprises this week).  
+- All values are known and {{< term "deterministic" "deterministic" >}} (no surprises this week).  
 
-With these assumptions, our task is to implement a binary decision variable for each meeting and solve a maximization problem subject to dual constraints.
+With these assumptions, our task is to implement a {{< term "binary-decision-variable" "binary decision variable" >}} for each meeting and solve a {{< term "maximization" "maximization problem" >}} subject to dual constraints.
 
 ---
 
 ## Using AI to Scaffold the Code
 
-To save time, we'll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (**knapsack**, **ILP**, **constraints**) and be explicit about **inputs/outputs**. For the solver, we'll use **PuLP**, a lightweight open-source Python library for linear and integer programming (ILP). It's simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.
+To save time, we'll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (**knapsack**, **{{< term "integer-linear-programming" "ILP" >}}**, **constraints**) and be explicit about **inputs/outputs**. For the solver, we'll use **{{< term "pulp" "PuLP" >}}**, a lightweight open-source Python library for {{< term "integer-linear-programming" "linear and integer programming" >}} (ILP). It's simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.
 
 **Prompt:**
 
@@ -133,9 +133,9 @@ def solve_meeting_diet(meetings, time_budget, energy_budget):
 
 ### Under the Hood: Why This Is Really a Matrix Problem
 
-Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a *constraint matrix*.
+Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a *{{< term "constraint-matrix" "constraint matrix" >}}*.
 
-When you run the model, the solver crunches through that matrix using linear algebra techniques to find the best combination of 1s and 0s (attend vs skip). So while you don't see the math spelled out, the engine making it all work is pure matrix computation.
+When you run the model, the solver crunches through that matrix using {{< term "linear-algebra" "linear algebra" >}} techniques to find the best combination of 1s and 0s (attend vs skip). So while you don't see the math spelled out, the engine making it all work is pure matrix computation.
 
 ---
 
@@ -215,12 +215,12 @@ Total energy= 9 units
 
 ## Making the Results Visual
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="Plot of Meeting Value Efficiency (Chosen vs. Skipped)" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings to attend under the time and energy budgets and red bars marking those to decline.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="plot.png"
+    alt="Plot of Meeting Value Efficiency (Chosen vs. Skipped)"
+    label="Open full-size plot"
+    caption="Each bar shows a meeting's value-to-time ratio, with green bars marking the meetings to attend under the time and energy budgets and red bars marking those to decline."
+>}}
 
 At first, I asked the AI for a quick visualization. The initial result was a plain vertical bar chart: it technically worked, but it looked generic and wasn't presentation-ready. Specifically, I realized the graph needed to:
 
@@ -359,11 +359,11 @@ Ready to push this further? Try these extensions:
 
 ### Advanced Level: Environment & Stochasticity
 
-- **Uncertain values:** Sample meeting values from a probability distribution (e.g., Normal).
+- **Uncertain values:** Sample meeting values from a {{< term "probability-distribution" "probability distribution" >}} (e.g., Normal).
 
-- **Monte Carlo:** Run 100 simulations of random meeting values and see which meetings are most often chosen.
+- **{{< term "monte-carlo" "Monte Carlo" >}}:** Run 100 simulations of random meeting values and see which meetings are most often chosen.
 
-- **Multi-objective optimization:** Balance value against “fatigue penalty” explicitly.
+- **{{< term "multi-objective-optimization" "Multi-objective optimization" >}}:** Balance value against “fatigue penalty” explicitly.
 
 ---
 

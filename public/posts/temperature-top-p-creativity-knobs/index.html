@@ -40,7 +40,7 @@ I’ve watched developers cargo-cult settings from others without understanding 
 “Temperature doesn’t make the model smarter or dumber. It changes how much the model trusts its own first instinct.”">
   <meta itemprop="datePublished" content="2025-12-24T12:00:00-08:00">
   <meta itemprop="dateModified" content="2025-12-24T12:00:00-08:00">
-  <meta itemprop="wordCount" content="3375">
+  <meta itemprop="wordCount" content="3398">
   <meta itemprop="keywords" content="AI,Anthropic,LLM,Nucleus Sampling,OpenAI,Probability,Sampling,Softmax,Temperature,Top-P">
 		
   <meta name="twitter:card" content="summary">
@@ -84,6 +84,7 @@ I’ve watched developers cargo-cult settings from others without understanding 
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -202,37 +203,44 @@ I’ve watched developers cargo-cult settings from others without understanding 
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./temperature-top-p-creativity-knobs.png"
-       alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Turn it up and things get weird.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Turn it up and things get weird.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
 , <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
-, or any other LLM includes two parameters most people either ignore or tweak randomly: <strong>temperature</strong> and <strong>top-p</strong>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
+, or any other <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> includes two parameters most people either ignore or tweak randomly: <a class="glossary-term" href="/glossary/#temperature" data-definition="A sampling parameter that rescales a model&#39;s logits before softmax, controlling how concentrated or spread out the resulting token probabilities are.">temperature</a> and <a class="glossary-term" href="/glossary/#top-p" data-definition="A sampling parameter that restricts token selection to the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold.">top-p</a>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
 <p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.</p>
 <p>I&rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &ldquo;Set temperature to 0.7 for creative writing&rdquo; becomes tribal knowledge, passed down without explanation. Let&rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Temperature doesn&rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&rdquo;</em></p></blockquote>
 <hr>
-<p>This post explores the mathematical foundations of token sampling in large language models, showing exactly how temperature and top-p transform probability distributions into actual text. You&rsquo;ll see the equations, run the code, and develop intuition for when to reach for which parameter.</p>
+<p>This post explores the mathematical foundations of token sampling in large language models, showing exactly how temperature and top-p transform <a class="glossary-term" href="/glossary/#probability-distribution" data-definition="A mathematical description of the possible outcomes of a random process and the probabilities associated with those outcomes.">probability distributions</a> into actual text. You&rsquo;ll see the equations, run the code, and develop intuition for when to reach for which parameter.</p>
 <blockquote>
 <p><strong>TL;DR:</strong></p>
 <ul>
-<li>LLMs don&rsquo;t output text directly; they output probability distributions over tokens</li>
-<li>Temperature divides the logits before softmax, reshaping the probability curve</li>
+<li>LLMs don&rsquo;t output text directly; they output probability distributions over <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a></li>
+<li>Temperature divides the <a class="glossary-term" href="/glossary/#logit" data-definition="A raw numerical score produced by a model before it is converted into a probability by a function such as softmax.">logits</a> before <a class="glossary-term" href="/glossary/#softmax" data-definition="A function that converts a set of numerical scores into nonnegative values that sum to one, allowing them to be interpreted as a probability distribution.">softmax</a>, reshaping the probability curve</li>
 <li>Lower temperature makes the model more deterministic; temperature near zero always picks the top choice</li>
 <li>Higher temperature spreads probability across more tokens, approaching uniform randomness at extreme values</li>
-<li>Top-p (nucleus sampling) dynamically truncates the distribution, keeping only tokens that sum to probability \(p\)</li>
+<li>Top-p (<a class="glossary-term" href="/glossary/#nucleus-sampling" data-definition="Another name for top-p sampling, in which token selection is restricted to the smallest set of likely tokens whose cumulative probability reaches a chosen threshold.">nucleus sampling</a>) dynamically truncates the distribution, keeping only tokens that sum to probability \(p\)</li>
 <li>Temperature affects the shape of probabilities; top-p affects how many tokens remain in consideration</li>
 <li>For factual tasks: low temperature (0.1–0.3), top-p around 0.9</li>
 <li>For creative tasks: higher temperature (0.7–1.0), top-p around 0.95</li>
@@ -248,9 +256,9 @@ I’ve watched developers cargo-cult settings from others without understanding 
 <p>Here&rsquo;s the pipeline:</p>
 <ol>
 <li><strong>Input processing</strong>: Your prompt gets tokenized into a sequence of integers</li>
-<li><strong>Forward pass</strong>: The transformer produces a vector of raw scores (logits) for every token in the vocabulary</li>
+<li><strong>Forward pass</strong>: The transformer produces a vector of raw scores (logits) for every token in the <a class="glossary-term" href="/glossary/#vocabulary" data-definition="The complete set of tokens that a tokenizer can represent directly, with each token assigned a numerical identifier.">vocabulary</a></li>
 <li><strong>Softmax</strong>: Logits get converted to probabilities that sum to 1</li>
-<li><strong>Sampling</strong>: A token is selected based on those probabilities</li>
+<li><strong><a class="glossary-term" href="/glossary/#sampling" data-definition="The process of selecting an outcome randomly according to a probability distribution, such as choosing the next token during language generation.">Sampling</a></strong>: A token is selected based on those probabilities</li>
 <li><strong>Repeat</strong>: The selected token gets appended, and we go back to step 2</li>
 </ol>
 <p>Steps 3 and 4 are where temperature and top-p operate. They don&rsquo;t change what the model &ldquo;knows&rdquo;; they change how it decides.</p>
@@ -296,7 +304,7 @@ P(token_i | T) = \frac{e^{z_i / T}}{\sum_{j=1}^{V} e^{z_j / T}}
 <p><strong>When T &lt; 1</strong> (low temperature): Dividing by a fraction amplifies the differences between logits. A gap of 1.0 between two logits becomes 2.0 after dividing by T=0.5, or 5.0 after dividing by T=0.2. This makes the highest-probability token dominate even further.</p>
 <p><strong>When T = 1</strong>: Standard softmax. No modification.</p>
 <p><strong>When T &gt; 1</strong> (high temperature): Dividing by a number greater than 1 compresses differences. Logit gaps shrink. The distribution flattens toward uniform.</p>
-<p><strong>When T → 0</strong>: The highest logit wins with probability approaching 1. Deterministic greedy decoding.</p>
+<p><strong>When T → 0</strong>: The highest logit wins with probability approaching 1. Deterministic <a class="glossary-term" href="/glossary/#greedy-decoding" data-definition="A decoding strategy that selects the highest-probability token at each generation step.">greedy decoding</a>.</p>
 <p><strong>When T → ∞</strong>: All tokens approach equal probability. Pure randomness.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># softmax_with_temperature.py</span>
 </span></span><span style="display:flex;"><span>
@@ -334,7 +342,7 @@ T=0.5: [0.636 0.234 0.086 0.032 0.012] | Entropy: 1.00
 T=1.0: [0.429 0.26  0.158 0.096 0.058] | Entropy: 1.39
 T=1.5: [0.349 0.25  0.179 0.129 0.092] | Entropy: 1.51
 T=2.0: [0.31  0.241 0.188 0.146 0.114] | Entropy: 1.55
-</code></pre><p>The <strong>entropy</strong> column, a measure of probability distribution spread, quantifies what we&rsquo;re seeing: low temperature concentrates probability (low entropy), high temperature spreads it (high entropy approaching the maximum of \(ln(5) ≈ 1.61\) for 5 tokens).</p>
+</code></pre><p>The <strong><a class="glossary-term" href="/glossary/#entropy" data-definition="A measure of uncertainty or dispersion in a probability distribution, with higher entropy indicating a more broadly distributed probability mass.">entropy</a></strong> column, a measure of probability distribution spread, quantifies what we&rsquo;re seeing: low temperature concentrates probability (low entropy), high temperature spreads it (high entropy approaching the maximum of \(ln(5) ≈ 1.61\) for 5 tokens).</p>
 <hr>
 <h2 id="visualizing-temperature-effects">Visualizing Temperature Effects</h2>
 <p>Let&rsquo;s see this graphically with a realistic vocabulary slice:</p>
@@ -376,14 +384,30 @@ T=2.0: [0.31  0.241 0.188 0.146 0.114] | Entropy: 1.55
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#39;temperature_comparison.png&#39;</span>, dpi<span style="color:#ff79c6">=</span><span style="color:#bd93f9">150</span>)
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
 </span></span></code></pre></div><p><strong>Output:</strong></p>
-<p>At T=0.3, the top token claims nearly all the probability mass, so the model will almost always choose its first instinct. At T=1.5, probability spreads across many tokens, introducing genuine variety (and risk).</p>
-<img src="./visualize_temperature_effects.png" alt="" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>.</em>
-</figcaption>
+<p>At T=0.3, the top token claims nearly all the <a class="glossary-term" href="/glossary/#probability-mass" data-definition="The amount of probability assigned to an outcome or collection of discrete outcomes.">probability mass</a>, so the model will almost always choose its first instinct. At T=1.5, probability spreads across many tokens, introducing genuine variety (and risk).</p>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/temperature-top-p-creativity-knobs/visualize_temperature_effects.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/temperature-top-p-creativity-knobs/visualize_temperature_effects.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>As temperature increases from 0.3 to 1.5, probability spreads across more candidate tokens, reducing the dominance of the highest-probability token and increasing output diversity.</em>
+    </figcaption>
+    
+
+</figure>
+
 <hr>
 <h2 id="top-p-nucleus-sampling-dynamic-truncation">Top-P (Nucleus Sampling): Dynamic Truncation</h2>
-<p>While temperature reshapes the entire distribution, top-p takes a different approach: it truncates the distribution dynamically, keeping only the tokens needed to reach cumulative probability \(p\) (<a href="#holtzman2020">
+<p>While temperature reshapes the entire distribution, top-p takes a different approach: it truncates the distribution dynamically, keeping only the tokens needed to reach <a class="glossary-term" href="/glossary/#cumulative-probability" data-definition="The running total of probabilities as outcomes are accumulated in a specified order.">cumulative probability</a> \(p\) (<a href="#holtzman2020">
   Holtzman et al., 2020
 </a>
 ).</p>
@@ -455,7 +479,7 @@ After top-p=0.9:
   one: 0.174
   some: 0.064
 </code></pre><p>Notice that top-p=0.9 kept 7 of 8 tokens here, but the key insight is that this cutoff is dynamic. If the model is confident (one token has 95% probability), top-p=0.9 might keep only that one token. If the model is uncertain, it might keep dozens.</p>
-<p>This is the crucial difference from top-k sampling, which always keeps exactly \(k\) tokens regardless of the distribution shape.</p>
+<p>This is the crucial difference from <a class="glossary-term" href="/glossary/#top-k-sampling" data-definition="A token-sampling strategy that restricts the model&#39;s next-token choices to the k tokens with the highest probabilities.">top-k sampling</a>, which always keeps exactly \(k\) tokens regardless of the distribution shape.</p>
 <hr>
 <h2 id="why-nucleus-sampling-beats-top-k">Why Nucleus Sampling Beats Top-K</h2>
 <p>The original top-p paper (<a href="#holtzman2020">
@@ -764,7 +788,7 @@ Temperature = 1.0
 </ul>
 <hr>
 <h2 id="the-temperature-0-myth">The Temperature 0 Myth</h2>
-<p>A common misconception: &ldquo;Temperature 0 is deterministic.&rdquo; In theory, yes. The argmax of the logits always wins. In practice, floating-point arithmetic introduces subtle variations, and different implementations handle the edge case differently (<a href="#peng2023">
+<p>A common misconception: &ldquo;Temperature 0 is deterministic.&rdquo; In theory, yes. The <a class="glossary-term" href="/glossary/#argmax" data-definition="The input or index at which a function reaches its maximum value, such as the token index having the highest logit.">argmax</a> of the logits always wins. In practice, <a class="glossary-term" href="/glossary/#floating-point" data-definition="A numerical representation that approximates real numbers using a fixed number of significant digits and an exponent.">floating-point arithmetic</a> introduces subtle variations, and different implementations handle the edge case differently (<a href="#peng2023">
   Peng et al., 2023
 </a>
 ).</p>
@@ -815,10 +839,10 @@ Unique responses at T=0: 2 / 5
 Non-determinism detected!
   - In a dimly lit laboratory, a robot named AURA, designed for ...
   - In a dimly lit laboratory, a robot named AURA, designed for ...
-</code></pre><p>For truly deterministic behavior, some APIs offer a separate <code>seed</code> parameter. Always check your provider&rsquo;s documentation.</p>
+</code></pre><p>For truly deterministic behavior, some APIs offer a separate <code><a class="glossary-term" href="/glossary/#random-seed" data-definition="A value used to initialize a pseudorandom number generator so that the same sequence of random choices can potentially be reproduced.">seed</a></code> parameter. Always check your provider&rsquo;s documentation.</p>
 <hr>
 <h2 id="closing-thoughts">Closing Thoughts</h2>
-<p>Temperature and top-p aren&rsquo;t magic. They&rsquo;re straightforward mathematical transformations with predictable effects. Temperature exponentially reshapes the probability distribution; top-p dynamically truncates it. Together, they give you fine-grained control over the exploration-exploitation tradeoff that underlies all language generation.</p>
+<p>Temperature and top-p aren&rsquo;t magic. They&rsquo;re straightforward mathematical transformations with predictable effects. Temperature exponentially reshapes the probability distribution; top-p dynamically truncates it. Together, they give you fine-grained control over the <a class="glossary-term" href="/glossary/#exploration-exploitation" data-definition="The balance between choosing familiar high-confidence options and exploring less certain alternatives that may produce better or more varied results.">exploration-exploitation tradeoff</a> that underlies all language generation.</p>
 <p>The key insight is that these parameters don&rsquo;t change what the model knows. They change how the model decides. A low-temperature model isn&rsquo;t smarter; it&rsquo;s more committed to its first instinct. A high-temperature model isn&rsquo;t more creative; it&rsquo;s more willing to take risks.</p>
 <p>Understanding this distinction helps you debug unexpected outputs. If your model keeps repeating itself, temperature might be too low. If it&rsquo;s generating nonsense, temperature might be too high. If it&rsquo;s ignoring plausible alternatives, top-p might be too restrictive. The mathematics tells you exactly where to look.</p>
 <hr>
@@ -1068,5 +1092,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

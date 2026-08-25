@@ -8,21 +8,18 @@ author = "Tom Archer"
 listThumb = "thermo-water-energy-balance-thumb.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./thermo-water-energy-balance.png" 
-       alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background" 
-       width="250" 
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="thermo-water-energy-balance.png"
+    alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint {{< term"
+    label="Open full-size thermo water energy balance"
+    caption="Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses."
+>}}
 
 Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you'd expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.
 
-The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That's not coincidence; it's thermodynamics.
+The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That's not coincidence; it's {{< term "thermodynamics" "thermodynamics" >}}.
 
-The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water's *specific heat* is much higher.
+The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water's *{{< term "specific-heat" "specific heat" >}}* is much higher.
 
 ---
 
@@ -32,14 +29,7 @@ The butter versus margarine comparison is a staple example in nutrition science.
 
 <!--more-->
 
-<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
-    <div style="text-align: center;"><strong>Specific heat vs. heat capacity</strong><br><br></div>
-    <strong>Specific heat</strong> measures how much energy it takes to raise <strong>one gram of a substance</strong> by one degree. 
-    <strong>Heat capacity</strong> is the total energy needed to warm the <strong>entire object by one degree</strong>. 
-    In this post, "specific heat" refers to the <em>intensive property</em> of materials like water, while "heat capacity" applies to the <em>extensive property</em> of the pool as a whole.
-</div>
-
-A swimming pool works the same way, just scaled up thousands of times. Its massive water content means it has enormous heat capacity where warming takes a long time because every degree requires tremendous energy. Cooling happens faster, though, because evaporation and night radiation pull energy out far more efficiently than the sun can replace it.
+A swimming pool works the same way, just scaled up thousands of times. Its massive water content means it has enormous {{< term "heat-capacity" "heat capacity" >}} where warming takes a long time because every degree requires tremendous energy. Cooling happens faster, though, because {{< term "evaporation" "evaporation" >}} and night radiation pull energy out far more efficiently than the sun can replace it.
 
 In this post, we will turn that intuition into a simple Python model that explains exactly why water warms so slowly but cools so fast.
 
@@ -51,24 +41,24 @@ Imagine a shallow pool sitting in the desert sun. During the day, it absorbs ene
 
 The pool's heat capacity acts like a huge thermal battery; it takes time to charge. The cooling process, on the other hand, is driven by evaporation. Each gram of water that evaporates carries away about 2.45 kilojoules of energy, and with enough dry air and a light breeze, those losses pile up quickly.
 
-The same logic explains why a pat of margarine melts more slowly than butter. Water is a powerful heat sink, and evaporation is a powerful energy thief. Put them together, and you have a recipe for long warmups and quick cooldowns.
+The same logic explains why a pat of margarine melts more slowly than butter. Water is a powerful {{< term "heat-sink" "heat sink" >}}, and evaporation is a powerful energy thief. Put them together, and you have a recipe for long warmups and quick cooldowns.
 
 ---
 
 ## Modeling the Problem
 
-We will treat the water as a well mixed control volume with a single temperature. The surface exchanges heat with the air through convection, with the sky through longwave radiation, and with the sun through shortwave absorption. Evaporation removes energy proportional to the rate at which vapor escapes.
+We will treat the water as a well mixed {{< term "control-volume" "control volume" >}} with a single temperature. The surface exchanges heat with the air through {{< term "convection" "convection" >}}, with the sky through {{< term "longwave-radiation" "longwave radiation" >}}, and with the sun through {{< term "shortwave-radiation" "shortwave absorption" >}}. Evaporation removes energy proportional to the rate at which vapor escapes.
 
 **Assumptions:**
 
-- The water is well mixed with no stratification. This means that the water's temperature is assumed to be uniform throughout, rather than layered (or stratified). In real life, large bodies of water often stratify, meaning warmer, lighter water floats on top while cooler, denser water sinks.
+- The water is well mixed with no {{< term "thermal-stratification" "stratification" >}}. This means that the water's temperature is assumed to be uniform throughout, rather than layered (or stratified). In real life, large bodies of water often stratify, meaning warmer, lighter water floats on top while cooler, denser water sinks.
 - Conduction through walls and floor is small compared with surface fluxes. In other words, most heat exchange happens through the surface where the water meets the air, not through the pool's sides or bottom. This fact allows us to ignore the smaller conductive losses into the ground or walls.
-- Shortwave absorption is a constant fraction of incident irradiance. The sunlight that hits the surface is partly reflected and partly absorbed. Here, we assume that a fixed portion (often 85–90%) is absorbed as heat, rather than modeling how absorption varies with sun angle or surface color.
-- Longwave exchange follows the Stefan–Boltzmann law with an effective sky temperature. The pool radiates heat upward to the sky, and the sky radiates a smaller amount back. We model this as a simple radiation balance using the Stefan–Boltzmann law, where the "sky temperature" represents the average radiative temperature of the atmosphere above.
+- Shortwave absorption is a constant fraction of incident {{< term "irradiance" "irradiance" >}}. The sunlight that hits the surface is partly reflected and partly absorbed. Here, we assume that a fixed portion (often 85–90%) is absorbed as heat, rather than modeling how absorption varies with sun angle or surface color.
+- Longwave exchange follows the {{< term "stefan-boltzmann-law" "Stefan–Boltzmann law" >}} with an effective sky temperature. The pool radiates heat upward to the sky, and the sky radiates a smaller amount back. We model this as a simple radiation balance using the Stefan–Boltzmann law, where the "sky temperature" represents the average radiative temperature of the atmosphere above.
 - Evaporation follows a bulk aerodynamic relationship that depends on humidity gradient and wind. The rate of evaporation depends on how dry the air is and how quickly air moves over the surface. Wind helps carry away moist air, increasing evaporation, while higher humidity slows it down.
-- Weather varies smoothly over the day and repeats during the simulation window. Instead of using random or hourly data, we assume repeating daily cycles for temperature, humidity, sunlight, and wind. This simplifies the simulation while still capturing the main diurnal pattern of heating and cooling.
+- Weather varies smoothly over the day and repeats during the simulation window. Instead of using random or hourly data, we assume repeating daily cycles for temperature, humidity, sunlight, and wind. This simplifies the simulation while still capturing the main {{< term "diurnal-cycle" "diurnal" >}} pattern of heating and cooling.
 
-The **energy balance** is defined as follows using the standard form of the surface energy balance used throughout thermodynamics, climatology, and environmental engineering. In academic terms, this is the first-law (conservation of energy) equation for a control volume, applied to a water surface.
+The **energy balance** is defined as follows using the standard form of the surface energy balance used throughout thermodynamics, climatology, and environmental engineering. In academic terms, this is the first-law ({{< term "conservation-of-energy" "conservation of energy" >}}) equation for a control volume, applied to a water surface.
 
 \\[
 C \frac{dT}{dt} = Q_{\text{solar}} + Q_{\text{convective}} + Q_{\text{radiative}} + Q_{\text{evaporative}}
@@ -112,7 +102,7 @@ We'll begin by using AI to generate the helper functions and constants needed to
 > 2. Define these constants (SI units):
 >
 >    * `SIGMA = 5.670374419e-8`  # Stefan–Boltzmann W·m^-2·K^-4
->    * `LV = 2.45e6`             # latent heat of vaporization J·kg^-1
+>    * `LV = 2.45e6`             # {{< term "latent-heat-of-vaporization" "latent heat of vaporization" >}} J·kg^-1
 >    * `CP = 4186.0`             # specific heat of water J·kg^-1·K^-1
 >    * `RHO = 1000.0`            # density of water kg·m^-3
 > 3. Define temperature conversion helpers:
@@ -190,7 +180,7 @@ def diurnal(base, amp, hours, peak_shift=7.0):
 
 **Prompt example:** Now we tell AI to generate a fairly tractable function to simulate the diurnal heating and cooling of a body of water over a specified number of days. Note how specific I have to be in order to get the code I need.
 
-> Write a single Python function `simulate(days=14, dt=3600.0, cover=False, seed_temp_C=24.0)` that performs a forward Euler simulation of a well mixed water body under diurnal forcing. Output only valid Python code.
+> Write a single Python function `simulate(days=14, dt=3600.0, cover=False, seed_temp_C=24.0)` that performs a {{< term "forward-euler" "forward Euler" >}} simulation of a well mixed water body under diurnal forcing. Output only valid Python code.
 >
 > Requirements:
 >
@@ -349,12 +339,12 @@ Final temperature cover: 86.8 °F (30.5 °C)
 
 ## Making the Results Visual
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-    <img src="./plot.png" alt="Line plot showing how germs accumulate on food over 10 seconds with a steep rise at the start and then leveling off" width="400" style="display: block; margin: 0 auto;">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>Water temperature over 14 days under diurnal forcing for open vs covered conditions (left axis °F, right axis °C). The cover reduces nighttime losses from evaporation and longwave radiation, raising the average temperature and narrowing the daily swing compared with the open surface.</em>
-    </figcaption>
-</figure>
+{{< lightbox
+    src="plot.png"
+    alt="Line plot showing how germs accumulate on food over 10 seconds with a steep rise at the start and then leveling off"
+    label="Open full-size plot"
+    caption="Water temperature over 14 days under diurnal forcing for open vs covered conditions (left axis °F, right axis °C). The cover reduces nighttime losses from evaporation and longwave radiation, raising the average temperature and narrowing the daily swing compared with the open surface."
+>}}
 
 **Prompt example:** A picture makes the mechanism obvious. Here I ask AI to generate the Python code to plot the two temperature curves on the same axes to compare warming with and without a cover.
 
@@ -444,7 +434,7 @@ Water behaves like a massive thermal reservoir. High specific heat spreads warmi
 
 1. Implement a simple controller that applies a cover based on forecasted night conditions and a target minimum temperature.
 
-1. Couple the model to a small heat pump with a coefficient of performance and schedule it when losses are smallest.
+1. Couple the model to a small heat pump with a {{< term "coefficient-of-performance" "coefficient of performance" >}} and schedule it when losses are smallest.
 
 ---
 

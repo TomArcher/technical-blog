@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -172,9 +173,10 @@
         
         
         <div class="post-summary">
+
 <p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
 <p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
-<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
+<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong><a class="glossary-term" href="/glossary/#glitch-token" data-definition="A token that produces unusual or unreliable model behavior because its learned representation is missing, weak, or otherwise anomalous.">glitch token</a></strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
   Rumbelow &amp; Watkins, 2023
 </a>
 ).</p>
@@ -222,7 +224,8 @@
         
         
         <div class="post-summary">
-<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -232,7 +235,7 @@
 <p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
 <hr>
 <blockquote>
-<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<p><em>&ldquo;A <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a> isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
 <hr></div>
 
         <p><a class="btn" href="/posts/how-large-language-models-handle-context-windows/">Read more →</a></p>
@@ -274,14 +277,15 @@
         
         
         <div class="post-summary">
-<p>When you interact with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you interact with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
 , the model seems to respond instantly relative to the question&rsquo;s degree of difficulty. What&rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.</p>
-<p>Large language models don&rsquo;t memorize text. They <em>optimize</em> it. Behind that optimization lies calculus. I&rsquo;m not referring to the calculus you did with pencil and paper. I&rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.</p>
+<p>Large language models don&rsquo;t memorize text. They <em>optimize</em> it. Behind that optimization lies calculus. I&rsquo;m not referring to the calculus you did with pencil and paper. I&rsquo;m talking about a sprawling, automated version that computes millions of <a class="glossary-term" href="/glossary/#derivative" data-definition="A measure of how quickly a function changes with respect to one of its variables, such as how a quantity changes over time.">derivatives</a> per second.</p>
 <p>At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be <em>slightly less wrong.</em> The word &ldquo;slightly&rdquo; in this context is the essence of calculus.</p>
 <hr>
 <blockquote>
@@ -327,15 +331,16 @@
         
         
         <div class="post-summary">
-<p>When you enter a sentence into a Large Language Model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
 , the model does not process words as language. It represents them as numbers.</p>
-<p>Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
-<p>This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
+<p>Each word, phrase, and code <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> becomes a vector — a list of real-valued coordinates within a <a class="glossary-term" href="/glossary/#high-dimensional-space" data-definition="A mathematical space containing many independent dimensions, allowing complex objects and relationships to be represented as vectors.">high-dimensional space</a>. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
+<p>This is the mathematical foundation of large language models: linear algebra. <a class="glossary-term" href="/glossary/#matrix-multiplication" data-definition="An operation that combines matrices by computing dot products between rows and columns, forming the basis of many neural network computations.">Matrix multiplication</a>, <a class="glossary-term" href="/glossary/#vector-projection" data-definition="The component of one vector that lies in the direction of another vector.">vector projection</a>, <a class="glossary-term" href="/glossary/#cosine-similarity" data-definition="A measure of similarity between two vectors based on the cosine of the angle between them.">cosine similarity</a>, and <a class="glossary-term" href="/glossary/#normalization" data-definition="The process of rescaling numerical values or vectors to a standardized range or magnitude.">normalization</a> define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&rdquo;</em></p></blockquote>
@@ -380,7 +385,8 @@
         
         
         <div class="post-summary">
-<p>Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
+
+<p>Developers are accustomed to thinking about code in terms of <a class="glossary-term" href="/glossary/#syntax-semantics" data-definition="Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.">syntax and semantics</a>, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a>, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;When an AI system &lsquo;understands&rsquo; code, it is not executing logic; it is modeling probability.</em>&rdquo;</p></blockquote>
@@ -561,5 +567,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

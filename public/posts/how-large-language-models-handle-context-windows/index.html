@@ -37,7 +37,7 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 “A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”">
   <meta itemprop="datePublished" content="2025-11-10T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-10T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3704">
+  <meta itemprop="wordCount" content="3722">
   <meta itemprop="keywords" content="AI,Attention Mechanisms,Context Windows,LLM,Transformers">
 		
   <meta name="twitter:card" content="summary">
@@ -80,6 +80,7 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -188,16 +189,23 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-llms-handle-context-windows.png"
-       alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
+    </figcaption>
+    
+
 </figure>
-<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -207,7 +215,7 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 <p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
 <hr>
 <blockquote>
-<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<p><em>&ldquo;A <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a> isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
 <hr>
 <p>This post explores what context windows actually are, how they work mathematically, why they have limits, and what happens when those limits are reached. For a foundation in how models represent meaning, start with <a href="/posts/how-ai-turns-meaning-into-math/">
   How LLMs Think: Turning Meaning into Math
@@ -241,7 +249,7 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 </span></span><span style="display:flex;"><span>    ]
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Response: &#34;I don&#39;t have context about a previous country name...&#34;</span>
-</span></span></code></pre></div><p>The API is <strong>stateless</strong>. The model truly has no memory between calls. Each request starts from zero.</p>
+</span></span></code></pre></div><p>The API is <strong><a class="glossary-term" href="/glossary/#stateless" data-definition="Describes a system in which each request is handled independently without retaining information from previous requests.">stateless</a></strong>. The model truly has no memory between calls. Each request starts from zero.</p>
 <h3 id="web-interfaces-create-the-illusion"><strong>Web Interfaces Create the Illusion</strong></h3>
 <p>The ChatGPT or Claude <strong>web interface</strong> maintains conversation continuity by:</p>
 <ol>
@@ -308,19 +316,19 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 <p>This is why &ldquo;memory&rdquo; in LLMs is an illusion. The model performs pattern matching across the visible conversation, not retrieval from storage. The web interface maintains the conversation history, but the model itself remembers nothing.</p>
 <hr>
 <h2 id="how-attention-creates-the-illusion">How Attention Creates the Illusion</h2>
-<p>The mechanism that makes this work is the <strong>attention mechanism</strong>, specifically <strong>self-attention</strong>, as defined in the foundational paper &ldquo;Attention Is All You Need&rdquo; (<a href="#vaswani2017">
+<p>The mechanism that makes this work is the <strong><a class="glossary-term" href="/glossary/#attention" data-definition="A mechanism that allows a model to determine how strongly one token should relate to other tokens when constructing a representation.">attention mechanism</a></strong>, specifically <strong><a class="glossary-term" href="/glossary/#self-attention" data-definition="An attention mechanism in which tokens in a sequence determine the relevance of other tokens in that same sequence.">self-attention</a></strong>, as defined in the foundational paper &ldquo;Attention Is All You Need&rdquo; (<a href="#vaswani2017">
   Vaswani et al., 2017
 </a>
 ). When processing token \(i\) in the sequence, the model computes how much attention to pay to every previous token \(j\).</p>
 <p>The attention score between two tokens is computed as:</p>
 <p>\[
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\text{Attention}(Q, K, V) = \text{<a class="glossary-term" href="/glossary/#softmax" data-definition="A function that converts a set of numerical scores into nonnegative values that sum to one, allowing them to be interpreted as a probability distribution.">softmax</a>}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 \]</p>
 <p>Where:</p>
 <ul>
-<li>\(Q\) = query (what the current token is looking for)</li>
-<li>\(K\) = keys (what each previous token can offer)</li>
-<li>\(V\) = values (the actual content of those tokens)</li>
+<li>\(Q\) = <a class="glossary-term" href="/glossary/#query" data-definition="In attention, a learned vector representing what a token is looking for when determining which other tokens are relevant.">query</a> (what the current token is looking for)</li>
+<li>\(K\) = <a class="glossary-term" href="/glossary/#key" data-definition="In attention, a learned vector representing information a token exposes for comparison with queries.">keys</a> (what each previous token can offer)</li>
+<li>\(V\) = <a class="glossary-term" href="/glossary/#value" data-definition="In attention, a learned vector containing the information contributed by a token after its relevance has been determined.">values</a> (the actual content of those tokens)</li>
 <li>\(d_k\) = dimensionality of the key vectors (scaling factor)</li>
 </ul>
 <p>For every new token the model generates, it computes attention across <strong>every token in the context window</strong>. If your conversation is 10,000 tokens long, that&rsquo;s 10,000 attention calculations per new token. For a visual explanation of how attention mechanisms work in practice, see <a href="#alammar2018">
@@ -343,11 +351,11 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 <p>This is why context windows have hard limits. It&rsquo;s not just storage. It&rsquo;s computational cost. Processing a 128k token conversation requires computing roughly <strong>16 billion attention scores</strong> for a single response token.</p>
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
     <div style="text-align: center;"><strong>Why not just store previous computations?</strong><br><br></div>
-    The model could cache some calculations, and modern implementations do use a <strong>KV cache</strong> (key-value cache) to avoid recomputing keys and values for tokens that haven't changed. But this only helps with computational cost. It doesn't solve the fundamental attention problem. The model still has to compute attention weights across the entire cached context for every new token.
+    The model could cache some calculations, and modern implementations do use a <strong><a class="glossary-term" href="/glossary/#kv-cache" data-definition="A cache of previously computed key and value vectors that lets a transformer reuse them while generating subsequent tokens.">KV cache</a></strong> (key-value cache) to avoid recomputing keys and values for tokens that haven't changed. But this only helps with computational cost. It doesn't solve the fundamental attention problem. The model still has to compute attention weights across the entire cached context for every new token.
 </div>
 <hr>
 <h2 id="what-gets-lost-the-attention-dilution-problem">What Gets Lost: The Attention Dilution Problem</h2>
-<p>Even within the context window, not all tokens are treated equally. The <em>softmax</em> function in the attention mechanism creates a <strong>probability distribution</strong> over all previous tokens.</p>
+<p>Even within the context window, not all tokens are treated equally. The <em>softmax</em> function in the attention mechanism creates a <strong><a class="glossary-term" href="/glossary/#probability-distribution" data-definition="A mathematical description of the possible outcomes of a random process and the probabilities associated with those outcomes.">probability distribution</a></strong> over all previous tokens.</p>
 <p>As the context grows:</p>
 <ul>
 <li>Attention gets <strong>spread thinner</strong> across more tokens</li>
@@ -362,12 +370,12 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 <p><strong>Human memory consolidates and abstracts.</strong> You might forget the details of an argument with a friend from years ago, but you remember the emotional aftermath: &ldquo;I don&rsquo;t like Bob.&rdquo; That&rsquo;s a <strong>learned fact</strong> stored independently of the original experience. You&rsquo;ve compressed the memory, extracted its essence, and stored that abstraction.</p>
 <p><strong>LLMs don&rsquo;t consolidate anything.</strong> When information falls outside the context window, there&rsquo;s no residual memory, no learned preference, no compressed representation. The model has <strong>complete amnesia</strong>. It&rsquo;s not that it forgot the details but remembers the gist. It has <strong>zero knowledge</strong> that the conversation ever happened.</p>
 <p>Think of it this way: Your brain transforms experiences into lasting neural patterns that persist independently. An LLM&rsquo;s &ldquo;memory&rdquo; is the text itself, being reread. Remove the text, and the memory vanishes completely.</p>
-<p>This is why context windows are better compared to <strong>working memory</strong> (like keeping a phone number in your head) rather than <strong>long-term memory</strong> (like knowing your childhood address). The moment you stop actively thinking about that phone number, it&rsquo;s gone unless you encoded it into long-term storage. LLMs have working memory (the context window) but no mechanism to encode conversations into long-term storage.</p>
+<p>This is why context windows are better compared to <strong><a class="glossary-term" href="/glossary/#working-memory" data-definition="Short-term information kept immediately available for ongoing reasoning or processing rather than stored as durable long-term memory.">working memory</a></strong> (like keeping a phone number in your head) rather than <strong>long-term memory</strong> (like knowing your childhood address). The moment you stop actively thinking about that phone number, it&rsquo;s gone unless you encoded it into long-term storage. LLMs have working memory (the context window) but no mechanism to encode conversations into long-term storage.</p>
 <p>The weights trained into the model represent <strong>general patterns from training data</strong>, not memories of <strong>your specific conversations</strong>. Those weights are frozen. Your chat doesn&rsquo;t update them. This is why every new conversation starts from zero, and why <strong>the model never truly &ldquo;learns&rdquo; from talking to you</strong>.</p>
 <hr>
 <h2 id="positional-encodings-teaching-order-without-counting">Positional Encodings: Teaching Order Without Counting</h2>
 <p>One of the stranger aspects of context windows is that <strong>transformers have no inherent sense of token order</strong>. The attention mechanism is permutation-invariant. It doesn&rsquo;t naturally know that &ldquo;The cat chased the mouse&rdquo; is different from &ldquo;The mouse chased the cat.&rdquo;</p>
-<p>To solve this, models use <strong>positional encodings</strong> that inject order information into each token&rsquo;s representation. The original Transformer architecture (<a href="#vaswani2017">
+<p>To solve this, models use <strong><a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">positional encodings</a></strong> that inject order information into each token&rsquo;s representation. The original Transformer architecture (<a href="#vaswani2017">
   Vaswani et al., 2017
 </a>
 ) used <strong>absolute positional encodings</strong> with sinusoidal functions:</p>
@@ -395,7 +403,7 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 <h3 id="2-summarization"><strong>2. Summarization</strong></h3>
 <p>Some systems automatically summarize older portions of the conversation and replace them with condensed versions in what gets sent to the API.</p>
 <p><strong>Problem:</strong> Summarization is lossy. Nuance, specific examples, and precise wording disappear. The model is now reasoning over <em>a summary of your conversation</em> rather than your actual words.</p>
-<h3 id="3-retrieval-augmented-generation-rag"><strong>3. Retrieval-Augmented Generation (RAG)</strong></h3>
+<h3 id="3-hahahugoshortcode203s14hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
 <p>The application stores the full conversation in an external database and retrieves relevant chunks to include in the API call.</p>
 <p><strong>Problem:</strong> Retrieval is imperfect. The system has to guess which past messages are relevant. It might retrieve the wrong context or miss critical information.</p>
 <hr>
@@ -463,8 +471,27 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#ff79c6">.</span>show()
-</span></span></code></pre></div><p><strong>What the plot reveals:</strong> As context grows, attention spreads across exponentially more tokens, creating a flatter, noisier distribution. The signal-to-noise ratio degrades.</p>
-<p><img src="./visualizing-attention-across-context-python.png" alt=""></p>
+</span></span></code></pre></div><p><strong>What the plot reveals:</strong></p>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-handle-context-windows/visualizing-attention-across-context-python.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-handle-context-windows/visualizing-attention-across-context-python.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>As context grows, attention spreads across exponentially more tokens, creating a flatter, noisier distribution. The signal-to-noise ratio degrades.</em>
+    </figcaption>
+    
+
+</figure>
+
 <h3 id="matlab-version">MATLAB Version</h3>
 <p>To reproduce the same curve in MATLAB, use the following script:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span><span style="color:#ff79c6">function</span> <span style="color:#50fa7b">visualize_attention_decay</span>()
@@ -496,14 +523,33 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
 </span></span></code></pre></div><p>This produces the same curve, showing that as the number of tokens grows, older tokens fade into near-zero significance.</p>
-<p><img src="./visualizing-attention-across-context-matlab.png" alt=""></p>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-handle-context-windows/visualizing-attention-across-context-matlab.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-handle-context-windows/visualizing-attention-across-context-matlab.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>As context grows, attention spreads across exponentially more tokens, creating a flatter, noisier distribution. The signal-to-noise ratio degrades.</em>
+    </figcaption>
+    
+
+</figure>
+
 <hr>
 <h2 id="retrieval-augmented-generation-rag">Retrieval-Augmented Generation (RAG)</h2>
-<p>RAG bridges the gap between finite context and long-term knowledge. Instead of depending on the model&rsquo;s internal attention, RAG systems perform <strong>semantic retrieval</strong> to inject only the most relevant information into each API call.</p>
+<p>RAG bridges the gap between finite context and long-term knowledge. Instead of depending on the model&rsquo;s internal attention, RAG systems perform <strong><a class="glossary-term" href="/glossary/#semantic-retrieval" data-definition="Retrieval based on similarity of meaning rather than exact matching of words or phrases.">semantic retrieval</a></strong> to inject only the most relevant information into each API call.</p>
 <ol>
 <li><strong>Chunking</strong> text or conversation history into semantically meaningful segments.</li>
-<li><strong>Embedding</strong> each chunk into a vector space.</li>
-<li><strong>Retrieving</strong> top-k relevant segments using cosine similarity.</li>
+<li><strong><a class="glossary-term" href="/glossary/#embedding" data-definition="A numerical vector that represents a token or other object in a multidimensional space.">Embedding</a></strong> each chunk into a vector space.</li>
+<li><strong>Retrieving</strong> top-k relevant segments using <a class="glossary-term" href="/glossary/#cosine-similarity" data-definition="A measure of similarity between two vectors based on the cosine of the angle between them.">cosine similarity</a>.</li>
 <li><strong>Composing</strong> a dynamic prompt with the query and retrieved context.</li>
 <li><strong>Generating</strong> an answer grounded in that retrieved material.</li>
 </ol>
@@ -514,12 +560,26 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 ). GPT-4&rsquo;s emerging memory features and Claude&rsquo;s &ldquo;Artifacts&rdquo; hint at this direction with persistent, embedded summaries that act as <em>latent conversation memory</em>.</p>
 <hr>
 <h2 id="context-windows-in-practice">Context Windows in Practice</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="Horizontal bar chart showing context window requirements across nine use cases, categorized as short context sufficient (green), long context valuable (blue), and long context problematic (orange), with token ranges from hundreds to millions on a logarithmic scale" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Context requirements vary by task. Short contexts work best for focused tasks like code completion, while massive contexts often perform worse than retrieval-based approaches for complex reasoning.</em>
-  </figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-handle-context-windows/plot.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-handle-context-windows/plot.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Context requirements vary by task. Short contexts work best for focused tasks like code completion, while massive contexts often perform worse than retrieval-based approaches for complex reasoning.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Different use cases have different context needs:</p>
 <p><strong>Short context sufficient:</strong></p>
 <ul>
@@ -544,10 +604,10 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 <h2 id="the-future-beyond-attention">The Future: Beyond Attention</h2>
 <p>Researchers are pushing beyond quadratic attention toward architectures that combine <strong>efficiency, persistence, and abstraction</strong>.</p>
 <p><strong>1. Linearized and Hybrid Attention</strong>
-Models like <strong>Mamba</strong> (<a href="#gu2023">
+Models like <strong><a class="glossary-term" href="/glossary/#mamba" data-definition="A sequence-modeling architecture based on selective state space models that can process sequences with linear rather than quadratic scaling.">Mamba</a></strong> (<a href="#gu2023">
   Gu &amp; Dao, 2023
 </a>
-) and <strong>RWKV</strong> (<a href="#peng2023">
+) and <strong><a class="glossary-term" href="/glossary/#rwkv" data-definition="A neural network architecture that combines characteristics of recurrent neural networks and transformers while supporting linear-time sequence processing.">RWKV</a></strong> (<a href="#peng2023">
   Peng et al., 2023
 </a>
 ) merge recurrent updates with attention-style gating, keeping a compact &ldquo;state trace&rdquo; instead of recomputing pairwise attention. They process input almost linearly with sequence length, hinting at a path to true scalability.</p>
@@ -556,11 +616,11 @@ Upcoming designs experiment with distinct submodules for short-term reasoning, f
 <p><strong>3. Hierarchical Context</strong>
 Multi-scale models use local attention for fine detail and upper layers for long-span summaries, compressing sequences without losing coherence. The model reasons hierarchically, the way we summarize and then recall the gist.</p>
 <p><strong>4. Neuro-symbolic Integration</strong>
-Long-term context may eventually blend neural pattern recognition with symbolic memory. Rather than rereading raw text, future systems could retrieve <em>structured knowledge graphs</em>, giving them durable, compositional recall.</p>
+Long-term context may eventually blend neural pattern recognition with symbolic memory. Rather than rereading raw text, future systems could retrieve <em>structured <a class="glossary-term" href="/glossary/#knowledge-graph" data-definition="A structured representation of entities and the relationships among them, typically modeled as nodes connected by labeled edges.">knowledge graphs</a></em>, giving them durable, compositional recall.</p>
 <p>The direction is clear: the next breakthroughs won&rsquo;t simply extend context. They&rsquo;ll <strong>reshape what it means to have context at all</strong>.</p>
 <hr>
 <h2 id="prompt-engineering-and-context-windows">Prompt Engineering and Context Windows</h2>
-<p>Knowing how attention fades helps you design prompts that survive long contexts. Prompt engineering is really attention sculpting: placing information where the model is most likely to &ldquo;see&rdquo; it.</p>
+<p>Knowing how attention fades helps you design prompts that survive long contexts. <a class="glossary-term" href="/glossary/#prompt-engineering" data-definition="The practice of designing and structuring model inputs to improve the relevance, reliability, or format of generated outputs.">Prompt engineering</a> is really attention sculpting: placing information where the model is most likely to &ldquo;see&rdquo; it.</p>
 <p>Reinforce key details near the end. Recency bias makes the last tokens disproportionately influential. Group related instructions so directives are not scattered. Prefer concise summaries over raw dumps of conversation. Repeat critical goals near the output boundary to keep them in focus.</p>
 <p>For example, if you&rsquo;re asking the model to analyze a long document and extract specific facts, place your extraction criteria at the <em>end</em> of the prompt, after the document text. This ensures the model &ldquo;sees&rdquo; your requirements with maximum attention when generating its response.</p>
 <p>In practice, the tail of your prompt is prime real estate. The closer critical details are to the end, the more reliably they guide the response.</p>
@@ -860,5 +920,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

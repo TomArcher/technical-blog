@@ -490,3 +490,158 @@ pre:hover .copy-button {
 .roadmap-jump a:hover {
   background: #eeeeee;
 }
+
+.glossary-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.glossary-letters a,
+.glossary-letter-empty {
+  display: inline-block;
+  min-width: 1.4rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.glossary-letter-empty {
+  opacity: 0.3;
+}
+
+/* ---------------------------------
+   Glossary term tooltips
+   --------------------------------- */
+
+.post__content .glossary-term {
+  position: relative;
+  cursor: help;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+
+/* Tooltip */
+.post__content .glossary-term::after {
+  content: attr(data-definition);
+
+  position: absolute;
+  z-index: 1000;
+
+  left: 50%;
+  bottom: calc(100% + 0.6rem);
+  transform: translateX(-50%);
+
+  width: max-content;
+  max-width: 320px;
+  min-width: 220px;
+  padding: 0.65rem 0.8rem;
+
+  background: #222;
+  color: #fff;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.15s ease;
+}
+
+/* Little pointer underneath the tooltip */
+.post__content .glossary-term::before {
+  content: "";
+
+  position: absolute;
+  z-index: 1001;
+
+  left: 0;
+  bottom: calc(100% + 0.6rem);
+  transform: none;
+
+  border: 6px solid transparent;
+  border-top-color: #222;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.15s ease;
+}
+
+/* Show with mouse or keyboard */
+.post__content .glossary-term:hover::after,
+.post__content .glossary-term:hover::before,
+.post__content .glossary-term:focus::after,
+.post__content .glossary-term:focus::before {
+  opacity: 1;
+  visibility: visible;
+  left: 0.75rem;
+  bottom: calc(100% + 0.25rem);
+  transform: none;
+  max-width: 300px;
+}
+
+.lightbox-trigger {
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+.lightbox-trigger img {
+  display: block;
+}
+
+/* Full-screen overlay */
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Visible state */
+.image-lightbox.is-open {
+  display: flex;
+}
+
+/* Full-size image, constrained to viewport */
+.image-lightbox img {
+  max-width: 95vw;
+  max-height: 95vh;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+}
+
+/* Close button */
+.image-lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+
+  border: 0;
+  background: transparent;
+
+  color: white;
+  font-size: 42px;
+  line-height: 1;
+
+  cursor: pointer;
+}

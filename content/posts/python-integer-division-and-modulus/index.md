@@ -11,17 +11,14 @@ author = "Tom Archer"
 listThumb = "python-integer-division-and-modulus.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./python-integer-division-and-modulus.png"
-       alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Parse fixed-width numbers with // and % for speed and clarity.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="python-integer-division-and-modulus.png"
+    alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
+    label="Open full-size python integer division and modulus"
+    caption="Parse {{< term \"fixed-width-data\" \"fixed-width\" >}} numbers with // and % for speed and clarity."
+>}}
 
-When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, **numeric parsing with integer division (`//`) and modulus (`%`)** is the better option.
+When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with {{< term "integer-division" "integer division" >}} (`//`) and {{< term "modulus" "modulus" >}} (`%`) is the better option.
 
 ---
 
@@ -111,7 +108,7 @@ print(hours, minutes, seconds, milliseconds)
 
 ## Example 3: Digit Processing for Checksums 🔢
 
-Many algorithms (like the Luhn algorithm for credit card checksums) require iterating over each digit of a number. With `%` and `//`, you can peel digits off one at a time:
+Many algorithms (like the {{< term "luhn-algorithm" "Luhn algorithm" >}} for credit card {{< term "checksum" "checksums" >}}) require iterating over each digit of a number. With `%` and `//`, you can peel digits off one at a time:
 
 ```python
 num = 987654

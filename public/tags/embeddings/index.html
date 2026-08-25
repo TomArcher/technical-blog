@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -172,11 +173,12 @@
         
         
         <div class="post-summary">
+
 <p>A recent <a href="https://www.linkedin.com/posts/activity-7435689322504167424-_v46" target="_blank" rel="noopener noreferrer">
   LinkedIn post
 </a>
- from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
-<p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.</p>
+ from Michael Palmer described how <a class="glossary-term" href="/glossary/#discrete-mathematics" data-definition="The branch of mathematics concerned with distinct, countable structures such as sets, logic, graphs, integers, and combinatorial objects.">discrete mathematics</a> is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, <a class="glossary-term" href="/glossary/#gradient-descent" data-definition="An optimization method that iteratively adjusts model parameters in the direction that reduces a loss function.">gradient descent</a>, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
+<p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: <a class="glossary-term" href="/glossary/#set-theory" data-definition="The branch of mathematics that studies collections of objects and operations such as union, intersection, complement, and membership.">sets</a>, <a class="glossary-term" href="/glossary/#predicate-logic" data-definition="A formal system of logic that uses predicates, variables, and quantifiers to express statements about objects and their relationships.">predicate logic</a>, <a class="glossary-term" href="/glossary/#boolean-algebra" data-definition="A system of logic based on true and false values and operations such as AND, OR, and NOT.">Boolean operations</a>, <a class="glossary-term" href="/glossary/#modular-arithmetic" data-definition="A system of arithmetic in which numbers wrap around after reaching a specified modulus, producing cyclic patterns.">modular arithmetic</a>, formal proof patterns. This post traces those connections.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&rdquo;</em></p></blockquote>
@@ -221,15 +223,16 @@
         
         
         <div class="post-summary">
-<p>When you enter a sentence into a Large Language Model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
 , the model does not process words as language. It represents them as numbers.</p>
-<p>Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
-<p>This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
+<p>Each word, phrase, and code <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> becomes a vector — a list of real-valued coordinates within a <a class="glossary-term" href="/glossary/#high-dimensional-space" data-definition="A mathematical space containing many independent dimensions, allowing complex objects and relationships to be represented as vectors.">high-dimensional space</a>. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
+<p>This is the mathematical foundation of large language models: linear algebra. <a class="glossary-term" href="/glossary/#matrix-multiplication" data-definition="An operation that combines matrices by computing dot products between rows and columns, forming the basis of many neural network computations.">Matrix multiplication</a>, <a class="glossary-term" href="/glossary/#vector-projection" data-definition="The component of one vector that lies in the direction of another vector.">vector projection</a>, <a class="glossary-term" href="/glossary/#cosine-similarity" data-definition="A measure of similarity between two vectors based on the cosine of the angle between them.">cosine similarity</a>, and <a class="glossary-term" href="/glossary/#normalization" data-definition="The process of rescaling numerical values or vectors to a standardized range or magnitude.">normalization</a> define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&rdquo;</em></p></blockquote>
@@ -405,5 +408,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

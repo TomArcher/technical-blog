@@ -19,7 +19,6 @@
   <meta property="og:description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.What You&#39;ll Learn
 After reading this post, you&#39;ll be able to explain:What queries, keys, and values do How scaled dot-product attention works Why attention divides by \(\sqrt{d_k}\) Why transformers use multiple heads What attention heads actually learn How induction heads enable pattern copying The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.
 This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
-The 2017 paper, Attention Is All You Needis the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.
 “Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
@@ -38,7 +37,6 @@ The 2017 paper, Attention Is All You Needis the seed of this series. The mechan
   <meta itemprop="description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.What You&#39;ll Learn
 After reading this post, you&#39;ll be able to explain:What queries, keys, and values do How scaled dot-product attention works Why attention divides by \(\sqrt{d_k}\) Why transformers use multiple heads What attention heads actually learn How induction heads enable pattern copying The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.
 This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
-The 2017 paper, Attention Is All You Needis the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.
 “Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
   <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
   <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
@@ -50,7 +48,6 @@ The 2017 paper, Attention Is All You Needis the seed of this series. The mechan
   <meta name="twitter:description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.What You&#39;ll Learn
 After reading this post, you&#39;ll be able to explain:What queries, keys, and values do How scaled dot-product attention works Why attention divides by \(\sqrt{d_k}\) Why transformers use multiple heads What attention heads actually learn How induction heads enable pattern copying The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.
 This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
-The 2017 paper, Attention Is All You Needis the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.
 “Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,6 +84,7 @@ The 2017 paper, Attention Is All You Needis the seed of this series. The mechan
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -200,53 +198,75 @@ The 2017 paper, Attention Is All You Needis the seed of this series. The mechan
 
     <div class="content post__content clearfix">
       <figure style="margin: 0 20px 10px 20px; text-align: center;">
-    <img src="./transformer-architecture.png"
-        alt="Diagram of the transformer architecture showing token and positional embeddings, multi-head self-attention, feedforward networks, residual connections, layer normalization, and output projection for next-token prediction">
+
+    <a href="/posts/inside-attention-part-1/transformer-architecture.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/inside-attention-part-1/transformer-architecture.png" alt="">
+
+    </a>
+
+    
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
         <em>A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.</em>
     </figcaption>
+    
+
 </figure>
+
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
     <div style="text-align: center;"><strong>What You'll Learn</strong><br><br></div>
 After reading this post, you'll be able to explain:
 <ul>
 <li>What queries, keys, and values do</li>
-<li>How scaled dot-product attention works</li>
+<li>How scaled dot-product <a class="glossary-term" href="/glossary/#attention" data-definition="A mechanism that allows a model to determine how strongly one token should relate to other tokens when constructing a representation.">attention</a> works</li>
 <li>Why attention divides by \(\sqrt{d_k}\)</li>
 <li>Why transformers use multiple heads</li>
 <li>What attention heads actually learn</li>
-<li>How induction heads enable pattern copying</li>
+<li>How <a class="glossary-term" href="/glossary/#induction-head" data-definition="An attention head involved in a circuit that recognizes repeated token patterns and uses an earlier occurrence to predict what is likely to follow the current occurrence.">induction head</a>s enable pattern copying</li>
 </ul>
 </div>
-<p>The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
-<p>This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.</p>
-<p>The 2017 paper, <a href="#vaswani2017">
-  Attention Is All You Need
-</a>
- is the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.</p>
+<p>The <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformer architecture</a> is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a <a class="glossary-term" href="/glossary/#feedforward-network" data-definition="A neural network component that applies learned transformations independently to each token representation after the attention operation.">feedforward sublayer</a>, wrapped in <a class="glossary-term" href="/glossary/#residual-connection" data-definition="A shortcut connection that adds a layer&#39;s input to its output, helping information and gradients flow through deep neural networks.">residual connections</a> and <a class="glossary-term" href="/glossary/#layer-normalization" data-definition="A normalization technique that stabilizes neural network training by rescaling activations within a layer.">layer normalization</a>. <a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional information</a> is added to the input so the model knows what order the <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a> came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
+<p>This post is the first of a three-part series on the attention mechanism. Part 1 covers <a class="glossary-term" href="/glossary/#scaled-dot-product-attention" data-definition="An attention mechanism that compares queries with keys using dot products, scales the resulting scores by the square root of the key dimension, applies softmax, and uses the resulting weights to combine values.">scaled dot-product attention</a>, why we divide by \(\sqrt{d_k}\), <a class="glossary-term" href="/glossary/#multi-head-attention" data-definition="An attention architecture that runs multiple independently learned attention heads in parallel and combines their outputs, allowing different relationships to be modeled simultaneously.">multi-head attention</a>, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how <a class="glossary-term" href="/glossary/#causal-mask" data-definition="An attention mask that prevents a token from attending to future positions in a sequence.">causal masking</a> turns self-attention into the foundation of <a class="glossary-term" href="/glossary/#autoregressive" data-definition="Describes a model that generates a sequence one element at a time, with each prediction conditioned on previously available elements.">autoregressive</a> next-token prediction. Part 3 covers the engineering layer: <a class="glossary-term" href="/glossary/#kv-cache" data-definition="A cache of previously computed key and value vectors that lets a transformer reuse them while generating subsequent tokens.">KV caching</a>, <a class="glossary-term" href="/glossary/#multi-query-attention" data-definition="An attention variant in which multiple query heads share a single set of key and value heads, reducing memory use and inference cost.">multi-query</a> and <a class="glossary-term" href="/glossary/#grouped-query-attention" data-definition="An attention variant in which groups of query heads share key and value heads, providing a compromise between multi-head and multi-query attention.">grouped-query attention</a>, <a class="glossary-term" href="/glossary/#sliding-window-attention" data-definition="An attention pattern that restricts each token to attending to a limited neighborhood of nearby tokens rather than the entire sequence.">sliding window attention</a>, and <a class="glossary-term" href="/glossary/#flash-attention" data-definition="An optimized attention algorithm that reduces memory traffic by computing attention in blocks, enabling faster and more memory-efficient exact attention.">Flash Attention</a>.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&rdquo;</em></p></blockquote>
 <hr>
-<p>This post explores the attention operation as it appears in the original paper and as it is understood today. You will see the variance argument behind the \(\sqrt{d_k}\) scaling, the parameter-budget structure of multi-head attention, and the post-2017 mechanistic interpretability work that identified specific algorithms running inside trained models. If you have followed my earlier posts on how LLMs think and how they learn, you have already seen the calculus, linear algebra, and probability that surround attention. This post goes inside the operation itself.</p>
+<p>The 2017 paper, <a href="#vaswani2017">
+  Attention Is All You Need
+</a>
+ is the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.</p>
+<p>This post explores the attention operation as it appears in the original paper and as it is understood today. You will see the <a class="glossary-term" href="/glossary/#variance" data-definition="A measure of how widely numerical values are spread around their mean, equal to the average squared deviation from that mean.">variance</a> argument behind the \(\sqrt{d_k}\) scaling, the parameter-budget structure of multi-head attention, and the post-2017 <a class="glossary-term" href="/glossary/#mechanistic-interpretability" data-definition="The study of how neural networks implement computations internally by identifying and explaining components, circuits, and algorithms within trained models.">mechanistic interpretability</a> work that identified specific algorithms running inside trained models. If you have followed my earlier posts on how LLMs think and how they learn, you have already seen the calculus, linear algebra, and probability that surround attention. This post goes inside the operation itself.</p>
 <blockquote>
 <p><strong>TL;DR:</strong></p>
 <ul>
 <li>Attention computes a content-based weighted aggregation: similarity scores between queries and keys, softmaxed into a distribution, applied to values</li>
-<li>The \(\sqrt{d_k}\) scaling exists because dot-product variance grows linearly with \(d_k\), and unscaled softmax saturates toward one-hot at large \(d_k\), which collapses gradients</li>
+<li>The \(\sqrt{d_k}\) scaling exists because dot-product variance grows linearly with \(d_k\), and unscaled softmax saturates toward <a class="glossary-term" href="/glossary/#one-hot" data-definition="A representation or distribution in which one position has value 1 and all other positions have value 0.">one-hot</a> at large \(d_k\), which collapses <a class="glossary-term" href="/glossary/#gradient" data-definition="A vector of partial derivatives describing how a function changes with respect to its inputs or parameters.">gradients</a></li>
 <li>Multi-head attention is a parameter-budget-neutral split that creates room for parallel specialization</li>
-<li>What heads actually learn after training has been studied empirically since 2019; the cleanest result is the induction head, a circuit that implements a match-and-copy algorithm and provides one mechanistic account of an important form of in-context learning</li>
+<li>What heads actually learn after training has been studied empirically since 2019; the cleanest result is the induction head, a circuit that implements a match-and-copy algorithm and provides one mechanistic account of an important form of <a class="glossary-term" href="/glossary/#in-context-learning" data-definition="The ability of a language model to adapt its behavior based on examples or patterns provided in its current context without updating its model parameters.">in-context learning</a></li>
 <li>The mechanism is not just a learned similarity function; it is a substrate on which identifiable algorithms emerge</li>
 </ul></blockquote>
 <hr>
 <h2 id="the-equation">The Equation</h2>
+
+
+
+
 <figure style="margin: 0 20px 10px 20px; text-align: center;">
-    <img src="./inside-attention-part-1.png"
-        alt="Diagram of the attention mechanism showing input tokens projected into queries, keys, and values, followed by scaled dot-product attention, softmax, weighted aggregation, and multi-head attention">
+
+    <a href="/posts/inside-attention-part-1/inside-attention-part-1.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/inside-attention-part-1/inside-attention-part-1.png" alt="">
+
+    </a>
+
+    
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
         <em>The attention operation. Learned projections produce queries, keys, and values; scaled dot products and softmax determine how strongly each position attends to the others; and the resulting weights determine how the value vectors are combined.</em>
     </figcaption>
+    
+
 </figure>
+
 <p>Attention takes a sequence of token representations and produces a new sequence in which each position is a weighted blend of all the others. The blend is content-based: tokens decide for themselves how much of every other token to absorb.</p>
 <p>The <a href="#vaswani2017">
   Vaswani paper
@@ -257,11 +277,11 @@ After reading this post, you'll be able to explain:
 \]</p>
 <p>Three matrices, all derived from the input by separate learned linear projections.</p>
 <ul>
-<li>Query (Q): what each position is looking for</li>
-<li>Key (K): what each position offers as a match target</li>
-<li>Value (V): what each position contributes if it is matched</li>
+<li><a class="glossary-term" href="/glossary/#query" data-definition="In attention, a learned vector representing what a token is looking for when determining which other tokens are relevant.">Query</a> (Q): what each position is looking for</li>
+<li><a class="glossary-term" href="/glossary/#key" data-definition="In attention, a learned vector representing information a token exposes for comparison with queries.">Key</a> (K): what each position offers as a match target</li>
+<li><a class="glossary-term" href="/glossary/#value" data-definition="In attention, a learned vector containing the information contributed by a token after its relevance has been determined.">Value</a> (V): what each position contributes if it is matched</li>
 </ul>
-<p>The product \(QK^T\) is the matrix of all pairwise similarity scores. Softmax turns each row of that matrix into a probability distribution over positions. Multiplying by \(V\) blends the value vectors using those probabilities.</p>
+<p>The product \(QK^T\) is the matrix of all pairwise similarity scores. <a class="glossary-term" href="/glossary/#softmax" data-definition="A function that converts a set of numerical scores into nonnegative values that sum to one, allowing them to be interpreted as a probability distribution.">Softmax</a> turns each row of that matrix into a <a class="glossary-term" href="/glossary/#probability-distribution" data-definition="A mathematical description of the possible outcomes of a random process and the probabilities associated with those outcomes.">probability distribution</a> over positions. Multiplying by \(V\) blends the value vectors using those probabilities.</p>
 <p><strong>Python</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
 </span></span><span style="display:flex;"><span>
@@ -295,7 +315,7 @@ After reading this post, you'll be able to explain:
  [0.219 0.197 0.23  0.196 0.158]
  [0.203 0.198 0.203 0.194 0.201]
  [0.199 0.186 0.184 0.226 0.204]]
-</code></pre><p>The thing to internalize is that nothing here is hand-coded. \(W_Q\), \(W_K\), and \(W_V\) are parameters the optimizer learns. Whatever notion of &ldquo;matching&rdquo; the model needs to do its job, it has to discover and encode in those three matrices. The architecture provides the operation; training provides the content.</p>
+</code></pre><p>The thing to internalize is that nothing here is hand-coded. \(W_Q\), \(W_K\), and \(W_V\) are <a class="glossary-term" href="/glossary/#model-parameter" data-definition="A numerical value learned during training that influences how a model transforms inputs into outputs.">parameters</a> the <a class="glossary-term" href="/glossary/#optimizer" data-definition="An algorithm that updates model parameters during training using gradients or related information to reduce a loss function.">optimizer</a> learns. Whatever notion of &ldquo;matching&rdquo; the model needs to do its job, it has to discover and encode in those three matrices. The architecture provides the operation; training provides the content.</p>
 <hr>
 <h2 id="the-sqrtd_k-scaling">The \(\sqrt{d_k}\) Scaling</h2>
 <p>The scaling factor looks like an implementation detail. It is not. Without it, the variance of the dot products grows with the key dimension, pushing softmax toward saturation and making optimization increasingly difficult as \(\sqrt{d_k}\) grows.</p>
@@ -304,7 +324,7 @@ Suppose the entries of \(Q\) and \(K\) are roughly independent with mean 0 and v
 <p>\[
 \text{Var}(q \cdot k) = \sum_{i=1}^{d_k} \text{Var}(q_i k_i) \approx d_k
 \]</p>
-<p>Standard deviation is therefore \(\sqrt{d_k}\). When \(d_k = 64\), raw scores have standard deviation 8. When \(d_k = 1024\), standard deviation is 32. Push values that large into a softmax and the distribution collapses toward one-hot: one position takes nearly all the mass, others round to zero. Once that happens, gradients with respect to non-winning positions become tiny, and the model stops getting useful learning signal from them.
+<p>Standard deviation is therefore \(\sqrt{d_k}\). When \(d_k = 64\), raw scores have <a class="glossary-term" href="/glossary/#standard-deviation" data-definition="A measure of spread equal to the square root of variance and expressed in the same units as the measured values.">standard deviation</a> 8. When \(d_k = 1024\), standard deviation is 32. Push values that large into a softmax and the distribution collapses toward one-hot: one position takes nearly all the mass, others round to zero. Once that happens, gradients with respect to non-winning positions become tiny, and the model stops getting useful learning signal from them.
 Dividing by \(\sqrt{d_k}\) cancels the variance growth and keeps softmax in a usable regime.</p>
 <p><strong>Python</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
@@ -358,7 +378,7 @@ d_k = 1024
   Raw    softmax max weight: 1.0000
   Scaled softmax max weight: 0.0249
 </code></pre><p>Variance grows linearly in \(d_k\) on the unscaled side and stays at 1 on the scaled side. By \(d_k = 64\) the unscaled softmax is already heavily concentrated. By \(d_k = 256\) it is essentially one-hot.</p>
-<p>The &ldquo;small gradients&rdquo; argument is the second half of the story. The Jacobian of softmax has the form \(\partial y_i / \partial x_j = y_i(\delta_{ij} - y_j)\). When the distribution is uniform, every input position receives a meaningful share of gradient. When the distribution is saturated, almost all of the Jacobian&rsquo;s mass is concentrated on the row and column of the dominant position. Non-dominant positions become invisible to the optimizer.</p>
+<p>The &ldquo;small gradients&rdquo; argument is the second half of the story. The <a class="glossary-term" href="/glossary/#jacobian" data-definition="A matrix containing the partial derivatives of a vector-valued function with respect to its inputs.">Jacobian</a> of softmax has the form \(\partial y_i / \partial x_j = y_i(\delta_{ij} - y_j)\). When the distribution is uniform, every input position receives a meaningful share of gradient. When the distribution is saturated, almost all of the Jacobian&rsquo;s mass is concentrated on the row and column of the dominant position. Non-dominant positions become invisible to the optimizer.</p>
 <p>The cleanest way to see this is to measure two things at the same \(d_k\): how spread the softmax distribution is, and how concentrated the gradient flow is.</p>
 <p><strong>Python</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
@@ -409,7 +429,7 @@ Top-1 share of total gradient flow:
 <p>The \(\sqrt{d_k}\) correction is numerical hygiene, not architectural cleverness. The paper&rsquo;s one-sentence assertion has a clean derivation behind it, and skipping the derivation is the kind of thing that hides where actual fragility lives in a deep network.</p>
 <hr>
 <h2 id="multi-head-attention">Multi-Head Attention</h2>
-<p>A single attention head produces one attention distribution from one learned query-key projection. That projection can encode complicated relationships, but every relationship it represents must coexist within the same attention pattern. Real language has many simultaneous structures: subject-verb agreement, coreference, syntactic dependency, topical similarity, positional rhythm. One similarity function will not capture all of them.
+<p>A single attention head produces one attention distribution from one learned query-key projection. That projection can encode complicated relationships, but every relationship it represents must coexist within the same attention pattern. Real language has many simultaneous structures: subject-verb agreement, <a class="glossary-term" href="/glossary/#coreference" data-definition="The relationship between expressions in text that refer to the same entity, such as &#39;Ada&#39; and &#39;she.&#39;">coreference</a>, syntactic dependency, topical similarity, positional rhythm. One similarity function will not capture all of them.
 Multi-head attention runs several attention operations in parallel, each with its own learned projections, then concatenates the outputs and projects back down to the model dimension.</p>
 <p>\[
 \text{MultiHead}(X) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O
@@ -455,7 +475,7 @@ Output shape: (8, 32)
 </code></pre><p>The paper proposed multi-head attention as a hypothesis: it expected the architecture to permit different kinds of attention patterns to coexist. What heads actually learn was not answered in the paper. It was answered later.</p>
 <hr>
 <h2 id="what-heads-actually-learn">What Heads Actually Learn</h2>
-<p>The first wave of work on attention head behavior, in 2019, looked at trained BERT and machine translation models and asked what individual heads were doing (<a href="#voita2019">
+<p>The first wave of work on attention head behavior, in 2019, looked at trained <a class="glossary-term" href="/glossary/#bert" data-definition="A transformer-based language model architecture designed to learn bidirectional contextual representations of text.">BERT</a> and machine translation models and asked what individual heads were doing (<a href="#voita2019">
   Voita et al., 2019
 </a>
 ; <a href="#clark2019">
@@ -468,13 +488,13 @@ Output shape: (8, 32)
 ; <a href="#olsson2022">
   Olsson et al., 2022
 </a>
-). They were not just identifying which positions a head paid attention to. They were identifying the algorithms that circuits implemented and testing those explanations through interventions such as ablation.</p>
+). They were not just identifying which positions a head paid attention to. They were identifying the algorithms that circuits implemented and testing those explanations through interventions such as <a class="glossary-term" href="/glossary/#ablation" data-definition="An experimental technique that removes or disables part of a model to determine how that component contributes to its behavior.">ablation</a>.</p>
 <p>The cleanest result from that work is the induction head (<a href="#olsson2022">
   Olsson et al., 2022
 </a>
 ). An induction head is a two-layer circuit that implements a simple algorithm: given a context that contains a previous instance of the current token, predict whatever followed that previous instance. If the model has seen <code>... A B ... A</code>, the induction head circuit predicts <code>B</code>.</p>
 <p>The mechanism takes two layers of attention working in composition.
-Layer 1 hosts a previous-token head. Every position attends to the position immediately before it and copies information about that previous token into its own residual stream. After layer 1, the position holding token <code>B</code> (after the first <code>A</code>) has effectively been annotated with &ldquo;the token before me was <code>A</code>.&rdquo;</p>
+Layer 1 hosts a previous-token head. Every position attends to the position immediately before it and copies information about that previous token into its own <a class="glossary-term" href="/glossary/#residual-stream" data-definition="The evolving vector representation passed through transformer layers and updated by components such as attention and feedforward networks.">residual stream</a>. After layer 1, the position holding token <code>B</code> (after the first <code>A</code>) has effectively been annotated with &ldquo;the token before me was <code>A</code>.&rdquo;</p>
 <p>Layer 2 hosts the induction head proper. At each position, the query asks &ldquo;I am token \(T\), find positions whose previous token was \(T\).&rdquo; Because layer 1 wrote previous-token information into every position&rsquo;s keys, the match is well-defined. The query lights up at the position holding <code>B</code>. The value at that position carries information about <code>B</code> itself, which gets copied into the current position&rsquo;s residual stream and biases the next-token prediction toward <code>B</code>.</p>
 <p>This is more than a similarity heuristic. It is a learned algorithm composed across two attention layers, and closely related induction-head circuits have been observed in transformers trained from scratch across different model sizes and training settings. We can sketch the attention pattern that this circuit produces by hand and see why it works.</p>
 <p><strong>Python</strong></p>
@@ -775,5 +795,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

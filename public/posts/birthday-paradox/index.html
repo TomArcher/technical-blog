@@ -86,6 +86,7 @@ You might know that the birthday paradox proves that just 23 people have more th
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -194,23 +195,33 @@ You might know that the birthday paradox proves that just 23 people have more th
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./birthday-paradox.png" alt="Multiple database servers with overlapping ID bubbles showing collision zones" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/birthday-paradox/birthday-paradox.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/birthday-paradox/birthday-paradox.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
+    </figcaption>
+    
+
 </figure>
-<p>You generate a UUID. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
+
+<p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
 <p>As I like to say, <em>common sense and intuition are the enemies of science</em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?</p>
 <p>Math shows us the uncomfortable truth: You&rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.</p>
-<p>You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&rsquo;t just a party trick; it&rsquo;s the same mathematics that determines when your &ldquo;guaranteed unique&rdquo; database IDs collide, why hash tables need careful sizing, and when your distributed system&rsquo;s assumptions break.</p>
+<p>You might know that the <a class="glossary-term" href="/glossary/#birthday-paradox" data-definition="The counterintuitive result that collisions become likely after selecting only about the square root of the number of possible values.">birthday paradox</a> proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&rsquo;t just a party trick; it&rsquo;s the same mathematics that determines when your &ldquo;guaranteed unique&rdquo; database IDs collide, why <a class="glossary-term" href="/glossary/#hash-table" data-definition="A data structure that uses a hash function to map keys to locations where their associated values can be stored and retrieved.">hash tables</a> need careful sizing, and when your <a class="glossary-term" href="/glossary/#distributed-system" data-definition="A system whose components run on multiple networked computers and coordinate to perform a common task.">distributed system</a>&rsquo;s assumptions break.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;In a room of 23 people, there&rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&rdquo;</em></p></blockquote>
 <hr>
-<p>The paradox reveals why intuition fails us: collision probability doesn&rsquo;t grow linearly with usage; it grows with the square. Double your data, quadruple your risk. This quadratic growth is why systems that run perfectly for months suddenly start failing, why that startup&rsquo;s clever 32-bit ID scheme becomes a migration nightmare, and why even titans like GitHub had to extend their integer IDs.</p>
+<p>The paradox reveals why intuition fails us: <a class="glossary-term" href="/glossary/#collision-probability" data-definition="The probability that at least two independently selected values from a finite space are identical.">collision probability</a> doesn&rsquo;t grow linearly with usage; it grows with the square. Double your data, quadruple your risk. This quadratic growth is why systems that run perfectly for months suddenly start failing, why that startup&rsquo;s clever 32-bit ID scheme becomes a migration nightmare, and why even titans like GitHub had to extend their integer IDs.</p>
 <p>Understanding this math is the difference between a system that scales and one that mysteriously fails at 2 AM when you hit that magical threshold your common sense never saw coming.</p>
-<p>In this post, we&rsquo;ll explore the surprising mathematics of collision probability and build Python tools to analyze real production systems. You&rsquo;ll learn how to calculate exactly when your ID generation strategy will fail, visualize the dramatic differences between 32-bit, 64-bit, and UUID systems, and understand why a trillion-value space becomes risky at just one million items. We&rsquo;ll validate our math with Monte Carlo simulations and test scenarios from startup MVPs to billion-event distributed logs.</p>
+<p>In this post, we&rsquo;ll explore the surprising mathematics of collision probability and build Python tools to analyze real production systems. You&rsquo;ll learn how to calculate exactly when your ID generation strategy will fail, visualize the dramatic differences between 32-bit, 64-bit, and UUID systems, and understand why a trillion-value space becomes risky at just one million items. We&rsquo;ll validate our math with <a class="glossary-term" href="/glossary/#monte-carlo-simulation" data-definition="A computational technique that uses repeated random sampling to estimate probabilities, outcomes, or other properties of a system.">Monte Carlo simulations</a> and test scenarios from startup MVPs to billion-event distributed logs.</p>
 <blockquote>
 <p><strong>TL;DR:</strong></p>
 <ul>
@@ -642,9 +653,26 @@ Add a @property description that returns human-readable names using a dictionary
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
 </span></span></code></pre></div><h3 id="time-to-collision-analysis">Time to Collision Analysis</h3>
 <p>The second visualization flips the perspective to answer a practical question: &ldquo;Given a specific generation rate, how long until the first collision?&rdquo; This chart dramatically illustrates why ID system choice matters for high-throughput applications. At a billion IDs per second, which is not uncommon for large-scale distributed systems, the differences are stark: 32-bit systems fail before you can blink, 64-bit systems won&rsquo;t survive a workday, but UUID v4 will outlive your grandchildren.</p>
-<img src="./plot2.png" alt="Log-scale plot showing collision probability curves for different ID systems, with safety thresholds marked" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>At 1 billion IDs/second: 32-bit fails in microseconds, 64-bit in hours, UUID v4 lasts decades.</em></figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/birthday-paradox/plot2.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/birthday-paradox/plot2.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>At 1 billion IDs/second: 32-bit fails in microseconds, 64-bit in hours, UUID v4 lasts decades.</em>
+    </figcaption>
+    
+
+</figure>
+
 <br/>
 <p><strong>Python:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">plot_time_to_collision</span>() <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
@@ -722,19 +750,19 @@ Add a @property description that returns human-readable names using a dictionary
 <p><strong>Intermediate Level: Geometry &amp; Body Modeling</strong></p>
 <ol>
 <li>
-<p><strong>Sharding distribution</strong>: Simulate distributing 1 million records across 100 database shards. Measure the load imbalance.</p>
+<p><strong><a class="glossary-term" href="/glossary/#sharding" data-definition="A database partitioning technique that distributes portions of a dataset across multiple independent servers or database instances.">Sharding</a> distribution</strong>: Simulate distributing 1 million records across 100 database shards. Measure the load imbalance.</p>
 </li>
 <li>
 <p><strong>Git short hashes</strong>: Git shows 7-character hashes by default. How many commits before a repository likely has a collision?</p>
 </li>
 <li>
-<p><strong>Session token safety</strong>: Your app generates 16-character alphanumeric session tokens. How many concurrent sessions before collision risk exceeds 0.1%?</p>
+<p><strong><a class="glossary-term" href="/glossary/#session-token" data-definition="A value used to identify and associate a client with an authenticated or otherwise established application session.">Session token</a> safety</strong>: Your app generates 16-character alphanumeric session tokens. How many concurrent sessions before collision risk exceeds 0.1%?</p>
 </li>
 </ol>
 <p><strong>Advanced Level: Environment &amp; Stochasticity</strong></p>
 <ol>
 <li>
-<p><strong>Time-based UUIDs</strong>: UUID v1 includes timestamps. Model how temporal clustering affects collision probability.</p>
+<p><strong>Time-based UUIDs</strong>: <a class="glossary-term" href="/glossary/#uuid-v1" data-definition="A UUID format generated primarily from a timestamp and node identifier rather than random bits.">UUID v1</a> includes timestamps. Model how temporal clustering affects collision probability.</p>
 </li>
 <li>
 <p><strong>Distributed generation</strong>: Five servers independently generate IDs. How does this change collision probability compared to centralized generation?</p>
@@ -946,5 +974,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

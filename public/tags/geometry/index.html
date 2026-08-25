@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -172,15 +173,16 @@
         
         
         <div class="post-summary">
-<p>When you enter a sentence into a Large Language Model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
 , the model does not process words as language. It represents them as numbers.</p>
-<p>Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
-<p>This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
+<p>Each word, phrase, and code <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> becomes a vector — a list of real-valued coordinates within a <a class="glossary-term" href="/glossary/#high-dimensional-space" data-definition="A mathematical space containing many independent dimensions, allowing complex objects and relationships to be represented as vectors.">high-dimensional space</a>. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
+<p>This is the mathematical foundation of large language models: linear algebra. <a class="glossary-term" href="/glossary/#matrix-multiplication" data-definition="An operation that combines matrices by computing dot products between rows and columns, forming the basis of many neural network computations.">Matrix multiplication</a>, <a class="glossary-term" href="/glossary/#vector-projection" data-definition="The component of one vector that lies in the direction of another vector.">vector projection</a>, <a class="glossary-term" href="/glossary/#cosine-similarity" data-definition="A measure of similarity between two vectors based on the cosine of the angle between them.">cosine similarity</a>, and <a class="glossary-term" href="/glossary/#normalization" data-definition="The process of rescaling numerical values or vectors to a standardized range or magnitude.">normalization</a> define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&rdquo;</em></p></blockquote>
@@ -225,6 +227,7 @@
         
         
         <div class="post-summary">
+
 <p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
 <blockquote>
 <p><em>&ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&rdquo;</em></p></blockquote>
@@ -401,5 +404,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

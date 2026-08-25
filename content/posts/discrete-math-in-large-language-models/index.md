@@ -9,17 +9,16 @@ author = "Tom Archer"
 listThumb = "discrete-math-in-large-language-models-th.png"
 +++
 
-<figure style="margin: 0 20px 10px 20px; text-align: center;">
-    <img src="./discrete-math-in-large-language-models.png"
-        alt="A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>It's true what they say: discrete math is everywhere you look.</em>
-    </figcaption>
-</figure>
+{{< lightbox
+    src="discrete-math-in-large-language-models.png"
+    alt="A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns"
+    label="Open full-size discrete math in large language models"
+    caption="It's true what they say: discrete math is everywhere you look."
+>}}
 
-A recent [LinkedIn post](https://www.linkedin.com/posts/activity-7435689322504167424-_v46) from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you've taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you'd expect.
+A recent [LinkedIn post](https://www.linkedin.com/posts/activity-7435689322504167424-_v46) from Michael Palmer described how {{< term "discrete-mathematics" "discrete mathematics" >}} is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, {{< term "gradient-descent" "gradient descent" >}}, and probability distributions. If you've taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you'd expect.
 
-Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.
+Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: {{< term "set-theory" "sets" >}}, {{< term "predicate-logic" "predicate logic" >}}, {{< term "boolean-algebra" "Boolean operations" >}}, {{< term "modular-arithmetic" "modular arithmetic" >}}, formal proof patterns. This post traces those connections.
 
 ---
 
@@ -52,7 +51,7 @@ In discrete mathematics, predicate logic extends Boolean logic with quantifiers 
 
 “For all \\(x\\) in set \\(S\\), if \\(P(x)\\) is true, then \\(Q(x)\\) follows.” 
 
-Large language models do not execute predicate logic in this formal sense. They are not constructing symbolic expressions, assigning truth values, or applying inference rules step by step. But the *structure* of predicate logic shows up in how they process language. This structure appears most clearly in attention mechanisms. Recall that attention computes a weighted sum over tokens in the context. Each token evaluates how relevant other tokens are and aggregates information accordingly. Rather than applying a discrete predicate that returns true or false, attention computes a *continuous relevance score*. 
+Large language models do not execute predicate logic in this formal sense. They are not constructing symbolic expressions, assigning truth values, or applying inference rules step by step. But the *structure* of predicate logic shows up in how they process language. This structure appears most clearly in {{< term "attention" "attention mechanisms" >}}. Recall that attention computes a weighted sum over tokens in the context. Each token evaluates how relevant other tokens are and aggregates information accordingly. Rather than applying a discrete predicate that returns true or false, attention computes a *continuous relevance score*. 
 
 Here’s the standard attention formula: 
 
@@ -61,11 +60,11 @@ Here’s the standard attention formula:
 \\] 
 
 We can interpret this through a predicate-logic lens:
-- **Query (Q)**: a learned representation of “what I’m looking for” 
-- **Keys (K)**: representations of what each token “offers” 
+- **{{< term "query" "Query" >}} (Q)**: a learned representation of “what I’m looking for” 
+- **{{< term "key" "Keys" >}} (K)**: representations of what each token “offers” 
 - **\\(QK^T\\)**: a similarity score measuring how well each token matches that intent 
-- **softmax**: converts those scores into a probability distribution 
-- **Values (V)**: the information extracted from relevant tokens 
+- **{{< term "softmax" >}}**: converts those scores into a probability distribution 
+- **{{< term "value" "Values" >}} (V)**: the information extracted from relevant tokens 
 
 Viewed this way, attention behaves like a *soft, differentiable scan over a set of tokens*, where each element is evaluated for relevance and contributes proportionally to the result. Instead of: “Select all tokens where \\(P(x)\\) is \\(true\\)” the model effectively does: “Assign each token a degree of relevance based on how well it matches a learned pattern, then aggregate accordingly” This is not predicate logic in the formal sense. But it is a close structural analogue: evaluating a condition across a set and acting on the results. The difference is that everything is continuous, probabilistic, and learned rather than discrete and symbolic. That shift, from crisp logical predicates to soft geometric approximations, is where modern AI lives.
 
@@ -119,7 +118,7 @@ Set theory is foundational to discrete mathematics. Union, intersection, complem
 
 Token selection in LLMs is set theory applied to vocabularies.
 
-**Top-k sampling** selects the k highest-probability tokens:
+**{{< term "top-k-sampling" "Top-k sampling" >}}** selects the k highest-probability tokens:
 
 \\[
 S_k = \{t \in V : \text{rank}(P(t)) \leq k\}
@@ -127,7 +126,7 @@ S_k = \{t \in V : \text{rank}(P(t)) \leq k\}
 
 This is set construction with a membership predicate. "The set of all tokens in vocabulary \\(V\\) whose probability rank is at most \\(k\\)."
 
-**Top-p (nucleus) sampling** selects tokens until cumulative probability exceeds \\(p\\):
+**{{< term "top-p-sampling" "Top-p (nucleus) sampling" >}}** selects tokens until cumulative probability exceeds \\(p\\):
 
 \\[
 S_p = \{t_1, t_2, ..., t_m\} \text{ where } \sum_{i=1}^{m} P(t_i) \geq p
@@ -218,8 +217,8 @@ Boolean algebra deals with operations on true/false values: AND, OR, NOT, XOR. I
 
 **Attention masking** prevents tokens from attending to certain positions:
 
-- **Causal mask**: Token at position i can only attend to positions ≤ i
-- **Padding mask**: Ignore padding tokens entirely
+- **{{< term "causal-mask" "Causal mask" >}}**: Token at position i can only attend to positions ≤ i
+- **{{< term "padding-mask" "Padding mask" >}}**: Ignore padding tokens entirely
 - **Custom masks**: Task-specific attention patterns
 
 These are Boolean matrices. A 1 means "allowed," a 0 means "blocked."
@@ -304,7 +303,7 @@ Every masking operation is Boolean algebra applied element-wise to matrices.
 
 Formal proofs in discrete mathematics follow a structure: state assumptions, apply inference rules step by step, derive conclusions. Each step must follow logically from previous steps.
 
-Chain-of-thought (CoT) prompting [(Wei et al., 2022)](#wei2022) mirrors this structure. Instead of asking for an answer directly, you ask the model to reason step by step:
+{{< term "chain-of-thought" "Chain-of-thought (CoT) prompting" >}} [(Wei et al., 2022)](#wei2022) mirrors this structure. Instead of asking for an answer directly, you ask the model to reason step by step:
 
 **Direct prompt:**
 > What is 17 × 24?
@@ -375,7 +374,7 @@ The proof structure isn't just an analogy. It's a shared pattern that appears in
 
 Modular arithmetic is central to discrete mathematics. The clock "wraps around" from 12 to 1. Cryptographic systems like RSA depend entirely on properties of modular exponentiation.
 
-Positional encoding in transformers uses similar periodic structures.
+{{< term "positional-encoding" "Positional encoding" >}} in {{< term "transformer" "transformers" >}} uses similar periodic structures.
 
 The original transformer paper ([Vaswani et al., 2017](#vaswani2017)) used sinusoidal positional encodings:
 
@@ -388,7 +387,7 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
 
 These are periodic functions. As position increases, the values cycle through patterns at different frequencies. Each dimension captures periodicity at a different scale, similar to how different moduli in modular arithmetic create different cycle lengths.
 
-More recent work has explored alternatives like ALiBi [(Press et al., 2021)](#press2021), but the principle remains: periodic or relative structures encode position.
+More recent work has explored alternatives like {{< term "alibi" "ALiBi" >}} [(Press et al., 2021)](#press2021), but the principle remains: periodic or relative structures encode position.
 
 #### Python
 

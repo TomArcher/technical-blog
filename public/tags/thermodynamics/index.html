@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -172,6 +173,7 @@
         
         
         <div class="post-summary">
+
 <p>Originally appearing on his 1976 album, <em>Summertime Dream</em>, &ldquo;The Wreck of the Edmund Fitzgerald&rdquo; is a powerful ballad written and performed by folk singer <a href="#lightfoot1976">
   Gordon Lightfoot
 </a>
@@ -225,9 +227,10 @@
         
         
         <div class="post-summary">
+
 <p>Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.</p>
-<p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&rsquo;s not coincidence; it&rsquo;s thermodynamics.</p>
-<p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&rsquo;s <em>specific heat</em> is much higher.</p>
+<p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&rsquo;s not coincidence; it&rsquo;s <a class="glossary-term" href="/glossary/#thermodynamics" data-definition="The branch of physics concerned with energy, heat, work, temperature, and the ways energy is transferred and transformed.">thermodynamics</a>.</p>
+<p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&rsquo;s <em><a class="glossary-term" href="/glossary/#specific-heat" data-definition="The amount of energy required to raise the temperature of a unit mass of a substance by one degree.">specific heat</a></em> is much higher.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&rdquo;</em></p></blockquote>
@@ -403,5 +406,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

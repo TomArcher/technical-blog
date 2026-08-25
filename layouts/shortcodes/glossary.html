@@ -1,0 +1,44 @@
+{{- $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" -}}
+
+<nav class="glossary-letters" aria-label="Glossary alphabet">
+    {{- range $letters -}}
+    {{- $letter := . -}}
+    {{- $lower := lower $letter -}}
+    {{- $hasTerms := false -}}
+
+    {{- range $key, $entry := site.Data.glossary -}}
+    {{- if hasPrefix (upper $entry.term) $letter -}}
+    {{- $hasTerms = true -}}
+    {{- end -}}
+    {{- end -}}
+
+    {{- if $hasTerms -}}
+    <a href="#{{ $lower }}">{{ $letter }}</a>
+    {{- else -}}
+    <span class="glossary-letter-empty">{{ $letter }}</span>
+    {{- end -}}
+    {{- end -}}
+</nav>
+
+{{- range $letters -}}
+{{- $letter := . -}}
+{{- $lower := lower $letter -}}
+{{- $terms := slice -}}
+
+{{- range $key, $entry := site.Data.glossary -}}
+{{- if hasPrefix (upper $entry.term) $letter -}}
+{{- $terms = $terms | append (dict "key" $key "entry" $entry) -}}
+{{- end -}}
+{{- end -}}
+
+{{- if gt (len $terms) 0 -}}
+<section class="glossary-section">
+    <h2 id="{{ $lower }}">{{ $letter }}</h2>
+
+    {{- range sort $terms "entry.term" -}}
+    <h3 id="{{ .key }}">{{ .entry.term }}</h3>
+    <p>{{ .entry.definition }}</p>
+    {{- end -}}
+</section>
+{{- end -}}
+{{- end -}}

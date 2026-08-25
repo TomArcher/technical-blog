@@ -85,6 +85,7 @@ This is where SymPy shines. To see the difference between floating-point approxi
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -191,12 +192,22 @@ This is where SymPy shines. To see the difference between floating-point approxi
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">  
-  <img src="./sympy.png" alt="Sympy official log of a snake coiled around a cube with mathematical symbols" width="250" style="display: block; margin: 0 auto;">  
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">  
-    <em>SymPy provides symbolic computation and precision techniques for Python developers</em>
-  </figcaption>  
-</figure>  
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/python-sympy-vs-numpy/python-sympy-vs-numpy.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/python-sympy-vs-numpy/python-sympy-vs-numpy.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>SymPy provides symbolic computation and precision techniques for Python developers</em>
+    </figcaption>
+    
+
+</figure>
+
 <p>Most of us reach for <a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
   NumPy
 </a>
@@ -210,11 +221,11 @@ This is where SymPy shines. To see the difference between floating-point approxi
 <blockquote>
 <p><em>&ldquo;Floats guess. SymPy knows.&rdquo;</em></p></blockquote>
 <hr>
-<p>This is where SymPy shines. To see the difference between <strong>floating-point approximations</strong> (Python or NumPy) and <strong>symbolic precision</strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p>
+<p>This is where SymPy shines. To see the difference between <strong><a class="glossary-term" href="/glossary/#floating-point" data-definition="A numerical representation that approximates real numbers using a fixed number of significant digits and an exponent.">floating-point approximations</a></strong> (Python or NumPy) and <strong><a class="glossary-term" href="/glossary/#symbolic-computation" data-definition="Mathematical computation that manipulates expressions and exact values symbolically rather than approximating them numerically.">symbolic precision</a></strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p>
 <hr>
 <h2 id="why-exact-math-matters-">Why Exact Math Matters 😱</h2>
 <p>In programming, &ldquo;close enough&rdquo; is often fine&hellip; until it isn&rsquo;t. Floating-point arithmetic, the system behind both Python&rsquo;s float type and NumPy arrays, represents numbers using the <a href="https://standards.ieee.org/ieee/754/6210/" target="_blank" rel="noopener noreferrer">
-  IEEE-754
+  <a class="glossary-term" href="/glossary/#ieee-754" data-definition="The widely used technical standard that defines formats and behavior for floating-point arithmetic in computer systems.">IEEE-754</a>
 </a>
  standard. That means many simple decimals can&rsquo;t be stored exactly, which leads to small but unavoidable errors. Most of the time those errors hide in the noise. But in finance, physics, or logistics, they can quietly compound into costly mistakes.</p>
 <h3 id="finance-example-compound-interest">Finance Example: Compound Interest</h3>
@@ -230,7 +241,7 @@ This is where SymPy shines. To see the difference between floating-point approxi
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(amount)  <span style="color:#6272a4"># 16288.946267774418</span>
 </span></span></code></pre></div><p>At first glance this looks fine. However, the trailing decimals come from accumulated floating-point approximations. Over thousands of accounts and decades of compounding, those tiny differences can add up to real money.</p>
 <p><strong>SymPy:</strong></p>
-<p>Instead of storing 5 percent as an imprecise binary fraction like 0.050000000000000002, SymPy keeps it as the exact rational 5/100. Every multiplication is precise, and you only round when you explicitly call <code>.evalf()</code>. The result is a mathematically clean value you can trust, not a moving target shaped by machine precision.</p>
+<p>Instead of storing 5 percent as an imprecise binary fraction like 0.050000000000000002, SymPy keeps it as the <a class="glossary-term" href="/glossary/#rational-number" data-definition="A number that can be expressed exactly as the ratio of two integers, such as 5/100.">exact rational</a> 5/100. Every multiplication is precise, and you only round when you explicitly call <code>.evalf()</code>. The result is a mathematically clean value you can trust, not a moving target shaped by machine precision.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sympy <span style="color:#ff79c6">import</span> Rational
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>principal <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10000</span>
@@ -255,12 +266,12 @@ This is where SymPy shines. To see the difference between floating-point approxi
 <p>That&rsquo;s where SymPy earns its keep. Instead of comparing with a tolerance, it carries exact rational values through every calculation. The result is guaranteed precision with no thresholds or guessing.</p>
 <h3 id="java-and-epsilon-comparisons">Java and Epsilon Comparisons</h3>
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
-  <div style="text-align: center;"><strong>What is an epsilon?</strong><br><br></div>
+  <div style="text-align: center;"><strong>What is an <a class="glossary-term" href="/glossary/#epsilon-comparison" data-definition="A technique for treating two floating-point values as equal when the difference between them is smaller than a chosen tolerance.">epsilon</a>?</strong><br><br></div>
   In mathematics, epsilon (ε) is a symbol for a very small number.
   In programming, it's a tiny threshold used to decide when two floating-point
   numbers should be treated as equal.
 </div>
-<p>If you&rsquo;ve programmed in Java, this issue (and Python&rsquo;s workaround) may feel familiar. Because Java&rsquo;s <code>double</code> type has the same floating-point limitations, developers either compare values using an <em>epsilon</em> threshold (see Sidebar) or switch to the more verbose <code>BigDecimal</code> class for exact decimal math.</p>
+<p>If you&rsquo;ve programmed in Java, this issue (and Python&rsquo;s workaround) may feel familiar. Because Java&rsquo;s <code>double</code> type has the same floating-point limitations, developers either compare values using an <em>epsilon</em> threshold (see Sidebar) or switch to the more verbose <code><a class="glossary-term" href="/glossary/#bigdecimal" data-definition="A Java class for arbitrary-precision decimal arithmetic, commonly used when exact decimal calculations are required.">BigDecimal</a></code> class for exact decimal math.</p>
 </br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd">double</span> a <span style="color:#ff79c6">=</span> 0.<span style="color:#50fa7b">1</span> <span style="color:#ff79c6">+</span> 0.<span style="color:#50fa7b">2</span>;
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd">double</span> b <span style="color:#ff79c6">=</span> 0.<span style="color:#50fa7b">3</span>;
@@ -282,7 +293,7 @@ Imagine calculating monthly loan payments. With float, small errors accumulate:<
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(balance)  <span style="color:#6272a4"># 0.30000000000000004</span>
 </span></span></code></pre></div><p>In money terms, fractions of a cent become costly. SymPy, by treating numbers as exact rationals, keeps calculations precise.</p>
 <p><strong>Writing DIY derivative solvers (painful and buggy)</strong>
-Some developers try to approximate derivatives using finite differences:</p>
+Some developers try to approximate <a class="glossary-term" href="/glossary/#derivative" data-definition="A measure of how quickly a function changes with respect to one of its variables, such as how a quantity changes over time.">derivatives</a> using <a class="glossary-term" href="/glossary/#finite-difference" data-definition="A numerical technique that approximates derivatives using differences between function values evaluated at nearby points.">finite differences</a>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">derivative</span>(f, x, h<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1e-5</span>):
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">return</span> (f(x<span style="color:#ff79c6">+</span>h) <span style="color:#ff79c6">-</span> f(x)) <span style="color:#ff79c6">/</span> h
 </span></span></code></pre></div><p>This works… until <code>h</code> is too small or the function is tricky. With SymPy:</p>
@@ -291,7 +302,7 @@ Some developers try to approximate derivatives using finite differences:</p>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(diff(x\<span style="color:#ff79c6">*</span>\<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span> <span style="color:#ff79c6">+</span> x, x))  <span style="color:#6272a4"># 2\*x + 1</span>
 </span></span></code></pre></div><p>No tuning, no numerical &ldquo;noise,&rdquo; just the correct answer.</p>
 <p><strong>Solving numerically when symbolic solutions are simpler</strong>
-NumPy and math can <strong>approximate</strong> roots with iterations. SymPy just <strong>solves</strong> them directly:</p>
+NumPy and math can <strong>approximate</strong> <a class="glossary-term" href="/glossary/#root" data-definition="A value of a variable that makes a mathematical function or equation equal to zero.">roots</a> with iterations. SymPy just <strong>solves</strong> them directly:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sympy <span style="color:#ff79c6">import</span> symbols, solve
 </span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> symbols(<span style="color:#f1fa8c">&#39;x&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(solve(x\<span style="color:#ff79c6">*</span>\<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span> <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">2</span>, x))  <span style="color:#6272a4"># \[-sqrt(2), sqrt(2)]</span>
@@ -305,7 +316,7 @@ NumPy and math can <strong>approximate</strong> roots with iterations. SymPy jus
 <ul>
 <li>You need exact answers (no floating-point drift).</li>
 <li>You&rsquo;re manipulating algebraic expressions (expand, factor, simplify).</li>
-<li>You want derivatives, integrals, or symbolic equation solving.</li>
+<li>You want derivatives, <a class="glossary-term" href="/glossary/#integral" data-definition="A mathematical operation representing accumulation, such as the area under a curve, and serving as an inverse operation to differentiation.">integrals</a>, or symbolic equation solving.</li>
 <li>You&rsquo;re prototyping formulas before optimizing.</li>
 </ul>
 </li>
@@ -564,5 +575,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

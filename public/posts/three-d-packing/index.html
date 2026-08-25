@@ -79,6 +79,7 @@ One day, the controller asked me if I could code a system that took, as input, t
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -185,12 +186,22 @@ One day, the controller asked me if I could code a system that took, as input, t
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./three-d-packing.png" alt="3D Bin Packing" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>How do you fit it all in?</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/three-d-packing/three-d-packing.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/three-d-packing/three-d-packing.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>How do you fit it all in?</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
 <blockquote>
 <p><em>&ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&rdquo;</em></p></blockquote>
@@ -213,7 +224,7 @@ One day, the controller asked me if I could code a system that took, as input, t
 <li><strong>Respect the truck bounds</strong> (no sticking out).</li>
 <li>Optionally <strong>consider weight</strong> and stacking rules.</li>
 </ul>
-<p>Real-world simple? Not really. Computationally, it&rsquo;s a classic <strong>3D bin-packing</strong> problem. On the scale of computational complexity, this problem is extremely difficult (<strong>NP-hard</strong>), meaning there&rsquo;s no known fast way to always find the perfect solution. Instead, we rely on heuristics, which are clever shortcuts that deliver good (though not guaranteed optimal) results quickly.</p>
+<p>Real-world simple? Not really. Computationally, it&rsquo;s a classic <strong><a class="glossary-term" href="/glossary/#three-dimensional-bin-packing" data-definition="An optimization problem that seeks to arrange three-dimensional objects within one or more finite containers while satisfying spatial constraints and typically minimizing wasted space.">3D bin-packing</a></strong> problem. On the scale of computational complexity, this problem is extremely difficult (<strong><a class="glossary-term" href="/glossary/#np-hard" data-definition="A class of computational problems at least as difficult as the hardest problems in NP, for which no efficient algorithm is known that always finds an optimal solution.">NP-hard</a></strong>), meaning there&rsquo;s no known fast way to always find the perfect solution. Instead, we rely on <a class="glossary-term" href="/glossary/#heuristic" data-definition="A problem-solving strategy designed to find a useful solution quickly without guaranteeing that the solution is optimal.">heuristics</a>, which are clever shortcuts that deliver good (though not guaranteed optimal) results quickly.</p>
 <p>It&rsquo;s like trying to figure out every possible way to load groceries into your car trunk. You could test every arrangement, but that would take forever, so instead you look for smart tricks to get a good result quickly. Tricks such as loading heavy items first, stacking boxes neatly, and filling gaps with small bags.</p>
 <h1 id="modeling-the-packing-problem">Modeling the Packing Problem</h1>
 <p>To simulate the problem, we make the following simplifications:</p>
@@ -221,9 +232,9 @@ One day, the controller asked me if I could code a system that took, as input, t
 <ul>
 <li>The truck is a perfect cuboid with fixed dimensions.</li>
 <li>Each box is also a cuboid with (height, width, depth, weight).</li>
-<li>Boxes may only be rotated in <strong>axis-aligned orientations</strong> (6 total).</li>
+<li>Boxes may only be rotated in <strong><a class="glossary-term" href="/glossary/#axis-aligned" data-definition="Oriented so that an object&#39;s edges remain parallel to the coordinate axes rather than being placed at arbitrary angles.">axis-aligned orientations</a></strong> (6 total).</li>
 <li>Free space is tracked as rectangular subspaces (split after each placement).</li>
-<li>Goal: maximize volume utilization, while optionally considering stacking rules.</li>
+<li>Goal: maximize <a class="glossary-term" href="/glossary/#volume-utilization" data-definition="The proportion of a container&#39;s available three-dimensional volume occupied by packed items.">volume utilization</a>, while optionally considering stacking rules.</li>
 </ul>
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
@@ -387,12 +398,26 @@ the resulting packing plan.</em></p></blockquote>
 </span></span><span style="display:flex;"><span>06. crateE: pos<span style="color:#ff79c6">=</span>(0.<span style="color:#50fa7b">0</span>,0.<span style="color:#50fa7b">0</span>,130.<span style="color:#50fa7b">0</span>) size(HxWxD)<span style="color:#ff79c6">=</span>(10.<span style="color:#50fa7b">0x90</span>.<span style="color:#50fa7b">0x30</span>.<span style="color:#50fa7b">0</span>) weight<span style="color:#ff79c6">=</span>20.<span style="color:#50fa7b">0</span>
 </span></span></code></pre></div><hr>
 <h2 id="making-the-results-visual">Making the Results Visual</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="3D Bin Packing" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>3D visualization of packed items inside the truck, showing width, depth, and height alignment based on a heuristic best-guess for efficiency.</em>
-  </figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/three-d-packing/plot.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/three-d-packing/plot.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>3D visualization of packed items inside the truck, showing width, depth, and height alignment based on a heuristic best-guess for efficiency.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>By plotting the packed truck, we move beyond raw placement data and can see whether the packing logic produces a layout that makes sense in three dimensions. A list of coordinates and sizes may be correct mathematically, but it’s not easy to judge efficiency or orientation without a visual check. A 3D plot gives immediate feedback on how the boxes sit within the container: whether they fit, whether they stack as expected, and how well the available space is being used. This makes it much easier to spot mistakes in the algorithm, such as items standing on the wrong axis, overlapping, or leaving gaps that should have been filled.</p>
 <p>The plotting function directly supports this goal by turning the abstract placement data into a clear visual model. The prompt I use ensures that the visualization is both accurate and interpretable. By assigning each box its own color and labeling it at its center, the plot highlights how individual items relate to the container and to each other. In this way, the visualization is not just a cosmetic step, but an integral part of validating and improving the packing heuristic.</p>
 <hr>
@@ -504,9 +529,9 @@ color and label.</em></p></blockquote>
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
 </span></span></code></pre></div><hr>
 <h2 id="what-we-learned">What We Learned</h2>
-<p>So what did we actually learn from tackling this truck-packing problem with AI? First, prompt engineering really does matter. The clearer and more constrained the prompt, the closer the AI&rsquo;s first draft will be to something usable, saving time on rework.</p>
+<p>So what did we actually learn from tackling this truck-packing problem with AI? First, <a class="glossary-term" href="/glossary/#prompt-engineering" data-definition="The practice of designing and structuring model inputs to improve the relevance, reliability, or format of generated outputs.">prompt engineering</a> really does matter. The clearer and more constrained the prompt, the closer the AI&rsquo;s first draft will be to something usable, saving time on rework.</p>
 <p>Second, we should remember that this is an <strong>NP-hard problem</strong>. No matter how clever we are, we&rsquo;re not going to get perfect solutions every time. Therefore, the practical goal is heuristics that give us &ldquo;good enough&rdquo; answers <strong>fast</strong>.</p>
-<p>Finally, we saw how <strong>greedy placement rules</strong> and <strong>guillotine-style splits</strong> can provide practical packing strategies, and how visualization is key to making the results feel intuitive rather than just lines of coordinates.</p>
+<p>Finally, we saw how <strong><a class="glossary-term" href="/glossary/#greedy-algorithm" data-definition="An algorithm that repeatedly makes the locally preferred choice at each step without reconsidering earlier decisions.">greedy placement rules</a></strong> and <strong><a class="glossary-term" href="/glossary/#guillotine-split" data-definition="A space-partitioning technique that divides a rectangular region completely along one dimension, producing smaller rectangular regions for subsequent placement.">guillotine-style splits</a></strong> can provide practical packing strategies, and how visualization is key to making the results feel intuitive rather than just lines of coordinates.</p>
 <hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
 <p>The best way to internalize a concept like 3D packing is to get your hands dirty. The following exercises encourage you to tweak the algorithm, adjust the inputs, and even rethink the heuristics. By experimenting, you&rsquo;ll see firsthand how small changes in assumptions or constraints can dramatically affect the packing efficiency.</p>
@@ -534,18 +559,18 @@ color and label.</em></p></blockquote>
 <h3 id="advanced-level-environment--stochasticity">Advanced Level: Environment &amp; Stochasticity</h3>
 <ol>
 <li>
-<p>Implement simulated annealing or genetic algorithms to search better packings.</p>
+<p>Implement <a class="glossary-term" href="/glossary/#simulated-annealing" data-definition="A probabilistic optimization algorithm that sometimes accepts worse intermediate solutions to escape local optima while gradually reducing that behavior during the search.">simulated annealing</a> or <a class="glossary-term" href="/glossary/#genetic-algorithm" data-definition="An optimization technique inspired by biological evolution that evolves candidate solutions using operations such as selection, crossover, and mutation.">genetic algorithms</a> to search better packings.</p>
 </li>
 <li>
 <p>Add real-world rules like axle load balancing or fragile stacking.</p>
 </li>
 <li>
-<p>Scale up to thousands of boxes with Monte Carlo heuristics.</p>
+<p>Scale up to thousands of boxes with <a class="glossary-term" href="/glossary/#monte-carlo" data-definition="A computational technique that repeatedly samples random inputs to estimate the range, likelihood, or statistical properties of possible outcomes.">Monte Carlo</a> heuristics.</p>
 </li>
 </ol>
 <hr>
 <h2 id="closing-thoughts">Closing Thoughts</h2>
-<p>Packing trucks may seem like grunt work, but it&rsquo;s really a microcosm of <strong>optimization problems</strong>: finite resources, constraints, tradeoffs. The thrill of solving them, especially with today&rsquo;s AI scaffolding, is the same thrill that first drew me to programming back at Holiday on Ice.</p>
+<p>Packing trucks may seem like grunt work, but it&rsquo;s really a microcosm of <strong><a class="glossary-term" href="/glossary/#optimization" data-definition="The process of finding the best solution to a problem according to a defined objective while satisfying specified constraints.">optimization problems</a></strong>: finite resources, constraints, tradeoffs. The thrill of solving them, especially with today&rsquo;s AI scaffolding, is the same thrill that first drew me to programming back at Holiday on Ice.</p>
 <hr>
 <h2 id="try-it-yourself">Try It Yourself</h2>
 <p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/three-d-packing" target="_blank" rel="noopener noreferrer">
@@ -741,5 +766,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

@@ -37,7 +37,7 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 “In cryptography, ‘secure’ has always meant ‘secure for now’.”">
   <meta itemprop="datePublished" content="2025-11-17T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-17T06:00:00-07:00">
-  <meta itemprop="wordCount" content="4333">
+  <meta itemprop="wordCount" content="4337">
   <meta itemprop="keywords" content="Blockchain,Cryptography,Hashing,Passwords,Security">
 		
   <meta name="twitter:card" content="summary">
@@ -80,6 +80,7 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -188,30 +189,37 @@ Yet despite this proof, we still trust hash functions for everything from Git co
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./hash-collisions.png"
-       alt="Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes"
-       width="400"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/hash-collisions/hash-collisions.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/hash-collisions/hash-collisions.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
+    </figcaption>
+    
+
 </figure>
-<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
+
+<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
   Stevens et al., 2017
 </a>
 ). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
-<p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
+<p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while <a class="glossary-term" href="/glossary/#hash-collision" data-definition="A situation in which two different inputs produce the same hash value.">collisions</a> are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</em></p></blockquote>
 <hr>
 <div style="background-color: #f8f8f8; border-left: 4px solid #4CAF50; padding: 1em; margin: 1em 0;">
-<strong>Historical Note:</strong> This post updates my 2005 article on hash collisions (<a href="#archer2005">Archer, 2005</a>). Back then, MD5 was still considered "acceptable with caveats" and adding salt to passwords seemed cutting-edge. It's fascinating (and somewhat alarming) to see which predictions came true and which assumptions had to be completely reconsidered.
+<strong>Historical Note:</strong> This post updates my 2005 article on hash collisions (<a href="#archer2005">Archer, 2005</a>). Back then, MD5 was still considered "acceptable with caveats" and adding <a class="glossary-term" href="/glossary/#password-salt" data-definition="Random data combined with a password before hashing so that identical passwords do not produce identical stored hashes.">salt</a> to passwords seemed cutting-edge. It's fascinating (and somewhat alarming) to see which predictions came true and which assumptions had to be completely reconsidered.
 </div>
-<p>Twenty years ago, I wrote about hash collisions when the biggest concern was spyware-removal applications getting false positives. Today, MD5 can be cracked on a laptop, simple salting is woefully inadequate, and billions of dollars in cryptocurrency depend on hash collision resistance. The landscape has shifted dramatically, with hash functions now underpinning everything from secure communications to digital currencies. But the fundamental questions remain: How unique are hash codes really? And when does it matter?</p>
+<p>Twenty years ago, I wrote about hash collisions when the biggest concern was spyware-removal applications getting false positives. Today, MD5 can be cracked on a laptop, simple salting is woefully inadequate, and billions of dollars in cryptocurrency depend on hash <a class="glossary-term" href="/glossary/#collision-resistance" data-definition="A property of a cryptographic hash function that makes it computationally infeasible to find two different inputs that produce the same hash.">collision resistance</a>. The landscape has shifted dramatically, with hash functions now underpinning everything from secure communications to digital currencies. But the fundamental questions remain: How unique are hash codes really? And when does it matter?</p>
 <hr>
-<h2 id="the-pigeonhole-principle-in-action">The Pigeonhole Principle in Action</h2>
+<h2 id="the-hahahugoshortcode103s5hbhb-in-action">The <a class="glossary-term" href="/glossary/#pigeonhole-principle" data-definition="A mathematical principle stating that if more objects are placed into fewer containers, at least one container must contain more than one object.">Pigeonhole Principle</a> in Action</h2>
 <p>Hash algorithms generate fixed-length outputs regardless of input size. SHA-256 always produces 256 bits (32 bytes), whether you&rsquo;re hashing a single character or an entire library. SHA-3-512 always produces 512 bits. This creates an inherent mathematical constraint that&rsquo;s easy to visualize but hard to grasp in practice.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
 </span></span><span style="display:flex;"><span>
@@ -228,15 +236,26 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 <p>But here&rsquo;s what most discussions miss: <strong>not all collisions are created equal.</strong> A collision between two random byte sequences is mathematically interesting but practically useless. A collision between two valid, meaningful documents is what actually threatens security.</p>
 <hr>
 <h2 id="the-semantic-collision-problem">The Semantic Collision Problem</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./hash-collisions-random-bytes.png"
-       alt="Diagram showing random bytes rarely forming valid JSON, code, or readable text"
-       width="400"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Random bytes almost never accidentally form meaningful structured data.</em>
-  </figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/hash-collisions/hash-collisions-random-bytes.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/hash-collisions/hash-collisions-random-bytes.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Random bytes almost never accidentally form meaningful structured data.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Finding two inputs that hash to the same value is one thing. Finding two <em>meaningful</em> inputs that hash to the same value is exponentially harder. Language, whether natural or programming, has structure and rules that random bytes almost never satisfy.</p>
 <p>Consider trying to generate a collision for a classified document. Even if you could generate billions of documents with matching hash values, the probability of any making coherent sense, let alone containing plausible intelligence, approaches zero. The space of meaningful text is an infinitesimally small subset of all possible byte sequences.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> random
@@ -297,7 +316,7 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 <h3 id="what-i-underestimated-">What I Underestimated ❌</h3>
 <p>Now for the humbling part: the predictions that make me grateful the internet wasn&rsquo;t quite as permanent in 2005. If I&rsquo;d known how wrong I&rsquo;d be about computational power, I might have invested in NVIDIA stock instead of writing blog posts. These misses reveal just how badly we underestimate exponential growth.</p>
 <ul>
-<li><strong>GPU acceleration</strong> - Modern GPUs test 10+ billion SHA-256 hashes/second, not the thousands I imagined. The parallel processing revolution transformed brute-force attacks from theoretical to practical.</li>
+<li><strong>GPU acceleration</strong> - Modern GPUs test 10+ billion SHA-256 hashes/second, not the thousands I imagined. The parallel processing revolution transformed <a class="glossary-term" href="/glossary/#brute-force-attack" data-definition="An attack that systematically tries many possible inputs, such as passwords or cryptographic keys, until a desired result is found.">brute-force attacks</a> from theoretical to practical.</li>
 <li><strong>Rainbow table sophistication</strong> - They grew from gigabytes to terabytes, covering far more than &ldquo;common passwords.&rdquo; Distributed computing and cheap storage made precomputation attacks far more powerful (<a href="#oechslin2003">
   Oechslin, 2003
 </a>
@@ -396,15 +415,26 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 </ul>
 <hr>
 <h2 id="modern-password-hashing-beyond-salt">Modern Password Hashing: Beyond Salt</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./hash-algorithms-timeline.png"
-       alt="Timeline showing evolution from MD5 to Argon2, with increasing memory and computation requirements"
-       width="400"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Password hashing has evolved from simple hashes to memory-hard, time-expensive algorithms.</em>
-  </figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/hash-collisions/hash-algorithms-timeline.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/hash-collisions/hash-algorithms-timeline.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Password hashing has evolved from simple hashes to {{&lt; term &#34;memory-hard-function&#34; &#34;memory-hard&#34; &gt;}}, time-expensive algorithms.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Twenty years ago, I wrote that adding salt to passwords before hashing would produce &ldquo;an almost fool-proof system&rdquo; (<a href="#archer2005">
   Archer, 2005
 </a>
@@ -463,7 +493,7 @@ The code samples below illustrate this stark contrast between old and modern app
 <p>The evolution from simple salted hashes to memory-hard functions represents a fundamental shift in defensive strategy.
 We&rsquo;ve moved from trying to hide the algorithm to making it computationally expensive even when fully known. Modern password hashing embraces transparency while ensuring that brute force remains impractical.</p>
 <h3 id="why-simple-hashing-failed">Why Simple Hashing Failed</h3>
-<p>Rainbow tables (precomputed hash databases) destroyed simple hash-based password storage. These massive databases, some exceeding 100TB, could reverse common password hashes instantly (<a href="#oechslin2003">
+<p><a class="glossary-term" href="/glossary/#rainbow-table" data-definition="A precomputed data structure used to recover passwords by efficiently matching stored password hashes against previously calculated values.">Rainbow tables</a> (precomputed hash databases) destroyed simple hash-based password storage. These massive databases, some exceeding 100TB, could reverse common password hashes instantly (<a href="#oechslin2003">
   Oechslin, 2003
 </a>
 ). What seemed like strong protection crumbled when attackers could simply look up the answer.</p>
@@ -749,7 +779,7 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
 <li>✅ SHA-256/SHA-3 for file integrity - Strong collision resistance with good performance.</li>
 <li>✅ Argon2id for password storage - Memory-hard, time-expensive, and resistant to side-channel attacks.</li>
 <li>✅ BLAKE3 for performance-critical hashing - Faster than MD5 while being cryptographically secure.</li>
-<li>✅ HMAC for message authentication - Provides authentication and integrity with a secret key.</li>
+<li>✅ <a class="glossary-term" href="/glossary/#hmac" data-definition="A keyed message authentication mechanism that combines a cryptographic hash function with a secret key to verify message integrity and authenticity.">HMAC</a> for message authentication - Provides authentication and integrity with a secret key.</li>
 <li>✅ Store algorithm version with hashes - Enables future migrations without breaking existing data.</li>
 <li>✅ bcrypt/scrypt as Argon2 alternatives - Mature alternatives when Argon2 isn&rsquo;t available.</li>
 </ul>
@@ -1091,5 +1121,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

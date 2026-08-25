@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -172,7 +173,8 @@
         
         
         <div class="post-summary">
-<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, <strong>numeric parsing with integer division (<code>//</code>) and modulus (<code>%</code>)</strong> is the better option.</p>
+
+<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with <a class="glossary-term" href="/glossary/#integer-division" data-definition="Division that produces an integer quotient by discarding the fractional or remainder portion of the result.">integer division</a> (<code>//</code>) and <a class="glossary-term" href="/glossary/#modulus" data-definition="An arithmetic operation that returns the remainder after one integer is divided by another.">modulus</a> (<code>%</code>) is the better option.</p>
 <hr>
 <blockquote>
 <p><em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.</em></p></blockquote>
@@ -219,7 +221,8 @@
         
         
         
-        <div class="post-summary">  
+        <div class="post-summary"><p><strong>Lightbox image not found: sympy.png</strong></p>
+
 <p>Most of us reach for <a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
   NumPy
 </a>
@@ -233,7 +236,7 @@
 <blockquote>
 <p><em>&ldquo;Floats guess. SymPy knows.&rdquo;</em></p></blockquote>
 <hr>
-<p>This is where SymPy shines. To see the difference between <strong>floating-point approximations</strong> (Python or NumPy) and <strong>symbolic precision</strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p></div>
+<p>This is where SymPy shines. To see the difference between <strong><a class="glossary-term" href="/glossary/#floating-point" data-definition="A numerical representation that approximates real numbers using a fixed number of significant digits and an exponent.">floating-point approximations</a></strong> (Python or NumPy) and <strong><a class="glossary-term" href="/glossary/#symbolic-computation" data-definition="Mathematical computation that manipulates expressions and exact values symbolically rather than approximating them numerically.">symbolic precision</a></strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p></div>
 
         <p><a class="btn" href="/posts/python-sympy-vs-numpy/">Read more →</a></p>
       </article>
@@ -274,6 +277,7 @@
         
         
         <div class="post-summary">
+
 <p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.</p>
 <hr>
 <blockquote>
@@ -320,15 +324,16 @@
         
         
         <div class="post-summary">
+
 <p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
 <hr>
 <p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
-  <strong>0/1 knapsack problem with two constraints</strong>
+  <strong><a class="glossary-term" href="/glossary/#multidimensional-knapsack" data-definition="A generalization of the knapsack problem in which each item consumes multiple limited resources and the goal is to maximize total value without exceeding any resource constraint.">0/1 knapsack problem with two constraints</a></strong>
 </a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p></div>
+, you can treat meetings like items with value, time cost, and energy cost. Classic <a class="glossary-term" href="/glossary/#optimization" data-definition="The process of finding the best solution to a problem according to a defined objective while satisfying specified constraints.">optimization</a> techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a <a class="glossary-term" href="/glossary/#simulation" data-definition="The use of a computational model to imitate the behavior of a system so that its outcomes can be explored or analyzed.">simulation</a> to visualize your optimal &ldquo;meeting diet.&rdquo;</p></div>
 
         <p><a class="btn" href="/posts/meeting-diet/">Read more →</a></p>
       </article>
@@ -369,16 +374,17 @@
         
         
         <div class="post-summary">
+
 <p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
 <p>Most of us start with the usual suspects:</p>
 <p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
-❌ A graveyard of guard clauses scattered line after line</p>
+❌ A graveyard of <a class="glossary-term" href="/glossary/#guard-clause" data-definition="A conditional check placed near the beginning of a function or block that exits early when a required condition is not satisfied.">guard clauses</a> scattered line after line</p>
 <hr>
 <blockquote>
-<p><em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.</em></p></blockquote>
+<p><em>Using a dispatch table for validation rules means: one <a class="glossary-term" href="/glossary/#python-dictionary" data-definition="A Python mapping type that stores values as key-value pairs and provides access to each value through its associated key.">dictionary</a>, one loop, infinite sanity.</em></p></blockquote>
 <hr>
 <p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
-<p>There&rsquo;s a better way: <strong>dispatch tables</strong>!</p></div>
+<p>There&rsquo;s a better way: <strong><a class="glossary-term" href="/glossary/#dispatch-table" data-definition="A data structure that maps keys or conditions to functions, actions, or other behavior, allowing selection without a long series of conditional statements.">dispatch tables</a></strong>!</p></div>
 
         <p><a class="btn" href="/posts/python-dispatch-maps/">Read more →</a></p>
       </article>
@@ -555,5 +561,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

@@ -11,30 +11,30 @@ author = "Tom Archer"
 listThumb = "python-dispatch-maps-thumb.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./python-dispatch-maps.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="python-dispatch-maps.png"
+    alt="Python Tip of the Week logo: Python Post-it note on monitor"
+    label="Open full-size python dispatch maps"
+    caption="Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results."
+>}}
 
 Let's be honest: argument validation code is rarely the proudest part of anyone's repo.  
 
 Most of us start with the usual suspects:  
 
 ❌ The dreaded *inverted-V* tower of `if/else` statements  
-❌ A graveyard of guard clauses scattered line after line  
+❌ A graveyard of {{< term "guard-clause" "guard clauses" >}} scattered line after line  
 
 ---
 
-> *Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.*
+> *Using a dispatch table for validation rules means: one {{< term "python-dictionary" "dictionary" >}}, one loop, infinite sanity.*
 
 ---
 
 
 Both work fine… until they don't. Then you're left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.  
 
-There's a better way: **dispatch tables**!
+There's a better way: **{{< term "dispatch-table" "dispatch tables" >}}**!
 
 <!--more-->
 
@@ -108,7 +108,7 @@ Cleaner than the inverted-V, but now every new rule means another line. Add 10 r
 
 ## Enter Dispatch Tables ✨
 
-A dispatch table is just a dictionary where the key is the error message and the value is a check function (usually a lambda).
+A dispatch table is just a dictionary where the key is the error message and the value is a check function (usually a {{< term "lambda-function" "lambda" >}}).
 Instead of scattering control flow everywhere, you centralize the rules in one tidy structure.
 
 Here's a snack-sized example you can paste right now:
@@ -147,7 +147,7 @@ def create_user(username: str, age: int, email: str) -> None:
 
 ## Closing Thoughts 💡
 
-Dispatch tables turn "ugh, validation code" into something declarative, compact, and kind of fun to work with. They are: 
+Dispatch tables turn "ugh, validation code" into something {{< term "declarative-programming" "declarative" >}}, compact, and kind of fun to work with. They are: 
 
 - **Readable**: Each rule is self-explanatory, almost like documentation.
 

@@ -81,6 +81,7 @@ Underneath the calculus and linear algebra, the same structures you learn in a d
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -194,17 +195,26 @@ Underneath the calculus and linear algebra, the same structures you learn in a d
 
     <div class="content post__content clearfix">
       <figure style="margin: 0 20px 10px 20px; text-align: center;">
-    <img src="./discrete-math-in-large-language-models.png"
-        alt="A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns">
+
+    <a href="/posts/discrete-math-in-large-language-models/discrete-math-in-large-language-models.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/discrete-math-in-large-language-models/discrete-math-in-large-language-models.png" alt="">
+
+    </a>
+
+    
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>It's true what they say: discrete math is everywhere you look.</em>
+        <em>It&#39;s true what they say: discrete math is everywhere you look.</em>
     </figcaption>
+    
+
 </figure>
+
 <p>A recent <a href="https://www.linkedin.com/posts/activity-7435689322504167424-_v46" target="_blank" rel="noopener noreferrer">
   LinkedIn post
 </a>
- from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
-<p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.</p>
+ from Michael Palmer described how <a class="glossary-term" href="/glossary/#discrete-mathematics" data-definition="The branch of mathematics concerned with distinct, countable structures such as sets, logic, graphs, integers, and combinatorial objects.">discrete mathematics</a> is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, <a class="glossary-term" href="/glossary/#gradient-descent" data-definition="An optimization method that iteratively adjusts model parameters in the direction that reduces a loss function.">gradient descent</a>, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
+<p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: <a class="glossary-term" href="/glossary/#set-theory" data-definition="The branch of mathematics that studies collections of objects and operations such as union, intersection, complement, and membership.">sets</a>, <a class="glossary-term" href="/glossary/#predicate-logic" data-definition="A formal system of logic that uses predicates, variables, and quantifiers to express statements about objects and their relationships.">predicate logic</a>, <a class="glossary-term" href="/glossary/#boolean-algebra" data-definition="A system of logic based on true and false values and operations such as AND, OR, and NOT.">Boolean operations</a>, <a class="glossary-term" href="/glossary/#modular-arithmetic" data-definition="A system of arithmetic in which numbers wrap around after reaching a specified modulus, producing cyclic patterns.">modular arithmetic</a>, formal proof patterns. This post traces those connections.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&rdquo;</em></p></blockquote>
@@ -234,18 +244,18 @@ Underneath the calculus and linear algebra, the same structures you learn in a d
 \forall x \in S : P(x) \rightarrow Q(x)
 \]</p>
 <p>“For all \(x\) in set \(S\), if \(P(x)\) is true, then \(Q(x)\) follows.”</p>
-<p>Large language models do not execute predicate logic in this formal sense. They are not constructing symbolic expressions, assigning truth values, or applying inference rules step by step. But the <em>structure</em> of predicate logic shows up in how they process language. This structure appears most clearly in attention mechanisms. Recall that attention computes a weighted sum over tokens in the context. Each token evaluates how relevant other tokens are and aggregates information accordingly. Rather than applying a discrete predicate that returns true or false, attention computes a <em>continuous relevance score</em>.</p>
+<p>Large language models do not execute predicate logic in this formal sense. They are not constructing symbolic expressions, assigning truth values, or applying inference rules step by step. But the <em>structure</em> of predicate logic shows up in how they process language. This structure appears most clearly in <a class="glossary-term" href="/glossary/#attention" data-definition="A mechanism that allows a model to determine how strongly one token should relate to other tokens when constructing a representation.">attention mechanisms</a>. Recall that attention computes a weighted sum over tokens in the context. Each token evaluates how relevant other tokens are and aggregates information accordingly. Rather than applying a discrete predicate that returns true or false, attention computes a <em>continuous relevance score</em>.</p>
 <p>Here’s the standard attention formula:</p>
 <p>\[
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 \]</p>
 <p>We can interpret this through a predicate-logic lens:</p>
 <ul>
-<li><strong>Query (Q)</strong>: a learned representation of “what I’m looking for”</li>
-<li><strong>Keys (K)</strong>: representations of what each token “offers”</li>
+<li><strong><a class="glossary-term" href="/glossary/#query" data-definition="In attention, a learned vector representing what a token is looking for when determining which other tokens are relevant.">Query</a> (Q)</strong>: a learned representation of “what I’m looking for”</li>
+<li><strong><a class="glossary-term" href="/glossary/#key" data-definition="In attention, a learned vector representing information a token exposes for comparison with queries.">Keys</a> (K)</strong>: representations of what each token “offers”</li>
 <li><strong>\(QK^T\)</strong>: a similarity score measuring how well each token matches that intent</li>
-<li><strong>softmax</strong>: converts those scores into a probability distribution</li>
-<li><strong>Values (V)</strong>: the information extracted from relevant tokens</li>
+<li><strong><a class="glossary-term" href="/glossary/#softmax" data-definition="A function that converts a set of numerical scores into nonnegative values that sum to one, allowing them to be interpreted as a probability distribution.">softmax</a></strong>: converts those scores into a probability distribution</li>
+<li><strong><a class="glossary-term" href="/glossary/#value" data-definition="In attention, a learned vector containing the information contributed by a token after its relevance has been determined.">Values</a> (V)</strong>: the information extracted from relevant tokens</li>
 </ul>
 <p>Viewed this way, attention behaves like a <em>soft, differentiable scan over a set of tokens</em>, where each element is evaluated for relevance and contributes proportionally to the result. Instead of: “Select all tokens where \(P(x)\) is \(true\)” the model effectively does: “Assign each token a degree of relevance based on how well it matches a learned pattern, then aggregate accordingly” This is not predicate logic in the formal sense. But it is a close structural analogue: evaluating a condition across a set and acting on the results. The difference is that everything is continuous, probabilistic, and learned rather than discrete and symbolic. That shift, from crisp logical predicates to soft geometric approximations, is where modern AI lives.</p>
 <h4 id="python">Python</h4>
@@ -289,12 +299,12 @@ Underneath the calculus and linear algebra, the same structures you learn in a d
 <h2 id="set-operations-in-token-selection">Set Operations in Token Selection</h2>
 <p>Set theory is foundational to discrete mathematics. Union, intersection, complement, and membership define how collections relate to each other.</p>
 <p>Token selection in LLMs is set theory applied to vocabularies.</p>
-<p><strong>Top-k sampling</strong> selects the k highest-probability tokens:</p>
+<p><strong><a class="glossary-term" href="/glossary/#top-k-sampling" data-definition="A token-sampling strategy that restricts the model&#39;s next-token choices to the k tokens with the highest probabilities.">Top-k sampling</a></strong> selects the k highest-probability tokens:</p>
 <p>\[
 S_k = {t \in V : \text{rank}(P(t)) \leq k}
 \]</p>
 <p>This is set construction with a membership predicate. &ldquo;The set of all tokens in vocabulary \(V\) whose probability rank is at most \(k\).&rdquo;</p>
-<p><strong>Top-p (nucleus) sampling</strong> selects tokens until cumulative probability exceeds \(p\):</p>
+<p><strong><a class="glossary-term" href="/glossary/#top-p-sampling" data-definition="A token-sampling strategy that selects from the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold p.">Top-p (nucleus) sampling</a></strong> selects tokens until cumulative probability exceeds \(p\):</p>
 <p>\[
 S_p = {t_1, t_2, &hellip;, t_m} \text{ where } \sum_{i=1}^{m} P(t_i) \geq p
 \]</p>
@@ -367,8 +377,8 @@ Final sampling pool = Top-k ∩ Top-p = {&#39;the&#39;, &#39;a&#39;, &#39;cat&#3
 <p>Boolean algebra deals with operations on true/false values: AND, OR, NOT, XOR. In LLMs, masking operations apply Boolean logic to sequences.</p>
 <p><strong>Attention masking</strong> prevents tokens from attending to certain positions:</p>
 <ul>
-<li><strong>Causal mask</strong>: Token at position i can only attend to positions ≤ i</li>
-<li><strong>Padding mask</strong>: Ignore padding tokens entirely</li>
+<li><strong><a class="glossary-term" href="/glossary/#causal-mask" data-definition="An attention mask that prevents a token from attending to future positions in a sequence.">Causal mask</a></strong>: Token at position i can only attend to positions ≤ i</li>
+<li><strong><a class="glossary-term" href="/glossary/#padding-mask" data-definition="An attention mask that prevents padding tokens added for sequence alignment from influencing model computations.">Padding mask</a></strong>: Ignore padding tokens entirely</li>
 <li><strong>Custom masks</strong>: Task-specific attention patterns</li>
 </ul>
 <p>These are Boolean matrices. A 1 means &ldquo;allowed,&rdquo; a 0 means &ldquo;blocked.&rdquo;</p>
@@ -440,7 +450,7 @@ Mask combination is Boolean AND: combined = causal ∧ padding
 <hr>
 <h2 id="proof-structure-in-chain-of-thought">Proof Structure in Chain-of-Thought</h2>
 <p>Formal proofs in discrete mathematics follow a structure: state assumptions, apply inference rules step by step, derive conclusions. Each step must follow logically from previous steps.</p>
-<p>Chain-of-thought (CoT) prompting <a href="#wei2022">
+<p><a class="glossary-term" href="/glossary/#chain-of-thought" data-definition="A prompting technique that elicits intermediate reasoning steps before a model produces its final answer.">Chain-of-thought (CoT) prompting</a> <a href="#wei2022">
   (Wei et al., 2022)
 </a>
  mirrors this structure. Instead of asking for an answer directly, you ask the model to reason step by step:</p>
@@ -504,7 +514,7 @@ Mask combination is Boolean AND: combined = causal ∧ padding
 <hr>
 <h2 id="modular-arithmetic-in-positional-encoding">Modular Arithmetic in Positional Encoding</h2>
 <p>Modular arithmetic is central to discrete mathematics. The clock &ldquo;wraps around&rdquo; from 12 to 1. Cryptographic systems like RSA depend entirely on properties of modular exponentiation.</p>
-<p>Positional encoding in transformers uses similar periodic structures.</p>
+<p><a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional encoding</a> in <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformers</a> uses similar periodic structures.</p>
 <p>The original transformer paper (<a href="#vaswani2017">
   Vaswani et al., 2017
 </a>
@@ -516,7 +526,7 @@ PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right)
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
 \]</p>
 <p>These are periodic functions. As position increases, the values cycle through patterns at different frequencies. Each dimension captures periodicity at a different scale, similar to how different moduli in modular arithmetic create different cycle lengths.</p>
-<p>More recent work has explored alternatives like ALiBi <a href="#press2021">
+<p>More recent work has explored alternatives like <a class="glossary-term" href="/glossary/#alibi" data-definition="Attention with Linear Biases, a positional method that adds distance-dependent biases directly to attention scores rather than adding positional embeddings to token representations.">ALiBi</a> <a href="#press2021">
   (Press et al., 2021)
 </a>
 , but the principle remains: periodic or relative structures encode position.</p>
@@ -833,5 +843,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

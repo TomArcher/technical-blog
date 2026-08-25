@@ -13,17 +13,14 @@ author = "Tom Archer"
 listThumb = "how-large-language-models-read-code.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-language-models-read-code.png" 
-    alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
-    width="250" 
-    style="display: block; margin: 0 auto;">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>AI reads code as patterns, not instructions.</em>
-    </figcaption>
-</figure>
+{{< lightbox
+    src="how-large-language-models-read-code.png"
+    alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic."
+    label="Open full-size how large language models read code"
+    caption="AI reads code as patterns, not instructions."
+>}}
 
-Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules. 
+Developers are accustomed to thinking about code in terms of {{< term "syntax-semantics" "syntax and semantics" >}}, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a {{< term "large-language-model" "Large Language Model (LLM)" >}}, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules. 
 
 ---
 
@@ -52,9 +49,9 @@ These models can do many things:
 
 **Examples:** [ChatGPT (OpenAI)](https://chatgpt.com/), [Claude (Anthropic)](https://claude.ai/new), [Gemini (Google)](https://gemini.google.com/app), and [LLaMA (Meta)](https://www.llama.com/).
 
-The "large" in large language model refers to the scale of parameters where billions of adjustable values tune how the model interprets and generates text.
+The "large" in large language model refers to the scale of {{< term "model-parameter" "parameters" >}} where billions of adjustable values tune how the model interprets and generates text.
 
-At its core, an LLM is a probability engine. It predicts the next most likely word or token based on the context of what came before. That simple act, repeated across billions of examples during training, is what gives these models the ability to sound fluent, coherent, and contextually aware.
+At its core, an LLM is a probability engine. It predicts the next most likely word or {{< term "token" "token" >}} based on the context of what came before. That simple act, repeated across billions of examples during training, is what gives these models the ability to sound fluent, coherent, and contextually aware.
 
 In other words, an LLM doesn't think about language; it **models** language itself.
 
@@ -62,26 +59,23 @@ In other words, an LLM doesn't think about language; it **models** language itse
 
 ## Syntax as Pattern, Not Rule
 
-When a compiler reads a function like the following, it parses tokens, constructs an abstract syntax tree (AST), and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable `x` by itself.
+When a compiler reads a function like the following, it parses tokens, constructs an {{< term "abstract-syntax-tree" "abstract syntax tree (AST)" >}}, and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable `x` by itself.
 
 ```python
 def square(x): 
     return x * x
 ```
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-language-models-read-code-flow.png" 
-    alt="Flowchart-style illustration showing how an AI model tokenizes source code and predicts the next token based on statistical context, contrasting with how a compiler parses syntax." 
-    width="250" 
-    style="display: block; margin: 0 auto;">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>Patterns drive AI recognition; not syntax.</em>
-    </figcaption>
-</figure>
+{{< lightbox
+    src="how-large-language-models-read-code-flow.png"
+    alt="Flowchart-style illustration showing how an AI model {{< term"
+    label="Open full-size how large language models read code flow"
+    caption="Patterns drive AI recognition; not syntax."
+>}}
 
 An LLM, by contrast, does not parse in the traditional sense. It tokenizes, compressing text by subword frequency rather than grammatical role, and then predicts one token at a time based on the statistical context of all previous tokens. The model "understands" that `return x * x` likely follows `def square(x):` because it has seen this pattern thousands of times across training corpora, not because it knows what multiplication does.
 
-In the language of probability, a compiler computes meaning deterministically; a model approximates it stochastically.
+In the language of probability, a compiler computes meaning deterministically; a model approximates it {{< term "stochastic" "stochastically" >}}.
 
 ---
 
@@ -95,7 +89,7 @@ Consider the following prompt given to a model fine-tuned on code:
 "def process_users(data):"
 ```
 
-This becomes a dense vector in a high-dimensional embedding space. Nearby vectors might represent similar constructs like "process_orders(data)" or "handle_clients(list)."
+This becomes a dense vector in a high-dimensional {{< term "embedding" "embedding space" >}}. Nearby vectors might represent similar constructs like "process_orders(data)" or "handle_clients(list)."
 
 These proximity relationships are the raw materials of AI understanding. The closer two snippets lie in vector space, the more the model perceives them as semantically related, even when the model has no explicit representation of what a user or an order is.
 
@@ -129,7 +123,7 @@ response = openai.ChatCompletion.create(
 )
 ```
 
-The model will usually reply that the function "sends a welcome email to all active users." Now remove the comment and run it again. The response will still be similar, but the probability distribution shifts: the model's confidence in "welcome email" drops because the lexical hint vanished.
+The model will usually reply that the function "sends a welcome email to all active users." Now remove the comment and run it again. The response will still be similar, but the {{< term "probability-distribution" "probability distribution" >}} shifts: the model's confidence in "welcome email" drops because the lexical hint vanished.
 
 Comments not only help humans; they also anchor semantic space for models. Embeddings are sensitive to natural language cues because language and code share the same token vocabulary. That is why consistent commenting style, clear naming, and logical spacing often yield more accurate AI-assisted explanations and refactorings.
 
@@ -137,7 +131,7 @@ Comments not only help humans; they also anchor semantic space for models. Embed
 
 ## When Syntax Misleads Semantics
 
-Because models learn from co-occurrence rather than execution, they sometimes hallucinate logic. A variable named `result` near `sum()` nudges the model to assume aggregation, even if the code computes a difference. The model's "understanding" is weighted toward linguistic bias.
+Because models learn from co-occurrence rather than execution, they sometimes {{< term "hallucination" "hallucinate" >}} logic. A variable named `result` near `sum()` nudges the model to assume aggregation, even if the code computes a difference. The model's "understanding" is weighted toward linguistic bias.
 
 Take this example:
 
@@ -163,7 +157,7 @@ That is not understanding in the compiler sense; it is associative modeling. But
 
 ## From Tokens to Intent
 
-To see how deep this patterning goes, look at a model's log probabilities for a simple prompt:
+To see how deep this patterning goes, look at a model's {{< term "log-probability" "log probabilities" >}} for a simple prompt:
 
 ```
 "def is_palindrome(s): return s == s[::-1]"
@@ -191,7 +185,7 @@ The compiler enforces the syntax of logic; the model enforces the logic of cultu
 
 ## The Power of Context Windows
 
-One of the most underappreciated aspects of AI code comprehension is the size of its context window. The broader the context, the closer a model gets to true comprehension.
+One of the most underappreciated aspects of AI code comprehension is the size of its {{< term "context-window" "context window" >}}. The broader the context, the closer a model gets to true comprehension.
 
 In human terms, a developer reading fifty lines can recall relationships across functions; a model with a 128k token window can recall dependencies across entire modules. This does not facilitate logical reasoning, but it does enable global pattern retention, which is crucial for tasks such as refactoring, summarization, or maintaining style consistency.
 
@@ -215,7 +209,7 @@ That subtle shift pushes the model's attention toward documentation-style patter
 
 Models that read code can accelerate onboarding, documentation, and even code review, but they introduce risk if developers mistake probability for proof. A suggestion may be statistically likely but logically wrong.
 
-In safety-critical domains such as finance, medicine, and infrastructure, LLMs should never operate without a deterministic verification layer. Tools that combine static analysis with generative suggestions, such as semantic linting or differential testing, provide a bridge between the stochastic intuition of AI and the formal rigor of compilers.
+In safety-critical domains such as finance, medicine, and infrastructure, LLMs should never operate without a deterministic verification layer. Tools that combine {{< term "static-analysis" "static analysis" >}} with generative suggestions, such as semantic linting or {{< term "differential-testing" "differential testing" >}}, provide a bridge between the stochastic intuition of AI and the formal rigor of compilers.
 
 ---
 

@@ -13,19 +13,16 @@ author = "Tom Archer"
 listThumb = "how-large-language-models-learn3.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-large-language-models-learn3.png"
-       alt="Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding."
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Meaning takes shape as the model learns to descend its own mathematical terrain.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="how-large-language-models-learn3.png"
+    alt="Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding."
+    label="Open full-size how large language models learn3"
+    caption="Meaning takes shape as the model learns to descend its own mathematical terrain."
+>}}
 
-When you interact with a large language model (LLM) such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model seems to respond instantly relative to the question's degree of difficulty. What's easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.
+When you interact with a {{< term "large-language-model" "large language model (LLM)" >}} such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model seems to respond instantly relative to the question's degree of difficulty. What's easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.
 
-Large language models don't memorize text. They *optimize* it. Behind that optimization lies calculus. I'm not referring to the calculus you did with pencil and paper. I'm talking about a sprawling, automated version that computes millions of derivatives per second.
+Large language models don't memorize text. They *optimize* it. Behind that optimization lies calculus. I'm not referring to the calculus you did with pencil and paper. I'm talking about a sprawling, automated version that computes millions of {{< term "derivative" "derivatives" >}} per second.
 
 At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be *slightly less wrong.* The word "slightly" in this context is the essence of calculus.  
 
@@ -45,9 +42,9 @@ This post explores how derivatives guide learning, how gradients shape understan
 
 In the simplest terms, calculus gives LLMs the ability to *improve*. Specifically, it gives them a way to measure *change.*
 
-When a model produces an output, it compares that output to the correct answer and computes a **loss**, a single number that represents error. But the key question is *how each parameter should change to make that loss smaller next time?*.
+When a model produces an output, it compares that output to the correct answer and computes a **{{< term "loss-function" "loss" >}}**, a single number that represents error. But the key question is *how each parameter should change to make that loss smaller next time?*.
 
-That question is answered by **derivatives.** A derivative tells the model how sensitive the loss is to a small change in one of its parameters. If the derivative is positive, the model nudges that parameter down; if it's negative, it nudges it up.
+That question is answered by **derivatives.** A derivative tells the model how sensitive the loss is to a small change in one of its {{< term "model-parameter" "parameters" >}}. If the derivative is positive, the model nudges that parameter down; if it's negative, it nudges it up.
 
 Repeat this process across billions of parameters, and what emerges is learning.
 
@@ -59,7 +56,7 @@ You can think of training a model as trying to find the lowest point in a vast, 
 
 Each point on that surface has a height (the loss). The model's job is to find the valleys where loss is minimal and predictions are most accurate.
 
-Calculus provides the map. **Gradient descent** is the compass.
+Calculus provides the map. **{{< term "gradient-descent" "Gradient descent" >}}** is the compass.
 
 In one step of gradient descent, the model computes the slope (gradient) of the loss function with respect to its parameters, then moves a small step downhill. Too large a step and it overshoots; too small and training crawls.
 
@@ -69,7 +66,7 @@ The process is like sliding down a foggy mountain guided only by the steepness u
 
 ## Backpropagation: The Chain Rule in Action
 
-For models with many layers, such as transformers, each parameter affects the output indirectly through multiple stages of computation. To determine how a change in an early weight influences the final result, we apply the **chain rule**, the backbone of backpropagation.
+For models with many layers, such as transformers, each parameter affects the output indirectly through multiple stages of computation. To determine how a change in an early weight influences the final result, we apply the **{{< term "chain-rule" "chain rule" >}}**, the backbone of {{< term "backpropagation" "backpropagation" >}}.
 
 Backpropagation is the algorithm that carries error signals backward through the network, layer by layer, computing derivatives at each stage.
 
@@ -79,7 +76,7 @@ In mathematical shorthand, if `L` is the loss and `W` represents the weights, we
 \frac{\partial L}{\partial W}
 \\]
 
-The model then updates each weight according to the rule below, where `η` (eta) is the **learning rate**, representing the size of the step taken down the loss gradient:
+The model then updates each weight according to the rule below, where `η` (eta) is the **{{< term "learning-rate" "learning rate" >}}**, representing the size of the step taken down the loss gradient:
 
 \\[
 W_{new} = W_{old} - \eta \frac{\partial L}{\partial W}
@@ -125,7 +122,12 @@ plt.show()
 
 The preceding Python code generates the following plot:
 
-![Python generated graph showing gradient descent path](./plot1.png)
+{{< lightbox
+    src="plot1.png"
+    alt="Python-generated graph showing gradient descent path"
+    label="Open plot"
+    caption="Python-generated graph showing gradient descent path"
+>}}  
 
 Watch how the red dots trace a path downhill. Each step is smaller than the last as the gradient flattens near the minimum. That final convergence, where changes become microscopic, is the model settling into understanding.
 
@@ -158,7 +160,12 @@ legend('Loss Function', 'Learning Path');
 
 The preceding MATLAB commands generate the following plot:
 
-![MATLAB generated graph showing gradient descent path](./plot2.png)
+{{< lightbox
+    src="plot2.png"
+    alt="MATLAB-generated graph showing gradient descent path"
+    label="Open plot"
+    caption="MATLAB-generated graph showing gradient descent path"
+>}}  
 
 This toy example has one parameter. Real LLMs have billions. But the principle scales: each parameter follows its own gradient, and together they navigate a landscape far too vast to visualize, yet mathematically identical in structure.
 
@@ -168,7 +175,7 @@ This toy example has one parameter. Real LLMs have billions. But the principle s
 
 Training doesn't happen neatly. Real-world loss landscapes aren't smooth bowls; they're chaotic terrains full of cliffs, ridges, and deceptive plateaus.
 
-That's why optimization relies on heuristics like **momentum**, **Adam**, and **RMSProp**, which are refinements that stabilize learning by dampening oscillations and adapting step sizes.
+That's why optimization relies on heuristics like **{{< term "momentum" "momentum" >}}**, **{{< term "adam-optimizer" "Adam" >}}**, and **{{< term "rmsprop" "RMSProp" >}}**, which are refinements that stabilize learning by dampening oscillations and adapting step sizes.
 
 These techniques don't change the calculus itself. They refine how it's applied, balancing speed and stability so that models reach better minima without falling into traps.
 
@@ -178,9 +185,9 @@ If linear algebra gives LLMs their *structure*, calculus gives them *motion*.
 
 ## When Learning Gets Stuck
 
-Not all valleys lead to wisdom. Sometimes gradient descent finds a **local minimum**, a point lower than its immediate surroundings but not the deepest point in the landscape. Imagine descending a mountain in fog and stopping in a small depression, unaware that a deeper valley lies just beyond the next ridge.
+Not all valleys lead to wisdom. Sometimes gradient descent finds a **{{< term "local-minimum" "local minimum" >}}**, a point lower than its immediate surroundings but not the deepest point in the landscape. Imagine descending a mountain in fog and stopping in a small depression, unaware that a deeper valley lies just beyond the next ridge.
 
-In practice, neural networks rarely suffer from local minima the way early researchers feared. The blessing of high-dimensional spaces is that most "stuck points" aren't true minima at all; they're **saddle points**, locations where the gradient is zero but escape routes exist in other dimensions.
+In practice, neural networks rarely suffer from local minima the way early researchers feared. The blessing of high-dimensional spaces is that most "stuck points" aren't true minima at all; they're **{{< term "saddle-point" "saddle points" >}}**, locations where the gradient is zero but escape routes exist in other dimensions.
 
 Think of a mountain pass: flat in one direction, sloped in another. In two dimensions, you might see it as a trap. In a thousand dimensions, there are 998 other directions to explore.
 
@@ -207,7 +214,7 @@ Consider this analogy: You're hiking down a mountain in dense fog. A large learn
 
 Early in training, when the model's predictions are far from accurate, a larger learning rate helps it make bold corrections. But as it approaches a good solution, those same large steps become destructive, bouncing around the minimum rather than settling into it.
 
-That's why modern training uses **learning rate schedules**. One popular approach is **cosine annealing**, where the rate decreases smoothly over time:
+That's why modern training uses **{{< term "learning-rate-schedule" "learning rate schedules" >}}**. One popular approach is **{{< term "cosine-annealing" "cosine annealing" >}}**, where the rate decreases smoothly over time:
 
 \\[
 \eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})(1 + \cos(\frac{t\pi}{T}))
@@ -215,7 +222,7 @@ That's why modern training uses **learning rate schedules**. One popular approac
 
 Where `t` is the current step and `T` is the total number of steps. The learning rate starts high, enabling rapid initial progress, then gradually decreases, allowing fine-tuned convergence.
 
-Another strategy, **warm restarts**, periodically resets the learning rate to a higher value. This seems counterintuitive, but it helps the model escape shallow local minima it might have settled into, exploring new regions of parameter space before converging again.
+Another strategy, **{{< term "warm-restarts" "warm restarts" >}}**, periodically resets the learning rate to a higher value. This seems counterintuitive, but it helps the model escape shallow local minima it might have settled into, exploring new regions of parameter space before converging again.
 
 The learning rate isn't just a technical detail. It's the rhythm of learning itself, the balance between exploration and refinement that defines how quickly, and how well, a model understands the world.
 
@@ -223,11 +230,11 @@ The learning rate isn't just a technical detail. It's the rhythm of learning its
 
 ## Stochastic vs. Batch: Why Noise Helps
 
-You might expect that using all available data at every step would produce the best learning. Calculate the exact gradient over the entire training set, then update. This is called **batch gradient descent**, and while theoretically elegant, it's computationally expensive and, surprisingly, often inferior.
+You might expect that using all available data at every step would produce the best learning. Calculate the exact gradient over the entire training set, then update. This is called **{{< term "batch-gradient-descent" "batch gradient descent" >}}**, and while theoretically elegant, it's computationally expensive and, surprisingly, often inferior.
 
-Instead, most modern models use **stochastic gradient descent (SGD)** or **mini-batch gradient descent**, computing gradients on small random subsets of data. Each update is noisier, less precise, but this noise is a feature, not a bug.
+Instead, most modern models use **{{< term "stochastic-gradient-descent" "stochastic gradient descent (SGD)" >}}** or **{{< term "mini-batch-gradient-descent" "mini-batch gradient descent" >}}**, computing gradients on small random subsets of data. Each update is noisier, less precise, but this noise is a feature, not a bug.
 
-Why? Because noise prevents premature convergence. When you compute gradients on random batches, each update pushes the model in a slightly different direction. Sometimes these pushes help the model escape narrow valleys that fit the training data but don't generalize well. The randomness acts as a regularizer, preventing overfitting.
+Why? Because noise prevents premature convergence. When you compute gradients on random batches, each update pushes the model in a slightly different direction. Sometimes these pushes help the model escape narrow valleys that fit the training data but don't generalize well. The randomness acts as a {{< term "regularization" "regularizer" >}}, preventing {{< term "overfitting" "overfitting" >}}.
 
 Think of it like this: batch gradient descent is like having a detailed map and following it precisely. Stochastic gradient descent is like wandering with a rough sketch, taking occasional detours. The wanderer often discovers more robust paths because they're forced to test different routes.
 
@@ -257,14 +264,14 @@ The calculus disappears, leaving behind intuition embedded in numbers.
 
 Everything discussed so far applies to neural networks generally, but transformers—the architecture behind GPT, Claude, and most modern LLMs—introduce unique optimization challenges.
 
-The **attention mechanism**, which allows models to weigh the relevance of different tokens dynamically, creates an especially complex loss landscape. Each attention head learns to focus on different patterns: one might track subject-verb agreement, another might capture long-range dependencies, another might specialize in code syntax.
+The **{{< term "attention" "attention mechanism" >}}**, which allows models to weigh the relevance of different tokens dynamically, creates an especially complex loss landscape. Each attention head learns to focus on different patterns: one might track subject-verb agreement, another might capture long-range dependencies, another might specialize in code syntax.
 
-During backpropagation, gradients must flow through these attention layers, through multiple residual connections, and across potentially thousands of tokens in the context window. This creates two problems:
+During backpropagation, gradients must flow through these attention layers, through multiple {{< term "residual-connection" "residual connections" >}}, and across potentially thousands of tokens in the context window. This creates two problems:
 
-1. **Vanishing gradients**: In deep networks, gradients can shrink exponentially as they propagate backward, making early layers learn slowly.
-2. **Exploding gradients**: Conversely, gradients can grow uncontrollably, destabilizing training.
+1. **{{< term "vanishing-gradient" "Vanishing gradients" >}}**: In deep networks, gradients can shrink exponentially as they propagate backward, making early layers learn slowly.
+2. **{{< term "exploding-gradient" "Exploding gradients" >}}**: Conversely, gradients can grow uncontrollably, destabilizing training.
 
-Transformers mitigate these issues through **layer normalization** and **residual connections**. Layer normalization rescales activations at each layer, keeping values in a stable range. Residual connections provide "shortcut" paths for gradients to flow directly through the network, preventing them from vanishing.
+Transformers mitigate these issues through **{{< term "layer-normalization" "layer normalization" >}}** and **residual connections**. Layer normalization rescales activations at each layer, keeping values in a stable range. Residual connections provide "shortcut" paths for gradients to flow directly through the network, preventing them from vanishing.
 
 The optimization of attention weights is particularly elegant. When the model computes attention, it's asking: "Given this query, which keys are most relevant?" The gradients then adjust those relevance scores based on whether the resulting predictions were accurate.
 
@@ -294,11 +301,11 @@ The goal isn't perfection. It's **calibrated uncertainty**.
 
 This is why validation loss matters as much as training loss. As a model trains, its performance on training data improves monotonically. But performance on held-out validation data follows a U-curve: it improves, reaches a minimum, then begins to worsen as the model overfits.
 
-The optimal stopping point isn't when training loss bottoms out. It's when validation loss does. That moment represents the best balance between learning general patterns and avoiding memorization. Modern training uses **early stopping**, monitoring validation loss and halting when it stops improving.
+The optimal stopping point isn't when training loss bottoms out. It's when validation loss does. That moment represents the best balance between learning general patterns and avoiding memorization. Modern training uses **{{< term "early-stopping" "early stopping" >}}**, monitoring validation loss and halting when it stops improving.
 
 Calculus drives the model downward, but human judgment decides when to stop the descent.
 
-There's a deeper paradox here, too. The more parameters a model has, the more it can memorize, yet large models often generalize *better* than small ones. This counterintuitive phenomenon, sometimes called **benign overfitting** or the **double descent curve**, suggests that in the regime of massive overparameterization, the optimization process itself acts as a regularizer.
+There's a deeper paradox here, too. The more parameters a model has, the more it can memorize, yet large models often generalize *better* than small ones. This counterintuitive phenomenon, sometimes called **{{< term "benign-overfitting" "benign overfitting" >}}** or the **{{< term "double-descent" "double descent curve" >}}**, suggests that in the regime of massive overparameterization, the optimization process itself acts as a regularizer.
 
 When there are far more parameters than data points, gradient descent tends to find solutions that are not just accurate but *simple* in some implicit sense. The model has so much capacity that it can afford to encode patterns smoothly rather than sharply, resulting in better generalization despite apparent overfitting.
 
@@ -308,7 +315,7 @@ This remains one of the most fascinating open questions in deep learning theory:
 
 ## The Geometry of Improvement
 
-If embeddings give models their spatial structure and calculus gives them motion, then learning is the process of reshaping that space itself.
+If {{< term "embedding" "embeddings" >}} give models their spatial structure and calculus gives them motion, then learning is the process of reshaping that space itself.
 
 Every gradient update subtly warps the embedding landscape. Words that were distant drift closer; directions that were irrelevant become meaningful. The model doesn't just navigate its geometric world—it sculpts it, iteration by iteration.
 

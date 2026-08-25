@@ -1,6 +1,6 @@
 +++
 title = "Hash Collisions: Why Your 'Unique' Fingerprints Aren't (And Why That's Usually OK)"
-subtitle = "The mathematical certainty of collisions, the near-impossibility of meaningful ones, and what it means for modern cryptography"
+subtitle = "The mathematical certainty of hash collisions, the near-impossibility of meaningful ones, and what it means for modern cryptography"
 date = "2025-11-17T06:00:00-07:00"
 draft = false
 categories = ["Essays and Perspectives"]
@@ -9,19 +9,16 @@ author = "Tom Archer"
 listThumb = "hash-collisions-thumb.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./hash-collisions.png"
-       alt="Visual representation of the SHAttered attack showing two different PDFs with identical SHA-1 hashes"
-       width="400"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="hash-collisions.png"
+    alt="Visual representation of the SHAttered attack showing two different PDFs with identical {{< term"
+    label="Open full-size hash collisions"
+    caption="In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes."
+>}}
 
-In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don't create truly unique fingerprints ([Stevens et al., 2017](#stevens2017)). This "SHAttered" attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
+In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: {{< term "hash-function" "hash functions" >}} don't create truly unique fingerprints ([Stevens et al., 2017](#stevens2017)). This "SHAttered" attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
 
-Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than "unique" versus "not unique."
+Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while {{< term "hash-collision" "collisions" >}} are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than "unique" versus "not unique."
 
 ---
 
@@ -32,14 +29,14 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 <!--more-->
 
 <div style="background-color: #f8f8f8; border-left: 4px solid #4CAF50; padding: 1em; margin: 1em 0;">
-<strong>Historical Note:</strong> This post updates my 2005 article on hash collisions (<a href="#archer2005">Archer, 2005</a>). Back then, MD5 was still considered "acceptable with caveats" and adding salt to passwords seemed cutting-edge. It's fascinating (and somewhat alarming) to see which predictions came true and which assumptions had to be completely reconsidered.
+<strong>Historical Note:</strong> This post updates my 2005 article on hash collisions (<a href="#archer2005">Archer, 2005</a>). Back then, MD5 was still considered "acceptable with caveats" and adding {{< term "password-salt" "salt" >}} to passwords seemed cutting-edge. It's fascinating (and somewhat alarming) to see which predictions came true and which assumptions had to be completely reconsidered.
 </div>
 
-Twenty years ago, I wrote about hash collisions when the biggest concern was spyware-removal applications getting false positives. Today, MD5 can be cracked on a laptop, simple salting is woefully inadequate, and billions of dollars in cryptocurrency depend on hash collision resistance. The landscape has shifted dramatically, with hash functions now underpinning everything from secure communications to digital currencies. But the fundamental questions remain: How unique are hash codes really? And when does it matter?
+Twenty years ago, I wrote about hash collisions when the biggest concern was spyware-removal applications getting false positives. Today, MD5 can be cracked on a laptop, simple salting is woefully inadequate, and billions of dollars in cryptocurrency depend on hash {{< term "collision-resistance" "collision resistance" >}}. The landscape has shifted dramatically, with hash functions now underpinning everything from secure communications to digital currencies. But the fundamental questions remain: How unique are hash codes really? And when does it matter?
 
 ---
 
-## The Pigeonhole Principle in Action
+## The {{< term "pigeonhole-principle" "Pigeonhole Principle" >}} in Action
 
 Hash algorithms generate fixed-length outputs regardless of input size. SHA-256 always produces 256 bits (32 bytes), whether you're hashing a single character or an entire library. SHA-3-512 always produces 512 bits. This creates an inherent mathematical constraint that's easy to visualize but hard to grasp in practice.
 
@@ -65,15 +62,12 @@ But here's what most discussions miss: **not all collisions are created equal.**
 
 ## The Semantic Collision Problem
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./hash-collisions-random-bytes.png"
-       alt="Diagram showing random bytes rarely forming valid JSON, code, or readable text"
-       width="400"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Random bytes almost never accidentally form meaningful structured data.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="hash-collisions-random-bytes.png"
+    alt="Diagram showing random bytes rarely forming valid JSON, code, or readable text"
+    label="Open full-size hash collisions random bytes"
+    caption="Random bytes almost never accidentally form meaningful structured data."
+>}}
 
 Finding two inputs that hash to the same value is one thing. Finding two *meaningful* inputs that hash to the same value is exponentially harder. Language, whether natural or programming, has structure and rules that random bytes almost never satisfy.
 
@@ -145,7 +139,7 @@ Let's start with the good news. It turns out I wasn't completely wrong about eve
 
 Now for the humbling part: the predictions that make me grateful the internet wasn't quite as permanent in 2005. If I'd known how wrong I'd be about computational power, I might have invested in NVIDIA stock instead of writing blog posts. These misses reveal just how badly we underestimate exponential growth.
 
-- **GPU acceleration** - Modern GPUs test 10+ billion SHA-256 hashes/second, not the thousands I imagined. The parallel processing revolution transformed brute-force attacks from theoretical to practical.
+- **GPU acceleration** - Modern GPUs test 10+ billion SHA-256 hashes/second, not the thousands I imagined. The parallel processing revolution transformed {{< term "brute-force-attack" "brute-force attacks" >}} from theoretical to practical.
 - **Rainbow table sophistication** - They grew from gigabytes to terabytes, covering far more than "common passwords." Distributed computing and cheap storage made precomputation attacks far more powerful ([Oechslin, 2003](#oechslin2003)).
 - **MD5's rapid demise** - I thought it had years left. It was fully broken within 12 months ([Wang & Yu, 2005](#wang2005)).
 - **Blockchain's hash dependence** - Didn't see cryptocurrency coming, where hash collisions = economic catastrophe. An entire trillion-dollar economy now depends on hash collision resistance ([Nakamoto, 2008](#nakamoto2008)).
@@ -237,15 +231,12 @@ Modern hash functions incorporate lessons from past failures. SHA-256 uses a mor
 
 ## Modern Password Hashing: Beyond Salt
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./hash-algorithms-timeline.png"
-       alt="Timeline showing evolution from MD5 to Argon2, with increasing memory and computation requirements"
-       width="400"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Password hashing has evolved from simple hashes to memory-hard, time-expensive algorithms.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="hash-algorithms-timeline.png"
+    alt="Timeline showing evolution from MD5 to {{< term"
+    label="Open full-size hash algorithms timeline"
+    caption="Password hashing has evolved from simple hashes to {{< term \"memory-hard-function\" \"memory-hard\" >}}, time-expensive algorithms."
+>}}
 
 Twenty years ago, I wrote that adding salt to passwords before hashing would produce "an almost fool-proof system" ([Archer, 2005](#archer2005)). That confidence seems quaint now. Today, simple salting is the absolute minimum, and often insufficient. The arms race between defenders and attackers has driven innovation in password hashing far beyond what we imagined possible.
 
@@ -316,7 +307,7 @@ We've moved from trying to hide the algorithm to making it computationally expen
 
 ### Why Simple Hashing Failed
 
-Rainbow tables (precomputed hash databases) destroyed simple hash-based password storage. These massive databases, some exceeding 100TB, could reverse common password hashes instantly ([Oechslin, 2003](#oechslin2003)). What seemed like strong protection crumbled when attackers could simply look up the answer.
+{{< term "rainbow-table" "Rainbow tables" >}} (precomputed hash databases) destroyed simple hash-based password storage. These massive databases, some exceeding 100TB, could reverse common password hashes instantly ([Oechslin, 2003](#oechslin2003)). What seemed like strong protection crumbled when attackers could simply look up the answer.
 
 ```python
 import hashlib
@@ -630,7 +621,7 @@ Twenty years of watching hash functions fall has produced clear patterns about w
 - ✅ SHA-256/SHA-3 for file integrity - Strong collision resistance with good performance.
 - ✅ Argon2id for password storage - Memory-hard, time-expensive, and resistant to side-channel attacks.
 - ✅ BLAKE3 for performance-critical hashing - Faster than MD5 while being cryptographically secure.
-- ✅ HMAC for message authentication - Provides authentication and integrity with a secret key.
+- ✅ {{< term "hmac" "HMAC" >}} for message authentication - Provides authentication and integrity with a secret key.
 - ✅ Store algorithm version with hashes - Enables future migrations without breaking existing data.
 - ✅ bcrypt/scrypt as Argon2 alternatives - Mature alternatives when Argon2 isn't available.
 

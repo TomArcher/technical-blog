@@ -8,20 +8,20 @@ author = "Tom Archer"
 listThumb = "birthday-paradox.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./birthday-paradox.png" alt="Multiple database servers with overlapping ID bubbles showing collision zones" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="birthday-paradox.png"
+    alt="Multiple database servers with overlapping ID bubbles showing collision zones"
+    label="Open full-size birthday paradox"
+    caption="With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs."
+>}}
 
-You generate a UUID. It's 128 bits total, with 122 bits of randomness. That's 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?
+You generate a {{< term "uuid-v4" "UUID" >}}. It's 128 bits total, with 122 bits of randomness. That's 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?
 
 As I like to say, *common sense and intuition are the enemies of science*. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you'd need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?
 
 Math shows us the uncomfortable truth: You'll hit a 50% collision probability after generating just \\(2.7 \times 10^{18}\\) IDs. That's 0.0000000000000000008% of your total space. At a billion IDs per second, you've got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you've got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.
 
-You might know that the birthday paradox proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn't just a party trick; it's the same mathematics that determines when your "guaranteed unique" database IDs collide, why hash tables need careful sizing, and when your distributed system's assumptions break.
+You might know that the {{< term "birthday-paradox" "birthday paradox" >}} proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn't just a party trick; it's the same mathematics that determines when your "guaranteed unique" database IDs collide, why {{< term "hash-table" "hash tables" >}} need careful sizing, and when your {{< term "distributed-system" "distributed system" >}}'s assumptions break.
 
 ---
 
@@ -31,11 +31,11 @@ You might know that the birthday paradox proves that just 23 people have more th
 
 <!--more-->
 
-The paradox reveals why intuition fails us: collision probability doesn't grow linearly with usage; it grows with the square. Double your data, quadruple your risk. This quadratic growth is why systems that run perfectly for months suddenly start failing, why that startup's clever 32-bit ID scheme becomes a migration nightmare, and why even titans like GitHub had to extend their integer IDs.
+The paradox reveals why intuition fails us: {{< term "collision-probability" "collision probability" >}} doesn't grow linearly with usage; it grows with the square. Double your data, quadruple your risk. This quadratic growth is why systems that run perfectly for months suddenly start failing, why that startup's clever 32-bit ID scheme becomes a migration nightmare, and why even titans like GitHub had to extend their integer IDs.
 
 Understanding this math is the difference between a system that scales and one that mysteriously fails at 2 AM when you hit that magical threshold your common sense never saw coming.
 
-In this post, we'll explore the surprising mathematics of collision probability and build Python tools to analyze real production systems. You'll learn how to calculate exactly when your ID generation strategy will fail, visualize the dramatic differences between 32-bit, 64-bit, and UUID systems, and understand why a trillion-value space becomes risky at just one million items. We'll validate our math with Monte Carlo simulations and test scenarios from startup MVPs to billion-event distributed logs.
+In this post, we'll explore the surprising mathematics of collision probability and build Python tools to analyze real production systems. You'll learn how to calculate exactly when your ID generation strategy will fail, visualize the dramatic differences between 32-bit, 64-bit, and UUID systems, and understand why a trillion-value space becomes risky at just one million items. We'll validate our math with {{< term "monte-carlo-simulation" "Monte Carlo simulations" >}} and test scenarios from startup MVPs to billion-event distributed logs.
 
 > **TL;DR:**
 > - Use 64-bit IDs for single systems under 1M items/day
@@ -536,9 +536,12 @@ def plot_collision_curves() -> None:
 
 The second visualization flips the perspective to answer a practical question: "Given a specific generation rate, how long until the first collision?" This chart dramatically illustrates why ID system choice matters for high-throughput applications. At a billion IDs per second, which is not uncommon for large-scale distributed systems, the differences are stark: 32-bit systems fail before you can blink, 64-bit systems won't survive a workday, but UUID v4 will outlive your grandchildren.
 
-<img src="./plot2.png" alt="Log-scale plot showing collision probability curves for different ID systems, with safety thresholds marked" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>At 1 billion IDs/second: 32-bit fails in microseconds, 64-bit in hours, UUID v4 lasts decades.</em></figcaption>
+{{< lightbox
+    src="plot2.png"
+    alt="Log-scale chart showing time to a 50 percent ID collision for 32-bit, 64-bit, and UUID v4 identifiers as generation rate increases"
+    label="Open full-size time-to-collision chart"
+    caption="At 1 billion IDs/second: 32-bit fails in microseconds, 64-bit in hours, UUID v4 lasts decades."
+>}}
 
 <br/>
 
@@ -617,15 +620,15 @@ The birthday paradox appears everywhere in computing. Try these explorations to 
 
 **Intermediate Level: Geometry & Body Modeling**
 
-1. **Sharding distribution**: Simulate distributing 1 million records across 100 database shards. Measure the load imbalance.
+1. **{{< term "sharding" "Sharding" >}} distribution**: Simulate distributing 1 million records across 100 database shards. Measure the load imbalance.
 
 2. **Git short hashes**: Git shows 7-character hashes by default. How many commits before a repository likely has a collision?
 
-3. **Session token safety**: Your app generates 16-character alphanumeric session tokens. How many concurrent sessions before collision risk exceeds 0.1%?
+3. **{{< term "session-token" "Session token" >}} safety**: Your app generates 16-character alphanumeric session tokens. How many concurrent sessions before collision risk exceeds 0.1%?
 
 **Advanced Level: Environment & Stochasticity**
 
-1. **Time-based UUIDs**: UUID v1 includes timestamps. Model how temporal clustering affects collision probability.
+1. **Time-based UUIDs**: {{< term "uuid-v1" "UUID v1" >}} includes timestamps. Model how temporal clustering affects collision probability.
 
 2. **Distributed generation**: Five servers independently generate IDs. How does this change collision probability compared to centralized generation?
 

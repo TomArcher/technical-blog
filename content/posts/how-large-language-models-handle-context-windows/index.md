@@ -9,23 +9,20 @@ author = "Tom Archer"
 listThumb = "how-llms-handle-context-windows.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-llms-handle-context-windows.png"
-       alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="how-llms-handle-context-windows.png"
+    alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections"
+    label="Open full-size context windows illustration"
+    caption="Context windows create the illusion of memory through mathematical attention, not storage."
+>}}
 
-When you have a long conversation with a large language model (LLM) such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), it feels like the model remembers everything you've discussed. It references earlier points, maintains consistent context, and seems to "know" what you talked about pages ago.
+When you have a long conversation with a {{< term "large-language-model" "large language model" >}} (LLM) such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), it feels like the model remembers everything you've discussed. It references earlier points, maintains consistent context, and seems to "know" what you talked about pages ago.
 
 But here's the uncomfortable truth: the model doesn't remember anything. It's not storing your conversation in memory the way a database would. Instead, it's **rereading the entire conversation from the beginning every single time you send a message.**
 
 ---
 
->*"A context window isn't memory. It's a performance where the model rereads its lines before every response."*
+>*"A {{< term "context-window" "context window" >}} isn't memory. It's a performance where the model rereads its lines before every response."*
 
 ---
 
@@ -69,7 +66,7 @@ response = openai.chat.completions.create(
 # Response: "I don't have context about a previous country name..."
 ```
 
-The API is **stateless**. The model truly has no memory between calls. Each request starts from zero.
+The API is **{{< term "stateless" "stateless" >}}**. The model truly has no memory between calls. Each request starts from zero.
 
 ### **Web Interfaces Create the Illusion**
 
@@ -159,18 +156,18 @@ This is why "memory" in LLMs is an illusion. The model performs pattern matching
 
 ## How Attention Creates the Illusion
 
-The mechanism that makes this work is the **attention mechanism**, specifically **self-attention**, as defined in the foundational paper "Attention Is All You Need" ([Vaswani et al., 2017](#vaswani2017)). When processing token \\(i\\) in the sequence, the model computes how much attention to pay to every previous token \\(j\\).
+The mechanism that makes this work is the **{{< term "attention" "attention mechanism" >}}**, specifically **{{< term "self-attention" "self-attention" >}}**, as defined in the foundational paper "Attention Is All You Need" ([Vaswani et al., 2017](#vaswani2017)). When processing token \\(i\\) in the sequence, the model computes how much attention to pay to every previous token \\(j\\).
 
 The attention score between two tokens is computed as:
 
 \\[
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\text{Attention}(Q, K, V) = \text{{{< term "softmax" "softmax" >}}}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 \\]
 
 Where:
-- \\(Q\\) = query (what the current token is looking for)
-- \\(K\\) = keys (what each previous token can offer)
-- \\(V\\) = values (the actual content of those tokens)
+- \\(Q\\) = {{< term "query" "query" >}} (what the current token is looking for)
+- \\(K\\) = {{< term "key" "keys" >}} (what each previous token can offer)
+- \\(V\\) = {{< term "value" "values" >}} (the actual content of those tokens)
 - \\(d_k\\) = dimensionality of the key vectors (scaling factor)
 
 For every new token the model generates, it computes attention across **every token in the context window**. If your conversation is 10,000 tokens long, that's 10,000 attention calculations per new token. For a visual explanation of how attention mechanisms work in practice, see [Alammar (2018)](#alammar2018).
@@ -192,14 +189,14 @@ This is why context windows have hard limits. It's not just storage. It's comput
 
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
     <div style="text-align: center;"><strong>Why not just store previous computations?</strong><br><br></div>
-    The model could cache some calculations, and modern implementations do use a <strong>KV cache</strong> (key-value cache) to avoid recomputing keys and values for tokens that haven't changed. But this only helps with computational cost. It doesn't solve the fundamental attention problem. The model still has to compute attention weights across the entire cached context for every new token.
+    The model could cache some calculations, and modern implementations do use a <strong>{{< term "kv-cache" "KV cache" >}}</strong> (key-value cache) to avoid recomputing keys and values for tokens that haven't changed. But this only helps with computational cost. It doesn't solve the fundamental attention problem. The model still has to compute attention weights across the entire cached context for every new token.
 </div>
 
 ---
 
 ## What Gets Lost: The Attention Dilution Problem
 
-Even within the context window, not all tokens are treated equally. The *softmax* function in the attention mechanism creates a **probability distribution** over all previous tokens. 
+Even within the context window, not all tokens are treated equally. The *softmax* function in the attention mechanism creates a **{{< term "probability-distribution" "probability distribution" >}}** over all previous tokens. 
 
 As the context grows:
 - Attention gets **spread thinner** across more tokens
@@ -222,7 +219,7 @@ It's tempting to compare LLM context to human memory. After all, both seem to "r
 
 Think of it this way: Your brain transforms experiences into lasting neural patterns that persist independently. An LLM's "memory" is the text itself, being reread. Remove the text, and the memory vanishes completely.
 
-This is why context windows are better compared to **working memory** (like keeping a phone number in your head) rather than **long-term memory** (like knowing your childhood address). The moment you stop actively thinking about that phone number, it's gone unless you encoded it into long-term storage. LLMs have working memory (the context window) but no mechanism to encode conversations into long-term storage.
+This is why context windows are better compared to **{{< term "working-memory" "working memory" >}}** (like keeping a phone number in your head) rather than **long-term memory** (like knowing your childhood address). The moment you stop actively thinking about that phone number, it's gone unless you encoded it into long-term storage. LLMs have working memory (the context window) but no mechanism to encode conversations into long-term storage.
 
 The weights trained into the model represent **general patterns from training data**, not memories of **your specific conversations**. Those weights are frozen. Your chat doesn't update them. This is why every new conversation starts from zero, and why **the model never truly "learns" from talking to you**.
 
@@ -232,7 +229,7 @@ The weights trained into the model represent **general patterns from training da
 
 One of the stranger aspects of context windows is that **transformers have no inherent sense of token order**. The attention mechanism is permutation-invariant. It doesn't naturally know that "The cat chased the mouse" is different from "The mouse chased the cat."
 
-To solve this, models use **positional encodings** that inject order information into each token's representation. The original Transformer architecture ([Vaswani et al., 2017](#vaswani2017)) used **absolute positional encodings** with sinusoidal functions:
+To solve this, models use **{{< term "positional-encoding" "positional encodings" >}}** that inject order information into each token's representation. The original Transformer architecture ([Vaswani et al., 2017](#vaswani2017)) used **absolute positional encodings** with sinusoidal functions:
 
 \\[
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
@@ -263,7 +260,7 @@ Some systems automatically summarize older portions of the conversation and repl
 
 **Problem:** Summarization is lossy. Nuance, specific examples, and precise wording disappear. The model is now reasoning over *a summary of your conversation* rather than your actual words.
 
-### **3. Retrieval-Augmented Generation (RAG)**
+### **3. {{< term "retrieval-augmented-generation" "Retrieval-Augmented Generation (RAG)" >}}**
 The application stores the full conversation in an external database and retrieves relevant chunks to include in the API call.
 
 **Problem:** Retrieval is imperfect. The system has to guess which past messages are relevant. It might retrieve the wrong context or miss critical information.
@@ -348,9 +345,15 @@ plt.show()
 
 ```
 
-**What the plot reveals:** As context grows, attention spreads across exponentially more tokens, creating a flatter, noisier distribution. The signal-to-noise ratio degrades.
+**What the plot reveals:**
 
-![](./visualizing-attention-across-context-python.png)
+{{< lightbox
+    src="visualizing-attention-across-context-python.png"
+    alt="Three plots showing attention weight decay across context lengths of 1,000, 10,000, and 100,000 tokens"
+    label="Open full-size attention weight decay plots"
+    caption="As context grows, attention spreads across exponentially more tokens, creating a flatter, noisier distribution. The signal-to-noise ratio degrades."
+>}}
+
 
 ### MATLAB Version
 
@@ -389,17 +392,22 @@ end
 
 This produces the same curve, showing that as the number of tokens grows, older tokens fade into near-zero significance.
 
-![](./visualizing-attention-across-context-matlab.png)
+{{< lightbox
+    src="visualizing-attention-across-context-matlab.png"
+    alt="Three MATLAB plots showing attention weight decay across context lengths of 1,000, 10,000, and 100,000 tokens"
+    label="Open full-size MATLAB attention weight decay plots"
+    caption="As context grows, attention spreads across exponentially more tokens, creating a flatter, noisier distribution. The signal-to-noise ratio degrades."
+>}}
 
 ---
 
 ## Retrieval-Augmented Generation (RAG)
 
-RAG bridges the gap between finite context and long-term knowledge. Instead of depending on the model's internal attention, RAG systems perform **semantic retrieval** to inject only the most relevant information into each API call.
+RAG bridges the gap between finite context and long-term knowledge. Instead of depending on the model's internal attention, RAG systems perform **{{< term "semantic-retrieval" "semantic retrieval" >}}** to inject only the most relevant information into each API call.
 
 1. **Chunking** text or conversation history into semantically meaningful segments.
-2. **Embedding** each chunk into a vector space.
-3. **Retrieving** top-k relevant segments using cosine similarity.
+2. **{{< term "embedding" "Embedding" >}}** each chunk into a vector space.
+3. **Retrieving** top-k relevant segments using {{< term "cosine-similarity" "cosine similarity" >}}.
 4. **Composing** a dynamic prompt with the query and retrieved context.
 5. **Generating** an answer grounded in that retrieved material.
 
@@ -411,12 +419,12 @@ Recent work on context compression models and adaptive retrieval improves this b
 
 ## Context Windows in Practice
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 400px; text-align: center;">
-  <img src="./plot.png" alt="Horizontal bar chart showing context window requirements across nine use cases, categorized as short context sufficient (green), long context valuable (blue), and long context problematic (orange), with token ranges from hundreds to millions on a logarithmic scale" width="400" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Context requirements vary by task. Short contexts work best for focused tasks like code completion, while massive contexts often perform worse than retrieval-based approaches for complex reasoning.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="plot.png"
+    alt="Horizontal bar chart showing context window requirements across nine use cases, categorized as short context sufficient (green), long context valuable (blue), and long context problematic (orange), with token ranges from hundreds to millions on a logarithmic scale"
+    label="Open full-size plot"
+    caption="Context requirements vary by task. Short contexts work best for focused tasks like code completion, while massive contexts often perform worse than retrieval-based approaches for complex reasoning."
+>}}
 
 Different use cases have different context needs:
 
@@ -444,7 +452,7 @@ The key insight: **long context is a tool, not a solution**. For many tasks, str
 Researchers are pushing beyond quadratic attention toward architectures that combine **efficiency, persistence, and abstraction**.
 
 **1. Linearized and Hybrid Attention**
-Models like **Mamba** ([Gu & Dao, 2023](#gu2023)) and **RWKV** ([Peng et al., 2023](#peng2023)) merge recurrent updates with attention-style gating, keeping a compact "state trace" instead of recomputing pairwise attention. They process input almost linearly with sequence length, hinting at a path to true scalability.
+Models like **{{< term "mamba" "Mamba" >}}** ([Gu & Dao, 2023](#gu2023)) and **{{< term "rwkv" "RWKV" >}}** ([Peng et al., 2023](#peng2023)) merge recurrent updates with attention-style gating, keeping a compact "state trace" instead of recomputing pairwise attention. They process input almost linearly with sequence length, hinting at a path to true scalability.
 
 **2. Modular Memory Architectures**
 Upcoming designs experiment with distinct submodules for short-term reasoning, factual recall, and abstract summaries. Instead of one monolithic attention map, different "memory heads" specialize, which is closer to how human cognition distributes recall.
@@ -453,7 +461,7 @@ Upcoming designs experiment with distinct submodules for short-term reasoning, f
 Multi-scale models use local attention for fine detail and upper layers for long-span summaries, compressing sequences without losing coherence. The model reasons hierarchically, the way we summarize and then recall the gist.
 
 **4. Neuro-symbolic Integration**
-Long-term context may eventually blend neural pattern recognition with symbolic memory. Rather than rereading raw text, future systems could retrieve *structured knowledge graphs*, giving them durable, compositional recall.
+Long-term context may eventually blend neural pattern recognition with symbolic memory. Rather than rereading raw text, future systems could retrieve *structured {{< term "knowledge-graph" "knowledge graphs" >}}*, giving them durable, compositional recall.
 
 The direction is clear: the next breakthroughs won't simply extend context. They'll **reshape what it means to have context at all**.
 
@@ -461,7 +469,7 @@ The direction is clear: the next breakthroughs won't simply extend context. They
 
 ## Prompt Engineering and Context Windows
 
-Knowing how attention fades helps you design prompts that survive long contexts. Prompt engineering is really attention sculpting: placing information where the model is most likely to "see" it.
+Knowing how attention fades helps you design prompts that survive long contexts. {{< term "prompt-engineering" "Prompt engineering" >}} is really attention sculpting: placing information where the model is most likely to "see" it.
 
 Reinforce key details near the end. Recency bias makes the last tokens disproportionately influential. Group related instructions so directives are not scattered. Prefer concise summaries over raw dumps of conversation. Repeat critical goals near the output boundary to keep them in focus.
 

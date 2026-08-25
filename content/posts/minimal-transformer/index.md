@@ -8,12 +8,12 @@ author = "Tom Archer"
 listThumb = "transformer.jpeg"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./transformer.jpeg" alt="Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add & norm, feed-forward, and add & norm to output logits" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Around 200 lines of Python separate you from understanding why attention really is all you need.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="transformer.jpeg"
+    alt="Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add & norm, feed-forward, and add & norm to output logits"
+    label="Open full-size transformer"
+    caption="Around 200 lines of Python separate you from understanding why attention really is all you need."
+>}}
 
 In 2017, Vaswani et al. published "Attention Is All You Need," a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you've heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper's title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
 

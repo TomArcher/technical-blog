@@ -13,21 +13,18 @@ author = "Tom Archer"
 listThumb = "how-large-language-models-read-code-thumb.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-language-models-read-code.png" 
-    alt="Digital artwork showing vector/matrix math with the output being words, symbolizing that AI generates words from linear algebra operations." 
-    width="250" 
-    style="display: block; margin: 0 auto;">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>Meaning takes shape in mathematics long before it reaches words.</em>
-    </figcaption>
-</figure>
+{{< lightbox
+    src="how-large-language-models-read-code.png"
+    alt="Digital artwork showing {{< term"
+    label="Open full-size how large language models read code"
+    caption="Meaning takes shape in mathematics long before it reaches words."
+>}}
 
-When you enter a sentence into a Large Language Model (LLM) such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model does not process words as language. It represents them as numbers.
+When you enter a sentence into a {{< term "large-language-model" "Large Language Model (LLM)" >}} such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model does not process words as language. It represents them as numbers.
 
-Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.
+Each word, phrase, and code {{< term "token" "token" >}} becomes a vector — a list of real-valued coordinates within a {{< term "high-dimensional-space" "high-dimensional space" >}}. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.
 
-This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.
+This is the mathematical foundation of large language models: linear algebra. {{< term "matrix-multiplication" "Matrix multiplication" >}}, {{< term "vector-projection" "vector projection" >}}, {{< term "cosine-similarity" "cosine similarity" >}}, and {{< term "normalization" "normalization" >}} define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.
 
 ---
 
@@ -62,7 +59,7 @@ print(X.toarray())
  [1 0 1 1]]
 ```
 
-Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous embeddings instead of simple counts, but the principle is the same: text becomes math.
+Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous {{< term "embedding" "embedding" >}}s instead of simple counts, but the principle is the same: text becomes math.
 
 ---
 
@@ -97,9 +94,9 @@ Even though these are just coordinates, the geometry encodes analogy. That's the
 
 When I first started deep-diving into how LLMs work under the hood, I struggled to reconcile the fact that LLMs rely on geometry when I remembered that in my level 300 and 400 math courses, working with vectors was done through linear algebra. The reason for this mental tension was that I had always treated geometry and linear algebra as separate domains with geometry being something visual and spatial, and linear algebra being something symbolic and procedural.
 
-What I eventually realized is that they are two views of the same thing. The math behind a large language model is entirely linear algebra: multiplying matrices, taking dot products, projecting vectors, computing norms. But what those operations create is a *geometric world.*
+What I eventually realized is that they are two views of the same thing. The math behind a large language model is entirely linear algebra: multiplying matrices, taking {{< term "dot-product" "dot products" >}}, projecting vectors, computing {{< term "vector-norm" "norms" >}}. But what those operations create is a *geometric world.*
 
-A vector is just a list of numbers, but when millions of those vectors interact through linear transformations, they define a space where distance, angle, and direction become meaningful. Similar words or code fragments cluster together; analogies become lines; transformations become rotations and translations in thousands of dimensions.
+A vector is just a list of numbers, but when millions of those vectors interact through {{< term "linear-transformation" "linear transformation" >}}s, they define a space where distance, angle, and direction become meaningful. Similar words or code fragments cluster together; analogies become lines; transformations become rotations and translations in thousands of dimensions.
 
 So the geometry is not literal; it's emergent. The network doesn't draw shapes; it performs math that *behaves* geometrically. That's why "geometry" is such an accurate metaphor for how LLMs represent meaning. The linear algebra is the physics, and the geometry is the language we use to understand it.
 
@@ -107,7 +104,7 @@ So the geometry is not literal; it's emergent. The network doesn't draw shapes; 
 
 ## Eigenvectors: The Hidden Axes of Meaning
 
-Every linear transformation within an LLM, from attention weights to embedding updates, can be described as a matrix acting on vectors. But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by eigenvectors, and the amount of stretching or compression along them is determined by their eigenvalues.
+Every linear transformation within an LLM, from attention weights to embedding updates, can be described as a matrix acting on vectors. But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by {{< term "eigenvector" "eigenvectors" >}}, and the amount of stretching or compression along them is determined by their {{< term "eigenvalue" "eigenvalues" >}}.
 
 In an embedding space, you can think of eigenvectors as the hidden axes along which meaning varies most strongly. One direction might capture gender, another might capture tense, another might reflect tone or formality. These axes are not programmed; they emerge from training as the model learns to organize information in ways that minimize error.
 
@@ -121,7 +118,7 @@ Where:
 
 The eigenvalue tells us how much the transformation scales that direction. In practical terms, LLMs contain thousands of such matrices, each shaping information flow in subtle but predictable ways.
 
-When researchers analyze embeddings using techniques like singular value decomposition (SVD) or principal component analysis (PCA), they are effectively identifying these dominant eigenvectors, the directions that explain the most structure in meaning. This is why, even though the model's internal space has thousands of dimensions, a handful of them often capture broad semantic relationships.
+When researchers analyze embeddings using techniques like {{< term "singular-value-decomposition" "singular value decomposition (SVD)" >}} or {{< term "principal-component-analysis" "principal component analysis (PCA)" >}}, they are effectively identifying these dominant eigenvectors, the directions that explain the most structure in meaning. This is why, even though the model's internal space has thousands of dimensions, a handful of them often capture broad semantic relationships.
 
 In that sense, eigenvectors reveal the skeleton of understanding inside the model: the stable, interpretable directions that give geometric form to meaning itself.
 
@@ -174,13 +171,13 @@ fprintf("Most likely next token: %s\n", tokens(idx));
 Most likely next token: return
 ```
 
-The code above doesn't generate real text; it illustrates the logic. The context vector, which represents everything you've communicated so far to the model, points somewhere in the embedding space. The model searches for the nearest vectors and selects the one most aligned. **That is prediction in geometric form**.
+The code above doesn't generate real text; it illustrates the logic. The {{< term "context-vector" "context vector" >}}, which represents everything you've communicated so far to the model, points somewhere in the embedding space. The model searches for the nearest vectors and selects the one most aligned. **That is prediction in geometric form**.
 
 ---
 
 ## Why Models Use Log Probabilities
 
-If you've read *[How AI Reads Code](/posts/how-ai-reads-code)*, you might remember the phrase "log probability." Log probability is a small mathematical trick with a big purpose.
+If you've read *[How AI Reads Code](/posts/how-ai-reads-code)*, you might remember the phrase "{{< term "log-probability" "log probability" >}}." Log probability is a small mathematical trick with a big purpose.
 
 When a model predicts the next token, it doesn't make a single guess. It assigns a probability to every possible token that could come next, evaluating thousands of options, each with its own confidence score. For example, in a code context for implementing a palindrome check, the model might assign `s[::-1]` a probability of 0.93 (almost certain), `reversed(s)` a probability of 0.05, and everything else close to zero.
 

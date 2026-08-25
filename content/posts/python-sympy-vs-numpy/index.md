@@ -11,12 +11,12 @@ author = "Tom Archer"
 listThumb = "sympy.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">  
-  <img src="./sympy.png" alt="Sympy official log of a snake coiled around a cube with mathematical symbols" width="250" style="display: block; margin: 0 auto;">  
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">  
-    <em>SymPy provides symbolic computation and precision techniques for Python developers</em>
-  </figcaption>  
-</figure>  
+{{< lightbox
+    src="python-sympy-vs-numpy.png"
+    alt="Sympy official log of a snake coiled around a cube with mathematical symbols"
+    label="Open full-size sympy"
+    caption="SymPy provides symbolic computation and precision techniques for Python developers"
+>}}  
 
 Most of us reach for [NumPy](https://numpy.org/) whenever math shows up in a project. But sometimes, you don't want approximate answers, you want exact math. That's when you pull [SymPy](https://sympy.org/) out of your programmer's toolkit and get to work.
 
@@ -31,7 +31,7 @@ In real-world business applications, imprecision can be just as costly. Financia
 ---
 
 
-This is where SymPy shines. To see the difference between **floating-point approximations** (Python or NumPy) and **symbolic precision** (SymPy), let's look at a simple but very real example from finance.
+This is where SymPy shines. To see the difference between **{{< term "floating-point" "floating-point approximations" >}}** (Python or NumPy) and **{{< term "symbolic-computation" "symbolic precision" >}}** (SymPy), let's look at a simple but very real example from finance.
 
 <!--more-->  
 
@@ -39,7 +39,7 @@ This is where SymPy shines. To see the difference between **floating-point appro
 
 ## Why Exact Math Matters 😱
 
-In programming, "close enough" is often fine... until it isn't. Floating-point arithmetic, the system behind both Python's float type and NumPy arrays, represents numbers using the [IEEE-754](https://standards.ieee.org/ieee/754/6210/) standard. That means many simple decimals can't be stored exactly, which leads to small but unavoidable errors. Most of the time those errors hide in the noise. But in finance, physics, or logistics, they can quietly compound into costly mistakes.
+In programming, "close enough" is often fine... until it isn't. Floating-point arithmetic, the system behind both Python's float type and NumPy arrays, represents numbers using the [{{< term "ieee-754" "IEEE-754" >}}](https://standards.ieee.org/ieee/754/6210/) standard. That means many simple decimals can't be stored exactly, which leads to small but unavoidable errors. Most of the time those errors hide in the noise. But in finance, physics, or logistics, they can quietly compound into costly mistakes.
 
 ### Finance Example: Compound Interest
 
@@ -62,7 +62,7 @@ At first glance this looks fine. However, the trailing decimals come from accumu
 
 **SymPy:**
 
-Instead of storing 5 percent as an imprecise binary fraction like 0.050000000000000002, SymPy keeps it as the exact rational 5/100. Every multiplication is precise, and you only round when you explicitly call `.evalf()`. The result is a mathematically clean value you can trust, not a moving target shaped by machine precision.
+Instead of storing 5 percent as an imprecise binary fraction like 0.050000000000000002, SymPy keeps it as the {{< term "rational-number" "exact rational" >}} 5/100. Every multiplication is precise, and you only round when you explicitly call `.evalf()`. The result is a mathematically clean value you can trust, not a moving target shaped by machine precision.
 
 ```python
 from sympy import Rational
@@ -100,13 +100,13 @@ That's where SymPy earns its keep. Instead of comparing with a tolerance, it car
 ### Java and Epsilon Comparisons
 
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
-  <div style="text-align: center;"><strong>What is an epsilon?</strong><br><br></div>
+  <div style="text-align: center;"><strong>What is an {{< term "epsilon-comparison" "epsilon" >}}?</strong><br><br></div>
   In mathematics, epsilon (ε) is a symbol for a very small number.
   In programming, it's a tiny threshold used to decide when two floating-point
   numbers should be treated as equal.
 </div>
 
-If you've programmed in Java, this issue (and Python's workaround) may feel familiar. Because Java's `double` type has the same floating-point limitations, developers either compare values using an *epsilon* threshold (see Sidebar) or switch to the more verbose `BigDecimal` class for exact decimal math.
+If you've programmed in Java, this issue (and Python's workaround) may feel familiar. Because Java's `double` type has the same floating-point limitations, developers either compare values using an *epsilon* threshold (see Sidebar) or switch to the more verbose `{{< term "bigdecimal" "BigDecimal" >}}` class for exact decimal math.
 
 </br>
 
@@ -145,7 +145,7 @@ print(balance)  # 0.30000000000000004
 In money terms, fractions of a cent become costly. SymPy, by treating numbers as exact rationals, keeps calculations precise.
 
 **Writing DIY derivative solvers (painful and buggy)**
-Some developers try to approximate derivatives using finite differences:
+Some developers try to approximate {{< term "derivative" "derivatives" >}} using {{< term "finite-difference" "finite differences" >}}:
 
 ```python
 def derivative(f, x, h=1e-5):
@@ -163,7 +163,7 @@ print(diff(x\*\*2 + x, x))  # 2\*x + 1
 No tuning, no numerical "noise," just the correct answer.
 
 **Solving numerically when symbolic solutions are simpler**
-NumPy and math can **approximate** roots with iterations. SymPy just **solves** them directly:
+NumPy and math can **approximate** {{< term "root" "roots" >}} with iterations. SymPy just **solves** them directly:
 
 ```python
 from sympy import symbols, solve
@@ -183,7 +183,7 @@ When should you reach for SymPy, and when for NumPy? Here's a quick checklist to
 
   * You need exact answers (no floating-point drift).
   * You're manipulating algebraic expressions (expand, factor, simplify).
-  * You want derivatives, integrals, or symbolic equation solving.
+  * You want derivatives, {{< term "integral" "integrals" >}}, or symbolic equation solving.
   * You're prototyping formulas before optimizing.
 
 * ✅ Use NumPy if…

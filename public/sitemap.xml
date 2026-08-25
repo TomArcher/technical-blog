@@ -257,5 +257,7 @@
     <loc>http://localhost:1313/about/</loc>
   </url><url>
     <loc>http://localhost:1313/bio/</loc>
+  </url><url>
+    <loc>http://localhost:1313/glossary/</loc>
   </url>
 </urlset>

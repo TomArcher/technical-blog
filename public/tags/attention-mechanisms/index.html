@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -172,8 +173,21 @@
         
         
         <div class="post-summary">
-<p>The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
-<p>This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.</p>
+
+<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
+    <div style="text-align: center;"><strong>What You'll Learn</strong><br><br></div>
+After reading this post, you'll be able to explain:
+<ul>
+<li>What queries, keys, and values do</li>
+<li>How scaled dot-product <a class="glossary-term" href="/glossary/#attention" data-definition="A mechanism that allows a model to determine how strongly one token should relate to other tokens when constructing a representation.">attention</a> works</li>
+<li>Why attention divides by \(\sqrt{d_k}\)</li>
+<li>Why transformers use multiple heads</li>
+<li>What attention heads actually learn</li>
+<li>How <a class="glossary-term" href="/glossary/#induction-head" data-definition="An attention head involved in a circuit that recognizes repeated token patterns and uses an earlier occurrence to predict what is likely to follow the current occurrence.">induction head</a>s enable pattern copying</li>
+</ul>
+</div>
+<p>The <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformer architecture</a> is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a <a class="glossary-term" href="/glossary/#feedforward-network" data-definition="A neural network component that applies learned transformations independently to each token representation after the attention operation.">feedforward sublayer</a>, wrapped in <a class="glossary-term" href="/glossary/#residual-connection" data-definition="A shortcut connection that adds a layer&#39;s input to its output, helping information and gradients flow through deep neural networks.">residual connections</a> and <a class="glossary-term" href="/glossary/#layer-normalization" data-definition="A normalization technique that stabilizes neural network training by rescaling activations within a layer.">layer normalization</a>. <a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional information</a> is added to the input so the model knows what order the <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a> came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
+<p>This post is the first of a three-part series on the attention mechanism. Part 1 covers <a class="glossary-term" href="/glossary/#scaled-dot-product-attention" data-definition="An attention mechanism that compares queries with keys using dot products, scales the resulting scores by the square root of the key dimension, applies softmax, and uses the resulting weights to combine values.">scaled dot-product attention</a>, why we divide by \(\sqrt{d_k}\), <a class="glossary-term" href="/glossary/#multi-head-attention" data-definition="An attention architecture that runs multiple independently learned attention heads in parallel and combines their outputs, allowing different relationships to be modeled simultaneously.">multi-head attention</a>, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how <a class="glossary-term" href="/glossary/#causal-mask" data-definition="An attention mask that prevents a token from attending to future positions in a sequence.">causal masking</a> turns self-attention into the foundation of <a class="glossary-term" href="/glossary/#autoregressive" data-definition="Describes a model that generates a sequence one element at a time, with each prediction conditioned on previously available elements.">autoregressive</a> next-token prediction. Part 3 covers the engineering layer: <a class="glossary-term" href="/glossary/#kv-cache" data-definition="A cache of previously computed key and value vectors that lets a transformer reuse them while generating subsequent tokens.">KV caching</a>, <a class="glossary-term" href="/glossary/#multi-query-attention" data-definition="An attention variant in which multiple query heads share a single set of key and value heads, reducing memory use and inference cost.">multi-query</a> and <a class="glossary-term" href="/glossary/#grouped-query-attention" data-definition="An attention variant in which groups of query heads share key and value heads, providing a compromise between multi-head and multi-query attention.">grouped-query attention</a>, <a class="glossary-term" href="/glossary/#sliding-window-attention" data-definition="An attention pattern that restricts each token to attending to a limited neighborhood of nearby tokens rather than the entire sequence.">sliding window attention</a>, and <a class="glossary-term" href="/glossary/#flash-attention" data-definition="An optimized attention algorithm that reduces memory traffic by computing attention in blocks, enabling faster and more memory-efficient exact attention.">Flash Attention</a>.</p>
 <p>The 2017 paper, <a href="#vaswani2017">
   Attention Is All You Need
 </a>
@@ -224,7 +238,8 @@
         
         
         
-        <div class="post-summary">
+        <div class="post-summary"><p><strong>Lightbox image not found: transformer.jpeg</strong></p>
+
 <p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
 <p>That claim turned out to be correct.</p>
 <p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
@@ -271,11 +286,12 @@
         
         
         <div class="post-summary">
+
 <p>A recent <a href="https://www.linkedin.com/posts/activity-7435689322504167424-_v46" target="_blank" rel="noopener noreferrer">
   LinkedIn post
 </a>
- from Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
-<p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: sets, predicate logic, Boolean operations, modular arithmetic, formal proof patterns. This post traces those connections.</p>
+ from Michael Palmer described how <a class="glossary-term" href="/glossary/#discrete-mathematics" data-definition="The branch of mathematics concerned with distinct, countable structures such as sets, logic, graphs, integers, and combinatorial objects.">discrete mathematics</a> is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, <a class="glossary-term" href="/glossary/#gradient-descent" data-definition="An optimization method that iteratively adjusts model parameters in the direction that reduces a loss function.">gradient descent</a>, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
+<p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: <a class="glossary-term" href="/glossary/#set-theory" data-definition="The branch of mathematics that studies collections of objects and operations such as union, intersection, complement, and membership.">sets</a>, <a class="glossary-term" href="/glossary/#predicate-logic" data-definition="A formal system of logic that uses predicates, variables, and quantifiers to express statements about objects and their relationships.">predicate logic</a>, <a class="glossary-term" href="/glossary/#boolean-algebra" data-definition="A system of logic based on true and false values and operations such as AND, OR, and NOT.">Boolean operations</a>, <a class="glossary-term" href="/glossary/#modular-arithmetic" data-definition="A system of arithmetic in which numbers wrap around after reaching a specified modulus, producing cyclic patterns.">modular arithmetic</a>, formal proof patterns. This post traces those connections.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&rdquo;</em></p></blockquote>
@@ -320,7 +336,8 @@
         
         
         <div class="post-summary">
-<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -330,7 +347,7 @@
 <p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
 <hr>
 <blockquote>
-<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<p><em>&ldquo;A <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a> isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
 <hr></div>
 
         <p><a class="btn" href="/posts/how-large-language-models-handle-context-windows/">Read more →</a></p>
@@ -503,5 +520,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

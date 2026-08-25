@@ -9,15 +9,14 @@ author = "Tom Archer"
 listThumb = "how-large-language-models-know-things-they-were-never-taught-thumb.png"
 +++
 
-<figure style="margin: 0 20px 10px 20px; text-align: center;">
-    <img src="./how-large-language-models-know-things-they-were-never-taught.png"
-        alt="A neural network with frozen weights receiving external documents being injected into its context window">
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>The model didn't learn this. It just read it.</em>
-    </figcaption>
-</figure>
+{{< lightbox
+    src="how-large-language-models-know-things-they-were-never-taught.png"
+    alt="A neural network with frozen {{< term"
+    label="Open full-size how large language models know things they were never taught"
+    caption="The model didn't learn this. It just read it."
+>}}
 
-When you ask an LLM *without* web search enabled a question like "What happened in the news this morning?", the LLM will respond by telling you that it doesn't have access to current events and suggest you check a more current news source such as Reuters or Google News.
+When you ask an {{< term "large-language-model" "LLM" >}} *without* web search enabled a question like "What happened in the news this morning?", the LLM will respond by telling you that it doesn't have access to current events and suggest you check a more current news source such as Reuters or Google News.
 
 Conversely, ask an LLM *with* web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.
 
@@ -35,7 +34,7 @@ LLMs don't update their weights (the billions of numerical parameters that encod
 
 <!--more-->
 
-This post explores how modern LLMs access information beyond their training data through web search, retrieval-augmented generation (RAG), and tool use. You'll see how these mechanisms work, why they're fundamentally different from learning, and what that means for the reliability and limitations of AI systems. If you haven't read my post on [how LLMs handle context windows](/posts/how-large-language-models-handle-context-windows/), start there; everything in this post builds on that foundation.
+This post explores how modern LLMs access information beyond their training data through web search, {{< term "retrieval-augmented-generation" "retrieval-augmented generation (RAG)" >}}, and {{< term "tool-use" "tool use" >}}. You'll see how these mechanisms work, why they're fundamentally different from learning, and what that means for the reliability and limitations of AI systems. If you haven't read my post on [how LLMs handle context windows](/posts/how-large-language-models-handle-context-windows/), start there; everything in this post builds on that foundation.
 
 > **TL;DR:**
 > 
@@ -52,7 +51,7 @@ This post explores how modern LLMs access information beyond their training data
 
 ## The Frozen Weights Problem
 
-In my post on [how LLMs learn](/posts/how-large-language-models-learn/), I explained how gradient descent adjusts model weights during training. Each weight update encodes a tiny piece of learned pattern, and after billions of updates, the model captures the statistical structure of language.
+In my post on [how LLMs learn](/posts/how-large-language-models-learn/), I explained how {{< term "gradient-descent" "gradient descent" >}} adjusts model weights during training. Each weight update encodes a tiny piece of learned pattern, and after billions of updates, the model captures the statistical structure of language.
 
 But here's the critical point: **that process stops when training ends.**
 
@@ -78,7 +77,7 @@ So how do models answer questions about current events?
 
 The solution is elegantly simple: instead of updating the model's weights, inject relevant information into its context window.
 
-Recall from my [context windows post](/posts/how-large-language-models-handle-context-windows/) that every API call is stateless. The model processes whatever text you send it, generates a response, and forgets everything. There's no persistent memory between calls.
+Recall from my [context windows post](/posts/how-large-language-models-handle-context-windows/) that every API call is {{< term "stateless" "stateless" >}}. The model processes whatever text you send it, generates a response, and forgets everything. There's no persistent memory between calls.
 
 This same mechanism enables retrieval. Before the model generates a response, an external system:
 
@@ -178,15 +177,15 @@ The canonical RAG pipeline ([Lewis et al., 2020](#lewis2020)) consists of:
 
 1. **Document Chunking:** Large documents are split into smaller, semantically meaningful chunks. A 50-page PDF might become 200 chunks of roughly 500 tokens each.
 
-1. **Embedding Generation:** Each chunk is converted to a dense vector (embedding) using a model like OpenAI's `text-embedding-ada-002` or open-source alternatives. These embeddings capture semantic meaning; similar content produces similar vectors.
+1. **{{< term "embedding" "Embedding" >}} Generation:** Each chunk is converted to a dense vector (embedding) using a model like OpenAI's `text-embedding-ada-002` or open-source alternatives. These embeddings capture semantic meaning; similar content produces similar vectors.
 
-1. **Vector Storage:** Embeddings are stored in a vector database (Pinecone, Weaviate, Chroma, FAISS) that enables fast similarity search.
+1. **Vector Storage:** Embeddings are stored in a {{< term "vector-database" "vector database" >}} (Pinecone, Weaviate, Chroma, FAISS) that enables fast similarity search.
 
 1. **Query Embedding:** When a user asks a question, the question is also embedded into the same vector space.
 
-1. **Similarity Search:** The system finds the document chunks whose embeddings are most similar to the query embedding. This typically uses cosine similarity or approximate nearest neighbor search.
+1. **Similarity Search:** The system finds the document chunks whose embeddings are most similar to the query embedding. This typically uses {{< term "cosine-similarity" "cosine similarity" >}} or {{< term "approximate-nearest-neighbor" "approximate nearest neighbor search" >}}.
 
-1. **Context Construction:** The top-k most relevant chunks are retrieved and formatted as context for the LLM.
+1. **Context Construction:** The {{< term "top-k" "top-k" >}} most relevant chunks are retrieved and formatted as context for the LLM.
 
 1. **Augmented Generation:** The LLM receives both the user's question and the retrieved context, generating a response grounded in the retrieved documents.
 
@@ -293,7 +292,7 @@ chunk_b = "Tokyo's population exceeds 50 million people."    # Incorrect
 
 Once relevant content is retrieved and injected, what does the model do with it? This is where the frozen capabilities come into play.
 
-**Pattern Matching Over Retrieved Text:** The model applies the same attention mechanisms and pattern recognition it uses for any text. It doesn't "know" the retrieved content is special; it simply processes it as part of the input sequence.
+**Pattern Matching Over Retrieved Text:** The model applies the same {{< term "attention" "attention mechanisms" >}} and pattern recognition it uses for any text. It doesn't "know" the retrieved content is special; it simply processes it as part of the input sequence.
 
 **Synthesis and Reasoning:** The model can combine information from multiple retrieved chunks, identify contradictions, extract specific facts, and generate coherent summaries. These capabilities were learned during training; retrieval just provides new material to apply them to.
 
@@ -344,7 +343,7 @@ The distinction between retrieval and learning is fundamental:
 
 When a model learns something during training, that knowledge becomes part of its weights. It's compressed, abstracted, and available for all future interactions. The model doesn't need to "look up" that information; it's encoded in the parameters.
 
-When a model retrieves something at inference time, that knowledge exists only as text in the current context window. It's not compressed or abstracted. The model reads it, reasons over it, and then forgets it completely when the conversation ends.
+When a model retrieves something at {{< term "inference" "inference" >}} time, that knowledge exists only as text in the current context window. It's not compressed or abstracted. The model reads it, reasons over it, and then forgets it completely when the conversation ends.
 
 This is why retrieval-augmented models can "know" current events while still having a knowledge cutoff. The cutoff applies to the weights; retrieval has no cutoff because it accesses live information.
 
@@ -438,7 +437,7 @@ If a model struggles with a particular type of reasoning (say, multi-step math),
 
 ### Hallucination Persists
 
-Models can still hallucinate even with retrieved content. They might misread the retrieved text, combine information incorrectly, or generate details not present in any source.
+Models can still {{< term "hallucination" "hallucinate" >}} even with retrieved content. They might misread the retrieved text, combine information incorrectly, or generate details not present in any source.
 
 ```python
 # Retrieval doesn't prevent all failure modes
@@ -489,39 +488,14 @@ Information from retrieved sources doesn't persist between conversations. Each n
 
 ## The Architecture of Augmented LLMs
 
-Modern AI assistants combine multiple components:
+Modern AI assistants combine multiple components. The LLM itself is just one component. The {{< term "orchestration-layer" "orchestration layer" >}} decides when to retrieve, what to retrieve, and how to present retrieved information. This is where much of the system intelligence actually lives.
 
-    ┌─────────────────────────────────────────────────────────────┐
-    │                      User Interface                          │
-    └─────────────────────┬───────────────────────────────────────┘
-                          │
-                          ▼
-    ┌─────────────────────────────────────────────────────────────┐
-    │                   Orchestration Layer                        │
-    │  - Decides whether to search/retrieve                        │
-    │  - Manages tool calls                                        │
-    │  - Constructs augmented prompts                              │
-    └─────────────────────┬───────────────────────────────────────┘
-                          │
-              ┌───────────┼───────────┐
-              ▼           ▼           ▼
-    ┌─────────────┐ ┌───────────┐ ┌─────────────┐
-    │ Web Search  │ │    RAG    │ │   Tools     │
-    │   System    │ │  System   │ │  (Code,     │
-    │             │ │           │ │   APIs)     │
-    └─────────────┘ └───────────┘ └─────────────┘
-              │           │           │
-              └───────────┼───────────┘
-                          │
-                          ▼
-    ┌─────────────────────────────────────────────────────────────┐
-    │                    LLM (Frozen Weights)                      │
-    │  - Processes augmented context                               │
-    │  - Generates responses                                       │
-    │  - Synthesizes retrieved information                         │
-    └─────────────────────────────────────────────────────────────┘
-
-The LLM itself is just one component. The orchestration layer decides when to retrieve, what to retrieve, and how to present retrieved information. This is where much of the system intelligence actually lives.
+{{< lightbox
+    src="augmented-llm-architecture.png"
+    alt="Architecture diagram showing a user interface feeding an orchestration layer, which routes requests to web search, RAG, and external tools before passing augmented context to an LLM with frozen weights"
+    label="Open full-size augmented LLM architecture diagram"
+    caption="Modern AI assistants combine an orchestration layer with web search, retrieval-augmented generation, and external tools before passing augmented context to the underlying LLM."
+>}}
 
 * * *
 

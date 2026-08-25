@@ -9,17 +9,14 @@ author = "Tom Archer"
 listThumb = "temperature-top-p-creativity-knobs.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./temperature-top-p-creativity-knobs.png"
-       alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Turn it up and things get weird.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="temperature-top-p-creativity-knobs.png"
+    alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
+    label="Open full-size temperature top p creativity knobs"
+    caption="Turn it up and things get weird."
+>}}
 
-Every API call to [ChatGPT](https://openai.com/api/), [Claude](https://claude.com/platform/api), or any other LLM includes two parameters most people either ignore or tweak randomly: **temperature** and **top-p**. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks. 
+Every API call to [ChatGPT](https://openai.com/api/), [Claude](https://claude.com/platform/api), or any other {{< term "large-language-model" "LLM" >}} includes two parameters most people either ignore or tweak randomly: {{< term "temperature" "temperature" >}} and {{< term "top-p" "top-p" >}}. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks. 
 
 The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.
 
@@ -33,14 +30,14 @@ I've watched developers cargo-cult settings from others without understanding wh
 
 <!--more-->
 
-This post explores the mathematical foundations of token sampling in large language models, showing exactly how temperature and top-p transform probability distributions into actual text. You'll see the equations, run the code, and develop intuition for when to reach for which parameter.
+This post explores the mathematical foundations of token sampling in large language models, showing exactly how temperature and top-p transform {{< term "probability-distribution" "probability distributions" >}} into actual text. You'll see the equations, run the code, and develop intuition for when to reach for which parameter.
 
 > **TL;DR:**
-> - LLMs don't output text directly; they output probability distributions over tokens
-> - Temperature divides the logits before softmax, reshaping the probability curve
+> - LLMs don't output text directly; they output probability distributions over {{< term "token" "tokens" >}} 
+> - Temperature divides the {{< term "logit" "logits" >}} before {{< term "softmax" "softmax" >}}, reshaping the probability curve
 > - Lower temperature makes the model more deterministic; temperature near zero always picks the top choice
 > - Higher temperature spreads probability across more tokens, approaching uniform randomness at extreme values
-> - Top-p (nucleus sampling) dynamically truncates the distribution, keeping only tokens that sum to probability \\(p\\)
+> - Top-p ({{< term "nucleus-sampling" "nucleus sampling" >}}) dynamically truncates the distribution, keeping only tokens that sum to probability \\(p\\)
 > - Temperature affects the shape of probabilities; top-p affects how many tokens remain in consideration
 > - For factual tasks: low temperature (0.1–0.3), top-p around 0.9
 > - For creative tasks: higher temperature (0.7–1.0), top-p around 0.95
@@ -56,9 +53,9 @@ Before we touch the knobs, we need to understand what they're adjusting. Large l
 Here's the pipeline:
 
 1. **Input processing**: Your prompt gets tokenized into a sequence of integers
-2. **Forward pass**: The transformer produces a vector of raw scores (logits) for every token in the vocabulary
+2. **Forward pass**: The transformer produces a vector of raw scores (logits) for every token in the {{< term "vocabulary" "vocabulary" >}}
 3. **Softmax**: Logits get converted to probabilities that sum to 1
-4. **Sampling**: A token is selected based on those probabilities
+4. **{{< term "sampling" "Sampling" >}}**: A token is selected based on those probabilities
 5. **Repeat**: The selected token gets appended, and we go back to step 2
 
 Steps 3 and 4 are where temperature and top-p operate. They don't change what the model "knows"; they change how it decides.
@@ -117,7 +114,7 @@ That's it. One division. But watch what happens:
 
 **When T > 1** (high temperature): Dividing by a number greater than 1 compresses differences. Logit gaps shrink. The distribution flattens toward uniform.
 
-**When T → 0**: The highest logit wins with probability approaching 1. Deterministic greedy decoding.
+**When T → 0**: The highest logit wins with probability approaching 1. Deterministic {{< term "greedy-decoding" "greedy decoding" >}}.
 
 **When T → ∞**: All tokens approach equal probability. Pure randomness.
 
@@ -163,7 +160,7 @@ T=1.5: [0.349 0.25  0.179 0.129 0.092] | Entropy: 1.51
 T=2.0: [0.31  0.241 0.188 0.146 0.114] | Entropy: 1.55
 ```
 
-The **entropy** column, a measure of probability distribution spread, quantifies what we're seeing: low temperature concentrates probability (low entropy), high temperature spreads it (high entropy approaching the maximum of \\(ln(5) ≈ 1.61\\) for 5 tokens).
+The **{{< term "entropy" "entropy" >}}** column, a measure of probability distribution spread, quantifies what we're seeing: low temperature concentrates probability (low entropy), high temperature spreads it (high entropy approaching the maximum of \\(ln(5) ≈ 1.61\\) for 5 tokens).
 
 ---
 
@@ -214,18 +211,20 @@ def visualize_temperature_effects():
 
 **Output:**
 
-At T=0.3, the top token claims nearly all the probability mass, so the model will almost always choose its first instinct. At T=1.5, probability spreads across many tokens, introducing genuine variety (and risk).
+At T=0.3, the top token claims nearly all the {{< term "probability-mass" "probability mass" >}}, so the model will almost always choose its first instinct. At T=1.5, probability spreads across many tokens, introducing genuine variety (and risk).
 
-<img src="./visualize_temperature_effects.png" alt="" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>.</em>
-</figcaption>
+{{< lightbox
+    src="visualize_temperature_effects.png"
+    alt="Four bar charts comparing token probability distributions at temperatures 0.3, 0.7, 1.0, and 1.5, showing probability spreading across more tokens as temperature increases"
+    label="Open full-size temperature effects visualization"
+    caption="As temperature increases from 0.3 to 1.5, probability spreads across more candidate tokens, reducing the dominance of the highest-probability token and increasing output diversity."
+>}}
 
 ---
 
 ## Top-P (Nucleus Sampling): Dynamic Truncation
 
-While temperature reshapes the entire distribution, top-p takes a different approach: it truncates the distribution dynamically, keeping only the tokens needed to reach cumulative probability \\(p\\) ([Holtzman et al., 2020](#holtzman2020)).
+While temperature reshapes the entire distribution, top-p takes a different approach: it truncates the distribution dynamically, keeping only the tokens needed to reach {{< term "cumulative-probability" "cumulative probability" >}} \\(p\\) ([Holtzman et al., 2020](#holtzman2020)).
 
 The algorithm:
 1. Sort tokens by probability (descending)
@@ -301,7 +300,7 @@ After top-p=0.9:
 
 Notice that top-p=0.9 kept 7 of 8 tokens here, but the key insight is that this cutoff is dynamic. If the model is confident (one token has 95% probability), top-p=0.9 might keep only that one token. If the model is uncertain, it might keep dozens.
 
-This is the crucial difference from top-k sampling, which always keeps exactly \\(k\\) tokens regardless of the distribution shape.
+This is the crucial difference from {{< term "top-k-sampling" "top-k sampling" >}}, which always keeps exactly \\(k\\) tokens regardless of the distribution shape.
 
 ---
 
@@ -641,7 +640,7 @@ Based on both the mathematics and empirical testing, here's a practical guide:
 
 ## The Temperature 0 Myth
 
-A common misconception: "Temperature 0 is deterministic." In theory, yes. The argmax of the logits always wins. In practice, floating-point arithmetic introduces subtle variations, and different implementations handle the edge case differently ([Peng et al., 2023](#peng2023)).
+A common misconception: "Temperature 0 is deterministic." In theory, yes. The {{< term "argmax" "argmax" >}} of the logits always wins. In practice, {{< term "floating-point" "floating-point arithmetic" >}} introduces subtle variations, and different implementations handle the edge case differently ([Peng et al., 2023](#peng2023)).
 
 Some providers implement "almost zero" (like 1e-8) rather than true zero. Some use a separate greedy decoding path. OpenAI's API accepts temperature=0 but may still show occasional variation in long outputs.
 
@@ -697,13 +696,13 @@ Non-determinism detected!
   - In a dimly lit laboratory, a robot named AURA, designed for ...
 ```
 
-For truly deterministic behavior, some APIs offer a separate `seed` parameter. Always check your provider's documentation.
+For truly deterministic behavior, some APIs offer a separate `{{< term "random-seed" "seed" >}}` parameter. Always check your provider's documentation.
 
 ---
 
 ## Closing Thoughts
 
-Temperature and top-p aren't magic. They're straightforward mathematical transformations with predictable effects. Temperature exponentially reshapes the probability distribution; top-p dynamically truncates it. Together, they give you fine-grained control over the exploration-exploitation tradeoff that underlies all language generation.
+Temperature and top-p aren't magic. They're straightforward mathematical transformations with predictable effects. Temperature exponentially reshapes the probability distribution; top-p dynamically truncates it. Together, they give you fine-grained control over the {{< term "exploration-exploitation" "exploration-exploitation tradeoff" >}} that underlies all language generation.
 
 The key insight is that these parameters don't change what the model knows. They change how the model decides. A low-temperature model isn't smarter; it's more committed to its first instinct. A high-temperature model isn't more creative; it's more willing to take risks.
 

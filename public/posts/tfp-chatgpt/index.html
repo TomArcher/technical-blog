@@ -38,7 +38,7 @@ You can see the computer age generative AI everywhere but in the productivity st
 (Adapted from Robert Solow, 1987)">
   <meta itemprop="datePublished" content="2025-08-19T05:00:00-07:00">
   <meta itemprop="dateModified" content="2025-08-19T05:00:00-07:00">
-  <meta itemprop="wordCount" content="840">
+  <meta itemprop="wordCount" content="844">
   <meta itemprop="keywords" content="AI,Economics,Innovation,Productivity">
 		
   <meta name="twitter:card" content="summary">
@@ -82,6 +82,7 @@ You can see the computer age generative AI everywhere but in the productivity st
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -188,14 +189,24 @@ You can see the computer age generative AI everywhere but in the productivity st
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./tfp-chatgpt.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Our tools for measuring progress were built for factories, not for AI.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/tfp-chatgpt/tfp-chatgpt.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/tfp-chatgpt/tfp-chatgpt.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Our tools for measuring progress were built for factories, not for AI.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn&rsquo;t that show up in our productivity statistics?</p>
-<p>Economists have long relied on a metric called <strong>Total Factor Productivity (TFP)</strong> to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.</p>
+<p>Economists have long relied on a metric called <strong><a class="glossary-term" href="/glossary/#total-factor-productivity" data-definition="An economic measure of the portion of output growth that cannot be explained by increases in measured inputs such as labor and capital.">Total Factor Productivity (TFP)</a></strong> to measure technological progress. But in an era of free digital tools and <a class="glossary-term" href="/glossary/#generative-ai" data-definition="Artificial intelligence systems designed to generate new content, such as text, images, audio, video, or code, in response to input.">generative AI</a>, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.</p>
 <hr>
 <blockquote>
 <p><em>You can see the <del>computer age</del> generative AI everywhere but in the productivity statistics.</em></p>
@@ -203,7 +214,7 @@ You can see the computer age generative AI everywhere but in the productivity st
 <hr>
 <hr>
 <h2 id="what-tfp-was-supposed-to-do">What TFP Was Supposed to Do</h2>
-<p>In 1957, economist Robert Solow, who would later win the Nobel Prize, developed TFP as a way to explain growth. Labor and capital only get you so far. The rest - the mysterious &ldquo;residual&rdquo; - was attributed to technological progress. For decades, TFP became the gold standard for measuring how much technology boosts efficiency.</p>
+<p>In 1957, economist Robert Solow, who would later win the Nobel Prize, developed TFP as a way to explain growth. Labor and capital only get you so far. The rest - the mysterious &ldquo;<a class="glossary-term" href="/glossary/#solow-residual" data-definition="The portion of economic output growth not explained by measured growth in labor and capital, commonly associated with changes in productivity or technology.">residual</a>&rdquo; - was attributed to technological progress. For decades, TFP became the gold standard for measuring how much technology boosts efficiency.</p>
 <p>The logic was simple: if the economy was producing more output without more workers or machines, technology must be the difference.</p>
 <p>But that was a world of assembly lines, not AI copilots.</p>
 <hr>
@@ -213,29 +224,43 @@ You can see the computer age generative AI everywhere but in the productivity st
 </a>
 ), and their arguments ring even louder in the age of AI:</p>
 <ul>
-<li><strong>It ignores embodied technology.</strong> Many innovations are baked into capital goods (think semiconductors or cloud infrastructure). TFP doesn&rsquo;t see them until much later.</li>
-<li><strong>It misses free digital tools.</strong> Google Maps saves millions of driving hours a day — but because it&rsquo;s free, it barely registers in GDP or TFP.</li>
+<li><strong>It ignores <a class="glossary-term" href="/glossary/#embodied-technology" data-definition="Technological improvement incorporated into physical or capital goods, such as more capable machinery, computers, or infrastructure.">embodied technology</a>.</strong> Many innovations are baked into capital goods (think semiconductors or cloud infrastructure). TFP doesn&rsquo;t see them until much later.</li>
+<li><strong>It misses free digital tools.</strong> Google Maps saves millions of driving hours a day — but because it&rsquo;s free, it barely registers in <a class="glossary-term" href="/glossary/#gross-domestic-product" data-definition="The monetary value of final goods and services produced within a country during a specified period.">GDP</a> or TFP.</li>
 <li><strong>It oversimplifies complex tech.</strong> New technologies often require training, adaptation, or infrastructure before their benefits materialize. TFP flattens these dynamics.</li>
 </ul>
 <p>Generative AI checks all three boxes. It lives in the cloud, is often free or cheap to use, and reshapes workflows in ways that are hard to quantify.</p>
 <hr>
 <h2 id="generative-ai-as-the-productivity-paradox-20">Generative AI as the Productivity Paradox 2.0</h2>
-<figure style="float: right; margin: 0 20px 10px 20px; width: 350px; text-align: center;">
-  <img src="./plot.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="350" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>The productivity paradox in action: AI adoption is soaring while TFP growth stays flat.</em>
-  </figcaption>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/tfp-chatgpt/plot.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/tfp-chatgpt/plot.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>The {{&lt; term &#34;productivity-paradox&#34; &#34;productivity paradox&#34; &gt;}} in action: AI adoption is soaring while TFP growth stays flat.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>We&rsquo;ve been here before. In the 1980s, economist Robert Solow famously quipped, <em>&ldquo;You can see the computer age everywhere but in the productivity statistics.&rdquo;</em></p>
 <p>Today, swap &ldquo;computer&rdquo; for &ldquo;generative AI&rdquo; and the paradox feels the same. Workers report huge time savings using AI for brainstorming, code generation, and document drafting. Yet official productivity measures look flat.</p>
 <p>Why? Because TFP was designed for smokestacks, not syntax suggestions. It can&rsquo;t capture the fact that a single lawyer using AI can review contracts in half the time or that a small business can now launch global marketing campaigns without hiring a full agency.</p>
 <hr>
 <h2 id="rethinking-productivity-in-the-age-of-ai">Rethinking Productivity in the Age of AI</h2>
-<p>If TFP is outdated, what could replace it? Economists and policymakers may need to expand the definition of productivity to reflect the new realities of human-machine collaboration:</p>
+<p>If TFP is outdated, what could replace it? Economists and policymakers may need to expand the definition of productivity to reflect the new realities of <a class="glossary-term" href="/glossary/#human-machine-collaboration" data-definition="A way of working in which people and computational systems contribute complementary capabilities toward completing a task or achieving an objective.">human-machine collaboration</a>:</p>
 <ul>
 <li><strong>Time saved per task.</strong> If an AI reduces a four-hour process to 30 minutes, that&rsquo;s real productivity, even if GDP doesn&rsquo;t change much.</li>
 <li><strong>Innovation velocity.</strong> AI tools accelerate how fast ideas move from concept to product. This is a dimension TFP never touches.</li>
-<li><strong>Human-AI capital.</strong> Instead of treating workers and technology as separate, we should measure the combined capabilities of humans augmented by AI.</li>
+<li><strong><a class="glossary-term" href="/glossary/#human-ai-capital" data-definition="A proposed way of viewing productive capability as the combined skills of people and the AI systems that augment their work.">Human-AI capital</a>.</strong> Instead of treating workers and technology as separate, we should measure the combined capabilities of humans augmented by AI.</li>
 </ul>
 <p>This isn&rsquo;t just academic nitpicking. <strong>If our metrics don&rsquo;t evolve, policymakers may underestimate AI&rsquo;s economic impact and make poor decisions about investment, regulation, and education.</strong></p>
 <hr>
@@ -450,5 +475,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

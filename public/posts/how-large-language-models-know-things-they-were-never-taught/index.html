@@ -43,7 +43,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 “A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”">
   <meta itemprop="datePublished" content="2026-02-09T06:00:00-07:00">
   <meta itemprop="dateModified" content="2026-02-09T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3490">
+  <meta itemprop="wordCount" content="3413">
   <meta itemprop="keywords" content="AI,LLM,RAG,Web Search,Context Windows">
 		
   <meta name="twitter:card" content="summary">
@@ -89,6 +89,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -198,13 +199,22 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 
     <div class="content post__content clearfix">
       <figure style="margin: 0 20px 10px 20px; text-align: center;">
-    <img src="./how-large-language-models-know-things-they-were-never-taught.png"
-        alt="A neural network with frozen weights receiving external documents being injected into its context window">
+
+    <a href="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught.png" alt="">
+
+    </a>
+
+    
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>The model didn't learn this. It just read it.</em>
+        <em>The model didn&#39;t learn this. It just read it.</em>
     </figcaption>
+    
+
 </figure>
-<p>When you ask an LLM <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
+
+<p>When you ask an <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
 <p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p>
 <p>Identical question. Same underlying technology. Completely different answers. The difference isn&rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.</p>
 <p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &ldquo;know&rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model <em>learned</em> and what a model <em>read</em>.</p>
@@ -213,7 +223,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 <blockquote>
 <p><em>&ldquo;A model with web search doesn&rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&rdquo;</em></p></blockquote>
 <hr>
-<p>This post explores how modern LLMs access information beyond their training data through web search, retrieval-augmented generation (RAG), and tool use. You&rsquo;ll see how these mechanisms work, why they&rsquo;re fundamentally different from learning, and what that means for the reliability and limitations of AI systems. If you haven&rsquo;t read my post on <a href="/posts/how-large-language-models-handle-context-windows/">
+<p>This post explores how modern LLMs access information beyond their training data through web search, <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">retrieval-augmented generation (RAG)</a>, and <a class="glossary-term" href="/glossary/#tool-use" data-definition="The ability of a model to request actions from external systems, such as web search, code execution, calculators, databases, or APIs, and then reason over the returned results.">tool use</a>. You&rsquo;ll see how these mechanisms work, why they&rsquo;re fundamentally different from learning, and what that means for the reliability and limitations of AI systems. If you haven&rsquo;t read my post on <a href="/posts/how-large-language-models-handle-context-windows/">
   how LLMs handle context windows
 </a>
 , start there; everything in this post builds on that foundation.</p>
@@ -234,7 +244,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 <p>In my post on <a href="/posts/how-large-language-models-learn/">
   how LLMs learn
 </a>
-, I explained how gradient descent adjusts model weights during training. Each weight update encodes a tiny piece of learned pattern, and after billions of updates, the model captures the statistical structure of language.</p>
+, I explained how <a class="glossary-term" href="/glossary/#gradient-descent" data-definition="An optimization method that iteratively adjusts model parameters in the direction that reduces a loss function.">gradient descent</a> adjusts model weights during training. Each weight update encodes a tiny piece of learned pattern, and after billions of updates, the model captures the statistical structure of language.</p>
 <p>But here&rsquo;s the critical point: <strong>that process stops when training ends.</strong></p>
 <p>When you interact with any LLM, you&rsquo;re using a model with completely fixed weights. The parameters that determine how the model processes text haven&rsquo;t changed since the training run finished. Your conversations don&rsquo;t update them. Your corrections don&rsquo;t update them. Nothing you do updates them.</p>
 <p>This creates an obvious problem. The model&rsquo;s knowledge has a cutoff date. Anything that happened after training is invisible to the weights. Ask about an event from last week, and the model&rsquo;s internal knowledge simply doesn&rsquo;t include it.</p>
@@ -252,7 +262,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 <p>Recall from my <a href="/posts/how-large-language-models-handle-context-windows/">
   context windows post
 </a>
- that every API call is stateless. The model processes whatever text you send it, generates a response, and forgets everything. There&rsquo;s no persistent memory between calls.</p>
+ that every API call is <a class="glossary-term" href="/glossary/#stateless" data-definition="Describes a system in which each request is handled independently without retaining information from previous requests.">stateless</a>. The model processes whatever text you send it, generates a response, and forgets everything. There&rsquo;s no persistent memory between calls.</p>
 <p>This same mechanism enables retrieval. Before the model generates a response, an external system:</p>
 <ol>
 <li>Takes your question</li>
@@ -348,19 +358,19 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 <p><strong>Document Chunking:</strong> Large documents are split into smaller, semantically meaningful chunks. A 50-page PDF might become 200 chunks of roughly 500 tokens each.</p>
 </li>
 <li>
-<p><strong>Embedding Generation:</strong> Each chunk is converted to a dense vector (embedding) using a model like OpenAI&rsquo;s <code>text-embedding-ada-002</code> or open-source alternatives. These embeddings capture semantic meaning; similar content produces similar vectors.</p>
+<p><strong><a class="glossary-term" href="/glossary/#embedding" data-definition="A numerical vector that represents a token or other object in a multidimensional space.">Embedding</a> Generation:</strong> Each chunk is converted to a dense vector (embedding) using a model like OpenAI&rsquo;s <code>text-embedding-ada-002</code> or open-source alternatives. These embeddings capture semantic meaning; similar content produces similar vectors.</p>
 </li>
 <li>
-<p><strong>Vector Storage:</strong> Embeddings are stored in a vector database (Pinecone, Weaviate, Chroma, FAISS) that enables fast similarity search.</p>
+<p><strong>Vector Storage:</strong> Embeddings are stored in a <a class="glossary-term" href="/glossary/#vector-database" data-definition="A database designed to store and search high-dimensional vectors, commonly used to retrieve items with embeddings similar to a query.">vector database</a> (Pinecone, Weaviate, Chroma, FAISS) that enables fast similarity search.</p>
 </li>
 <li>
 <p><strong>Query Embedding:</strong> When a user asks a question, the question is also embedded into the same vector space.</p>
 </li>
 <li>
-<p><strong>Similarity Search:</strong> The system finds the document chunks whose embeddings are most similar to the query embedding. This typically uses cosine similarity or approximate nearest neighbor search.</p>
+<p><strong>Similarity Search:</strong> The system finds the document chunks whose embeddings are most similar to the query embedding. This typically uses <a class="glossary-term" href="/glossary/#cosine-similarity" data-definition="A measure of similarity between two vectors based on the cosine of the angle between them.">cosine similarity</a> or <a class="glossary-term" href="/glossary/#approximate-nearest-neighbor" data-definition="A search technique that efficiently finds vectors close to a query vector without exhaustively comparing the query against every stored vector.">approximate nearest neighbor search</a>.</p>
 </li>
 <li>
-<p><strong>Context Construction:</strong> The top-k most relevant chunks are retrieved and formatted as context for the LLM.</p>
+<p><strong>Context Construction:</strong> The <a class="glossary-term" href="/glossary/#top-k" data-definition="The k highest-ranked results selected from a larger set, such as the most relevant document chunks returned by a retrieval system.">top-k</a> most relevant chunks are retrieved and formatted as context for the LLM.</p>
 </li>
 <li>
 <p><strong>Augmented Generation:</strong> The LLM receives both the user&rsquo;s question and the retrieved context, generating a response grounded in the retrieved documents.</p>
@@ -457,7 +467,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 </span></span></code></pre></div><hr>
 <h2 id="what-the-model-actually-does">What the Model Actually Does</h2>
 <p>Once relevant content is retrieved and injected, what does the model do with it? This is where the frozen capabilities come into play.</p>
-<p><strong>Pattern Matching Over Retrieved Text:</strong> The model applies the same attention mechanisms and pattern recognition it uses for any text. It doesn&rsquo;t &ldquo;know&rdquo; the retrieved content is special; it simply processes it as part of the input sequence.</p>
+<p><strong>Pattern Matching Over Retrieved Text:</strong> The model applies the same <a class="glossary-term" href="/glossary/#attention" data-definition="A mechanism that allows a model to determine how strongly one token should relate to other tokens when constructing a representation.">attention mechanisms</a> and pattern recognition it uses for any text. It doesn&rsquo;t &ldquo;know&rdquo; the retrieved content is special; it simply processes it as part of the input sequence.</p>
 <p><strong>Synthesis and Reasoning:</strong> The model can combine information from multiple retrieved chunks, identify contradictions, extract specific facts, and generate coherent summaries. These capabilities were learned during training; retrieval just provides new material to apply them to.</p>
 <p><strong>Citation Generation:</strong> When models cite sources, they&rsquo;re typically extracting attribution information from the retrieved text itself. The citation &ldquo;according to the New York Times&rdquo; appears because that phrase (or the source URL) was present in the retrieved content.</p>
 <p><strong>No Fact Verification:</strong> The model cannot independently verify whether retrieved information is accurate. If the retrieval returns outdated or incorrect content, the model will confidently present that information as fact. Garbage in, garbage out.</p>
@@ -525,7 +535,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
   </tbody>
 </table>
 <p>When a model learns something during training, that knowledge becomes part of its weights. It&rsquo;s compressed, abstracted, and available for all future interactions. The model doesn&rsquo;t need to &ldquo;look up&rdquo; that information; it&rsquo;s encoded in the parameters.</p>
-<p>When a model retrieves something at inference time, that knowledge exists only as text in the current context window. It&rsquo;s not compressed or abstracted. The model reads it, reasons over it, and then forgets it completely when the conversation ends.</p>
+<p>When a model retrieves something at <a class="glossary-term" href="/glossary/#inference" data-definition="The process of using a trained model to generate predictions or outputs from new input.">inference</a> time, that knowledge exists only as text in the current context window. It&rsquo;s not compressed or abstracted. The model reads it, reasons over it, and then forgets it completely when the conversation ends.</p>
 <p>This is why retrieval-augmented models can &ldquo;know&rdquo; current events while still having a knowledge cutoff. The cutoff applies to the weights; retrieval has no cutoff because it accesses live information.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Learning vs Retrieval</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">LearningVsRetrieval</span>:
@@ -595,7 +605,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 <h3 id="retrieval-doesnt-fix-reasoning-failures">Retrieval Doesn&rsquo;t Fix Reasoning Failures</h3>
 <p>If a model struggles with a particular type of reasoning (say, multi-step math), retrieval won&rsquo;t help. You can retrieve a textbook chapter on algebra, but the model still needs to apply that knowledge correctly.</p>
 <h3 id="hallucination-persists">Hallucination Persists</h3>
-<p>Models can still hallucinate even with retrieved content. They might misread the retrieved text, combine information incorrectly, or generate details not present in any source.</p>
+<p>Models can still <a class="glossary-term" href="/glossary/#hallucination" data-definition="Model-generated information that is unsupported by the available evidence or presented as factual despite being incorrect or fabricated.">hallucinate</a> even with retrieved content. They might misread the retrieved text, combine information incorrectly, or generate details not present in any source.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># Retrieval doesn&#39;t prevent all failure modes</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">retrieval_limitations</span>():
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Problem 1: Bad retrieval</span>
@@ -627,38 +637,27 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 <p>Information from retrieved sources doesn&rsquo;t persist between conversations. Each new chat starts fresh, requiring new retrieval for current information.</p>
 <hr>
 <h2 id="the-architecture-of-augmented-llms">The Architecture of Augmented LLMs</h2>
-<p>Modern AI assistants combine multiple components:</p>
-<pre><code>┌─────────────────────────────────────────────────────────────┐
-│                      User Interface                          │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Orchestration Layer                        │
-│  - Decides whether to search/retrieve                        │
-│  - Manages tool calls                                        │
-│  - Constructs augmented prompts                              │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-          ┌───────────┼───────────┐
-          ▼           ▼           ▼
-┌─────────────┐ ┌───────────┐ ┌─────────────┐
-│ Web Search  │ │    RAG    │ │   Tools     │
-│   System    │ │  System   │ │  (Code,     │
-│             │ │           │ │   APIs)     │
-└─────────────┘ └───────────┘ └─────────────┘
-          │           │           │
-          └───────────┼───────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    LLM (Frozen Weights)                      │
-│  - Processes augmented context                               │
-│  - Generates responses                                       │
-│  - Synthesizes retrieved information                         │
-└─────────────────────────────────────────────────────────────┘
-</code></pre>
-<p>The LLM itself is just one component. The orchestration layer decides when to retrieve, what to retrieve, and how to present retrieved information. This is where much of the system intelligence actually lives.</p>
+<p>Modern AI assistants combine multiple components. The LLM itself is just one component. The <a class="glossary-term" href="/glossary/#orchestration-layer" data-definition="The software layer surrounding a model that coordinates tasks such as retrieval, tool calls, context construction, and the flow of information between components.">orchestration layer</a> decides when to retrieve, what to retrieve, and how to present retrieved information. This is where much of the system intelligence actually lives.</p>
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-know-things-they-were-never-taught/augmented-llm-architecture.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-know-things-they-were-never-taught/augmented-llm-architecture.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Modern AI assistants combine an orchestration layer with web search, retrieval-augmented generation, and external tools before passing augmented context to the underlying LLM.</em>
+    </figcaption>
+    
+
+</figure>
+
 <hr>
 <h2 id="closing-thoughts">Closing Thoughts</h2>
 <p>The ability for LLMs to access current information through retrieval is genuinely useful. It extends frozen models far beyond their training data cutoffs and enables grounded responses that cite real sources.</p>
@@ -906,5 +905,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

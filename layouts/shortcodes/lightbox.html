@@ -1,0 +1,23 @@
+{{ $src := .Get "src" }}
+{{ $image := .Page.Resources.GetMatch $src }}
+
+{{ if $image }}
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="{{ $image.RelPermalink }}" class="lightbox-trigger" aria-label="{{ with .Get " label" }}{{ . }}{{ else
+        }}Open full-size image{{ end }}">
+
+        <img src="{{ $image.RelPermalink }}" alt="{{ .Get " alt" }}">
+
+    </a>
+
+    {{ with .Get "caption" }}
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>{{ . }}</em>
+    </figcaption>
+    {{ end }}
+
+</figure>
+{{ else }}
+<p><strong>Lightbox image not found: {{ $src }}</strong></p>
+{{ end }}

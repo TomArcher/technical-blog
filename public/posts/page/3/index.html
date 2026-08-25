@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -134,16 +135,23 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-llms-handle-context-windows.png"
-       alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections between tokens"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
+    </figcaption>
+    
+
 </figure>
-<p>When you have a long conversation with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -153,7 +161,7 @@
 <p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
 <hr>
 <blockquote>
-<p><em>&ldquo;A context window isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<p><em>&ldquo;A <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a> isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
 <hr>
 	</div>
 	<div class="list__footer clearfix">
@@ -170,13 +178,23 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./safe-distance-in-traffic-vertical-arrows.png" alt="Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Following distance isn't just space, it's time in motion.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/safe-distance-in-traffic/safe-distance-in-traffic-vertical-arrows.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/safe-distance-in-traffic/safe-distance-in-traffic-vertical-arrows.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Following distance isn&#39;t just space, it&#39;s time in motion.</em>
+    </figcaption>
+    
+
 </figure>
-<p>While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the <strong>three-second rule</strong> and its validity. As I&rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.</p>
+
+<p>While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the <strong><a class="glossary-term" href="/glossary/#three-second-rule" data-definition="A driving guideline that recommends maintaining at least three seconds of travel time between your vehicle and the vehicle ahead.">three-second rule</a></strong> and its validity. As I&rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Three seconds is a rule of thumb. Physics reveals the truth.&rdquo;</em></p></blockquote>
@@ -196,18 +214,25 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./thermo-water-energy-balance.png" 
-       alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint energy balance formulas in the background" 
-       width="250" 
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/thermo-water-energy-balance/thermo-water-energy-balance.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/thermo-water-energy-balance/thermo-water-energy-balance.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.</p>
-<p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&rsquo;s not coincidence; it&rsquo;s thermodynamics.</p>
-<p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&rsquo;s <em>specific heat</em> is much higher.</p>
+<p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&rsquo;s not coincidence; it&rsquo;s <a class="glossary-term" href="/glossary/#thermodynamics" data-definition="The branch of physics concerned with energy, heat, work, temperature, and the ways energy is transferred and transformed.">thermodynamics</a>.</p>
+<p>The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water&rsquo;s <em><a class="glossary-term" href="/glossary/#specific-heat" data-definition="The amount of energy required to raise the temperature of a unit mass of a substance by one degree.">specific heat</a></em> is much higher.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change.&rdquo;</em></p></blockquote>
@@ -227,23 +252,30 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-large-language-models-learn3.png"
-       alt="Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding."
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Meaning takes shape as the model learns to descend its own mathematical terrain.</em>
-  </figcaption>
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-learn/how-large-language-models-learn3.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-learn/how-large-language-models-learn3.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Meaning takes shape as the model learns to descend its own mathematical terrain.</em>
+    </figcaption>
+    
+
 </figure>
-<p>When you interact with a large language model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you interact with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
 , the model seems to respond instantly relative to the question&rsquo;s degree of difficulty. What&rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.</p>
-<p>Large language models don&rsquo;t memorize text. They <em>optimize</em> it. Behind that optimization lies calculus. I&rsquo;m not referring to the calculus you did with pencil and paper. I&rsquo;m talking about a sprawling, automated version that computes millions of derivatives per second.</p>
+<p>Large language models don&rsquo;t memorize text. They <em>optimize</em> it. Behind that optimization lies calculus. I&rsquo;m not referring to the calculus you did with pencil and paper. I&rsquo;m talking about a sprawling, automated version that computes millions of <a class="glossary-term" href="/glossary/#derivative" data-definition="A measure of how quickly a function changes with respect to one of its variables, such as how a quantity changes over time.">derivatives</a> per second.</p>
 <p>At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be <em>slightly less wrong.</em> The word &ldquo;slightly&rdquo; in this context is the essence of calculus.</p>
 <hr>
 <blockquote>
@@ -264,24 +296,31 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-language-models-read-code.png" 
-    alt="Digital artwork showing vector/matrix math with the output being words, symbolizing that AI generates words from linear algebra operations." 
-    width="250" 
-    style="display: block; margin: 0 auto;">
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-think/how-large-language-models-read-code.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-think/how-large-language-models-read-code.png" alt="">
+
+    </a>
+
+    
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
         <em>Meaning takes shape in mathematics long before it reaches words.</em>
     </figcaption>
+    
+
 </figure>
-<p>When you enter a sentence into a Large Language Model (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+<p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
   Claude
 </a>
 , the model does not process words as language. It represents them as numbers.</p>
-<p>Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
-<p>This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
+<p>Each word, phrase, and code <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> becomes a vector — a list of real-valued coordinates within a <a class="glossary-term" href="/glossary/#high-dimensional-space" data-definition="A mathematical space containing many independent dimensions, allowing complex objects and relationships to be represented as vectors.">high-dimensional space</a>. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
+<p>This is the mathematical foundation of large language models: linear algebra. <a class="glossary-term" href="/glossary/#matrix-multiplication" data-definition="An operation that combines matrices by computing dot products between rows and columns, forming the basis of many neural network computations.">Matrix multiplication</a>, <a class="glossary-term" href="/glossary/#vector-projection" data-definition="The component of one vector that lies in the direction of another vector.">vector projection</a>, <a class="glossary-term" href="/glossary/#cosine-similarity" data-definition="A measure of similarity between two vectors based on the cosine of the angle between them.">cosine similarity</a>, and <a class="glossary-term" href="/glossary/#normalization" data-definition="The process of rescaling numerical values or vectors to a standardized range or magnitude.">normalization</a> define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&rdquo;</em></p></blockquote>
@@ -461,5 +500,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

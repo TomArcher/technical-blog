@@ -90,6 +90,7 @@ There’s a better way: dispatch tables!">
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -194,22 +195,32 @@ There’s a better way: dispatch tables!">
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./python-dispatch-maps.png" alt="Python Tip of the Week logo: Python Post-it note on monitor" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/python-dispatch-maps/python-dispatch-maps.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/python-dispatch-maps/python-dispatch-maps.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
 <p>Most of us start with the usual suspects:</p>
 <p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
-❌ A graveyard of guard clauses scattered line after line</p>
+❌ A graveyard of <a class="glossary-term" href="/glossary/#guard-clause" data-definition="A conditional check placed near the beginning of a function or block that exits early when a required condition is not satisfied.">guard clauses</a> scattered line after line</p>
 <hr>
 <blockquote>
-<p><em>Using a dispatch table for validation rules means: one dictionary, one loop, infinite sanity.</em></p></blockquote>
+<p><em>Using a dispatch table for validation rules means: one <a class="glossary-term" href="/glossary/#python-dictionary" data-definition="A Python mapping type that stores values as key-value pairs and provides access to each value through its associated key.">dictionary</a>, one loop, infinite sanity.</em></p></blockquote>
 <hr>
 <p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
-<p>There&rsquo;s a better way: <strong>dispatch tables</strong>!</p>
+<p>There&rsquo;s a better way: <strong><a class="glossary-term" href="/glossary/#dispatch-table" data-definition="A data structure that maps keys or conditions to functions, actions, or other behavior, allowing selection without a long series of conditional statements.">dispatch tables</a></strong>!</p>
 <hr>
 <h2 id="the-inverted-v-approach-">The Inverted-V Approach 😱</h2>
 <p>Here&rsquo;s how many programmers begin - especially those with a C++/C#/Java background. You just want to validate a few things… but suddenly your code resembles a Cyrano de Bergerac profile:</p>
@@ -265,7 +276,7 @@ Sure, it works… but it&rsquo;s awkward, fragile, and painful to extend. Add on
 <p><strong>Takeaway:</strong>
 Cleaner than the inverted-V, but now every new rule means another line. Add 10 rules, and you&rsquo;re back to scrolling forever.</p>
 <h2 id="enter-dispatch-tables-">Enter Dispatch Tables ✨</h2>
-<p>A dispatch table is just a dictionary where the key is the error message and the value is a check function (usually a lambda).
+<p>A dispatch table is just a dictionary where the key is the error message and the value is a check function (usually a <a class="glossary-term" href="/glossary/#lambda-function" data-definition="A small anonymous function in Python defined with the lambda keyword, typically used for simple expressions that do not require a named function.">lambda</a>).
 Instead of scattering control flow everywhere, you centralize the rules in one tidy structure.</p>
 <p>Here&rsquo;s a snack-sized example you can paste right now:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">create_user</span>(username: <span style="color:#8be9fd;font-style:italic">str</span>, age: <span style="color:#8be9fd;font-style:italic">int</span>, email: <span style="color:#8be9fd;font-style:italic">str</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">None</span>:
@@ -302,7 +313,7 @@ Instead of scattering control flow everywhere, you centralize the rules in one t
 </li>
 </ul>
 <h2 id="closing-thoughts-">Closing Thoughts 💡</h2>
-<p>Dispatch tables turn &ldquo;ugh, validation code&rdquo; into something declarative, compact, and kind of fun to work with. They are:</p>
+<p>Dispatch tables turn &ldquo;ugh, validation code&rdquo; into something <a class="glossary-term" href="/glossary/#declarative-programming" data-definition="A programming style that describes what should be accomplished rather than explicitly specifying each control-flow step used to accomplish it.">declarative</a>, compact, and kind of fun to work with. They are:</p>
 <ul>
 <li>
 <p><strong>Readable</strong>: Each rule is self-explanatory, almost like documentation.</p>
@@ -516,5 +527,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

@@ -8,16 +8,16 @@ author = "Tom Archer"
 listThumb = "tfp-chatgpt.png"
 +++
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./tfp-chatgpt.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Our tools for measuring progress were built for factories, not for AI.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="tfp-chatgpt.png"
+    alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI."
+    label="Open full-size tfp chatgpt"
+    caption="Our tools for measuring progress were built for factories, not for AI."
+>}}
 
 If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn't that show up in our productivity statistics?
 
-Economists have long relied on a metric called **Total Factor Productivity (TFP)** to measure technological progress. But in an era of free digital tools and generative AI, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.
+Economists have long relied on a metric called **{{< term "total-factor-productivity" "Total Factor Productivity (TFP)" >}}** to measure technological progress. But in an era of free digital tools and {{< term "generative-ai" "generative AI" >}}, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.
 
 ---
 
@@ -33,7 +33,7 @@ Economists have long relied on a metric called **Total Factor Productivity (TFP)
 
 ## What TFP Was Supposed to Do
 
-In 1957, economist Robert Solow, who would later win the Nobel Prize, developed TFP as a way to explain growth. Labor and capital only get you so far. The rest - the mysterious "residual" - was attributed to technological progress. For decades, TFP became the gold standard for measuring how much technology boosts efficiency.
+In 1957, economist Robert Solow, who would later win the Nobel Prize, developed TFP as a way to explain growth. Labor and capital only get you so far. The rest - the mysterious "{{< term "solow-residual" "residual" >}}" - was attributed to technological progress. For decades, TFP became the gold standard for measuring how much technology boosts efficiency.
 
 The logic was simple: if the economy was producing more output without more workers or machines, technology must be the difference.
 
@@ -45,8 +45,8 @@ But that was a world of assembly lines, not AI copilots.
 
 Critics have been pointing out TFP's flaws for years (see [Further Reading](#further-reading)), and their arguments ring even louder in the age of AI:
 
-* **It ignores embodied technology.** Many innovations are baked into capital goods (think semiconductors or cloud infrastructure). TFP doesn't see them until much later.
-* **It misses free digital tools.** Google Maps saves millions of driving hours a day — but because it's free, it barely registers in GDP or TFP.
+* **It ignores {{< term "embodied-technology" "embodied technology" >}}.** Many innovations are baked into capital goods (think semiconductors or cloud infrastructure). TFP doesn't see them until much later.
+* **It misses free digital tools.** Google Maps saves millions of driving hours a day — but because it's free, it barely registers in {{< term "gross-domestic-product" "GDP" >}} or TFP.
 * **It oversimplifies complex tech.** New technologies often require training, adaptation, or infrastructure before their benefits materialize. TFP flattens these dynamics.
 
 Generative AI checks all three boxes. It lives in the cloud, is often free or cheap to use, and reshapes workflows in ways that are hard to quantify.
@@ -55,12 +55,12 @@ Generative AI checks all three boxes. It lives in the cloud, is often free or ch
 
 ## Generative AI as the Productivity Paradox 2.0
 
-<figure style="float: right; margin: 0 20px 10px 20px; width: 350px; text-align: center;">
-  <img src="./plot.png" alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI." width="350" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>The productivity paradox in action: AI adoption is soaring while TFP growth stays flat.</em>
-  </figcaption>
-</figure>
+{{< lightbox
+    src="plot.png"
+    alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI."
+    label="Open full-size plot"
+    caption="The {{< term \"productivity-paradox\" \"productivity paradox\" >}} in action: AI adoption is soaring while TFP growth stays flat."
+>}}
 
 We've been here before. In the 1980s, economist Robert Solow famously quipped, *"You can see the computer age everywhere but in the productivity statistics."*
 
@@ -72,11 +72,11 @@ Why? Because TFP was designed for smokestacks, not syntax suggestions. It can't 
 
 ## Rethinking Productivity in the Age of AI
 
-If TFP is outdated, what could replace it? Economists and policymakers may need to expand the definition of productivity to reflect the new realities of human-machine collaboration:
+If TFP is outdated, what could replace it? Economists and policymakers may need to expand the definition of productivity to reflect the new realities of {{< term "human-machine-collaboration" "human-machine collaboration" >}}:
 
 * **Time saved per task.** If an AI reduces a four-hour process to 30 minutes, that's real productivity, even if GDP doesn't change much.
 * **Innovation velocity.** AI tools accelerate how fast ideas move from concept to product. This is a dimension TFP never touches.
-* **Human-AI capital.** Instead of treating workers and technology as separate, we should measure the combined capabilities of humans augmented by AI.
+* **{{< term "human-ai-capital" "Human-AI capital" >}}.** Instead of treating workers and technology as separate, we should measure the combined capabilities of humans augmented by AI.
 
 This isn't just academic nitpicking. **If our metrics don't evolve, policymakers may underestimate AI's economic impact and make poor decisions about investment, regulation, and education.**
 

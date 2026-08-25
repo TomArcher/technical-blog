@@ -76,6 +76,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -182,16 +183,23 @@
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-language-models-read-code.png" 
-    alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic." 
-    width="250" 
-    style="display: block; margin: 0 auto;">
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-read-code/how-large-language-models-read-code.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-read-code/how-large-language-models-read-code.png" alt="">
+
+    </a>
+
+    
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
         <em>AI reads code as patterns, not instructions.</em>
     </figcaption>
+    
+
 </figure>
-<p>Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
+
+<p>Developers are accustomed to thinking about code in terms of <a class="glossary-term" href="/glossary/#syntax-semantics" data-definition="Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.">syntax and semantics</a>, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a>, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;When an AI system &lsquo;understands&rsquo; code, it is not executing logic; it is modeling probability.</em>&rdquo;</p></blockquote>
@@ -222,31 +230,42 @@
   LLaMA (Meta)
 </a>
 .</p>
-<p>The &ldquo;large&rdquo; in large language model refers to the scale of parameters where billions of adjustable values tune how the model interprets and generates text.</p>
-<p>At its core, an LLM is a probability engine. It predicts the next most likely word or token based on the context of what came before. That simple act, repeated across billions of examples during training, is what gives these models the ability to sound fluent, coherent, and contextually aware.</p>
+<p>The &ldquo;large&rdquo; in large language model refers to the scale of <a class="glossary-term" href="/glossary/#model-parameter" data-definition="A numerical value learned during training that influences how a model transforms inputs into outputs.">parameters</a> where billions of adjustable values tune how the model interprets and generates text.</p>
+<p>At its core, an LLM is a probability engine. It predicts the next most likely word or <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> based on the context of what came before. That simple act, repeated across billions of examples during training, is what gives these models the ability to sound fluent, coherent, and contextually aware.</p>
 <p>In other words, an LLM doesn&rsquo;t think about language; it <strong>models</strong> language itself.</p>
 <hr>
 <h2 id="syntax-as-pattern-not-rule">Syntax as Pattern, Not Rule</h2>
-<p>When a compiler reads a function like the following, it parses tokens, constructs an abstract syntax tree (AST), and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable <code>x</code> by itself.</p>
+<p>When a compiler reads a function like the following, it parses tokens, constructs an <a class="glossary-term" href="/glossary/#abstract-syntax-tree" data-definition="A tree representation of the grammatical structure of source code, with nodes representing constructs such as expressions, statements, and declarations.">abstract syntax tree (AST)</a>, and transforms the result into intermediate bytecode. The semantics are precise: multiply the variable <code>x</code> by itself.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">square</span>(x): 
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> x <span style="color:#ff79c6">*</span> x
-</span></span></code></pre></div><figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-    <img src="./how-large-language-models-read-code-flow.png" 
-    alt="Flowchart-style illustration showing how an AI model tokenizes source code and predicts the next token based on statistical context, contrasting with how a compiler parses syntax." 
-    width="250" 
-    style="display: block; margin: 0 auto;">
+</span></span></code></pre></div>
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-read-code/how-large-language-models-read-code-flow.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-read-code/how-large-language-models-read-code-flow.png" alt="">
+
+    </a>
+
+    
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
         <em>Patterns drive AI recognition; not syntax.</em>
     </figcaption>
+    
+
 </figure>
+
 <p>An LLM, by contrast, does not parse in the traditional sense. It tokenizes, compressing text by subword frequency rather than grammatical role, and then predicts one token at a time based on the statistical context of all previous tokens. The model &ldquo;understands&rdquo; that <code>return x * x</code> likely follows <code>def square(x):</code> because it has seen this pattern thousands of times across training corpora, not because it knows what multiplication does.</p>
-<p>In the language of probability, a compiler computes meaning deterministically; a model approximates it stochastically.</p>
+<p>In the language of probability, a compiler computes meaning deterministically; a model approximates it <a class="glossary-term" href="/glossary/#stochastic" data-definition="Involving randomness or probability rather than producing a completely deterministic outcome.">stochastically</a>.</p>
 <hr>
 <h2 id="the-shape-of-understanding">The Shape of Understanding</h2>
 <p>When a human reads code, we chunk it semantically. The line <code>for user in data:</code> evokes an internal schema: iteration, collection, filtering. The model does something analogous, but its mental map is geometric, not symbolic.</p>
 <p>Consider the following prompt given to a model fine-tuned on code:</p>
 <pre tabindex="0"><code>&#34;def process_users(data):&#34;
-</code></pre><p>This becomes a dense vector in a high-dimensional embedding space. Nearby vectors might represent similar constructs like &ldquo;process_orders(data)&rdquo; or &ldquo;handle_clients(list).&rdquo;</p>
+</code></pre><p>This becomes a dense vector in a high-dimensional <a class="glossary-term" href="/glossary/#embedding" data-definition="A numerical vector that represents a token or other object in a multidimensional space.">embedding space</a>. Nearby vectors might represent similar constructs like &ldquo;process_orders(data)&rdquo; or &ldquo;handle_clients(list).&rdquo;</p>
 <p>These proximity relationships are the raw materials of AI understanding. The closer two snippets lie in vector space, the more the model perceives them as semantically related, even when the model has no explicit representation of what a user or an order is.</p>
 <p>Embeddings compress the vast space of human logic into geometric analogies. Code with similar structure, naming, and flow tends to cluster, which is why renaming a variable or removing a comment can subtly shift a model&rsquo;s interpretation.</p>
 <hr>
@@ -271,11 +290,11 @@
 </span></span><span style="display:flex;"><span>    ],
 </span></span><span style="display:flex;"><span>    logprobs<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p>The model will usually reply that the function &ldquo;sends a welcome email to all active users.&rdquo; Now remove the comment and run it again. The response will still be similar, but the probability distribution shifts: the model&rsquo;s confidence in &ldquo;welcome email&rdquo; drops because the lexical hint vanished.</p>
+</span></span></code></pre></div><p>The model will usually reply that the function &ldquo;sends a welcome email to all active users.&rdquo; Now remove the comment and run it again. The response will still be similar, but the <a class="glossary-term" href="/glossary/#probability-distribution" data-definition="A mathematical description of the possible outcomes of a random process and the probabilities associated with those outcomes.">probability distribution</a> shifts: the model&rsquo;s confidence in &ldquo;welcome email&rdquo; drops because the lexical hint vanished.</p>
 <p>Comments not only help humans; they also anchor semantic space for models. Embeddings are sensitive to natural language cues because language and code share the same token vocabulary. That is why consistent commenting style, clear naming, and logical spacing often yield more accurate AI-assisted explanations and refactorings.</p>
 <hr>
 <h2 id="when-syntax-misleads-semantics">When Syntax Misleads Semantics</h2>
-<p>Because models learn from co-occurrence rather than execution, they sometimes hallucinate logic. A variable named <code>result</code> near <code>sum()</code> nudges the model to assume aggregation, even if the code computes a difference. The model&rsquo;s &ldquo;understanding&rdquo; is weighted toward linguistic bias.</p>
+<p>Because models learn from co-occurrence rather than execution, they sometimes <a class="glossary-term" href="/glossary/#hallucination" data-definition="Model-generated information that is unsupported by the available evidence or presented as factual despite being incorrect or fabricated.">hallucinate</a> logic. A variable named <code>result</code> near <code>sum()</code> nudges the model to assume aggregation, even if the code computes a difference. The model&rsquo;s &ldquo;understanding&rdquo; is weighted toward linguistic bias.</p>
 <p>Take this example:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">calculate_difference</span>(a, b):
 </span></span><span style="display:flex;"><span>    result <span style="color:#ff79c6">=</span> a <span style="color:#ff79c6">+</span> b
@@ -288,7 +307,7 @@
 <p>That is not understanding in the compiler sense; it is associative modeling. But this statistical machinery is astonishingly effective because code follows social, not natural, evolution. Developers imitate idioms. AI imitates our imitation. Together, they form a feedback loop of probabilistic convention.</p>
 <hr>
 <h2 id="from-tokens-to-intent">From Tokens to Intent</h2>
-<p>To see how deep this patterning goes, look at a model&rsquo;s log probabilities for a simple prompt:</p>
+<p>To see how deep this patterning goes, look at a model&rsquo;s <a class="glossary-term" href="/glossary/#log-probability" data-definition="The logarithm of a probability, commonly used in machine learning because it makes very small probabilities easier to compute with and combine.">log probabilities</a> for a simple prompt:</p>
 <pre tabindex="0"><code>&#34;def is_palindrome(s): return s == s[::-1]&#34;
 </code></pre><p>The log probability for <code>s[::-1]</code> is extremely high because that slice notation is a canonical pattern in the training corpus for palindrome detection. (For a deeper look at what <em>log probability</em> means and why models use it, see <a href="/posts/how-ai-turns-meaning-into-math/">
   Inside the Mind of a Model: How AI Turns Meaning into Math
@@ -303,7 +322,7 @@
 <p>The compiler enforces the syntax of logic; the model enforces the logic of culture. The former transforms instructions into machine behavior. The latter transforms text into probabilities that resemble meaning. When these systems meet, such as in Copilot or GitHub&rsquo;s autocomplete, they complement each other beautifully. The compiler guarantees execution; the model suggests intention.</p>
 <hr>
 <h2 id="the-power-of-context-windows">The Power of Context Windows</h2>
-<p>One of the most underappreciated aspects of AI code comprehension is the size of its context window. The broader the context, the closer a model gets to true comprehension.</p>
+<p>One of the most underappreciated aspects of AI code comprehension is the size of its <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a>. The broader the context, the closer a model gets to true comprehension.</p>
 <p>In human terms, a developer reading fifty lines can recall relationships across functions; a model with a 128k token window can recall dependencies across entire modules. This does not facilitate logical reasoning, but it does enable global pattern retention, which is crucial for tasks such as refactoring, summarization, or maintaining style consistency.</p>
 <hr>
 <h2 id="experimenting-with-prompt-geometry">Experimenting with Prompt Geometry</h2>
@@ -317,7 +336,7 @@
 <hr>
 <h2 id="when-probabilities-meet-production">When Probabilities Meet Production</h2>
 <p>Models that read code can accelerate onboarding, documentation, and even code review, but they introduce risk if developers mistake probability for proof. A suggestion may be statistically likely but logically wrong.</p>
-<p>In safety-critical domains such as finance, medicine, and infrastructure, LLMs should never operate without a deterministic verification layer. Tools that combine static analysis with generative suggestions, such as semantic linting or differential testing, provide a bridge between the stochastic intuition of AI and the formal rigor of compilers.</p>
+<p>In safety-critical domains such as finance, medicine, and infrastructure, LLMs should never operate without a deterministic verification layer. Tools that combine <a class="glossary-term" href="/glossary/#static-analysis" data-definition="The examination of source code for properties, errors, or vulnerabilities without executing the program.">static analysis</a> with generative suggestions, such as semantic linting or <a class="glossary-term" href="/glossary/#differential-testing" data-definition="A testing technique that compares the outputs of multiple implementations or executions to identify unexpected differences.">differential testing</a>, provide a bridge between the stochastic intuition of AI and the formal rigor of compilers.</p>
 <hr>
 <h2 id="toward-a-hybrid-intelligence">Toward a Hybrid Intelligence</h2>
 <p>The real frontier lies in coupling deterministic parsers with probabilistic interpreters. Imagine an IDE where the compiler exposes ASTs and an LLM attaches commentary to each node, explaining likely intent, flagging anomalies, and predicting downstream effects.</p>
@@ -522,5 +541,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

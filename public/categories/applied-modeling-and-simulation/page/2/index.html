@@ -65,6 +65,7 @@
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -172,6 +173,7 @@
         
         
         <div class="post-summary">
+
 <p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.</p>
 <hr>
 <blockquote>
@@ -218,15 +220,16 @@
         
         
         <div class="post-summary">
+
 <p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
 <hr>
 <blockquote>
 <p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
 <hr>
 <p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
-  <strong>0/1 knapsack problem with two constraints</strong>
+  <strong><a class="glossary-term" href="/glossary/#multidimensional-knapsack" data-definition="A generalization of the knapsack problem in which each item consumes multiple limited resources and the goal is to maximize total value without exceeding any resource constraint.">0/1 knapsack problem with two constraints</a></strong>
 </a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal &ldquo;meeting diet.&rdquo;</p></div>
+, you can treat meetings like items with value, time cost, and energy cost. Classic <a class="glossary-term" href="/glossary/#optimization" data-definition="The process of finding the best solution to a problem according to a defined objective while satisfying specified constraints.">optimization</a> techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a <a class="glossary-term" href="/glossary/#simulation" data-definition="The use of a computational model to imitate the behavior of a system so that its outcomes can be explored or analyzed.">simulation</a> to visualize your optimal &ldquo;meeting diet.&rdquo;</p></div>
 
         <p><a class="btn" href="/posts/meeting-diet/">Read more →</a></p>
       </article>
@@ -267,6 +270,7 @@
         
         
         <div class="post-summary">
+
 <p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
 <blockquote>
 <p><em>&ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&rdquo;</em></p></blockquote>
@@ -312,6 +316,7 @@
         
         
         <div class="post-summary">
+
 <p>Early in my programming career, I came across a coding challenge that stuck with me for many years:</p>
 <hr>
 <blockquote>
@@ -493,5 +498,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

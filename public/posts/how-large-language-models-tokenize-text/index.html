@@ -83,6 +83,7 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -191,18 +192,25 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./how-large-language-models-tokenize-text.png"
-       alt="Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate tokens"
-       width="250"
-       style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.</em>
-  </figcaption>
+      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.</em>
+    </figcaption>
+    
+
 </figure>
+
 <p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
 <p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
-<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong>glitch token</strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
+<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong><a class="glossary-term" href="/glossary/#glitch-token" data-definition="A token that produces unusual or unreliable model behavior because its learned representation is missing, weak, or otherwise anomalous.">glitch token</a></strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
   Rumbelow &amp; Watkins, 2023
 </a>
 ).</p>
@@ -221,7 +229,7 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 </a>
 , it has to break language into pieces it can process.</p>
 <hr>
-<h2 id="what-is-tokenization">What Is Tokenization?</h2>
+<h2 id="what-is-hahahugoshortcode109s2hbhb">What Is <a class="glossary-term" href="/glossary/#tokenization" data-definition="The process of dividing input into tokens that a model can represent and process numerically.">Tokenization</a>?</h2>
 <p><strong>Tokenization is the process of breaking text into units (tokens) that a language model can process.</strong></p>
 <p>At first glance, this seems trivial: just split on spaces and punctuation, right? But natural language is messier than that:</p>
 <ul>
@@ -231,7 +239,7 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 <li><code>&quot;Dr. Smith&quot;</code> → Is the period part of the abbreviation or sentence-ending punctuation?</li>
 <li><code>&quot;New York&quot;</code> → Two words, but one semantic unit</li>
 </ul>
-<p>Different tokenization strategies make different tradeoffs between <strong>vocabulary size</strong>, <strong>sequence length</strong>, and <strong>semantic coherence</strong>.</p>
+<p>Different tokenization strategies make different tradeoffs between <strong><a class="glossary-term" href="/glossary/#vocabulary" data-definition="The complete set of tokens that a tokenizer can represent directly, with each token assigned a numerical identifier.">vocabulary size</a></strong>, <strong><a class="glossary-term" href="/glossary/#sequence-length" data-definition="The number of tokens or other units in an input or output sequence.">sequence length</a></strong>, and <strong>semantic coherence</strong>.</p>
 <hr>
 <h2 id="why-not-just-use-words">Why Not Just Use Words?</h2>
 <p>The obvious approach would be to treat every word as a token. English has roughly 170,000 words in common use. Build a vocabulary of those words, assign each an ID, and you&rsquo;re done.</p>
@@ -260,10 +268,10 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 <li>German: <code>&quot;Donaudampfschifffahrtsgesellschaftskapitän&quot;</code> (compound words)</li>
 </ul>
 <p>Word-level tokenization doesn&rsquo;t generalize across languages.</p>
-<h3 id="4-out-of-vocabulary-problem"><strong>4. Out-of-Vocabulary Problem</strong></h3>
+<h3 id="4-hahahugoshortcode109s5hbhb-problem"><strong>4. <a class="glossary-term" href="/glossary/#out-of-vocabulary" data-definition="Describes an input unit that is not present in a model&#39;s predefined vocabulary and therefore cannot be represented directly.">Out-of-Vocabulary</a> Problem</strong></h3>
 <p>If you encounter a word not in your vocabulary, you&rsquo;re stuck. You can&rsquo;t process it, can&rsquo;t embed it, can&rsquo;t generate it. The model has a blind spot for anything it wasn&rsquo;t explicitly trained to recognize.</p>
 <hr>
-<h2 id="character-level-tokenization-the-other-extreme">Character-Level Tokenization: The Other Extreme</h2>
+<h2 id="hahahugoshortcode109s6hbhb-the-other-extreme"><a class="glossary-term" href="/glossary/#character-level-tokenization" data-definition="A tokenization strategy in which individual characters are treated as tokens rather than words or subwords.">Character-Level Tokenization</a>: The Other Extreme</h2>
 <p>If words are too coarse, what about going fine-grained? Treat every character as a token:</p>
 <p><code>&quot;I love programming&quot;</code> → <code>[&quot;I&quot;, &quot; &quot;, &quot;l&quot;, &quot;o&quot;, &quot;v&quot;, &quot;e&quot;, &quot; &quot;, &quot;p&quot;, &quot;r&quot;, &quot;o&quot;, &quot;g&quot;, &quot;r&quot;, &quot;a&quot;, &quot;m&quot;, &quot;m&quot;, &quot;i&quot;, &quot;n&quot;, &quot;g&quot;]</code></p>
 <h3 id="advantages"><strong>Advantages:</strong></h3>
@@ -273,14 +281,14 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 <li>✅ Works for all languages</li>
 </ul>
 <h3 id="fatal-flaw-sequence-length-explosion"><strong>Fatal Flaw: Sequence Length Explosion</strong></h3>
-<p>A 500-word document becomes <strong>~2,500 characters</strong>. Since transformers have quadratic attention cost (see my <a href="/posts/how-large-language-models-handle-context-windows">
-  context windows post
+<p>A 500-word document becomes <strong>~2,500 characters</strong>. Since transformers have <a class="glossary-term" href="/glossary/#quadratic-attention" data-definition="The property of standard self-attention in which computation and attention-score storage grow approximately with the square of sequence length.">quadratic attention cost</a> (see my <a href="/posts/how-large-language-models-handle-context-windows">
+  <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a>s post
 </a>
 ), processing character sequences is <strong>computationally prohibitive</strong>.</p>
 <p>Worse, the model has to learn that <code>&quot;c-a-t&quot;</code> forms a semantic unit, that <code>&quot;p-r-o-g-r-a-m-m-i-n-g&quot;</code> shares meaning with <code>&quot;p-r-o-g-r-a-m&quot;</code>, and so on. You&rsquo;ve pushed all the linguistic structure learning onto the model.</p>
 <hr>
-<h2 id="subword-tokenization-the-goldilocks-solution">Subword Tokenization: The Goldilocks Solution</h2>
-<p>Modern LLMs use <strong>subword tokenization</strong>: splitting text into units that are bigger than characters but smaller than words. The most common approach is <strong>Byte Pair Encoding (BPE)</strong>, originally developed for data compression (<a href="#gage1994">
+<h2 id="hahahugoshortcode109s9hbhb-the-goldilocks-solution"><a class="glossary-term" href="/glossary/#subword-tokenization" data-definition="A tokenization strategy that represents text using units larger than individual characters but often smaller than complete words.">Subword Tokenization</a>: The Goldilocks Solution</h2>
+<p>Modern LLMs use <strong>subword tokenization</strong>: splitting text into units that are bigger than characters but smaller than words. The most common approach is <strong><a class="glossary-term" href="/glossary/#byte-pair-encoding" data-definition="A tokenization method that repeatedly merges frequently occurring adjacent units to construct a vocabulary of common subword patterns.">Byte Pair Encoding (BPE)</a></strong>, originally developed for data compression (<a href="#gage1994">
   Gage, 1994
 </a>
 ) and later adapted for neural machine translation (<a href="#sennrich2016">
@@ -335,7 +343,7 @@ Subword tokenization adapts to any language:</p>
 </ul>
 <hr>
 <h2 id="tokenization-in-practice">Tokenization in Practice</h2>
-<p>Let&rsquo;s see how GPT&rsquo;s tokenizer handles real text. GPT-2 and later models use byte-level BPE (<a href="#radford2019">
+<p>Let&rsquo;s see how GPT&rsquo;s tokenizer handles real text. GPT-2 and later models use <a class="glossary-term" href="/glossary/#byte-level-bpe" data-definition="A form of Byte Pair Encoding that begins with byte values rather than characters, allowing any byte-encoded text to be represented without an unknown token.">byte-level BPE</a> (<a href="#radford2019">
   Radford et al., 2019
 </a>
 ). To do so, we&rsquo;ll use <a href="https://pypi.org/project/tiktoken/" target="_blank" rel="noopener noreferrer">
@@ -453,7 +461,7 @@ Subword tokenization adapts to any language:</p>
 </span></span><span style="display:flex;"><span>tokens <span style="color:#ff79c6">=</span> enc<span style="color:#ff79c6">.</span>encode(<span style="color:#f1fa8c">&#34;SolidGoldMagikarp&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: [&#39;Solid&#39;, &#39;Gold&#39;, &#39;Mag&#39;, &#39;ik&#39;, &#39;arp&#39;]</span>
-</span></span></code></pre></div><p>This happened because the token came from Reddit usernames scraped during GPT-3&rsquo;s tokenizer training but filtered out during model training. The result was a token ID with no learned representation—just random noise in the embedding space. When users invoked this token in GPT-3, attention patterns broke and generation became incoherent. Other glitch tokens included &quot; petertodd&quot; and &quot; davidjl&quot; (more Reddit usernames) and &ldquo;\x00&rdquo; (the null byte). This mismatch between tokenizer training and model training created tokens that literally broke GPT-3&rsquo;s ability to think.</p>
+</span></span></code></pre></div><p>This happened because the token came from Reddit usernames scraped during GPT-3&rsquo;s tokenizer training but filtered out during model training. The result was a <a class="glossary-term" href="/glossary/#token-id" data-definition="The numerical identifier assigned to a token in a tokenizer&#39;s vocabulary.">token ID</a> with no learned representation—just random noise in the <a class="glossary-term" href="/glossary/#embedding" data-definition="A numerical vector that represents a token or other object in a multidimensional space.">embedding space</a>. When users invoked this token in GPT-3, attention patterns broke and generation became incoherent. Other glitch tokens included &quot; petertodd&quot; and &quot; davidjl&quot; (more Reddit usernames) and &ldquo;\x00&rdquo; (the null byte). This mismatch between tokenizer training and model training created tokens that literally broke GPT-3&rsquo;s ability to think.</p>
 <p><strong>Note:</strong> These glitch tokens were fixed in GPT-4&rsquo;s tokenizer, which is why &ldquo;SolidGoldMagikarp&rdquo; now tokenizes normally into multiple subwords.</p>
 <hr>
 <h3 id="4-tokenization-affects-performance"><strong>4. Tokenization Affects Performance</strong></h3>
@@ -478,7 +486,7 @@ Subword tokenization adapts to any language:</p>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>([enc<span style="color:#ff79c6">.</span>decode([t]) <span style="color:#ff79c6">for</span> t <span style="color:#ff79c6">in</span> tokens])
 </span></span></code></pre></div><hr>
 <h2 id="byte-level-bpe-what-gpt-uses">Byte-Level BPE (What GPT Uses)</h2>
-<p>GPT-4 uses <strong>Byte-level BPE</strong>, operating on UTF-8 bytes rather than Unicode characters (<a href="#radford2019">
+<p>GPT-4 uses <strong>Byte-level BPE</strong>, operating on <a class="glossary-term" href="/glossary/#utf-8" data-definition="A variable-length Unicode character encoding that represents text using sequences of one to four bytes.">UTF-8</a> bytes rather than Unicode characters (<a href="#radford2019">
   Radford et al., 2019
 </a>
 ). This means the base vocabulary consists of 256 possible byte values, with learned merges on top.</p>
@@ -506,13 +514,13 @@ Subword tokenization adapts to any language:</p>
 </ul>
 <h3 id="bert"><strong>BERT:</strong></h3>
 <ul>
-<li>WordPiece (similar to BPE)</li>
+<li><a class="glossary-term" href="/glossary/#wordpiece" data-definition="A subword tokenization algorithm that builds a vocabulary of reusable word pieces and is used by models such as BERT.">WordPiece</a> (similar to BPE)</li>
 <li>~30,000 token vocabulary</li>
 <li>Adds special tokens: <code>[CLS]</code>, <code>[SEP]</code>, <code>[MASK]</code></li>
 </ul>
 <h3 id="t5"><strong>T5:</strong></h3>
 <ul>
-<li>SentencePiece (<a href="#kudo2018">
+<li><a class="glossary-term" href="/glossary/#sentencepiece" data-definition="A language-independent tokenization system that learns subword units directly from raw text without requiring pre-tokenization into words.">SentencePiece</a> (<a href="#kudo2018">
   Kudo &amp; Richardson, 2018
 </a>
 )</li>
@@ -641,12 +649,12 @@ Token 20: &#39;)&#39; (ID: 8)
 ). Similar words might split differently, and adding new vocabulary requires retraining the tokenizer from scratch. The system is also language-biased in that English tokenizes efficiently while other languages often require significantly more tokens for equivalent content. Code tokenizes particularly poorly, especially when mixing natural language with programming languages. Perhaps most fundamentally, tokenization hides character-level information, making spelling, rhyming, and phonetic tasks unnecessarily difficult.</p>
 <h3 id="emerging-alternatives"><strong>Emerging Alternatives</strong></h3>
 <p>Several promising approaches could replace traditional tokenization in future models.</p>
-<p><strong>Character-level models</strong> are becoming feasible with improved architectures like Mamba and RWKV that handle long sequences more efficiently. These models could operate on raw bytes without any tokenization step, eliminating artifacts and providing perfect character-level access, though sequence length remains a challenge.</p>
-<p><strong>Learned tokenization</strong> represents another path forward. Instead of fixing token boundaries during preprocessing, models could learn optimal segmentation during training. Google&rsquo;s ByT5 demonstrates this approach, operating on raw bytes and learning internal segmentation dynamically (<a href="#xue2022">
+<p><strong><a class="glossary-term" href="/glossary/#character-level-model" data-definition="A language model that processes individual characters or similarly fine-grained units rather than conventional subword tokens.">Character-level models</a></strong> are becoming feasible with improved architectures like <a class="glossary-term" href="/glossary/#mamba" data-definition="A sequence-modeling architecture based on selective state space models that can process sequences with linear rather than quadratic scaling.">Mamba</a> and <a class="glossary-term" href="/glossary/#rwkv" data-definition="A neural network architecture that combines characteristics of recurrent neural networks and transformers while supporting linear-time sequence processing.">RWKV</a> that handle long sequences more efficiently. These models could operate on raw bytes without any tokenization step, eliminating artifacts and providing perfect character-level access, though sequence length remains a challenge.</p>
+<p><strong><a class="glossary-term" href="/glossary/#learned-tokenization" data-definition="An approach in which useful text segmentation is learned as part of model training rather than being completely fixed beforehand.">Learned tokenization</a></strong> represents another path forward. Instead of fixing token boundaries during preprocessing, models could learn optimal segmentation during training. Google&rsquo;s <a class="glossary-term" href="/glossary/#byt5" data-definition="A byte-level variant of T5 that processes raw UTF-8 bytes instead of using a conventional subword tokenizer.">ByT5</a> demonstrates this approach, operating on raw bytes and learning internal segmentation dynamically (<a href="#xue2022">
   Xue et al., 2022
 </a>
 ).</p>
-<p><strong>Multimodal tokenization</strong> points toward unified representations across modalities. Just as GPT-4V tokenizes images into patches and audio models tokenize sound into frames, future models might develop universal tokenization schemes that work across text, images, audio, and other modalities seamlessly.</p>
+<p><strong><a class="glossary-term" href="/glossary/#multimodal-tokenization" data-definition="The conversion of information from multiple modalities, such as text, images, or audio, into discrete or structured units that a model can process.">Multimodal tokenization</a></strong> points toward unified representations across modalities. Just as GPT-4V tokenizes images into patches and audio models tokenize sound into frames, future models might develop universal tokenization schemes that work across text, images, audio, and other modalities seamlessly.</p>
 <hr>
 <h2 id="closing-thoughts">Closing Thoughts</h2>
 <p>Tokenization is the invisible layer between human language and machine learning. It&rsquo;s not a detail—it&rsquo;s a fundamental design choice that shapes what models can and cannot do.</p>
@@ -930,5 +938,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>

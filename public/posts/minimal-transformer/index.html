@@ -16,7 +16,8 @@
 		<meta property="og:url" content="http://localhost:1313/posts/minimal-transformer/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="Implementing a Minimal Transformer in PyTorch">
-  <meta property="og:description" content="Around 200 lines of Python separate you from understanding why attention really is all you need.In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
+  <meta property="og:description" content="Lightbox image not found: transformer.jpeg
+In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
 That claim turned out to be correct.
 Most engineers who work with language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand why these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.
 In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We’ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.
@@ -35,19 +36,21 @@ By the end, the model will be writing sentences that loosely belong in the Globe
 
 		
   <meta itemprop="name" content="Implementing a Minimal Transformer in PyTorch">
-  <meta itemprop="description" content="Around 200 lines of Python separate you from understanding why attention really is all you need.In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
+  <meta itemprop="description" content="Lightbox image not found: transformer.jpeg
+In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
 That claim turned out to be correct.
 Most engineers who work with language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand why these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.
 In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We’ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.
 By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you’ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.">
   <meta itemprop="datePublished" content="2026-04-01T06:00:00-07:00">
   <meta itemprop="dateModified" content="2026-04-01T06:00:00-07:00">
-  <meta itemprop="wordCount" content="4091">
+  <meta itemprop="wordCount" content="4080">
   <meta itemprop="keywords" content="AI,Attention Mechanisms,LLM,NLP,Python,Transformers">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Implementing a Minimal Transformer in PyTorch">
-  <meta name="twitter:description" content="Around 200 lines of Python separate you from understanding why attention really is all you need.In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
+  <meta name="twitter:description" content="Lightbox image not found: transformer.jpeg
+In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
 That claim turned out to be correct.
 Most engineers who work with language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand why these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.
 In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We’ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.
@@ -87,6 +90,7 @@ By the end, the model will be writing sentences that loosely belong in the Globe
 
     <link rel="stylesheet" href="/css/extra.css">
     <script src="/js/copy-button.js"></script>
+	<script src="/js/lightbox.js"></script>
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -197,12 +201,8 @@ By the end, the model will be writing sentences that loosely belong in the Globe
     </header>
 
     <div class="content post__content clearfix">
-      <figure style="float: right; margin: 0 20px 10px 20px; width: 250px; text-align: center;">
-  <img src="./transformer.jpeg" alt="Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add & norm, feed-forward, and add & norm to output logits" width="250" style="display: block; margin: 0 auto;">
-  <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-    <em>Around 200 lines of Python separate you from understanding why attention really is all you need.</em>
-  </figcaption>
-</figure>
+      <p><strong>Lightbox image not found: transformer.jpeg</strong></p>
+
 <p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
 <p>That claim turned out to be correct.</p>
 <p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
@@ -1088,5 +1088,13 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 	</div>
 <script async defer src="/js/menu.js"></script>
 <script src="/js/copy-button.js"></script>
+
+<div id="image-lightbox" class="image-lightbox" aria-hidden="true">
+	<button class="image-lightbox-close" type="button" aria-label="Close image">
+		&times;
+	</button>
+
+	<img id="image-lightbox-image" src="" alt="">
+</div>
 </body>
 </html>
