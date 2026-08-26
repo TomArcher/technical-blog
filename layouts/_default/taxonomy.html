@@ -8,6 +8,11 @@
         {{ $count := len .Pages }}
         {{ $count }} "{{ .Title }}" {{ if eq $count 1 }}Post{{ else }}Posts{{ end }}
       </h1>
+
+      {{ $title := .Title }}
+      {{ range where .Site.Data.categories "name" $title }}
+      <p class="taxonomy-description">{{ .description }}</p>
+      {{ end }}
     </header>
 
     {{ $p := .Paginate .Pages }}

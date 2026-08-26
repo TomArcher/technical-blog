@@ -1,0 +1,30 @@
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ $posts = where $posts "Params.pinned" "ne" true }}
+
+{{ range .Site.Data.categories }}
+
+{{ $category := . }}
+{{ $categoryPosts := where $posts "Params.categories" "intersect" (slice $category.name) }}
+
+{{ if $categoryPosts }}
+
+<h3>
+    <a href="/categories/{{ $category.slug }}/">
+        {{ $category.name }}
+    </a>
+</h3>
+
+<p>{{ $category.description }}</p>
+
+<ul>
+    {{ range $categoryPosts.ByDate.Reverse }}
+    <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>.
+        {{ with .Params.subtitle }}{{ . }}{{ end }}
+    </li>
+    {{ end }}
+</ul>
+
+{{ end }}
+
+{{ end }}

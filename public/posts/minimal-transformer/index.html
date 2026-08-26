@@ -16,12 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/minimal-transformer/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="Implementing a Minimal Transformer in PyTorch">
-  <meta property="og:description" content="Lightbox image not found: transformer.jpeg
-In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
-That claim turned out to be correct.
-Most engineers who work with language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand why these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.
-In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We’ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.
-By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you’ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.">
+  <meta property="og:description" content="In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -36,25 +31,15 @@ By the end, the model will be writing sentences that loosely belong in the Globe
 
 		
   <meta itemprop="name" content="Implementing a Minimal Transformer in PyTorch">
-  <meta itemprop="description" content="Lightbox image not found: transformer.jpeg
-In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
-That claim turned out to be correct.
-Most engineers who work with language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand why these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.
-In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We’ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.
-By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you’ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.">
+  <meta itemprop="description" content="In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.">
   <meta itemprop="datePublished" content="2026-04-01T06:00:00-07:00">
   <meta itemprop="dateModified" content="2026-04-01T06:00:00-07:00">
-  <meta itemprop="wordCount" content="4080">
+  <meta itemprop="wordCount" content="3913">
   <meta itemprop="keywords" content="AI,Attention Mechanisms,LLM,NLP,Python,Transformers">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Implementing a Minimal Transformer in PyTorch">
-  <meta name="twitter:description" content="Lightbox image not found: transformer.jpeg
-In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
-That claim turned out to be correct.
-Most engineers who work with language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand why these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.
-In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We’ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.
-By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you’ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.">
+  <meta name="twitter:description" content="In 2017, Vaswani et al. published “Attention Is All You Need,” a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you’ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper’s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -150,6 +135,7 @@ By the end, the model will be writing sentences that loosely belong in the Globe
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">Implementing a Minimal Transformer in PyTorch</h1>
+        <p class="post-subtitle">Building the core machinery of a language model from embeddings and attention to training and generation</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2026-04-01T06:00:00-07:00">
@@ -200,10 +186,37 @@ By the end, the model will be writing sentences that loosely belong in the Globe
 
     </header>
 
-    <div class="content post__content clearfix">
-      <p><strong>Lightbox image not found: transformer.jpeg</strong></p>
+    
 
-<p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
+
+
+
+
+
+
+
+
+<p><strong>Lightbox image not found: transformer.jpeg</strong></p>
+
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>How token and positional embeddings turn a sequence of characters into representations a Transformer can process</li>
+          <li>How scaled dot-product attention lets each token decide which earlier tokens matter</li>
+          <li>Why multiple attention heads can learn different relationships within the same sequence</li>
+          <li>How residual connections, layer normalization, and feed-forward networks form a Transformer block</li>
+          <li>How causal masking makes next-token training possible without letting the model see the future</li>
+          <li>How to train a small Transformer in PyTorch and use it to generate new text</li>
+      </ul>
+    </aside><p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
 <p>That claim turned out to be correct.</p>
 <p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
 <p>In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We&rsquo;ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.</p>
@@ -873,27 +886,47 @@ x \leftarrow x + \text{FeedForward}(\text{LayerNorm}(x))
 <pre tabindex="0"><code>curl -o shakespeare.txt \
   https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
 </code></pre><hr>
-<h2 id="further-reading">Further Reading</h2>
-<p>These resources provide the theoretical foundations and historical context behind the implementation in this post.</p>
-<p><a id="ba2016"></a>
-Ba, J. L., Kiros, J. R., &amp; Hinton, G. E. (2016). Layer normalization. <em>arXiv preprint arXiv:1607.06450</em>.</p>
-<p><a id="hendrycks2016"></a>
-Hendrycks, D., &amp; Gimpel, K. (2016). Gaussian error linear units (GELUs). <em>arXiv preprint arXiv:1606.08415</em>.</p>
-<p><a id="karpathy2022"></a>
-Karpathy, A. (2022). <em>nanoGPT: The simplest, fastest repository for training/finetuning medium-sized GPTs.</em> <a href="https://github.com/karpathy/nanoGPT" target="_blank" rel="noopener noreferrer">
-  https://github.com/karpathy/nanoGPT
-</a>
-</p>
-<p><a id="loshchilov2019"></a>
-Loshchilov, I., &amp; Hutter, F. (2019). Decoupled weight decay regularization. <em>Proceedings of ICLR 2019</em>.</p>
-<p><a id="radford2019"></a>
-Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). Language models are unsupervised multitask learners. <em>OpenAI Blog</em>, 1(8).</p>
-<p><a id="vaswani2017"></a>
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems</em>, 30.</p>
-<p><a id="xiong2020"></a>
-Xiong, R., Yang, Y., He, D., Zheng, K., Zheng, S., Xing, C., Zhang, H., Lan, Y., Wang, L., &amp; Liu, T. Y. (2020). On layer normalization in the Transformer architecture. <em>Proceedings of ICML 2020</em>.</p>
-<hr>
+
+
+      
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="ba2016" >
+            Ba, J. L., Kiros, J. R., &amp; Hinton, G. E. (2016). Layer normalization. <em>arXiv preprint arXiv:1607.06450</em>.
+            <a href="https://arxiv.org/abs/1607.06450" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1607.06450</a>
+        </p>
+        <p class="post-reference"  id="hendrycks2016" >
+            Hendrycks, D., &amp; Gimpel, K. (2016). Gaussian error linear units (GELUs). <em>arXiv preprint arXiv:1606.08415</em>.
+            <a href="https://arxiv.org/abs/1606.08415" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1606.08415</a>
+        </p>
+        <p class="post-reference"  id="karpathy2022" >
+            Karpathy, A. (2022). <em>nanoGPT: The simplest, fastest repository for training/finetuning medium-sized GPTs.</em>
+            <a href="https://github.com/karpathy/nanoGPT" target="_blank" rel="noopener noreferrer">https://github.com/karpathy/nanoGPT</a>
+        </p>
+        <p class="post-reference"  id="loshchilov2019" >
+            Loshchilov, I., &amp; Hutter, F. (2019). Decoupled weight decay regularization. <em>Proceedings of ICLR 2019</em>.
+            <a href="https://arxiv.org/abs/1711.05101" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1711.05101</a>
+        </p>
+        <p class="post-reference"  id="radford2019" >
+            Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). Language models are unsupervised multitask learners. <em>OpenAI Blog, 1</em>(8).
+            <a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener noreferrer">https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</a>
+        </p>
+        <p class="post-reference"  id="vaswani2017" >
+            Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems, 30</em>.
+            <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1706.03762</a>
+        </p>
+        <p class="post-reference"  id="xiong2020" >
+            Xiong, R., Yang, Y., He, D., Zheng, K., Zheng, S., Xing, C., Zhang, H., Lan, Y., Wang, L., &amp; Liu, T. Y. (2020). On layer normalization in the Transformer architecture. <em>Proceedings of ICML 2020</em>.
+            <a href="https://arxiv.org/abs/2002.04745" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2002.04745</a>
+        </p>
     </div>
+</section>
+
+      <hr class="references-end">
+      
+      </div>
     <footer class="post__footer">
       
 <div class="post__tags tags clearfix">

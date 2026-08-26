@@ -6,12 +6,12 @@
     <description>Recent content on Signal &amp; Syntax</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Start Here: The Signal &amp; Syntax Roadmap</title>
+      <title>What&#39;s Next: The Signal &amp; Syntax Roadmap</title>
       <link>http://localhost:1313/posts/roadmap/</link>
-      <pubDate>Tue, 25 Aug 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/roadmap/</guid>
       <description>&lt;p&gt;If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, &lt;a href=&#34;https://www.linkedin.com/in/tom-archer-dev/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  get in touch&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;.&lt;/p&gt;&#xA;&lt;div class=&#34;roadmap-jump&#34;&gt;&#xD;&#xA;    &lt;a href=&#34;#in-progress&#34;&gt;◐ In Progress&lt;/a&gt;&#xD;&#xA;    &lt;a href=&#34;#planned&#34;&gt;○ Planned&lt;/a&gt;&#xD;&#xA;    &lt;a href=&#34;#published&#34;&gt;✓ Published&lt;/a&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;in-progress&#34;&gt;In Progress&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Implementing a Minimal Transformer in PyTorch.&lt;/strong&gt; Building a decoder-only Transformer from first principles, including token and positional embeddings, scaled dot-product attention, multi-head attention, feed-forward networks, residual connections, causal masking, training, and autoregressive generation. The implementation uses a character-level Shakespeare model to connect the mathematics of Transformer architecture directly to working PyTorch code. Drafted; in pre-publication review.&lt;/p&gt;</description>
     </item>

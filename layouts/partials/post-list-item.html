@@ -47,7 +47,7 @@
                 &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
                 {{- range $i, $c := . -}}
                 {{- if $i }}, {{ end -}}
-                <a href="{{ (printf " /categories/%s/" ($c | urlize)) | relURL }}">{{ $c }}</a>
+                <a href="{{ (printf "/categories/%s/" ($c | urlize)) | relURL }}">{{ $c }}</a>
                 {{- end -}}
                 {{- end -}}
 

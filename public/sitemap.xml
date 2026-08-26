@@ -215,6 +215,9 @@
     <loc>http://localhost:1313/posts/five-second-rule/</loc>
     <lastmod>2025-09-04T06:00:00-07:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/productivity/</loc>
+    <lastmod>2025-08-28T05:00:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/scheduling/</loc>
     <lastmod>2025-08-28T05:00:00-07:00</lastmod>
   </url><url>
@@ -243,9 +246,6 @@
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/innovation/</loc>
-    <lastmod>2025-08-19T05:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/productivity/</loc>
     <lastmod>2025-08-19T05:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/rain-paradox/</loc>
