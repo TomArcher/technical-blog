@@ -121,76 +121,85 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
+
 <main class="main" role="main">
   <div class="posts-list">
-    
+
     <header class="taxonomy-header">
       <h1>
         
         1 "Passwords" Post
-        </h1>
-
-      
+      </h1>
     </header>
 
     
-    
 
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/hash-collisions/">
-              <img src="/posts/hash-collisions/hash-collisions-thumb.png" alt="" loading="lazy">
-            </a>
-          
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/hash-collisions/">
+            <img src="/posts/hash-collisions/hash-collisions-thumb.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/hash-collisions/">Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</a>
+                
+                <a href="/posts/hash-collisions/">Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</a>
             </h2>
 
+            
+            <div class="post-subtitle">The mathematical certainty of hash collisions, the near-impossibility of meaningful ones, and what it means for modern cryptography</div>
+            
+
             <div class="post-meta">
-              <time datetime="2025-11-17">
-                <strong>Nov 17, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/essays-and-perspectives/">Essays and Perspectives</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/blockchain/">#blockchain</a>, <a href="/tags/cryptography/">#cryptography</a>, <a href="/tags/hashing/">#hashing</a>, <a href="/tags/passwords/">#passwords</a>, <a href="/tags/security/">#security</a></div>
-          </div>
-        </header>
+                <time datetime=" 2025-11-17">
+                    <strong>Nov 17, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/essays-and-perspectives/">Essays and Perspectives</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/blockchain/">#blockchain</a>, <a href="/%20/tags/cryptography/">#cryptography</a>, <a href="/%20/tags/hashing/">#hashing</a>, <a href="/%20/tags/passwords/">#passwords</a>, <a href="/%20/tags/security/">#security</a></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary">
+    
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>Why hash collisions are mathematically inevitable even with strong algorithms</li>
+            
+            <li>Why a possible collision is very different from a meaningful security threat</li>
+            
+            <li>How MD5 and SHA-1 went from trusted standards to broken algorithms</li>
+            
+            <li>Why modern password storage needs more than a fast hash and a salt</li>
+            
+            <li>When hash collisions matter for security and when they are harmless</li>
+            
+            <li>How crypto-agility helps systems survive when today&rsquo;s algorithms eventually fail</li>
+            
+        </ul>
+    </div>
+    
 
-<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
-  Stevens et al., 2017
-</a>
-). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
-<p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while <a class="glossary-term" href="/glossary/#hash-collision" data-definition="A situation in which two different inputs produce the same hash value.">collisions</a> are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/hash-collisions/">Read more →</a></p>
-      </article>
+</article>
     
 
     
+
   </div>
 </main>
+
 
 			</div>
 			

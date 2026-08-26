@@ -14,13 +14,21 @@ heroLabel = "Open full-size transformer architecture diagram"
 heroCaption = "A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence."
 
 whatYoullLearn = [
-    "Why collisions happen long before an ID space is full",
-    "Why collision risk grows much faster than intuition suggests",
-    "How to calculate the probability of an ID collision",
-    "How 32-bit, 64-bit, and UUID v4 IDs compare",
-    "How generation rate changes the time until collisions become likely",
-    "How to predict when an ID strategy needs to be replaced"
+    "How queries, keys, and values work together to let tokens exchange information",
+    "Why attention scores are divided by the square root of the key dimension",
+    "How scaling prevents softmax from saturating and preserves useful gradient flow",
+    "Why transformers split attention across multiple heads instead of using one large attention operation",
+    "What researchers have discovered about the specialized roles learned by attention heads",
+    "How induction heads learn a match-and-copy algorithm that helps explain in-context learning"
 ]
+
+[[references]]
+citation = "Clark, K., Khandelwal, U., Levy, O., & Manning, C. D. (2019). What does BERT look at? An analysis of BERT's attention. *Proceedings of the 2019 ACL Workshop BlackboxNLP: Analyzing and Interpreting Neural Networks for NLP.*"
+url = "https://arxiv.org/abs/1906.04341"
+
+[[references]]
+citation = "Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems, 30.*"
+url = "https://arxiv.org/abs/1706.03762"
 
 +++
 

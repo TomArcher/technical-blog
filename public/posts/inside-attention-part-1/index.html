@@ -226,12 +226,12 @@
       </div>
 
       <ul>
-          <li>Why collisions happen long before an ID space is full</li>
-          <li>Why collision risk grows much faster than intuition suggests</li>
-          <li>How to calculate the probability of an ID collision</li>
-          <li>How 32-bit, 64-bit, and UUID v4 IDs compare</li>
-          <li>How generation rate changes the time until collisions become likely</li>
-          <li>How to predict when an ID strategy needs to be replaced</li>
+          <li>How queries, keys, and values work together to let tokens exchange information</li>
+          <li>Why attention scores are divided by the square root of the key dimension</li>
+          <li>How scaling prevents softmax from saturating and preserves useful gradient flow</li>
+          <li>Why transformers split attention across multiple heads instead of using one large attention operation</li>
+          <li>What researchers have discovered about the specialized roles learned by attention heads</li>
+          <li>How induction heads learn a match-and-copy algorithm that helps explain in-context learning</li>
       </ul>
     </aside><p>The <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformer architecture</a> is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a <a class="glossary-term" href="/glossary/#feedforward-network" data-definition="A neural network component that applies learned transformations independently to each token representation after the attention operation.">feedforward sublayer</a>, wrapped in <a class="glossary-term" href="/glossary/#residual-connection" data-definition="A shortcut connection that adds a layer&#39;s input to its output, helping information and gradients flow through deep neural networks.">residual connections</a> and <a class="glossary-term" href="/glossary/#layer-normalization" data-definition="A normalization technique that stabilizes neural network training by rescaling activations within a layer.">layer normalization</a>. <a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional information</a> is added to the input so the model knows what order the <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a> came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
 <p>This post is the first of a three-part series on the attention mechanism. Part 1 covers <a class="glossary-term" href="/glossary/#scaled-dot-product-attention" data-definition="An attention mechanism that compares queries with keys using dot products, scales the resulting scores by the square root of the key dimension, applies softmax, and uses the resulting weights to combine values.">scaled dot-product attention</a>, why we divide by \(\sqrt{d_k}\), <a class="glossary-term" href="/glossary/#multi-head-attention" data-definition="An attention architecture that runs multiple independently learned attention heads in parallel and combines their outputs, allowing different relationships to be modeled simultaneously.">multi-head attention</a>, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how <a class="glossary-term" href="/glossary/#causal-mask" data-definition="An attention mask that prevents a token from attending to future positions in a sequence.">causal masking</a> turns self-attention into the foundation of <a class="glossary-term" href="/glossary/#autoregressive" data-definition="Describes a model that generates a sequence one element at a time, with each prediction conditioned on previously available elements.">autoregressive</a> next-token prediction. Part 3 covers the engineering layer: <a class="glossary-term" href="/glossary/#kv-cache" data-definition="A cache of previously computed key and value vectors that lets a transformer reuse them while generating subsequent tokens.">KV caching</a>, <a class="glossary-term" href="/glossary/#multi-query-attention" data-definition="An attention variant in which multiple query heads share a single set of key and value heads, reducing memory use and inference cost.">multi-query</a> and <a class="glossary-term" href="/glossary/#grouped-query-attention" data-definition="An attention variant in which groups of query heads share key and value heads, providing a compromise between multi-head and multi-query attention.">grouped-query attention</a>, <a class="glossary-term" href="/glossary/#sliding-window-attention" data-definition="An attention pattern that restricts each token to attending to a limited neighborhood of nearby tokens rather than the entire sequence.">sliding window attention</a>, and <a class="glossary-term" href="/glossary/#flash-attention" data-definition="An optimized attention algorithm that reduces memory traffic by computing attention in blocks, enabling faster and more memory-efficient exact attention.">Flash Attention</a>.</p>
@@ -603,7 +603,23 @@ Voita, E., Talbot, D., Moiseev, F., Sennrich, R., &amp; Titov, I. (2019). Analyz
 <hr>
 
 
+      
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference">
+            Clark, K., Khandelwal, U., Levy, O., &amp; Manning, C. D. (2019). What does BERT look at? An analysis of BERT&rsquo;s attention. <em>Proceedings of the 2019 ACL Workshop BlackboxNLP: Analyzing and Interpreting Neural Networks for NLP.</em>
+            <a href="https://arxiv.org/abs/1906.04341" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1906.04341</a>
+        </p>
+        <p class="post-reference">
+            Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems, 30.</em>
+            <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1706.03762</a>
+        </p>
     </div>
+</section>
+
+      </div>
     <footer class="post__footer">
       
 <div class="post__tags tags clearfix">

@@ -745,3 +745,17 @@ pre:hover .copy-button {
     grid-template-columns: 1fr;
   }
 }
+
+.post-references {
+  margin-top: 2rem;
+}
+
+.post-references__list {
+  margin-top: 1rem;
+}
+
+.post-reference {
+  padding-left: 2em;
+  text-indent: -2em;
+  margin-bottom: 1em;
+}

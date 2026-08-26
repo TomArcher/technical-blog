@@ -121,262 +121,329 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
+
 <main class="main" role="main">
   <div class="posts-list">
-    
+
     <header class="taxonomy-header">
       <h1>
         
         5 "Probability" Posts
-        </h1>
-
-      
+      </h1>
     </header>
 
     
-    
 
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/temperature-top-p-creativity-knobs/">
-              <img src="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" alt="" loading="lazy">
-            </a>
-          
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/temperature-top-p-creativity-knobs/">
+            <img src="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/temperature-top-p-creativity-knobs/">Temperature and Top-P: The Creativity Knobs</a>
+                
+                <a href="/posts/temperature-top-p-creativity-knobs/">Temperature and Top-P: The Creativity Knobs</a>
             </h2>
 
+            
+            <div class="post-subtitle">How sampling parameters shape AI personality</div>
+            
+
             <div class="post-meta">
-              <time datetime="2025-12-24">
-                <strong>Dec 24, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/anthropic/">#Anthropic</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/nucleus-sampling/">#nucleus sampling</a>, <a href="/tags/openai/">#OpenAI</a>, <a href="/tags/probability/">#probability</a>, <a href="/tags/sampling/">#sampling</a>, <a href="/tags/softmax/">#softmax</a>, <a href="/tags/temperature/">#temperature</a>, <a href="/tags/top-p/">#top-p</a></div>
-          </div>
-        </header>
+                <time datetime=" 2025-12-24">
+                    <strong>Dec 24, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/ai/">#AI</a>, <a href="/%20/tags/anthropic/">#Anthropic</a>, <a href="/%20/tags/llm/">#LLM</a>, <a href="/%20/tags/nucleus-sampling/">#nucleus sampling</a>, <a href="/%20/tags/openai/">#OpenAI</a>, <a href="/%20/tags/probability/">#probability</a>, <a href="/%20/tags/sampling/">#sampling</a>, <a href="/%20/tags/softmax/">#softmax</a>, <a href="/%20/tags/temperature/">#temperature</a>, <a href="/%20/tags/top-p/">#top-p</a></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary">
-
-<p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
-  ChatGPT
-</a>
-, <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
-  Claude
-</a>
-, or any other <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> includes two parameters most people either ignore or tweak randomly: <a class="glossary-term" href="/glossary/#temperature" data-definition="A sampling parameter that rescales a model&#39;s logits before softmax, controlling how concentrated or spread out the resulting token probabilities are.">temperature</a> and <a class="glossary-term" href="/glossary/#top-p" data-definition="A sampling parameter that restricts token selection to the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold.">top-p</a>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
-<p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.</p>
-<p>I&rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &ldquo;Set temperature to 0.7 for creative writing&rdquo; becomes tribal knowledge, passed down without explanation. Let&rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Temperature doesn&rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&rdquo;</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/temperature-top-p-creativity-knobs/">Read more →</a></p>
-      </article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>How an LLM turns raw token scores into probabilities before choosing what comes next</li>
+            
+            <li>How temperature reshapes a probability distribution to make outputs more predictable or more varied</li>
+            
+            <li>How top-p sampling limits which tokens the model is allowed to consider</li>
+            
+            <li>Why top-p adapts to model confidence differently from a fixed top-k cutoff</li>
+            
+            <li>How temperature and top-p interact when both are applied to the same distribution</li>
+            
+            <li>How to choose sampling settings for factual, structured, professional, and creative tasks</li>
+            
+        </ul>
+    </div>
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/birthday-paradox/">
-              <img src="/posts/birthday-paradox/birthday-paradox.png" alt="" loading="lazy">
-            </a>
-          
+</article>
+    
+    
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/birthday-paradox/">
+            <img src="/posts/birthday-paradox/birthday-paradox.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/birthday-paradox/">The Birthday Paradox in Production: When Random IDs Collide</a>
+                
+                <a href="/posts/birthday-paradox/">The Birthday Paradox in Production: When Random IDs Collide</a>
             </h2>
 
+            
+            <div class="post-subtitle">Why collision risk grows faster than intuition suggests, and what that means for IDs, hashes, and distributed systems</div>
+            
+
             <div class="post-meta">
-              <time datetime="2025-11-28">
-                <strong>Nov 28, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/cryptography/">#cryptography</a>, <a href="/tags/databases/">#databases</a>, <a href="/tags/distributed-systems/">#distributed-systems</a>, <a href="/tags/probability/">#probability</a>, <a href="/tags/python/">#Python</a></div>
-          </div>
-        </header>
+                <time datetime=" 2025-11-28">
+                    <strong>Nov 28, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/cryptography/">#cryptography</a>, <a href="/%20/tags/databases/">#databases</a>, <a href="/%20/tags/distributed-systems/">#distributed-systems</a>, <a href="/%20/tags/probability/">#probability</a>, <a href="/%20/tags/python/">#Python</a></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary">
-
-<p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p></div>
-
-        <p><a class="btn" href="/posts/birthday-paradox/">Read more →</a></p>
-      </article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>Why collisions happen long before an ID space is full</li>
+            
+            <li>Why collision risk grows much faster than intuition suggests</li>
+            
+            <li>How the birthday paradox applies to computer systems</li>
+            
+            <li>How to calculate the probability of an ID collision</li>
+            
+            <li>Why the square root of the ID space determines the danger zone</li>
+            
+            <li>How 32-bit, 64-bit, and UUID v4 IDs compare</li>
+            
+            <li>How generation rate changes the time until collisions become likely</li>
+            
+            <li>How to choose an acceptable collision risk for a real system</li>
+            
+            <li>How Monte Carlo simulation can validate collision calculations</li>
+            
+            <li>How to predict when an ID strategy needs to be replaced</li>
+            
+        </ul>
+    </div>
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/how-large-language-models-read-code/">
-              <img src="/posts/how-large-language-models-read-code/how-large-language-models-read-code.png" alt="" loading="lazy">
-            </a>
-          
+</article>
+    
+    
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/how-large-language-models-read-code/">
+            <img src="/posts/how-large-language-models-read-code/how-large-language-models-read-code.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/how-large-language-models-read-code/">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</a>
+                
+                <a href="/posts/how-large-language-models-read-code/">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</a>
             </h2>
 
+            
+            <div class="post-subtitle">Exploring how large language models interpret code and what they miss</div>
+            
+
             <div class="post-meta">
-              <time datetime="2025-10-06">
-                <strong>Oct 6, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/probability/">#probability</a>, <a href="/tags/tokenization/">#tokenization</a></div>
-          </div>
-        </header>
+                <time datetime=" 2025-10-06">
+                    <strong>Oct 6, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/ai/">#AI</a>, <a href="/%20/tags/llm/">#LLM</a>, <a href="/%20/tags/probability/">#probability</a>, <a href="/%20/tags/tokenization/">#tokenization</a></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary">
-
-<p>Developers are accustomed to thinking about code in terms of <a class="glossary-term" href="/glossary/#syntax-semantics" data-definition="Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.">syntax and semantics</a>, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a>, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;When an AI system &lsquo;understands&rsquo; code, it is not executing logic; it is modeling probability.</em>&rdquo;</p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/how-large-language-models-read-code/">Read more →</a></p>
-      </article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>How an LLM reads code differently from a compiler or a human developer</li>
+            
+            <li>Why models recognize programming patterns instead of executing the code they see</li>
+            
+            <li>How embeddings let an LLM associate code with similar structures and meanings</li>
+            
+            <li>Why comments, variable names, and familiar coding idioms can change a model&rsquo;s interpretation</li>
+            
+            <li>How statistically likely code can still be logically or operationally wrong</li>
+            
+            <li>Why combining generative AI with compilers and static analysis produces safer coding tools</li>
+            
+        </ul>
+    </div>
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/five-second-rule/">
-              <img src="/posts/five-second-rule/five-second-rule-explored.png" alt="" loading="lazy">
-            </a>
-          
+</article>
+    
+    
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/five-second-rule/">
+            <img src="/posts/five-second-rule/five-second-rule-explored.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a>
+                
+                <a href="/posts/five-second-rule/">The Five-Second Rule Explored with Math &amp; Python</a>
             </h2>
 
+            
+            <div class="post-subtitle">Why germs transfer immediately, and how math reveals what really happens after food hits the floor</div>
+            
+
             <div class="post-meta">
-              <time datetime="2025-09-04">
-                <strong>Sep 4, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/physics/">#physics</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/probability/">#probability</a></div>
-          </div>
-        </header>
+                <time datetime=" 2025-09-04">
+                    <strong>Sep 4, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/physics/">#physics</a>, <a href="/%20/tags/probability/">#probability</a>, <a href="/%20/tags/python/">#Python</a></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary">
-
-<p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Germs don’t wait five seconds. They start the party the instant your food hits the floor.&rdquo;</em></p></blockquote>
-<hr>
-<p>The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.</p></div>
-
-        <p><a class="btn" href="/posts/five-second-rule/">Read more →</a></p>
-      </article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>Why germs begin transferring to food as soon as it touches a surface</li>
+            
+            <li>How moisture, contact area, and surface texture affect contamination</li>
+            
+            <li>Why germ transfer happens fastest during the first moments of contact</li>
+            
+            <li>How an exponential curve can model contamination over time</li>
+            
+            <li>How calculus reveals the changing rate of germ transfer</li>
+            
+            <li>How Python can estimate when contamination crosses a chosen threshold</li>
+            
+        </ul>
+    </div>
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/rain-paradox/">
-              <img src="/posts/rain-paradox/rain-paradox.png" alt="" loading="lazy">
-            </a>
-          
+</article>
+    
+    
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/rain-paradox/">
+            <img src="/posts/rain-paradox/rain-paradox.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a>
+                
+                <a href="/posts/rain-paradox/">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</a>
             </h2>
 
+            
+            <div class="post-subtitle">Using physics, Python, and simulation to settle a deceptively simple question</div>
+            
+
             <div class="post-meta">
-              <time datetime="2025-08-18">
-                <strong>Aug 18, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/physics/">#physics</a>, <a href="/tags/probability/">#probability</a>, <a href="/tags/python/">#Python</a></div>
-          </div>
-        </header>
+                <time datetime=" 2025-08-18">
+                    <strong>Aug 18, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/physics/">#physics</a>, <a href="/%20/tags/probability/">#probability</a>, <a href="/%20/tags/python/">#Python</a></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary">
+    
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>Why moving faster reduces the rain that lands on you from above</li>
+            
+            <li>Why the amount of rain you hit from the front behaves differently from top-down exposure</li>
+            
+            <li>How to turn a real-world question about rain into a simplified mathematical model</li>
+            
+            <li>How Python can simulate wetness at different walking and running speeds</li>
+            
+            <li>Why running produces diminishing returns even though it still keeps you drier</li>
+            
+            <li>How wind, body geometry, and randomness could make the basic model more realistic</li>
+            
+        </ul>
+    </div>
+    
 
-<p>Early in my programming career, I came across a coding challenge that stuck with me for many years:</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;If it&rsquo;s raining, will you stay drier by walking or running through it?&rdquo;</em></p></blockquote>
-<hr>
-<p>At the time, I didn&rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&rsquo;t about recursion or memory management. It was about <strong>getting wet</strong>, and <strong>how fast you move through falling rain</strong>.</p></div>
-
-        <p><a class="btn" href="/posts/rain-paradox/">Read more →</a></p>
-      </article>
+</article>
     
 
     
+
   </div>
 </main>
+
 
 			</div>
 			

@@ -135,35 +135,10 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="margin: 0 20px 10px 20px; text-align: center;">
-
-    <a href="/posts/edmund-fitzgerald/edmund-fitzgerald.jpeg" class="lightbox-trigger" aria-label="Open full-size image">
-
-        <img src="/posts/edmund-fitzgerald/edmund-fitzgerald.jpeg" alt="">
-
-    </a>
-
-    
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>At 530 feet and 39°F, physics ensures Gordon Lightfoot&#39;s evocative lyric remains literally true.</em>
-    </figcaption>
-    
-
-</figure>
-
-<p>Originally appearing on his 1976 album, <em>Summertime Dream</em>, &ldquo;The Wreck of the Edmund Fitzgerald&rdquo; is a powerful ballad written and performed by folk singer <a href="#lightfoot1976">
+		<p>Originally appearing on his 1976 album, <em>Summertime Dream</em>, &ldquo;The Wreck of the Edmund Fitzgerald&rdquo; is a powerful ballad written and performed by folk singer <a href="#lightfoot1976">
   Gordon Lightfoot
 </a>
 . In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: &ldquo;The lake, it is said, never gives up her dead.&rdquo; Following the singer&rsquo;s death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard&rsquo;s Hot Rock and Alternative category.</p>
-<p>Listening to it again after all these years, I was inspired to research what that line meant and if there was any truth to it. What I discovered was very illuminating: Lake Superior really doesn&rsquo;t give up her dead, and the science behind it is as haunting as the song itself.</p>
-<p>It turns out that line is not poetic license. It&rsquo;s physics.</p>
-<p>When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they stayed down. Not because of some mystical property of the Great Lakes, but because of a perfect storm of temperature, pressure, and biology that we can model mathematically.</p>
-<hr>
-<p><em>Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.</em></p>
-<hr>
-<blockquote>
-<p><em>&ldquo;The lake, it is said, never gives up her dead / When the skies of November turn gloomy&rdquo;</em></p></blockquote>
-<hr>
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/edmund-fitzgerald/">Read more…</a>
@@ -211,31 +186,10 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="margin: 0 20px 10px 20px; text-align: center;">
-
-    <a href="/posts/hash-collisions/hash-collisions.png" class="lightbox-trigger" aria-label="Open full-size image">
-
-        <img src="/posts/hash-collisions/hash-collisions.png" alt="">
-
-    </a>
-
-    
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.</em>
-    </figcaption>
-    
-
-</figure>
-
-<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
+		<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
   Stevens et al., 2017
 </a>
 ). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
-<p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while <a class="glossary-term" href="/glossary/#hash-collision" data-definition="A situation in which two different inputs produce the same hash value.">collisions</a> are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</em></p></blockquote>
-<hr>
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/hash-collisions/">Read more…</a>
@@ -251,32 +205,8 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="margin: 0 20px 10px 20px; text-align: center;">
-
-    <a href="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" class="lightbox-trigger" aria-label="Open full-size image">
-
-        <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="">
-
-    </a>
-
-    
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.</em>
-    </figcaption>
-    
-
-</figure>
-
-<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
+		<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
 <p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
-<p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong><a class="glossary-term" href="/glossary/#glitch-token" data-definition="A token that produces unusual or unreliable model behavior because its learned representation is missing, weak, or otherwise anomalous.">glitch token</a></strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
-  Rumbelow &amp; Watkins, 2023
-</a>
-).</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;To a language model, text isn&rsquo;t a stream of words. It&rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&rdquo;</em></p></blockquote>
-<hr>
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-tokenize-text/">Read more…</a>
@@ -292,23 +222,7 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="margin: 0 20px 10px 20px; text-align: center;">
-
-    <a href="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" class="lightbox-trigger" aria-label="Open full-size image">
-
-        <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="">
-
-    </a>
-
-    
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
-    </figcaption>
-    
-
-</figure>
-
-<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+		<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -316,10 +230,6 @@
 </a>
 , it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
 <p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
-<hr>
-<blockquote>
-<p><em>&ldquo;A <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a> isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
-<hr>
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-handle-context-windows/">Read more…</a>

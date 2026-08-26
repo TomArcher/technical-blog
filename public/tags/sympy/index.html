@@ -121,84 +121,87 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
+
 <main class="main" role="main">
   <div class="posts-list">
-    
+
     <header class="taxonomy-header">
       <h1>
         
         1 "SymPy" Post
-        </h1>
-
-      
+      </h1>
     </header>
 
     
-    
 
     
-      
-      
-      
-      
-        
-        
-          
-            
-            
-          
-        
-      
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/python-sympy-vs-numpy/">
-              <img src="/posts/python-sympy-vs-numpy/sympy.png" alt="" loading="lazy">
-            </a>
-          
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/python-sympy-vs-numpy/">
+            <img src="/posts/python-sympy-vs-numpy/sympy.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a>
+                
+                <a href="/posts/python-sympy-vs-numpy/">Using SymPy in Python When NumPy Isn&#39;t Enough</a>
             </h2>
 
+            
+            <div class="post-subtitle">Choosing exact symbolic mathematics when floating-point approximations are not good enough</div>
+            
+
             <div class="post-meta">
-              <time datetime="2025-09-05">
-                <strong>Sep 5, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/linear-algebra/">#linear algebra</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/sympy/">#SymPy</a>, <a href="/tags/symbolic-math/">#symbolic math</a></div>
-          </div>
-        </header>
+                <time datetime=" 2025-09-05">
+                    <strong>Sep 5, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/linear-algebra/">#linear algebra</a>, <a href="/%20/tags/python/">#Python</a>, <a href="/%20/tags/sympy/">#SymPy</a>, <a href="/%20/tags/symbolic-math/">#symbolic math</a></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary">
+    
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>Why floating-point numbers cannot represent many ordinary decimal values exactly</li>
+            
+            <li>How SymPy keeps rational values exact instead of introducing floating-point approximations</li>
+            
+            <li>When tolerance checks such as math.isclose are appropriate and when exact math matters</li>
+            
+            <li>How symbolic computation can calculate derivatives and solve equations without numerical approximation</li>
+            
+            <li>When SymPy is a better choice than NumPy for a mathematical problem</li>
+            
+            <li>How SymPy and NumPy complement each other as tools for precision and performance</li>
+            
+        </ul>
+    </div>
+    
 
-<p>Most of us reach for <a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
-  NumPy
-</a>
- whenever math shows up in a project. But sometimes, you don&rsquo;t want approximate answers, you want exact math. That&rsquo;s when you pull <a href="https://sympy.org/" target="_blank" rel="noopener noreferrer">
-  SymPy
-</a>
- out of your programmer&rsquo;s toolkit and get to work.</p>
-<p>It&rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.</p>
-<p>In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Floats guess. SymPy knows.&rdquo;</em></p></blockquote>
-<hr>
-<p>This is where SymPy shines. To see the difference between <strong><a class="glossary-term" href="/glossary/#floating-point" data-definition="A numerical representation that approximates real numbers using a fixed number of significant digits and an exponent.">floating-point approximations</a></strong> (Python or NumPy) and <strong><a class="glossary-term" href="/glossary/#symbolic-computation" data-definition="Mathematical computation that manipulates expressions and exact values symbolically rather than approximating them numerically.">symbolic precision</a></strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p></div>
-
-        <p><a class="btn" href="/posts/python-sympy-vs-numpy/">Read more →</a></p>
-      </article>
+</article>
     
 
     
+
   </div>
 </main>
+
 
 			</div>
 			

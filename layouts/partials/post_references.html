@@ -1,0 +1,16 @@
+{{- with .Params.references }}
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        {{- range . }}
+        <p class="post-reference">
+            {{ .citation | markdownify }}
+            {{- with .url }}
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ . }}</a>
+            {{- end }}
+        </p>
+        {{- end }}
+    </div>
+</section>
+{{- end }}

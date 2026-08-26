@@ -121,77 +121,85 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
+
 <main class="main" role="main">
   <div class="posts-list">
-    
+
     <header class="taxonomy-header">
       <h1>
         
         1 "Code Organization" Post
-        </h1>
-
-      
+      </h1>
     </header>
 
     
-    
 
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/python-dispatch-maps/">
-              <img src="/posts/python-dispatch-maps/python-dispatch-maps-thumb.png" alt="" loading="lazy">
-            </a>
-          
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/python-dispatch-maps/">
+            <img src="/posts/python-dispatch-maps/python-dispatch-maps-thumb.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <a href="/posts/python-dispatch-maps/">Using Python Dispatch Tables for Cleaner Validation</a>
+                
+                <a href="/posts/python-dispatch-maps/">Using Python Dispatch Tables for Cleaner Validation</a>
             </h2>
 
+            
+            <div class="post-subtitle">Replacing sprawling validation logic with a compact, declarative mapping of rules and results</div>
+            
+
             <div class="post-meta">
-              <time datetime="2025-08-22">
-                <strong>Aug 22, 2025</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/code-organization/">#code organization</a>, <a href="/tags/design-patterns/">#design patterns</a>, <a href="/tags/python/">#Python</a></div>
-          </div>
-        </header>
+                <time datetime=" 2025-08-22">
+                    <strong>Aug 22, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/python-techniques-and-tooling/">Python Techniques and Tooling</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/code-organization/">#code organization</a>, <a href="/%20/tags/design-patterns/">#design patterns</a>, <a href="/%20/tags/python/">#Python</a></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary">
+    
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>Why deeply nested validation logic becomes difficult to read and maintain</li>
+            
+            <li>How guard clauses improve control flow but can still create repetitive validation code</li>
+            
+            <li>What a dispatch table is and how Python dictionaries make the pattern easy to implement</li>
+            
+            <li>How lambda functions can pair validation rules with their corresponding error messages</li>
+            
+            <li>How a single loop can evaluate many validation rules without adding more control flow</li>
+            
+            <li>Why dispatch tables make validation code easier to extend, read, and maintain</li>
+            
+        </ul>
+    </div>
+    
 
-<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
-<p>Most of us start with the usual suspects:</p>
-<p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
-❌ A graveyard of <a class="glossary-term" href="/glossary/#guard-clause" data-definition="A conditional check placed near the beginning of a function or block that exits early when a required condition is not satisfied.">guard clauses</a> scattered line after line</p>
-<hr>
-<blockquote>
-<p><em>Using a dispatch table for validation rules means: one <a class="glossary-term" href="/glossary/#python-dictionary" data-definition="A Python mapping type that stores values as key-value pairs and provides access to each value through its associated key.">dictionary</a>, one loop, infinite sanity.</em></p></blockquote>
-<hr>
-<p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
-<p>There&rsquo;s a better way: <strong><a class="glossary-term" href="/glossary/#dispatch-table" data-definition="A data structure that maps keys or conditions to functions, actions, or other behavior, allowing selection without a long series of conditional statements.">dispatch tables</a></strong>!</p></div>
-
-        <p><a class="btn" href="/posts/python-dispatch-maps/">Read more →</a></p>
-      </article>
+</article>
     
 
     
+
   </div>
 </main>
+
 
 			</div>
 			

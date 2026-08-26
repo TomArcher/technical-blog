@@ -248,7 +248,7 @@ When you ask Claude to count the letters in the word “strawberry,” it often 
 </a>
 , it has to break language into pieces it can process.</p>
 <hr>
-<h2 id="what-is-hahahugoshortcode100s1hbhb">What Is <a class="glossary-term" href="/glossary/#tokenization" data-definition="The process of dividing input into tokens that a model can represent and process numerically.">Tokenization</a>?</h2>
+<h2 id="what-is-hahahugoshortcode14s1hbhb">What Is <a class="glossary-term" href="/glossary/#tokenization" data-definition="The process of dividing input into tokens that a model can represent and process numerically.">Tokenization</a>?</h2>
 <p><strong>Tokenization is the process of breaking text into units (tokens) that a language model can process.</strong></p>
 <p>At first glance, this seems trivial: just split on spaces and punctuation, right? But natural language is messier than that:</p>
 <ul>
@@ -287,10 +287,10 @@ When you ask Claude to count the letters in the word “strawberry,” it often 
 <li>German: <code>&quot;Donaudampfschifffahrtsgesellschaftskapitän&quot;</code> (compound words)</li>
 </ul>
 <p>Word-level tokenization doesn&rsquo;t generalize across languages.</p>
-<h3 id="4-hahahugoshortcode100s4hbhb-problem"><strong>4. <a class="glossary-term" href="/glossary/#out-of-vocabulary" data-definition="Describes an input unit that is not present in a model&#39;s predefined vocabulary and therefore cannot be represented directly.">Out-of-Vocabulary</a> Problem</strong></h3>
+<h3 id="4-hahahugoshortcode14s4hbhb-problem"><strong>4. <a class="glossary-term" href="/glossary/#out-of-vocabulary" data-definition="Describes an input unit that is not present in a model&#39;s predefined vocabulary and therefore cannot be represented directly.">Out-of-Vocabulary</a> Problem</strong></h3>
 <p>If you encounter a word not in your vocabulary, you&rsquo;re stuck. You can&rsquo;t process it, can&rsquo;t embed it, can&rsquo;t generate it. The model has a blind spot for anything it wasn&rsquo;t explicitly trained to recognize.</p>
 <hr>
-<h2 id="hahahugoshortcode100s5hbhb-the-other-extreme"><a class="glossary-term" href="/glossary/#character-level-tokenization" data-definition="A tokenization strategy in which individual characters are treated as tokens rather than words or subwords.">Character-Level Tokenization</a>: The Other Extreme</h2>
+<h2 id="hahahugoshortcode14s5hbhb-the-other-extreme"><a class="glossary-term" href="/glossary/#character-level-tokenization" data-definition="A tokenization strategy in which individual characters are treated as tokens rather than words or subwords.">Character-Level Tokenization</a>: The Other Extreme</h2>
 <p>If words are too coarse, what about going fine-grained? Treat every character as a token:</p>
 <p><code>&quot;I love programming&quot;</code> → <code>[&quot;I&quot;, &quot; &quot;, &quot;l&quot;, &quot;o&quot;, &quot;v&quot;, &quot;e&quot;, &quot; &quot;, &quot;p&quot;, &quot;r&quot;, &quot;o&quot;, &quot;g&quot;, &quot;r&quot;, &quot;a&quot;, &quot;m&quot;, &quot;m&quot;, &quot;i&quot;, &quot;n&quot;, &quot;g&quot;]</code></p>
 <h3 id="advantages"><strong>Advantages:</strong></h3>
@@ -306,7 +306,7 @@ When you ask Claude to count the letters in the word “strawberry,” it often 
 ), processing character sequences is <strong>computationally prohibitive</strong>.</p>
 <p>Worse, the model has to learn that <code>&quot;c-a-t&quot;</code> forms a semantic unit, that <code>&quot;p-r-o-g-r-a-m-m-i-n-g&quot;</code> shares meaning with <code>&quot;p-r-o-g-r-a-m&quot;</code>, and so on. You&rsquo;ve pushed all the linguistic structure learning onto the model.</p>
 <hr>
-<h2 id="hahahugoshortcode100s8hbhb-the-goldilocks-solution"><a class="glossary-term" href="/glossary/#subword-tokenization" data-definition="A tokenization strategy that represents text using units larger than individual characters but often smaller than complete words.">Subword Tokenization</a>: The Goldilocks Solution</h2>
+<h2 id="hahahugoshortcode14s8hbhb-the-goldilocks-solution"><a class="glossary-term" href="/glossary/#subword-tokenization" data-definition="A tokenization strategy that represents text using units larger than individual characters but often smaller than complete words.">Subword Tokenization</a>: The Goldilocks Solution</h2>
 <p>Modern LLMs use <strong>subword tokenization</strong>: splitting text into units that are bigger than characters but smaller than words. The most common approach is <strong><a class="glossary-term" href="/glossary/#byte-pair-encoding" data-definition="A tokenization method that repeatedly merges frequently occurring adjacent units to construct a vocabulary of common subword patterns.">Byte Pair Encoding (BPE)</a></strong>, originally developed for data compression (<a href="#gage1994">
   Gage, 1994
 </a>
@@ -767,7 +767,9 @@ Token 20: &#39;)&#39; (ID: 8)
 <hr>
 
 
-    </div>
+      
+
+      </div>
     <footer class="post__footer">
       
 <div class="post__tags tags clearfix">
@@ -895,6 +897,7 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>
