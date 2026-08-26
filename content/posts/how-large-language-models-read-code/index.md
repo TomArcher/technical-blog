@@ -11,24 +11,24 @@ categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "LLM", "probability", "tokenization",]
 author = "Tom Archer"
 listThumb = "how-large-language-models-read-code.png"
-+++
 
-{{< lightbox
-    src="how-large-language-models-read-code.png"
-    alt="Digital artwork showing a small piece of code outsidee an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic."
-    label="Open full-size how large language models read code"
-    caption="AI reads code as patterns, not instructions."
->}}
+hero = "how-large-language-models-read-code.png"
+heroAlt = "Digital artwork showing a small piece of code outside an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic."
+heroLabel = "Open full-size how large language models read code"
+heroCaption = "AI reads code as patterns, not instructions."
+
+whatYoullLearn = [
+    "How an LLM reads code differently from a compiler or a human developer",
+    "Why models recognize programming patterns instead of executing the code they see",
+    "How embeddings let an LLM associate code with similar structures and meanings",
+    "Why comments, variable names, and familiar coding idioms can change a model's interpretation",
+    "How statistically likely code can still be logically or operationally wrong",
+    "Why combining generative AI with compilers and static analysis produces safer coding tools"
+]
++++
 
 Developers are accustomed to thinking about code in terms of {{< term "syntax-semantics" "syntax and semantics" >}}, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a {{< term "large-language-model" "Large Language Model (LLM)" >}}, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules. 
 
----
-
-> *"When an AI system 'understands' code, it is not executing logic; it is modeling probability.*"
-
----
-
-<!--more-->
 
 The difference may seem subtle, but it has vast consequences. Understanding the gap between human reasoning, compiler verification, and model prediction is key to using generative AI responsibly in programming environments.
 

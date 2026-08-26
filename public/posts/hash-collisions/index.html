@@ -16,9 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/hash-collisions/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)">
-  <meta property="og:description" content="In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
-Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than “unique” versus “not unique.”
-“In cryptography, ‘secure’ has always meant ‘secure for now’.”">
+  <meta property="og:description" content="In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -32,19 +30,15 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 
 		
   <meta itemprop="name" content="Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)">
-  <meta itemprop="description" content="In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
-Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than “unique” versus “not unique.”
-“In cryptography, ‘secure’ has always meant ‘secure for now’.”">
+  <meta itemprop="description" content="In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.">
   <meta itemprop="datePublished" content="2025-11-17T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-17T06:00:00-07:00">
-  <meta itemprop="wordCount" content="4337">
+  <meta itemprop="wordCount" content="4313">
   <meta itemprop="keywords" content="Blockchain,Cryptography,Hashing,Passwords,Security">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)">
-  <meta name="twitter:description" content="In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes.In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
-Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while collisions are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than “unique” versus “not unique.”
-“In cryptography, ‘secure’ has always meant ‘secure for now’.”">
+  <meta name="twitter:description" content="In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -140,6 +134,7 @@ Yet despite this proof, we still trust hash functions for everything from Git co
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</h1>
+        <p class="post-subtitle">The mathematical certainty of hash collisions, the near-impossibility of meaningful ones, and what it means for modern cryptography</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-11-17T06:00:00-07:00">
@@ -188,12 +183,22 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/hash-collisions/hash-collisions.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/hash-collisions/hash-collisions.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/hash-collisions/hash-collisions.png" class="lightbox-trigger"
+        aria-label="Open full-size hash collisions">
+
+        <img src="/posts/hash-collisions/hash-collisions.png" alt="Visual representation of the SHAttered attack showing two different PDF files producing the same SHA-1 hash">
 
     </a>
 
@@ -205,21 +210,35 @@ Yet despite this proof, we still trust hash functions for everything from Git co
 
 </figure>
 
-<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>Why hash collisions are mathematically inevitable even with strong algorithms</li>
+          <li>Why a possible collision is very different from a meaningful security threat</li>
+          <li>How MD5 and SHA-1 went from trusted standards to broken algorithms</li>
+          <li>Why modern password storage needs more than a fast hash and a salt</li>
+          <li>When hash collisions matter for security and when they are harmless</li>
+          <li>How crypto-agility helps systems survive when today&rsquo;s algorithms eventually fail</li>
+      </ul>
+    </aside><p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
   Stevens et al., 2017
 </a>
 ). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
 <p>Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while <a class="glossary-term" href="/glossary/#hash-collision" data-definition="A situation in which two different inputs produce the same hash value.">collisions</a> are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than &ldquo;unique&rdquo; versus &ldquo;not unique.&rdquo;</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;In cryptography, &lsquo;secure&rsquo; has always meant &lsquo;secure for now&rsquo;.&rdquo;</em></p></blockquote>
-<hr>
 <div style="background-color: #f8f8f8; border-left: 4px solid #4CAF50; padding: 1em; margin: 1em 0;">
 <strong>Historical Note:</strong> This post updates my 2005 article on hash collisions (<a href="#archer2005">Archer, 2005</a>). Back then, MD5 was still considered "acceptable with caveats" and adding <a class="glossary-term" href="/glossary/#password-salt" data-definition="Random data combined with a password before hashing so that identical passwords do not produce identical stored hashes.">salt</a> to passwords seemed cutting-edge. It's fascinating (and somewhat alarming) to see which predictions came true and which assumptions had to be completely reconsidered.
 </div>
 <p>Twenty years ago, I wrote about hash collisions when the biggest concern was spyware-removal applications getting false positives. Today, MD5 can be cracked on a laptop, simple salting is woefully inadequate, and billions of dollars in cryptocurrency depend on hash <a class="glossary-term" href="/glossary/#collision-resistance" data-definition="A property of a cryptographic hash function that makes it computationally infeasible to find two different inputs that produce the same hash.">collision resistance</a>. The landscape has shifted dramatically, with hash functions now underpinning everything from secure communications to digital currencies. But the fundamental questions remain: How unique are hash codes really? And when does it matter?</p>
 <hr>
-<h2 id="the-hahahugoshortcode103s5hbhb-in-action">The <a class="glossary-term" href="/glossary/#pigeonhole-principle" data-definition="A mathematical principle stating that if more objects are placed into fewer containers, at least one container must contain more than one object.">Pigeonhole Principle</a> in Action</h2>
+<h2 id="the-hahahugoshortcode94s4hbhb-in-action">The <a class="glossary-term" href="/glossary/#pigeonhole-principle" data-definition="A mathematical principle stating that if more objects are placed into fewer containers, at least one container must contain more than one object.">Pigeonhole Principle</a> in Action</h2>
 <p>Hash algorithms generate fixed-length outputs regardless of input size. SHA-256 always produces 256 bits (32 bytes), whether you&rsquo;re hashing a single character or an entire library. SHA-3-512 always produces 512 bits. This creates an inherent mathematical constraint that&rsquo;s easy to visualize but hard to grasp in practice.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
 </span></span><span style="display:flex;"><span>
@@ -929,6 +948,8 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
 <em>The breakthrough that showed MD5 collisions could be found in hours, not centuries.</em></li>
 </ul>
 <hr>
+
+
     </div>
     <footer class="post__footer">
       
@@ -1057,7 +1078,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

@@ -216,8 +216,8 @@ a:focus-visible {
    Summary clears below the image so it starts on a new line. */
 .posts-list .post.post--has-title-thumb .post-title-thumb {
   float: left;
-  width: 96px;
-  height: 96px;
+  width: 200px;
+  height: 200px;
   margin: 0 12px 8px 0;    /* space to the right & below */
   text-decoration: none !important;
 }
@@ -644,4 +644,104 @@ pre:hover .copy-button {
   line-height: 1;
 
   cursor: pointer;
+}
+
+.post-subtitle {
+  margin-top: 0.2rem;
+  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: #666;
+}
+
+.post-learning {
+  clear: both;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.post-learning-title {
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.post-learning-list {
+  margin: 0 0 0.75rem 1.25rem;
+}
+
+.post-learning-list li {
+  margin-bottom: 0.2rem;
+}
+
+.post-header {
+  transition: background-color 0.15s ease;
+}
+
+.post-header:hover {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+.post-header:hover .post-title a {
+  text-decoration: underline;
+}
+
+.post-title-thumb img {
+  transition: transform 0.15s ease;
+}
+
+.post-header:hover .post-title-thumb img {
+  transform: scale(1.02);
+}
+
+.what-youll-learn {
+  margin: 0.35rem 0 1.5rem;
+  padding: 0.75rem 1rem;
+  background: #fafafa;
+  border-top: 2px solid #c44a2c;
+  border-bottom: 2px solid #c44a2c;
+}
+
+.what-youll-learn__title {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.what-youll-learn__intro {
+  margin-bottom: 0.35rem;
+}
+
+.what-youll-learn ul {
+  margin: 0.25rem 0 0 1.25rem;
+}
+
+.what-youll-learn li {
+  margin-bottom: 0.2rem;
+}
+
+.post-hero+.what-youll-learn {
+  margin-top: 0.75rem;
+}
+
+.post-learning ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+  row-gap: 0.25rem;
+}
+
+.post-learning li {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .post-learning ul {
+    grid-template-columns: 1fr;
+  }
 }

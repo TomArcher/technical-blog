@@ -1,32 +1,32 @@
 +++
 title = "The Meeting Diet: An Optimization Approach to Your Calendar"
+subtitle = "How optimization can help you decide which meetings deserve your limited time and energy"
 date = 2025-08-28T05:00:00-07:00
 draft = false
 categories = ["Applied Modeling and Simulation"]
 tags = ["optimization", "Python", "scheduling",]
 author = "Tom Archer"
 listThumb = "meeting-diet.png"
+
+hero = "meeting-diet.png"
+heroAlt = "Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend"
+heroLabel = "Open full-size meeting diet"
+heroCaption = "If you don't optimize your schedule, your schedule will optimize you. Badly"
+
+whatYoullLearn = [
+    "How to turn meeting choices into a mathematical optimization problem",
+    "How time and mental energy can be modeled as separate constraints",
+    "How a 0/1 knapsack model chooses the most valuable combination of meetings",
+    "How Python and PuLP can solve a meeting schedule automatically",
+    "How AI can scaffold optimization code when you give it the right mathematical structure",
+    "How simulation and visualization can reveal which meetings are worth attending"
+]
 +++
-
-{{< lightbox
-    src="meeting-diet.png"
-    alt="Professional woman pausing outside a conference room labeled 'Meeting in Progress', deciding whether to attend"
-    label="Open full-size meeting diet"
-    caption="If you don't optimize your schedule, your schedule will optimize you. Badly"
->}}
-
 
 Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to *quantify* that choice?
 
----
-
-> *"Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them."*
-
----
 
 **The good news: math can help.** By modeling your schedule as a [**{{< term "multidimensional-knapsack" "0/1 knapsack problem with two constraints" >}}**](https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem), you can treat meetings like items with value, time cost, and energy cost. Classic {{< term "optimization" "optimization" >}} techniques then help decide which meetings to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a {{< term "simulation" "simulation" >}} to visualize your optimal "meeting diet."
-
-<!--more-->
 
 ---
 

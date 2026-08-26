@@ -7,14 +7,21 @@ categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "tokenization", "LLM", "transformers", "NLP"]
 author = "Tom Archer"
 listThumb = "how-large-language-models-tokenize-text.png"
-+++
 
-{{< lightbox
-    src="how-large-language-models-tokenize-text.png"
-    alt="Digital artwork showing text being broken into irregular puzzle pieces, with some pieces glowing to indicate {{< term"
-    label="Open full-size how large language models tokenize text"
-    caption="LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference."
->}}
+hero = "how-large-language-models-tokenize-text.png"
+heroAlt = "Digital artwork showing text being broken into irregular puzzle pieces, illustrating how language models process tokens rather than whole words."
+heroLabel = "Open full-size how large language models tokenize text"
+heroCaption = "LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference."
+
+whatYoullLearn = [
+    "Why language models break text into tokens instead of reading whole words",
+    "How subword tokenization balances vocabulary size with the amount of text a model must process",
+    "How Byte Pair Encoding learns useful token boundaries from patterns in training data",
+    "Why the same sentence can use very different numbers of tokens across languages, code, and rare words",
+    "How tokenization can cause surprising failures in spelling, letter counting, and unusual inputs",
+    "Why token counts affect context limits, processing efficiency, and the cost of using an LLM"
+]
++++
 
 When you type "I love programming" into ChatGPT, you might assume the model reads three words. It doesn't. It reads somewhere between three and seven tokens, depending on how the text is split.
 
@@ -22,13 +29,6 @@ When you ask Claude to count the letters in the word "strawberry," it often gets
 
 And when early GPT-3 users discovered that typing "SolidGoldMagikarp" caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn't the model's training. It was a **{{< term "glitch-token" "glitch token" >}}**: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it ([Rumbelow & Watkins, 2023](#rumbelow2023)).
 
----
-
->*"To a language model, text isn't a stream of words. It's a sequence of tokens. The way those tokens are created determines what the model can and cannot understand."*
-
----
-
-<!--more-->
 
 This post explores how tokenization works, why it's not as simple as splitting on spaces, and what happens when tokenization goes wrong. If you're following my series on how LLMs work, this is the foundation that makes everything else possible—because before a model can [read](/posts/how-large-language-models-read-code), [think](/posts/how-large-language-models-think), or [learn](/posts/how-large-language-models-learn), it has to break language into pieces it can process.
 

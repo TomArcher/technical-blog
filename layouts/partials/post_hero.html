@@ -1,0 +1,11 @@
+{{- with .Params.hero }}
+
+    {{- partial "lightbox_image.html" (dict
+        "page" $
+        "src" .
+        "alt" $.Params.heroAlt
+        "label" $.Params.heroLabel
+        "caption" $.Params.heroCaption
+    ) -}}
+
+{{- end }}

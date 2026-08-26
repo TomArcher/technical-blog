@@ -16,10 +16,8 @@
 		<meta property="og:url" content="http://localhost:1313/posts/how-large-language-models-think/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="How Large Language Models (LLMs) Think: Turning Meaning into Math">
-  <meta property="og:description" content="Meaning takes shape in mathematics long before it reaches words.When you enter a sentence into a Large Language Model (LLM) such as ChatGPTor Claude, the model does not process words as language. It represents them as numbers.
-Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.
-This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.
-“Linear algebra and geometry do more than support AI; they create its language of meaning.”">
+  <meta property="og:description" content="When you enter a sentence into a Large Language Model (LLM) such as ChatGPTor Claude, the model does not process words as language. It represents them as numbers.
+Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -33,21 +31,17 @@ This is the mathematical foundation of large language models: linear algebra. Ma
 
 		
   <meta itemprop="name" content="How Large Language Models (LLMs) Think: Turning Meaning into Math">
-  <meta itemprop="description" content="Meaning takes shape in mathematics long before it reaches words.When you enter a sentence into a Large Language Model (LLM) such as ChatGPTor Claude, the model does not process words as language. It represents them as numbers.
-Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.
-This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.
-“Linear algebra and geometry do more than support AI; they create its language of meaning.”">
+  <meta itemprop="description" content="When you enter a sentence into a Large Language Model (LLM) such as ChatGPTor Claude, the model does not process words as language. It represents them as numbers.
+Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.">
   <meta itemprop="datePublished" content="2025-10-07T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-10-07T06:00:00-07:00">
-  <meta itemprop="wordCount" content="1710">
+  <meta itemprop="wordCount" content="1685">
   <meta itemprop="keywords" content="AI,Embeddings,Geometry,Linear Algebra,LLM">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How Large Language Models (LLMs) Think: Turning Meaning into Math">
-  <meta name="twitter:description" content="Meaning takes shape in mathematics long before it reaches words.When you enter a sentence into a Large Language Model (LLM) such as ChatGPTor Claude, the model does not process words as language. It represents them as numbers.
-Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.
-This is the mathematical foundation of large language models: linear algebra. Matrix multiplication, vector projection, cosine similarity, and normalization define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.
-“Linear algebra and geometry do more than support AI; they create its language of meaning.”">
+  <meta name="twitter:description" content="When you enter a sentence into a Large Language Model (LLM) such as ChatGPTor Claude, the model does not process words as language. It represents them as numbers.
+Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -143,6 +137,7 @@ This is the mathematical foundation of large language models: linear algebra. Ma
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">How Large Language Models (LLMs) Think: Turning Meaning into Math</h1>
+        <p class="post-subtitle">Exploring how large language models use linear algebra to create geometric meaning</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-10-07T06:00:00-07:00">
@@ -191,12 +186,22 @@ This is the mathematical foundation of large language models: linear algebra. Ma
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/how-large-language-models-think/how-large-language-models-read-code.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/how-large-language-models-think/how-large-language-models-read-code.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-think/how-large-language-models-read-code.png" class="lightbox-trigger"
+        aria-label="Open full-size how large language models think">
+
+        <img src="/posts/how-large-language-models-think/how-large-language-models-read-code.png" alt="Digital artwork illustrating how a large language model represents language as mathematical relationships in a high-dimensional vector space.">
 
     </a>
 
@@ -208,7 +213,25 @@ This is the mathematical foundation of large language models: linear algebra. Ma
 
 </figure>
 
-<p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>How an LLM turns words and tokens into numerical vectors it can process</li>
+          <li>How distance and direction in embedding space can represent relationships in meaning</li>
+          <li>Why linear algebra and geometry are two ways of describing the same internal structure</li>
+          <li>How matrix operations transform information as it moves through a model</li>
+          <li>Why high-dimensional spaces can represent many subtle features of language at once</li>
+          <li>How probability guides a model from its current context toward the next token</li>
+      </ul>
+    </aside><p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -217,10 +240,6 @@ This is the mathematical foundation of large language models: linear algebra. Ma
 , the model does not process words as language. It represents them as numbers.</p>
 <p>Each word, phrase, and code <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> becomes a vector — a list of real-valued coordinates within a <a class="glossary-term" href="/glossary/#high-dimensional-space" data-definition="A mathematical space containing many independent dimensions, allowing complex objects and relationships to be represented as vectors.">high-dimensional space</a>. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
 <p>This is the mathematical foundation of large language models: linear algebra. <a class="glossary-term" href="/glossary/#matrix-multiplication" data-definition="An operation that combines matrices by computing dot products between rows and columns, forming the basis of many neural network computations.">Matrix multiplication</a>, <a class="glossary-term" href="/glossary/#vector-projection" data-definition="The component of one vector that lies in the direction of another vector.">vector projection</a>, <a class="glossary-term" href="/glossary/#cosine-similarity" data-definition="A measure of similarity between two vectors based on the cosine of the angle between them.">cosine similarity</a>, and <a class="glossary-term" href="/glossary/#normalization" data-definition="The process of rescaling numerical values or vectors to a standardized range or magnitude.">normalization</a> define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Linear algebra and geometry do more than support AI; they create its language of meaning.&rdquo;</em></p></blockquote>
-<hr>
 <p>This post explains how those operations create what we perceive as context and comprehension. You will see how linear algebra forms the bridge between words and meaning and how tools such as Python or <a href="https://www.mathworks.com/products/matlab.html" target="_blank" rel="noopener noreferrer">
   MATLAB
 </a>
@@ -344,6 +363,8 @@ This is the mathematical foundation of large language models: linear algebra. Ma
 </a>
 .</p>
 <hr>
+
+
     </div>
     <footer class="post__footer">
       
@@ -472,7 +493,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

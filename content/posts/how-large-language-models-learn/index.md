@@ -11,14 +11,21 @@ categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "calculus", "gradient descent", "LLM", "optimization",]
 author = "Tom Archer"
 listThumb = "how-large-language-models-learn3.png"
-+++
 
-{{< lightbox
-    src="how-large-language-models-learn3.png"
-    alt="Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding."
-    label="Open full-size how large language models learn3"
-    caption="Meaning takes shape as the model learns to descend its own mathematical terrain."
->}}
+hero = "how-large-language-models-learn3.png"
+heroAlt = "Digital artwork depicting a glowing mathematical landscape with ridges and valleys overlaid with calculus formulas, illustrating how gradients guide AI learning as it descends toward understanding."
+heroLabel = "Open full-size how large language models learn3"
+heroCaption = "Meaning takes shape as the model learns to descend its own mathematical terrain."
+
+whatYoullLearn = [
+    "How derivatives tell a model which direction will reduce its prediction error",
+    "How gradient descent turns billions of small corrections into learning",
+    "How backpropagation uses the chain rule to assign error across many layers",
+    "Why the learning rate controls the balance between fast progress and stable training",
+    "Why noisy mini-batch updates can help a model generalize instead of memorize",
+    "How transformers keep gradients stable while learning which patterns deserve attention"
+]
++++
 
 When you interact with a {{< term "large-language-model" "large language model (LLM)" >}} such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model seems to respond instantly relative to the question's degree of difficulty. What's easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.
 
@@ -26,13 +33,6 @@ Large language models don't memorize text. They *optimize* it. Behind that optim
 
 At its heart, every LLM is a feedback system. It starts with random guesses, measures how wrong it was, and then adjusts itself to be *slightly less wrong.* The word "slightly" in this context is the essence of calculus.  
 
----
-
->*"Each gradient step represents a measurable reduction in error, guiding the model toward a more stable understanding of language."*
-
----
-
-<!--more-->
 
 This post explores how derivatives guide learning, how gradients shape understanding, and how every improvement in an AI's intelligence begins with a single slope on a vast mathematical landscape. Think of that landscape as a terrain of error and knowledge: each ridge represents mistakes, each valley represents improvement, and the model's journey is one of descending that terrain toward understanding itself.
 

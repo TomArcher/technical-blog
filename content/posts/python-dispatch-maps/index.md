@@ -5,18 +5,26 @@ aliases = [
 ]
 draft = false
 title = "Using Python Dispatch Tables for Cleaner Validation"
+subtitle = "Replacing sprawling validation logic with a compact, declarative mapping of rules and results"
 categories = ["Python Techniques and Tooling",]
 tags = ["code organization", "design patterns", "Python",]
 author = "Tom Archer"
 listThumb = "python-dispatch-maps-thumb.png"
-+++
 
-{{< lightbox
-    src="python-dispatch-maps.png"
-    alt="Python Tip of the Week logo: Python Post-it note on monitor"
-    label="Open full-size python dispatch maps"
-    caption="Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results."
->}}
+hero = "python-dispatch-maps.png"
+heroAlt = "Python Tip of the Week logo: Python Post-it note on monitor"
+heroLabel = "Open full-size python dispatch maps"
+heroCaption = "Dispatch maps turn a mess of conditionals into one elegant mapping of rules and results."
+
+whatYoullLearn = [
+    "Why deeply nested validation logic becomes difficult to read and maintain",
+    "How guard clauses improve control flow but can still create repetitive validation code",
+    "What a dispatch table is and how Python dictionaries make the pattern easy to implement",
+    "How lambda functions can pair validation rules with their corresponding error messages",
+    "How a single loop can evaluate many validation rules without adding more control flow",
+    "Why dispatch tables make validation code easier to extend, read, and maintain"
+]
++++
 
 Let's be honest: argument validation code is rarely the proudest part of anyone's repo.  
 
@@ -25,18 +33,11 @@ Most of us start with the usual suspects:
 ❌ The dreaded *inverted-V* tower of `if/else` statements  
 ❌ A graveyard of {{< term "guard-clause" "guard clauses" >}} scattered line after line  
 
----
-
-> *Using a dispatch table for validation rules means: one {{< term "python-dictionary" "dictionary" >}}, one loop, infinite sanity.*
-
----
 
 
 Both work fine… until they don't. Then you're left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.  
 
 There's a better way: **{{< term "dispatch-table" "dispatch tables" >}}**!
-
-<!--more-->
 
 ---
 

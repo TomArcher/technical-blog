@@ -16,9 +16,8 @@
 		<meta property="og:url" content="http://localhost:1313/posts/how-large-language-models-handle-context-windows/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory">
-  <meta property="og:description" content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
-But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.
-“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”">
+  <meta property="og:description" content="When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
+But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -32,19 +31,17 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 
 		
   <meta itemprop="name" content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory">
-  <meta itemprop="description" content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
-But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.
-“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”">
+  <meta itemprop="description" content="When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
+But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.">
   <meta itemprop="datePublished" content="2025-11-10T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-10T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3722">
+  <meta itemprop="wordCount" content="3693">
   <meta itemprop="keywords" content="AI,Attention Mechanisms,Context Windows,LLM,Transformers">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory">
-  <meta name="twitter:description" content="Context windows create the illusion of memory through mathematical attention, not storage.When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
-But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.
-“A context window isn’t memory. It’s a performance where the model rereads its lines before every response.”">
+  <meta name="twitter:description" content="When you have a long conversation with a large language model (LLM) such as ChatGPTor Claude, it feels like the model remembers everything you’ve discussed. It references earlier points, maintains consistent context, and seems to “know” what you talked about pages ago.
+But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -140,6 +137,7 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</h1>
+        <p class="post-subtitle">Exploring why longer context doesn&#39;t mean better memory and what happens when conversations grow</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-11-10T06:00:00-07:00">
@@ -188,12 +186,22 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" class="lightbox-trigger"
+        aria-label="Open full-size context windows illustration">
+
+        <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections">
 
     </a>
 
@@ -205,7 +213,25 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 
 </figure>
 
-<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>Why an LLM&rsquo;s context window is not the same thing as memory</li>
+          <li>How chat applications create continuity even though the underlying model is stateless</li>
+          <li>How attention lets earlier parts of a conversation influence the next token</li>
+          <li>Why longer conversations become increasingly expensive for a transformer to process</li>
+          <li>Why information can become harder to use even while it remains inside the context window</li>
+          <li>How truncation, summarization, retrieval, and KV caching help manage long conversations</li>
+      </ul>
+    </aside><p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -213,10 +239,6 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 </a>
 , it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
 <p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
-<hr>
-<blockquote>
-<p><em>&ldquo;A <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a> isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
-<hr>
 <p>This post explores what context windows actually are, how they work mathematically, why they have limits, and what happens when those limits are reached. For a foundation in how models represent meaning, start with <a href="/posts/how-ai-turns-meaning-into-math/">
   How LLMs Think: Turning Meaning into Math
 </a>
@@ -403,7 +425,7 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 <h3 id="2-summarization"><strong>2. Summarization</strong></h3>
 <p>Some systems automatically summarize older portions of the conversation and replace them with condensed versions in what gets sent to the API.</p>
 <p><strong>Problem:</strong> Summarization is lossy. Nuance, specific examples, and precise wording disappear. The model is now reasoning over <em>a summary of your conversation</em> rather than your actual words.</p>
-<h3 id="3-hahahugoshortcode203s14hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
+<h3 id="3-hahahugoshortcode95s12hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
 <p>The application stores the full conversation in an external database and retrieves relevant chunks to include in the API call.</p>
 <p><strong>Problem:</strong> Retrieval is imperfect. The system has to guess which past messages are relevant. It might retrieve the wrong context or miss critical information.</p>
 <hr>
@@ -728,6 +750,8 @@ Long-term context may eventually blend neural pattern recognition with symbolic 
 <em>The foundational paper that introduced the Transformer architecture and the attention mechanism. Essential reading for understanding how context windows work mathematically.</em></li>
 </ul>
 <hr>
+
+
     </div>
     <footer class="post__footer">
       
@@ -856,7 +880,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

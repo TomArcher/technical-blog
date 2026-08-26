@@ -11,14 +11,21 @@ categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "embeddings", "geometry", "linear algebra", "LLM",]
 author = "Tom Archer"
 listThumb = "how-large-language-models-read-code-thumb.png"
-+++
 
-{{< lightbox
-    src="how-large-language-models-read-code.png"
-    alt="Digital artwork showing {{< term"
-    label="Open full-size how large language models read code"
-    caption="Meaning takes shape in mathematics long before it reaches words."
->}}
+hero = "how-large-language-models-read-code.png"
+heroAlt = "Digital artwork illustrating how a large language model represents language as mathematical relationships in a high-dimensional vector space."
+heroLabel = "Open full-size how large language models think"
+heroCaption = "Meaning takes shape in mathematics long before it reaches words."
+
+whatYoullLearn = [
+    "How an LLM turns words and tokens into numerical vectors it can process",
+    "How distance and direction in embedding space can represent relationships in meaning",
+    "Why linear algebra and geometry are two ways of describing the same internal structure",
+    "How matrix operations transform information as it moves through a model",
+    "Why high-dimensional spaces can represent many subtle features of language at once",
+    "How probability guides a model from its current context toward the next token"
+]
++++
 
 When you enter a sentence into a {{< term "large-language-model" "Large Language Model (LLM)" >}} such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model does not process words as language. It represents them as numbers.
 
@@ -26,13 +33,6 @@ Each word, phrase, and code {{< term "token" "token" >}} becomes a vector — a 
 
 This is the mathematical foundation of large language models: linear algebra. {{< term "matrix-multiplication" "Matrix multiplication" >}}, {{< term "vector-projection" "vector projection" >}}, {{< term "cosine-similarity" "cosine similarity" >}}, and {{< term "normalization" "normalization" >}} define how the model navigates this vast space of meaning. What feels like understanding is actually the alignment of high-dimensional vectors governed by probability and geometry.
 
----
-
-> *"Linear algebra and geometry do more than support AI; they create its language of meaning."*
-
----
-
-<!--more-->
 
 This post explains how those operations create what we perceive as context and comprehension. You will see how linear algebra forms the bridge between words and meaning and how tools such as Python or [MATLAB](https://www.mathworks.com/products/matlab.html) make this hidden structure visible. For a conceptual introduction to how models interpret code, start with [How AI Reads Code: What Large Language Models Actually Understand](/posts/how-ai-reads-code/).
 

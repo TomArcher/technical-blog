@@ -122,8 +122,10 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
+
 <main class="main" role="main">
   <div class="posts-list">
+
     
     
 
@@ -134,251 +136,274 @@
     
 
     
-      
-      
-      
-      
+    
 
-      <article class="post post--pinned">
-        <header class="post-header">
-          
-          
 
-          <div class="post-header-text">
+
+
+<article class="post post--pinned">
+    <header class="post-header">
+
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              <span class="pinned-icon" title="Pinned post">📌</span>
-              <a href="/posts/roadmap/">Start Here: The Signal &amp; Syntax Roadmap</a>
+                
+                <span class="pinned-icon" title="Pinned post">📌</span>
+                
+                <a href="/posts/roadmap/">Start Here: The Signal &amp; Syntax Roadmap</a>
             </h2>
 
-            <div class="post-meta">
-              <time datetime="2026-08-22">
-                <strong>Aug 22, 2026</strong>
-              </time></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary"><p>Signal &amp; Syntax works through the mathematics, mechanics, and engineering of large language models from first principles, with a secondary interest in applied modeling and simulation. Each post is written to stand on its own, but many of them also fit into a larger arc. This page is where those arcs are visible in one place.</p>
-<p>The roadmap is public because I want readers to know where the project is going, and because a public roadmap is a commitment device. It updates as I learn things that change the plan, so the &ldquo;planned&rdquo; section is not a fixed order or a promise of dates. Consider it an honest snapshot of what I intend to write next, subject to revision when the material teaches me something.</p></div>
-
-        <p><a class="btn" href="/posts/roadmap/">Read more →</a></p>
-      </article>
-    
-      
-      
-      
-      
-        
-        
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/inside-attention-part-1/">
-              <img src="/posts/inside-attention-part-1/inside-attention-part-1-thumb.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              
-              <a href="/posts/inside-attention-part-1/">Inside Attention, Part 1: The Mechanism</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2026-08-22">
-                <strong>Aug 22, 2026</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/induction-heads/">#induction heads</a>, <a href="/tags/interpretability/">#interpretability</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/softmax/">#softmax</a>, <a href="/tags/transformers/">#transformers</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">
-
-<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
-    <div style="text-align: center;"><strong>What You'll Learn</strong><br><br></div>
-After reading this post, you'll be able to explain:
-<ul>
-<li>What queries, keys, and values do</li>
-<li>How scaled dot-product <a class="glossary-term" href="/glossary/#attention" data-definition="A mechanism that allows a model to determine how strongly one token should relate to other tokens when constructing a representation.">attention</a> works</li>
-<li>Why attention divides by \(\sqrt{d_k}\)</li>
-<li>Why transformers use multiple heads</li>
-<li>What attention heads actually learn</li>
-<li>How <a class="glossary-term" href="/glossary/#induction-head" data-definition="An attention head involved in a circuit that recognizes repeated token patterns and uses an earlier occurrence to predict what is likely to follow the current occurrence.">induction head</a>s enable pattern copying</li>
-</ul>
-</div>
-<p>The <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformer architecture</a> is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a <a class="glossary-term" href="/glossary/#feedforward-network" data-definition="A neural network component that applies learned transformations independently to each token representation after the attention operation.">feedforward sublayer</a>, wrapped in <a class="glossary-term" href="/glossary/#residual-connection" data-definition="A shortcut connection that adds a layer&#39;s input to its output, helping information and gradients flow through deep neural networks.">residual connections</a> and <a class="glossary-term" href="/glossary/#layer-normalization" data-definition="A normalization technique that stabilizes neural network training by rescaling activations within a layer.">layer normalization</a>. <a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional information</a> is added to the input so the model knows what order the <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a> came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
-<p>This post is the first of a three-part series on the attention mechanism. Part 1 covers <a class="glossary-term" href="/glossary/#scaled-dot-product-attention" data-definition="An attention mechanism that compares queries with keys using dot products, scales the resulting scores by the square root of the key dimension, applies softmax, and uses the resulting weights to combine values.">scaled dot-product attention</a>, why we divide by \(\sqrt{d_k}\), <a class="glossary-term" href="/glossary/#multi-head-attention" data-definition="An attention architecture that runs multiple independently learned attention heads in parallel and combines their outputs, allowing different relationships to be modeled simultaneously.">multi-head attention</a>, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how <a class="glossary-term" href="/glossary/#causal-mask" data-definition="An attention mask that prevents a token from attending to future positions in a sequence.">causal masking</a> turns self-attention into the foundation of <a class="glossary-term" href="/glossary/#autoregressive" data-definition="Describes a model that generates a sequence one element at a time, with each prediction conditioned on previously available elements.">autoregressive</a> next-token prediction. Part 3 covers the engineering layer: <a class="glossary-term" href="/glossary/#kv-cache" data-definition="A cache of previously computed key and value vectors that lets a transformer reuse them while generating subsequent tokens.">KV caching</a>, <a class="glossary-term" href="/glossary/#multi-query-attention" data-definition="An attention variant in which multiple query heads share a single set of key and value heads, reducing memory use and inference cost.">multi-query</a> and <a class="glossary-term" href="/glossary/#grouped-query-attention" data-definition="An attention variant in which groups of query heads share key and value heads, providing a compromise between multi-head and multi-query attention.">grouped-query attention</a>, <a class="glossary-term" href="/glossary/#sliding-window-attention" data-definition="An attention pattern that restricts each token to attending to a limited neighborhood of nearby tokens rather than the entire sequence.">sliding window attention</a>, and <a class="glossary-term" href="/glossary/#flash-attention" data-definition="An optimized attention algorithm that reduces memory traffic by computing attention in blocks, enabling faster and more memory-efficient exact attention.">Flash Attention</a>.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&rdquo;</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/inside-attention-part-1/">Read more →</a></p>
-      </article>
-    
-      
-      
-      
-      
-        
-        
-          
             
+            <div class="post-subtitle">What Signal &amp; Syntax has covered, what is in progress, and what is planned</div>
             
-          
-        
-      
-
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/minimal-transformer/">
-              <img src="/posts/minimal-transformer/transformer.jpeg" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              
-              <a href="/posts/minimal-transformer/">Implementing a Minimal Transformer in PyTorch</a>
-            </h2>
 
             <div class="post-meta">
-              <time datetime="2026-04-01">
-                <strong>Apr 1, 2026</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/applied-modeling-and-simulation/">Applied Modeling and Simulation</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#Attention Mechanisms</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/nlp/">#NLP</a>, <a href="/tags/python/">#Python</a>, <a href="/tags/transformers/">#Transformers</a></div>
-          </div>
-        </header>
+                <time datetime=" 2026-08-22">
+                    <strong>Aug 22, 2026</strong>
+                </time></div>
+        </div>
+    </header>
 
-        
-        
-        
-        
-        <div class="post-summary"><p><strong>Lightbox image not found: transformer.jpeg</strong></p>
-
-<p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
-<p>That claim turned out to be correct.</p>
-<p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
-<p>In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We&rsquo;ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.</p>
-<p>By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you&rsquo;ll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.</p>
-<hr></div>
-
-        <p><a class="btn" href="/posts/minimal-transformer/">Read more →</a></p>
-      </article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/discrete-math-in-large-language-models/">
-              <img src="/posts/discrete-math-in-large-language-models/discrete-math-in-large-language-models-th.png" alt="" loading="lazy">
-            </a>
-          
-
-          <div class="post-header-text">
-            <h2 class="post-title">
-              
-              <a href="/posts/discrete-math-in-large-language-models/">The Discrete Mathematics Hiding Inside LLMs</a>
-            </h2>
-
-            <div class="post-meta">
-              <time datetime="2026-03-31">
-                <strong>Mar 31, 2026</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/tags/embeddings/">#embeddings</a>, <a href="/tags/discrete-mathematics/">#discrete mathematics</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/predicate-logic/">#predicate logic</a>, <a href="/tags/set-theory/">#set theory</a></div>
-          </div>
-        </header>
-
-        
-        
-        
-        
-        <div class="post-summary">
-
-<p>A recent <a href="https://www.linkedin.com/posts/activity-7435689322504167424-_v46" target="_blank" rel="noopener noreferrer">
-  LinkedIn post
-</a>
- from Michael Palmer described how <a class="glossary-term" href="/glossary/#discrete-mathematics" data-definition="The branch of mathematics concerned with distinct, countable structures such as sets, logic, graphs, integers, and combinatorial objects.">discrete mathematics</a> is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, <a class="glossary-term" href="/glossary/#gradient-descent" data-definition="An optimization method that iteratively adjusts model parameters in the direction that reduces a loss function.">gradient descent</a>, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
-<p>Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: <a class="glossary-term" href="/glossary/#set-theory" data-definition="The branch of mathematics that studies collections of objects and operations such as union, intersection, complement, and membership.">sets</a>, <a class="glossary-term" href="/glossary/#predicate-logic" data-definition="A formal system of logic that uses predicates, variables, and quantifiers to express statements about objects and their relationships.">predicate logic</a>, <a class="glossary-term" href="/glossary/#boolean-algebra" data-definition="A system of logic based on true and false values and operations such as AND, OR, and NOT.">Boolean operations</a>, <a class="glossary-term" href="/glossary/#modular-arithmetic" data-definition="A system of arithmetic in which numbers wrap around after reaching a specified modulus, producing cyclic patterns.">modular arithmetic</a>, formal proof patterns. This post traces those connections.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure.&rdquo;</em></p></blockquote>
-<hr></div>
-
-        <p><a class="btn" href="/posts/discrete-math-in-large-language-models/">Read more →</a></p>
-      </article>
+</article>
     
-      
-      
-      
-      
-        
-        
-          
-        
-      
+    
 
-      <article class="post post--has-title-thumb">
-        <header class="post-header">
-          
-          
-            <a class="post-title-thumb" href="/posts/how-large-language-models-know-things-they-were-never-taught/">
-              <img src="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught-thumb.png" alt="" loading="lazy">
-            </a>
-          
 
-          <div class="post-header-text">
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/inside-attention-part-1/">
+            <img src="/posts/inside-attention-part-1/inside-attention-part-1-thumb.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
             <h2 class="post-title">
-              
-              <a href="/posts/how-large-language-models-know-things-they-were-never-taught/">How Large Language Models (LLMs) Know Things They Were Never Taught</a>
+                
+                <a href="/posts/inside-attention-part-1/">Inside Attention, Part 1: The Mechanism</a>
             </h2>
 
+            
+            <div class="post-subtitle">Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.</div>
+            
+
             <div class="post-meta">
-              <time datetime="2026-02-09">
-                <strong>Feb 9, 2026</strong>
-              </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/tags/ai/">#AI</a>, <a href="/tags/llm/">#LLM</a>, <a href="/tags/rag/">#RAG</a>, <a href="/tags/web-search/">#web search</a>, <a href="/tags/context-windows/">#context windows</a></div>
-          </div>
-        </header>
+                <time datetime=" 2026-08-22">
+                    <strong>Aug 22, 2026</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/ai/">#AI</a>, <a href="/%20/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/%20/tags/induction-heads/">#induction heads</a>, <a href="/%20/tags/interpretability/">#interpretability</a>, <a href="/%20/tags/llm/">#LLM</a>, <a href="/%20/tags/softmax/">#softmax</a>, <a href="/%20/tags/transformers/">#transformers</a></div>
+        </div>
+    </header>
+
+    
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>Why collisions happen long before an ID space is full</li>
+            
+            <li>Why collision risk grows much faster than intuition suggests</li>
+            
+            <li>How to calculate the probability of an ID collision</li>
+            
+            <li>How 32-bit, 64-bit, and UUID v4 IDs compare</li>
+            
+            <li>How generation rate changes the time until collisions become likely</li>
+            
+            <li>How to predict when an ID strategy needs to be replaced</li>
+            
+        </ul>
+    </div>
+    
+
+</article>
+    
+    
+
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
 
         
+        <a class="post-title-thumb" href="/posts/discrete-math-in-large-language-models/">
+            <img src="/posts/discrete-math-in-large-language-models/discrete-math-in-large-language-models-th.png" alt="" loading="lazy">
+        </a>
         
-        
-        
-        <div class="post-summary">
 
-<p>When you ask an <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
-<p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p>
-<p>Identical question. Same underlying technology. Completely different answers. The difference isn&rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.</p>
-<p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &ldquo;know&rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model <em>learned</em> and what a model <em>read</em>.</p>
-<p>LLMs don&rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&rsquo;t learning; it&rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;A model with web search doesn&rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&rdquo;</em></p></blockquote>
-<hr></div>
+        <div class="post-header-text">
+            <h2 class="post-title">
+                
+                <a href="/posts/discrete-math-in-large-language-models/">The Discrete Mathematics Hiding Inside LLMs</a>
+            </h2>
 
-        <p><a class="btn" href="/posts/how-large-language-models-know-things-they-were-never-taught/">Read more →</a></p>
-      </article>
+            
+            <div class="post-subtitle">How set theory, predicate logic, and formal proofs show up in modern AI</div>
+            
+
+            <div class="post-meta">
+                <time datetime=" 2026-03-31">
+                    <strong>Mar 31, 2026</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/ai/">#AI</a>, <a href="/%20/tags/attention-mechanisms/">#attention mechanisms</a>, <a href="/%20/tags/embeddings/">#embeddings</a>, <a href="/%20/tags/discrete-mathematics/">#discrete mathematics</a>, <a href="/%20/tags/llm/">#LLM</a>, <a href="/%20/tags/predicate-logic/">#predicate logic</a>, <a href="/%20/tags/set-theory/">#set theory</a></div>
+        </div>
+    </header>
+
+    
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>How attention behaves like a soft version of predicate logic</li>
+            
+            <li>How top-k and top-p sampling use ideas from set theory</li>
+            
+            <li>How Boolean logic determines which tokens can attend to each other</li>
+            
+            <li>Why chain-of-thought reasoning resembles the structure of a proof</li>
+            
+            <li>How positional encoding uses periodic patterns to represent position</li>
+            
+            <li>How discrete math helps explain why common LLM techniques work</li>
+            
+        </ul>
+    </div>
+    
+
+</article>
+    
+    
+
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/how-large-language-models-know-things-they-were-never-taught/">
+            <img src="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught-thumb.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
+            <h2 class="post-title">
+                
+                <a href="/posts/how-large-language-models-know-things-they-were-never-taught/">How Large Language Models (LLMs) Know Things They Were Never Taught</a>
+            </h2>
+
+            
+            <div class="post-subtitle">Web search, RAG, and the illusion of current knowledge</div>
+            
+
+            <div class="post-meta">
+                <time datetime=" 2026-02-09">
+                    <strong>Feb 9, 2026</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/ai/">#AI</a>, <a href="/%20/tags/llm/">#LLM</a>, <a href="/%20/tags/rag/">#RAG</a>, <a href="/%20/tags/web-search/">#web search</a>, <a href="/%20/tags/context-windows/">#context windows</a></div>
+        </div>
+    </header>
+
+    
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>Why an LLM can answer questions about events that happened after its training ended</li>
+            
+            <li>How web search gives a model current information without changing its weights</li>
+            
+            <li>How RAG retrieves relevant information from private or specialized document collections</li>
+            
+            <li>Why retrieved information is read during inference rather than learned by the model</li>
+            
+            <li>How tool use lets an LLM work with search engines, code, databases, and external APIs</li>
+            
+            <li>Why retrieval quality, source accuracy, and model reasoning all affect the final answer</li>
+            
+        </ul>
+    </div>
+    
+
+</article>
+    
+    
+
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/temperature-top-p-creativity-knobs/">
+            <img src="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
+            <h2 class="post-title">
+                
+                <a href="/posts/temperature-top-p-creativity-knobs/">Temperature and Top-P: The Creativity Knobs</a>
+            </h2>
+
+            
+            <div class="post-subtitle">How sampling parameters shape AI personality</div>
+            
+
+            <div class="post-meta">
+                <time datetime=" 2025-12-24">
+                    <strong>Dec 24, 2025</strong>
+                </time>&nbsp;•&nbsp;<strong>Category:</strong>&nbsp;<a href="/%20/categories/ai-and-the-mathematics-of-language/">AI and the Mathematics of Language</a>, &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;<a href="/%20/tags/ai/">#AI</a>, <a href="/%20/tags/anthropic/">#Anthropic</a>, <a href="/%20/tags/llm/">#LLM</a>, <a href="/%20/tags/nucleus-sampling/">#nucleus sampling</a>, <a href="/%20/tags/openai/">#OpenAI</a>, <a href="/%20/tags/probability/">#probability</a>, <a href="/%20/tags/sampling/">#sampling</a>, <a href="/%20/tags/softmax/">#softmax</a>, <a href="/%20/tags/temperature/">#temperature</a>, <a href="/%20/tags/top-p/">#top-p</a></div>
+        </div>
+    </header>
+
+    
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            
+            <li>How an LLM turns raw token scores into probabilities before choosing what comes next</li>
+            
+            <li>How temperature reshapes a probability distribution to make outputs more predictable or more varied</li>
+            
+            <li>How top-p sampling limits which tokens the model is allowed to consider</li>
+            
+            <li>Why top-p adapts to model confidence differently from a fixed top-k cutoff</li>
+            
+            <li>How temperature and top-p interact when both are applied to the same distribution</li>
+            
+            <li>How to choose sampling settings for factual, structured, professional, and creative tasks</li>
+            
+        </ul>
+    </div>
+    
+
+</article>
     
 
     
@@ -386,8 +411,10 @@ After reading this post, you'll be able to explain:
 	<span class="pagination__item pagination__item--current">1/5</span>
 	<a class="pagination__item pagination__item--next btn" href="/page/2/">»</a>
 </div>
+
   </div>
 </main>
+
 
 			</div>
 			<aside class="sidebar"><div class="widget widget-bio">

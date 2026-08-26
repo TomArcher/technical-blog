@@ -174,14 +174,7 @@
         
         <div class="post-summary">
 
-<p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
-<p>As I like to say, <em>common sense and intuition are the enemies of science</em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?</p>
-<p>Math shows us the uncomfortable truth: You&rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.</p>
-<p>You might know that the <a class="glossary-term" href="/glossary/#birthday-paradox" data-definition="The counterintuitive result that collisions become likely after selecting only about the square root of the number of possible values.">birthday paradox</a> proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&rsquo;t just a party trick; it&rsquo;s the same mathematics that determines when your &ldquo;guaranteed unique&rdquo; database IDs collide, why <a class="glossary-term" href="/glossary/#hash-table" data-definition="A data structure that uses a hash function to map keys to locations where their associated values can be stored and retrieved.">hash tables</a> need careful sizing, and when your <a class="glossary-term" href="/glossary/#distributed-system" data-definition="A system whose components run on multiple networked computers and coordinate to perform a common task.">distributed system</a>&rsquo;s assumptions break.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;In a room of 23 people, there&rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&rdquo;</em></p></blockquote>
-<hr></div>
+<p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p></div>
 
         <p><a class="btn" href="/posts/birthday-paradox/">Read more →</a></p>
       </article>

@@ -5,18 +5,26 @@ aliases = [
 ]
 draft = false
 title = "Using SymPy in Python When NumPy Isn't Enough"
+subtitle = "Choosing exact symbolic mathematics when floating-point approximations are not good enough"
 categories = ["Python Techniques and Tooling"]
 tags = ["linear algebra", "Python", "SymPy", "symbolic math",]
 author = "Tom Archer"
 listThumb = "sympy.png"
-+++
 
-{{< lightbox
-    src="python-sympy-vs-numpy.png"
-    alt="Sympy official log of a snake coiled around a cube with mathematical symbols"
-    label="Open full-size sympy"
-    caption="SymPy provides symbolic computation and precision techniques for Python developers"
->}}  
+hero = "python-sympy-vs-numpy.png"
+heroAlt = "SymPy official logo of a snake coiled around a cube with mathematical symbols"
+heroLabel = "Open full-size sympy"
+heroCaption = "SymPy provides symbolic computation and precision techniques for Python developers"
+
+whatYoullLearn = [
+    "Why floating-point numbers cannot represent many ordinary decimal values exactly",
+    "How SymPy keeps rational values exact instead of introducing floating-point approximations",
+    "When tolerance checks such as math.isclose are appropriate and when exact math matters",
+    "How symbolic computation can calculate derivatives and solve equations without numerical approximation",
+    "When SymPy is a better choice than NumPy for a mathematical problem",
+    "How SymPy and NumPy complement each other as tools for precision and performance"
+]
++++
 
 Most of us reach for [NumPy](https://numpy.org/) whenever math shows up in a project. But sometimes, you don't want approximate answers, you want exact math. That's when you pull [SymPy](https://sympy.org/) out of your programmer's toolkit and get to work.
 
@@ -24,16 +32,11 @@ It's easy to think of SymPy only in academic terms, like running physics simulat
 
 In real-world business applications, imprecision can be just as costly. Financial software is the most obvious example, where a few pennies lost to rounding errors can add up to millions at scale. Supply chain and logistics systems can also suffer when tolerances or unit conversions drift slightly off, leading to incorrect shipments or mismatched inventory. Even common scenarios such as pricing models or tax calculations can go sideways if the math behind them is not exact.
 
----
-
-> *"Floats guess. SymPy knows."*
-
----
 
 
 This is where SymPy shines. To see the difference between **{{< term "floating-point" "floating-point approximations" >}}** (Python or NumPy) and **{{< term "symbolic-computation" "symbolic precision" >}}** (SymPy), let's look at a simple but very real example from finance.
 
-<!--more-->  
+  
 
 ---
 

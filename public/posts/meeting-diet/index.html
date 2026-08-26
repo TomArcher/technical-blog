@@ -16,8 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/meeting-diet/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="The Meeting Diet: An Optimization Approach to Your Calendar">
-  <meta property="og:description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
-“Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
+  <meta property="og:description" content="Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
 The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
@@ -30,18 +29,16 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 
 		
   <meta itemprop="name" content="The Meeting Diet: An Optimization Approach to Your Calendar">
-  <meta itemprop="description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
-“Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
+  <meta itemprop="description" content="Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
 The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
   <meta itemprop="datePublished" content="2025-08-28T05:00:00-07:00">
   <meta itemprop="dateModified" content="2025-08-28T05:00:00-07:00">
-  <meta itemprop="wordCount" content="1827">
+  <meta itemprop="wordCount" content="1796">
   <meta itemprop="keywords" content="Optimization,Python,Scheduling">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="The Meeting Diet: An Optimization Approach to Your Calendar">
-  <meta name="twitter:description" content="If you don&#39;t optimize your schedule, your schedule will optimize you. BadlyEvery week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
-“Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.”
+  <meta name="twitter:description" content="Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
 The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,6 +135,7 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">The Meeting Diet: An Optimization Approach to Your Calendar</h1>
+        <p class="post-subtitle">How optimization can help you decide which meetings deserve your limited time and energy</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-08-28T05:00:00-07:00">
@@ -182,12 +180,22 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/meeting-diet/meeting-diet.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/meeting-diet/meeting-diet.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/meeting-diet/meeting-diet.png" class="lightbox-trigger"
+        aria-label="Open full-size meeting diet">
+
+        <img src="/posts/meeting-diet/meeting-diet.png" alt="Professional woman pausing outside a conference room labeled &#39;Meeting in Progress&#39;, deciding whether to attend">
 
     </a>
 
@@ -199,11 +207,25 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 
 </figure>
 
-<p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Your calendar is a knapsack. Every meeting takes space, but only some add enough value to justify carrying them.&rdquo;</em></p></blockquote>
-<hr>
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>How to turn meeting choices into a mathematical optimization problem</li>
+          <li>How time and mental energy can be modeled as separate constraints</li>
+          <li>How a 0/1 knapsack model chooses the most valuable combination of meetings</li>
+          <li>How Python and PuLP can solve a meeting schedule automatically</li>
+          <li>How AI can scaffold optimization code when you give it the right mathematical structure</li>
+          <li>How simulation and visualization can reveal which meetings are worth attending</li>
+      </ul>
+    </aside><p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
 <p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
   <strong><a class="glossary-term" href="/glossary/#multidimensional-knapsack" data-definition="A generalization of the knapsack problem in which each item consumes multiple limited resources and the goal is to maximize total value without exceeding any resource constraint.">0/1 knapsack problem with two constraints</a></strong>
 </a>
@@ -527,6 +549,8 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
   Download the full code on GitHub
 </a>
 </p>
+
+
     </div>
     <footer class="post__footer">
       
@@ -649,7 +673,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

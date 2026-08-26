@@ -1,19 +1,27 @@
 +++
 title = "Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast"
+subtitle = "Using thermodynamics and Python to explain why pools resist daytime warming but lose heat rapidly at night"
 date = "2025-10-12T09:00:00-07:00"
 draft = false
 categories = ["Applied Modeling and Simulation"]
 tags = ["energy balance", "Python", "thermodynamics",]
 author = "Tom Archer"
 listThumb = "thermo-water-energy-balance-thumb.png"
-+++
 
-{{< lightbox
-    src="thermo-water-energy-balance.png"
-    alt="Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons, heat arrows, and faint {{< term"
-    label="Open full-size thermo water energy balance"
-    caption="Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses."
->}}
+hero = "thermo-water-energy-balance.png"
+heroAlt = "Educational illustration of a swimming pool highlighting heat capacity and evaporation, with sun and moon icons and heat arrows"
+heroLabel = "Open full-size thermo water energy balance"
+heroCaption = "Water warms slowly but cools fast because high heat capacity resists change while evaporation accelerates night losses."
+
+whatYoullLearn = [
+    "Why water's high specific heat makes a swimming pool warm much more slowly than the surrounding air",
+    "Why evaporation can remove heat from water faster than sunlight replaces it",
+    "How convection, radiation, solar absorption, and evaporation combine in a surface energy balance",
+    "How to translate conservation of energy into a Python model of water temperature",
+    "Why covering a pool can dramatically reduce nighttime heat loss",
+    "How simulation can reveal the effects of weather, geometry, and surface conditions on water temperature"
+]
++++
 
 Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you'd expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.
 
@@ -21,13 +29,6 @@ The same phenomenon shows up in a stick of butter. Butter melts quickly, while m
 
 The butter versus margarine comparison is a staple example in nutrition science. It shows how the proportions of fat, water, and solids affect how much energy it takes to change temperature. Butter, with more fat and less water, heats up and melts quickly. Margarine, full of water and unsaturated oils, absorbs more energy before softening because water's *{{< term "specific-heat" "specific heat" >}}* is much higher.
 
----
-
-> *"A pool in the desert and a stick of margarine in the kitchen both tell the same story: water resists change."*
-
----
-
-<!--more-->
 
 A swimming pool works the same way, just scaled up thousands of times. Its massive water content means it has enormous {{< term "heat-capacity" "heat capacity" >}} where warming takes a long time because every degree requires tremendous energy. Cooling happens faster, though, because {{< term "evaporation" "evaporation" >}} and night radiation pull energy out far more efficiently than the sun can replace it.
 

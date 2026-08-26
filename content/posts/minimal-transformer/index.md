@@ -1,19 +1,27 @@
 +++
 title = "Implementing a Minimal Transformer in PyTorch"
+subtitle = "Building the core machinery of a language model from embeddings and attention to training and generation"
 date = "2026-04-01T06:00:00-07:00"
 draft = true
 categories = ["Applied Modeling and Simulation"]
 tags = ["AI", "Attention Mechanisms", "LLM", "NLP", "Python", "Transformers",]
 author = "Tom Archer"
 listThumb = "transformer.jpeg"
-+++
 
-{{< lightbox
-    src="transformer.jpeg"
-    alt="Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add & norm, feed-forward, and add & norm to output logits"
-    label="Open full-size transformer"
-    caption="Around 200 lines of Python separate you from understanding why attention really is all you need."
->}}
+hero = "transformer.jpeg"
+heroAlt = "Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add & norm, feed-forward, and add & norm to output logits"
+heroLabel = "Open full-size transformer"
+heroCaption = "Around 200 lines of Python separate you from understanding why attention really is all you need."
+
+whatYoullLearn = [
+    "How token and positional embeddings turn a sequence of characters into representations a Transformer can process",
+    "How scaled dot-product attention lets each token decide which earlier tokens matter",
+    "Why multiple attention heads can learn different relationships within the same sequence",
+    "How residual connections, layer normalization, and feed-forward networks form a Transformer block",
+    "How causal masking makes next-token training possible without letting the model see the future",
+    "How to train a small Transformer in PyTorch and use it to generate new text"
+]
++++
 
 In 2017, Vaswani et al. published "Attention Is All You Need," a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you've heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper's title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
 
@@ -26,8 +34,6 @@ In this post, we implement a minimal Transformer from scratch in PyTorch. No Hug
 By the end, the model will be writing sentences that loosely belong in the Globe Theatre. More importantly, you'll have built something that is architecturally identical — in every meaningful sense — to the models that power the AI tools you use every day.
 
 ---
-
-<!--more-->
 
 > **TL;DR:**
 > - A Transformer is a stack of identical blocks, each containing attention + feed-forward + layer norm

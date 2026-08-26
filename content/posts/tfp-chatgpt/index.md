@@ -2,32 +2,31 @@
 date = '2025-08-19T05:00:00-07:00'
 draft = false
 title = "From Solow to ChatGPT: Why Total Factor Productivity Can't Keep Up With Generative AI"
+subtitle = "Why a productivity measure built for the industrial economy struggles to capture the value created by generative AI"
 categories = ["Essays and Perspectives", ]
 tags = ["AI", "economics", "innovation", "productivity",]
 author = "Tom Archer"
 listThumb = "tfp-chatgpt.png"
-+++
 
-{{< lightbox
-    src="tfp-chatgpt.png"
-    alt="Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI."
-    label="Open full-size tfp chatgpt"
-    caption="Our tools for measuring progress were built for factories, not for AI."
->}}
+hero = "tfp-chatgpt.png"
+heroAlt = "Factory floor on left, AI brain on right, symbolizing shift from industrial productivity to generative AI."
+heroLabel = "Open full-size tfp chatgpt"
+heroCaption = "Our tools for measuring progress were built for factories, not for AI."
+
+whatYoullLearn = [
+    "What Total Factor Productivity measures and why economists use it to estimate technological progress",
+    "Why free and inexpensive digital tools can create real value without appearing clearly in productivity statistics",
+    "Why the benefits of new technologies often arrive before traditional economic measures can detect them",
+    "How generative AI resembles the productivity paradox that accompanied the rise of computers",
+    "Why time savings and faster innovation may reveal AI's economic impact better than TFP alone",
+    "How measuring human and AI capabilities together could change the way we think about productivity"
+]
++++
 
 If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn't that show up in our productivity statistics?
 
 Economists have long relied on a metric called **{{< term "total-factor-productivity" "Total Factor Productivity (TFP)" >}}** to measure technological progress. But in an era of free digital tools and {{< term "generative-ai" "generative AI" >}}, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.
 
----
-
-> *You can see the ~~computer age~~ generative AI everywhere but in the productivity statistics.*
->
-> *(Adapted from Robert Solow, 1987)*
-
----
-
-<!--more-->
 
 ---
 

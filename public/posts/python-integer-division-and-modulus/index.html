@@ -16,8 +16,9 @@
 		<meta property="og:url" content="http://localhost:1313/posts/python-integer-division-and-modulus/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="Numeric Parsing in Python with Integer Division and Modulus">
-  <meta property="og:description" content="Parse {{&lt; term &#34;fixed-width-data&#34; &#34;fixed-width&#34; &gt;}} numbers with // and % for speed and clarity.When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with integer division (//) and modulus (%) is the better option.
-String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.">
+  <meta property="og:description" content="numbers with // and % for speed and clarity.&#34;
+}}
+When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with integer division (//) and modulus (%) is the better option.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -29,17 +30,19 @@ String parsing is flexible, but numeric parsing is faster and cleaner when the d
 
 		
   <meta itemprop="name" content="Numeric Parsing in Python with Integer Division and Modulus">
-  <meta itemprop="description" content="Parse {{&lt; term &#34;fixed-width-data&#34; &#34;fixed-width&#34; &gt;}} numbers with // and % for speed and clarity.When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with integer division (//) and modulus (%) is the better option.
-String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.">
+  <meta itemprop="description" content="numbers with // and % for speed and clarity.&#34;
+}}
+When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with integer division (//) and modulus (%) is the better option.">
   <meta itemprop="datePublished" content="2025-09-17T13:00:00-07:00">
   <meta itemprop="dateModified" content="2025-09-17T13:00:00-07:00">
-  <meta itemprop="wordCount" content="626">
+  <meta itemprop="wordCount" content="604">
   <meta itemprop="keywords" content="Data Parsing,Numerical Methods,Python">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Numeric Parsing in Python with Integer Division and Modulus">
-  <meta name="twitter:description" content="Parse {{&lt; term &#34;fixed-width-data&#34; &#34;fixed-width&#34; &gt;}} numbers with // and % for speed and clarity.When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with integer division (//) and modulus (%) is the better option.
-String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.">
+  <meta name="twitter:description" content="numbers with // and % for speed and clarity.&#34;
+}}
+When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with integer division (//) and modulus (%) is the better option.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -135,6 +138,7 @@ String parsing is flexible, but numeric parsing is faster and cleaner when the d
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">Numeric Parsing in Python with Integer Division and Modulus</h1>
+        <p class="post-subtitle">Using // and % to split fixed-width numeric data without converting it to strings</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-09-17T13:00:00-07:00">
@@ -179,28 +183,55 @@ String parsing is flexible, but numeric parsing is faster and cleaner when the d
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/python-integer-division-and-modulus/python-integer-division-and-modulus.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/python-integer-division-and-modulus/python-integer-division-and-modulus.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/python-integer-division-and-modulus/python-integer-division-and-modulus.png" class="lightbox-trigger"
+        aria-label="Open full-size python integer division and modulus">
+
+        <img src="/posts/python-integer-division-and-modulus/python-integer-division-and-modulus.png" alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python">
 
     </a>
 
     
     <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>Parse {{&lt; term &#34;fixed-width-data&#34; &#34;fixed-width&#34; &gt;}} numbers with // and % for speed and clarity.</em>
+        <em>Parse fixed-width numbers with // and % for speed and clarity.</em>
     </figcaption>
     
 
 </figure>
 
-<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with <a class="glossary-term" href="/glossary/#integer-division" data-definition="Division that produces an integer quotient by discarding the fractional or remainder portion of the result.">integer division</a> (<code>//</code>) and <a class="glossary-term" href="/glossary/#modulus" data-definition="An arithmetic operation that returns the remainder after one integer is divided by another.">modulus</a> (<code>%</code>) is the better option.</p>
-<hr>
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>When numeric parsing is a better choice than converting numbers to strings</li>
+          <li>How integer division removes digits from the right side of a number</li>
+          <li>How modulus extracts the rightmost digits from a number</li>
+          <li>How to split fixed-width numeric codes into meaningful fields</li>
+          <li>How // and % naturally break timestamps into hours, minutes, seconds, and milliseconds</li>
+          <li>How to process individual digits numerically for algorithms such as checksums</li>
+      </ul>
+    </aside><p>numbers with // and % for speed and clarity.&quot;</p>
 <blockquote>
-<p><em>String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.</em></p></blockquote>
-<hr>
+<p>}}</p></blockquote>
+<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with <a class="glossary-term" href="/glossary/#integer-division" data-definition="Division that produces an integer quotient by discarding the fractional or remainder portion of the result.">integer division</a> (<code>//</code>) and <a class="glossary-term" href="/glossary/#modulus" data-definition="An arithmetic operation that returns the remainder after one integer is divided by another.">modulus</a> (<code>%</code>) is the better option.</p>
 <h2 id="integer-division--">Integer Division (<code>//</code>) ✂️</h2>
 <p>The <code>//</code> operator divides one number by another and returns only the integer part, discarding the remainder:</p>
 <p>print(17 // 5)   # 3</p>
@@ -317,6 +348,8 @@ String parsing is flexible, but numeric parsing is faster and cleaner when the d
 </a>
 </li>
 </ul>
+
+
     </div>
     <footer class="post__footer">
       
@@ -439,7 +472,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

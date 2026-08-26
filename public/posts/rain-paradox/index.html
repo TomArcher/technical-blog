@@ -16,8 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/rain-paradox/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion">
-  <meta property="og:description" content="To walk or to run. That is the question.Early in my programming career, I came across a coding challenge that stuck with me for many years:
-“If it’s raining, will you stay drier by walking or running through it?”
+  <meta property="og:description" content="Early in my programming career, I came across a coding challenge that stuck with me for many years:
 At the time, I didn’t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn’t about recursion or memory management. It was about getting wet, and how fast you move through falling rain.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
@@ -30,18 +29,16 @@ At the time, I didn’t have the skillset or tools to simulate the problem prope
 
 		
   <meta itemprop="name" content="Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion">
-  <meta itemprop="description" content="To walk or to run. That is the question.Early in my programming career, I came across a coding challenge that stuck with me for many years:
-“If it’s raining, will you stay drier by walking or running through it?”
+  <meta itemprop="description" content="Early in my programming career, I came across a coding challenge that stuck with me for many years:
 At the time, I didn’t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn’t about recursion or memory management. It was about getting wet, and how fast you move through falling rain.">
   <meta itemprop="datePublished" content="2025-08-18T09:00:00-07:00">
   <meta itemprop="dateModified" content="2025-08-18T09:00:00-07:00">
-  <meta itemprop="wordCount" content="1930">
+  <meta itemprop="wordCount" content="1908">
   <meta itemprop="keywords" content="Physics,Probability,Python">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion">
-  <meta name="twitter:description" content="To walk or to run. That is the question.Early in my programming career, I came across a coding challenge that stuck with me for many years:
-“If it’s raining, will you stay drier by walking or running through it?”
+  <meta name="twitter:description" content="Early in my programming career, I came across a coding challenge that stuck with me for many years:
 At the time, I didn’t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn’t about recursion or memory management. It was about getting wet, and how fast you move through falling rain.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,6 +135,7 @@ At the time, I didn’t have the skillset or tools to simulate the problem prope
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion</h1>
+        <p class="post-subtitle">Using physics, Python, and simulation to settle a deceptively simple question</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-08-18T09:00:00-07:00">
@@ -182,16 +180,22 @@ At the time, I didn’t have the skillset or tools to simulate the problem prope
 
     </header>
 
-    <div class="content post__content clearfix">
-      
+    
+
+
+
+
+
+
 
 
 
 <figure style="margin: 0 20px 10px 20px; text-align: center;">
 
-    <a href="/posts/rain-paradox/rain-paradox.png" class="lightbox-trigger" aria-label="Open full-size image">
+    <a href="/posts/rain-paradox/rain-paradox.png" class="lightbox-trigger"
+        aria-label="Open full-size rain paradox">
 
-        <img src="/posts/rain-paradox/rain-paradox.png" alt="">
+        <img src="/posts/rain-paradox/rain-paradox.png" alt="Rain Paradox: Walk or Run?">
 
     </a>
 
@@ -203,11 +207,25 @@ At the time, I didn’t have the skillset or tools to simulate the problem prope
 
 </figure>
 
-<p>Early in my programming career, I came across a coding challenge that stuck with me for many years:</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;If it&rsquo;s raining, will you stay drier by walking or running through it?&rdquo;</em></p></blockquote>
-<hr>
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>Why moving faster reduces the rain that lands on you from above</li>
+          <li>Why the amount of rain you hit from the front behaves differently from top-down exposure</li>
+          <li>How to turn a real-world question about rain into a simplified mathematical model</li>
+          <li>How Python can simulate wetness at different walking and running speeds</li>
+          <li>Why running produces diminishing returns even though it still keeps you drier</li>
+          <li>How wind, body geometry, and randomness could make the basic model more realistic</li>
+      </ul>
+    </aside><p>Early in my programming career, I came across a coding challenge that stuck with me for many years:</p>
 <p>At the time, I didn&rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&rsquo;t about recursion or memory management. It was about <strong>getting wet</strong>, and <strong>how fast you move through falling rain</strong>.</p>
 <hr>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
@@ -494,7 +512,7 @@ while long distances magnify the benefits. Make a table or plot that
 compares these cases.</li>
 </ol>
 <hr>
-<h3 id="advanced-level-environment--hahahugoshortcode116s10hbhb">Advanced Level: Environment &amp; <a class="glossary-term" href="/glossary/#stochastic" data-definition="Involving randomness or probability rather than producing a completely deterministic outcome.">Stochasticity</a></h3>
+<h3 id="advanced-level-environment--hahahugoshortcode107s9hbhb">Advanced Level: Environment &amp; <a class="glossary-term" href="/glossary/#stochastic" data-definition="Involving randomness or probability rather than producing a completely deterministic outcome.">Stochasticity</a></h3>
 <ol>
 <li><strong>Wind:</strong> Add a horizontal wind component. Now raindrops fall at an angle
 (<a class="glossary-term" href="/glossary/#vector" data-definition="An ordered list of numerical values that can represent an object, direction, or position in a multidimensional space.">vector</a> ((u, 0, -fall_speed))), so the effective frontal area changes.
@@ -520,6 +538,7 @@ mixing small drizzle with a few large drops to see how totals shift.</li>
   Download the full code on GitHub
 </a>
 </p>
+
 
     </div>
     <footer class="post__footer">
@@ -643,7 +662,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

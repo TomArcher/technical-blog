@@ -16,10 +16,8 @@
 		<meta property="og:url" content="http://localhost:1313/posts/how-large-language-models-tokenize-text/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think">
-  <meta property="og:description" content="LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.When you type “I love programming” into ChatGPT, you might assume the model reads three words. It doesn’t. It reads somewhere between three and seven tokens, depending on how the text is split.
-When you ask Claude to count the letters in the word “strawberry,” it often gets it wrong. The reason is simple. Claude never saw the word “strawberry” as a complete unit. It saw tokens like &#34;str&#34;, &#34;aw&#34;, &#34;berry&#34; and tried to reason about letters it couldn’t directly access.
-And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn’t the model’s training. It was a glitch token: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (Rumbelow &amp; Watkins, 2023).
-“To a language model, text isn’t a stream of words. It’s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.”">
+  <meta property="og:description" content="When you type “I love programming” into ChatGPT, you might assume the model reads three words. It doesn’t. It reads somewhere between three and seven tokens, depending on how the text is split.
+When you ask Claude to count the letters in the word “strawberry,” it often gets it wrong. The reason is simple. Claude never saw the word “strawberry” as a complete unit. It saw tokens like &#34;str&#34;, &#34;aw&#34;, &#34;berry&#34; and tried to reason about letters it couldn’t directly access.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -33,21 +31,17 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 
 		
   <meta itemprop="name" content="How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think">
-  <meta itemprop="description" content="LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.When you type “I love programming” into ChatGPT, you might assume the model reads three words. It doesn’t. It reads somewhere between three and seven tokens, depending on how the text is split.
-When you ask Claude to count the letters in the word “strawberry,” it often gets it wrong. The reason is simple. Claude never saw the word “strawberry” as a complete unit. It saw tokens like &#34;str&#34;, &#34;aw&#34;, &#34;berry&#34; and tried to reason about letters it couldn’t directly access.
-And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn’t the model’s training. It was a glitch token: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (Rumbelow &amp; Watkins, 2023).
-“To a language model, text isn’t a stream of words. It’s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.”">
+  <meta itemprop="description" content="When you type “I love programming” into ChatGPT, you might assume the model reads three words. It doesn’t. It reads somewhere between three and seven tokens, depending on how the text is split.
+When you ask Claude to count the letters in the word “strawberry,” it often gets it wrong. The reason is simple. Claude never saw the word “strawberry” as a complete unit. It saw tokens like &#34;str&#34;, &#34;aw&#34;, &#34;berry&#34; and tried to reason about letters it couldn’t directly access.">
   <meta itemprop="datePublished" content="2025-11-11T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-11T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3397">
+  <meta itemprop="wordCount" content="3356">
   <meta itemprop="keywords" content="AI,Tokenization,LLM,Transformers,NLP">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think">
-  <meta name="twitter:description" content="LLMs read tokens. Not words. A distinction with a technical—and potentially financial—difference.When you type “I love programming” into ChatGPT, you might assume the model reads three words. It doesn’t. It reads somewhere between three and seven tokens, depending on how the text is split.
-When you ask Claude to count the letters in the word “strawberry,” it often gets it wrong. The reason is simple. Claude never saw the word “strawberry” as a complete unit. It saw tokens like &#34;str&#34;, &#34;aw&#34;, &#34;berry&#34; and tried to reason about letters it couldn’t directly access.
-And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn’t the model’s training. It was a glitch token: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (Rumbelow &amp; Watkins, 2023).
-“To a language model, text isn’t a stream of words. It’s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.”">
+  <meta name="twitter:description" content="When you type “I love programming” into ChatGPT, you might assume the model reads three words. It doesn’t. It reads somewhere between three and seven tokens, depending on how the text is split.
+When you ask Claude to count the letters in the word “strawberry,” it often gets it wrong. The reason is simple. Claude never saw the word “strawberry” as a complete unit. It saw tokens like &#34;str&#34;, &#34;aw&#34;, &#34;berry&#34; and tried to reason about letters it couldn’t directly access.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -143,6 +137,7 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</h1>
+        <p class="post-subtitle">Understanding how LLMs break language into pieces—and why it matters more than you realize</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-11-11T06:00:00-07:00">
@@ -191,12 +186,22 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" class="lightbox-trigger"
+        aria-label="Open full-size how large language models tokenize text">
+
+        <img src="/posts/how-large-language-models-tokenize-text/how-large-language-models-tokenize-text.png" alt="Digital artwork showing text being broken into irregular puzzle pieces, illustrating how language models process tokens rather than whole words.">
 
     </a>
 
@@ -208,16 +213,30 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 
 </figure>
 
-<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>Why language models break text into tokens instead of reading whole words</li>
+          <li>How subword tokenization balances vocabulary size with the amount of text a model must process</li>
+          <li>How Byte Pair Encoding learns useful token boundaries from patterns in training data</li>
+          <li>Why the same sentence can use very different numbers of tokens across languages, code, and rare words</li>
+          <li>How tokenization can cause surprising failures in spelling, letter counting, and unusual inputs</li>
+          <li>Why token counts affect context limits, processing efficiency, and the cost of using an LLM</li>
+      </ul>
+    </aside><p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
 <p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
 <p>And when early GPT-3 users discovered that typing &ldquo;SolidGoldMagikarp&rdquo; caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn&rsquo;t the model&rsquo;s training. It was a <strong><a class="glossary-term" href="/glossary/#glitch-token" data-definition="A token that produces unusual or unreliable model behavior because its learned representation is missing, weak, or otherwise anomalous.">glitch token</a></strong>: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it (<a href="#rumbelow2023">
   Rumbelow &amp; Watkins, 2023
 </a>
 ).</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;To a language model, text isn&rsquo;t a stream of words. It&rsquo;s a sequence of tokens. The way those tokens are created determines what the model can and cannot understand.&rdquo;</em></p></blockquote>
-<hr>
 <p>This post explores how tokenization works, why it&rsquo;s not as simple as splitting on spaces, and what happens when tokenization goes wrong. If you&rsquo;re following my series on how LLMs work, this is the foundation that makes everything else possible—because before a model can <a href="/posts/how-large-language-models-read-code">
   read
 </a>
@@ -229,7 +248,7 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 </a>
 , it has to break language into pieces it can process.</p>
 <hr>
-<h2 id="what-is-hahahugoshortcode109s2hbhb">What Is <a class="glossary-term" href="/glossary/#tokenization" data-definition="The process of dividing input into tokens that a model can represent and process numerically.">Tokenization</a>?</h2>
+<h2 id="what-is-hahahugoshortcode100s1hbhb">What Is <a class="glossary-term" href="/glossary/#tokenization" data-definition="The process of dividing input into tokens that a model can represent and process numerically.">Tokenization</a>?</h2>
 <p><strong>Tokenization is the process of breaking text into units (tokens) that a language model can process.</strong></p>
 <p>At first glance, this seems trivial: just split on spaces and punctuation, right? But natural language is messier than that:</p>
 <ul>
@@ -268,10 +287,10 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 <li>German: <code>&quot;Donaudampfschifffahrtsgesellschaftskapitän&quot;</code> (compound words)</li>
 </ul>
 <p>Word-level tokenization doesn&rsquo;t generalize across languages.</p>
-<h3 id="4-hahahugoshortcode109s5hbhb-problem"><strong>4. <a class="glossary-term" href="/glossary/#out-of-vocabulary" data-definition="Describes an input unit that is not present in a model&#39;s predefined vocabulary and therefore cannot be represented directly.">Out-of-Vocabulary</a> Problem</strong></h3>
+<h3 id="4-hahahugoshortcode100s4hbhb-problem"><strong>4. <a class="glossary-term" href="/glossary/#out-of-vocabulary" data-definition="Describes an input unit that is not present in a model&#39;s predefined vocabulary and therefore cannot be represented directly.">Out-of-Vocabulary</a> Problem</strong></h3>
 <p>If you encounter a word not in your vocabulary, you&rsquo;re stuck. You can&rsquo;t process it, can&rsquo;t embed it, can&rsquo;t generate it. The model has a blind spot for anything it wasn&rsquo;t explicitly trained to recognize.</p>
 <hr>
-<h2 id="hahahugoshortcode109s6hbhb-the-other-extreme"><a class="glossary-term" href="/glossary/#character-level-tokenization" data-definition="A tokenization strategy in which individual characters are treated as tokens rather than words or subwords.">Character-Level Tokenization</a>: The Other Extreme</h2>
+<h2 id="hahahugoshortcode100s5hbhb-the-other-extreme"><a class="glossary-term" href="/glossary/#character-level-tokenization" data-definition="A tokenization strategy in which individual characters are treated as tokens rather than words or subwords.">Character-Level Tokenization</a>: The Other Extreme</h2>
 <p>If words are too coarse, what about going fine-grained? Treat every character as a token:</p>
 <p><code>&quot;I love programming&quot;</code> → <code>[&quot;I&quot;, &quot; &quot;, &quot;l&quot;, &quot;o&quot;, &quot;v&quot;, &quot;e&quot;, &quot; &quot;, &quot;p&quot;, &quot;r&quot;, &quot;o&quot;, &quot;g&quot;, &quot;r&quot;, &quot;a&quot;, &quot;m&quot;, &quot;m&quot;, &quot;i&quot;, &quot;n&quot;, &quot;g&quot;]</code></p>
 <h3 id="advantages"><strong>Advantages:</strong></h3>
@@ -287,7 +306,7 @@ And when early GPT-3 users discovered that typing “SolidGoldMagikarp” caused
 ), processing character sequences is <strong>computationally prohibitive</strong>.</p>
 <p>Worse, the model has to learn that <code>&quot;c-a-t&quot;</code> forms a semantic unit, that <code>&quot;p-r-o-g-r-a-m-m-i-n-g&quot;</code> shares meaning with <code>&quot;p-r-o-g-r-a-m&quot;</code>, and so on. You&rsquo;ve pushed all the linguistic structure learning onto the model.</p>
 <hr>
-<h2 id="hahahugoshortcode109s9hbhb-the-goldilocks-solution"><a class="glossary-term" href="/glossary/#subword-tokenization" data-definition="A tokenization strategy that represents text using units larger than individual characters but often smaller than complete words.">Subword Tokenization</a>: The Goldilocks Solution</h2>
+<h2 id="hahahugoshortcode100s8hbhb-the-goldilocks-solution"><a class="glossary-term" href="/glossary/#subword-tokenization" data-definition="A tokenization strategy that represents text using units larger than individual characters but often smaller than complete words.">Subword Tokenization</a>: The Goldilocks Solution</h2>
 <p>Modern LLMs use <strong>subword tokenization</strong>: splitting text into units that are bigger than characters but smaller than words. The most common approach is <strong><a class="glossary-term" href="/glossary/#byte-pair-encoding" data-definition="A tokenization method that repeatedly merges frequently occurring adjacent units to construct a vocabulary of common subword patterns.">Byte Pair Encoding (BPE)</a></strong>, originally developed for data compression (<a href="#gage1994">
   Gage, 1994
 </a>
@@ -746,6 +765,8 @@ Token 20: &#39;)&#39; (ID: 8)
 <em>Google&rsquo;s exploration of byte-level models without explicit tokenization. Points toward future architectures.</em></li>
 </ul>
 <hr>
+
+
     </div>
     <footer class="post__footer">
       
@@ -874,7 +895,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

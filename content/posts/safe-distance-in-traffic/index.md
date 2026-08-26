@@ -1,29 +1,30 @@
 +++
 title = "Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough"
+subtitle = "Using kinematics and Python to test when a familiar following-distance rule stops being safe"
 date = "2025-10-23T09:00:00-07:00"
 draft = false
 categories = ["Applied Modeling and Simulation"]
 tags = ["kinematics", "physics", "Python",]
 author = "Tom Archer"
 listThumb = "safe-distance-in-traffic-vertical-arrows.png"
-+++
 
-{{< lightbox
-    src="safe-distance-in-traffic-vertical-arrows.png"
-    alt="Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance"
-    label="Open full-size safe distance in traffic vertical arrows"
-    caption="Following distance isn't just space, it's time in motion."
->}}
+hero = "safe-distance-in-traffic-vertical-arrows.png"
+heroAlt = "Two cars driving in a lane with a stopwatch and an arrow illustrating safe following distance"
+heroLabel = "Open full-size safe distance in traffic vertical arrows"
+heroCaption = "Following distance isn't just space, it's time in motion."
+
+whatYoullLearn = [
+    "Why a three-second following gap can be adequate in some situations but dangerously short in others",
+    "How reaction time and braking distance combine to determine the minimum safe following gap",
+    "Why higher speeds require more than a fixed three-second buffer when the lead car stops instantly",
+    "How dry, wet, and icy roads change the amount of time a following driver needs to stop",
+    "How kinematics can turn a familiar driving rule into a mathematical model",
+    "How Python can simulate and visualize safe following times across speeds and road conditions"
+]
++++
 
 While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the **{{< term "three-second-rule" "three-second rule" >}}** and its validity. As I've always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.
 
----
-
-> *"Three seconds is a rule of thumb. Physics reveals the truth."*
-
----
-
-<!--more-->
 
 I have always found that kind of rule fascinating because it is both universal and situational. It works whether you are cruising at 25 mph through town or flying down I-5 at 75 mph. At least, that is what the driver's manuals claim. But how does it hold up when you actually model two cars in motion: one stopping suddenly, the other reacting with a delay? That is where the math and a little Python simulation come in.
 

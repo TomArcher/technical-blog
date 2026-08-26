@@ -1,29 +1,32 @@
 +++
 title = "From Ice Shows to Algorithms: Cracking the Truck-Packing Problem"
+subtitle = "Using Python, heuristics, and 3D visualization to tackle a real-world optimization problem"
 date = '2025-08-20T09:00:00-07:00'
 draft = false
 categories = ["Applied Modeling and Simulation",]
 tags = ["algorithms", "geometry", "optimization", "Python",]
 author = "Tom Archer"
 listThumb = "three-d-packing.png"
-+++
 
-{{< lightbox
-    src="three-d-packing.png"
-    alt="3D Bin Packing"
-    label="Open full-size three d packing"
-    caption="How do you fit it all in?"
->}}
+hero = "three-d-packing.png"
+heroAlt = "3D visualization of boxes packed inside a truck"
+heroLabel = "Open full-size three d packing"
+heroCaption = "How do you fit it all in?"
+
+whatYoullLearn = [
+    "Why loading a truck efficiently is a difficult 3D optimization problem",
+    "Why NP-hard problems usually require practical heuristics instead of perfect solutions",
+    "How box dimensions, orientation, weight, and truck boundaries become constraints in a packing model",
+    "How a greedy Python algorithm can build a workable packing plan",
+    "How 3D visualization helps reveal overlaps, wasted space, and placement mistakes",
+    "How more advanced techniques can improve packing efficiency when simple heuristics are not enough"
+]
++++
 
 My first full-time programming job was for **Holiday on Ice**, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show's crew was efficiently loading trucks for the next city.  
 
-> *"Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?"*  
-
----
 
 One day, the controller asked me if I could code a system that took, as input, the trucks' **3D dimensions** and the **3D dimensions (and weight)** of every object to be packed. Back in the **Turbo Pascal** era, exploring 3D packing was painful. Today, with **Python** and **AI-assisted scaffolding**, it's surprisingly approachable.  
-
-<!--more-->
 
 This same problem shows up anywhere people need to fit things into finite 3D spaces:
 

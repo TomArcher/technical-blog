@@ -5,28 +5,32 @@ aliases = [
 ]
 draft = false
 title = "Numeric Parsing in Python with Integer Division and Modulus"
+subtitle = "Using // and % to split fixed-width numeric data without converting it to strings"
 categories = ["Python Techniques and Tooling",]
 tags = ["data parsing", "numerical methods", "Python",]
 author = "Tom Archer"
 listThumb = "python-integer-division-and-modulus.png"
+
+hero = "python-integer-division-and-modulus.png"
+heroAlt = "Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
+heroLabel = "Open full-size python integer division and modulus"
+heroCaption = "Parse fixed-width numbers with // and % for speed and clarity."
+
+whatYoullLearn = [
+    "When numeric parsing is a better choice than converting numbers to strings",
+    "How integer division removes digits from the right side of a number",
+    "How modulus extracts the rightmost digits from a number",
+    "How to split fixed-width numeric codes into meaningful fields",
+    "How // and % naturally break timestamps into hours, minutes, seconds, and milliseconds",
+    "How to process individual digits numerically for algorithms such as checksums"
+]
 +++
 
-{{< lightbox
-    src="python-integer-division-and-modulus.png"
-    alt="Diagram showing the number 123456 flowing into // and % operators, splitting into chunks like 1234 and 56 to illustrate integer division and modulus in Python"
-    label="Open full-size python integer division and modulus"
-    caption="Parse {{< term \"fixed-width-data\" \"fixed-width\" >}} numbers with // and % for speed and clarity."
+numbers with // and % for speed and clarity."
 >}}
 
 When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with {{< term "integer-division" "integer division" >}} (`//`) and {{< term "modulus" "modulus" >}} (`%`) is the better option.
 
----
-
-> *String parsing is flexible, but numeric parsing is faster and cleaner when the data is truly numeric.*
-
----
-
-<!--more-->
 
 ## Integer Division (`//`) ✂️
 

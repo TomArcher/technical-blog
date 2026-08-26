@@ -128,50 +128,6 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/temperature-top-p-creativity-knobs/" rel="bookmark">
-			Temperature and Top-P: The Creativity Knobs
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="margin: 0 20px 10px 20px; text-align: center;">
-
-    <a href="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" class="lightbox-trigger" aria-label="Open full-size image">
-
-        <img src="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" alt="">
-
-    </a>
-
-    
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>Turn it up and things get weird.</em>
-    </figcaption>
-    
-
-</figure>
-
-<p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
-  ChatGPT
-</a>
-, <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
-  Claude
-</a>
-, or any other <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> includes two parameters most people either ignore or tweak randomly: <a class="glossary-term" href="/glossary/#temperature" data-definition="A sampling parameter that rescales a model&#39;s logits before softmax, controlling how concentrated or spread out the resulting token probabilities are.">temperature</a> and <a class="glossary-term" href="/glossary/#top-p" data-definition="A sampling parameter that restricts token selection to the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold.">top-p</a>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
-<p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.</p>
-<p>I&rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &ldquo;Set temperature to 0.7 for creative writing&rdquo; becomes tribal knowledge, passed down without explanation. Let&rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Temperature doesn&rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&rdquo;</em></p></blockquote>
-<hr>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/temperature-top-p-creativity-knobs/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
 			<a href="/posts/edmund-fitzgerald/" rel="bookmark">
 			The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments
 			</a>
@@ -240,13 +196,6 @@
 </figure>
 
 <p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
-<p>As I like to say, <em>common sense and intuition are the enemies of science</em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?</p>
-<p>Math shows us the uncomfortable truth: You&rsquo;ll hit a 50% collision probability after generating just \(2.7 \times 10^{18}\) IDs. That&rsquo;s 0.0000000000000000008% of your total space. At a billion IDs per second, you&rsquo;ve got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you&rsquo;ve got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.</p>
-<p>You might know that the <a class="glossary-term" href="/glossary/#birthday-paradox" data-definition="The counterintuitive result that collisions become likely after selecting only about the square root of the number of possible values.">birthday paradox</a> proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn&rsquo;t just a party trick; it&rsquo;s the same mathematics that determines when your &ldquo;guaranteed unique&rdquo; database IDs collide, why <a class="glossary-term" href="/glossary/#hash-table" data-definition="A data structure that uses a hash function to map keys to locations where their associated values can be stored and retrieved.">hash tables</a> need careful sizing, and when your <a class="glossary-term" href="/glossary/#distributed-system" data-definition="A system whose components run on multiple networked computers and coordinate to perform a common task.">distributed system</a>&rsquo;s assumptions break.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;In a room of 23 people, there&rsquo;s a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests.&rdquo;</em></p></blockquote>
-<hr>
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/birthday-paradox/">Read more…</a>
@@ -331,6 +280,49 @@
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-tokenize-text/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/how-large-language-models-handle-context-windows/" rel="bookmark">
+			How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" class="lightbox-trigger" aria-label="Open full-size image">
+
+        <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="">
+
+    </a>
+
+    
+    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
+        <em>Context windows create the illusion of memory through mathematical attention, not storage.</em>
+    </figcaption>
+    
+
+</figure>
+
+<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
+<p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
+<hr>
+<blockquote>
+<p><em>&ldquo;A <a class="glossary-term" href="/glossary/#context-window" data-definition="The amount of information a language model can consider at one time during inference.">context window</a> isn&rsquo;t memory. It&rsquo;s a performance where the model rereads its lines before every response.&rdquo;</em></p></blockquote>
+<hr>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-handle-context-windows/">Read more…</a>
 	</div>
 </article>
 </main>

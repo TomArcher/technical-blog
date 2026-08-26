@@ -7,26 +7,25 @@ categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "attention mechanisms", "context windows", "LLM", "transformers"]
 author = "Tom Archer"
 listThumb = "how-llms-handle-context-windows.png"
-+++
 
-{{< lightbox
-    src="how-llms-handle-context-windows.png"
-    alt="Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections"
-    label="Open full-size context windows illustration"
-    caption="Context windows create the illusion of memory through mathematical attention, not storage."
->}}
+hero = "how-llms-handle-context-windows.png"
+heroAlt = "Digital artwork showing a conversation thread fading into the distance, with attention weights visualized as glowing connections"
+heroLabel = "Open full-size context windows illustration"
+heroCaption = "Context windows create the illusion of memory through mathematical attention, not storage."
+
+whatYoullLearn = [
+    "Why an LLM's context window is not the same thing as memory",
+    "How chat applications create continuity even though the underlying model is stateless",
+    "How attention lets earlier parts of a conversation influence the next token",
+    "Why longer conversations become increasingly expensive for a transformer to process",
+    "Why information can become harder to use even while it remains inside the context window",
+    "How truncation, summarization, retrieval, and KV caching help manage long conversations"
+]
++++
 
 When you have a long conversation with a {{< term "large-language-model" "large language model" >}} (LLM) such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), it feels like the model remembers everything you've discussed. It references earlier points, maintains consistent context, and seems to "know" what you talked about pages ago.
 
 But here's the uncomfortable truth: the model doesn't remember anything. It's not storing your conversation in memory the way a database would. Instead, it's **rereading the entire conversation from the beginning every single time you send a message.**
-
----
-
->*"A {{< term "context-window" "context window" >}} isn't memory. It's a performance where the model rereads its lines before every response."*
-
----
-
-<!--more-->
 
 This post explores what context windows actually are, how they work mathematically, why they have limits, and what happens when those limits are reached. For a foundation in how models represent meaning, start with [How LLMs Think: Turning Meaning into Math](/posts/how-ai-turns-meaning-into-math/).
 

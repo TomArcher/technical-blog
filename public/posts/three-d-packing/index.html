@@ -16,8 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/three-d-packing/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="From Ice Shows to Algorithms: Cracking the Truck-Packing Problem">
-  <meta property="og:description" content="How do you fit it all in?My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
-“Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?”
+  <meta property="og:description" content="My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
 One day, the controller asked me if I could code a system that took, as input, the trucks’ 3D dimensions and the 3D dimensions (and weight) of every object to be packed. Back in the Turbo Pascal era, exploring 3D packing was painful. Today, with Python and AI-assisted scaffolding, it’s surprisingly approachable.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
@@ -31,18 +30,16 @@ One day, the controller asked me if I could code a system that took, as input, t
 
 		
   <meta itemprop="name" content="From Ice Shows to Algorithms: Cracking the Truck-Packing Problem">
-  <meta itemprop="description" content="How do you fit it all in?My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
-“Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?”
+  <meta itemprop="description" content="My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
 One day, the controller asked me if I could code a system that took, as input, the trucks’ 3D dimensions and the 3D dimensions (and weight) of every object to be packed. Back in the Turbo Pascal era, exploring 3D packing was painful. Today, with Python and AI-assisted scaffolding, it’s surprisingly approachable.">
   <meta itemprop="datePublished" content="2025-08-20T09:00:00-07:00">
   <meta itemprop="dateModified" content="2025-08-20T09:00:00-07:00">
-  <meta itemprop="wordCount" content="2162">
+  <meta itemprop="wordCount" content="2128">
   <meta itemprop="keywords" content="Algorithms,Geometry,Optimization,Python">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="From Ice Shows to Algorithms: Cracking the Truck-Packing Problem">
-  <meta name="twitter:description" content="How do you fit it all in?My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
-“Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?”
+  <meta name="twitter:description" content="My first full-time programming job was for Holiday on Ice, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show’s crew was efficiently loading trucks for the next city.
 One day, the controller asked me if I could code a system that took, as input, the trucks’ 3D dimensions and the 3D dimensions (and weight) of every object to be packed. Back in the Turbo Pascal era, exploring 3D packing was painful. Today, with Python and AI-assisted scaffolding, it’s surprisingly approachable.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,6 +136,7 @@ One day, the controller asked me if I could code a system that took, as input, t
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</h1>
+        <p class="post-subtitle">Using Python, heuristics, and 3D visualization to tackle a real-world optimization problem</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-08-20T09:00:00-07:00">
@@ -185,12 +183,22 @@ One day, the controller asked me if I could code a system that took, as input, t
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/three-d-packing/three-d-packing.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/three-d-packing/three-d-packing.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/three-d-packing/three-d-packing.png" class="lightbox-trigger"
+        aria-label="Open full-size three d packing">
+
+        <img src="/posts/three-d-packing/three-d-packing.png" alt="3D visualization of boxes packed inside a truck">
 
     </a>
 
@@ -202,10 +210,25 @@ One day, the controller asked me if I could code a system that took, as input, t
 
 </figure>
 
-<p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
-<blockquote>
-<p><em>&ldquo;Given the dimensions of a truck and a list of containers (with their dimensions and weight), in what order, position, and orientation should you pack the truck?&rdquo;</em></p></blockquote>
-<hr>
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>Why loading a truck efficiently is a difficult 3D optimization problem</li>
+          <li>Why NP-hard problems usually require practical heuristics instead of perfect solutions</li>
+          <li>How box dimensions, orientation, weight, and truck boundaries become constraints in a packing model</li>
+          <li>How a greedy Python algorithm can build a workable packing plan</li>
+          <li>How 3D visualization helps reveal overlaps, wasted space, and placement mistakes</li>
+          <li>How more advanced techniques can improve packing efficiency when simple heuristics are not enough</li>
+      </ul>
+    </aside><p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
 <p>One day, the controller asked me if I could code a system that took, as input, the trucks&rsquo; <strong>3D dimensions</strong> and the <strong>3D dimensions (and weight)</strong> of every object to be packed. Back in the <strong>Turbo Pascal</strong> era, exploring 3D packing was painful. Today, with <strong>Python</strong> and <strong>AI-assisted scaffolding</strong>, it&rsquo;s surprisingly approachable.</p>
 <p>This same problem shows up anywhere people need to fit things into finite 3D spaces:</p>
 <ul>
@@ -577,6 +600,8 @@ color and label.</em></p></blockquote>
   Download the full code on GitHub
 </a>
 </p>
+
+
     </div>
     <footer class="post__footer">
       
@@ -702,7 +727,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

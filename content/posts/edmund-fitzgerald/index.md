@@ -1,19 +1,27 @@
 +++
 title = "The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments"
+subtitle = "How cold, pressure, and buoyancy explain why Lake Superior may never give up her dead"
 date = "2025-11-30T06:00:00-07:00"
 draft = false
 categories = ["Applied Modeling and Simulation"]
-tags = ["biology", "physics", "Python", "thermodynamics",]
+tags = ["biology", "physics", "Python", "thermodynamics"]
 author = "Tom Archer"
 listThumb = "edmund-fitzgerald.jpeg"
-+++
 
-{{< lightbox
-    src="edmund-fitzgerald.jpeg"
-    alt="Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site"
-    label="Open full-size edmund fitzgerald"
-    caption="At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true."
->}}
+hero = "edmund-fitzgerald.jpeg"
+heroAlt = "Cross-section diagram of Lake Superior showing temperature layers, pressure zones, and the Edmund Fitzgerald wreck site"
+heroLabel = "Open full-size edmund fitzgerald"
+heroCaption = "At 530 feet and 39°F, physics ensures Gordon Lightfoot's evocative lyric remains literally true."
+
+whatYoullLearn = [
+    "Why bodies normally resurface after a drowning",
+    "How cold water dramatically slows decomposition",
+    "How water pressure compresses decomposition gases at depth",
+    "How temperature, pressure, and buoyancy interact in Lake Superior",
+    "How Python can model whether a body will ever surface",
+    "Why the Edmund Fitzgerald's depth creates an extreme preservation environment"
+]
++++
 
 Originally appearing on his 1976 album, *Summertime Dream*, "The Wreck of the Edmund Fitzgerald" is a powerful ballad written and performed by folk singer [Gordon Lightfoot](#lightfoot1976). In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: "The lake, it is said, never gives up her dead." Following the singer's death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard's Hot Rock and Alternative category. 
 
@@ -26,14 +34,6 @@ When 29 souls went down with the Edmund Fitzgerald on November 10, 1975, they st
 ---
 
 *Note: This post contains scientific discussion of decomposition and forensic pathology in the context of maritime disasters.*
-
----
-
-> *"The lake, it is said, never gives up her dead / When the skies of November turn gloomy"*
-
----
-
-<!--more-->
 
 In this post, we'll explore the disturbing science behind this phenomenon, building a computational model that explains why bodies don't surface in extreme cold, deep water. You'll learn how temperature affects decomposition rates using the {{< term "arrhenius-equation" "Arrhenius equation" >}}, how pressure follows {{< term "boyles-law" "Boyle's Law" >}} to compress gases, and why Lake Superior's specific conditions create a perfect preservation environment. We'll validate our model against known recovery data from maritime disasters and explore what variables matter most in determining whether a body will ever surface.
 

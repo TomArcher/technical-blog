@@ -16,12 +16,8 @@
 		<meta property="og:url" content="http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="How Large Language Models (LLMs) Know Things They Were Never Taught">
-  <meta property="og:description" content="The model didn&#39;t learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
-Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.
-Identical question. Same underlying technology. Completely different answers. The difference isn’t that one model is smarter or more current than the other. The difference is whether web search was triggered.
-But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly “know” what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model learned and what a model read.
-LLMs don’t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don’t learn from your conversations. But they can access external information and reason over it within their context window. This isn’t learning; it’s reading. And understanding that difference changes how you think about what these systems can and cannot do.
-“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”">
+  <meta property="og:description" content="When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
+Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -35,25 +31,17 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 
 		
   <meta itemprop="name" content="How Large Language Models (LLMs) Know Things They Were Never Taught">
-  <meta itemprop="description" content="The model didn&#39;t learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
-Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.
-Identical question. Same underlying technology. Completely different answers. The difference isn’t that one model is smarter or more current than the other. The difference is whether web search was triggered.
-But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly “know” what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model learned and what a model read.
-LLMs don’t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don’t learn from your conversations. But they can access external information and reason over it within their context window. This isn’t learning; it’s reading. And understanding that difference changes how you think about what these systems can and cannot do.
-“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”">
+  <meta itemprop="description" content="When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
+Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.">
   <meta itemprop="datePublished" content="2026-02-09T06:00:00-07:00">
   <meta itemprop="dateModified" content="2026-02-09T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3413">
+  <meta itemprop="wordCount" content="3381">
   <meta itemprop="keywords" content="AI,LLM,RAG,Web Search,Context Windows">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How Large Language Models (LLMs) Know Things They Were Never Taught">
-  <meta name="twitter:description" content="The model didn&#39;t learn this. It just read it.When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
-Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.
-Identical question. Same underlying technology. Completely different answers. The difference isn’t that one model is smarter or more current than the other. The difference is whether web search was triggered.
-But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly “know” what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model learned and what a model read.
-LLMs don’t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don’t learn from your conversations. But they can access external information and reason over it within their context window. This isn’t learning; it’s reading. And understanding that difference changes how you think about what these systems can and cannot do.
-“A model with web search doesn’t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.”">
+  <meta name="twitter:description" content="When you ask an LLM without web search enabled a question like “What happened in the news this morning?”, the LLM will respond by telling you that it doesn’t have access to current events and suggest you check a more current news source such as Reuters or Google News.
+Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -149,6 +137,7 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">How Large Language Models (LLMs) Know Things They Were Never Taught</h1>
+        <p class="post-subtitle">Web search, RAG, and the illusion of current knowledge</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2026-02-09T06:00:00-07:00">
@@ -197,12 +186,22 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught.png" class="lightbox-trigger"
+        aria-label="Open full-size how large language models know things they were never taught">
+
+        <img src="/posts/how-large-language-models-know-things-they-were-never-taught/how-large-language-models-know-things-they-were-never-taught.png" alt="A neural network with frozen weights receiving current information from external sources">
 
     </a>
 
@@ -214,15 +213,29 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 
 </figure>
 
-<p>When you ask an <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>Why an LLM can answer questions about events that happened after its training ended</li>
+          <li>How web search gives a model current information without changing its weights</li>
+          <li>How RAG retrieves relevant information from private or specialized document collections</li>
+          <li>Why retrieved information is read during inference rather than learned by the model</li>
+          <li>How tool use lets an LLM work with search engines, code, databases, and external APIs</li>
+          <li>Why retrieval quality, source accuracy, and model reasoning all affect the final answer</li>
+      </ul>
+    </aside><p>When you ask an <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
 <p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p>
 <p>Identical question. Same underlying technology. Completely different answers. The difference isn&rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.</p>
 <p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &ldquo;know&rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model <em>learned</em> and what a model <em>read</em>.</p>
 <p>LLMs don&rsquo;t update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don&rsquo;t learn from your conversations. But they can access external information and reason over it within their context window. This isn&rsquo;t learning; it&rsquo;s reading. And understanding that difference changes how you think about what these systems can and cannot do.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;A model with web search doesn&rsquo;t know more. It can see more. The knowledge lives in the retrieved text, not in the weights.&rdquo;</em></p></blockquote>
-<hr>
 <p>This post explores how modern LLMs access information beyond their training data through web search, <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">retrieval-augmented generation (RAG)</a>, and <a class="glossary-term" href="/glossary/#tool-use" data-definition="The ability of a model to request actions from external systems, such as web search, code execution, calculators, databases, or APIs, and then reason over the returned results.">tool use</a>. You&rsquo;ll see how these mechanisms work, why they&rsquo;re fundamentally different from learning, and what that means for the reliability and limitations of AI systems. If you haven&rsquo;t read my post on <a href="/posts/how-large-language-models-handle-context-windows/">
   how LLMs handle context windows
 </a>
@@ -713,6 +726,8 @@ LLMs don’t update their weights (the billions of numerical parameters that enc
 </a>
 </p>
 <hr>
+
+
     </div>
     <footer class="post__footer">
       
@@ -841,7 +856,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

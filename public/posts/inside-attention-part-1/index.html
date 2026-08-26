@@ -16,10 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/inside-attention-part-1/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="Inside Attention, Part 1: The Mechanism">
-  <meta property="og:description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.What You&#39;ll Learn
-After reading this post, you&#39;ll be able to explain:What queries, keys, and values do How scaled dot-product attention works Why attention divides by \(\sqrt{d_k}\) Why transformers use multiple heads What attention heads actually learn How induction heads enable pattern copying The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.
-This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
-“Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
+  <meta property="og:description" content="The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -34,21 +31,15 @@ This post is the first of a three-part series on the attention mechanism. Part 1
 
 		
   <meta itemprop="name" content="Inside Attention, Part 1: The Mechanism">
-  <meta itemprop="description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.What You&#39;ll Learn
-After reading this post, you&#39;ll be able to explain:What queries, keys, and values do How scaled dot-product attention works Why attention divides by \(\sqrt{d_k}\) Why transformers use multiple heads What attention heads actually learn How induction heads enable pattern copying The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.
-This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
-“Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
+  <meta itemprop="description" content="The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.">
   <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
   <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3963">
+  <meta itemprop="wordCount" content="3867">
   <meta itemprop="keywords" content="AI,Attention Mechanisms,Induction Heads,Interpretability,LLM,Softmax,Transformers">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Inside Attention, Part 1: The Mechanism">
-  <meta name="twitter:description" content="A simplified transformer architecture showing how attention layers, feedforward networks, residual connections, layer normalization, and positional information work together. Attention is the mechanism that determines what information each token absorbs from the sequence.What You&#39;ll Learn
-After reading this post, you&#39;ll be able to explain:What queries, keys, and values do How scaled dot-product attention works Why attention divides by \(\sqrt{d_k}\) Why transformers use multiple heads What attention heads actually learn How induction heads enable pattern copying The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.
-This post is the first of a three-part series on the attention mechanism. Part 1 covers scaled dot-product attention, why we divide by \(\sqrt{d_k}\), multi-head attention, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how causal masking turns self-attention into the foundation of autoregressive next-token prediction. Part 3 covers the engineering layer: KV caching, multi-query and grouped-query attention, sliding window attention, and Flash Attention.
-“Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.”">
+  <meta name="twitter:description" content="The transformer architecture is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a feedforward sublayer, wrapped in residual connections and layer normalization. Positional information is added to the input so the model knows what order the tokens came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -144,6 +135,7 @@ This post is the first of a three-part series on the attention mechanism. Part 1
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">Inside Attention, Part 1: The Mechanism</h1>
+        <p class="post-subtitle">Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2026-08-22T06:00:00-07:00">
@@ -196,12 +188,22 @@ This post is the first of a three-part series on the attention mechanism. Part 1
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/inside-attention-part-1/transformer-architecture.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/inside-attention-part-1/transformer-architecture.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/inside-attention-part-1/transformer-architecture.png" class="lightbox-trigger"
+        aria-label="Open full-size transformer architecture diagram">
+
+        <img src="/posts/inside-attention-part-1/transformer-architecture.png" alt="Diagram of the transformer architecture showing token and positional embeddings, multi-head self-attention, feedforward networks, residual connections, layer normalization, and output projection for next-token prediction">
 
     </a>
 
@@ -213,24 +215,26 @@ This post is the first of a three-part series on the attention mechanism. Part 1
 
 </figure>
 
-<div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
-    <div style="text-align: center;"><strong>What You'll Learn</strong><br><br></div>
-After reading this post, you'll be able to explain:
-<ul>
-<li>What queries, keys, and values do</li>
-<li>How scaled dot-product <a class="glossary-term" href="/glossary/#attention" data-definition="A mechanism that allows a model to determine how strongly one token should relate to other tokens when constructing a representation.">attention</a> works</li>
-<li>Why attention divides by \(\sqrt{d_k}\)</li>
-<li>Why transformers use multiple heads</li>
-<li>What attention heads actually learn</li>
-<li>How <a class="glossary-term" href="/glossary/#induction-head" data-definition="An attention head involved in a circuit that recognizes repeated token patterns and uses an earlier occurrence to predict what is likely to follow the current occurrence.">induction head</a>s enable pattern copying</li>
-</ul>
-</div>
-<p>The <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformer architecture</a> is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a <a class="glossary-term" href="/glossary/#feedforward-network" data-definition="A neural network component that applies learned transformations independently to each token representation after the attention operation.">feedforward sublayer</a>, wrapped in <a class="glossary-term" href="/glossary/#residual-connection" data-definition="A shortcut connection that adds a layer&#39;s input to its output, helping information and gradients flow through deep neural networks.">residual connections</a> and <a class="glossary-term" href="/glossary/#layer-normalization" data-definition="A normalization technique that stabilizes neural network training by rescaling activations within a layer.">layer normalization</a>. <a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional information</a> is added to the input so the model knows what order the <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a> came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>Why collisions happen long before an ID space is full</li>
+          <li>Why collision risk grows much faster than intuition suggests</li>
+          <li>How to calculate the probability of an ID collision</li>
+          <li>How 32-bit, 64-bit, and UUID v4 IDs compare</li>
+          <li>How generation rate changes the time until collisions become likely</li>
+          <li>How to predict when an ID strategy needs to be replaced</li>
+      </ul>
+    </aside><p>The <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformer architecture</a> is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a <a class="glossary-term" href="/glossary/#feedforward-network" data-definition="A neural network component that applies learned transformations independently to each token representation after the attention operation.">feedforward sublayer</a>, wrapped in <a class="glossary-term" href="/glossary/#residual-connection" data-definition="A shortcut connection that adds a layer&#39;s input to its output, helping information and gradients flow through deep neural networks.">residual connections</a> and <a class="glossary-term" href="/glossary/#layer-normalization" data-definition="A normalization technique that stabilizes neural network training by rescaling activations within a layer.">layer normalization</a>. <a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional information</a> is added to the input so the model knows what order the <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a> came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
 <p>This post is the first of a three-part series on the attention mechanism. Part 1 covers <a class="glossary-term" href="/glossary/#scaled-dot-product-attention" data-definition="An attention mechanism that compares queries with keys using dot products, scales the resulting scores by the square root of the key dimension, applies softmax, and uses the resulting weights to combine values.">scaled dot-product attention</a>, why we divide by \(\sqrt{d_k}\), <a class="glossary-term" href="/glossary/#multi-head-attention" data-definition="An attention architecture that runs multiple independently learned attention heads in parallel and combines their outputs, allowing different relationships to be modeled simultaneously.">multi-head attention</a>, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how <a class="glossary-term" href="/glossary/#causal-mask" data-definition="An attention mask that prevents a token from attending to future positions in a sequence.">causal masking</a> turns self-attention into the foundation of <a class="glossary-term" href="/glossary/#autoregressive" data-definition="Describes a model that generates a sequence one element at a time, with each prediction conditioned on previously available elements.">autoregressive</a> next-token prediction. Part 3 covers the engineering layer: <a class="glossary-term" href="/glossary/#kv-cache" data-definition="A cache of previously computed key and value vectors that lets a transformer reuse them while generating subsequent tokens.">KV caching</a>, <a class="glossary-term" href="/glossary/#multi-query-attention" data-definition="An attention variant in which multiple query heads share a single set of key and value heads, reducing memory use and inference cost.">multi-query</a> and <a class="glossary-term" href="/glossary/#grouped-query-attention" data-definition="An attention variant in which groups of query heads share key and value heads, providing a compromise between multi-head and multi-query attention.">grouped-query attention</a>, <a class="glossary-term" href="/glossary/#sliding-window-attention" data-definition="An attention pattern that restricts each token to attending to a limited neighborhood of nearby tokens rather than the entire sequence.">sliding window attention</a>, and <a class="glossary-term" href="/glossary/#flash-attention" data-definition="An optimized attention algorithm that reduces memory traffic by computing attention in blocks, enabling faster and more memory-efficient exact attention.">Flash Attention</a>.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.&rdquo;</em></p></blockquote>
-<hr>
 <p>The 2017 paper, <a href="#vaswani2017">
   Attention Is All You Need
 </a>
@@ -597,6 +601,8 @@ Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Ka
 Voita, E., Talbot, D., Moiseev, F., Sennrich, R., &amp; Titov, I. (2019). Analyzing multi-head self-attention: Specialized heads do the heavy lifting, the rest can be pruned. <em>Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics</em>. <a href="https://arxiv.org/abs/1905.09418">https://arxiv.org/abs/1905.09418</a>
 </p>
 <hr>
+
+
     </div>
     <footer class="post__footer">
       

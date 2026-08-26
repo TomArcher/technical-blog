@@ -4,29 +4,28 @@ draft = false
 title = "The Discrete Mathematics Hiding Inside LLMs"
 subtitle = "How set theory, predicate logic, and formal proofs show up in modern AI"
 categories = ["AI and the Mathematics of Language"]
-tags = ["AI", "attention mechanisms", "embeddings", "discrete mathematics", "LLM", "predicate logic", "set theory", ]
+tags = ["AI", "attention mechanisms", "embeddings", "discrete mathematics", "LLM", "predicate logic", "set theory"]
 author = "Tom Archer"
 listThumb = "discrete-math-in-large-language-models-th.png"
-+++
 
-{{< lightbox
-    src="discrete-math-in-large-language-models.png"
-    alt="A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns"
-    label="Open full-size discrete math in large language models"
-    caption="It's true what they say: discrete math is everywhere you look."
->}}
+hero = "discrete-math-in-large-language-models.png"
+heroAlt = "A robotic head in profile with discrete mathematics concepts filling its mind: Venn diagrams, truth tables, logical symbols like P→Q and ∀x∃y, graph theory networks, binary matrices, and set notation, all connecting to neural network patterns"
+heroLabel = "Open full-size discrete math in large language models"
+heroCaption = "It's true what they say: discrete math is everywhere you look."
+
+whatYoullLearn = [
+    "How attention behaves like a soft version of predicate logic",
+    "How top-k and top-p sampling use ideas from set theory",
+    "How Boolean logic determines which tokens can attend to each other",
+    "Why chain-of-thought reasoning resembles the structure of a proof",
+    "How positional encoding uses periodic patterns to represent position",
+    "How discrete math helps explain why common LLM techniques work"
+]
++++
 
 A recent [LinkedIn post](https://www.linkedin.com/posts/activity-7435689322504167424-_v46) from Michael Palmer described how {{< term "discrete-mathematics" "discrete mathematics" >}} is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, {{< term "gradient-descent" "gradient descent" >}}, and probability distributions. If you've taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you'd expect.
 
 Underneath the calculus and linear algebra, the same structures you learn in a discrete math course keep appearing: {{< term "set-theory" "sets" >}}, {{< term "predicate-logic" "predicate logic" >}}, {{< term "boolean-algebra" "Boolean operations" >}}, {{< term "modular-arithmetic" "modular arithmetic" >}}, formal proof patterns. This post traces those connections.
-
----
-
-> *"Attention heads act like soft predicates over tokens. Masks are set operations. Chain-of-thought resembles proof structure."*
-
----
-
-<!--more-->
 
 This post explores how core discrete mathematics concepts appear in LLM architecture and operation. You'll see set theory in token selection, predicate logic in attention mechanisms, Boolean algebra in prompt constraints, proof structure in chain-of-thought reasoning, and modular arithmetic in positional encoding. If you've followed my earlier posts on [how LLMs think](/posts/how-large-language-models-think/) and [how they learn](/posts/how-large-language-models-learn/), you've already seen the calculus and linear algebra. This post adds the discrete layer.
 

@@ -7,14 +7,21 @@ categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "LLM", "RAG", "web search", "context windows"]
 author = "Tom Archer"
 listThumb = "how-large-language-models-know-things-they-were-never-taught-thumb.png"
-+++
 
-{{< lightbox
-    src="how-large-language-models-know-things-they-were-never-taught.png"
-    alt="A neural network with frozen {{< term"
-    label="Open full-size how large language models know things they were never taught"
-    caption="The model didn't learn this. It just read it."
->}}
+hero = "how-large-language-models-know-things-they-were-never-taught.png"
+heroAlt = "A neural network with frozen weights receiving current information from external sources"
+heroLabel = "Open full-size how large language models know things they were never taught"
+heroCaption = "The model didn't learn this. It just read it."
+
+whatYoullLearn = [
+    "Why an LLM can answer questions about events that happened after its training ended",
+    "How web search gives a model current information without changing its weights",
+    "How RAG retrieves relevant information from private or specialized document collections",
+    "Why retrieved information is read during inference rather than learned by the model",
+    "How tool use lets an LLM work with search engines, code, databases, and external APIs",
+    "Why retrieval quality, source accuracy, and model reasoning all affect the final answer"
+]
++++
 
 When you ask an {{< term "large-language-model" "LLM" >}} *without* web search enabled a question like "What happened in the news this morning?", the LLM will respond by telling you that it doesn't have access to current events and suggest you check a more current news source such as Reuters or Google News.
 
@@ -26,13 +33,6 @@ But why does that matter? Both models were trained months ago. Their internal kn
 
 LLMs don't update their weights (the billions of numerical parameters that encode everything learned during training) when you chat with them. They don't learn from your conversations. But they can access external information and reason over it within their context window. This isn't learning; it's reading. And understanding that difference changes how you think about what these systems can and cannot do.
 
-* * *
-
-> *"A model with web search doesn't know more. It can see more. The knowledge lives in the retrieved text, not in the weights."*
-
-* * *
-
-<!--more-->
 
 This post explores how modern LLMs access information beyond their training data through web search, {{< term "retrieval-augmented-generation" "retrieval-augmented generation (RAG)" >}}, and {{< term "tool-use" "tool use" >}}. You'll see how these mechanisms work, why they're fundamentally different from learning, and what that means for the reliability and limitations of AI systems. If you haven't read my post on [how LLMs handle context windows](/posts/how-large-language-models-handle-context-windows/), start there; everything in this post builds on that foundation.
 

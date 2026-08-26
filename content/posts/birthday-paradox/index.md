@@ -1,11 +1,25 @@
 +++
 title = "The Birthday Paradox in Production: When Random IDs Collide"
+subtitle = "Why collision risk grows faster than intuition suggests, and what that means for IDs, hashes, and distributed systems"
 date = "2025-11-28T06:00:00-07:00"
 draft = false
 categories = ["Applied Modeling and Simulation"]
-tags = ["cryptography", "databases", "distributed-systems","probability", "Python",]
+tags = ["cryptography", "databases", "distributed-systems", "probability", "Python"]
 author = "Tom Archer"
 listThumb = "birthday-paradox.png"
+hero = "birthday-paradox.png"
+whatYoullLearn = [
+    "Why collisions happen long before an ID space is full",
+    "Why collision risk grows much faster than intuition suggests",
+    "How the birthday paradox applies to computer systems",
+    "How to calculate the probability of an ID collision",
+    "Why the square root of the ID space determines the danger zone",
+    "How 32-bit, 64-bit, and UUID v4 IDs compare",
+    "How generation rate changes the time until collisions become likely",
+    "How to choose an acceptable collision risk for a real system",
+    "How Monte Carlo simulation can validate collision calculations",
+    "How to predict when an ID strategy needs to be replaced"
+]
 +++
 
 {{< lightbox
@@ -22,14 +36,6 @@ As I like to say, *common sense and intuition are the enemies of science*. Commo
 Math shows us the uncomfortable truth: You'll hit a 50% collision probability after generating just \\(2.7 \times 10^{18}\\) IDs. That's 0.0000000000000000008% of your total space. At a billion IDs per second, you've got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you've got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.
 
 You might know that the {{< term "birthday-paradox" "birthday paradox" >}} proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn't just a party trick; it's the same mathematics that determines when your "guaranteed unique" database IDs collide, why {{< term "hash-table" "hash tables" >}} need careful sizing, and when your {{< term "distributed-system" "distributed system" >}}'s assumptions break.
-
----
-
-> *"In a room of 23 people, there's a greater than 50% chance two share a birthday. In your database, collisions arrive far sooner than intuition suggests."*
-
----
-
-<!--more-->
 
 The paradox reveals why intuition fails us: {{< term "collision-probability" "collision probability" >}} doesn't grow linearly with usage; it grows with the square. Double your data, quadruple your risk. This quadratic growth is why systems that run perfectly for months suddenly start failing, why that startup's clever 32-bit ID scheme becomes a migration nightmare, and why even titans like GitHub had to extend their integer IDs.
 

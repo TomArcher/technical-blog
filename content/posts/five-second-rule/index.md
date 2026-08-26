@@ -1,31 +1,31 @@
 +++
 title = "The Five-Second Rule Explored with Math & Python"
+subtitle = "Why germs transfer immediately, and how math reveals what really happens after food hits the floor"
 date = "2025-09-04T06:00:00-07:00"
 draft = false
-categories = ["Applied Modeling and Simulation",]
-tags = ["physics", "Python", "probability",]
+categories = ["Applied Modeling and Simulation"]
+tags = ["physics", "probability", "Python"]
 author = "Tom Archer"
 listThumb = "five-second-rule-explored.png"
-+++
 
-{{< lightbox
-    src="five-second-rule-explored.png"
-    alt="Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off"
-    label="Open full-size five second rule explored"
-    caption="Forget the five-second rule. Germs transfer instantly, and we can prove it with math."
->}}
+hero = "five-second-rule-explored.png"
+heroAlt = "Slice of pizza on the floor surrounded by cartoon germs, with a graph showing bacteria quickly rising then leveling off"
+heroLabel = "Open full-size five second rule explored"
+heroCaption = "Forget the five-second rule. Germs transfer instantly, and we can prove it with math."
+
+whatYoullLearn = [
+    "Why germs begin transferring to food as soon as it touches a surface",
+    "How moisture, contact area, and surface texture affect contamination",
+    "Why germ transfer happens fastest during the first moments of contact",
+    "How an exponential curve can model contamination over time",
+    "How calculus reveals the changing rate of germ transfer",
+    "How Python can estimate when contamination crosses a chosen threshold"
+]
++++
 
 You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.  
 
----
-
-> *"Germs don’t wait five seconds. They start the party the instant your food hits the floor."*
-
----
-
 The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.
-
-<!--more-->
 
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
     <div style="text-align: center;"><strong>Do germs move toward the food?</strong><br><br></div>

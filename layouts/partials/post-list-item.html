@@ -1,0 +1,78 @@
+{{ $page := . }}
+{{ $thumb := "" }}
+
+{{ with $page.Params.listThumb }}
+{{ $name := . }}
+{{ with $page.Resources.GetMatch $name }}
+{{ $thumb = .RelPermalink }}
+{{ else }}
+{{ if hasPrefix $name "/" }}
+{{ $thumb = ($name | relURL) }}
+{{ else }}
+{{ $thumb = (printf "%s%s" $page.RelPermalink $name) }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+<article class="post{{ if $thumb }} post--has-title-thumb{{ end }}{{ if .Params.pinned }} post--pinned{{ end }}">
+    <header class="post-header">
+
+        {{ if $thumb }}
+        <a class="post-title-thumb" href="{{ .RelPermalink }}">
+            <img src="{{ $thumb }}" alt="" loading="lazy">
+        </a>
+        {{ end }}
+
+        <div class="post-header-text">
+            <h2 class="post-title">
+                {{ if .Params.pinned }}
+                <span class="pinned-icon" title="Pinned post">📌</span>
+                {{ end }}
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
+
+            {{ with .Params.subtitle }}
+            <div class="post-subtitle">{{ . }}</div>
+            {{ end }}
+
+            <div class="post-meta">
+                <time datetime="{{ .Date.Format " 2006-01-02" }}">
+                    <strong>{{ .Date.Format "Jan 2, 2006" }}</strong>
+                </time>
+
+                {{- $cats := .Params.categories -}}
+                {{- $tags := .Params.tags -}}
+
+                {{- with $cats -}}
+                &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+                {{- range $i, $c := . -}}
+                {{- if $i }}, {{ end -}}
+                <a href="{{ (printf " /categories/%s/" ($c | urlize)) | relURL }}">{{ $c }}</a>
+                {{- end -}}
+                {{- end -}}
+
+                {{- if and $cats $tags }}, {{ end -}}
+
+                {{- with $tags -}}
+                &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+                {{- range $i, $t := . -}}
+                {{- if $i }}, {{ end -}}
+                <a href="{{ (printf " /tags/%s/" ($t | urlize)) | relURL }}">#{{ $t }}</a>
+                {{- end -}}
+                {{- end -}}
+            </div>
+        </div>
+    </header>
+
+    {{ with .Params.whatYoullLearn }}
+    <div class="post-learning">
+        <div class="post-learning-title">What You'll Learn</div>
+        <ul class="post-learning-list">
+            {{ range . }}
+            <li>{{ . | markdownify }}</li>
+            {{ end }}
+        </ul>
+    </div>
+    {{ end }}
+
+</article>

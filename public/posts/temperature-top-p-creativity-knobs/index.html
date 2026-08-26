@@ -16,10 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/temperature-top-p-creativity-knobs/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="Temperature and Top-P: The Creativity Knobs">
-  <meta property="og:description" content="Turn it up and things get weird.Every API call to ChatGPT, Claude, or any other LLM includes two parameters most people either ignore or tweak randomly: temperature and top-p. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.
-The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.
-I’ve watched developers cargo-cult settings from others without understanding what they do. “Set temperature to 0.7 for creative writing” becomes tribal knowledge, passed down without explanation. Let’s fix that by opening the hood and examining the mathematics that makes these knobs work.
-“Temperature doesn’t make the model smarter or dumber. It changes how much the model trusts its own first instinct.”">
+  <meta property="og:description" content="Every API call to ChatGPT, Claude, or any other LLM includes two parameters most people either ignore or tweak randomly: temperature and top-p. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -34,21 +31,15 @@ I’ve watched developers cargo-cult settings from others without understanding 
 
 		
   <meta itemprop="name" content="Temperature and Top-P: The Creativity Knobs">
-  <meta itemprop="description" content="Turn it up and things get weird.Every API call to ChatGPT, Claude, or any other LLM includes two parameters most people either ignore or tweak randomly: temperature and top-p. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.
-The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.
-I’ve watched developers cargo-cult settings from others without understanding what they do. “Set temperature to 0.7 for creative writing” becomes tribal knowledge, passed down without explanation. Let’s fix that by opening the hood and examining the mathematics that makes these knobs work.
-“Temperature doesn’t make the model smarter or dumber. It changes how much the model trusts its own first instinct.”">
+  <meta itemprop="description" content="Every API call to ChatGPT, Claude, or any other LLM includes two parameters most people either ignore or tweak randomly: temperature and top-p. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.">
   <meta itemprop="datePublished" content="2025-12-24T12:00:00-08:00">
   <meta itemprop="dateModified" content="2025-12-24T12:00:00-08:00">
-  <meta itemprop="wordCount" content="3398">
+  <meta itemprop="wordCount" content="3372">
   <meta itemprop="keywords" content="AI,Anthropic,LLM,Nucleus Sampling,OpenAI,Probability,Sampling,Softmax,Temperature,Top-P">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Temperature and Top-P: The Creativity Knobs">
-  <meta name="twitter:description" content="Turn it up and things get weird.Every API call to ChatGPT, Claude, or any other LLM includes two parameters most people either ignore or tweak randomly: temperature and top-p. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.
-The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.
-I’ve watched developers cargo-cult settings from others without understanding what they do. “Set temperature to 0.7 for creative writing” becomes tribal knowledge, passed down without explanation. Let’s fix that by opening the hood and examining the mathematics that makes these knobs work.
-“Temperature doesn’t make the model smarter or dumber. It changes how much the model trusts its own first instinct.”">
+  <meta name="twitter:description" content="Every API call to ChatGPT, Claude, or any other LLM includes two parameters most people either ignore or tweak randomly: temperature and top-p. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -144,6 +135,7 @@ I’ve watched developers cargo-cult settings from others without understanding 
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">Temperature and Top-P: The Creativity Knobs</h1>
+        <p class="post-subtitle">How sampling parameters shape AI personality</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-12-24T12:00:00-08:00">
@@ -202,12 +194,22 @@ I’ve watched developers cargo-cult settings from others without understanding 
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" class="lightbox-trigger"
+        aria-label="Open full-size temperature top p creativity knobs">
+
+        <img src="/posts/temperature-top-p-creativity-knobs/temperature-top-p-creativity-knobs.png" alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve">
 
     </a>
 
@@ -219,7 +221,25 @@ I’ve watched developers cargo-cult settings from others without understanding 
 
 </figure>
 
-<p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>How an LLM turns raw token scores into probabilities before choosing what comes next</li>
+          <li>How temperature reshapes a probability distribution to make outputs more predictable or more varied</li>
+          <li>How top-p sampling limits which tokens the model is allowed to consider</li>
+          <li>Why top-p adapts to model confidence differently from a fixed top-k cutoff</li>
+          <li>How temperature and top-p interact when both are applied to the same distribution</li>
+          <li>How to choose sampling settings for factual, structured, professional, and creative tasks</li>
+      </ul>
+    </aside><p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
 , <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
@@ -228,10 +248,6 @@ I’ve watched developers cargo-cult settings from others without understanding 
 , or any other <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> includes two parameters most people either ignore or tweak randomly: <a class="glossary-term" href="/glossary/#temperature" data-definition="A sampling parameter that rescales a model&#39;s logits before softmax, controlling how concentrated or spread out the resulting token probabilities are.">temperature</a> and <a class="glossary-term" href="/glossary/#top-p" data-definition="A sampling parameter that restricts token selection to the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold.">top-p</a>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
 <p>The temperature value determines whether the model plays it safe or takes creative risks while the top-p value decides how many options the model even considers. Together, these values shape the personality of every response you receive.</p>
 <p>I&rsquo;ve watched developers cargo-cult settings from others without understanding what they do. &ldquo;Set temperature to 0.7 for creative writing&rdquo; becomes tribal knowledge, passed down without explanation. Let&rsquo;s fix that by opening the hood and examining the mathematics that makes these knobs work.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;Temperature doesn&rsquo;t make the model smarter or dumber. It changes how much the model trusts its own first instinct.&rdquo;</em></p></blockquote>
-<hr>
 <p>This post explores the mathematical foundations of token sampling in large language models, showing exactly how temperature and top-p transform <a class="glossary-term" href="/glossary/#probability-distribution" data-definition="A mathematical description of the possible outcomes of a random process and the probabilities associated with those outcomes.">probability distributions</a> into actual text. You&rsquo;ll see the equations, run the code, and develop intuition for when to reach for which parameter.</p>
 <blockquote>
 <p><strong>TL;DR:</strong></p>
@@ -885,6 +901,8 @@ Peng, B., Galley, M., He, P., Cheng, H., Xie, Y., Hu, Y., &hellip; &amp; Gao, J.
 </a>
 </p>
 <hr>
+
+
     </div>
     <footer class="post__footer">
       
@@ -1028,7 +1046,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

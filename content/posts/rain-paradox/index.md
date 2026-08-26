@@ -1,27 +1,30 @@
 +++
 title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
+subtitle = "Using physics, Python, and simulation to settle a deceptively simple question"
 date = '2025-08-18T09:00:00-07:00'
 draft = false
 categories = ["Applied Modeling and Simulation",]
 tags = ["physics", "probability", "Python",]
 author = "Tom Archer"
 listThumb = "rain-paradox.png"
-+++
 
-{{< lightbox
-    src="rain-paradox.png"
-    alt="Rain Paradox: Walk or Run?"
-    label="Open full-size rain paradox"
-    caption="To walk or to run. That is the question."
->}}
+hero = "rain-paradox.png"
+heroAlt = "Rain Paradox: Walk or Run?"
+heroLabel = "Open full-size rain paradox"
+heroCaption = "To walk or to run. That is the question."
+
+whatYoullLearn = [
+    "Why moving faster reduces the rain that lands on you from above",
+    "Why the amount of rain you hit from the front behaves differently from top-down exposure",
+    "How to turn a real-world question about rain into a simplified mathematical model",
+    "How Python can simulate wetness at different walking and running speeds",
+    "Why running produces diminishing returns even though it still keeps you drier",
+    "How wind, body geometry, and randomness could make the basic model more realistic"
+]
++++
 
 Early in my programming career, I came across a coding challenge that stuck with me for many years:
 
----
-
-> *"If it's raining, will you stay drier by walking or running through it?"*
-
----
 
 At the time, I didn't have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn't about recursion or memory management. It was about **getting wet**, and **how fast you move through falling rain**.
 

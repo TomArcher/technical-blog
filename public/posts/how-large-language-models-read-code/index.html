@@ -16,8 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/how-large-language-models-read-code/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic">
-  <meta property="og:description" content="AI reads code as patterns, not instructions.Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.
-“When an AI system ‘understands’ code, it is not executing logic; it is modeling probability.”">
+  <meta property="og:description" content="Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -30,17 +29,15 @@
 
 		
   <meta itemprop="name" content="How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic">
-  <meta itemprop="description" content="AI reads code as patterns, not instructions.Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.
-“When an AI system ‘understands’ code, it is not executing logic; it is modeling probability.”">
+  <meta itemprop="description" content="Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.">
   <meta itemprop="datePublished" content="2025-10-06T09:00:00-07:00">
   <meta itemprop="dateModified" content="2025-10-06T09:00:00-07:00">
-  <meta itemprop="wordCount" content="1631">
+  <meta itemprop="wordCount" content="1609">
   <meta itemprop="keywords" content="AI,LLM,Probability,Tokenization">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic">
-  <meta name="twitter:description" content="AI reads code as patterns, not instructions.Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.
-“When an AI system ‘understands’ code, it is not executing logic; it is modeling probability.”">
+  <meta name="twitter:description" content="Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -136,6 +133,7 @@
   <article class="post">
     <header class="post__header">
       <h1 class="post__title">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</h1>
+        <p class="post-subtitle">Exploring how large language models interpret code and what they miss</p>
 
       <div class="post__meta meta"><p class="meta__line">
             <time datetime="2025-10-06T09:00:00-07:00">
@@ -182,12 +180,22 @@
 
     </header>
 
-    <div class="content post__content clearfix">
-      <figure style="margin: 0 20px 10px 20px; text-align: center;">
+    
 
-    <a href="/posts/how-large-language-models-read-code/how-large-language-models-read-code.png" class="lightbox-trigger" aria-label="Open full-size image">
 
-        <img src="/posts/how-large-language-models-read-code/how-large-language-models-read-code.png" alt="">
+
+
+
+
+
+
+
+<figure style="margin: 0 20px 10px 20px; text-align: center;">
+
+    <a href="/posts/how-large-language-models-read-code/how-large-language-models-read-code.png" class="lightbox-trigger"
+        aria-label="Open full-size how large language models read code">
+
+        <img src="/posts/how-large-language-models-read-code/how-large-language-models-read-code.png" alt="Digital artwork showing a small piece of code outside an AI silhouette with circuit lines and a glowing probability curve inside its head, symbolizing machine learning interpreting code through statistical modeling rather than logic.">
 
     </a>
 
@@ -199,11 +207,25 @@
 
 </figure>
 
-<p>Developers are accustomed to thinking about code in terms of <a class="glossary-term" href="/glossary/#syntax-semantics" data-definition="Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.">syntax and semantics</a>, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a>, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
-<hr>
-<blockquote>
-<p><em>&ldquo;When an AI system &lsquo;understands&rsquo; code, it is not executing logic; it is modeling probability.</em>&rdquo;</p></blockquote>
-<hr>
+
+
+    <div class="content post__content clearfix">
+      <aside class="what-youll-learn">
+      <div class="what-youll-learn__title">What You'll Learn</div>
+
+      <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+      </div>
+
+      <ul>
+          <li>How an LLM reads code differently from a compiler or a human developer</li>
+          <li>Why models recognize programming patterns instead of executing the code they see</li>
+          <li>How embeddings let an LLM associate code with similar structures and meanings</li>
+          <li>Why comments, variable names, and familiar coding idioms can change a model&rsquo;s interpretation</li>
+          <li>How statistically likely code can still be logically or operationally wrong</li>
+          <li>Why combining generative AI with compilers and static analysis produces safer coding tools</li>
+      </ul>
+    </aside><p>Developers are accustomed to thinking about code in terms of <a class="glossary-term" href="/glossary/#syntax-semantics" data-definition="Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.">syntax and semantics</a>, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a>, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
 <p>The difference may seem subtle, but it has vast consequences. Understanding the gap between human reasoning, compiler verification, and model prediction is key to using generative AI responsibly in programming environments.</p>
 <hr>
 <h2 id="what-is-an-llm">What Is an LLM</h2>
@@ -352,6 +374,8 @@
 </a>
 .</p>
 <hr>
+
+
     </div>
     <footer class="post__footer">
       
@@ -477,7 +501,6 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithms/" title="Algorithms">Algorithms</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/anthropic/" title="Anthropic">Anthropic</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/attention-mechanisms/" title="Attention Mechanisms">Attention Mechanisms</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/biology/" title="Biology">Biology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/blockchain/" title="Blockchain">Blockchain</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/calculus/" title="Calculus">Calculus</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/code-organization/" title="Code Organization">Code Organization</a>

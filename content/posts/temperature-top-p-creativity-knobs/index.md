@@ -7,14 +7,21 @@ categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "Anthropic", "LLM", "nucleus sampling", "OpenAI", "probability", "sampling", "softmax", "temperature", "top-p",]
 author = "Tom Archer"
 listThumb = "temperature-top-p-creativity-knobs.png"
-+++
 
-{{< lightbox
-    src="temperature-top-p-creativity-knobs.png"
-    alt="A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
-    label="Open full-size temperature top p creativity knobs"
-    caption="Turn it up and things get weird."
->}}
+hero = "temperature-top-p-creativity-knobs.png"
+heroAlt = "A probability distribution being reshaped by temperature, with tokens spreading from a sharp peak to a flattened curve"
+heroLabel = "Open full-size temperature top p creativity knobs"
+heroCaption = "Turn it up and things get weird."
+
+whatYoullLearn = [
+    "How an LLM turns raw token scores into probabilities before choosing what comes next",
+    "How temperature reshapes a probability distribution to make outputs more predictable or more varied",
+    "How top-p sampling limits which tokens the model is allowed to consider",
+    "Why top-p adapts to model confidence differently from a fixed top-k cutoff",
+    "How temperature and top-p interact when both are applied to the same distribution",
+    "How to choose sampling settings for factual, structured, professional, and creative tasks"
+]
++++
 
 Every API call to [ChatGPT](https://openai.com/api/), [Claude](https://claude.com/platform/api), or any other {{< term "large-language-model" "LLM" >}} includes two parameters most people either ignore or tweak randomly: {{< term "temperature" "temperature" >}} and {{< term "top-p" "top-p" >}}. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks. 
 
@@ -22,13 +29,6 @@ The temperature value determines whether the model plays it safe or takes creati
 
 I've watched developers cargo-cult settings from others without understanding what they do. "Set temperature to 0.7 for creative writing" becomes tribal knowledge, passed down without explanation. Let's fix that by opening the hood and examining the mathematics that makes these knobs work.
 
----
-
->*"Temperature doesn't make the model smarter or dumber. It changes how much the model trusts its own first instinct."*
-
----
-
-<!--more-->
 
 This post explores the mathematical foundations of token sampling in large language models, showing exactly how temperature and top-p transform {{< term "probability-distribution" "probability distributions" >}} into actual text. You'll see the equations, run the code, and develop intuition for when to reach for which parameter.
 

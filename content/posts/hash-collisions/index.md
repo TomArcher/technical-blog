@@ -4,29 +4,28 @@ subtitle = "The mathematical certainty of hash collisions, the near-impossibilit
 date = "2025-11-17T06:00:00-07:00"
 draft = false
 categories = ["Essays and Perspectives"]
-tags = ["blockchain", "cryptography", "hashing", "passwords", "security",]
+tags = ["blockchain", "cryptography", "hashing", "passwords", "security"]
 author = "Tom Archer"
 listThumb = "hash-collisions-thumb.png"
-+++
 
-{{< lightbox
-    src="hash-collisions.png"
-    alt="Visual representation of the SHAttered attack showing two different PDFs with identical {{< term"
-    label="Open full-size hash collisions"
-    caption="In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes."
->}}
+hero = "hash-collisions.png"
+heroAlt = "Visual representation of the SHAttered attack showing two different PDF files producing the same SHA-1 hash"
+heroLabel = "Open full-size hash collisions"
+heroCaption = "In 2017, Google proved SHA-1 was broken by creating two different PDFs with identical hashes."
+
+whatYoullLearn = [
+    "Why hash collisions are mathematically inevitable even with strong algorithms",
+    "Why a possible collision is very different from a meaningful security threat",
+    "How MD5 and SHA-1 went from trusted standards to broken algorithms",
+    "Why modern password storage needs more than a fast hash and a salt",
+    "When hash collisions matter for security and when they are harmless",
+    "How crypto-agility helps systems survive when today's algorithms eventually fail"
+]
++++
 
 In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: {{< term "hash-function" "hash functions" >}} don't create truly unique fingerprints ([Stevens et al., 2017](#stevens2017)). This "SHAttered" attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
 
 Yet despite this proof, we still trust hash functions for everything from Git commits to blockchain transactions to password storage. The reason is simple: while {{< term "hash-collision" "collisions" >}} are mathematically inevitable, meaningful collisions remain virtually impossible. The full story of hash collisions is more nuanced than "unique" versus "not unique."
-
----
-
->*"In cryptography, 'secure' has always meant 'secure for now'."*
-
----
-
-<!--more-->
 
 <div style="background-color: #f8f8f8; border-left: 4px solid #4CAF50; padding: 1em; margin: 1em 0;">
 <strong>Historical Note:</strong> This post updates my 2005 article on hash collisions (<a href="#archer2005">Archer, 2005</a>). Back then, MD5 was still considered "acceptable with caveats" and adding {{< term "password-salt" "salt" >}} to passwords seemed cutting-edge. It's fascinating (and somewhat alarming) to see which predictions came true and which assumptions had to be completely reconsidered.
