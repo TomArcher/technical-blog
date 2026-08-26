@@ -35,7 +35,7 @@ When you ask Claude to count the letters in the word “strawberry,” it often 
 When you ask Claude to count the letters in the word “strawberry,” it often gets it wrong. The reason is simple. Claude never saw the word “strawberry” as a complete unit. It saw tokens like &#34;str&#34;, &#34;aw&#34;, &#34;berry&#34; and tried to reason about letters it couldn’t directly access.">
   <meta itemprop="datePublished" content="2025-11-11T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-11T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3356">
+  <meta itemprop="wordCount" content="3116">
   <meta itemprop="keywords" content="AI,Tokenization,LLM,Transformers,NLP">
 		
   <meta name="twitter:card" content="summary">
@@ -248,7 +248,7 @@ When you ask Claude to count the letters in the word “strawberry,” it often 
 </a>
 , it has to break language into pieces it can process.</p>
 <hr>
-<h2 id="what-is-hahahugoshortcode14s1hbhb">What Is <a class="glossary-term" href="/glossary/#tokenization" data-definition="The process of dividing input into tokens that a model can represent and process numerically.">Tokenization</a>?</h2>
+<h2 id="what-is-hahahugoshortcode129s1hbhb">What Is <a class="glossary-term" href="/glossary/#tokenization" data-definition="The process of dividing input into tokens that a model can represent and process numerically.">Tokenization</a>?</h2>
 <p><strong>Tokenization is the process of breaking text into units (tokens) that a language model can process.</strong></p>
 <p>At first glance, this seems trivial: just split on spaces and punctuation, right? But natural language is messier than that:</p>
 <ul>
@@ -287,10 +287,10 @@ When you ask Claude to count the letters in the word “strawberry,” it often 
 <li>German: <code>&quot;Donaudampfschifffahrtsgesellschaftskapitän&quot;</code> (compound words)</li>
 </ul>
 <p>Word-level tokenization doesn&rsquo;t generalize across languages.</p>
-<h3 id="4-hahahugoshortcode14s4hbhb-problem"><strong>4. <a class="glossary-term" href="/glossary/#out-of-vocabulary" data-definition="Describes an input unit that is not present in a model&#39;s predefined vocabulary and therefore cannot be represented directly.">Out-of-Vocabulary</a> Problem</strong></h3>
+<h3 id="4-hahahugoshortcode129s4hbhb-problem"><strong>4. <a class="glossary-term" href="/glossary/#out-of-vocabulary" data-definition="Describes an input unit that is not present in a model&#39;s predefined vocabulary and therefore cannot be represented directly.">Out-of-Vocabulary</a> Problem</strong></h3>
 <p>If you encounter a word not in your vocabulary, you&rsquo;re stuck. You can&rsquo;t process it, can&rsquo;t embed it, can&rsquo;t generate it. The model has a blind spot for anything it wasn&rsquo;t explicitly trained to recognize.</p>
 <hr>
-<h2 id="hahahugoshortcode14s5hbhb-the-other-extreme"><a class="glossary-term" href="/glossary/#character-level-tokenization" data-definition="A tokenization strategy in which individual characters are treated as tokens rather than words or subwords.">Character-Level Tokenization</a>: The Other Extreme</h2>
+<h2 id="hahahugoshortcode129s5hbhb-the-other-extreme"><a class="glossary-term" href="/glossary/#character-level-tokenization" data-definition="A tokenization strategy in which individual characters are treated as tokens rather than words or subwords.">Character-Level Tokenization</a>: The Other Extreme</h2>
 <p>If words are too coarse, what about going fine-grained? Treat every character as a token:</p>
 <p><code>&quot;I love programming&quot;</code> → <code>[&quot;I&quot;, &quot; &quot;, &quot;l&quot;, &quot;o&quot;, &quot;v&quot;, &quot;e&quot;, &quot; &quot;, &quot;p&quot;, &quot;r&quot;, &quot;o&quot;, &quot;g&quot;, &quot;r&quot;, &quot;a&quot;, &quot;m&quot;, &quot;m&quot;, &quot;i&quot;, &quot;n&quot;, &quot;g&quot;]</code></p>
 <h3 id="advantages"><strong>Advantages:</strong></h3>
@@ -306,7 +306,7 @@ When you ask Claude to count the letters in the word “strawberry,” it often 
 ), processing character sequences is <strong>computationally prohibitive</strong>.</p>
 <p>Worse, the model has to learn that <code>&quot;c-a-t&quot;</code> forms a semantic unit, that <code>&quot;p-r-o-g-r-a-m-m-i-n-g&quot;</code> shares meaning with <code>&quot;p-r-o-g-r-a-m&quot;</code>, and so on. You&rsquo;ve pushed all the linguistic structure learning onto the model.</p>
 <hr>
-<h2 id="hahahugoshortcode14s8hbhb-the-goldilocks-solution"><a class="glossary-term" href="/glossary/#subword-tokenization" data-definition="A tokenization strategy that represents text using units larger than individual characters but often smaller than complete words.">Subword Tokenization</a>: The Goldilocks Solution</h2>
+<h2 id="hahahugoshortcode129s8hbhb-the-goldilocks-solution"><a class="glossary-term" href="/glossary/#subword-tokenization" data-definition="A tokenization strategy that represents text using units larger than individual characters but often smaller than complete words.">Subword Tokenization</a>: The Goldilocks Solution</h2>
 <p>Modern LLMs use <strong>subword tokenization</strong>: splitting text into units that are bigger than characters but smaller than words. The most common approach is <strong><a class="glossary-term" href="/glossary/#byte-pair-encoding" data-definition="A tokenization method that repeatedly merges frequently occurring adjacent units to construct a vocabulary of common subword patterns.">Byte Pair Encoding (BPE)</a></strong>, originally developed for data compression (<a href="#gage1994">
   Gage, 1994
 </a>
@@ -706,68 +706,43 @@ Token 20: &#39;)&#39; (ID: 8)
 </a>
 </p>
 <hr>
-<h2 id="further-reading">Further Reading</h2>
-<p>If you want to dive deeper into tokenization and its implications:</p>
-<p><a id="gage1994"></a></p>
-<ul>
-<li>Gage, P. (1994). <a href="https://www.derczynski.com/papers/archive/BPE_Gage.pdf" target="_blank" rel="noopener noreferrer">
-  A New Algorithm for Data Compression
-</a>
-. <em>C Users Journal</em>, 12(2).<br>
-<em>The original Byte Pair Encoding paper from 1994, predating its use in NLP by two decades. Shows how compression algorithms became NLP tools.</em></li>
-</ul>
-<p><a id="kudo2018"></a></p>
-<ul>
-<li>Kudo, T., &amp; Richardson, J. (2018). <a href="https://arxiv.org/abs/1808.06226" target="_blank" rel="noopener noreferrer">
-  SentencePiece: A simple and language independent approach to subword tokenization
-</a>
-. <em>Proceedings of EMNLP 2018</em>.<br>
-<em>Introduces SentencePiece, a language-agnostic tokenization library used by T5, LLaMA, and many modern models.</em></li>
-</ul>
-<p><a id="openai2023"></a></p>
-<ul>
-<li>OpenAI. (2023). <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener noreferrer">
-  Tokenizer Tool
-</a>
-.<br>
-<em>Interactive web tool for visualizing how GPT models tokenize text. Essential for prompt engineering.</em></li>
-</ul>
-<p><a id="radford2019"></a></p>
-<ul>
-<li>Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). <a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener noreferrer">
-  Language Models are Unsupervised Multitask Learners
-</a>
-. <em>OpenAI Technical Report</em>.<br>
-<em>The GPT-2 paper, which popularized byte-level BPE. See Section 2.2 for tokenization details.</em></li>
-</ul>
-<p><a id="rumbelow2023"></a></p>
-<ul>
-<li>Rumbelow, J., &amp; Watkins, M. (2023). <a href="https://www.lesswrong.com/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation" target="_blank" rel="noopener noreferrer">
-  SolidGoldMagikarp and other Glitch Tokens
-</a>
-. <em>LessWrong</em>.<br>
-<em>Community-driven investigation into glitch tokens in GPT-3. Fascinating deep dive into tokenization artifacts.</em></li>
-</ul>
-<p><a id="sennrich2016"></a></p>
-<ul>
-<li>Sennrich, R., Haddow, B., &amp; Birch, A. (2016). <a href="https://arxiv.org/abs/1508.07909" target="_blank" rel="noopener noreferrer">
-  Neural Machine Translation of Rare Words with Subword Units
-</a>
-. <em>Proceedings of ACL 2016</em>.<br>
-<em>The foundational paper introducing BPE for neural networks. Essential reading for understanding why subword tokenization works.</em></li>
-</ul>
-<p><a id="xue2022"></a></p>
-<ul>
-<li>Xue, L., Barua, A., Constant, N., et al. (2022). <a href="https://arxiv.org/abs/2105.13626" target="_blank" rel="noopener noreferrer">
-  ByT5: Towards a token-free future with pre-trained byte-to-byte models
-</a>
-. <em>Transactions of ACL 2022</em>.<br>
-<em>Google&rsquo;s exploration of byte-level models without explicit tokenization. Points toward future architectures.</em></li>
-</ul>
-<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="gage1994" >
+            Gage, P. (1994). A new algorithm for data compression. <em>C Users Journal, 12</em>(2).
+            <a href="https://www.derczynski.com/papers/archive/BPE_Gage.pdf" target="_blank" rel="noopener noreferrer">https://www.derczynski.com/papers/archive/BPE_Gage.pdf</a>
+        </p>
+        <p class="post-reference"  id="kudo2018" >
+            Kudo, T., &amp; Richardson, J. (2018). SentencePiece: A simple and language independent approach to subword tokenization. <em>Proceedings of EMNLP 2018</em>.
+            <a href="https://arxiv.org/abs/1808.06226" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1808.06226</a>
+        </p>
+        <p class="post-reference"  id="openai2023" >
+            OpenAI. (2023). Tokenizer tool.
+            <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener noreferrer">https://platform.openai.com/tokenizer</a>
+        </p>
+        <p class="post-reference"  id="radford2019" >
+            Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). Language models are unsupervised multitask learners. <em>OpenAI Technical Report</em>.
+            <a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener noreferrer">https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</a>
+        </p>
+        <p class="post-reference"  id="rumbelow2023" >
+            Rumbelow, J., &amp; Watkins, M. (2023). SolidGoldMagikarp and other glitch tokens. <em>LessWrong</em>.
+            <a href="https://www.lesswrong.com/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation" target="_blank" rel="noopener noreferrer">https://www.lesswrong.com/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation</a>
+        </p>
+        <p class="post-reference"  id="sennrich2016" >
+            Sennrich, R., Haddow, B., &amp; Birch, A. (2016). Neural machine translation of rare words with subword units. <em>Proceedings of ACL 2016</em>.
+            <a href="https://arxiv.org/abs/1508.07909" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1508.07909</a>
+        </p>
+        <p class="post-reference"  id="xue2022" >
+            Xue, L., Barua, A., Constant, N., et al. (2022). ByT5: Towards a token-free future with pre-trained byte-to-byte models. <em>Transactions of ACL 2022</em>.
+            <a href="https://arxiv.org/abs/2105.13626" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2105.13626</a>
+        </p>
+    </div>
+</section>
 
       </div>
     <footer class="post__footer">

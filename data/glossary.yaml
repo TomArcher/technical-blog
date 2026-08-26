@@ -696,6 +696,9 @@ mamba:
   term: "Mamba"
   definition: "A sequence-modeling architecture based on selective state space models that can process sequences with linear rather than quadratic scaling."
 
+masking:
+  term: "Masking"
+  definition: "A technique that prevents an attention mechanism from considering selected token positions, typically by modifying their attention scores so they receive effectively zero attention weight."
 
 matrix-multiplication:
   term: "Matrix multiplication"
@@ -1086,7 +1089,10 @@ stochastic:
   term: "Stochastic"
   definition: "Involving randomness or probability rather than producing a completely deterministic outcome."
 
-
+stochasticity:
+  term: "Stochasticity"
+  definition: "The presence of randomness or probabilistic variation in a process, model, or system, causing the same conditions to potentially produce different outcomes."
+  
 stochastic-gradient-descent:
   term: "Stochastic gradient descent (SGD)"
   definition: "A gradient-based optimization method that estimates gradients from randomly selected training examples rather than the entire dataset."

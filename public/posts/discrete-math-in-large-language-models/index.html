@@ -34,7 +34,7 @@
   <meta itemprop="description" content="A recent LinkedIn postfrom Michael Palmer described how discrete mathematics is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, gradient descent, and probability distributions. If you’ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you’d expect.">
   <meta itemprop="datePublished" content="2026-03-31T06:00:00-07:00">
   <meta itemprop="dateModified" content="2026-03-31T06:00:00-07:00">
-  <meta itemprop="wordCount" content="2618">
+  <meta itemprop="wordCount" content="2513">
   <meta itemprop="keywords" content="AI,Attention Mechanisms,Embeddings,Discrete Mathematics,LLM,Predicate Logic,Set Theory">
 		
   <meta name="twitter:card" content="summary">
@@ -631,8 +631,7 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
 <p>The conversation that started this post discussed how discrete mathematics connects to real software engineering. For AI systems, the answer is unambiguous: discrete math is embedded in the architecture.</p>
 <p>This doesn&rsquo;t mean you need a discrete math course to use LLMs. But if you want to understand why they work, why certain prompting strategies succeed, and why certain failures occur, the discrete structures provide clarity. Attention isn&rsquo;t magic; it&rsquo;s predicate evaluation. Token selection isn&rsquo;t arbitrary; it&rsquo;s set construction. Chain-of-thought isn&rsquo;t a trick; it&rsquo;s proof structure.</p>
 <p>The foundations were always there. Modern AI just implements them at scale.</p>
-<hr>
-<p><strong>If you&rsquo;ve followed this series from <a href="/posts/how-large-language-models-read-code">
+<p>If you&rsquo;ve followed this series from <a href="/posts/how-large-language-models-read-code">
   how LLMs read code
 </a>
  through <a href="/posts/how-large-language-models-think">
@@ -644,29 +643,29 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
 , and <a href="/posts/how-large-language-models-handle-context-windows">
   how they handle context
 </a>
-, you&rsquo;ve seen the calculus, linear algebra, and probability. This post adds the discrete layer. The mathematics of language isn&rsquo;t one subject. It&rsquo;s all of them, working together.</strong></p>
-<hr>
-<h2 id="further-reading">Further Reading</h2>
-<p>These resources provide deeper context on the mathematical foundations of transformers and attention mechanisms.</p>
-<p><a id="vaswani2017"></a>
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., &hellip; &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems</em>, 30. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/1706.03762
-</a>
-</p>
-<p><a id="wei2022"></a>
-Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., &hellip; &amp; Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. <em>Advances in Neural Information Processing Systems</em>, 35. <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2201.11903
-</a>
-</p>
-<p><a id="press2021"></a>
-Press, O., Smith, N. A., &amp; Lewis, M. (2021). Train short, test long: Attention with linear biases enables input length generalization. <em>arXiv preprint arXiv:2108.12409</em>. <a href="https://arxiv.org/abs/2108.12409" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2108.12409
-</a>
-</p>
+, you&rsquo;ve seen the calculus, linear algebra, and probability. This post adds the discrete layer. The mathematics of language isn&rsquo;t one subject. It&rsquo;s all of them, working together.</p>
 <hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="vaswani2017" >
+            Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., &hellip; &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems, 30.</em>
+            <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1706.03762</a>
+        </p>
+        <p class="post-reference"  id="wei2022" >
+            Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., &hellip; &amp; Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. <em>Advances in Neural Information Processing Systems, 35.</em>
+            <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2201.11903</a>
+        </p>
+        <p class="post-reference"  id="press2021" >
+            Press, O., Smith, N. A., &amp; Lewis, M. (2021). Train short, test long: Attention with linear biases enables input length generalization. <em>arXiv preprint arXiv:2108.12409.</em>
+            <a href="https://arxiv.org/abs/2108.12409" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2108.12409</a>
+        </p>
+    </div>
+</section>
 
       </div>
     <footer class="post__footer">

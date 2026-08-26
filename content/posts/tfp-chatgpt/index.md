@@ -21,6 +21,26 @@ whatYoullLearn = [
     "Why time savings and faster innovation may reveal AI's economic impact better than TFP alone",
     "How measuring human and AI capabilities together could change the way we think about productivity"
 ]
+
+[[references]]
+key = "solow1957"
+citation = "Solow, R. M. (1957). Technical change and the aggregate production function. *The Review of Economics and Statistics, 39*(3), 312-320."
+
+[[references]]
+key = "reati2001"
+citation = "Reati, A. (2001). Total factor productivity - A misleading concept. *PSL Quarterly Review, 54*(218), 313-332."
+url = "https://doaj.org/article/e036df80c66540b3bbf188c4a9267f56"
+
+[[references]]
+key = "felipe2020"
+citation = "Felipe, J., & McCombie, J. (2020). The illusions of calculating total factor productivity and testing growth models: From Cobb-Douglas to Solow and Romer. *Journal of Post Keynesian Economics, 43*(3), 470-513."
+url = "https://research.ebsco.com/c/ix3dnl/viewer/pdf/xxmwhzw6wb"
+
+[[references]]
+key = "lipsey2004"
+citation = "Lipsey, R. G., & Carlaw, K. I. (2004). Total factor productivity and the measurement of technological change. *Canadian Journal of Economics, 37*(4), 1118-1150."
+url = "https://research.ebsco.com/c/ix3dnl/viewer/pdf/ek6zdcqbvb"
+
 +++
 
 If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn't that show up in our productivity statistics?
@@ -87,16 +107,6 @@ Generative AI forces us to confront a deeper truth: productivity is more than ou
 
 Robert Solow gave us a tool to understand the growth of the 20th century. But in the 21st, with AI reshaping how we think, write, and build, we need a new yardstick. Until then, the most transformative technology since electricity will remain hidden in the gaps of our economic spreadsheets.
 
+If you're waiting for TFP to confirm that AI is changing the world, you'll be waiting a long time. Look instead at the time saved, the creativity unlocked, and the new opportunities being built right in front of us.
+
 ---
-
-**Takeaway:** If you're waiting for TFP to confirm that AI is changing the world, you'll be waiting a long time. Look instead at the time saved, the creativity unlocked, and the new opportunities being built right in front of us.
-
-## Further Reading
-
-APA 7 references are probably overkill for a blog post. But if you'd like to explore the same journal articles I drew from when I wrote the original university paper that was the catalyst for this post, here they are:
-
-- Solow, R. M. (1957). *Technical Change and the Aggregate Production Function.* *The Review of Economics and Statistics,* 39(3), 312–320. *(No direct link)*
-- [Reati, A. (2001). *Total Factor Productivity - a Misleading Concept.* PSL Quarterly Review, 54(218), 313–332.](https://doaj.org/article/e036df80c66540b3bbf188c4a9267f56)  
-- [Felipe, J. & McCombie, J. (2020). *The Illusions of Calculating Total Factor Productivity and Testing Growth Models: From Cobb-Douglas to Solow and Romer.* *Journal of Post Keynesian Economics,* 43(3), 470–513. *(may require subscription)*](https://research.ebsco.com/c/ix3dnl/viewer/pdf/xxmwhzw6wb)  
-- [Lipsey, R. G. & Carlaw, K. I. (2004). *Total Factor Productivity and the Measurement of Technological Change.* *Canadian Journal of Economics,* 37(4), 1118–1150. *(may require subscription)*](https://research.ebsco.com/c/ix3dnl/viewer/pdf/ek6zdcqbvb)  
-

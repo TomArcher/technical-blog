@@ -16,7 +16,7 @@
 		<meta property="og:url" content="http://localhost:1313/posts/five-second-rule/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="The Five-Second Rule Explored with Math & Python">
-  <meta property="og:description" content="You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.
+  <meta property="og:description" content="You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong (Dawson et al., 2007; Miranda &amp; Schaffner, 2016).
 The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
@@ -29,16 +29,16 @@ The truth is much more interesting than the myth. Germs do transfer gradually, b
 
 		
   <meta itemprop="name" content="The Five-Second Rule Explored with Math & Python">
-  <meta itemprop="description" content="You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.
+  <meta itemprop="description" content="You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong (Dawson et al., 2007; Miranda &amp; Schaffner, 2016).
 The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.">
   <meta itemprop="datePublished" content="2025-09-04T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-09-04T06:00:00-07:00">
-  <meta itemprop="wordCount" content="1512">
+  <meta itemprop="wordCount" content="1562">
   <meta itemprop="keywords" content="Physics,Probability,Python">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="The Five-Second Rule Explored with Math & Python">
-  <meta name="twitter:description" content="You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.
+  <meta name="twitter:description" content="You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong (Dawson et al., 2007; Miranda &amp; Schaffner, 2016).
 The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -225,7 +225,13 @@ The truth is much more interesting than the myth. Germs do transfer gradually, b
           <li>How calculus reveals the changing rate of germ transfer</li>
           <li>How Python can estimate when contamination crosses a chosen threshold</li>
       </ul>
-    </aside><p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.</p>
+    </aside><p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong (<a href="#dawson2007">
+  Dawson et al., 2007
+</a>
+; <a href="#miranda2016">
+  Miranda &amp; Schaffner, 2016
+</a>
+).</p>
 <p>The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.</p>
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
     <div style="text-align: center;"><strong>Do germs move toward the food?</strong><br><br></div>
@@ -269,7 +275,10 @@ G&rsquo;(t) = \rho \cdot A \cdot \alpha \cdot m \cdot s \cdot \beta \cdot e^{-\b
 <ul>
 <li>At \(t = 0\), the derivative is at its maximum:
 \(\rho A \alpha m s \beta\). This is the steep initial slope, meaning most
-germs transfer right away.</li>
+germs transfer right away. Experimental work confirms that bacterial transfer can occur in less than one second (<a href="#miranda2016">
+  Miranda &amp; Schaffner, 2016
+</a>
+).</li>
 <li>As \(t \to \infty\), the derivative approaches zero. The curve flattens as the surface becomes saturated, and the rate of transfer slows down.</li>
 </ul>
 <p>From the math, we know that the first second is the dirtiest, and
@@ -315,7 +324,8 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> L <span style="color:#ff79c6">&gt;=</span> gmax:
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> math<span style="color:#ff79c6">.</span>inf
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span>math<span style="color:#ff79c6">.</span>log(<span style="color:#bd93f9">1</span> <span style="color:#ff79c6">-</span> L <span style="color:#ff79c6">/</span> gmax) <span style="color:#ff79c6">/</span> p<span style="color:#ff79c6">.</span>beta
-</span></span></code></pre></div><h2 id="building-out-parameters">Building Out Parameters</h2>
+</span></span></code></pre></div><hr>
+<h2 id="building-out-parameters">Building Out Parameters</h2>
 <p>To keep things tidy, we can group efficiency factors into a <code>TransferParams</code> object. That way, you can tweak <code>α</code>, <code>moisture</code>, <code>surface roughness</code>, and <code>β</code> all in one place.</p>
 <p><strong>Prompt example:</strong></p>
 <hr>
@@ -369,7 +379,8 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">Germs after 5s</span>: <span style="color:#bd93f9">78.53</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">Germs after 10s</span>: <span style="color:#bd93f9">79.97</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">Safe time for L=50.0 germs</span>: <span style="color:#bd93f9">1.</span>23s
-</span></span></code></pre></div><h2 id="making-the-results-visual">Making the Results Visual</h2>
+</span></span></code></pre></div><hr>
+<h2 id="making-the-results-visual">Making the Results Visual</h2>
 
 
 
@@ -432,13 +443,18 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>legend()
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
-</span></span></code></pre></div><h2 id="what-we-learned">What We Learned</h2>
+</span></span></code></pre></div><hr>
+<h2 id="what-we-learned">What We Learned</h2>
 <ul>
-<li>Germ transfer is immediate. There is no magical pause.</li>
+<li>Germ transfer is immediate. There is no magical pause (<a href="#miranda2016">
+  Miranda &amp; Schaffner, 2016
+</a>
+).</li>
 <li>The first second is the dirtiest, since the curve rises steeply at the start.</li>
 <li>After a few seconds, the food is already near its &ldquo;germ ceiling.&rdquo; Waiting longer adds little.</li>
 </ul>
 <p>From the AI side, we saw how careful prompting matters. The clearer the assumptions, the better the generated scaffold. By wrapping parameters in a class and writing helper functions, we turned a fragile script into a reusable model.</p>
+<hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
 <h3 id="beginner-level-quick-fixes-and-calibration">Beginner Level: Quick Fixes and Calibration</h3>
 <ol>
@@ -458,17 +474,42 @@ waiting longer just gets you closer to the contamination ceiling.</p>
 <li><strong>Climate effects:</strong> Let β vary with humidity.</li>
 <li><strong><a class="glossary-term" href="/glossary/#monte-carlo-simulation" data-definition="A computational technique that uses repeated random sampling to estimate probabilities, outcomes, or other properties of a system.">Monte Carlo</a>:</strong> Run 1,000 drops and chart the spread.</li>
 </ol>
+<hr>
 <h2 id="closing-thoughts">Closing Thoughts</h2>
-<p>Next time you drop a cookie, don’t chant &ldquo;five seconds&rdquo; like a protective spell. Germs don&rsquo;t wait for your permission. Transfer begins the instant food hits the floor.</p>
+<p>Next time you drop a cookie, don’t chant &ldquo;five seconds&rdquo; like a protective spell. Germs don&rsquo;t wait for your permission. Transfer can begin essentially as soon as food contacts the floor (<a href="#dawson2007">
+  Dawson et al., 2007
+</a>
+; <a href="#miranda2016">
+  Miranda &amp; Schaffner, 2016
+</a>
+).</p>
+<hr>
 <h2 id="try-it-yourself">Try It Yourself</h2>
 <p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/five-second-rule-explored" target="_blank" rel="noopener noreferrer">
   Download the full code on GitHub
 </a>
 </p>
+<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
 
+    <div class="post-references__list">
+        <p class="post-reference"  id="dawson2007" >
+            Dawson, P., Han, I., Cox, M., Black, C., &amp; Simmons, L. (2007). Residence time and food contact time effects on transfer of <em>Salmonella Typhimurium</em> from tile, wood and carpet: Testing the five-second rule. <em>Journal of Applied Microbiology, 102</em>(4), 945-953.
+            <a href="https://doi.org/10.1111/j.1365-2672.2006.03171.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/j.1365-2672.2006.03171.x</a>
+        </p>
+        <p class="post-reference"  id="miranda2016" >
+            Miranda, R. C., &amp; Schaffner, D. W. (2016). Longer contact times increase cross-contamination of <em>Enterobacter aerogenes</em> from surfaces to food. <em>Applied and Environmental Microbiology, 82</em>(21), 6490-6496.
+            <a href="https://doi.org/10.1128/AEM.01838-16" target="_blank" rel="noopener noreferrer">https://doi.org/10.1128/AEM.01838-16</a>
+        </p>
+    </div>
+</section>
+
+      <hr class="references-end">
+      
       </div>
     <footer class="post__footer">
       

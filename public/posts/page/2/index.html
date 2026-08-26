@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Posts">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
+  <meta itemprop="datePublished" content="2026-08-25T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-08-25T00:00:00+00:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
@@ -128,6 +128,45 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/posts/how-large-language-models-know-things-they-were-never-taught/" rel="bookmark">
+			How Large Language Models (LLMs) Know Things They Were Never Taught
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<p>When you ask an <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
+<p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-know-things-they-were-never-taught/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/temperature-top-p-creativity-knobs/" rel="bookmark">
+			Temperature and Top-P: The Creativity Knobs
+			</a>
+		</h2>
+		
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+, <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, or any other <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> includes two parameters most people either ignore or tweak randomly: <a class="glossary-term" href="/glossary/#temperature" data-definition="A sampling parameter that rescales a model&#39;s logits before softmax, controlling how concentrated or spread out the resulting token probabilities are.">temperature</a> and <a class="glossary-term" href="/glossary/#top-p" data-definition="A sampling parameter that restricts token selection to the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold.">top-p</a>. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.</p>
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/posts/temperature-top-p-creativity-knobs/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/posts/edmund-fitzgerald/" rel="bookmark">
 			The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments
 			</a>
@@ -143,103 +182,12 @@
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/edmund-fitzgerald/">Read more…</a>
 	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/birthday-paradox/" rel="bookmark">
-			The Birthday Paradox in Production: When Random IDs Collide
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<figure style="margin: 0 20px 10px 20px; text-align: center;">
-
-    <a href="/posts/birthday-paradox/birthday-paradox.png" class="lightbox-trigger" aria-label="Open full-size image">
-
-        <img src="/posts/birthday-paradox/birthday-paradox.png" alt="">
-
-    </a>
-
-    
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
-    </figcaption>
-    
-
-</figure>
-
-<p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness. That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/birthday-paradox/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/hash-collisions/" rel="bookmark">
-			Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
-  Stevens et al., 2017
-</a>
-). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/hash-collisions/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/how-large-language-models-tokenize-text/" rel="bookmark">
-			How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<p>When you type &ldquo;I love programming&rdquo; into ChatGPT, you might assume the model reads three words. It doesn&rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.</p>
-<p>When you ask Claude to count the letters in the word &ldquo;strawberry,&rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &ldquo;strawberry&rdquo; as a complete unit. It saw tokens like <code>&quot;str&quot;</code>, <code>&quot;aw&quot;</code>, <code>&quot;berry&quot;</code> and tried to reason about letters it couldn&rsquo;t directly access.</p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-tokenize-text/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/how-large-language-models-handle-context-windows/" rel="bookmark">
-			How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-  ChatGPT
-</a>
- or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
-  Claude
-</a>
-, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
-<p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-handle-context-windows/">Read more…</a>
-	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/posts/">«</a>
-	<span class="pagination__item pagination__item--current">2/5</span>
+	<span class="pagination__item pagination__item--current">2/8</span>
 	<a class="pagination__item pagination__item--next btn" href="/posts/page/3/">»</a>
 </div>
 

@@ -24,6 +24,22 @@ whatYoullLearn = [
     "How a single loop can evaluate many validation rules without adding more control flow",
     "Why dispatch tables make validation code easier to extend, read, and maintain"
 ]
+
+
+[[references]]
+key = "python-dict"
+citation = "Python Software Foundation. (n.d.). Mapping types — dict. *Python 3 documentation*."
+url = "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict"
+
+[[references]]
+key = "python-lambda"
+citation = "Python Software Foundation. (n.d.). Lambdas. *Python 3 documentation*."
+url = "https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions"
+
+[[references]]
+key = "python-style"
+citation = "Van Rossum, G., Warsaw, B., & Coghlan, N. (2001). PEP 8 — Style guide for Python code. *Python Enhancement Proposals*."
+url = "https://peps.python.org/pep-0008/"
 +++
 
 Let's be honest: argument validation code is rarely the proudest part of anyone's repo.  
@@ -74,6 +90,8 @@ def create_user(username: str, age: int, email: str) -> None:
 **Takeaway:**
 Sure, it works… but it's awkward, fragile, and painful to extend. Add one more rule and the nesting level reaches the earth's mantle.
 
+---
+
 ## The Guard Clause Approach 😬
 
 Next step: fail fast. One check per line. No nesting. Looks like this:
@@ -107,9 +125,11 @@ def create_user(username: str, age: int, email: str) -> None:
 **Takeaway:**
 Cleaner than the inverted-V, but now every new rule means another line. Add 10 rules, and you're back to scrolling forever.
 
+---
+
 ## Enter Dispatch Tables ✨
 
-A dispatch table is just a dictionary where the key is the error message and the value is a check function (usually a {{< term "lambda-function" "lambda" >}}).
+A dispatch table is just a dictionary where the key is the error message and the value is a check function (usually a {{< term "lambda-function" "lambda" >}}). Python dictionaries map hashable keys to values, and lambda expressions provide compact anonymous functions ([Python Software Foundation, n.d.](#python-dict); [Python Software Foundation, n.d.](#python-lambda)).
 Instead of scattering control flow everywhere, you centralize the rules in one tidy structure.
 
 Here's a snack-sized example you can paste right now:
@@ -138,13 +158,15 @@ def create_user(username: str, age: int, email: str) -> None:
 
 **Takeaway:**
 
-- All rules live in one place (in the dictionary).
+- All rules live in one place (in the dictionary), taking advantage of Python's built-in mapping type ([Python Software Foundation, n.d.](#python-dict)).
 
 - Adding a rule requires simply adding a dictionary entry - either a lamda or a function name that returns a boolean indicating validation success or failure.
 
-- No `if` sprawl, which leads to loss of readability. 
+- No `if` sprawl, which can improve readability by keeping the validation rules together. Python's style guidance emphasizes readability as a core principle ([Van Rossum et al., 2001](#python-style)). 
 
 - Lower maintenace costs.
+
+---
 
 ## Closing Thoughts 💡
 
@@ -159,12 +181,4 @@ Dispatch tables turn "ugh, validation code" into something {{< term "declarative
 Therefore, the next time you're staring at a jungle of `if/else` checks or guard clauses, stop.
 Reach for a dispatch table instead. Your future self (and your teammates) will thank you.
 
-## Resources 📚
-
-I've gathered some trustworthy references that provide more detail if you want to read more:
-
-[Python dict documentation](https://docs.python.org/3/library/stdtypes.html#dict)
-
-[Wikipedia: Dispatch table](https://en.wikipedia.org/wiki/Dispatch_table)
-
-[Knuth on structured programming](https://en.wikipedia.org/wiki/Structured_programming)
+---

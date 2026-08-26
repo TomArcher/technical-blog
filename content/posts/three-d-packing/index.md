@@ -21,6 +21,26 @@ whatYoullLearn = [
     "How 3D visualization helps reveal overlaps, wasted space, and placement mistakes",
     "How more advanced techniques can improve packing efficiency when simple heuristics are not enough"
 ]
+
+[[references]]
+key = "bortfeldt2013"
+citation = "Bortfeldt, A., & Wäscher, G. (2013). Constraints in container loading: A state-of-the-art review. *European Journal of Operational Research, 229*(1), 1-20."
+url = "https://doi.org/10.1016/j.ejor.2012.12.006"
+
+[[references]]
+key = "garey1979"
+citation = "Garey, M. R., & Johnson, D. S. (1979). *Computers and intractability: A guide to the theory of NP-completeness*. W. H. Freeman."
+
+[[references]]
+key = "martello2000"
+citation = "Martello, S., Pisinger, D., & Vigo, D. (2000). The three-dimensional bin packing problem. *Operations Research, 48*(2), 256-267."
+url = "https://doi.org/10.1287/opre.48.2.256.12386"
+
+[[references]]
+key = "pisinger2002"
+citation = "Pisinger, D. (2002). Heuristics for the container loading problem. *European Journal of Operational Research, 141*(2), 382-392."
+url = "https://doi.org/10.1016/S0377-2217(02)00132-7"
+
 +++
 
 My first full-time programming job was for **Holiday on Ice**, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show's crew was efficiently loading trucks for the next city.  
@@ -47,7 +67,7 @@ Imagine a truck interior sized **H × W × D** (height, width, depth) and a set 
 - **Respect the truck bounds** (no sticking out).  
 - Optionally **consider weight** and stacking rules.  
 
-Real-world simple? Not really. Computationally, it's a classic **{{< term "three-dimensional-bin-packing" "3D bin-packing" >}}** problem. On the scale of computational complexity, this problem is extremely difficult (**{{< term "np-hard" "NP-hard" >}}**), meaning there's no known fast way to always find the perfect solution. Instead, we rely on {{< term "heuristic" "heuristics" >}}, which are clever shortcuts that deliver good (though not guaranteed optimal) results quickly.  
+Real-world simple? Not really. Computationally, it's a classic **{{< term "three-dimensional-bin-packing" "3D bin-packing" >}}** problem. On the scale of computational complexity, this problem is extremely difficult (**{{< term "np-hard" "NP-hard" >}}**), meaning there's no known fast way to always find the perfect solution. Instead, we rely on {{< term "heuristic" "heuristics" >}}, which are clever shortcuts that deliver good (though not guaranteed optimal) results more efficiently.  
 
 It's like trying to figure out every possible way to load groceries into your car trunk. You could test every arrangement, but that would take forever, so instead you look for smart tricks to get a good result quickly. Tricks such as loading heavy items first, stacking boxes neatly, and filling gaps with small bags.  
 
@@ -381,7 +401,7 @@ def plot_truck_packing(truck: Dimensions, placements: List[Placement]):
 
 So what did we actually learn from tackling this truck-packing problem with AI? First, {{< term "prompt-engineering" "prompt engineering" >}} really does matter. The clearer and more constrained the prompt, the closer the AI's first draft will be to something usable, saving time on rework.
 
-Second, we should remember that this is an **NP-hard problem**. No matter how clever we are, we're not going to get perfect solutions every time. Therefore, the practical goal is heuristics that give us "good enough" answers **fast**.
+Second, we should remember that this is an **NP-hard problem**. No matter how clever we are, we're not going to get perfect solutions every time. Therefore, the practical goal is heuristics that give us **good enough answers more efficiently**.
 
 Finally, we saw how **{{< term "greedy-algorithm" "greedy placement rules" >}}** and **{{< term "guillotine-split" "guillotine-style splits" >}}** can provide practical packing strategies, and how visualization is key to making the results feel intuitive rather than just lines of coordinates.
 
@@ -428,3 +448,5 @@ Packing trucks may seem like grunt work, but it's really a microcosm of **{{< te
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/three-d-packing)
+
+---

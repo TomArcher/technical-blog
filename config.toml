@@ -6,7 +6,7 @@ ignoreFiles = ['^content/posts/.*/_private/']
 googleAnalytics = "G-7ZV2PMS61P"
 
 [pagination]
-  pagerSize = 5
+  pagerSize = 3
 
 [params]
   readMore = true

@@ -25,6 +25,52 @@ whatYoullLearn = [
     "Why noisy mini-batch updates can help a model generalize instead of memorize",
     "How transformers keep gradients stable while learning which patterns deserve attention"
 ]
+
+
+[[references]]
+key = "rumelhart1986"
+citation = "Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. *Nature, 323*, 533-536."
+url = "https://doi.org/10.1038/323533a0"
+
+[[references]]
+key = "sutskever2013"
+citation = "Sutskever, I., Martens, J., Dahl, G., & Hinton, G. (2013). On the importance of initialization and momentum in deep learning. *Proceedings of the 30th International Conference on Machine Learning, 28*(3), 1139-1147."
+url = "https://proceedings.mlr.press/v28/sutskever13.html"
+
+[[references]]
+key = "dauphin2014"
+citation = "Dauphin, Y. N., Pascanu, R., Gulcehre, C., Cho, K., Ganguli, S., & Bengio, Y. (2014). Identifying and attacking the saddle point problem in high-dimensional non-convex optimization. *Advances in Neural Information Processing Systems, 27*."
+url = "https://arxiv.org/abs/1406.2572"
+
+[[references]]
+key = "kingma2015"
+citation = "Kingma, D. P., & Ba, J. (2015). Adam: A method for stochastic optimization. *3rd International Conference on Learning Representations (ICLR 2015)*."
+url = "https://arxiv.org/abs/1412.6980"
+
+[[references]]
+key = "loshchilov2017"
+citation = "Loshchilov, I., & Hutter, F. (2017). SGDR: Stochastic gradient descent with warm restarts. *5th International Conference on Learning Representations (ICLR 2017)*."
+url = "https://arxiv.org/abs/1608.03983"
+
+[[references]]
+key = "keskar2017"
+citation = "Keskar, N. S., Mudigere, D., Nocedal, J., Smelyanskiy, M., & Tang, P. T. P. (2017). On large-batch training for deep learning: Generalization gap and sharp minima. *5th International Conference on Learning Representations (ICLR 2017)*."
+url = "https://arxiv.org/abs/1609.04836"
+
+[[references]]
+key = "vaswani2017"
+citation = "Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems, 30*."
+url = "https://arxiv.org/abs/1706.03762"
+
+[[references]]
+key = "zhang2017"
+citation = "Zhang, C., Bengio, S., Hardt, M., Recht, B., & Vinyals, O. (2017). Understanding deep learning requires rethinking generalization. *5th International Conference on Learning Representations (ICLR 2017)*."
+url = "https://arxiv.org/abs/1611.03530"
+
+[[references]]
+key = "belkin2019"
+citation = "Belkin, M., Hsu, D., Ma, S., & Mandal, S. (2019). Reconciling modern machine-learning practice and the classical bias-variance trade-off. *Proceedings of the National Academy of Sciences, 116*(32), 15849-15854."
+url = "https://doi.org/10.1073/pnas.1903070116"
 +++
 
 When you interact with a {{< term "large-language-model" "large language model (LLM)" >}} such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model seems to respond instantly relative to the question's degree of difficulty. What's easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.
@@ -66,7 +112,7 @@ The process is like sliding down a foggy mountain guided only by the steepness u
 
 ## Backpropagation: The Chain Rule in Action
 
-For models with many layers, such as transformers, each parameter affects the output indirectly through multiple stages of computation. To determine how a change in an early weight influences the final result, we apply the **{{< term "chain-rule" "chain rule" >}}**, the backbone of {{< term "backpropagation" "backpropagation" >}}.
+For models with many layers, such as transformers, each parameter affects the output indirectly through multiple stages of computation. To determine how a change in an early weight influences the final result, we apply the **{{< term "chain-rule" "chain rule" >}}**, the backbone of {{< term "backpropagation" "backpropagation" >}} ([Rumelhart et al., 1986](#rumelhart1986)).
 
 Backpropagation is the algorithm that carries error signals backward through the network, layer by layer, computing derivatives at each stage.
 
@@ -175,7 +221,7 @@ This toy example has one parameter. Real LLMs have billions. But the principle s
 
 Training doesn't happen neatly. Real-world loss landscapes aren't smooth bowls; they're chaotic terrains full of cliffs, ridges, and deceptive plateaus.
 
-That's why optimization relies on heuristics like **{{< term "momentum" "momentum" >}}**, **{{< term "adam-optimizer" "Adam" >}}**, and **{{< term "rmsprop" "RMSProp" >}}**, which are refinements that stabilize learning by dampening oscillations and adapting step sizes.
+That's why optimization relies on heuristics like **{{< term "momentum" "momentum" >}}**, **{{< term "adam-optimizer" "Adam" >}}**, and **{{< term "rmsprop" "RMSProp" >}}**, which are refinements that stabilize learning by dampening oscillations and adapting step sizes ([Sutskever et al., 2013](#sutskever2013); [Kingma & Ba, 2015](#kingma2015)).
 
 These techniques don't change the calculus itself. They refine how it's applied, balancing speed and stability so that models reach better minima without falling into traps.
 
@@ -187,7 +233,7 @@ If linear algebra gives LLMs their *structure*, calculus gives them *motion*.
 
 Not all valleys lead to wisdom. Sometimes gradient descent finds a **{{< term "local-minimum" "local minimum" >}}**, a point lower than its immediate surroundings but not the deepest point in the landscape. Imagine descending a mountain in fog and stopping in a small depression, unaware that a deeper valley lies just beyond the next ridge.
 
-In practice, neural networks rarely suffer from local minima the way early researchers feared. The blessing of high-dimensional spaces is that most "stuck points" aren't true minima at all; they're **{{< term "saddle-point" "saddle points" >}}**, locations where the gradient is zero but escape routes exist in other dimensions.
+In practice, neural networks rarely suffer from local minima the way early researchers feared. The blessing of high-dimensional spaces is that most "stuck points" aren't true minima at all; they're **{{< term "saddle-point" "saddle points" >}}**, locations where the gradient is zero but escape routes exist in other dimensions ([Dauphin et al., 2014](#dauphin2014)).
 
 Think of a mountain pass: flat in one direction, sloped in another. In two dimensions, you might see it as a trap. In a thousand dimensions, there are 998 other directions to explore.
 
@@ -222,7 +268,7 @@ That's why modern training uses **{{< term "learning-rate-schedule" "learning ra
 
 Where `t` is the current step and `T` is the total number of steps. The learning rate starts high, enabling rapid initial progress, then gradually decreases, allowing fine-tuned convergence.
 
-Another strategy, **{{< term "warm-restarts" "warm restarts" >}}**, periodically resets the learning rate to a higher value. This seems counterintuitive, but it helps the model escape shallow local minima it might have settled into, exploring new regions of parameter space before converging again.
+Another strategy, **{{< term "warm-restarts" "warm restarts" >}}**, periodically resets the learning rate to a higher value ([Loshchilov & Hutter, 2017](#loshchilov2017)). This seems counterintuitive, but it helps the model escape shallow local minima it might have settled into, exploring new regions of parameter space before converging again.
 
 The learning rate isn't just a technical detail. It's the rhythm of learning itself, the balance between exploration and refinement that defines how quickly, and how well, a model understands the world.
 
@@ -234,7 +280,7 @@ You might expect that using all available data at every step would produce the b
 
 Instead, most modern models use **{{< term "stochastic-gradient-descent" "stochastic gradient descent (SGD)" >}}** or **{{< term "mini-batch-gradient-descent" "mini-batch gradient descent" >}}**, computing gradients on small random subsets of data. Each update is noisier, less precise, but this noise is a feature, not a bug.
 
-Why? Because noise prevents premature convergence. When you compute gradients on random batches, each update pushes the model in a slightly different direction. Sometimes these pushes help the model escape narrow valleys that fit the training data but don't generalize well. The randomness acts as a {{< term "regularization" "regularizer" >}}, preventing {{< term "overfitting" "overfitting" >}}.
+Why? Because noise prevents premature convergence. When you compute gradients on random batches, each update pushes the model in a slightly different direction. Sometimes these pushes help the model escape narrow valleys that fit the training data but don't generalize well ([Keskar et al., 2017](#keskar2017)). The randomness acts as a {{< term "regularization" "regularizer" >}}, preventing {{< term "overfitting" "overfitting" >}}.
 
 Think of it like this: batch gradient descent is like having a detailed map and following it precisely. Stochastic gradient descent is like wandering with a rough sketch, taking occasional detours. The wanderer often discovers more robust paths because they're forced to test different routes.
 
@@ -262,7 +308,7 @@ The calculus disappears, leaving behind intuition embedded in numbers.
 
 ## From Theory to Transformers
 
-Everything discussed so far applies to neural networks generally, but transformers—the architecture behind GPT, Claude, and most modern LLMs—introduce unique optimization challenges.
+Everything discussed so far applies to neural networks generally, but transformers—the architecture behind GPT, Claude, and most modern LLMs—introduce unique optimization challenges ([Vaswani et al., 2017](#vaswani2017)).
 
 The **{{< term "attention" "attention mechanism" >}}**, which allows models to weigh the relevance of different tokens dynamically, creates an especially complex loss landscape. Each attention head learns to focus on different patterns: one might track subject-verb agreement, another might capture long-range dependencies, another might specialize in code syntax.
 
@@ -271,7 +317,7 @@ During backpropagation, gradients must flow through these attention layers, thro
 1. **{{< term "vanishing-gradient" "Vanishing gradients" >}}**: In deep networks, gradients can shrink exponentially as they propagate backward, making early layers learn slowly.
 2. **{{< term "exploding-gradient" "Exploding gradients" >}}**: Conversely, gradients can grow uncontrollably, destabilizing training.
 
-Transformers mitigate these issues through **{{< term "layer-normalization" "layer normalization" >}}** and **residual connections**. Layer normalization rescales activations at each layer, keeping values in a stable range. Residual connections provide "shortcut" paths for gradients to flow directly through the network, preventing them from vanishing.
+Transformers mitigate these issues through **{{< term "layer-normalization" "layer normalization" >}}** and **residual connections** ([Vaswani et al., 2017](#vaswani2017)). Layer normalization rescales activations at each layer, keeping values in a stable range. Residual connections provide "shortcut" paths for gradients to flow directly through the network, preventing them from vanishing.
 
 The optimization of attention weights is particularly elegant. When the model computes attention, it's asking: "Given this query, which keys are most relevant?" The gradients then adjust those relevance scores based on whether the resulting predictions were accurate.
 
@@ -305,7 +351,7 @@ The optimal stopping point isn't when training loss bottoms out. It's when valid
 
 Calculus drives the model downward, but human judgment decides when to stop the descent.
 
-There's a deeper paradox here, too. The more parameters a model has, the more it can memorize, yet large models often generalize *better* than small ones. This counterintuitive phenomenon, sometimes called **{{< term "benign-overfitting" "benign overfitting" >}}** or the **{{< term "double-descent" "double descent curve" >}}**, suggests that in the regime of massive overparameterization, the optimization process itself acts as a regularizer.
+There's a deeper paradox here, too. The more parameters a model has, the more it can memorize, yet large models often generalize *better* than small ones ([Zhang et al., 2017](#zhang2017); [Belkin et al., 2019](#belkin2019)). This counterintuitive phenomenon, sometimes called **{{< term "benign-overfitting" "benign overfitting" >}}** or the **{{< term "double-descent" "double descent curve" >}}**, suggests that in the regime of massive overparameterization, the optimization process itself acts as a regularizer ([Belkin et al., 2019](#belkin2019)).
 
 When there are far more parameters than data points, gradient descent tends to find solutions that are not just accurate but *simple* in some implicit sense. The model has so much capacity that it can afford to encode patterns smoothly rather than sharply, resulting in better generalization despite apparent overfitting.
 
@@ -334,8 +380,6 @@ When you ask an LLM a question and it responds, what you're seeing is the endpoi
 Calculus gives models the ability to fail productively. Linear algebra gives them the structure to remember. Together, they create systems that improve through experience, that encode knowledge through error, that find meaning by following slopes we can compute but never fully visualize.
 
 And perhaps that's the most human thing about them: they learn not by being told what's right, but by discovering, step by step, how to be less wrong.
-
----
 
 **If you've followed this series from [how LLMs read code](/posts/how-large-language-models-read-code) through [how they think](/posts/how-large-language-models-think) to [how they learn](/posts/how-large-language-models-learn) (this post), you've traced the full arc: from pattern recognition to geometric reasoning to calculus-driven improvement. What emerges isn't magic. It's mathematics in motion, and it's far more remarkable than magic ever could be.**
 

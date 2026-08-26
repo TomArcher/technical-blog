@@ -21,6 +21,51 @@ whatYoullLearn = [
     "How Python can model whether a body will ever surface",
     "Why the Edmund Fitzgerald's depth creates an extreme preservation environment"
 ]
+
+[[references]]
+key = "assel1986"
+citation = "Assel, R. A. (1986). Fall and winter thermal structure of Lake Superior. *Journal of Great Lakes Research, 12*(4), 251-262."
+url = "https://www.sciencedirect.com/science/article/abs/pii/S0380133086717255"
+
+[[references]]
+key = "bennet1978"
+citation = "Bennett, E. B. (1978). Water budgets for Lake Superior and Whitefish Bay. *Journal of Great Lakes Research, 4*(3-4), 331-342."
+url = "https://www.sciencedirect.com/science/article/abs/pii/S0380133078722021"
+
+[[references]]
+key = "donoghue1977"
+citation = "Donoghue, E. R., & Minnigerode, S. C. (1977). Human body buoyancy: A study of 98 men. *Journal of Forensic Sciences, 22*(3), 573-579."
+url = "https://gwern.net/doc/biology/1977-donoghue.pdf"
+
+[[references]]
+key = "eyring1935"
+citation = "Eyring, H. (1935). The activated complex in chemical reactions. *The Journal of Chemical Physics, 3*(2), 107-115."
+url = "https://doi.org/10.1063/1.1749604"
+
+[[references]]
+key = "gillooly2001"
+citation = "Gillooly, J. F., Brown, J. H., West, G. B., Savage, V. M., & Charnov, E. L. (2001). Effects of size and temperature on metabolic rate. *Science, 293*(5538), 2248-2251."
+url = "https://doi.org/10.1126/science.1061967"
+
+[[references]]
+key = "lightfoot1976"
+citation = "Lightfoot, G. (1976). The wreck of the Edmund Fitzgerald [Song]. On *Summertime Dream*. Reprise Records."
+
+[[references]]
+key = "ntsb1978"
+citation = "National Transportation Safety Board. (1978). *Marine accident report: S.S. Edmund Fitzgerald sinking in Lake Superior* (Report No. NTSB-MAR-78-3)."
+url = "https://www.ntsb.gov/investigations/AccidentReports/Reports/MAR7803.pdf"
+
+[[references]]
+key = "ubelaker2011"
+citation = "Ubelaker, D. H., & Zarenko, K. M. (2011). Adipocere: What is known after over two centuries of research. *Forensic Science International, 208*(1-3), 167-172."
+url = "https://doi.org/10.1016/j.forsciint.2010.11.024"
+
+[[references]]
+key = "uscoastguard1977"
+citation = "U.S. Coast Guard. (1977). *Marine board of investigation report: S.S. Edmund Fitzgerald* (Report No. CG-D-95-77). U.S. Department of Transportation."
+url = "https://www.dco.uscg.mil/Portals/9/DCO%20Documents/5p/CG-5PC/INV/docs/boards/edmundfitz.pdf"
+
 +++
 
 Originally appearing on his 1976 album, *Summertime Dream*, "The Wreck of the Edmund Fitzgerald" is a powerful ballad written and performed by folk singer [Gordon Lightfoot](#lightfoot1976). In 1976, the song hit No. 1 in Canada on the RPM chart, and No. 2 in the United States on the Billboard Hot 100. The lyrics are a masterpiece, but there was one specific line that always stood out to me: "The lake, it is said, never gives up her dead." Following the singer's death in 2023, the song reconnected with older fans and reached new generations of listeners, making it to No. 15 on Billboard's Hot Rock and Alternative category. 
@@ -76,7 +121,7 @@ The key processes to model:
 k = A e^{-E_a/RT}
 \\]
 
-Where \\(k\\) is the reaction rate, \\(A\\) is the frequency factor, \\(E_a\\) is activation energy, \\(R\\) is the gas constant, and \\(T\\) is absolute temperature. This tells us how temperature affects bacterial activity ([Eyring, 1935](#eyring1935); [Volk et al., 2008](#volk2008)).
+Where \\(k\\) is the reaction rate, \\(A\\) is the frequency factor, \\(E_a\\) is activation energy, \\(R\\) is the gas constant, and \\(T\\) is absolute temperature. This tells us how temperature affects bacterial activity ([Eyring, 1935](#eyring1935)).
 
 **Gas Compression (Boyle's Law):**
 
@@ -775,41 +820,5 @@ The next time you hear the song, you'll know: the lake doesn't give up her dead 
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/edmund-fitzgerald)
-
----
-
-## Further Reading
-
-These resources provide historical perspectives and deeper technical details regarding the accident and the science behind this post.
-
-<a id="assel1986"></a>
-Assel, R. A. (1986). Fall and winter thermal structure of Lake Superior. *Journal of Great Lakes Research*, 12(4), 251-262.
-
-<a id="bennet1978"></a>
-Bennett, E. B. (1978). Water budgets for Lake Superior and Whitefish Bay. *Journal of Great Lakes Research*, 4(3-4), 331-342.
-
-<a id="donoghue1977"></a>
-Donoghue, E. R., & Minnigerode, S. C. (1977). Human body buoyancy: A study of 98 men. *Journal of Forensic Sciences*, 22(3), 573-579.
-
-<a id="eyring1935"></a>
-Eyring, H. (1935). The activated complex in chemical reactions. *Journal of Chemical Physics*, 3(2), 107-115.
-
-<a id="gillooly2001"></a>
-Gillooly, J. F., Brown, J. H., West, G. B., Savage, V. M., & Charnov, E. L. (2001). Effects of size and temperature on metabolic rate. *Science*, 293(5538), 2248-2251.
-
-<a id="lightfoot1976"></a>
-Lightfoot, G. (1976). The wreck of the Edmund Fitzgerald [Song]. On *Summertime Dream*. Reprise Records.
-
-<a id="ntsb1978"></a>
-National Transportation Safety Board. (1978). *Marine accident report: S.S. Edmund Fitzgerald sinking in Lake Superior* (Report No. NTSB-MAR-78-3). Washington, DC: Author.
-
-<a id="ubelaker2011"></a>
-Ubelaker, D. H., & Zarenko, K. M. (2011). Adipocere: What is known after over two centuries of research. *Forensic Science International*, 208(1-3), 167-172.
-
-<a id="uscoastguard1977"></a>
-U.S. Coast Guard. (1977). *Marine board of investigation report: S.S. Edmund Fitzgerald* (Report No. CG-D-95-77). Washington, DC: Department of Transportation.
-
-<a id="volk2008"></a>
-Volk, H. J., Dring, M. J., & Lüning, K. (2008). Temperature dependence of growth in marine macroalgae. *Journal of Phycology*, 21(1), 12-21.
 
 ---

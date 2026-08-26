@@ -6,21 +6,21 @@
     <description>Recent content in Posts on Signal &amp; Syntax</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 22 Aug 2026 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Start Here: The Signal &amp; Syntax Roadmap</title>
+      <link>http://localhost:1313/posts/roadmap/</link>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/roadmap/</guid>
+      <description>&lt;p&gt;If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, &lt;a href=&#34;https://www.linkedin.com/in/tom-archer-dev/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  get in touch&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;.&lt;/p&gt;&#xA;&lt;div class=&#34;roadmap-jump&#34;&gt;&#xD;&#xA;    &lt;a href=&#34;#in-progress&#34;&gt;◐ In Progress&lt;/a&gt;&#xD;&#xA;    &lt;a href=&#34;#planned&#34;&gt;○ Planned&lt;/a&gt;&#xD;&#xA;    &lt;a href=&#34;#published&#34;&gt;✓ Published&lt;/a&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;in-progress&#34;&gt;In Progress&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Implementing a Minimal Transformer in PyTorch.&lt;/strong&gt; Building a decoder-only Transformer from first principles, including token and positional embeddings, scaled dot-product attention, multi-head attention, feed-forward networks, residual connections, causal masking, training, and autoregressive generation. The implementation uses a character-level Shakespeare model to connect the mathematics of Transformer architecture directly to working PyTorch code. Drafted; in pre-publication review.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Inside Attention, Part 1: The Mechanism</title>
       <link>http://localhost:1313/posts/inside-attention-part-1/</link>
       <pubDate>Sat, 22 Aug 2026 06:00:00 -0700</pubDate>
       <guid>http://localhost:1313/posts/inside-attention-part-1/</guid>
       <description>&lt;p&gt;The &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#transformer&#34; data-definition=&#34;A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.&#34;&gt;transformer architecture&lt;/a&gt; is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#feedforward-network&#34; data-definition=&#34;A neural network component that applies learned transformations independently to each token representation after the attention operation.&#34;&gt;feedforward sublayer&lt;/a&gt;, wrapped in &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#residual-connection&#34; data-definition=&#34;A shortcut connection that adds a layer&amp;#39;s input to its output, helping information and gradients flow through deep neural networks.&#34;&gt;residual connections&lt;/a&gt; and &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#layer-normalization&#34; data-definition=&#34;A normalization technique that stabilizes neural network training by rescaling activations within a layer.&#34;&gt;layer normalization&lt;/a&gt;. &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#positional-encoding&#34; data-definition=&#34;Information added to token representations so a transformer can distinguish token positions and reason about sequence order.&#34;&gt;Positional information&lt;/a&gt; is added to the input so the model knows what order the &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#token&#34; data-definition=&#34;A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.&#34;&gt;tokens&lt;/a&gt; came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Start Here: The Signal &amp; Syntax Roadmap</title>
-      <link>http://localhost:1313/posts/roadmap/</link>
-      <pubDate>Sat, 22 Aug 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/roadmap/</guid>
-      <description>&lt;p&gt;Signal &amp;amp; Syntax works through the mathematics, mechanics, and engineering of large language models from first principles, with a secondary interest in applied modeling and simulation. Each post is written to stand on its own, but many of them also fit into a larger arc. This page is where those arcs are visible in one place.&lt;/p&gt;&#xA;&lt;p&gt;The roadmap is public because I want readers to know where the project is going, and because a public roadmap is a commitment device. It updates as I learn things that change the plan, so the &amp;ldquo;planned&amp;rdquo; section is not a fixed order or a promise of dates. Consider it an honest snapshot of what I intend to write next, subject to revision when the material teaches me something.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The Discrete Mathematics Hiding Inside LLMs</title>

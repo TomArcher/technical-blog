@@ -4,7 +4,7 @@ subtitle = "How optimization can help you decide which meetings deserve your lim
 date = 2025-08-28T05:00:00-07:00
 draft = false
 categories = ["Applied Modeling and Simulation"]
-tags = ["optimization", "Python", "scheduling",]
+tags = ["optimization", "productivity", "Python", "scheduling",]
 author = "Tom Archer"
 listThumb = "meeting-diet.png"
 
@@ -21,12 +21,33 @@ whatYoullLearn = [
     "How AI can scaffold optimization code when you give it the right mathematical structure",
     "How simulation and visualization can reveal which meetings are worth attending"
 ]
+
+
+[[references]]
+key = "dantzig1957"
+citation = "Dantzig, G. B. (1957). Discrete-variable extremum problems. *Operations Research, 5*(2), 266-288."
+url = "https://doi.org/10.1287/opre.5.2.266"
+
+[[references]]
+key = "kellerer2004"
+citation = "Kellerer, H., Pferschy, U., & Pisinger, D. (2004). *Knapsack problems*. Springer."
+url = "https://doi.org/10.1007/978-3-540-24777-7"
+
+[[references]]
+key = "mitchell2011"
+citation = "Mitchell, M., & Muftakhidinov, B. (2011). PuLP: A linear programming toolkit for Python."
+url = "https://github.com/coin-or/pulp"
+
+[[references]]
+key = "nemhauser1988"
+citation = "Nemhauser, G. L., & Wolsey, L. A. (1988). *Integer and combinatorial optimization*. Wiley."
+url = "https://doi.org/10.1002/9781118627372"
 +++
 
 Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to *quantify* that choice?
 
 
-**The good news: math can help.** By modeling your schedule as a [**{{< term "multidimensional-knapsack" "0/1 knapsack problem with two constraints" >}}**](https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem), you can treat meetings like items with value, time cost, and energy cost. Classic {{< term "optimization" "optimization" >}} techniques then help decide which meetings to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a {{< term "simulation" "simulation" >}} to visualize your optimal "meeting diet."
+**The good news: math can help.** By modeling your schedule as a **{{< term "multidimensional-knapsack" "0/1 knapsack problem with two constraints" >}}** ([Kellerer et al., 2004](#kellerer2004)), you can treat meetings like items with value, time cost, and energy cost. Classic {{< term "optimization" "optimization" >}} techniques then help decide which meetings to attend. In this post, we'll walk through framing the problem, prompting AI to scaffold the code, and running a {{< term "simulation" "simulation" >}} to visualize your optimal "meeting diet."
 
 ---
 
@@ -41,7 +62,7 @@ Now add two constraints:
 
 Your challenge: select the subset of meetings that maximizes total value without breaking either budget.  
 
-This is precisely the **0/1 knapsack problem with two constraints**. The logic is simple, but the combinations can be overwhelming without computational help. That's where optimization libraries and AI to scaffold the boilerplate come in.
+This is precisely the **0/1 knapsack problem with two constraints** ([Kellerer et al., 2004](#kellerer2004)). The logic is simple, but the combinations can be overwhelming without computational help. That's where optimization libraries and AI to scaffold the boilerplate come in.
 
 ## Modeling the Problem
 
@@ -54,13 +75,13 @@ To simulate the problem accurately (but tractably), we make the following simpli
 - Time and energy budgets are hard caps (no overdraw allowed).  
 - All values are known and {{< term "deterministic" "deterministic" >}} (no surprises this week).  
 
-With these assumptions, our task is to implement a {{< term "binary-decision-variable" "binary decision variable" >}} for each meeting and solve a {{< term "maximization" "maximization problem" >}} subject to dual constraints.
+With these assumptions, our task is to implement a {{< term "binary-decision-variable" "binary decision variable" >}} for each meeting and solve a {{< term "maximization" "maximization problem" >}} subject to dual constraints ([Nemhauser & Wolsey, 1988](#nemhauser1988)).
 
 ---
 
 ## Using AI to Scaffold the Code
 
-To save time, we'll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (**knapsack**, **{{< term "integer-linear-programming" "ILP" >}}**, **constraints**) and be explicit about **inputs/outputs**. For the solver, we'll use **{{< term "pulp" "PuLP" >}}**, a lightweight open-source Python library for {{< term "integer-linear-programming" "linear and integer programming" >}} (ILP). It's simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.
+To save time, we'll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (**knapsack**, **{{< term "integer-linear-programming" "ILP" >}}**, **constraints**) and be explicit about **inputs/outputs**. For the solver, we'll use **{{< term "pulp" "PuLP" >}}**, an open-source Python library for {{< term "integer-linear-programming" "linear and integer programming" >}} (ILP) ([Mitchell & Muftakhidinov, 2011](#mitchell2011)). It's simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.
 
 **Prompt:**
 
@@ -133,7 +154,7 @@ def solve_meeting_diet(meetings, time_budget, energy_budget):
 
 ### Under the Hood: Why This Is Really a Matrix Problem
 
-Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a *{{< term "constraint-matrix" "constraint matrix" >}}*.
+Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a *{{< term "constraint-matrix" "constraint matrix" >}}* ([Nemhauser & Wolsey, 1988](#nemhauser1988)).
 
 When you run the model, the solver crunches through that matrix using {{< term "linear-algebra" "linear algebra" >}} techniques to find the best combination of 1s and 0s (attend vs skip). So while you don't see the math spelled out, the engine making it all work is pure matrix computation.
 
@@ -329,7 +350,7 @@ def plot_meetings(
 
 ## What We Learned
 
-By modeling your calendar as a knapsack, you can quantify trade-offs instead of relying on gut feel. We also learned how to craft precise AI prompts that generate optimization code, and how to refine those prompts to add reporting and visualization. The big win: you now have a framework for saying no with math.
+By modeling your calendar as a knapsack, you can quantify trade-offs instead of relying on gut feel ([Kellerer et al., 2004](#kellerer2004)). We also learned how to craft precise AI prompts that generate optimization code, and how to refine those prompts to add reporting and visualization. The big win: you now have a framework for saying no with math.
 
 ---
 
@@ -376,3 +397,6 @@ Meetings don't have to consume your week. With a little optimization, you can pu
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/meeting-diet)
+
+---
+

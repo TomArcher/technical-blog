@@ -21,6 +21,52 @@ whatYoullLearn = [
     "Why information can become harder to use even while it remains inside the context window",
     "How truncation, summarization, retrieval, and KV caching help manage long conversations"
 ]
+
+[[references]]
+key = "alammar2018"
+citation = "Alammar, J. (2018). The illustrated transformer."
+url = "http://jalammar.github.io/illustrated-transformer/"
+
+[[references]]
+key = "dai2019"
+citation = "Dai, Z., Yang, Z., Yang, Y., et al. (2019). Transformer-XL: Attentive language models beyond a fixed-length context. *Proceedings of ACL 2019*."
+url = "https://arxiv.org/abs/1901.02860"
+
+[[references]]
+key = "gu2023"
+citation = "Gu, A., & Dao, T. (2023). Mamba: Linear-time sequence modeling with selective state spaces. *arXiv preprint*."
+url = "https://arxiv.org/abs/2312.00752"
+
+[[references]]
+key = "jiang2023"
+citation = "Jiang, Z., et al. (2023). LLMLingua: Compressing prompts for accelerated inference of large language models. *arXiv preprint*."
+url = "https://arxiv.org/abs/2310.05736"
+
+[[references]]
+key = "liu2023"
+citation = "Liu, N. F., Lin, K., Hewitt, J., et al. (2023). Lost in the middle: How language models use long contexts. *arXiv preprint*."
+url = "https://arxiv.org/abs/2307.03172"
+
+[[references]]
+key = "peng2023"
+citation = "Peng, B., Alcaide, E., Anthony, Q., et al. (2023). RWKV: Reinventing RNNs for the transformer era. *arXiv preprint*."
+url = "https://arxiv.org/abs/2305.13048"
+
+[[references]]
+key = "shaw2018"
+citation = "Shaw, P., Uszkoreit, J., & Vaswani, A. (2018). Self-attention with relative position representations. *Proceedings of NAACL-HLT 2018*."
+url = "https://arxiv.org/abs/1803.02155"
+
+[[references]]
+key = "tay2022"
+citation = "Tay, Y., Dehghani, M., Bahri, D., & Metzler, D. (2022). Efficient transformers: A survey. *ACM Computing Surveys, 55*(6), 1-28."
+url = "https://dl.acm.org/doi/10.1145/3530811"
+
+[[references]]
+key = "vaswani2017"
+citation = "Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). Attention is all you need. *Advances in Neural Information Processing Systems, 30*."
+url = "https://arxiv.org/abs/1706.03762"
+
 +++
 
 When you have a long conversation with a {{< term "large-language-model" "large language model" >}} (LLM) such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), it feels like the model remembers everything you've discussed. It references earlier points, maintains consistent context, and seems to "know" what you talked about pages ago.
@@ -507,47 +553,5 @@ Understanding that transforms how you work with LLMs. You restate. You summarize
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/how-large-language-models-handle-context-windows)
-
----
-
-## Further Reading
-
-If you want to dive deeper into the mathematics and architecture of context windows:
-
-<a id="alammar2018"></a>
-- Alammar, J. (2018). [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/).  
-  *Excellent visual explanation of attention mechanisms and how transformers process sequences. Highly accessible introduction to the concepts.*
-
-<a id="dai2019"></a>
-- Dai, Z., Yang, Z., Yang, Y., et al. (2019). [Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context](https://arxiv.org/abs/1901.02860). *Proceedings of ACL 2019*.  
-  *Proposes techniques for extending context beyond fixed windows, including relative positional encodings and segment-level recurrence.*
-
-<a id="gu2023"></a>
-- Gu, A., & Dao, T. (2023). [Mamba: Linear-Time Sequence Modeling with Selective State Spaces](https://arxiv.org/abs/2312.00752). *arXiv preprint*.  
-  *Introduces state space models that achieve linear-time processing while maintaining competitive performance with transformers.*
-
-<a id="jiang2023"></a>
-- Jiang, Z., et al. (2023). [LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models](https://arxiv.org/abs/2310.05736). *arXiv preprint*.  
-  *Introduces prompt compression techniques that maintain semantic meaning while reducing token count.*
-
-<a id="liu2023"></a>
-- Liu, N. F., Lin, K., Hewitt, J., et al. (2023). [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172). *arXiv preprint*.  
-  *Empirical study showing that LLMs perform worst on information in the middle of very long contexts, with best performance at the beginning and end.*
-
-<a id="peng2023"></a>
-- Peng, B., Alcaide, E., Anthony, Q., et al. (2023). [RWKV: Reinventing RNNs for the Transformer Era](https://arxiv.org/abs/2305.13048). *arXiv preprint*.  
-  *Proposes a linear-complexity alternative to transformers that combines RNN efficiency with transformer-like performance.*
-
-<a id="shaw2018"></a>
-- Shaw, P., Uszkoreit, J., & Vaswani, A. (2018). [Self-Attention with Relative Position Representations](https://arxiv.org/abs/1803.02155). *Proceedings of NAACL-HLT 2018*.  
-  *Introduces relative positional encodings that help models handle longer contexts more effectively.*
-
-<a id="tay2022"></a>
-- Tay, Y., Dehghani, M., Bahri, D., & Metzler, D. (2022). [Efficient Transformers: A Survey](https://dl.acm.org/doi/10.1145/3530811). *ACM Computing Surveys*, 55(6), 1-28.  
-  *Comprehensive survey of attention alternatives and efficiency techniques for transformers, covering sparse attention, linear attention, and other scaling approaches.*
-  
-<a id="vaswani2017"></a>
-- Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). [Attention Is All You Need](https://arxiv.org/abs/1706.03762). *Advances in Neural Information Processing Systems*, 30.  
-  *The foundational paper that introduced the Transformer architecture and the attention mechanism. Essential reading for understanding how context windows work mathematically.*
 
 ---

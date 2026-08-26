@@ -35,7 +35,7 @@ When you need to parse a number, the first instinct is often to convert it to a 
 When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with integer division (//) and modulus (%) is the better option.">
   <meta itemprop="datePublished" content="2025-09-17T13:00:00-07:00">
   <meta itemprop="dateModified" content="2025-09-17T13:00:00-07:00">
-  <meta itemprop="wordCount" content="604">
+  <meta itemprop="wordCount" content="592">
   <meta itemprop="keywords" content="Data Parsing,Numerical Methods,Python">
 		
   <meta name="twitter:card" content="summary">
@@ -233,12 +233,18 @@ When you need to parse a number, the first instinct is often to convert it to a 
 <p>}}</p></blockquote>
 <p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with <a class="glossary-term" href="/glossary/#integer-division" data-definition="Division that produces an integer quotient by discarding the fractional or remainder portion of the result.">integer division</a> (<code>//</code>) and <a class="glossary-term" href="/glossary/#modulus" data-definition="An arithmetic operation that returns the remainder after one integer is divided by another.">modulus</a> (<code>%</code>) is the better option.</p>
 <h2 id="integer-division--">Integer Division (<code>//</code>) ✂️</h2>
-<p>The <code>//</code> operator divides one number by another and returns only the integer part, discarding the remainder:</p>
+<p>In Python, the <code>//</code> operator performs floor division (<a href="#python-expressions">
+  Python Software Foundation, n.d.
+</a>
+):</p>
 <p>print(17 // 5)   # 3</p>
 <p>It&rsquo;s a great way to chop off digits from the right side of a number and keep working with what&rsquo;s left.</p>
 <hr>
 <h2 id="modulus--">Modulus (<code>%</code>) 🔄</h2>
-<p>The <code>%</code> operator gives you the remainder:</p>
+<p>The <code>%</code> operator returns the remainder associated with floor division (<a href="#python-expressions">
+  Python Software Foundation, n.d.
+</a>
+):</p>
 <p>print(17 % 5)    # 2</p>
 <p>It&rsquo;s the tool you reach for when you want to peel off the last digits.</p>
 <hr>
@@ -308,7 +314,10 @@ When you need to parse a number, the first instinct is often to convert it to a 
 </ul>
 <hr>
 <h2 id="example-3-digit-processing-for-checksums-">Example 3: Digit Processing for Checksums 🔢</h2>
-<p>Many algorithms (like the <a class="glossary-term" href="/glossary/#luhn-algorithm" data-definition="A checksum algorithm used to detect common errors in identification numbers such as credit card numbers.">Luhn algorithm</a> for credit card <a class="glossary-term" href="/glossary/#checksum" data-definition="A value calculated from data and used to detect errors or unintended changes in that data.">checksums</a>) require iterating over each digit of a number. With <code>%</code> and <code>//</code>, you can peel digits off one at a time:</p>
+<p>Many algorithms (like the <a class="glossary-term" href="/glossary/#luhn-algorithm" data-definition="A checksum algorithm used to detect common errors in identification numbers such as credit card numbers.">Luhn algorithm</a> used to verify identification numbers) process individual digits (<a href="#luhn1960">
+  Luhn, 1960
+</a>
+). With <code>%</code> and <code>//</code>, you can peel digits off one at a time:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>num <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">987654</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># Output: 4 5 6 7 8 9</span>
@@ -330,28 +339,27 @@ When you need to parse a number, the first instinct is often to convert it to a 
 <li>Numeric parsing is best when the data is <strong>purely numeric, fixed-width, and not meant to preserve formatting</strong>.</li>
 </ul>
 <p>Examples like warehouse codes, timestamps, and checksum digit processing highlight where numeric parsing outshines string slicing. If the data is messy or formatting matters, use string parsing. If the data is clean and fixed, numeric parsing is not just elegant. It&rsquo;s the right tool.</p>
-<h2 id="resources-">Resources 📚</h2>
-<ul>
-<li><a href="https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations" target="_blank" rel="noopener noreferrer">
-  Python Operators Documentation
-</a>
-</li>
-<li><a href="https://realpython.com/python-modulo-operator/" target="_blank" rel="noopener noreferrer">
-  Real Python on Modulo and Division
-</a>
- by <a href="https://realpython.com/team/jvanschooneveld/" target="_blank" rel="noopener noreferrer">
-  Jason Van Schooneveld
-</a>
-</li>
-<li><a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank" rel="noopener noreferrer">
-  Wikipedia: Modular arithmetic
-</a>
-</li>
-</ul>
+<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
 
+    <div class="post-references__list">
+        <p class="post-reference"  id="python-expressions" >
+            Python Software Foundation. (n.d.). Expressions. <em>Python 3 documentation</em>.
+            <a href="https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations" target="_blank" rel="noopener noreferrer">https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations</a>
+        </p>
+        <p class="post-reference"  id="luhn1960" >
+            Luhn, H. P. (1960). Computer for verifying numbers (U.S. Patent No. 2,950,048). U.S. Patent and Trademark Office.
+            <a href="https://patents.google.com/patent/US2950048A/en" target="_blank" rel="noopener noreferrer">https://patents.google.com/patent/US2950048A/en</a>
+        </p>
+    </div>
+</section>
+
+      <hr class="references-end">
+      
       </div>
     <footer class="post__footer">
       

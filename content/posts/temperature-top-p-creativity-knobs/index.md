@@ -21,6 +21,37 @@ whatYoullLearn = [
     "How temperature and top-p interact when both are applied to the same distribution",
     "How to choose sampling settings for factual, structured, professional, and creative tasks"
 ]
+
+[[references]]
+key = "goodfellow2016"
+citation = "Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep learning*. MIT Press."
+url = "https://mitpress.mit.edu/9780262035613/deep-learning/"
+
+[[references]]
+key = "hinton2015"
+citation = "Hinton, G., Vinyals, O., & Dean, J. (2015). Distilling the knowledge in a neural network. *arXiv preprint arXiv:1503.02531*."
+url = "https://arxiv.org/abs/1503.02531"
+
+[[references]]
+key = "holtzman2020"
+citation = "Holtzman, A., Buys, J., Du, L., Forbes, M., & Choi, Y. (2020). The curious case of neural text degeneration. *Proceedings of the International Conference on Learning Representations (ICLR)*."
+url = "https://arxiv.org/abs/1904.09751"
+
+[[references]]
+key = "jurafsky2023"
+citation = "Jurafsky, D., & Martin, J. H. (2023). *Speech and language processing* (3rd ed. draft). Stanford University."
+url = "https://web.stanford.edu/~jurafsky/slp3/"
+
+[[references]]
+key = "openai2023"
+citation = "OpenAI. (2023). API reference: Chat completions."
+url = "https://platform.openai.com/docs/api-reference/chat"
+
+[[references]]
+key = "peng2023"
+citation = "Peng, B., Galley, M., He, P., Cheng, H., Xie, Y., Hu, Y., ... & Gao, J. (2023). Check your facts and try again: Improving large language models with external knowledge and automated feedback. *arXiv preprint arXiv:2302.12813*."
+url = "https://arxiv.org/abs/2302.12813"
+
 +++
 
 Every API call to [ChatGPT](https://openai.com/api/), [Claude](https://claude.com/platform/api), or any other {{< term "large-language-model" "LLM" >}} includes two parameters most people either ignore or tweak randomly: {{< term "temperature" "temperature" >}} and {{< term "top-p" "top-p" >}}. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks. 
@@ -713,29 +744,5 @@ Understanding this distinction helps you debug unexpected outputs. If your model
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/temperature-top-p-creativity-knobs)
-
----
-
-## Further Reading
-
-These resources provide deeper technical details on sampling methods in language models.
-
-<a id="goodfellow2016"></a>
-Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep learning*. MIT Press. https://mitpress.mit.edu/9780262035613/deep-learning/
-
-<a id="hinton2015"></a>
-Hinton, G., Vinyals, O., & Dean, J. (2015). Distilling the knowledge in a neural network. *arXiv preprint arXiv:1503.02531*. https://arxiv.org/abs/1503.02531
-
-<a id="holtzman2020"></a>
-Holtzman, A., Buys, J., Du, L., Forbes, M., & Choi, Y. (2020). The curious case of neural text degeneration. *Proceedings of the International Conference on Learning Representations (ICLR)*. https://arxiv.org/abs/1904.09751
-
-<a id="jurafsky2023"></a>
-Jurafsky, D., & Martin, J. H. (2023). *Speech and language processing* (3rd ed. draft). Stanford University. https://web.stanford.edu/~jurafsky/slp3/
-
-<a id="openai2023"></a>
-OpenAI. (2023). API reference: Chat completions. https://platform.openai.com/docs/api-reference/chat
-
-<a id="peng2023"></a>
-Peng, B., Galley, M., He, P., Cheng, H., Xie, Y., Hu, Y., ... & Gao, J. (2023). Check your facts and try again: Improving large language models with external knowledge and automated feedback. *arXiv preprint arXiv:2302.12813*. https://arxiv.org/abs/2302.12813
 
 ---

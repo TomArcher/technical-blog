@@ -20,6 +20,26 @@ whatYoullLearn = [
     "How Monte Carlo simulation can validate collision calculations",
     "How to predict when an ID strategy needs to be replaced"
 ]
+
+[[references]]
+key = "rfc9562"
+citation = "Davis, K., Peabody, B., & Leach, P. J. (2024). Universally unique IDentifiers (UUIDs) (RFC 9562). *Internet Engineering Task Force.*"
+url = "https://www.rfc-editor.org/rfc/rfc9562.html"
+
+[[references]]
+key = "nist2015"
+citation = "National Institute of Standards and Technology. (2015). *Secure Hash Standard (SHS) (FIPS PUB 180-4).* U.S. Department of Commerce."
+url = "https://doi.org/10.6028/NIST.FIPS.180-4"
+
+[[references]]
+key = "motwani1995"
+citation = "Motwani, R., & Raghavan, P. (1995). *Randomized algorithms.* Cambridge University Press."
+url = "https://doi.org/10.1017/CBO9780511814075"
+
+[[references]]
+key = "knuth1998"
+citation = "Knuth, D. E. (1998). *The art of computer programming, Volume 3: Sorting and searching* (2nd ed.). Addison-Wesley."
+
 +++
 
 {{< lightbox
@@ -29,13 +49,13 @@ whatYoullLearn = [
     caption="With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs."
 >}}
 
-You generate a {{< term "uuid-v4" "UUID" >}}. It's 128 bits total, with 122 bits of randomness. That's 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?
+You generate a {{< term "uuid-v4" "UUID" >}}. It's 128 bits total, with 122 bits of randomness ([Davis et al., 2024](#rfc9562)). That's 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?
 
 As I like to say, *common sense and intuition are the enemies of science*. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you'd need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?
 
 Math shows us the uncomfortable truth: You'll hit a 50% collision probability after generating just \\(2.7 \times 10^{18}\\) IDs. That's 0.0000000000000000008% of your total space. At a billion IDs per second, you've got 86 years. Comfortable, but not infinite. Drop to 64-bit IDs? Now you've got 1.4 hours. Just enough time to duck out for long lunch and return to a disaster. And 32-bit? 77 microseconds. Faster than you can blink.
 
-You might know that the {{< term "birthday-paradox" "birthday paradox" >}} proves that just 23 people have more than a 50% probability of sharing a birthday. What you may not know is that this isn't just a party trick; it's the same mathematics that determines when your "guaranteed unique" database IDs collide, why {{< term "hash-table" "hash tables" >}} need careful sizing, and when your {{< term "distributed-system" "distributed system" >}}'s assumptions break.
+You might know that the {{< term "birthday-paradox" "birthday paradox" >}} proves that just 23 people have more than a 50% probability of sharing a birthday ([Motwani & Raghavan, 1995](#motwani1995)). What you may not know is that this isn't just a party trick; it's the same mathematics that determines when your "guaranteed unique" database IDs collide, why {{< term "hash-table" "hash tables" >}} need careful sizing, and when your {{< term "distributed-system" "distributed system" >}}'s assumptions break.
 
 The paradox reveals why intuition fails us: {{< term "collision-probability" "collision probability" >}} doesn't grow linearly with usage; it grows with the square. Double your data, quadruple your risk. This quadratic growth is why systems that run perfectly for months suddenly start failing, why that startup's clever 32-bit ID scheme becomes a migration nightmare, and why even titans like GitHub had to extend their integer IDs.
 
@@ -74,7 +94,7 @@ To understand collision probability, we need to think about pairs, not individua
 - We care about the probability of at least one collision (not the expected number)
 - No ID is intentionally reused or reserved
 
-The probability of no collisions among \\(n\\) items is:
+The probability of no collisions among \\(n\\) items is ([Motwani & Raghavan, 1995](#motwani1995)):
 
 \\[
 P(\text{no collision}) = \frac{d!}{(d-n)! \cdot d^n}
@@ -86,7 +106,7 @@ This quickly becomes computationally intractable, so we use the approximation:
 P(\text{collision}) \approx 1 - e^{-\frac{n^2}{2d}}
 \\]
 
-This approximation reveals the critical insight: collision probability depends on \\(n^2\\), not \\(n\\). Double your items, quadruple your collision risk.
+This approximation, commonly used in birthday-bound analysis ([Motwani & Raghavan, 1995](#motwani1995)), reveals the critical insight: collision probability depends on \\(n^2\\), not \\(n\\). Double your items, quadruple your collision risk.
 
 For the 50% collision threshold:
 
@@ -94,7 +114,7 @@ For the 50% collision threshold:
 n_{0.5} \approx 1.177 \sqrt{d}
 \\]
 
-This square root relationship explains why collisions surprise us. A space with a trillion possible values hits 50% collision probability at just one million items; not 500 billion as linear thinking would suggest.
+This square root relationship is the birthday bound ([Motwani & Raghavan, 1995](#motwani1995)) and explains why collisions surprise us. A space with a trillion possible values hits 50% collision probability at just one million items; not 500 billion as linear thinking would suggest.
 
 ---
 
@@ -257,8 +277,8 @@ class IDSystem(Enum):
     """Common ID systems and their bit spaces"""
     INT32 = 32  # Traditional auto-increment
     INT64 = 64  # Modern databases
-    UUID_V4 = 122  # Random UUID (122 random bits)
-    SHA256 = 256  # Cryptographic hashes
+    UUID_V4 = 122  # Random UUID (122 random bits; Davis et al., 2024)
+    SHA256 = 256  # Cryptographic hashes (NIST, 2015)
 
     @property
     def space_size(self) -> int:
@@ -465,16 +485,18 @@ Startup MVP (32-bit IDs, 1K users/day)
 
 ## Making the Results Visual
 
-Visualizing collision probabilities reveals why some ID systems dominate certain use cases:
+Visualizing collision probabilities reveals why some ID systems dominate certain use cases. The same birthday-bound reasoning is central to analyzing collisions in hash spaces ([National Institute of Standards and Technology, 2015](#nist2015)):
 
 ### Collision Probability Curves 
 
 The first visualization shows how collision probability grows with the number of items across different ID systems. The logarithmic scales reveal an important truth: while all systems follow the same mathematical curve, they operate at vastly different scales. A 32-bit system reaches dangerous collision levels with just thousands of items, while UUID v4 can handle quintillions before seeing similar risk.
 
-<img src="./plot1.png" alt="Log-scale plot showing collision probability curves for different ID systems, with safety thresholds marked" style="display: block; margin: 0 auto;">
-<figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-<em>Collision probability grows quadratically. 32-bit systems fail at thousands of items, while UUID v4 remains safe at trillion-item scale.</em>
-</figcaption>
+{{< lightbox
+    src="plot1.png"
+    alt="Log-scale chart comparing collision probability for 32-bit, 64-bit, and UUID v4 identifiers as the number of generated items increases, with collision-risk thresholds marked"
+    label="Open full-size collision probability chart"
+    caption="Collision probability grows quadratically. 32-bit systems fail at thousands of items, while UUID v4 remains safe at trillion-item scale."
+>}}
 
 <br/>
 
@@ -632,7 +654,7 @@ The birthday paradox appears everywhere in computing. Try these explorations to 
 
 3. **{{< term "session-token" "Session token" >}} safety**: Your app generates 16-character alphanumeric session tokens. How many concurrent sessions before collision risk exceeds 0.1%?
 
-**Advanced Level: Environment & Stochasticity**
+**Advanced Level: Environment & {{< term "stochasticity" "Stochasticity" >}}**
 
 1. **Time-based UUIDs**: {{< term "uuid-v1" "UUID v1" >}} includes timestamps. Model how temporal clustering affects collision probability.
 
@@ -644,7 +666,7 @@ The birthday paradox appears everywhere in computing. Try these explorations to 
 
 ## Closing Thoughts
 
-The birthday paradox isn't a quirk of probability; it's fundamental mathematics that governs random selection. Every time you generate a "unique" identifier, you're betting against this math. Sometimes that bet is safe (UUID v4 for distributed systems), sometimes it's not (32-bit IDs for growing platforms).
+The birthday paradox isn't a quirk of probability; it's fundamental mathematics that governs random selection ([Motwani & Raghavan, 1995](#motwani1995)). Every time you generate a "unique" identifier, you're betting against this math. Sometimes that bet is safe (UUID v4 for distributed systems), sometimes it's not (32-bit IDs for growing platforms).
 
 The key insight isn't that collisions are inevitable; it's that they're predictable. You can calculate exactly when your system will likely fail, and design accordingly. Whether that means choosing a larger ID space, implementing collision detection, or planning a migration, the math gives you the power to act before probability catches up.
 

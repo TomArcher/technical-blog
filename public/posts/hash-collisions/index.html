@@ -33,7 +33,7 @@
   <meta itemprop="description" content="In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: hash functions don’t create truly unique fingerprints (Stevens et al., 2017). This “SHAttered” attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.">
   <meta itemprop="datePublished" content="2025-11-17T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-17T06:00:00-07:00">
-  <meta itemprop="wordCount" content="4313">
+  <meta itemprop="wordCount" content="3837">
   <meta itemprop="keywords" content="Blockchain,Cryptography,Hashing,Passwords,Security">
 		
   <meta name="twitter:card" content="summary">
@@ -238,7 +238,7 @@
 </div>
 <p>Twenty years ago, I wrote about hash collisions when the biggest concern was spyware-removal applications getting false positives. Today, MD5 can be cracked on a laptop, simple salting is woefully inadequate, and billions of dollars in cryptocurrency depend on hash <a class="glossary-term" href="/glossary/#collision-resistance" data-definition="A property of a cryptographic hash function that makes it computationally infeasible to find two different inputs that produce the same hash.">collision resistance</a>. The landscape has shifted dramatically, with hash functions now underpinning everything from secure communications to digital currencies. But the fundamental questions remain: How unique are hash codes really? And when does it matter?</p>
 <hr>
-<h2 id="the-hahahugoshortcode8s4hbhb-in-action">The <a class="glossary-term" href="/glossary/#pigeonhole-principle" data-definition="A mathematical principle stating that if more objects are placed into fewer containers, at least one container must contain more than one object.">Pigeonhole Principle</a> in Action</h2>
+<h2 id="the-hahahugoshortcode111s4hbhb-in-action">The <a class="glossary-term" href="/glossary/#pigeonhole-principle" data-definition="A mathematical principle stating that if more objects are placed into fewer containers, at least one container must contain more than one object.">Pigeonhole Principle</a> in Action</h2>
 <p>Hash algorithms generate fixed-length outputs regardless of input size. SHA-256 always produces 256 bits (32 bytes), whether you&rsquo;re hashing a single character or an entire library. SHA-3-512 always produces 512 bits. This creates an inherent mathematical constraint that&rsquo;s easy to visualize but hard to grasp in practice.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
 </span></span><span style="display:flex;"><span>
@@ -822,135 +822,75 @@ We&rsquo;ve moved from trying to hide the algorithm to making it computationally
 <strong>Enhanced Code Samples Available!</strong> The repository includes runnable versions with timing comparisons, detailed output, and additional examples that demonstrate each concept in action. Each script can be run independently and includes explanatory output to reinforce the concepts from this post.
 </div>
 <hr>
-<h2 id="further-reading">Further Reading</h2>
-<p>These resources provide historical perspectives, deeper technical details, and current best practices for those who want to explore further. The <a href="#stevens2017">
-  SHAttered website
-</a>
- includes the actual PDFs that collide, allowing you to verify the attack yourself. The OWASP guide is regularly updated as new threats emerge.</p>
-<p><a id="archer2005"></a></p>
-<ul>
-<li>Archer, T. (2005). <a href="https://learn.microsoft.com/en-us/archive/blogs/tomarcher/are-hash-codes-unique" target="_blank" rel="noopener noreferrer">
-  Are Hash Codes Unique?
-</a>
-. <em>Microsoft Developer Blogs</em>.<br>
-<em>My original 2005 post on hash collisions, preserved for historical perspective.</em></li>
-</ul>
-<p><a id="aumasson2013"></a></p>
-<ul>
-<li>Aumasson, J. P., Neves, S., Wilcox-O&rsquo;Hearn, Z., &amp; Winnerlein, C. (2013). <a href="https://blake2.net/blake2.pdf" target="_blank" rel="noopener noreferrer">
-  BLAKE2: Simpler, smaller, fast as MD5
-</a>
-. <em>Proceedings of ACNS 2013</em>.<br>
-<em>Introduces BLAKE2, showing how modern hash functions can be both fast and secure.</em></li>
-</ul>
-<p><a id="bertoni2013"></a></p>
-<ul>
-<li>Bertoni, G., Daemen, J., Peeters, M., &amp; Van Assche, G. (2013). <a href="https://keccak.team/files/Keccak-reference-3.0.pdf" target="_blank" rel="noopener noreferrer">
-  Keccak
-</a>
-. <em>SHA-3 Competition Winner</em>.<br>
-<em>The SHA-3 specification, introducing the sponge construction that differs fundamentally from SHA-2.</em></li>
-</ul>
-<p><a id="biryukov2016"></a></p>
-<ul>
-<li>Biryukov, A., Dinu, D., &amp; Khovratovich, D. (2016). <a href="https://www.password-hashing.net/argon2-specs.pdf" target="_blank" rel="noopener noreferrer">
-  Argon2: New generation of memory-hard functions for password hashing and other applications
-</a>
-. <em>Password Hashing Competition Winner</em>.<br>
-<em>The winning algorithm of the Password Hashing Competition, now the gold standard for password storage.</em></li>
-</ul>
-<p><a id="grover1996"></a></p>
-<ul>
-<li>Grover, L. K. (1996). <a href="https://arxiv.org/abs/quant-ph/9605043" target="_blank" rel="noopener noreferrer">
-  A fast quantum mechanical algorithm for database search
-</a>
-. <em>Proceedings of STOC 1996</em>.<br>
-<em>The foundational quantum algorithm that reduces hash function security from 2^n to 2^(n/2).</em></li>
-</ul>
-<p><a id="kaliski2000"></a></p>
-<ul>
-<li>Kaliski, B. (2000). <a href="https://www.rfc-editor.org/rfc/rfc2898" target="_blank" rel="noopener noreferrer">
-  PKCS #5: Password-Based Cryptography Specification Version 2.0
-</a>
-. <em>RFC 2898</em>.<br>
-<em>Defines PBKDF2, still widely used for password hashing in constrained environments.</em></li>
-</ul>
-<p><a id="nakamoto2008"></a></p>
-<ul>
-<li>Nakamoto, S. (2008). <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener noreferrer">
-  Bitcoin: A Peer-to-Peer Electronic Cash System
-</a>
-.<br>
-<em>The Bitcoin whitepaper, showing how hash functions became the foundation of a trillion-dollar economy.</em></li>
-</ul>
-<p><a id="nist2022"></a></p>
-<ul>
-<li>NIST. (2022). <a href="https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms" target="_blank" rel="noopener noreferrer">
-  NIST Announces First Four Quantum-Resistant Cryptographic Algorithms
-</a>
-.<br>
-<em>The selected post-quantum algorithms that will replace current standards.</em></li>
-</ul>
-<p><a id="oechslin2003"></a></p>
-<ul>
-<li>Oechslin, P. (2003). <a href="https://lasec.epfl.ch/pub/lasec/doc/Oech03.pdf" target="_blank" rel="noopener noreferrer">
-  Making a faster cryptanalytic time-memory trade-off
-</a>
-. <em>Proceedings of CRYPTO 2003</em>.<br>
-<em>Introduces rainbow tables, the attack that made simple password hashing obsolete.</em></li>
-</ul>
-<p><a id="percival2009"></a></p>
-<ul>
-<li>Percival, C. (2009). <a href="https://www.tarsnap.com/scrypt/scrypt.pdf" target="_blank" rel="noopener noreferrer">
-  Stronger key derivation via sequential memory-hard functions
-</a>
-.<br>
-<em>The scrypt paper, pioneering memory-hard functions for password hashing.</em></li>
-</ul>
-<p><a id="provos1999"></a></p>
-<ul>
-<li>Provos, N., &amp; Mazières, D. (1999). <a href="https://www.usenix.org/legacy/events/usenix99/provos/provos.pdf" target="_blank" rel="noopener noreferrer">
-  A future-adaptable password scheme
-</a>
-. <em>Proceedings of USENIX 1999</em>.<br>
-<em>Introduces bcrypt, which remained secure for over 20 years through adaptive cost parameters.</em></li>
-</ul>
-<p><a id="sotirov2008"></a></p>
-<ul>
-<li>Sotirov, A., Stevens, M., Appelbaum, J., Lenstra, A., Molnar, D., Osvik, D. A., &amp; de Weger, B. (2008). <a href="https://www.win.tue.nl/hashclash/rogue-ca/" target="_blank" rel="noopener noreferrer">
-  MD5 considered harmful today: Creating a rogue CA certificate
-</a>
-.<br>
-<em>The practical attack that definitively killed MD5 for security applications.</em></li>
-</ul>
-<p><a id="stevens2013"></a></p>
-<ul>
-<li>Stevens, M. (2013). <a href="https://marc-stevens.nl/research/papers/EC13-S.pdf" target="_blank" rel="noopener noreferrer">
-  New collision attacks on SHA-1 based on optimal joint local-collision analysis
-</a>
-. <em>Proceedings of EUROCRYPT 2013</em>.<br>
-<em>Theoretical foundation for the SHAttered attack that would come four years later.</em></li>
-</ul>
-<p><a id="stevens2017"></a></p>
-<ul>
-<li>Stevens, M., Bursztein, E., Karpman, P., Albertini, A., &amp; Markov, Y. (2017). <a href="https://shattered.io/static/shattered.pdf" target="_blank" rel="noopener noreferrer">
-  The first collision for full SHA-1
-</a>
-. <em>Proceedings of CRYPTO 2017</em>.<br>
-<em>The SHAttered attack paper that proved SHA-1 was practically broken.</em></li>
-</ul>
-<p><a id="wang2005"></a></p>
-<ul>
-<li>Wang, X., &amp; Yu, H. (2005). <a href="https://iacr.org/cryptodb/archive/2005/EUROCRYPT/2868/2868.pdf" target="_blank" rel="noopener noreferrer">
-  How to break MD5 and other hash functions
-</a>
-. <em>Proceedings of EUROCRYPT 2005</em>.<br>
-<em>The breakthrough that showed MD5 collisions could be found in hours, not centuries.</em></li>
-</ul>
-<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="archer2005" >
+            Archer, T. (2005). Are hash codes unique? <em>Microsoft Developer Blogs</em>.
+            <a href="https://learn.microsoft.com/en-us/archive/blogs/tomarcher/are-hash-codes-unique" target="_blank" rel="noopener noreferrer">https://learn.microsoft.com/en-us/archive/blogs/tomarcher/are-hash-codes-unique</a>
+        </p>
+        <p class="post-reference"  id="aumasson2013" >
+            Aumasson, J. P., Neves, S., Wilcox-O&rsquo;Hearn, Z., &amp; Winnerlein, C. (2013). BLAKE2: Simpler, smaller, fast as MD5. <em>Proceedings of ACNS 2013</em>.
+            <a href="https://blake2.net/blake2.pdf" target="_blank" rel="noopener noreferrer">https://blake2.net/blake2.pdf</a>
+        </p>
+        <p class="post-reference"  id="bertoni2013" >
+            Bertoni, G., Daemen, J., Peeters, M., &amp; Van Assche, G. (2013). Keccak. <em>SHA-3 Competition Winner</em>.
+            <a href="https://keccak.team/files/Keccak-reference-3.0.pdf" target="_blank" rel="noopener noreferrer">https://keccak.team/files/Keccak-reference-3.0.pdf</a>
+        </p>
+        <p class="post-reference"  id="biryukov2016" >
+            Biryukov, A., Dinu, D., &amp; Khovratovich, D. (2016). Argon2: New generation of memory-hard functions for password hashing and other applications. <em>Password Hashing Competition Winner</em>.
+            <a href="https://www.password-hashing.net/argon2-specs.pdf" target="_blank" rel="noopener noreferrer">https://www.password-hashing.net/argon2-specs.pdf</a>
+        </p>
+        <p class="post-reference"  id="grover1996" >
+            Grover, L. K. (1996). A fast quantum mechanical algorithm for database search. <em>Proceedings of STOC 1996</em>.
+            <a href="https://arxiv.org/abs/quant-ph/9605043" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/quant-ph/9605043</a>
+        </p>
+        <p class="post-reference"  id="kaliski2000" >
+            Kaliski, B. (2000). PKCS #5: Password-based cryptography specification version 2.0. <em>RFC 2898</em>.
+            <a href="https://www.rfc-editor.org/rfc/rfc2898" target="_blank" rel="noopener noreferrer">https://www.rfc-editor.org/rfc/rfc2898</a>
+        </p>
+        <p class="post-reference"  id="nakamoto2008" >
+            Nakamoto, S. (2008). Bitcoin: A peer-to-peer electronic cash system.
+            <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener noreferrer">https://bitcoin.org/bitcoin.pdf</a>
+        </p>
+        <p class="post-reference"  id="nist2022" >
+            NIST. (2022). NIST announces first four quantum-resistant cryptographic algorithms.
+            <a href="https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms" target="_blank" rel="noopener noreferrer">https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms</a>
+        </p>
+        <p class="post-reference"  id="oechslin2003" >
+            Oechslin, P. (2003). Making a faster cryptanalytic time-memory trade-off. <em>Proceedings of CRYPTO 2003</em>.
+            <a href="https://lasec.epfl.ch/pub/lasec/doc/Oech03.pdf" target="_blank" rel="noopener noreferrer">https://lasec.epfl.ch/pub/lasec/doc/Oech03.pdf</a>
+        </p>
+        <p class="post-reference"  id="percival2009" >
+            Percival, C. (2009). Stronger key derivation via sequential memory-hard functions.
+            <a href="https://www.tarsnap.com/scrypt/scrypt.pdf" target="_blank" rel="noopener noreferrer">https://www.tarsnap.com/scrypt/scrypt.pdf</a>
+        </p>
+        <p class="post-reference"  id="provos1999" >
+            Provos, N., &amp; Mazières, D. (1999). A future-adaptable password scheme. <em>Proceedings of USENIX 1999</em>.
+            <a href="https://www.usenix.org/legacy/events/usenix99/provos/provos.pdf" target="_blank" rel="noopener noreferrer">https://www.usenix.org/legacy/events/usenix99/provos/provos.pdf</a>
+        </p>
+        <p class="post-reference"  id="sotirov2008" >
+            Sotirov, A., Stevens, M., Appelbaum, J., Lenstra, A., Molnar, D., Osvik, D. A., &amp; de Weger, B. (2008). MD5 considered harmful today: Creating a rogue CA certificate.
+            <a href="https://www.win.tue.nl/hashclash/rogue-ca/" target="_blank" rel="noopener noreferrer">https://www.win.tue.nl/hashclash/rogue-ca/</a>
+        </p>
+        <p class="post-reference"  id="stevens2013" >
+            Stevens, M. (2013). New collision attacks on SHA-1 based on optimal joint local-collision analysis. <em>Proceedings of EUROCRYPT 2013</em>.
+            <a href="https://marc-stevens.nl/research/papers/EC13-S.pdf" target="_blank" rel="noopener noreferrer">https://marc-stevens.nl/research/papers/EC13-S.pdf</a>
+        </p>
+        <p class="post-reference"  id="stevens2017" >
+            Stevens, M., Bursztein, E., Karpman, P., Albertini, A., &amp; Markov, Y. (2017). The first collision for full SHA-1. <em>Proceedings of CRYPTO 2017</em>.
+            <a href="https://shattered.io/static/shattered.pdf" target="_blank" rel="noopener noreferrer">https://shattered.io/static/shattered.pdf</a>
+        </p>
+        <p class="post-reference"  id="wang2005" >
+            Wang, X., &amp; Yu, H. (2005). How to break MD5 and other hash functions. <em>Proceedings of EUROCRYPT 2005</em>.
+            <a href="https://iacr.org/cryptodb/archive/2005/EUROCRYPT/2868/2868.pdf" target="_blank" rel="noopener noreferrer">https://iacr.org/cryptodb/archive/2005/EUROCRYPT/2868/2868.pdf</a>
+        </p>
+    </div>
+</section>
 
       </div>
     <footer class="post__footer">

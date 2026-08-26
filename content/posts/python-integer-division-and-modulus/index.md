@@ -24,6 +24,17 @@ whatYoullLearn = [
     "How // and % naturally break timestamps into hours, minutes, seconds, and milliseconds",
     "How to process individual digits numerically for algorithms such as checksums"
 ]
+
+
+[[references]]
+key = "python-expressions"
+citation = "Python Software Foundation. (n.d.). Expressions. *Python 3 documentation*."
+url = "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations"
+
+[[references]]
+key = "luhn1960"
+citation = "Luhn, H. P. (1960). Computer for verifying numbers (U.S. Patent No. 2,950,048). U.S. Patent and Trademark Office."
+url = "https://patents.google.com/patent/US2950048A/en"
 +++
 
 numbers with // and % for speed and clarity."
@@ -34,7 +45,7 @@ When you need to parse a number, the first instinct is often to convert it to a 
 
 ## Integer Division (`//`) ✂️
 
-The `//` operator divides one number by another and returns only the integer part, discarding the remainder:
+In Python, the `//` operator performs floor division ([Python Software Foundation, n.d.](#python-expressions)):
 
 print(17 // 5)   # 3
 
@@ -44,7 +55,7 @@ It's a great way to chop off digits from the right side of a number and keep wor
 
 ## Modulus (`%`) 🔄
 
-The `%` operator gives you the remainder:
+The `%` operator returns the remainder associated with floor division ([Python Software Foundation, n.d.](#python-expressions)):
 
 print(17 % 5)    # 2
 
@@ -112,7 +123,7 @@ print(hours, minutes, seconds, milliseconds)
 
 ## Example 3: Digit Processing for Checksums 🔢
 
-Many algorithms (like the {{< term "luhn-algorithm" "Luhn algorithm" >}} for credit card {{< term "checksum" "checksums" >}}) require iterating over each digit of a number. With `%` and `//`, you can peel digits off one at a time:
+Many algorithms (like the {{< term "luhn-algorithm" "Luhn algorithm" >}} used to verify identification numbers) process individual digits ([Luhn, 1960](#luhn1960)). With `%` and `//`, you can peel digits off one at a time:
 
 ```python
 num = 987654
@@ -140,8 +151,4 @@ while num > 0:
 
 Examples like warehouse codes, timestamps, and checksum digit processing highlight where numeric parsing outshines string slicing. If the data is messy or formatting matters, use string parsing. If the data is clean and fixed, numeric parsing is not just elegant. It's the right tool.
 
-## Resources 📚
-
-* [Python Operators Documentation](https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations)
-* [Real Python on Modulo and Division](https://realpython.com/python-modulo-operator/) by [Jason Van Schooneveld](https://realpython.com/team/jvanschooneveld/)
-* [Wikipedia: Modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic)
+---

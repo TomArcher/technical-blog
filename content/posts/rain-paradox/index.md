@@ -21,6 +21,22 @@ whatYoullLearn = [
     "Why running produces diminishing returns even though it still keeps you drier",
     "How wind, body geometry, and randomness could make the basic model more realistic"
 ]
+
+
+[[references]]
+key = "bell1967"
+citation = "Bell, G. I. (1967). On the question: Should one run or walk in the rain? *American Journal of Physics, 35*(12), 1192-1193."
+url = "https://doi.org/10.1119/1.1973827"
+
+[[references]]
+key = "marshall1948"
+citation = "Marshall, J. S., & Palmer, W. M. K. (1948). The distribution of raindrops with size. *Journal of Meteorology, 5*(4), 165-166."
+url = "https://doi.org/10.1175/1520-0469(1948)005%3C0165:TDORWS%3E2.0.CO;2"
+
+[[references]]
+key = "stern1972"
+citation = "Stern, A. C. (1972). Should you run or walk in the rain? *American Journal of Physics, 40*(4), 648-649."
+url = "https://doi.org/10.1119/1.1986605"
 +++
 
 Early in my programming career, I came across a coding challenge that stuck with me for many years:
@@ -38,7 +54,7 @@ You have two options:
 - **Walk** - exposes you to more rain from above.
 - **Run** - reduces vertical exposure but increases the number of raindrops hitting your front.
 
-Which gets you wetter?
+Which gets you wetter? The question has been treated mathematically in the physics literature for decades ([Bell, 1967](#bell1967); [Stern, 1972](#stern1972)).
 
 The paradox lies in competing intuitions:
 
@@ -61,7 +77,7 @@ To simulate the problem accurately (but tractably), we make the following simpli
 - Rain falls vertically at a uniform density.
 - You're a rectangular block moving at constant speed.
 - Getting wet = the number of raindrops hitting you from the top and the front.
-- Rain hits the top based on time exposed, and the front based on distance traveled.
+- Rain hits the top based on time exposed, and the front based on distance traveled. This separation between exposure from above and frontal interception is consistent with classic mathematical treatments of the problem ([Bell, 1967](#bell1967); [Stern, 1972](#stern1972)).
 - Rain from behind and sides is ignored.
 
 This converts the real-world complexity into a {{< term "discrete-model" "discrete physical model" >}} driven by {{< term "surface-area" "surface area" >}}, {{< term "velocity" "velocity" >}}, and time.
@@ -294,7 +310,7 @@ def plot_wetness_vs_speed(
 
 ## What We Learned
 
-**Running gets you less wet, consistently.** The longer you spend under the rain, the more water lands on your head and shoulders. By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.
+**Running gets you less wet, consistently, under the assumptions of this model.** The longer you spend under vertically falling rain, the more water lands on your head and shoulders, a result consistent with classic analyses of the rain problem ([Bell, 1967](#bell1967); [Stern, 1972](#stern1972)). By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.
 
 However, there's a tradeoff. As you speed up, you collide with more raindrops from the front. At first, the gains from reduced top-down exposure far outweigh the cost of increased frontal hits. But as your speed continues to climb, you start to hit a point of diminishing returns: you're still getting wetter from the front, and there's less time savings left to gain. No matter how fast you go, you'll always collide with some rain from the front, but you can reduce how long rain hits you from above.
 
@@ -362,7 +378,7 @@ Then, refine the AI's output to ensure it matches the math.
    the person’s projected area. Run many trials and average the results to 
    approximate the analytic model. This adds randomness to the story.  
 1. **Drop size distribution:** Sample raindrop diameters from a realistic 
-   distribution (meteorology papers often use {{< term "log-normal-distribution" "log-normal" >}}). Larger drops carry 
+   distribution. A classic empirical model is the Marshall-Palmer exponential raindrop-size distribution ([Marshall & Palmer, 1948](#marshall1948)). Larger drops carry 
    more volume and can be weighted more heavily in the wetness score. Try 
    mixing small drizzle with a few large drops to see how totals shift.  
 
@@ -374,10 +390,12 @@ This problem isn't just about physics or weather. It's about **thinking like a p
 
 Yesterday, we memorized algorithms and syntax. Today, we craft prompts, evaluate generated code, and refine it for real-world constraints. The tools have changed, but the mindset of modeling uncertainty, isolating variables, and iterating toward insight remains the same.
 
-So next time you're caught in a downpour, the answer is clear: **run**. The math doesn't lie, and neither does the rain.
+So next time you're caught in a downpour, under the article's simplifying assumptions, the answer is clear: **run** ([Bell, 1967](#bell1967); [Stern, 1972](#stern1972)). The math doesn't lie, and neither does the rain.
 
 ---
 
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/rain-paradox)
+
+---

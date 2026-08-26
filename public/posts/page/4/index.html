@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Posts">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
+  <meta itemprop="datePublished" content="2026-08-25T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-08-25T00:00:00+00:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
@@ -128,107 +128,64 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/python-integer-division-and-modulus/" rel="bookmark">
-			Numeric Parsing in Python with Integer Division and Modulus
+			<a href="/posts/how-large-language-models-handle-context-windows/" rel="bookmark">
+			How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory
 			</a>
 		</h2>
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<p>numbers with // and % for speed and clarity.&quot;</p>
-<blockquote>
-<p>}}</p></blockquote>
-<p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with <a class="glossary-term" href="/glossary/#integer-division" data-definition="Division that produces an integer quotient by discarding the fractional or remainder portion of the result.">integer division</a> (<code>//</code>) and <a class="glossary-term" href="/glossary/#modulus" data-definition="An arithmetic operation that returns the remainder after one integer is divided by another.">modulus</a> (<code>%</code>) is the better option.</p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/python-integer-division-and-modulus/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/python-sympy-vs-numpy/" rel="bookmark">
-			Using SymPy in Python When NumPy Isn&#39;t Enough
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<p>Most of us reach for <a href="https://numpy.org/" target="_blank" rel="noopener noreferrer">
-  NumPy
+		<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
 </a>
- whenever math shows up in a project. But sometimes, you don&rsquo;t want approximate answers, you want exact math. That&rsquo;s when you pull <a href="https://sympy.org/" target="_blank" rel="noopener noreferrer">
-  SymPy
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
 </a>
- out of your programmer&rsquo;s toolkit and get to work.</p>
-<p>It&rsquo;s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.</p>
+, it feels like the model remembers everything you&rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &ldquo;know&rdquo; what you talked about pages ago.</p>
+<p>But here&rsquo;s the uncomfortable truth: the model doesn&rsquo;t remember anything. It&rsquo;s not storing your conversation in memory the way a database would. Instead, it&rsquo;s <strong>rereading the entire conversation from the beginning every single time you send a message.</strong></p>
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/python-sympy-vs-numpy/">Read more…</a>
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-handle-context-windows/">Read more…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/five-second-rule/" rel="bookmark">
-			The Five-Second Rule Explored with Math &amp; Python
+			<a href="/posts/safe-distance-in-traffic/" rel="bookmark">
+			Rethinking the Three-Second Traffic Rule: When Physics Says It’s Not Enough
 			</a>
 		</h2>
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<p>You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.</p>
-<p>The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.</p>
+		<p>While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the <strong><a class="glossary-term" href="/glossary/#three-second-rule" data-definition="A driving guideline that recommends maintaining at least three seconds of travel time between your vehicle and the vehicle ahead.">three-second rule</a></strong> and its validity. As I&rsquo;ve always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.</p>
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/five-second-rule/">Read more…</a>
+		<a class="list__footer-readmore btn" href="/posts/safe-distance-in-traffic/">Read more…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/meeting-diet/" rel="bookmark">
-			The Meeting Diet: An Optimization Approach to Your Calendar
+			<a href="/posts/thermo-water-energy-balance/" rel="bookmark">
+			Modeling Heat Capacity and Evaporation with Python: Why Water Warms Slowly but Cools Fast
 			</a>
 		</h2>
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
-<p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
-  <strong><a class="glossary-term" href="/glossary/#multidimensional-knapsack" data-definition="A generalization of the knapsack problem in which each item consumes multiple limited resources and the goal is to maximize total value without exceeding any resource constraint.">0/1 knapsack problem with two constraints</a></strong>
-</a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic <a class="glossary-term" href="/glossary/#optimization" data-definition="The process of finding the best solution to a problem according to a defined objective while satisfying specified constraints.">optimization</a> techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a <a class="glossary-term" href="/glossary/#simulation" data-definition="The use of a computational model to imitate the behavior of a system so that its outcomes can be explored or analyzed.">simulation</a> to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
+		<p>Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you&rsquo;d expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.</p>
+<p>The same phenomenon shows up in a stick of butter. Butter melts quickly, while margarine stays stubbornly firm even under the same heat. That&rsquo;s not coincidence; it&rsquo;s <a class="glossary-term" href="/glossary/#thermodynamics" data-definition="The branch of physics concerned with energy, heat, work, temperature, and the ways energy is transferred and transformed.">thermodynamics</a>.</p>
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/meeting-diet/">Read more…</a>
-	</div>
-</article><article class="list__item post">
-	
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/python-dispatch-maps/" rel="bookmark">
-			Using Python Dispatch Tables for Cleaner Validation
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
-<p>Most of us start with the usual suspects:</p>
-<p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
-❌ A graveyard of <a class="glossary-term" href="/glossary/#guard-clause" data-definition="A conditional check placed near the beginning of a function or block that exits early when a required condition is not satisfied.">guard clauses</a> scattered line after line</p>
-<p>Both work fine… until they don&rsquo;t. Then you&rsquo;re left maintaining a wall of conditionals that feels like it was designed by a committee of goblins.</p>
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/python-dispatch-maps/">Read more…</a>
+		<a class="list__footer-readmore btn" href="/posts/thermo-water-energy-balance/">Read more…</a>
 	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/posts/page/3/">«</a>
-	<span class="pagination__item pagination__item--current">4/5</span>
+	<span class="pagination__item pagination__item--current">4/8</span>
 	<a class="pagination__item pagination__item--next btn" href="/posts/page/5/">»</a>
 </div>
 

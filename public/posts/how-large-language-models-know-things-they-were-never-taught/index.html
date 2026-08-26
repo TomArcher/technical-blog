@@ -35,7 +35,7 @@ Conversely, ask an LLM with web search enabled the same question, and you receiv
 Conversely, ask an LLM with web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.">
   <meta itemprop="datePublished" content="2026-02-09T06:00:00-07:00">
   <meta itemprop="dateModified" content="2026-02-09T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3381">
+  <meta itemprop="wordCount" content="3185">
   <meta itemprop="keywords" content="AI,LLM,RAG,Web Search,Context Windows">
 		
   <meta name="twitter:card" content="summary">
@@ -678,7 +678,6 @@ Conversely, ask an LLM with web search enabled the same question, and you receiv
 <p>This distinction matters for trust calibration. A model answering from its trained weights has seen that information millions of times across many sources. A model answering from retrieval is basing its response on whatever happened to be retrieved for that specific query. The reliability profiles are different.</p>
 <p>It also matters for understanding failures. When a retrieval-augmented model gives a wrong answer about current events, the problem might be the retrieval (wrong sources), the interpretation (model misread the source), or both. Debugging requires understanding where in the pipeline the failure occurred.</p>
 <p>After working with these systems extensively, I&rsquo;ve come to see retrieval augmentation as giving models a form of open-book exam capability. They can look things up, but they can&rsquo;t learn during the exam. Their reasoning abilities are fixed; only their inputs are dynamic. Understanding that constraint is key to using these tools effectively.</p>
-<hr>
 <p><strong>If you&rsquo;ve followed this series from <a href="/posts/how-large-language-models-read-code">
   how LLMs read code
 </a>
@@ -699,36 +698,39 @@ Conversely, ask an LLM with web search enabled the same question, and you receiv
 </a>
 , you now have the complete picture: from raw text to tokens to embeddings to attention to learning to generation to augmentation. These systems are remarkable for what they can do, and understanding their mechanisms helps you appreciate both their power and their limitations.</strong></p>
 <hr>
-<h2 id="further-reading">Further Reading</h2>
-<p>These resources provide deeper technical details on retrieval-augmented generation and related techniques.</p>
-<p><a id="guu2020"></a>Guu, K., Lee, K., Tung, Z., Pasupat, P., &amp; Chang, M. W. (2020). REALM: Retrieval-augmented language model pre-training. <em>Proceedings of the 37th International Conference on Machine Learning</em>. <a href="https://arxiv.org/abs/2002.08909" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2002.08909
-</a>
-</p>
-<p><a id="izacard2022"></a>Izacard, G., Lewis, P., Lomeli, M., Hosseini, L., Petroni, F., Schick, T., &hellip; &amp; Grave, E. (2022). Atlas: Few-shot learning with retrieval augmented language models. <em>arXiv preprint arXiv:2208.03299</em>. <a href="https://arxiv.org/abs/2208.03299" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2208.03299
-</a>
-</p>
-<p><a id="karpukhin2020"></a>Karpukhin, V., Oğuz, B., Min, S., Lewis, P., Wu, L., Edunov, S., &hellip; &amp; Yih, W. T. (2020). Dense passage retrieval for open-domain question answering. <em>Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing</em>. <a href="https://arxiv.org/abs/2004.04906" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2004.04906
-</a>
-</p>
-<p><a id="lewis2020"></a>Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., &hellip; &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>Advances in Neural Information Processing Systems</em>, 33. <a href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2005.11401
-</a>
-</p>
-<p><a id="mialon2023"></a>Mialon, G., Dessì, R., Lomeli, M., Nalmpantis, C., Pasunuru, R., Raileanu, R., &hellip; &amp; Scialom, T. (2023). Augmented language models: A survey. <em>arXiv preprint arXiv:2302.07842</em>. <a href="https://arxiv.org/abs/2302.07842" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2302.07842
-</a>
-</p>
-<p><a id="schick2023"></a>Schick, T., Dwivedi-Yu, J., Dessì, R., Raileanu, R., Lomeli, M., Zettlemoyer, L., &hellip; &amp; Scialom, T. (2023). Toolformer: Language models can teach themselves to use tools. <em>arXiv preprint arXiv:2302.04761</em>. <a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener noreferrer">
-  https://arxiv.org/abs/2302.04761
-</a>
-</p>
-<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="guu2020" >
+            Guu, K., Lee, K., Tung, Z., Pasupat, P., &amp; Chang, M. W. (2020). REALM: Retrieval-augmented language model pre-training. <em>Proceedings of the 37th International Conference on Machine Learning</em>.
+            <a href="https://arxiv.org/abs/2002.08909" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2002.08909</a>
+        </p>
+        <p class="post-reference"  id="izacard2022" >
+            Izacard, G., Lewis, P., Lomeli, M., Hosseini, L., Petroni, F., Schick, T., &hellip; &amp; Grave, E. (2022). Atlas: Few-shot learning with retrieval augmented language models. <em>arXiv preprint arXiv:2208.03299</em>.
+            <a href="https://arxiv.org/abs/2208.03299" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2208.03299</a>
+        </p>
+        <p class="post-reference"  id="karpukhin2020" >
+            Karpukhin, V., Oğuz, B., Min, S., Lewis, P., Wu, L., Edunov, S., &hellip; &amp; Yih, W. T. (2020). Dense passage retrieval for open-domain question answering. <em>Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing</em>.
+            <a href="https://arxiv.org/abs/2004.04906" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2004.04906</a>
+        </p>
+        <p class="post-reference"  id="lewis2020" >
+            Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., &hellip; &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>Advances in Neural Information Processing Systems, 33</em>.
+            <a href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2005.11401</a>
+        </p>
+        <p class="post-reference"  id="mialon2023" >
+            Mialon, G., Dessì, R., Lomeli, M., Nalmpantis, C., Pasunuru, R., Raileanu, R., &hellip; &amp; Scialom, T. (2023). Augmented language models: A survey. <em>arXiv preprint arXiv:2302.07842</em>.
+            <a href="https://arxiv.org/abs/2302.07842" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2302.07842</a>
+        </p>
+        <p class="post-reference"  id="schick2023" >
+            Schick, T., Dwivedi-Yu, J., Dessì, R., Raileanu, R., Lomeli, M., Zettlemoyer, L., &hellip; &amp; Scialom, T. (2023). Toolformer: Language models can teach themselves to use tools. <em>arXiv preprint arXiv:2302.04761</em>.
+            <a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2302.04761</a>
+        </p>
+    </div>
+</section>
 
       </div>
     <footer class="post__footer">

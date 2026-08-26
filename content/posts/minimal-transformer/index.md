@@ -21,6 +21,42 @@ whatYoullLearn = [
     "How causal masking makes next-token training possible without letting the model see the future",
     "How to train a small Transformer in PyTorch and use it to generate new text"
 ]
+
+[[references]]
+key = "ba2016"
+citation = "Ba, J. L., Kiros, J. R., & Hinton, G. E. (2016). Layer normalization. *arXiv preprint arXiv:1607.06450*."
+url = "https://arxiv.org/abs/1607.06450"
+
+[[references]]
+key = "hendrycks2016"
+citation = "Hendrycks, D., & Gimpel, K. (2016). Gaussian error linear units (GELUs). *arXiv preprint arXiv:1606.08415*."
+url = "https://arxiv.org/abs/1606.08415"
+
+[[references]]
+key = "karpathy2022"
+citation = "Karpathy, A. (2022). *nanoGPT: The simplest, fastest repository for training/finetuning medium-sized GPTs.*"
+url = "https://github.com/karpathy/nanoGPT"
+
+[[references]]
+key = "loshchilov2019"
+citation = "Loshchilov, I., & Hutter, F. (2019). Decoupled weight decay regularization. *Proceedings of ICLR 2019*."
+url = "https://arxiv.org/abs/1711.05101"
+
+[[references]]
+key = "radford2019"
+citation = "Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). Language models are unsupervised multitask learners. *OpenAI Blog, 1*(8)."
+url = "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"
+
+[[references]]
+key = "vaswani2017"
+citation = "Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems, 30*."
+url = "https://arxiv.org/abs/1706.03762"
+
+[[references]]
+key = "xiong2020"
+citation = "Xiong, R., Yang, Y., He, D., Zheng, K., Zheng, S., Xing, C., Zhang, H., Lan, Y., Wang, L., & Liu, T. Y. (2020). On layer normalization in the Transformer architecture. *Proceedings of ICML 2020*."
+url = "https://arxiv.org/abs/2002.04745"
+
 +++
 
 In 2017, Vaswani et al. published "Attention Is All You Need," a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you've heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper's title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.
@@ -781,32 +817,5 @@ The Shakespeare corpus can be downloaded with:
 curl -o shakespeare.txt \
   https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
 ```
-
----
-
-## Further Reading
-
-These resources provide the theoretical foundations and historical context behind the implementation in this post.
-
-<a id="ba2016"></a>
-Ba, J. L., Kiros, J. R., & Hinton, G. E. (2016). Layer normalization. *arXiv preprint arXiv:1607.06450*.
-
-<a id="hendrycks2016"></a>
-Hendrycks, D., & Gimpel, K. (2016). Gaussian error linear units (GELUs). *arXiv preprint arXiv:1606.08415*.
-
-<a id="karpathy2022"></a>
-Karpathy, A. (2022). *nanoGPT: The simplest, fastest repository for training/finetuning medium-sized GPTs.* https://github.com/karpathy/nanoGPT
-
-<a id="loshchilov2019"></a>
-Loshchilov, I., & Hutter, F. (2019). Decoupled weight decay regularization. *Proceedings of ICLR 2019*.
-
-<a id="radford2019"></a>
-Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). Language models are unsupervised multitask learners. *OpenAI Blog*, 1(8).
-
-<a id="vaswani2017"></a>
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems*, 30.
-
-<a id="xiong2020"></a>
-Xiong, R., Yang, Y., He, D., Zheng, K., Zheng, S., Xing, C., Zhang, H., Lan, Y., Wang, L., & Liu, T. Y. (2020). On layer normalization in the Transformer architecture. *Proceedings of ICML 2020*.
 
 ---

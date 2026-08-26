@@ -21,6 +21,21 @@ whatYoullLearn = [
     "How positional encoding uses periodic patterns to represent position",
     "How discrete math helps explain why common LLM techniques work"
 ]
+
+[[references]]
+key = "vaswani2017"
+citation = "Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems, 30.*"
+url = "https://arxiv.org/abs/1706.03762"
+
+[[references]]
+key = "wei2022"
+citation = "Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., ... & Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. *Advances in Neural Information Processing Systems, 35.*"
+url = "https://arxiv.org/abs/2201.11903"
+
+[[references]]
+key = "press2021"
+citation = "Press, O., Smith, N. A., & Lewis, M. (2021). Train short, test long: Attention with linear biases enables input length generalization. *arXiv preprint arXiv:2108.12409.*"
+url = "https://arxiv.org/abs/2108.12409"
 +++
 
 A recent [LinkedIn post](https://www.linkedin.com/posts/activity-7435689322504167424-_v46) from Michael Palmer described how {{< term "discrete-mathematics" "discrete mathematics" >}} is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, {{< term "gradient-descent" "gradient descent" >}}, and probability distributions. If you've taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you'd expect.
@@ -471,23 +486,6 @@ This doesn't mean you need a discrete math course to use LLMs. But if you want t
 
 The foundations were always there. Modern AI just implements them at scale.
 
----
-
-**If you've followed this series from [how LLMs read code](/posts/how-large-language-models-read-code) through [how they think](/posts/how-large-language-models-think), [how they learn](/posts/how-large-language-models-learn), and [how they handle context](/posts/how-large-language-models-handle-context-windows), you've seen the calculus, linear algebra, and probability. This post adds the discrete layer. The mathematics of language isn't one subject. It's all of them, working together.**
-
----
-
-## Further Reading
-
-These resources provide deeper context on the mathematical foundations of transformers and attention mechanisms.
-
-<a id="vaswani2017"></a>
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems*, 30. https://arxiv.org/abs/1706.03762
-
-<a id="wei2022"></a>
-Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., ... & Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. *Advances in Neural Information Processing Systems*, 35. https://arxiv.org/abs/2201.11903
-
-<a id="press2021"></a>
-Press, O., Smith, N. A., & Lewis, M. (2021). Train short, test long: Attention with linear biases enables input length generalization. *arXiv preprint arXiv:2108.12409*. https://arxiv.org/abs/2108.12409
+If you've followed this series from [how LLMs read code](/posts/how-large-language-models-read-code) through [how they think](/posts/how-large-language-models-think), [how they learn](/posts/how-large-language-models-learn), and [how they handle context](/posts/how-large-language-models-handle-context-windows), you've seen the calculus, linear algebra, and probability. This post adds the discrete layer. The mathematics of language isn't one subject. It's all of them, working together.
 
 ---

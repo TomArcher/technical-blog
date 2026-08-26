@@ -17,29 +17,30 @@
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="The Meeting Diet: An Optimization Approach to Your Calendar">
   <meta property="og:description" content="Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
-The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints (Kellerer et al., 2004), you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-28T05:00:00-07:00">
     <meta property="article:modified_time" content="2025-08-28T05:00:00-07:00">
     <meta property="article:tag" content="Optimization">
+    <meta property="article:tag" content="Productivity">
     <meta property="article:tag" content="Python">
     <meta property="article:tag" content="Scheduling">
 
 		
   <meta itemprop="name" content="The Meeting Diet: An Optimization Approach to Your Calendar">
   <meta itemprop="description" content="Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
-The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints (Kellerer et al., 2004), you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
   <meta itemprop="datePublished" content="2025-08-28T05:00:00-07:00">
   <meta itemprop="dateModified" content="2025-08-28T05:00:00-07:00">
-  <meta itemprop="wordCount" content="1796">
-  <meta itemprop="keywords" content="Optimization,Python,Scheduling">
+  <meta itemprop="wordCount" content="1830">
+  <meta itemprop="keywords" content="Optimization,Productivity,Python,Scheduling">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="The Meeting Diet: An Optimization Approach to Your Calendar">
   <meta name="twitter:description" content="Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to quantify that choice?
-The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints, you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
+The good news: math can help. By modeling your schedule as a 0/1 knapsack problem with two constraints (Kellerer et al., 2004), you can treat meetings like items with value, time cost, and energy cost. Classic optimization techniques then help decide which meetings to attend. In this post, we’ll walk through framing the problem, prompting AI to scaffold the code, and running a simulation to visualize your optimal “meeting diet.”">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -147,6 +148,8 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
             <strong>Tags:</strong>&nbsp;<a class="meta__link"
                  href="/tags/optimization/"
                  rel="tag">#optimization</a>, <a class="meta__link"
+                 href="/tags/productivity/"
+                 rel="tag">#productivity</a>, <a class="meta__link"
                  href="/tags/python/"
                  rel="tag">#Python</a>, <a class="meta__link"
                  href="/tags/scheduling/"
@@ -226,10 +229,10 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
           <li>How simulation and visualization can reveal which meetings are worth attending</li>
       </ul>
     </aside><p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
-<p><strong>The good news: math can help.</strong> By modeling your schedule as a <a href="https://en.wikipedia.org/wiki/Knapsack_problem#Multi-dimensional_knapsack_problem" target="_blank" rel="noopener noreferrer">
-  <strong><a class="glossary-term" href="/glossary/#multidimensional-knapsack" data-definition="A generalization of the knapsack problem in which each item consumes multiple limited resources and the goal is to maximize total value without exceeding any resource constraint.">0/1 knapsack problem with two constraints</a></strong>
+<p><strong>The good news: math can help.</strong> By modeling your schedule as a <strong><a class="glossary-term" href="/glossary/#multidimensional-knapsack" data-definition="A generalization of the knapsack problem in which each item consumes multiple limited resources and the goal is to maximize total value without exceeding any resource constraint.">0/1 knapsack problem with two constraints</a></strong> (<a href="#kellerer2004">
+  Kellerer et al., 2004
 </a>
-, you can treat meetings like items with value, time cost, and energy cost. Classic <a class="glossary-term" href="/glossary/#optimization" data-definition="The process of finding the best solution to a problem according to a defined objective while satisfying specified constraints.">optimization</a> techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a <a class="glossary-term" href="/glossary/#simulation" data-definition="The use of a computational model to imitate the behavior of a system so that its outcomes can be explored or analyzed.">simulation</a> to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
+), you can treat meetings like items with value, time cost, and energy cost. Classic <a class="glossary-term" href="/glossary/#optimization" data-definition="The process of finding the best solution to a problem according to a defined objective while satisfying specified constraints.">optimization</a> techniques then help decide which meetings to attend. In this post, we&rsquo;ll walk through framing the problem, prompting AI to scaffold the code, and running a <a class="glossary-term" href="/glossary/#simulation" data-definition="The use of a computational model to imitate the behavior of a system so that its outcomes can be explored or analyzed.">simulation</a> to visualize your optimal &ldquo;meeting diet.&rdquo;</p>
 <hr>
 <h2 id="the-thought-experiment">The Thought Experiment</h2>
 <p>Imagine you have ten meetings on your calendar this week. Each one consumes a certain number of minutes and drains a certain amount of cognitive energy. Some are critical (roadmap syncs, 1:1 mentoring sessions), while others could probably be skipped without much consequence. With products that can summarize any meeting you miss, the real challenge isn&rsquo;t fear of missing out, it&rsquo;s fear of wasting time. Therefore, the question becomes: which meetings earn a place in your week, and which should be left to AI to summarize?</p>
@@ -239,7 +242,10 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 <li>An <strong>energy budget</strong> (say, ten units of attention before you burn out).</li>
 </ul>
 <p>Your challenge: select the subset of meetings that maximizes total value without breaking either budget.</p>
-<p>This is precisely the <strong>0/1 knapsack problem with two constraints</strong>. The logic is simple, but the combinations can be overwhelming without computational help. That&rsquo;s where optimization libraries and AI to scaffold the boilerplate come in.</p>
+<p>This is precisely the <strong>0/1 knapsack problem with two constraints</strong> (<a href="#kellerer2004">
+  Kellerer et al., 2004
+</a>
+). The logic is simple, but the combinations can be overwhelming without computational help. That&rsquo;s where optimization libraries and AI to scaffold the boilerplate come in.</p>
 <h2 id="modeling-the-problem">Modeling the Problem</h2>
 <p>To simulate the problem accurately (but tractably), we make the following simplifications:</p>
 <p><strong>Assumptions:</strong></p>
@@ -249,10 +255,16 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 <li>Time and energy budgets are hard caps (no overdraw allowed).</li>
 <li>All values are known and <a class="glossary-term" href="/glossary/#deterministic" data-definition="Describes a model or process whose inputs completely determine its outcome, without randomness.">deterministic</a> (no surprises this week).</li>
 </ul>
-<p>With these assumptions, our task is to implement a <a class="glossary-term" href="/glossary/#binary-decision-variable" data-definition="A decision variable restricted to the values 0 and 1, commonly used to represent choices such as select or reject.">binary decision variable</a> for each meeting and solve a <a class="glossary-term" href="/glossary/#maximization" data-definition="An optimization objective that seeks the feasible solution producing the largest possible value of an objective function.">maximization problem</a> subject to dual constraints.</p>
+<p>With these assumptions, our task is to implement a <a class="glossary-term" href="/glossary/#binary-decision-variable" data-definition="A decision variable restricted to the values 0 and 1, commonly used to represent choices such as select or reject.">binary decision variable</a> for each meeting and solve a <a class="glossary-term" href="/glossary/#maximization" data-definition="An optimization objective that seeks the feasible solution producing the largest possible value of an objective function.">maximization problem</a> subject to dual constraints (<a href="#nemhauser1988">
+  Nemhauser &amp; Wolsey, 1988
+</a>
+).</p>
 <hr>
 <h2 id="using-ai-to-scaffold-the-code">Using AI to Scaffold the Code</h2>
-<p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong><a class="glossary-term" href="/glossary/#integer-linear-programming" data-definition="An optimization method in which the objective and constraints are linear and some or all decision variables are restricted to integer values.">ILP</a></strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong><a class="glossary-term" href="/glossary/#pulp" data-definition="An open-source Python library for defining and solving linear and integer optimization problems.">PuLP</a></strong>, a lightweight open-source Python library for <a class="glossary-term" href="/glossary/#integer-linear-programming" data-definition="An optimization method in which the objective and constraints are linear and some or all decision variables are restricted to integer values.">linear and integer programming</a> (ILP). It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
+<p>To save time, we&rsquo;ll lean on an AI assistant to scaffold the solver code. The trick is to phrase the prompt in terms of optimization jargon (<strong>knapsack</strong>, <strong><a class="glossary-term" href="/glossary/#integer-linear-programming" data-definition="An optimization method in which the objective and constraints are linear and some or all decision variables are restricted to integer values.">ILP</a></strong>, <strong>constraints</strong>) and be explicit about <strong>inputs/outputs</strong>. For the solver, we&rsquo;ll use <strong><a class="glossary-term" href="/glossary/#pulp" data-definition="An open-source Python library for defining and solving linear and integer optimization problems.">PuLP</a></strong>, an open-source Python library for <a class="glossary-term" href="/glossary/#integer-linear-programming" data-definition="An optimization method in which the objective and constraints are linear and some or all decision variables are restricted to integer values.">linear and integer programming</a> (ILP) (<a href="#mitchell2011">
+  Mitchell &amp; Muftakhidinov, 2011
+</a>
+). It&rsquo;s simple enough for quick experiments like this, yet powerful enough to express dual-constraint knapsack problems cleanly.</p>
 <p><strong>Prompt:</strong></p>
 <hr>
 <blockquote>
@@ -317,7 +329,10 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> attend, chosen_names, total_value, total_time, total_energy
 </span></span></code></pre></div><hr>
 <h3 id="under-the-hood-why-this-is-really-a-matrix-problem">Under the Hood: Why This Is Really a Matrix Problem</h3>
-<p>Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a <em><a class="glossary-term" href="/glossary/#constraint-matrix" data-definition="A matrix containing the coefficients that describe how decision variables participate in the constraints of an optimization model.">constraint matrix</a></em>.</p>
+<p>Even though we framed this as meetings and Python code, the solver is really working with matrices. Each meeting is a column, each rule (time budget, energy budget, mandatory meetings, overlaps) is a row, and the solver builds a big grid of numbers called a <em><a class="glossary-term" href="/glossary/#constraint-matrix" data-definition="A matrix containing the coefficients that describe how decision variables participate in the constraints of an optimization model.">constraint matrix</a></em> (<a href="#nemhauser1988">
+  Nemhauser &amp; Wolsey, 1988
+</a>
+).</p>
 <p>When you run the model, the solver crunches through that matrix using <a class="glossary-term" href="/glossary/#linear-algebra" data-definition="The branch of mathematics concerned with vectors, matrices, linear transformations, and the relationships among them.">linear algebra</a> techniques to find the best combination of 1s and 0s (attend vs skip). So while you don&rsquo;t see the math spelled out, the engine making it all work is pure matrix computation.</p>
 <hr>
 <h2 id="simulation-choosing-meetings">Simulation: Choosing Meetings</h2>
@@ -498,7 +513,10 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
 </span></span></code></pre></div><hr>
 <h2 id="what-we-learned">What We Learned</h2>
-<p>By modeling your calendar as a knapsack, you can quantify trade-offs instead of relying on gut feel. We also learned how to craft precise AI prompts that generate optimization code, and how to refine those prompts to add reporting and visualization. The big win: you now have a framework for saying no with math.</p>
+<p>By modeling your calendar as a knapsack, you can quantify trade-offs instead of relying on gut feel (<a href="#kellerer2004">
+  Kellerer et al., 2004
+</a>
+). We also learned how to craft precise AI prompts that generate optimization code, and how to refine those prompts to add reporting and visualization. The big win: you now have a framework for saying no with math.</p>
 <hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
 <p>Ready to push this further? Try these extensions:</p>
@@ -549,9 +567,32 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
   Download the full code on GitHub
 </a>
 </p>
+<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="dantzig1957" >
+            Dantzig, G. B. (1957). Discrete-variable extremum problems. <em>Operations Research, 5</em>(2), 266-288.
+            <a href="https://doi.org/10.1287/opre.5.2.266" target="_blank" rel="noopener noreferrer">https://doi.org/10.1287/opre.5.2.266</a>
+        </p>
+        <p class="post-reference"  id="kellerer2004" >
+            Kellerer, H., Pferschy, U., &amp; Pisinger, D. (2004). <em>Knapsack problems</em>. Springer.
+            <a href="https://doi.org/10.1007/978-3-540-24777-7" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/978-3-540-24777-7</a>
+        </p>
+        <p class="post-reference"  id="mitchell2011" >
+            Mitchell, M., &amp; Muftakhidinov, B. (2011). PuLP: A linear programming toolkit for Python.
+            <a href="https://github.com/coin-or/pulp" target="_blank" rel="noopener noreferrer">https://github.com/coin-or/pulp</a>
+        </p>
+        <p class="post-reference"  id="nemhauser1988" >
+            Nemhauser, G. L., &amp; Wolsey, L. A. (1988). <em>Integer and combinatorial optimization</em>. Wiley.
+            <a href="https://doi.org/10.1002/9781118627372" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/9781118627372</a>
+        </p>
+    </div>
+</section>
 
       </div>
     <footer class="post__footer">
@@ -561,6 +602,9 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 	<ul class="tags__list">
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/optimization/" rel="tag">optimization</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/productivity/" rel="tag">productivity</a>
 		</li>
 		<li class="tags__item">
 			<a class="tags__link btn" href="/tags/python/" rel="tag">Python</a>

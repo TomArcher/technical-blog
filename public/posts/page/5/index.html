@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Posts">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-08-22T06:00:00-07:00">
-  <meta itemprop="dateModified" content="2026-08-22T06:00:00-07:00">
+  <meta itemprop="datePublished" content="2026-08-25T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-08-25T00:00:00+00:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
@@ -128,59 +128,70 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/three-d-packing/" rel="bookmark">
-			From Ice Shows to Algorithms: Cracking the Truck-Packing Problem
+			<a href="/posts/how-large-language-models-learn/" rel="bookmark">
+			How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding
 			</a>
 		</h2>
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
-<p>One day, the controller asked me if I could code a system that took, as input, the trucks&rsquo; <strong>3D dimensions</strong> and the <strong>3D dimensions (and weight)</strong> of every object to be packed. Back in the <strong>Turbo Pascal</strong> era, exploring 3D packing was painful. Today, with <strong>Python</strong> and <strong>AI-assisted scaffolding</strong>, it&rsquo;s surprisingly approachable.</p>
+		<p>When you interact with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, the model seems to respond instantly relative to the question&rsquo;s degree of difficulty. What&rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.</p>
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/three-d-packing/">Read more…</a>
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-learn/">Read more…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/tfp-chatgpt/" rel="bookmark">
-			From Solow to ChatGPT: Why Total Factor Productivity Can&#39;t Keep Up With Generative AI
+			<a href="/posts/how-large-language-models-think/" rel="bookmark">
+			How Large Language Models (LLMs) Think: Turning Meaning into Math
 			</a>
 		</h2>
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<p>If ChatGPT can write code, summarize legal briefs, and help draft business strategies in seconds, why doesn&rsquo;t that show up in our productivity statistics?</p>
-<p>Economists have long relied on a metric called <strong><a class="glossary-term" href="/glossary/#total-factor-productivity" data-definition="An economic measure of the portion of output growth that cannot be explained by increases in measured inputs such as labor and capital.">Total Factor Productivity (TFP)</a></strong> to measure technological progress. But in an era of free digital tools and <a class="glossary-term" href="/glossary/#generative-ai" data-definition="Artificial intelligence systems designed to generate new content, such as text, images, audio, video, or code, in response to input.">generative AI</a>, TFP looks more like a rearview mirror than a windshield. It tells us a lot about the past, but almost nothing about where the economy is headed.</p>
+		<p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+  ChatGPT
+</a>
+ or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
+  Claude
+</a>
+, the model does not process words as language. It represents them as numbers.</p>
+<p>Each word, phrase, and code <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> becomes a vector — a list of real-valued coordinates within a <a class="glossary-term" href="/glossary/#high-dimensional-space" data-definition="A mathematical space containing many independent dimensions, allowing complex objects and relationships to be represented as vectors.">high-dimensional space</a>. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.</p>
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/tfp-chatgpt/">Read more…</a>
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-think/">Read more…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/rain-paradox/" rel="bookmark">
-			Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion
+			<a href="/posts/how-large-language-models-read-code/" rel="bookmark">
+			How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic
 			</a>
 		</h2>
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<p>Early in my programming career, I came across a coding challenge that stuck with me for many years:</p>
-<p>At the time, I didn&rsquo;t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn&rsquo;t about recursion or memory management. It was about <strong>getting wet</strong>, and <strong>how fast you move through falling rain</strong>.</p>
+		<p>Developers are accustomed to thinking about code in terms of <a class="glossary-term" href="/glossary/#syntax-semantics" data-definition="Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.">syntax and semantics</a>, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a>, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/rain-paradox/">Read more…</a>
+		<a class="list__footer-readmore btn" href="/posts/how-large-language-models-read-code/">Read more…</a>
 	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/posts/page/4/">«</a>
-	<span class="pagination__item pagination__item--current">5/5</span>
+	<span class="pagination__item pagination__item--current">5/8</span>
+	<a class="pagination__item pagination__item--next btn" href="/posts/page/6/">»</a>
 </div>
 
 			</div>

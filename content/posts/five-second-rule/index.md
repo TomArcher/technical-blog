@@ -21,9 +21,20 @@ whatYoullLearn = [
     "How calculus reveals the changing rate of germ transfer",
     "How Python can estimate when contamination crosses a chosen threshold"
 ]
+
+[[references]]
+key = "dawson2007"
+citation = "Dawson, P., Han, I., Cox, M., Black, C., & Simmons, L. (2007). Residence time and food contact time effects on transfer of *Salmonella Typhimurium* from tile, wood and carpet: Testing the five-second rule. *Journal of Applied Microbiology, 102*(4), 945-953."
+url = "https://doi.org/10.1111/j.1365-2672.2006.03171.x"
+
+[[references]]
+key = "miranda2016"
+citation = "Miranda, R. C., & Schaffner, D. W. (2016). Longer contact times increase cross-contamination of *Enterobacter aerogenes* from surfaces to food. *Applied and Environmental Microbiology, 82*(21), 6490-6496."
+url = "https://doi.org/10.1128/AEM.01838-16"
+
 +++
 
-You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong.  
+You know the story: drop a cookie on the kitchen floor, swoop in before five seconds are up, and declare it safe. It is comforting. It is also wrong ([Dawson et al., 2007](#dawson2007); [Miranda & Schaffner, 2016](#miranda2016)).  
 
 The truth is much more interesting than the myth. Germs do transfer gradually, but they are especially fast at the beginning. That means if you want to know whether your floor-cookie is still edible, you need to think in curves, not in timers. And curves are something we can model.
 
@@ -85,7 +96,7 @@ G'(t) = \rho \cdot A \cdot \alpha \cdot m \cdot s \cdot \beta \cdot e^{-\beta t}
 
 - At \\(t = 0\\), the derivative is at its maximum:
  \\(\rho A \alpha m s \beta\\). This is the steep initial slope, meaning most
- germs transfer right away.
+ germs transfer right away. Experimental work confirms that bacterial transfer can occur in less than one second ([Miranda & Schaffner, 2016](#miranda2016)).
 - As \\(t \to \infty\\), the derivative approaches zero. The curve flattens as the surface becomes saturated, and the rate of transfer slows down.
 
 From the math, we know that the first second is the dirtiest, and
@@ -143,6 +154,8 @@ def safe_time(
         return math.inf
     return -math.log(1 - L / gmax) / p.beta
 ```
+
+---
 
 ## Building Out Parameters
 
@@ -222,6 +235,8 @@ Germs after 10s: 79.97
 Safe time for L=50.0 germs: 1.23s
 ```
 
+---
+
 ## Making the Results Visual
 
 {{< lightbox
@@ -282,13 +297,17 @@ def plot_results(
     plt.show()
 ```
 
+---
+
 ## What We Learned
 
-- Germ transfer is immediate. There is no magical pause.  
+- Germ transfer is immediate. There is no magical pause ([Miranda & Schaffner, 2016](#miranda2016)).  
 - The first second is the dirtiest, since the curve rises steeply at the start.  
 - After a few seconds, the food is already near its "germ ceiling." Waiting longer adds little.  
 
 From the AI side, we saw how careful prompting matters. The clearer the assumptions, the better the generated scaffold. By wrapping parameters in a class and writing helper functions, we turned a fragile script into a reusable model.
+
+---
 
 ## Exercises for the Reader
 
@@ -310,10 +329,16 @@ From the AI side, we saw how careful prompting matters. The clearer the assumpti
 2. **Climate effects:** Let β vary with humidity.  
 3. **{{< term "monte-carlo-simulation" "Monte Carlo" >}}:** Run 1,000 drops and chart the spread.  
 
+---
+
 ## Closing Thoughts
 
-Next time you drop a cookie, don’t chant "five seconds" like a protective spell. Germs don't wait for your permission. Transfer begins the instant food hits the floor.
+Next time you drop a cookie, don’t chant "five seconds" like a protective spell. Germs don't wait for your permission. Transfer can begin essentially as soon as food contacts the floor ([Dawson et al., 2007](#dawson2007); [Miranda & Schaffner, 2016](#miranda2016)).
+
+---
 
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/five-second-rule-explored)
+
+---

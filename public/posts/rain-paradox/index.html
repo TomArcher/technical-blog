@@ -33,7 +33,7 @@ At the time, I didn’t have the skillset or tools to simulate the problem prope
 At the time, I didn’t have the skillset or tools to simulate the problem properly. It became one of the first exercises that nudged me toward a lifelong fascination with modeling the real world through code. The problem wasn’t about recursion or memory management. It was about getting wet, and how fast you move through falling rain.">
   <meta itemprop="datePublished" content="2025-08-18T09:00:00-07:00">
   <meta itemprop="dateModified" content="2025-08-18T09:00:00-07:00">
-  <meta itemprop="wordCount" content="1908">
+  <meta itemprop="wordCount" content="1999">
   <meta itemprop="keywords" content="Physics,Probability,Python">
 		
   <meta name="twitter:card" content="summary">
@@ -235,7 +235,13 @@ You have two options:</p>
 <li><strong>Walk</strong> - exposes you to more rain from above.</li>
 <li><strong>Run</strong> - reduces vertical exposure but increases the number of raindrops hitting your front.</li>
 </ul>
-<p>Which gets you wetter?</p>
+<p>Which gets you wetter? The question has been treated mathematically in the physics literature for decades (<a href="#bell1967">
+  Bell, 1967
+</a>
+; <a href="#stern1972">
+  Stern, 1972
+</a>
+).</p>
 <p>The paradox lies in competing intuitions:</p>
 <ul>
 <li>More time in rain = more wetness.</li>
@@ -252,7 +258,13 @@ You have two options:</p>
 <li>Rain falls vertically at a uniform density.</li>
 <li>You&rsquo;re a rectangular block moving at constant speed.</li>
 <li>Getting wet = the number of raindrops hitting you from the top and the front.</li>
-<li>Rain hits the top based on time exposed, and the front based on distance traveled.</li>
+<li>Rain hits the top based on time exposed, and the front based on distance traveled. This separation between exposure from above and frontal interception is consistent with classic mathematical treatments of the problem (<a href="#bell1967">
+  Bell, 1967
+</a>
+; <a href="#stern1972">
+  Stern, 1972
+</a>
+).</li>
 <li>Rain from behind and sides is ignored.</li>
 </ul>
 <p>This converts the real-world complexity into a <a class="glossary-term" href="/glossary/#discrete-model" data-definition="A mathematical or computational model that represents a system using distinct values, states, events, or time steps rather than continuously varying quantities.">discrete physical model</a> driven by <a class="glossary-term" href="/glossary/#surface-area" data-definition="The total area of the exposed surfaces of a three-dimensional object.">surface area</a>, <a class="glossary-term" href="/glossary/#velocity" data-definition="A vector quantity describing both the speed and direction of an object&#39;s motion.">velocity</a>, and time.</p>
@@ -460,7 +472,13 @@ a horizontal asymptote for the minimum frontal-only exposure.
 </span></span><span style="display:flex;"><span>    plt<span style="color:#ff79c6">.</span>show()
 </span></span></code></pre></div><hr>
 <h2 id="what-we-learned">What We Learned</h2>
-<p><strong>Running gets you less wet, consistently.</strong> The longer you spend under the rain, the more water lands on your head and shoulders. By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.</p>
+<p><strong>Running gets you less wet, consistently, under the assumptions of this model.</strong> The longer you spend under vertically falling rain, the more water lands on your head and shoulders, a result consistent with classic analyses of the rain problem (<a href="#bell1967">
+  Bell, 1967
+</a>
+; <a href="#stern1972">
+  Stern, 1972
+</a>
+). By running, you reduce that exposure time, which significantly cuts down on the amount of rain hitting you from above.</p>
 <p>However, there&rsquo;s a tradeoff. As you speed up, you collide with more raindrops from the front. At first, the gains from reduced top-down exposure far outweigh the cost of increased frontal hits. But as your speed continues to climb, you start to hit a point of diminishing returns: you&rsquo;re still getting wetter from the front, and there&rsquo;s less time savings left to gain. No matter how fast you go, you&rsquo;ll always collide with some rain from the front, but you can reduce how long rain hits you from above.</p>
 <hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
@@ -512,7 +530,7 @@ while long distances magnify the benefits. Make a table or plot that
 compares these cases.</li>
 </ol>
 <hr>
-<h3 id="advanced-level-environment--hahahugoshortcode21s9hbhb">Advanced Level: Environment &amp; <a class="glossary-term" href="/glossary/#stochastic" data-definition="Involving randomness or probability rather than producing a completely deterministic outcome.">Stochasticity</a></h3>
+<h3 id="advanced-level-environment--hahahugoshortcode143s9hbhb">Advanced Level: Environment &amp; <a class="glossary-term" href="/glossary/#stochastic" data-definition="Involving randomness or probability rather than producing a completely deterministic outcome.">Stochasticity</a></h3>
 <ol>
 <li><strong>Wind:</strong> Add a horizontal wind component. Now raindrops fall at an angle
 (<a class="glossary-term" href="/glossary/#vector" data-definition="An ordered list of numerical values that can represent an object, direction, or position in a multidimensional space.">vector</a> ((u, 0, -fall_speed))), so the effective frontal area changes.
@@ -523,7 +541,10 @@ with a <a class="glossary-term" href="/glossary/#poisson-process" data-definitio
 the person’s projected area. Run many trials and average the results to
 approximate the analytic model. This adds randomness to the story.</li>
 <li><strong>Drop size distribution:</strong> Sample raindrop diameters from a realistic
-distribution (meteorology papers often use <a class="glossary-term" href="/glossary/#log-normal-distribution" data-definition="A probability distribution for a positive-valued variable whose logarithm follows a normal distribution.">log-normal</a>). Larger drops carry
+distribution. A classic empirical model is the Marshall-Palmer exponential raindrop-size distribution (<a href="#marshall1948">
+  Marshall &amp; Palmer, 1948
+</a>
+). Larger drops carry
 more volume and can be weighted more heavily in the wetness score. Try
 mixing small drizzle with a few large drops to see how totals shift.</li>
 </ol>
@@ -531,17 +552,44 @@ mixing small drizzle with a few large drops to see how totals shift.</li>
 <h2 id="closing-thoughts">Closing Thoughts</h2>
 <p>This problem isn&rsquo;t just about physics or weather. It&rsquo;s about <strong>thinking like a programmer</strong>, and today, that increasingly means knowing how to work with AI.</p>
 <p>Yesterday, we memorized algorithms and syntax. Today, we craft prompts, evaluate generated code, and refine it for real-world constraints. The tools have changed, but the mindset of modeling uncertainty, isolating variables, and iterating toward insight remains the same.</p>
-<p>So next time you&rsquo;re caught in a downpour, the answer is clear: <strong>run</strong>. The math doesn&rsquo;t lie, and neither does the rain.</p>
+<p>So next time you&rsquo;re caught in a downpour, under the article&rsquo;s simplifying assumptions, the answer is clear: <strong>run</strong> (<a href="#bell1967">
+  Bell, 1967
+</a>
+; <a href="#stern1972">
+  Stern, 1972
+</a>
+). The math doesn&rsquo;t lie, and neither does the rain.</p>
 <hr>
 <h2 id="try-it-yourself">Try It Yourself</h2>
 <p><a href="https://github.com/TomArcher/technical-blog-examples/tree/main/rain-paradox" target="_blank" rel="noopener noreferrer">
   Download the full code on GitHub
 </a>
 </p>
+<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
 
+    <div class="post-references__list">
+        <p class="post-reference"  id="bell1967" >
+            Bell, G. I. (1967). On the question: Should one run or walk in the rain? <em>American Journal of Physics, 35</em>(12), 1192-1193.
+            <a href="https://doi.org/10.1119/1.1973827" target="_blank" rel="noopener noreferrer">https://doi.org/10.1119/1.1973827</a>
+        </p>
+        <p class="post-reference"  id="marshall1948" >
+            Marshall, J. S., &amp; Palmer, W. M. K. (1948). The distribution of raindrops with size. <em>Journal of Meteorology, 5</em>(4), 165-166.
+            <a href="https://doi.org/10.1175/1520-0469%281948%29005%3C0165:TDORWS%3E2.0.CO;2" target="_blank" rel="noopener noreferrer">https://doi.org/10.1175/1520-0469(1948)005%3C0165:TDORWS%3E2.0.CO;2</a>
+        </p>
+        <p class="post-reference"  id="stern1972" >
+            Stern, A. C. (1972). Should you run or walk in the rain? <em>American Journal of Physics, 40</em>(4), 648-649.
+            <a href="https://doi.org/10.1119/1.1986605" target="_blank" rel="noopener noreferrer">https://doi.org/10.1119/1.1986605</a>
+        </p>
+    </div>
+</section>
+
+      <hr class="references-end">
+      
       </div>
     <footer class="post__footer">
       

@@ -32,7 +32,7 @@
   <meta itemprop="description" content="Developers are accustomed to thinking about code in terms of syntax and semantics, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a Large Language Model (LLM), reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.">
   <meta itemprop="datePublished" content="2025-10-06T09:00:00-07:00">
   <meta itemprop="dateModified" content="2025-10-06T09:00:00-07:00">
-  <meta itemprop="wordCount" content="1609">
+  <meta itemprop="wordCount" content="1687">
   <meta itemprop="keywords" content="AI,LLM,Probability,Tokenization">
 		
   <meta name="twitter:card" content="summary">
@@ -253,7 +253,10 @@
 </a>
 .</p>
 <p>The &ldquo;large&rdquo; in large language model refers to the scale of <a class="glossary-term" href="/glossary/#model-parameter" data-definition="A numerical value learned during training that influences how a model transforms inputs into outputs.">parameters</a> where billions of adjustable values tune how the model interprets and generates text.</p>
-<p>At its core, an LLM is a probability engine. It predicts the next most likely word or <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> based on the context of what came before. That simple act, repeated across billions of examples during training, is what gives these models the ability to sound fluent, coherent, and contextually aware.</p>
+<p>At its core, an LLM is a probability engine. It predicts the next most likely word or <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">token</a> based on the context of what came before (<a href="#vaswani2017">
+  Vaswani et al., 2017
+</a>
+). That simple act, repeated across billions of examples during training, is what gives these models the ability to sound fluent, coherent, and contextually aware.</p>
 <p>In other words, an LLM doesn&rsquo;t think about language; it <strong>models</strong> language itself.</p>
 <hr>
 <h2 id="syntax-as-pattern-not-rule">Syntax as Pattern, Not Rule</h2>
@@ -280,7 +283,10 @@
 
 </figure>
 
-<p>An LLM, by contrast, does not parse in the traditional sense. It tokenizes, compressing text by subword frequency rather than grammatical role, and then predicts one token at a time based on the statistical context of all previous tokens. The model &ldquo;understands&rdquo; that <code>return x * x</code> likely follows <code>def square(x):</code> because it has seen this pattern thousands of times across training corpora, not because it knows what multiplication does.</p>
+<p>An LLM, by contrast, does not parse in the traditional sense. It tokenizes text into learned units and predicts tokens from their statistical context rather than executing the program as a compiler does (<a href="#chen2021">
+  Chen et al., 2021
+</a>
+). The model &ldquo;understands&rdquo; that <code>return x * x</code> likely follows <code>def square(x):</code> because it has seen this pattern thousands of times across training corpora, not because it knows what multiplication does.</p>
 <p>In the language of probability, a compiler computes meaning deterministically; a model approximates it <a class="glossary-term" href="/glossary/#stochastic" data-definition="Involving randomness or probability rather than producing a completely deterministic outcome.">stochastically</a>.</p>
 <hr>
 <h2 id="the-shape-of-understanding">The Shape of Understanding</h2>
@@ -288,8 +294,14 @@
 <p>Consider the following prompt given to a model fine-tuned on code:</p>
 <pre tabindex="0"><code>&#34;def process_users(data):&#34;
 </code></pre><p>This becomes a dense vector in a high-dimensional <a class="glossary-term" href="/glossary/#embedding" data-definition="A numerical vector that represents a token or other object in a multidimensional space.">embedding space</a>. Nearby vectors might represent similar constructs like &ldquo;process_orders(data)&rdquo; or &ldquo;handle_clients(list).&rdquo;</p>
-<p>These proximity relationships are the raw materials of AI understanding. The closer two snippets lie in vector space, the more the model perceives them as semantically related, even when the model has no explicit representation of what a user or an order is.</p>
-<p>Embeddings compress the vast space of human logic into geometric analogies. Code with similar structure, naming, and flow tends to cluster, which is why renaming a variable or removing a comment can subtly shift a model&rsquo;s interpretation.</p>
+<p>These proximity relationships are the raw materials of AI understanding (<a href="#kanade2020">
+  Kanade et al., 2020
+</a>
+). The closer two snippets lie in vector space, the more the model perceives them as semantically related, even when the model has no explicit representation of what a user or an order is.</p>
+<p>Embeddings compress source-code information into learned geometric representations (<a href="#kanade2020">
+  Kanade et al., 2020
+</a>
+). Code with similar structure, naming, and flow tends to cluster, which is why renaming a variable or removing a comment can subtly shift a model&rsquo;s interpretation.</p>
 <hr>
 <h2 id="the-comment-paradox">The Comment Paradox</h2>
 <p>To illustrate, try this small experiment using the OpenAI API:</p>
@@ -313,20 +325,32 @@
 </span></span><span style="display:flex;"><span>    logprobs<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><p>The model will usually reply that the function &ldquo;sends a welcome email to all active users.&rdquo; Now remove the comment and run it again. The response will still be similar, but the <a class="glossary-term" href="/glossary/#probability-distribution" data-definition="A mathematical description of the possible outcomes of a random process and the probabilities associated with those outcomes.">probability distribution</a> shifts: the model&rsquo;s confidence in &ldquo;welcome email&rdquo; drops because the lexical hint vanished.</p>
-<p>Comments not only help humans; they also anchor semantic space for models. Embeddings are sensitive to natural language cues because language and code share the same token vocabulary. That is why consistent commenting style, clear naming, and logical spacing often yield more accurate AI-assisted explanations and refactorings.</p>
+<p>Comments not only help humans; models trained jointly on programming and natural languages can learn relationships between code and natural-language descriptions (<a href="#feng2020">
+  Feng et al., 2020
+</a>
+). Embeddings are sensitive to natural language cues because language and code share the same token vocabulary. That is why consistent commenting style, clear naming, and logical spacing often yield more accurate AI-assisted explanations and refactorings.</p>
 <hr>
 <h2 id="when-syntax-misleads-semantics">When Syntax Misleads Semantics</h2>
-<p>Because models learn from co-occurrence rather than execution, they sometimes <a class="glossary-term" href="/glossary/#hallucination" data-definition="Model-generated information that is unsupported by the available evidence or presented as factual despite being incorrect or fabricated.">hallucinate</a> logic. A variable named <code>result</code> near <code>sum()</code> nudges the model to assume aggregation, even if the code computes a difference. The model&rsquo;s &ldquo;understanding&rdquo; is weighted toward linguistic bias.</p>
+<p>Because models learn statistical regularities rather than executing code, generated or interpreted code can be plausible while still being functionally incorrect (<a href="#chen2021">
+  Chen et al., 2021
+</a>
+). A variable named <code>result</code> near <code>sum()</code> nudges the model to assume aggregation, even if the code computes a difference. The model&rsquo;s &ldquo;understanding&rdquo; is weighted toward linguistic bias.</p>
 <p>Take this example:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">calculate_difference</span>(a, b):
 </span></span><span style="display:flex;"><span>    result <span style="color:#ff79c6">=</span> a <span style="color:#ff79c6">+</span> b
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> result
 </span></span></code></pre></div><p>A human instantly spots the contradiction between the name and operation. A compiler does not care. An LLM, however, may explain this as &ldquo;subtracts one number from another,&rdquo; proving that its semantic space privileges pattern frequency over operational truth.</p>
-<p>Studies on code-focused transformers have shown that inconsistent or misleading identifiers measurably reduce prediction confidence, often by 15 to 25 percent, when evaluated through log-probability sampling. These results confirm that models internalize identifier semantics and exhibit instability when naming contradicts function.</p>
+<p>Studies of code-focused Transformers have shown that changing identifiers while preserving the underlying program semantics can substantially degrade model performance. Li et al. found that identifier transformations reduced performance across code completion, code search, and code summarization tasks, demonstrating how strongly these models can depend on identifier semantics <a href="#li2025">
+  Li et al., 2025
+</a>
+.</p>
 <hr>
 <h2 id="the-statistical-mind">The Statistical Mind</h2>
 <p>LLMs do not parse control flow; they predict control flow. When you type <code>for</code>, the model&rsquo;s top token candidates include <code>i</code>, <code>item</code>, and <code>user</code>. When it predicts <code>if user.is_active:</code>, it has learned a latent schema: &ldquo;loop + conditional + method call&rdquo; often ends in a side effect like <code>send_email(user)</code> or <code>update_status(user)</code>.</p>
-<p>That is not understanding in the compiler sense; it is associative modeling. But this statistical machinery is astonishingly effective because code follows social, not natural, evolution. Developers imitate idioms. AI imitates our imitation. Together, they form a feedback loop of probabilistic convention.</p>
+<p>That is not understanding in the compiler sense; it is associative modeling. But this statistical machinery is astonishingly effective because code follows social, not natural, evolution. Developers imitate idioms, and statistical models of code exploit this regularity (<a href="#allamanis2018">
+  Allamanis et al., 2018
+</a>
+). Together, they form a feedback loop of probabilistic convention.</p>
 <hr>
 <h2 id="from-tokens-to-intent">From Tokens to Intent</h2>
 <p>To see how deep this patterning goes, look at a model&rsquo;s <a class="glossary-term" href="/glossary/#log-probability" data-definition="The logarithm of a probability, commonly used in machine learning because it makes very small probabilities easier to compute with and combine.">log probabilities</a> for a simple prompt:</p>
@@ -337,7 +361,10 @@
 .)</p>
 <p>Now, consider a less common variant of the same prompt:</p>
 <pre tabindex="0"><code>&#34;def is_palindrome(s): return s == &#39;&#39;.join(reversed(s))&#34;
-</code></pre><p>Here, the probability distribution shifts. Both are correct, but one feels &ldquo;unnatural&rdquo; to the model. AI reads code with a memory of popularity, not authority.</p>
+</code></pre><p>Here, the probability distribution shifts. Both are correct, but one feels &ldquo;unnatural&rdquo; to the model. AI reads code through learned statistical regularities rather than an authoritative execution semantics (<a href="#allamanis2018">
+  Allamanis et al., 2018
+</a>
+).</p>
 <hr>
 <h2 id="the-compiler-and-the-poet">The Compiler and the Poet</h2>
 <p>A compiler knows exactly what your code does and cares nothing about what you meant. A language model knows approximately what you meant and nothing about what your code does.</p>
@@ -357,7 +384,10 @@
 <p>That subtle shift pushes the model&rsquo;s attention toward documentation-style patterns in embedding space, yielding more reliable summaries. Understanding this geometric reasoning, how nearby textual forms affect token probabilities, is becoming an essential literacy for AI-assisted programming.</p>
 <hr>
 <h2 id="when-probabilities-meet-production">When Probabilities Meet Production</h2>
-<p>Models that read code can accelerate onboarding, documentation, and even code review, but they introduce risk if developers mistake probability for proof. A suggestion may be statistically likely but logically wrong.</p>
+<p>Models that read code can accelerate programming tasks, but they introduce risk if developers mistake probability for proof (<a href="#chen2021">
+  Chen et al., 2021
+</a>
+). A suggestion may be statistically likely but logically wrong.</p>
 <p>In safety-critical domains such as finance, medicine, and infrastructure, LLMs should never operate without a deterministic verification layer. Tools that combine <a class="glossary-term" href="/glossary/#static-analysis" data-definition="The examination of source code for properties, errors, or vulnerabilities without executing the program.">static analysis</a> with generative suggestions, such as semantic linting or <a class="glossary-term" href="/glossary/#differential-testing" data-definition="A testing technique that compares the outputs of multiple implementations or executions to identify unexpected differences.">differential testing</a>, provide a bridge between the stochastic intuition of AI and the formal rigor of compilers.</p>
 <hr>
 <h2 id="toward-a-hybrid-intelligence">Toward a Hybrid Intelligence</h2>
@@ -368,7 +398,6 @@
 <p>After many years of writing software, I have come to realize that code is as cultural as it is logical. Every function carries fingerprints of habits, mentors, and languages long gone. Large language models do not understand code the way we do; they remember it, in the collective statistical sense. They compress decades of programming idioms into geometry.</p>
 <p>That is why an AI sometimes finishes your thought before you finish typing. It is not reading your mind; it is reading the echoes of every mind that came before you.</p>
 <p>And that, in its strange, approximate way, is a kind of understanding.</p>
-<hr>
 <p>If you&rsquo;d like to see how these ideas translate into math and geometry, continue with <a href="/posts/how-ai-turns-meaning-into-math/">
   Inside the Mind of a Model: How AI Turns Meaning into Math
 </a>
@@ -377,6 +406,36 @@
 
 
       
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="allamanis2018" >
+            Allamanis, M., Barr, E. T., Devanbu, P., &amp; Sutton, C. (2018). A survey of machine learning for big code and naturalness. <em>ACM Computing Surveys, 51</em>(4), Article 81.
+            <a href="https://doi.org/10.1145/3212695" target="_blank" rel="noopener noreferrer">https://doi.org/10.1145/3212695</a>
+        </p>
+        <p class="post-reference"  id="chen2021" >
+            Chen, M., Tworek, J., Jun, H., Yuan, Q., Pinto, H. P. de O., Kaplan, J., Edwards, H., Burda, Y., Joseph, N., Brockman, G., Ray, A., Puri, R., Krueger, G., Petrov, M., Khlaaf, H., Sastry, G., Mishkin, P., Chan, B., Gray, S., &hellip; Zaremba, W. (2021). Evaluating large language models trained on code. <em>arXiv preprint arXiv:2107.03374</em>.
+            <a href="https://arxiv.org/abs/2107.03374" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2107.03374</a>
+        </p>
+        <p class="post-reference"  id="feng2020" >
+            Feng, Z., Guo, D., Tang, D., Duan, N., Feng, X., Gong, M., Shou, L., Qin, B., Liu, T., Jiang, D., &amp; Zhou, M. (2020). CodeBERT: A pre-trained model for programming and natural languages. <em>Findings of the Association for Computational Linguistics: EMNLP 2020</em>, 1536-1547.
+            <a href="https://arxiv.org/abs/2002.08155" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2002.08155</a>
+        </p>
+        <p class="post-reference"  id="kanade2020" >
+            Kanade, A., Maniatis, P., Balakrishnan, G., &amp; Shi, K. (2020). Learning and evaluating contextual embedding of source code. <em>Proceedings of the 37th International Conference on Machine Learning, 119</em>, 5110-5121.
+            <a href="https://proceedings.mlr.press/v119/kanade20a.html" target="_blank" rel="noopener noreferrer">https://proceedings.mlr.press/v119/kanade20a.html</a>
+        </p>
+        <p class="post-reference"  id="li2025" >
+            Li, Y., Qi, S., Gao, C., Peng, Y., Lo, D., Xu, Z., &amp; Lyu, M. R. (2025). A closer look into Transformer-based code intelligence through code transformation: Challenges and opportunities. <em>IEEE Transactions on Software Engineering</em>.
+            <a href="https://arxiv.org/abs/2207.04285" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2207.04285</a>
+        </p>
+        <p class="post-reference"  id="vaswani2017" >
+            Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems, 30</em>.
+            <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1706.03762</a>
+        </p>
+    </div>
+</section>
 
       </div>
     <footer class="post__footer">

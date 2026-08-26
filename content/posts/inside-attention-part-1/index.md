@@ -23,18 +23,35 @@ whatYoullLearn = [
 ]
 
 [[references]]
+key = "clark2019"
 citation = "Clark, K., Khandelwal, U., Levy, O., & Manning, C. D. (2019). What does BERT look at? An analysis of BERT's attention. *Proceedings of the 2019 ACL Workshop BlackboxNLP: Analyzing and Interpreting Neural Networks for NLP.*"
 url = "https://arxiv.org/abs/1906.04341"
 
 [[references]]
+key = "elhage2021"
+citation = "Elhage, N., Nanda, N., Olsson, C., Henighan, T., Joseph, N., Mann, B., Askell, A., Bai, Y., Chen, A., Conerly, T., DasSarma, N., Drain, D., Ganguli, D., Hatfield-Dodds, Z., Hernandez, D., Jones, A., Kernion, J., Lovitt, L., Ndousse, K., ... Olah, C. (2021). A mathematical framework for transformer circuits. *Transformer Circuits Thread*."
+url = "https://transformer-circuits.pub/2021/framework/index.html"
+
+[[references]]
+key = "olsson2022"
+citation = "Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., Mann, B., Askell, A., Bai, Y., Chen, A., Conerly, T., Drain, D., Ganguli, D., Hatfield-Dodds, Z., Hernandez, D., Johnston, S., Jones, A., Kernion, J., Lovitt, L., ... Olah, C. (2022). In-context learning and induction heads. *Transformer Circuits Thread*."
+url = "https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html"
+
+[[references]]
+key = "vaswani2017"
 citation = "Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems, 30.*"
 url = "https://arxiv.org/abs/1706.03762"
+
+[[references]]
+key = "voita2019"
+citation = "Voita, E., Talbot, D., Moiseev, F., Sennrich, R., & Titov, I. (2019). Analyzing multi-head self-attention: Specialized heads do the heavy lifting, the rest can be pruned. *Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics.*"
+url = "https://arxiv.org/abs/1905.09418"
 
 +++
 
 The {{< term "transformer" "transformer architecture" >}} is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a {{< term "feedforward-network" "feedforward sublayer" >}}, wrapped in {{< term "residual-connection" "residual connections" >}} and {{< term "layer-normalization" "layer normalization" >}}. {{< term "positional-encoding" "Positional information" >}} is added to the input so the model knows what order the {{< term "token" "tokens" >}} came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.
 
-This post is the first of a three-part series on the attention mechanism. Part 1 covers {{< term "scaled-dot-product-attention" "scaled dot-product attention" >}}, why we divide by \\(\sqrt{d_k}\\), {{< term "multi-head-attention" "multi-head attention" >}}, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers masking and the function class it forces the model into, including how {{< term "causal-mask" "causal masking" >}} turns self-attention into the foundation of {{< term "autoregressive" "autoregressive" >}} next-token prediction. Part 3 covers the engineering layer: {{< term "kv-cache" "KV caching" >}}, {{< term "multi-query-attention" "multi-query" >}} and {{< term "grouped-query-attention" "grouped-query attention" >}}, {{< term "sliding-window-attention" "sliding window attention" >}}, and {{< term "flash-attention" "Flash Attention" >}}.
+This post is the first of a three-part series on the attention mechanism. Part 1 covers {{< term "scaled-dot-product-attention" "scaled dot-product attention" >}}, why we divide by \\(\sqrt{d_k}\\), {{< term "multi-head-attention" "multi-head attention" >}}, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers {{< term "masking" "masking" >}} and the function class it forces the model into, including how {{< term "causal-mask" "causal masking" >}} turns self-attention into the foundation of {{< term "autoregressive" "autoregressive" >}} next-token prediction. Part 3 covers the engineering layer: {{< term "kv-cache" "KV caching" >}}, {{< term "multi-query-attention" "multi-query" >}} and {{< term "grouped-query-attention" "grouped-query attention" >}}, {{< term "sliding-window-attention" "sliding window attention" >}}, and {{< term "flash-attention" "Flash Attention" >}}.
 
 The 2017 paper, [Attention Is All You Need](#vaswani2017) is the seed of this series. The mechanism it described is small and elegant enough to fit on a page. Everything since has been the tree growing out of it: the core mathematics has held up, while the deployed system has acquired layers the paper did not anticipate. Part 1 stays close to the seed. Parts 2 and 3 walk the branches.
 
@@ -400,7 +417,7 @@ Most of what happens inside attention is still not interpretable. The work since
 
 The [2017 paper](#vaswani2017) is small. What we have learned about the mechanism since then is large. The table below maps each component of the operation to what we now understand it to provide.
 
-### Mechanism Component	What It Provides
+### Mechanism Component: What It Provides
 
 - **Q, K, V split**: Independent control over query, match target, and value contribution
 - **\\(\sqrt{d_k}\\) scaling**: Variance normalization that keeps softmax in a trainable regime
@@ -425,31 +442,5 @@ Part 3 then turns to the production stack. The mechanism in this post does not r
 The [2017 paper](#vaswani2017) gave us an operation that fits on a page. What we have learned since is that this operation is more capable than its inventors fully knew. The \\(\sqrt{d_k}\\) scaling has a derivation behind its one-sentence justification. Multi-head attention turned out to be a substrate for emergent algorithms, not just a way to mix similarity functions. Specific circuits like induction heads now have mechanistic explanations, and those explanations are part of how we understand in-context learning at all.
 
 Attention is one equation. Understanding what it does is the work of the years that followed. The discrete math post in this series argued that calculus, linear algebra, probability, and discrete mathematics are not separate subjects in modern AI but interconnected views of the same structures. Attention is the cleanest place to see that argument made concrete. It is a linear algebra operation, a probability distribution, a soft predicate, and a substrate for learned algorithms, all at once. Part 2 will look at what that substrate is allowed to see, and what changes when we restrict its view.
-
----
-
-## Further Reading
-
-These are the primary sources behind the architecture and mechanistic interpretability findings discussed above.
-
-<p id="clark2019" style="margin-left: 2em; text-indent: -2em;">
-Clark, K., Khandelwal, U., Levy, O., &amp; Manning, C. D. (2019). What does BERT look at? An analysis of BERT's attention. <em>Proceedings of the 2019 ACL Workshop BlackboxNLP: Analyzing and Interpreting Neural Networks for NLP</em>. <a href="https://arxiv.org/abs/1906.04341">https://arxiv.org/abs/1906.04341</a>
-</p>
-
-<p id="elhage2021" style="margin-left: 2em; text-indent: -2em;">
-Elhage, N., Nanda, N., Olsson, C., Henighan, T., Joseph, N., Mann, B., Askell, A., Bai, Y., Chen, A., Conerly, T., DasSarma, N., Drain, D., Ganguli, D., Hatfield-Dodds, Z., Hernandez, D., Jones, A., Kernion, J., Lovitt, L., Ndousse, K., ... Olah, C. (2021). A mathematical framework for transformer circuits. <em>Transformer Circuits Thread</em>. <a href="https://transformer-circuits.pub/2021/framework/index.html">https://transformer-circuits.pub/2021/framework/index.html</a>
-</p>
-
-<p id="olsson2022" style="margin-left: 2em; text-indent: -2em;">
-Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., Mann, B., Askell, A., Bai, Y., Chen, A., Conerly, T., Drain, D., Ganguli, D., Hatfield-Dodds, Z., Hernandez, D., Johnston, S., Jones, A., Kernion, J., Lovitt, L., ... Olah, C. (2022). In-context learning and induction heads. <em>Transformer Circuits Thread</em>. <a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html</a>
-</p>
-
-<p id="vaswani2017" style="margin-left: 2em; text-indent: -2em;">
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems, 30</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
-</p>
-
-<p id="voita2019" style="margin-left: 2em; text-indent: -2em;">
-Voita, E., Talbot, D., Moiseev, F., Sennrich, R., &amp; Titov, I. (2019). Analyzing multi-head self-attention: Specialized heads do the heavy lifting, the rest can be pruned. <em>Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics</em>. <a href="https://arxiv.org/abs/1905.09418">https://arxiv.org/abs/1905.09418</a>
-</p>
 
 ---

@@ -21,6 +21,27 @@ whatYoullLearn = [
     "How kinematics can turn a familiar driving rule into a mathematical model",
     "How Python can simulate and visualize safe following times across speeds and road conditions"
 ]
+
+
+[[references]]
+key = "aashto2018"
+citation = "American Association of State Highway and Transportation Officials. (2018). *A policy on geometric design of highways and streets* (7th ed.)."
+url = "https://store.transportation.org/Item/CollectionDetail?ID=180"
+
+[[references]]
+key = "green2000"
+citation = "Green, M. (2000). How long does it take to stop? Methodological analysis of driver perception-brake times. *Transportation Human Factors, 2*(3), 195-216."
+url = "https://doi.org/10.1207/STHF0203_1"
+
+[[references]]
+key = "nhtsa2009"
+citation = "National Highway Traffic Safety Administration. (2009). *Driver electronic device use in 2008* (DOT HS 811 184). U.S. Department of Transportation."
+url = "https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/811184"
+
+[[references]]
+key = "young2011"
+citation = "Young, D. E., Birrell, S. A., & Stanton, N. A. (2011). Safe driving in a green world: A review of driver performance benchmarks and technologies to support 'smart' driving. *Applied Ergonomics, 42*(4), 533-539."
+url = "https://doi.org/10.1016/j.apergo.2010.08.012"
 +++
 
 While researching why car insurance rates are so extremely high in Las Vegas, I started thinking about the **{{< term "three-second-rule" "three-second rule" >}}** and its validity. As I've always heard, the three-second rule refers to how far you should be behind a car in traffic. The idea is that you pick out a fixed roadside marker and you are supposed to pass that marker at least three seconds after the car in front of you. That rule is simple enough, yet deceptively deep once you unpack the physics.
@@ -30,9 +51,9 @@ I have always found that kind of rule fascinating because it is both universal a
 
 ## The Thought Experiment
 
-Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn't just brake; it **comes to an immediate stop** after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. The question becomes: how much **{{< term "time-headway" "time headway" >}}** (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?
+Imagine two cars traveling in a straight line, one following the other at highway speed. The lead car doesn't just brake; it **comes to an immediate stop** after colliding with another vehicle or barrier. The following driver has no warning and can only react after realizing what happened and pressing the brakes. Delays in driver attention and response are therefore central to the scenario ([Green, 2000](#green2000); [National Highway Traffic Safety Administration, 2009](#nhtsa2009)). The question becomes: how much **{{< term "time-headway" "time headway" >}}** (in seconds) does that driver need to avoid becoming the second or even third car in a chain-reaction crash?
 
-This scenario is far harsher than the standard "braking distance" example you see in driver's ed. When the lead car stops instantly, there's no gradual {{< term "deceleration" "deceleration" >}}, no brake lights glowing in time to react; there's just physics and the driver's delay. In this version, {{< term "reaction-time" "reaction time" >}} dominates everything. Every tenth of a second eats up more road, and if the following car's tires or brakes aren't perfect, even three seconds might not be enough.
+This scenario is far harsher than the standard "braking distance" example you see in driver's ed. When the lead car stops instantly, there's no gradual {{< term "deceleration" "deceleration" >}}, no brake lights glowing in time to react; there's just physics and the driver's delay. In this version, {{< term "reaction-time" "reaction time" >}} dominates everything. Every tenth of a second eats up more road, and perception-response time varies substantially with the driver and situation ([Green, 2000](#green2000)). If the following car's tires or brakes aren't perfect, even three seconds might not be enough under this article's severe instant-stop assumption.
 
 ---
 
@@ -47,7 +68,7 @@ To make the problem solvable, we model the leader's **instantaneous stop** as ha
 3. The follower continues at full speed during the reaction delay, then begins braking at a constant rate.
 4. The goal is to find the minimum headway time (in seconds) or distance (in feet) needed to prevent impact.
 
-The follower's {{< term "stopping-distance" "stopping distance" >}} is given by the classic [{{< term "kinematics" "kinematic" >}}](https://en.wikipedia.org/wiki/Kinematics) equation:
+The follower's {{< term "stopping-distance" "stopping distance" >}} follows from constant-acceleration {{< term "kinematics" "kinematics" >}}, with total stopping distance consisting of distance traveled during perception-reaction plus braking distance ([Green, 2000](#green2000); [American Association of State Highway and Transportation Officials, 2018](#aashto2018)):
 
 \\[
 d_F = v\tau + \frac{v^2}{2a_F}
@@ -264,7 +285,7 @@ plot_headway_curves(speeds_plot, plot_conditions, tau=1.5, rule_sec=3.0)
 
 The three-second rule is designed for normal **shared deceleration** scenarios, where both the lead car and trailing car slow at roughly the same rate. In that situation, the gap scales nicely with speed because each car's braking distance grows with the square of velocity, and both are still moving while braking. Both take longer to stop, but they take longer together.
 
-In an **instantaneous stop** scenario, though, the lead car doesn't slow; it disappears from the equation. Only the trailing car continues moving, and that changes everything. When speed doubles, {{< term "kinetic-energy" "kinetic energy" >}} (and thus required stopping distance) goes up by a factor of four, but reaction delay still burns the same fixed amount of time. At 70 mph, you travel about 100 feet every second, so 1.5 seconds of reaction time eats up 150 feet before your brakes even engage. By the time you begin slowing, you've already closed most of the "three-second" buffer.
+In an **instantaneous stop** scenario, though, the lead car doesn't slow; it disappears from the equation. Only the trailing car continues moving, and that changes everything. When speed doubles, {{< term "kinetic-energy" "kinetic energy" >}} (and thus required stopping distance) goes up by a factor of four, but reaction delay still burns the same fixed amount of time. At 70 mph, you travel about 103 feet every second, so the model's assumed 1.5-second reaction time consumes about 154 feet before braking begins. The choice of reaction time is a modeling assumption; empirical perception-brake times vary with circumstances ([Green, 2000](#green2000)). By the time you begin slowing, you've already closed most of the "three-second" buffer.
 
 A constant time gap assumes shared deceleration. Once you remove that assumption, it stops being a safety cushion and becomes a countdown. The three-second rule scales fine for shared braking, but not for the catastrophic instant-stop case we modeled.
 
@@ -290,7 +311,7 @@ The point of this model isn’t just driving safety; it’s how quickly a simple
 
 1. **{{< term "monte-carlo-simulation" "Monte Carlo simulation" >}}**: Randomize reaction time, braking rates, and initial speeds to simulate thousands of driver pairs and estimate {{< term "collision-probability" "collision probability" >}}.
 
-1. **Sensor delay modeling**: Add an extra 0.2-second lag for radar-based adaptive cruise control and see whether "three seconds" still holds.
+1. **Sensor delay modeling**: Add a hypothetical sensor/control lag for adaptive cruise control and see how additional delay changes the required headway. Driver-assistance technologies can alter the timing and workload of the driving task ([Young et al., 2011](#young2011)).
 
 ---
 

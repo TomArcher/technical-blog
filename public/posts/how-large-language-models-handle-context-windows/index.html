@@ -35,7 +35,7 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 But here’s the uncomfortable truth: the model doesn’t remember anything. It’s not storing your conversation in memory the way a database would. Instead, it’s rereading the entire conversation from the beginning every single time you send a message.">
   <meta itemprop="datePublished" content="2025-11-10T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-10T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3693">
+  <meta itemprop="wordCount" content="3364">
   <meta itemprop="keywords" content="AI,Attention Mechanisms,Context Windows,LLM,Transformers">
 		
   <meta name="twitter:card" content="summary">
@@ -425,7 +425,7 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 <h3 id="2-summarization"><strong>2. Summarization</strong></h3>
 <p>Some systems automatically summarize older portions of the conversation and replace them with condensed versions in what gets sent to the API.</p>
 <p><strong>Problem:</strong> Summarization is lossy. Nuance, specific examples, and precise wording disappear. The model is now reasoning over <em>a summary of your conversation</em> rather than your actual words.</p>
-<h3 id="3-hahahugoshortcode9s12hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
+<h3 id="3-hahahugoshortcode112s12hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
 <p>The application stores the full conversation in an external database and retrieves relevant chunks to include in the API call.</p>
 <p><strong>Problem:</strong> Retrieval is imperfect. The system has to guess which past messages are relevant. It might retrieve the wrong context or miss critical information.</p>
 <hr>
@@ -675,84 +675,51 @@ Long-term context may eventually blend neural pattern recognition with symbolic 
 </a>
 </p>
 <hr>
-<h2 id="further-reading">Further Reading</h2>
-<p>If you want to dive deeper into the mathematics and architecture of context windows:</p>
-<p><a id="alammar2018"></a></p>
-<ul>
-<li>Alammar, J. (2018). <a href="http://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer">
-  The Illustrated Transformer
-</a>
-.<br>
-<em>Excellent visual explanation of attention mechanisms and how transformers process sequences. Highly accessible introduction to the concepts.</em></li>
-</ul>
-<p><a id="dai2019"></a></p>
-<ul>
-<li>Dai, Z., Yang, Z., Yang, Y., et al. (2019). <a href="https://arxiv.org/abs/1901.02860" target="_blank" rel="noopener noreferrer">
-  Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context
-</a>
-. <em>Proceedings of ACL 2019</em>.<br>
-<em>Proposes techniques for extending context beyond fixed windows, including relative positional encodings and segment-level recurrence.</em></li>
-</ul>
-<p><a id="gu2023"></a></p>
-<ul>
-<li>Gu, A., &amp; Dao, T. (2023). <a href="https://arxiv.org/abs/2312.00752" target="_blank" rel="noopener noreferrer">
-  Mamba: Linear-Time Sequence Modeling with Selective State Spaces
-</a>
-. <em>arXiv preprint</em>.<br>
-<em>Introduces state space models that achieve linear-time processing while maintaining competitive performance with transformers.</em></li>
-</ul>
-<p><a id="jiang2023"></a></p>
-<ul>
-<li>Jiang, Z., et al. (2023). <a href="https://arxiv.org/abs/2310.05736" target="_blank" rel="noopener noreferrer">
-  LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models
-</a>
-. <em>arXiv preprint</em>.<br>
-<em>Introduces prompt compression techniques that maintain semantic meaning while reducing token count.</em></li>
-</ul>
-<p><a id="liu2023"></a></p>
-<ul>
-<li>Liu, N. F., Lin, K., Hewitt, J., et al. (2023). <a href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">
-  Lost in the Middle: How Language Models Use Long Contexts
-</a>
-. <em>arXiv preprint</em>.<br>
-<em>Empirical study showing that LLMs perform worst on information in the middle of very long contexts, with best performance at the beginning and end.</em></li>
-</ul>
-<p><a id="peng2023"></a></p>
-<ul>
-<li>Peng, B., Alcaide, E., Anthony, Q., et al. (2023). <a href="https://arxiv.org/abs/2305.13048" target="_blank" rel="noopener noreferrer">
-  RWKV: Reinventing RNNs for the Transformer Era
-</a>
-. <em>arXiv preprint</em>.<br>
-<em>Proposes a linear-complexity alternative to transformers that combines RNN efficiency with transformer-like performance.</em></li>
-</ul>
-<p><a id="shaw2018"></a></p>
-<ul>
-<li>Shaw, P., Uszkoreit, J., &amp; Vaswani, A. (2018). <a href="https://arxiv.org/abs/1803.02155" target="_blank" rel="noopener noreferrer">
-  Self-Attention with Relative Position Representations
-</a>
-. <em>Proceedings of NAACL-HLT 2018</em>.<br>
-<em>Introduces relative positional encodings that help models handle longer contexts more effectively.</em></li>
-</ul>
-<p><a id="tay2022"></a></p>
-<ul>
-<li>Tay, Y., Dehghani, M., Bahri, D., &amp; Metzler, D. (2022). <a href="https://dl.acm.org/doi/10.1145/3530811" target="_blank" rel="noopener noreferrer">
-  Efficient Transformers: A Survey
-</a>
-. <em>ACM Computing Surveys</em>, 55(6), 1-28.<br>
-<em>Comprehensive survey of attention alternatives and efficiency techniques for transformers, covering sparse attention, linear attention, and other scaling approaches.</em></li>
-</ul>
-<p><a id="vaswani2017"></a></p>
-<ul>
-<li>Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">
-  Attention Is All You Need
-</a>
-. <em>Advances in Neural Information Processing Systems</em>, 30.<br>
-<em>The foundational paper that introduced the Transformer architecture and the attention mechanism. Essential reading for understanding how context windows work mathematically.</em></li>
-</ul>
-<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="alammar2018" >
+            Alammar, J. (2018). The illustrated transformer.
+            <a href="http://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer">http://jalammar.github.io/illustrated-transformer/</a>
+        </p>
+        <p class="post-reference"  id="dai2019" >
+            Dai, Z., Yang, Z., Yang, Y., et al. (2019). Transformer-XL: Attentive language models beyond a fixed-length context. <em>Proceedings of ACL 2019</em>.
+            <a href="https://arxiv.org/abs/1901.02860" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1901.02860</a>
+        </p>
+        <p class="post-reference"  id="gu2023" >
+            Gu, A., &amp; Dao, T. (2023). Mamba: Linear-time sequence modeling with selective state spaces. <em>arXiv preprint</em>.
+            <a href="https://arxiv.org/abs/2312.00752" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2312.00752</a>
+        </p>
+        <p class="post-reference"  id="jiang2023" >
+            Jiang, Z., et al. (2023). LLMLingua: Compressing prompts for accelerated inference of large language models. <em>arXiv preprint</em>.
+            <a href="https://arxiv.org/abs/2310.05736" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2310.05736</a>
+        </p>
+        <p class="post-reference"  id="liu2023" >
+            Liu, N. F., Lin, K., Hewitt, J., et al. (2023). Lost in the middle: How language models use long contexts. <em>arXiv preprint</em>.
+            <a href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2307.03172</a>
+        </p>
+        <p class="post-reference"  id="peng2023" >
+            Peng, B., Alcaide, E., Anthony, Q., et al. (2023). RWKV: Reinventing RNNs for the transformer era. <em>arXiv preprint</em>.
+            <a href="https://arxiv.org/abs/2305.13048" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2305.13048</a>
+        </p>
+        <p class="post-reference"  id="shaw2018" >
+            Shaw, P., Uszkoreit, J., &amp; Vaswani, A. (2018). Self-attention with relative position representations. <em>Proceedings of NAACL-HLT 2018</em>.
+            <a href="https://arxiv.org/abs/1803.02155" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1803.02155</a>
+        </p>
+        <p class="post-reference"  id="tay2022" >
+            Tay, Y., Dehghani, M., Bahri, D., &amp; Metzler, D. (2022). Efficient transformers: A survey. <em>ACM Computing Surveys, 55</em>(6), 1-28.
+            <a href="https://dl.acm.org/doi/10.1145/3530811" target="_blank" rel="noopener noreferrer">https://dl.acm.org/doi/10.1145/3530811</a>
+        </p>
+        <p class="post-reference"  id="vaswani2017" >
+            Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems, 30</em>.
+            <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1706.03762</a>
+        </p>
+    </div>
+</section>
 
       </div>
     <footer class="post__footer">

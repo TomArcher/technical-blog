@@ -21,6 +21,42 @@ whatYoullLearn = [
     "How tokenization can cause surprising failures in spelling, letter counting, and unusual inputs",
     "Why token counts affect context limits, processing efficiency, and the cost of using an LLM"
 ]
+
+[[references]]
+key = "gage1994"
+citation = "Gage, P. (1994). A new algorithm for data compression. *C Users Journal, 12*(2)."
+url = "https://www.derczynski.com/papers/archive/BPE_Gage.pdf"
+
+[[references]]
+key = "kudo2018"
+citation = "Kudo, T., & Richardson, J. (2018). SentencePiece: A simple and language independent approach to subword tokenization. *Proceedings of EMNLP 2018*."
+url = "https://arxiv.org/abs/1808.06226"
+
+[[references]]
+key = "openai2023"
+citation = "OpenAI. (2023). Tokenizer tool."
+url = "https://platform.openai.com/tokenizer"
+
+[[references]]
+key = "radford2019"
+citation = "Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). Language models are unsupervised multitask learners. *OpenAI Technical Report*."
+url = "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"
+
+[[references]]
+key = "rumbelow2023"
+citation = "Rumbelow, J., & Watkins, M. (2023). SolidGoldMagikarp and other glitch tokens. *LessWrong*."
+url = "https://www.lesswrong.com/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation"
+
+[[references]]
+key = "sennrich2016"
+citation = "Sennrich, R., Haddow, B., & Birch, A. (2016). Neural machine translation of rare words with subword units. *Proceedings of ACL 2016*."
+url = "https://arxiv.org/abs/1508.07909"
+
+[[references]]
+key = "xue2022"
+citation = "Xue, L., Barua, A., Constant, N., et al. (2022). ByT5: Towards a token-free future with pre-trained byte-to-byte models. *Transactions of ACL 2022*."
+url = "https://arxiv.org/abs/2105.13626"
+
 +++
 
 When you type "I love programming" into ChatGPT, you might assume the model reads three words. It doesn't. It reads somewhere between three and seven tokens, depending on how the text is split.
@@ -586,39 +622,5 @@ When you understand tokenization:
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/how-large-language-models-tokenize-text)
-
----
-
-## Further Reading
-
-If you want to dive deeper into tokenization and its implications:
-
-<a id="gage1994"></a>
-- Gage, P. (1994). [A New Algorithm for Data Compression](https://www.derczynski.com/papers/archive/BPE_Gage.pdf). *C Users Journal*, 12(2).  
-  *The original Byte Pair Encoding paper from 1994, predating its use in NLP by two decades. Shows how compression algorithms became NLP tools.*
-
-<a id="kudo2018"></a>
-- Kudo, T., & Richardson, J. (2018). [SentencePiece: A simple and language independent approach to subword tokenization](https://arxiv.org/abs/1808.06226). *Proceedings of EMNLP 2018*.  
-  *Introduces SentencePiece, a language-agnostic tokenization library used by T5, LLaMA, and many modern models.*
-
-<a id="openai2023"></a>
-- OpenAI. (2023). [Tokenizer Tool](https://platform.openai.com/tokenizer).  
-  *Interactive web tool for visualizing how GPT models tokenize text. Essential for prompt engineering.*
-
-<a id="radford2019"></a>
-- Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). [Language Models are Unsupervised Multitask Learners](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf). *OpenAI Technical Report*.  
-  *The GPT-2 paper, which popularized byte-level BPE. See Section 2.2 for tokenization details.*
-
-<a id="rumbelow2023"></a>
-- Rumbelow, J., & Watkins, M. (2023). [SolidGoldMagikarp and other Glitch Tokens](https://www.lesswrong.com/posts/aPeJE8bSo6rAFoLqg/solidgoldmagikarp-plus-prompt-generation). *LessWrong*.  
-  *Community-driven investigation into glitch tokens in GPT-3. Fascinating deep dive into tokenization artifacts.*
-
-<a id="sennrich2016"></a>
-- Sennrich, R., Haddow, B., & Birch, A. (2016). [Neural Machine Translation of Rare Words with Subword Units](https://arxiv.org/abs/1508.07909). *Proceedings of ACL 2016*.  
-  *The foundational paper introducing BPE for neural networks. Essential reading for understanding why subword tokenization works.*
-
-<a id="xue2022"></a>
-- Xue, L., Barua, A., Constant, N., et al. (2022). [ByT5: Towards a token-free future with pre-trained byte-to-byte models](https://arxiv.org/abs/2105.13626). *Transactions of ACL 2022*.  
-  *Google's exploration of byte-level models without explicit tokenization. Points toward future architectures.*
 
 ---

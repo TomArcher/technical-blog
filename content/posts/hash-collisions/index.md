@@ -21,6 +21,97 @@ whatYoullLearn = [
     "When hash collisions matter for security and when they are harmless",
     "How crypto-agility helps systems survive when today's algorithms eventually fail"
 ]
+
+[[references]]
+key = "archer2005"
+citation = "Archer, T. (2005). Are hash codes unique? *Microsoft Developer Blogs*."
+url = "https://learn.microsoft.com/en-us/archive/blogs/tomarcher/are-hash-codes-unique"
+note = "My original 2005 post on hash collisions, preserved for historical perspective."
+
+[[references]]
+key = "aumasson2013"
+citation = "Aumasson, J. P., Neves, S., Wilcox-O'Hearn, Z., & Winnerlein, C. (2013). BLAKE2: Simpler, smaller, fast as MD5. *Proceedings of ACNS 2013*."
+url = "https://blake2.net/blake2.pdf"
+note = "Introduces BLAKE2, showing how modern hash functions can be both fast and secure."
+
+[[references]]
+key = "bertoni2013"
+citation = "Bertoni, G., Daemen, J., Peeters, M., & Van Assche, G. (2013). Keccak. *SHA-3 Competition Winner*."
+url = "https://keccak.team/files/Keccak-reference-3.0.pdf"
+note = "The SHA-3 specification, introducing the sponge construction that differs fundamentally from SHA-2."
+
+[[references]]
+key = "biryukov2016"
+citation = "Biryukov, A., Dinu, D., & Khovratovich, D. (2016). Argon2: New generation of memory-hard functions for password hashing and other applications. *Password Hashing Competition Winner*."
+url = "https://www.password-hashing.net/argon2-specs.pdf"
+note = "The winning algorithm of the Password Hashing Competition, now the gold standard for password storage."
+
+[[references]]
+key = "grover1996"
+citation = "Grover, L. K. (1996). A fast quantum mechanical algorithm for database search. *Proceedings of STOC 1996*."
+url = "https://arxiv.org/abs/quant-ph/9605043"
+note = "The foundational quantum algorithm that reduces hash function security from 2^n to 2^(n/2)."
+
+[[references]]
+key = "kaliski2000"
+citation = "Kaliski, B. (2000). PKCS #5: Password-based cryptography specification version 2.0. *RFC 2898*."
+url = "https://www.rfc-editor.org/rfc/rfc2898"
+note = "Defines PBKDF2, still widely used for password hashing in constrained environments."
+
+[[references]]
+key = "nakamoto2008"
+citation = "Nakamoto, S. (2008). Bitcoin: A peer-to-peer electronic cash system."
+url = "https://bitcoin.org/bitcoin.pdf"
+note = "The Bitcoin whitepaper, showing how hash functions became the foundation of a trillion-dollar economy."
+
+[[references]]
+key = "nist2022"
+citation = "NIST. (2022). NIST announces first four quantum-resistant cryptographic algorithms."
+url = "https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms"
+note = "The selected post-quantum algorithms that will replace current standards."
+
+[[references]]
+key = "oechslin2003"
+citation = "Oechslin, P. (2003). Making a faster cryptanalytic time-memory trade-off. *Proceedings of CRYPTO 2003*."
+url = "https://lasec.epfl.ch/pub/lasec/doc/Oech03.pdf"
+note = "Introduces rainbow tables, the attack that made simple password hashing obsolete."
+
+[[references]]
+key = "percival2009"
+citation = "Percival, C. (2009). Stronger key derivation via sequential memory-hard functions."
+url = "https://www.tarsnap.com/scrypt/scrypt.pdf"
+note = "The scrypt paper, pioneering memory-hard functions for password hashing."
+
+[[references]]
+key = "provos1999"
+citation = "Provos, N., & Mazières, D. (1999). A future-adaptable password scheme. *Proceedings of USENIX 1999*."
+url = "https://www.usenix.org/legacy/events/usenix99/provos/provos.pdf"
+note = "Introduces bcrypt, which remained secure for over 20 years through adaptive cost parameters."
+
+[[references]]
+key = "sotirov2008"
+citation = "Sotirov, A., Stevens, M., Appelbaum, J., Lenstra, A., Molnar, D., Osvik, D. A., & de Weger, B. (2008). MD5 considered harmful today: Creating a rogue CA certificate."
+url = "https://www.win.tue.nl/hashclash/rogue-ca/"
+note = "The practical attack that definitively killed MD5 for security applications."
+
+[[references]]
+key = "stevens2013"
+citation = "Stevens, M. (2013). New collision attacks on SHA-1 based on optimal joint local-collision analysis. *Proceedings of EUROCRYPT 2013*."
+url = "https://marc-stevens.nl/research/papers/EC13-S.pdf"
+note = "Theoretical foundation for the SHAttered attack that would come four years later."
+
+[[references]]
+key = "stevens2017"
+citation = "Stevens, M., Bursztein, E., Karpman, P., Albertini, A., & Markov, Y. (2017). The first collision for full SHA-1. *Proceedings of CRYPTO 2017*."
+url = "https://shattered.io/static/shattered.pdf"
+note = "The SHAttered attack paper that proved SHA-1 was practically broken."
+
+[[references]]
+key = "wang2005"
+citation = "Wang, X., & Yu, H. (2005). How to break MD5 and other hash functions. *Proceedings of EUROCRYPT 2005*."
+url = "https://iacr.org/cryptodb/archive/2005/EUROCRYPT/2868/2868.pdf"
+note = "The breakthrough that showed MD5 collisions could be found in hours, not centuries."
+
 +++
 
 In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: {{< term "hash-function" "hash functions" >}} don't create truly unique fingerprints ([Stevens et al., 2017](#stevens2017)). This "SHAttered" attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.
@@ -647,71 +738,5 @@ Twenty years from now, someone might be updating this post again, explaining why
 <div style="background-color: #f8f8f8; border-left: 4px solid #4CAF50; padding: 1em; margin: 1em 0;">
 <strong>Enhanced Code Samples Available!</strong> The repository includes runnable versions with timing comparisons, detailed output, and additional examples that demonstrate each concept in action. Each script can be run independently and includes explanatory output to reinforce the concepts from this post.
 </div>
-
----
-
-## Further Reading
-
-These resources provide historical perspectives, deeper technical details, and current best practices for those who want to explore further. The [SHAttered website](#stevens2017) includes the actual PDFs that collide, allowing you to verify the attack yourself. The OWASP guide is regularly updated as new threats emerge.
-
-<a id="archer2005"></a>
-- Archer, T. (2005). [Are Hash Codes Unique?](https://learn.microsoft.com/en-us/archive/blogs/tomarcher/are-hash-codes-unique). *Microsoft Developer Blogs*.  
-  *My original 2005 post on hash collisions, preserved for historical perspective.*
-
-<a id="aumasson2013"></a>
-- Aumasson, J. P., Neves, S., Wilcox-O'Hearn, Z., & Winnerlein, C. (2013). [BLAKE2: Simpler, smaller, fast as MD5](https://blake2.net/blake2.pdf). *Proceedings of ACNS 2013*.  
-  *Introduces BLAKE2, showing how modern hash functions can be both fast and secure.*
-
-<a id="bertoni2013"></a>
-- Bertoni, G., Daemen, J., Peeters, M., & Van Assche, G. (2013). [Keccak](https://keccak.team/files/Keccak-reference-3.0.pdf). *SHA-3 Competition Winner*.  
-  *The SHA-3 specification, introducing the sponge construction that differs fundamentally from SHA-2.*
-
-<a id="biryukov2016"></a>
-- Biryukov, A., Dinu, D., & Khovratovich, D. (2016). [Argon2: New generation of memory-hard functions for password hashing and other applications](https://www.password-hashing.net/argon2-specs.pdf). *Password Hashing Competition Winner*.  
-  *The winning algorithm of the Password Hashing Competition, now the gold standard for password storage.*
-
-<a id="grover1996"></a>
-- Grover, L. K. (1996). [A fast quantum mechanical algorithm for database search](https://arxiv.org/abs/quant-ph/9605043). *Proceedings of STOC 1996*.  
-  *The foundational quantum algorithm that reduces hash function security from 2^n to 2^(n/2).*
-
-<a id="kaliski2000"></a>
-- Kaliski, B. (2000). [PKCS #5: Password-Based Cryptography Specification Version 2.0](https://www.rfc-editor.org/rfc/rfc2898). *RFC 2898*.  
-  *Defines PBKDF2, still widely used for password hashing in constrained environments.*
-
-<a id="nakamoto2008"></a>
-- Nakamoto, S. (2008). [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf).  
-  *The Bitcoin whitepaper, showing how hash functions became the foundation of a trillion-dollar economy.*
-
-<a id="nist2022"></a>
-- NIST. (2022). [NIST Announces First Four Quantum-Resistant Cryptographic Algorithms](https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms).  
-  *The selected post-quantum algorithms that will replace current standards.*
-
-<a id="oechslin2003"></a>
-- Oechslin, P. (2003). [Making a faster cryptanalytic time-memory trade-off](https://lasec.epfl.ch/pub/lasec/doc/Oech03.pdf). *Proceedings of CRYPTO 2003*.  
-  *Introduces rainbow tables, the attack that made simple password hashing obsolete.*
-
-<a id="percival2009"></a>
-- Percival, C. (2009). [Stronger key derivation via sequential memory-hard functions](https://www.tarsnap.com/scrypt/scrypt.pdf).  
-  *The scrypt paper, pioneering memory-hard functions for password hashing.*
-
-<a id="provos1999"></a>
-- Provos, N., & Mazières, D. (1999). [A future-adaptable password scheme](https://www.usenix.org/legacy/events/usenix99/provos/provos.pdf). *Proceedings of USENIX 1999*.  
-  *Introduces bcrypt, which remained secure for over 20 years through adaptive cost parameters.*
-
-<a id="sotirov2008"></a>
-- Sotirov, A., Stevens, M., Appelbaum, J., Lenstra, A., Molnar, D., Osvik, D. A., & de Weger, B. (2008). [MD5 considered harmful today: Creating a rogue CA certificate](https://www.win.tue.nl/hashclash/rogue-ca/).  
-  *The practical attack that definitively killed MD5 for security applications.*
-
-<a id="stevens2013"></a>
-- Stevens, M. (2013). [New collision attacks on SHA-1 based on optimal joint local-collision analysis](https://marc-stevens.nl/research/papers/EC13-S.pdf). *Proceedings of EUROCRYPT 2013*.  
-  *Theoretical foundation for the SHAttered attack that would come four years later.*
-
-<a id="stevens2017"></a>
-- Stevens, M., Bursztein, E., Karpman, P., Albertini, A., & Markov, Y. (2017). [The first collision for full SHA-1](https://shattered.io/static/shattered.pdf). *Proceedings of CRYPTO 2017*.  
-  *The SHAttered attack paper that proved SHA-1 was practically broken.*
-
-<a id="wang2005"></a>
-- Wang, X., & Yu, H. (2005). [How to break MD5 and other hash functions](https://iacr.org/cryptodb/archive/2005/EUROCRYPT/2868/2868.pdf). *Proceedings of EUROCRYPT 2005*.  
-  *The breakthrough that showed MD5 collisions could be found in hours, not centuries.*
 
 ---

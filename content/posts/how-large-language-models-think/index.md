@@ -25,6 +25,32 @@ whatYoullLearn = [
     "Why high-dimensional spaces can represent many subtle features of language at once",
     "How probability guides a model from its current context toward the next token"
 ]
+
+
+[[references]]
+key = "mikolov2013"
+citation = "Mikolov, T., Chen, K., Corrado, G., & Dean, J. (2013). Efficient estimation of word representations in vector space. *arXiv preprint arXiv:1301.3781*."
+url = "https://arxiv.org/abs/1301.3781"
+
+[[references]]
+key = "mikolov2013linguistic"
+citation = "Mikolov, T., Yih, W.-t., & Zweig, G. (2013). Linguistic regularities in continuous space word representations. *Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies*, 746-751."
+url = "https://aclanthology.org/N13-1090/"
+
+[[references]]
+key = "pennington2014"
+citation = "Pennington, J., Socher, R., & Manning, C. D. (2014). GloVe: Global vectors for word representation. *Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)*, 1532-1543."
+url = "https://aclanthology.org/D14-1162/"
+
+[[references]]
+key = "vaswani2017"
+citation = "Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems, 30*."
+url = "https://arxiv.org/abs/1706.03762"
+
+[[references]]
+key = "ethayarajh2019"
+citation = "Ethayarajh, K. (2019). How contextual are contextualized word representations? Comparing the geometry of BERT, ELMo, and GPT-2 embeddings. *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)*, 55-65."
+url = "https://aclanthology.org/D19-1006/"
 +++
 
 When you enter a sentence into a {{< term "large-language-model" "Large Language Model (LLM)" >}} such as [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/new), the model does not process words as language. It represents them as numbers.
@@ -59,7 +85,7 @@ print(X.toarray())
  [1 0 1 1]]
 ```
 
-Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous {{< term "embedding" "embedding" >}}s instead of simple counts, but the principle is the same: text becomes math.
+Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous {{< term "embedding" "embedding" >}}s instead of simple counts, but the principle is the same: text becomes math ([Mikolov et al., 2013](#mikolov2013); [Pennington et al., 2014](#pennington2014)).
 
 ---
 
@@ -83,7 +109,7 @@ plot(vectors(:,1), vectors(:,2),'o');
 text(vectors(:,1)+0.02, vectors(:,2), words);
 ```
 
-This tiny example mimics one of the most famous discoveries in word embeddings:
+This tiny example mimics one of the most famous demonstrations of linguistic regularities in word embeddings ([Mikolov et al., 2013](#mikolov2013linguistic)):
 **king – man + woman ≈ queen.**
 
 Even though these are just coordinates, the geometry encodes analogy. That's the quiet miracle of embeddings where relations emerge from math alone.
@@ -104,7 +130,7 @@ So the geometry is not literal; it's emergent. The network doesn't draw shapes; 
 
 ## Eigenvectors: The Hidden Axes of Meaning
 
-Every linear transformation within an LLM, from attention weights to embedding updates, can be described as a matrix acting on vectors. But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by {{< term "eigenvector" "eigenvectors" >}}, and the amount of stretching or compression along them is determined by their {{< term "eigenvalue" "eigenvalues" >}}.
+Every linear transformation within an LLM, including the learned projections used by attention, can be described as a matrix acting on vectors ([Vaswani et al., 2017](#vaswani2017)). But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by {{< term "eigenvector" "eigenvectors" >}}, and the amount of stretching or compression along them is determined by their {{< term "eigenvalue" "eigenvalues" >}}.
 
 In an embedding space, you can think of eigenvectors as the hidden axes along which meaning varies most strongly. One direction might capture gender, another might capture tense, another might reflect tone or formality. These axes are not programmed; they emerge from training as the model learns to organize information in ways that minimize error.
 
@@ -126,7 +152,7 @@ In that sense, eigenvectors reveal the skeleton of understanding inside the mode
 
 ## Meaning as Direction
 
-In embedding space, the *direction* between vectors often means more than the coordinates themselves. For example:
+In embedding space, directions between vectors can encode linguistic regularities ([Mikolov et al., 2013](#mikolov2013linguistic)). For example:
 
 * Moving in one direction might represent **gender** (man → woman).
 * Another might represent **tense** (run → ran).
@@ -179,7 +205,7 @@ The code above doesn't generate real text; it illustrates the logic. The {{< ter
 
 If you've read *[How AI Reads Code](/posts/how-ai-reads-code)*, you might remember the phrase "{{< term "log-probability" "log probability" >}}." Log probability is a small mathematical trick with a big purpose.
 
-When a model predicts the next token, it doesn't make a single guess. It assigns a probability to every possible token that could come next, evaluating thousands of options, each with its own confidence score. For example, in a code context for implementing a palindrome check, the model might assign `s[::-1]` a probability of 0.93 (almost certain), `reversed(s)` a probability of 0.05, and everything else close to zero.
+When a model predicts the next token, it doesn't make a single guess. It assigns a probability distribution over the vocabulary, from which the next-token prediction is obtained ([Vaswani et al., 2017](#vaswani2017)). For example, in a code context for implementing a palindrome check, the model might assign `s[::-1]` a probability of 0.93 (almost certain), `reversed(s)` a probability of 0.05, and everything else close to zero.
 
 Multiplying those probabilities across long sequences quickly drives the numbers into infinitesimal fractions, making them computationally unstable. To avoid that instability, models work in logarithmic space, where multiplication becomes addition and tiny values remain manageable.
 
@@ -191,11 +217,11 @@ In other words, log probabilities do not change what the model believes. They si
 
 ## Why High Dimensions Matter
 
-It is easy to imagine this in two dimensions, but real models operate in thousands of dimensions. Why so many? Because meaning is not simple.
+It is easy to imagine this in two dimensions, but modern language representations operate in high-dimensional spaces whose geometry can encode substantial contextual information ([Ethayarajh, 2019](#ethayarajh2019)).
 
 In two dimensions, you can represent a few relationships, such as animals versus vehicles. In ten thousand dimensions, you can represent subtler unions: gender, tone, syntax, domain, even emotional valence.
 
-High-dimensional space lets models *encode complexity linearly*, turning abstract semantics into measurable geometry. That is why they can generalize across tasks, languages, and even programming paradigms.
+High-dimensional representations allow models to encode complex linguistic information in geometric relationships ([Ethayarajh, 2019](#ethayarajh2019)). That is why they can generalize across tasks, languages, and even programming paradigms.
 
 ---
 
@@ -216,8 +242,6 @@ Understanding embeddings turns the mystery of AI into something tangible. **When
 MATLAB and Python give us two lenses to explore that space: Python for the implementation, MATLAB for the math. Between the two, you can watch meaning become math in real time.
 
 And once you have seen that happen, the phrase *"AI understands"* feels less magical and far more human.
-
----
 
 Now that you have a basic overview of how LLMs think, if you'd like to see how LLMs learn, continue with [How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding](/posts/how-large-language-models-learn/).
 

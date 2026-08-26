@@ -34,7 +34,7 @@ It’s easy to think of SymPy only in academic terms, like running physics simul
 It’s easy to think of SymPy only in academic terms, like running physics simulations where small rounding errors can snowball into nonsense, or checking algebraic identities where a value such as 0.0000001 should really be treated as exactly 0. Those are valid use cases, but they barely scratch the surface.">
   <meta itemprop="datePublished" content="2025-09-05T11:45:00-07:00">
   <meta itemprop="dateModified" content="2025-09-05T11:45:00-07:00">
-  <meta itemprop="wordCount" content="1198">
+  <meta itemprop="wordCount" content="1285">
   <meta itemprop="keywords" content="Linear Algebra,Python,SymPy,Symbolic Math">
 		
   <meta name="twitter:card" content="summary">
@@ -240,10 +240,16 @@ It’s easy to think of SymPy only in academic terms, like running physics simul
 <p>This is where SymPy shines. To see the difference between <strong><a class="glossary-term" href="/glossary/#floating-point" data-definition="A numerical representation that approximates real numbers using a fixed number of significant digits and an exponent.">floating-point approximations</a></strong> (Python or NumPy) and <strong><a class="glossary-term" href="/glossary/#symbolic-computation" data-definition="Mathematical computation that manipulates expressions and exact values symbolically rather than approximating them numerically.">symbolic precision</a></strong> (SymPy), let&rsquo;s look at a simple but very real example from finance.</p>
 <hr>
 <h2 id="why-exact-math-matters-">Why Exact Math Matters 😱</h2>
-<p>In programming, &ldquo;close enough&rdquo; is often fine&hellip; until it isn&rsquo;t. Floating-point arithmetic, the system behind both Python&rsquo;s float type and NumPy arrays, represents numbers using the <a href="https://standards.ieee.org/ieee/754/6210/" target="_blank" rel="noopener noreferrer">
-  <a class="glossary-term" href="/glossary/#ieee-754" data-definition="The widely used technical standard that defines formats and behavior for floating-point arithmetic in computer systems.">IEEE-754</a>
+<p>In programming, &ldquo;close enough&rdquo; is often fine&hellip; until it isn&rsquo;t. Floating-point arithmetic, the system behind Python&rsquo;s <code>float</code> type and the standard floating-point types used by NumPy, follows IEEE 754 semantics. Many ordinary decimal fractions cannot be represented exactly in binary floating point, which produces small representation errors (<a href="#ieee2019">
+  IEEE, 2019
 </a>
- standard. That means many simple decimals can&rsquo;t be stored exactly, which leads to small but unavoidable errors. Most of the time those errors hide in the noise. But in finance, physics, or logistics, they can quietly compound into costly mistakes.</p>
+; <a href="#goldberg1991">
+  Goldberg, 1991
+</a>
+; <a href="#python-fp">
+  Python Software Foundation, n.d.
+</a>
+). Most of the time those errors hide in the noise. But in finance, physics, or logistics, they can quietly compound into costly mistakes.</p>
 <h3 id="finance-example-compound-interest">Finance Example: Compound Interest</h3>
 <p>Take a basic finance example: calculating compound interest on a $10,000 loan at 5 percent for 10 years.</p>
 <p><strong>NumPy / floats:</strong></p>
@@ -257,7 +263,10 @@ It’s easy to think of SymPy only in academic terms, like running physics simul
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(amount)  <span style="color:#6272a4"># 16288.946267774418</span>
 </span></span></code></pre></div><p>At first glance this looks fine. However, the trailing decimals come from accumulated floating-point approximations. Over thousands of accounts and decades of compounding, those tiny differences can add up to real money.</p>
 <p><strong>SymPy:</strong></p>
-<p>Instead of storing 5 percent as an imprecise binary fraction like 0.050000000000000002, SymPy keeps it as the <a class="glossary-term" href="/glossary/#rational-number" data-definition="A number that can be expressed exactly as the ratio of two integers, such as 5/100.">exact rational</a> 5/100. Every multiplication is precise, and you only round when you explicitly call <code>.evalf()</code>. The result is a mathematically clean value you can trust, not a moving target shaped by machine precision.</p>
+<p>Instead of storing 5 percent as a binary floating-point approximation, SymPy can represent it as the <a class="glossary-term" href="/glossary/#rational-number" data-definition="A number that can be expressed exactly as the ratio of two integers, such as 5/100.">exact rational</a> 5/100 (<a href="#sympy-docs">
+  SymPy Development Team, n.d.
+</a>
+). Every multiplication is precise, and you only round when you explicitly call <code>.evalf()</code>. The result is a mathematically clean value you can trust, not a moving target shaped by machine precision.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sympy <span style="color:#ff79c6">import</span> Rational
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>principal <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10000</span>
@@ -269,7 +278,10 @@ It’s easy to think of SymPy only in academic terms, like running physics simul
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(amount<span style="color:#ff79c6">.</span>evalf())  <span style="color:#6272a4"># 16288.9462677744</span>
 </span></span></code></pre></div><p>The difference is subtle at first glance, but critical. SymPy guarantees correctness by carrying exact values through every step, while floats and NumPy give you speed at the cost of precision.</p>
 <h3 id="what-about-mathisclose">What About math.isclose?</h3>
-<p>Like many languages that implement the IEEE-754 standard, Python has a built-in way to cope with floating-point quirks: the <code>math.isclose</code> function. Instead of checking strict equality, it checks whether two numbers are within a specified tolerance:</p>
+<p>Like many languages that implement the IEEE-754 standard, Python provides the <code>math.isclose</code> function for approximate floating-point comparisons. Instead of checking strict equality, it determines whether two values are close according to relative and absolute tolerances (<a href="#python-isclose">
+  Python Software Foundation, n.d.
+</a>
+):</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> math
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>a <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">0.2</span>
@@ -279,7 +291,10 @@ It’s easy to think of SymPy only in academic terms, like running physics simul
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(math<span style="color:#ff79c6">.</span>isclose(a, b))     <span style="color:#6272a4"># True</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(math<span style="color:#ff79c6">.</span>isclose(a, b, rel_tol<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1e-9</span>))  <span style="color:#6272a4"># True with custom tolerance</span>
 </span></span></code></pre></div><p>This works fine for cases where tiny differences don&rsquo;t matter. But in domains like finance, physics, or logistics, &ldquo;close enough&rdquo; isn&rsquo;t always good enough. Pennies in an account balance, millimeters in manufacturing tolerances, or decimals in a tax calculation can&rsquo;t just be waved away.</p>
-<p>That&rsquo;s where SymPy earns its keep. Instead of comparing with a tolerance, it carries exact rational values through every calculation. The result is guaranteed precision with no thresholds or guessing.</p>
+<p>That&rsquo;s where SymPy earns its keep. When expressions are constructed from exact SymPy values such as <code>Rational</code>, it can preserve exact rational arithmetic through the calculation (<a href="#sympy-docs">
+  SymPy Development Team, n.d.
+</a>
+). The result is guaranteed precision with no thresholds or guessing.</p>
 <h3 id="java-and-epsilon-comparisons">Java and Epsilon Comparisons</h3>
 <div style="float: right; width: 40%; margin: 0 0 1em 1em; padding: 0.5em; background-color: #f8f8f8; border: 1px solid #ddd; font-size: 0.9em;">
   <div style="text-align: center;"><strong>What is an <a class="glossary-term" href="/glossary/#epsilon-comparison" data-definition="A technique for treating two floating-point values as equal when the difference between them is smaller than a chosen tolerance.">epsilon</a>?</strong><br><br></div>
@@ -298,27 +313,42 @@ It’s easy to think of SymPy only in academic terms, like running physics simul
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The Java approach with the epsilon is essentially the same idea as Python&rsquo;s <code>math.isclose</code> function: acknowledge that floats are inexact, then decide how much error you&rsquo;re willing to tolerate.</p>
 <h3 id="the-takeaway">The Takeaway</h3>
-<p>NumPy and Python floats are fast and powerful, but they live in the world of approximations. <code>math.isclose</code> and Java&rsquo;s epsilon checks are clever workarounds, but they don&rsquo;t change the underlying math. SymPy is different — it gives you exact results all the way through the calculation.</p>
+<p>NumPy and Python floating-point values are fast and powerful, but finite-precision floating-point arithmetic necessarily involves approximation for many real numbers (<a href="#goldberg1991">
+  Goldberg, 1991
+</a>
+). <code>math.isclose</code> and Java&rsquo;s epsilon checks are clever workarounds, but they don&rsquo;t change the underlying math. SymPy is different — it gives you exact results all the way through the calculation.</p>
 <p>That&rsquo;s why it matters: when errors aren&rsquo;t acceptable, symbolic precision is the only safe choice.</p>
 <hr>
 <h2 id="common-pitfalls-">Common Pitfalls 😬</h2>
 <p>Let&rsquo;s look at some specific examples. When it comes to math, many developers rely on either Python&rsquo;s built-in floats or the numeric library with which they&rsquo;re most familiar. Both share the same floating-point limitations. Here are three common scenarios where SymPy is the right tool:</p>
 <p><strong>Floating-point finance math (rounding errors)</strong>
-Imagine calculating monthly loan payments. With float, small errors accumulate:</p>
+Imagine calculating monthly loan payments. With binary floating point, familiar decimal expressions can expose representation error (<a href="#python-fp">
+  Python Software Foundation, n.d.
+</a>
+):</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>balance <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">0.1</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">0.1</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(balance)  <span style="color:#6272a4"># 0.30000000000000004</span>
-</span></span></code></pre></div><p>In money terms, fractions of a cent become costly. SymPy, by treating numbers as exact rationals, keeps calculations precise.</p>
+</span></span></code></pre></div><p>In money terms, fractions of a cent become costly. SymPy can keep calculations exact when values are represented with exact symbolic types such as rationals (<a href="#sympy-docs">
+  SymPy Development Team, n.d.
+</a>
+).</p>
 <p><strong>Writing DIY derivative solvers (painful and buggy)</strong>
 Some developers try to approximate <a class="glossary-term" href="/glossary/#derivative" data-definition="A measure of how quickly a function changes with respect to one of its variables, such as how a quantity changes over time.">derivatives</a> using <a class="glossary-term" href="/glossary/#finite-difference" data-definition="A numerical technique that approximates derivatives using differences between function values evaluated at nearby points.">finite differences</a>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">derivative</span>(f, x, h<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1e-5</span>):
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">return</span> (f(x<span style="color:#ff79c6">+</span>h) <span style="color:#ff79c6">-</span> f(x)) <span style="color:#ff79c6">/</span> h
-</span></span></code></pre></div><p>This works… until <code>h</code> is too small or the function is tricky. With SymPy:</p>
+</span></span></code></pre></div><p>This works… until <code>h</code> is too small or the function is tricky. With SymPy, symbolic differentiation can produce an exact derivative (<a href="#sympy-docs">
+  SymPy Development Team, n.d.
+</a>
+):</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sympy <span style="color:#ff79c6">import</span> symbols, diff
 </span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> symbols(<span style="color:#f1fa8c">&#39;x&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(diff(x\<span style="color:#ff79c6">*</span>\<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span> <span style="color:#ff79c6">+</span> x, x))  <span style="color:#6272a4"># 2\*x + 1</span>
 </span></span></code></pre></div><p>No tuning, no numerical &ldquo;noise,&rdquo; just the correct answer.</p>
 <p><strong>Solving numerically when symbolic solutions are simpler</strong>
-NumPy and math can <strong>approximate</strong> <a class="glossary-term" href="/glossary/#root" data-definition="A value of a variable that makes a mathematical function or equation equal to zero.">roots</a> with iterations. SymPy just <strong>solves</strong> them directly:</p>
+Numerical methods can approximate <a class="glossary-term" href="/glossary/#root" data-definition="A value of a variable that makes a mathematical function or equation equal to zero.">roots</a>, while SymPy can return exact symbolic solutions when they are available (<a href="#sympy-docs">
+  SymPy Development Team, n.d.
+</a>
+):</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> sympy <span style="color:#ff79c6">import</span> symbols, solve
 </span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> symbols(<span style="color:#f1fa8c">&#39;x&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(solve(x\<span style="color:#ff79c6">*</span>\<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span> <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">2</span>, x))  <span style="color:#6272a4"># \[-sqrt(2), sqrt(2)]</span>
@@ -395,17 +425,38 @@ NumPy and math can <strong>approximate</strong> <a class="glossary-term" href="/
 <h2 id="closing-thoughts-">Closing Thoughts 💡</h2>
 <p>If you only ever use NumPy, you&rsquo;re missing out on a whole dimension of Python math. SymPy isn&rsquo;t about speed. It&rsquo;s about certainty. Think of SymPy as your math notebook that shows exact steps and results, and NumPy as your high-powered calculator built for speed. One gives you precision and clarity for the rare moments when every decimal matters, the other gives you performance for everything else. Together, they cover both sides of the math world.</p>
 <hr>
-<h2 id="resources-">Resources 📚</h2>
-<ul>
-<li><a href="https://docs.sympy.org/latest/index.html" target="_blank" rel="noopener noreferrer">
-  SymPy Documentation
-</a>
-</li>
-</ul>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
 
+    <div class="post-references__list">
+        <p class="post-reference"  id="goldberg1991" >
+            Goldberg, D. (1991). What every computer scientist should know about floating-point arithmetic. <em>ACM Computing Surveys, 23</em>(1), 5-48.
+            <a href="https://doi.org/10.1145/103162.103163" target="_blank" rel="noopener noreferrer">https://doi.org/10.1145/103162.103163</a>
+        </p>
+        <p class="post-reference"  id="ieee2019" >
+            IEEE. (2019). <em>IEEE standard for floating-point arithmetic</em> (IEEE Std 754-2019).
+            <a href="https://doi.org/10.1109/IEEESTD.2019.8766229" target="_blank" rel="noopener noreferrer">https://doi.org/10.1109/IEEESTD.2019.8766229</a>
+        </p>
+        <p class="post-reference"  id="python-fp" >
+            Python Software Foundation. (n.d.). Floating-point arithmetic: Issues and limitations. <em>Python 3 documentation</em>.
+            <a href="https://docs.python.org/3/tutorial/floatingpoint.html" target="_blank" rel="noopener noreferrer">https://docs.python.org/3/tutorial/floatingpoint.html</a>
+        </p>
+        <p class="post-reference"  id="python-isclose" >
+            Python Software Foundation. (n.d.). math.isclose. <em>Python 3 documentation</em>.
+            <a href="https://docs.python.org/3/library/math.html#math.isclose" target="_blank" rel="noopener noreferrer">https://docs.python.org/3/library/math.html#math.isclose</a>
+        </p>
+        <p class="post-reference"  id="sympy-docs" >
+            SymPy Development Team. (n.d.). SymPy documentation.
+            <a href="https://docs.sympy.org/latest/index.html" target="_blank" rel="noopener noreferrer">https://docs.sympy.org/latest/index.html</a>
+        </p>
+    </div>
+</section>
+
+      <hr class="references-end">
+      
       </div>
     <footer class="post__footer">
       

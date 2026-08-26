@@ -21,6 +21,37 @@ whatYoullLearn = [
     "How tool use lets an LLM work with search engines, code, databases, and external APIs",
     "Why retrieval quality, source accuracy, and model reasoning all affect the final answer"
 ]
+
+[[references]]
+key = "guu2020"
+citation = "Guu, K., Lee, K., Tung, Z., Pasupat, P., & Chang, M. W. (2020). REALM: Retrieval-augmented language model pre-training. *Proceedings of the 37th International Conference on Machine Learning*."
+url = "https://arxiv.org/abs/2002.08909"
+
+[[references]]
+key = "izacard2022"
+citation = "Izacard, G., Lewis, P., Lomeli, M., Hosseini, L., Petroni, F., Schick, T., ... & Grave, E. (2022). Atlas: Few-shot learning with retrieval augmented language models. *arXiv preprint arXiv:2208.03299*."
+url = "https://arxiv.org/abs/2208.03299"
+
+[[references]]
+key = "karpukhin2020"
+citation = "Karpukhin, V., Oğuz, B., Min, S., Lewis, P., Wu, L., Edunov, S., ... & Yih, W. T. (2020). Dense passage retrieval for open-domain question answering. *Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing*."
+url = "https://arxiv.org/abs/2004.04906"
+
+[[references]]
+key = "lewis2020"
+citation = "Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems, 33*."
+url = "https://arxiv.org/abs/2005.11401"
+
+[[references]]
+key = "mialon2023"
+citation = "Mialon, G., Dessì, R., Lomeli, M., Nalmpantis, C., Pasunuru, R., Raileanu, R., ... & Scialom, T. (2023). Augmented language models: A survey. *arXiv preprint arXiv:2302.07842*."
+url = "https://arxiv.org/abs/2302.07842"
+
+[[references]]
+key = "schick2023"
+citation = "Schick, T., Dwivedi-Yu, J., Dessì, R., Raileanu, R., Lomeli, M., Zettlemoyer, L., ... & Scialom, T. (2023). Toolformer: Language models can teach themselves to use tools. *arXiv preprint arXiv:2302.04761*."
+url = "https://arxiv.org/abs/2302.04761"
+
 +++
 
 When you ask an {{< term "large-language-model" "LLM" >}} *without* web search enabled a question like "What happened in the news this morning?", the LLM will respond by telling you that it doesn't have access to current events and suggest you check a more current news source such as Reuters or Google News.
@@ -47,7 +78,7 @@ This post explores how modern LLMs access information beyond their training data
 > * Citations and source attribution come from the retrieved text, not model memory
 > * Understanding this distinction helps you use these tools more effectively
 
-* * *
+---
 
 ## The Frozen Weights Problem
 
@@ -71,7 +102,7 @@ training_knowledge = {
 
 So how do models answer questions about current events?
 
-* * *
+---
 
 ## Retrieval: Reading Instead of Knowing
 
@@ -115,7 +146,7 @@ def answer_with_retrieval(user_question, search_function, llm):
 
 This is the core insight: **the model's capabilities are frozen, but its inputs are dynamic.** A model trained in 2023 can answer questions about 2025 events because those events are injected as text, not because the model learned about them.
 
-* * *
+---
 
 ## Web Search: Real-Time Information Retrieval
 
@@ -167,7 +198,7 @@ When you ask an LLM with web search enabled a question about current events, som
 
 The model itself never "searched" anything. It received search results as text and reasoned over them. The intelligence is in how the model processes and synthesizes the retrieved information, but the information itself came from outside.
 
-* * *
+---
 
 ## RAG: Retrieval-Augmented Generation
 
@@ -262,7 +293,7 @@ The canonical RAG pipeline ([Lewis et al., 2020](#lewis2020)) consists of:
             return self.llm.generate(prompt)
 ```
 
-* * *
+---
 
 ## The Embedding Space Connection
 
@@ -286,7 +317,7 @@ chunk_b = "Tokyo's population exceeds 50 million people."    # Incorrect
 # Both are semantically relevant to the query
 ```
 
-* * *
+---
 
 ## What the Model Actually Does
 
@@ -327,7 +358,7 @@ def model_processing(prompt_with_retrieved_content):
     return response
 ```
 
-* * *
+---
 
 ## Why This Isn't Learning
 
@@ -368,7 +399,7 @@ class LearningVsRetrieval:
         return self.forward_pass(augmented)  # Same frozen weights
 ```
 
-* * *
+---
 
 ## Tool Use: Generalizing Beyond Text
 
@@ -413,7 +444,7 @@ def tool_augmented_response(user_query, llm, tools):
 
 The model's role is generating appropriate tool calls and reasoning over results. The actual computation or retrieval happens externally. This separation is important: the model can't execute code directly or access databases directly. It can only request that external systems do so.
 
-* * *
+---
 
 ## Limitations of Retrieval-Augmented Systems
 
@@ -458,7 +489,7 @@ def retrieval_limitations():
     # Model might invent specific quotes not in the source
 ```
 
-* * *
+---
 
 ## Practical Implications
 
@@ -484,7 +515,7 @@ For questions where retrieval is active, you can guide what gets searched by bei
 
 Information from retrieved sources doesn't persist between conversations. Each new chat starts fresh, requiring new retrieval for current information.
 
-* * *
+---
 
 ## The Architecture of Augmented LLMs
 
@@ -497,7 +528,7 @@ Modern AI assistants combine multiple components. The LLM itself is just one com
     caption="Modern AI assistants combine an orchestration layer with web search, retrieval-augmented generation, and external tools before passing augmented context to the underlying LLM."
 >}}
 
-* * *
+---
 
 ## Closing Thoughts
 
@@ -511,26 +542,6 @@ It also matters for understanding failures. When a retrieval-augmented model giv
 
 After working with these systems extensively, I've come to see retrieval augmentation as giving models a form of open-book exam capability. They can look things up, but they can't learn during the exam. Their reasoning abilities are fixed; only their inputs are dynamic. Understanding that constraint is key to using these tools effectively.
 
-* * *
-
 **If you've followed this series from [how LLMs read code](/posts/how-large-language-models-read-code) through [how they think](/posts/how-large-language-models-think), [how they learn](/posts/how-large-language-models-learn), [how they handle context](/posts/how-large-language-models-handle-context-windows), [how they tokenize](/posts/how-large-language-models-tokenize-text), and [how sampling works](/posts/temperature-top-p-creativity-knobs), you now have the complete picture: from raw text to tokens to embeddings to attention to learning to generation to augmentation. These systems are remarkable for what they can do, and understanding their mechanisms helps you appreciate both their power and their limitations.**
 
-* * *
-
-## Further Reading
-
-These resources provide deeper technical details on retrieval-augmented generation and related techniques.
-
-<a id="guu2020"></a>Guu, K., Lee, K., Tung, Z., Pasupat, P., & Chang, M. W. (2020). REALM: Retrieval-augmented language model pre-training. *Proceedings of the 37th International Conference on Machine Learning*. https://arxiv.org/abs/2002.08909
-
-<a id="izacard2022"></a>Izacard, G., Lewis, P., Lomeli, M., Hosseini, L., Petroni, F., Schick, T., ... & Grave, E. (2022). Atlas: Few-shot learning with retrieval augmented language models. *arXiv preprint arXiv:2208.03299*. https://arxiv.org/abs/2208.03299
-
-<a id="karpukhin2020"></a>Karpukhin, V., Oğuz, B., Min, S., Lewis, P., Wu, L., Edunov, S., ... & Yih, W. T. (2020). Dense passage retrieval for open-domain question answering. *Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing*. https://arxiv.org/abs/2004.04906
-
-<a id="lewis2020"></a>Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems*, 33. https://arxiv.org/abs/2005.11401
-
-<a id="mialon2023"></a>Mialon, G., Dessì, R., Lomeli, M., Nalmpantis, C., Pasunuru, R., Raileanu, R., ... & Scialom, T. (2023). Augmented language models: A survey. *arXiv preprint arXiv:2302.07842*. https://arxiv.org/abs/2302.07842
-
-<a id="schick2023"></a>Schick, T., Dwivedi-Yu, J., Dessì, R., Raileanu, R., Lomeli, M., Zettlemoyer, L., ... & Scialom, T. (2023). Toolformer: Language models can teach themselves to use tools. *arXiv preprint arXiv:2302.04761*. https://arxiv.org/abs/2302.04761
-
-* * *
+---

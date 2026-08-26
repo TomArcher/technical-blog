@@ -34,7 +34,7 @@ One day, the controller asked me if I could code a system that took, as input, t
 One day, the controller asked me if I could code a system that took, as input, the trucks’ 3D dimensions and the 3D dimensions (and weight) of every object to be packed. Back in the Turbo Pascal era, exploring 3D packing was painful. Today, with Python and AI-assisted scaffolding, it’s surprisingly approachable.">
   <meta itemprop="datePublished" content="2025-08-20T09:00:00-07:00">
   <meta itemprop="dateModified" content="2025-08-20T09:00:00-07:00">
-  <meta itemprop="wordCount" content="2128">
+  <meta itemprop="wordCount" content="2130">
   <meta itemprop="keywords" content="Algorithms,Geometry,Optimization,Python">
 		
   <meta name="twitter:card" content="summary">
@@ -247,7 +247,7 @@ One day, the controller asked me if I could code a system that took, as input, t
 <li><strong>Respect the truck bounds</strong> (no sticking out).</li>
 <li>Optionally <strong>consider weight</strong> and stacking rules.</li>
 </ul>
-<p>Real-world simple? Not really. Computationally, it&rsquo;s a classic <strong><a class="glossary-term" href="/glossary/#three-dimensional-bin-packing" data-definition="An optimization problem that seeks to arrange three-dimensional objects within one or more finite containers while satisfying spatial constraints and typically minimizing wasted space.">3D bin-packing</a></strong> problem. On the scale of computational complexity, this problem is extremely difficult (<strong><a class="glossary-term" href="/glossary/#np-hard" data-definition="A class of computational problems at least as difficult as the hardest problems in NP, for which no efficient algorithm is known that always finds an optimal solution.">NP-hard</a></strong>), meaning there&rsquo;s no known fast way to always find the perfect solution. Instead, we rely on <a class="glossary-term" href="/glossary/#heuristic" data-definition="A problem-solving strategy designed to find a useful solution quickly without guaranteeing that the solution is optimal.">heuristics</a>, which are clever shortcuts that deliver good (though not guaranteed optimal) results quickly.</p>
+<p>Real-world simple? Not really. Computationally, it&rsquo;s a classic <strong><a class="glossary-term" href="/glossary/#three-dimensional-bin-packing" data-definition="An optimization problem that seeks to arrange three-dimensional objects within one or more finite containers while satisfying spatial constraints and typically minimizing wasted space.">3D bin-packing</a></strong> problem. On the scale of computational complexity, this problem is extremely difficult (<strong><a class="glossary-term" href="/glossary/#np-hard" data-definition="A class of computational problems at least as difficult as the hardest problems in NP, for which no efficient algorithm is known that always finds an optimal solution.">NP-hard</a></strong>), meaning there&rsquo;s no known fast way to always find the perfect solution. Instead, we rely on <a class="glossary-term" href="/glossary/#heuristic" data-definition="A problem-solving strategy designed to find a useful solution quickly without guaranteeing that the solution is optimal.">heuristics</a>, which are clever shortcuts that deliver good (though not guaranteed optimal) results more efficiently.</p>
 <p>It&rsquo;s like trying to figure out every possible way to load groceries into your car trunk. You could test every arrangement, but that would take forever, so instead you look for smart tricks to get a good result quickly. Tricks such as loading heavy items first, stacking boxes neatly, and filling gaps with small bags.</p>
 <h1 id="modeling-the-packing-problem">Modeling the Packing Problem</h1>
 <p>To simulate the problem, we make the following simplifications:</p>
@@ -553,7 +553,7 @@ color and label.</em></p></blockquote>
 </span></span></code></pre></div><hr>
 <h2 id="what-we-learned">What We Learned</h2>
 <p>So what did we actually learn from tackling this truck-packing problem with AI? First, <a class="glossary-term" href="/glossary/#prompt-engineering" data-definition="The practice of designing and structuring model inputs to improve the relevance, reliability, or format of generated outputs.">prompt engineering</a> really does matter. The clearer and more constrained the prompt, the closer the AI&rsquo;s first draft will be to something usable, saving time on rework.</p>
-<p>Second, we should remember that this is an <strong>NP-hard problem</strong>. No matter how clever we are, we&rsquo;re not going to get perfect solutions every time. Therefore, the practical goal is heuristics that give us &ldquo;good enough&rdquo; answers <strong>fast</strong>.</p>
+<p>Second, we should remember that this is an <strong>NP-hard problem</strong>. No matter how clever we are, we&rsquo;re not going to get perfect solutions every time. Therefore, the practical goal is heuristics that give us <strong>good enough answers more efficiently</strong>.</p>
 <p>Finally, we saw how <strong><a class="glossary-term" href="/glossary/#greedy-algorithm" data-definition="An algorithm that repeatedly makes the locally preferred choice at each step without reconsidering earlier decisions.">greedy placement rules</a></strong> and <strong><a class="glossary-term" href="/glossary/#guillotine-split" data-definition="A space-partitioning technique that divides a rectangular region completely along one dimension, producing smaller rectangular regions for subsequent placement.">guillotine-style splits</a></strong> can provide practical packing strategies, and how visualization is key to making the results feel intuitive rather than just lines of coordinates.</p>
 <hr>
 <h2 id="exercises-for-the-reader">Exercises for the Reader</h2>
@@ -600,10 +600,34 @@ color and label.</em></p></blockquote>
   Download the full code on GitHub
 </a>
 </p>
+<hr>
 
 
       
+<section class="post-references">
+    <h2>References</h2>
 
+    <div class="post-references__list">
+        <p class="post-reference"  id="bortfeldt2013" >
+            Bortfeldt, A., &amp; Wäscher, G. (2013). Constraints in container loading: A state-of-the-art review. <em>European Journal of Operational Research, 229</em>(1), 1-20.
+            <a href="https://doi.org/10.1016/j.ejor.2012.12.006" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.ejor.2012.12.006</a>
+        </p>
+        <p class="post-reference"  id="garey1979" >
+            Garey, M. R., &amp; Johnson, D. S. (1979). <em>Computers and intractability: A guide to the theory of NP-completeness</em>. W. H. Freeman.
+        </p>
+        <p class="post-reference"  id="martello2000" >
+            Martello, S., Pisinger, D., &amp; Vigo, D. (2000). The three-dimensional bin packing problem. <em>Operations Research, 48</em>(2), 256-267.
+            <a href="https://doi.org/10.1287/opre.48.2.256.12386" target="_blank" rel="noopener noreferrer">https://doi.org/10.1287/opre.48.2.256.12386</a>
+        </p>
+        <p class="post-reference"  id="pisinger2002" >
+            Pisinger, D. (2002). Heuristics for the container loading problem. <em>European Journal of Operational Research, 141</em>(2), 382-392.
+            <a href="https://doi.org/10.1016/S0377-2217%2802%2900132-7" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/S0377-2217(02)00132-7</a>
+        </p>
+    </div>
+</section>
+
+      <hr class="references-end">
+      
       </div>
     <footer class="post__footer">
       

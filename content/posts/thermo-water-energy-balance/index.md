@@ -21,6 +21,27 @@ whatYoullLearn = [
     "Why covering a pool can dramatically reduce nighttime heat loss",
     "How simulation can reveal the effects of weather, geometry, and surface conditions on water temperature"
 ]
+
+
+[[references]]
+key = "brutsaert1982"
+citation = "Brutsaert, W. (1982). *Evaporation into the atmosphere: Theory, history, and applications*. Springer."
+url = "https://doi.org/10.1007/978-94-017-1497-6"
+
+[[references]]
+key = "incropera2007"
+citation = "Incropera, F. P., DeWitt, D. P., Bergman, T. L., & Lavine, A. S. (2007). *Fundamentals of heat and mass transfer* (6th ed.). John Wiley & Sons."
+url = "https://www.wiley.com/en-us/Fundamentals+of+Heat+and+Mass+Transfer%2C+6th+Edition-p-9780471457282"
+
+[[references]]
+key = "stull1988"
+citation = "Stull, R. B. (1988). *An introduction to boundary layer meteorology*. Springer."
+url = "https://doi.org/10.1007/978-94-009-3027-8"
+
+[[references]]
+key = "vanderkamp1976"
+citation = "Vanderkamp, G., & McKay, G. A. (1976). A model of evaporation from a small lake. *Journal of Hydrology, 30*(3), 211-227."
+url = "https://doi.org/10.1016/0022-1694(76)90081-8"
 +++
 
 Every summer, it feels like a small miracle when the pool finally warms up enough to swim. In Nevada, where the air temperature can sit above 100°F (38°C) for weeks, you'd expect the water to keep pace. Yet, somehow, it takes forever to warm, and only a few cool nights can undo all that progress.
@@ -40,7 +61,7 @@ In this post, we will turn that intuition into a simple Python model that explai
 
 Imagine a shallow pool sitting in the desert sun. During the day, it absorbs energy from sunlight, and at night it loses energy to the air and sky. The surprising part is not that both happen, but that the rates are so uneven.
 
-The pool's heat capacity acts like a huge thermal battery; it takes time to charge. The cooling process, on the other hand, is driven by evaporation. Each gram of water that evaporates carries away about 2.45 kilojoules of energy, and with enough dry air and a light breeze, those losses pile up quickly.
+The pool's heat capacity acts like a huge thermal battery; it takes time to charge. Cooling can be strongly influenced by evaporation, particularly under dry, windy conditions ([Brutsaert, 1982](#brutsaert1982); [Vanderkamp & McKay, 1976](#vanderkamp1976)). Near ordinary environmental temperatures, each gram of water that evaporates carries away roughly 2.4 to 2.5 kilojoules of latent heat, and dry air and wind can increase evaporative losses ([Brutsaert, 1982](#brutsaert1982)).
 
 The same logic explains why a pat of margarine melts more slowly than butter. Water is a powerful {{< term "heat-sink" "heat sink" >}}, and evaporation is a powerful energy thief. Put them together, and you have a recipe for long warmups and quick cooldowns.
 
@@ -48,18 +69,18 @@ The same logic explains why a pat of margarine melts more slowly than butter. Wa
 
 ## Modeling the Problem
 
-We will treat the water as a well mixed {{< term "control-volume" "control volume" >}} with a single temperature. The surface exchanges heat with the air through {{< term "convection" "convection" >}}, with the sky through {{< term "longwave-radiation" "longwave radiation" >}}, and with the sun through {{< term "shortwave-radiation" "shortwave absorption" >}}. Evaporation removes energy proportional to the rate at which vapor escapes.
+We will treat the water as a well mixed {{< term "control-volume" "control volume" >}} with a single temperature, applying a lumped energy-balance approach ([Incropera et al., 2007](#incropera2007)). The surface exchanges heat with the air through {{< term "convection" "convection" >}}, with the sky through {{< term "longwave-radiation" "longwave radiation" >}}, and with the sun through {{< term "shortwave-radiation" "shortwave absorption" >}}. Evaporation removes energy proportional to the rate at which vapor escapes.
 
 **Assumptions:**
 
 - The water is well mixed with no {{< term "thermal-stratification" "stratification" >}}. This means that the water's temperature is assumed to be uniform throughout, rather than layered (or stratified). In real life, large bodies of water often stratify, meaning warmer, lighter water floats on top while cooler, denser water sinks.
 - Conduction through walls and floor is small compared with surface fluxes. In other words, most heat exchange happens through the surface where the water meets the air, not through the pool's sides or bottom. This fact allows us to ignore the smaller conductive losses into the ground or walls.
 - Shortwave absorption is a constant fraction of incident {{< term "irradiance" "irradiance" >}}. The sunlight that hits the surface is partly reflected and partly absorbed. Here, we assume that a fixed portion (often 85–90%) is absorbed as heat, rather than modeling how absorption varies with sun angle or surface color.
-- Longwave exchange follows the {{< term "stefan-boltzmann-law" "Stefan–Boltzmann law" >}} with an effective sky temperature. The pool radiates heat upward to the sky, and the sky radiates a smaller amount back. We model this as a simple radiation balance using the Stefan–Boltzmann law, where the "sky temperature" represents the average radiative temperature of the atmosphere above.
-- Evaporation follows a bulk aerodynamic relationship that depends on humidity gradient and wind. The rate of evaporation depends on how dry the air is and how quickly air moves over the surface. Wind helps carry away moist air, increasing evaporation, while higher humidity slows it down.
+- Longwave exchange follows the {{< term "stefan-boltzmann-law" "Stefan–Boltzmann law" >}} with an effective sky temperature ([Incropera et al., 2007](#incropera2007); [Stull, 1988](#stull1988)). The pool radiates heat upward to the sky, and the sky radiates a smaller amount back. We model this as a simple radiation balance using the Stefan–Boltzmann law, where the "sky temperature" represents the average radiative temperature of the atmosphere above.
+- Evaporation follows a bulk aerodynamic relationship that depends on humidity gradient and wind ([Brutsaert, 1982](#brutsaert1982); [Stull, 1988](#stull1988)). The rate of evaporation depends on how dry the air is and how quickly air moves over the surface. Wind helps carry away moist air, increasing evaporation, while higher humidity slows it down.
 - Weather varies smoothly over the day and repeats during the simulation window. Instead of using random or hourly data, we assume repeating daily cycles for temperature, humidity, sunlight, and wind. This simplifies the simulation while still capturing the main {{< term "diurnal-cycle" "diurnal" >}} pattern of heating and cooling.
 
-The **energy balance** is defined as follows using the standard form of the surface energy balance used throughout thermodynamics, climatology, and environmental engineering. In academic terms, this is the first-law ({{< term "conservation-of-energy" "conservation of energy" >}}) equation for a control volume, applied to a water surface.
+The **energy balance** is defined as follows using the standard control-volume conservation-of-energy framework used in heat transfer and environmental modeling ([Incropera et al., 2007](#incropera2007); [Stull, 1988](#stull1988)). In academic terms, this is the first-law ({{< term "conservation-of-energy" "conservation of energy" >}}) equation for a control volume, applied to a water surface.
 
 \\[
 C \frac{dT}{dt} = Q_{\text{solar}} + Q_{\text{convective}} + Q_{\text{radiative}} + Q_{\text{evaporative}}
@@ -407,7 +428,7 @@ def plot_runs_dual_axis(run_open, run_cov):
 
 ## What We Learned
 
-Water behaves like a massive thermal reservoir. High specific heat spreads warming across many days. Evaporation and longwave radiation remove energy efficiently at night, especially in dry air. A simple cover changes the balance by cutting evaporation and reducing radiative loss, which keeps more of the daytime energy in the water.
+Water behaves like a massive thermal reservoir. Its high specific heat resists rapid temperature change, while evaporation and longwave radiation can remove substantial energy from the surface, especially under dry conditions ([Incropera et al., 2007](#incropera2007); [Brutsaert, 1982](#brutsaert1982)). A simple cover changes the balance by cutting evaporation and reducing radiative loss, which keeps more of the daytime energy in the water.
 
 ---
 
@@ -446,3 +467,5 @@ Butter and pools may seem like strange lab partners, until you **turn up the hea
 ## Try It Yourself
 
 [Download the full code on GitHub](https://github.com/TomArcher/technical-blog-examples/tree/main/thermo-water-energy-balance)
+
+---

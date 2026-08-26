@@ -35,7 +35,7 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 Each word, phrase, and code token becomes a vector — a list of real-valued coordinates within a high-dimensional space. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.">
   <meta itemprop="datePublished" content="2025-10-07T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-10-07T06:00:00-07:00">
-  <meta itemprop="wordCount" content="1685">
+  <meta itemprop="wordCount" content="1719">
   <meta itemprop="keywords" content="AI,Embeddings,Geometry,Linear Algebra,LLM">
 		
   <meta name="twitter:card" content="summary">
@@ -259,7 +259,13 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 </span></span></code></pre></div><p><strong>Output:</strong></p>
 <pre tabindex="0"><code>[[1 1 1 0]
  [1 0 1 1]]
-</code></pre><p>Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous <a class="glossary-term" href="/glossary/#embedding" data-definition="A numerical vector that represents a token or other object in a multidimensional space.">embedding</a>s instead of simple counts, but the principle is the same: text becomes math.</p>
+</code></pre><p>Each word becomes part of a vector representation showing which tokens appear together. Modern models go far beyond this in that they use dense, continuous <a class="glossary-term" href="/glossary/#embedding" data-definition="A numerical vector that represents a token or other object in a multidimensional space.">embedding</a>s instead of simple counts, but the principle is the same: text becomes math (<a href="#mikolov2013">
+  Mikolov et al., 2013
+</a>
+; <a href="#pennington2014">
+  Pennington et al., 2014
+</a>
+).</p>
 <hr>
 <h2 id="the-geometry-of-meaning">The Geometry of Meaning</h2>
 <p>An <em>embedding</em> is not a dictionary lookup. It is a <strong>coordinate</strong> in a high-dimensional space with thousands of dimensions where mathematical proximity corresponds to semantic similarity.</p>
@@ -274,7 +280,10 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 </span></span><span style="display:flex;"><span>];
 </span></span><span style="display:flex;"><span>plot(vectors(:,<span style="color:#bd93f9">1</span>), vectors(:,<span style="color:#bd93f9">2</span>),<span style="color:#f1fa8c">&#39;o&#39;</span>);
 </span></span><span style="display:flex;"><span>text(vectors(:,<span style="color:#bd93f9">1</span>)<span style="color:#ff79c6">+</span><span style="color:#bd93f9">0.02</span>, vectors(:,<span style="color:#bd93f9">2</span>), words);
-</span></span></code></pre></div><p>This tiny example mimics one of the most famous discoveries in word embeddings:
+</span></span></code></pre></div><p>This tiny example mimics one of the most famous demonstrations of linguistic regularities in word embeddings (<a href="#mikolov2013linguistic">
+  Mikolov et al., 2013
+</a>
+):
 <strong>king – man + woman ≈ queen.</strong></p>
 <p>Even though these are just coordinates, the geometry encodes analogy. That&rsquo;s the quiet miracle of embeddings where relations emerge from math alone.</p>
 <hr>
@@ -285,7 +294,10 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 <p>So the geometry is not literal; it&rsquo;s emergent. The network doesn&rsquo;t draw shapes; it performs math that <em>behaves</em> geometrically. That&rsquo;s why &ldquo;geometry&rdquo; is such an accurate metaphor for how LLMs represent meaning. The linear algebra is the physics, and the geometry is the language we use to understand it.</p>
 <hr>
 <h2 id="eigenvectors-the-hidden-axes-of-meaning">Eigenvectors: The Hidden Axes of Meaning</h2>
-<p>Every linear transformation within an LLM, from attention weights to embedding updates, can be described as a matrix acting on vectors. But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by <a class="glossary-term" href="/glossary/#eigenvector" data-definition="A nonzero vector whose direction remains unchanged when a particular linear transformation is applied to it.">eigenvectors</a>, and the amount of stretching or compression along them is determined by their <a class="glossary-term" href="/glossary/#eigenvalue" data-definition="The scalar factor describing how much an eigenvector is stretched, compressed, or reversed by a linear transformation.">eigenvalues</a>.</p>
+<p>Every linear transformation within an LLM, including the learned projections used by attention, can be described as a matrix acting on vectors (<a href="#vaswani2017">
+  Vaswani et al., 2017
+</a>
+). But not all directions in that space change equally. Some directions remain stable while others stretch or shrink. Those privileged directions are defined by <a class="glossary-term" href="/glossary/#eigenvector" data-definition="A nonzero vector whose direction remains unchanged when a particular linear transformation is applied to it.">eigenvectors</a>, and the amount of stretching or compression along them is determined by their <a class="glossary-term" href="/glossary/#eigenvalue" data-definition="The scalar factor describing how much an eigenvector is stretched, compressed, or reversed by a linear transformation.">eigenvalues</a>.</p>
 <p>In an embedding space, you can think of eigenvectors as the hidden axes along which meaning varies most strongly. One direction might capture gender, another might capture tense, another might reflect tone or formality. These axes are not programmed; they emerge from training as the model learns to organize information in ways that minimize error.</p>
 <p>Mathematically, this relationship is expressed as: <code>Av = λv</code>.</p>
 <p>Where:</p>
@@ -299,7 +311,10 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 <p>In that sense, eigenvectors reveal the skeleton of understanding inside the model: the stable, interpretable directions that give geometric form to meaning itself.</p>
 <hr>
 <h2 id="meaning-as-direction">Meaning as Direction</h2>
-<p>In embedding space, the <em>direction</em> between vectors often means more than the coordinates themselves. For example:</p>
+<p>In embedding space, directions between vectors can encode linguistic regularities (<a href="#mikolov2013linguistic">
+  Mikolov et al., 2013
+</a>
+). For example:</p>
 <ul>
 <li>Moving in one direction might represent <strong>gender</strong> (man → woman).</li>
 <li>Another might represent <strong>tense</strong> (run → ran).</li>
@@ -338,15 +353,24 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
   How AI Reads Code
 </a>
 </em>, you might remember the phrase &ldquo;<a class="glossary-term" href="/glossary/#log-probability" data-definition="The logarithm of a probability, commonly used in machine learning because it makes very small probabilities easier to compute with and combine.">log probability</a>.&rdquo; Log probability is a small mathematical trick with a big purpose.</p>
-<p>When a model predicts the next token, it doesn&rsquo;t make a single guess. It assigns a probability to every possible token that could come next, evaluating thousands of options, each with its own confidence score. For example, in a code context for implementing a palindrome check, the model might assign <code>s[::-1]</code> a probability of 0.93 (almost certain), <code>reversed(s)</code> a probability of 0.05, and everything else close to zero.</p>
+<p>When a model predicts the next token, it doesn&rsquo;t make a single guess. It assigns a probability distribution over the vocabulary, from which the next-token prediction is obtained (<a href="#vaswani2017">
+  Vaswani et al., 2017
+</a>
+). For example, in a code context for implementing a palindrome check, the model might assign <code>s[::-1]</code> a probability of 0.93 (almost certain), <code>reversed(s)</code> a probability of 0.05, and everything else close to zero.</p>
 <p>Multiplying those probabilities across long sequences quickly drives the numbers into infinitesimal fractions, making them computationally unstable. To avoid that instability, models work in logarithmic space, where multiplication becomes addition and tiny values remain manageable.</p>
 <p>The result is a set of log probabilities, negative numbers that are easier to compare and sum across many steps. Because the logarithm of a number between 0 and 1 is negative, a confident prediction such as 0.93 becomes a value close to zero (around -0.07), while an uncertain one such as 0.05 becomes a much smaller number (around -3.0). In log space, a less negative value means greater confidence.</p>
 <p>In other words, log probabilities do not change what the model believes. They simply make belief computable.</p>
 <hr>
 <h2 id="why-high-dimensions-matter">Why High Dimensions Matter</h2>
-<p>It is easy to imagine this in two dimensions, but real models operate in thousands of dimensions. Why so many? Because meaning is not simple.</p>
+<p>It is easy to imagine this in two dimensions, but modern language representations operate in high-dimensional spaces whose geometry can encode substantial contextual information (<a href="#ethayarajh2019">
+  Ethayarajh, 2019
+</a>
+).</p>
 <p>In two dimensions, you can represent a few relationships, such as animals versus vehicles. In ten thousand dimensions, you can represent subtler unions: gender, tone, syntax, domain, even emotional valence.</p>
-<p>High-dimensional space lets models <em>encode complexity linearly</em>, turning abstract semantics into measurable geometry. That is why they can generalize across tasks, languages, and even programming paradigms.</p>
+<p>High-dimensional representations allow models to encode complex linguistic information in geometric relationships (<a href="#ethayarajh2019">
+  Ethayarajh, 2019
+</a>
+). That is why they can generalize across tasks, languages, and even programming paradigms.</p>
 <hr>
 <h2 id="the-shape-of-understanding">The Shape of Understanding</h2>
 <p>When you ask an LLM to complete your sentence, it is not retrieving an answer; it is following a path through vector space.</p>
@@ -357,7 +381,6 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 <p>Understanding embeddings turns the mystery of AI into something tangible. <strong>When you realize that &ldquo;meaning&rdquo; is just geometry, you start to see why models feel both powerful and fragile.</strong> They are not reasoning in symbols or words; they are surfing through probability.</p>
 <p>MATLAB and Python give us two lenses to explore that space: Python for the implementation, MATLAB for the math. Between the two, you can watch meaning become math in real time.</p>
 <p>And once you have seen that happen, the phrase <em>&ldquo;AI understands&rdquo;</em> feels less magical and far more human.</p>
-<hr>
 <p>Now that you have a basic overview of how LLMs think, if you&rsquo;d like to see how LLMs learn, continue with <a href="/posts/how-large-language-models-learn/">
   How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding
 </a>
@@ -366,6 +389,32 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 
 
       
+<section class="post-references">
+    <h2>References</h2>
+
+    <div class="post-references__list">
+        <p class="post-reference"  id="mikolov2013" >
+            Mikolov, T., Chen, K., Corrado, G., &amp; Dean, J. (2013). Efficient estimation of word representations in vector space. <em>arXiv preprint arXiv:1301.3781</em>.
+            <a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1301.3781</a>
+        </p>
+        <p class="post-reference"  id="mikolov2013linguistic" >
+            Mikolov, T., Yih, W.-t., &amp; Zweig, G. (2013). Linguistic regularities in continuous space word representations. <em>Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</em>, 746-751.
+            <a href="https://aclanthology.org/N13-1090/" target="_blank" rel="noopener noreferrer">https://aclanthology.org/N13-1090/</a>
+        </p>
+        <p class="post-reference"  id="pennington2014" >
+            Pennington, J., Socher, R., &amp; Manning, C. D. (2014). GloVe: Global vectors for word representation. <em>Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)</em>, 1532-1543.
+            <a href="https://aclanthology.org/D14-1162/" target="_blank" rel="noopener noreferrer">https://aclanthology.org/D14-1162/</a>
+        </p>
+        <p class="post-reference"  id="vaswani2017" >
+            Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems, 30</em>.
+            <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1706.03762</a>
+        </p>
+        <p class="post-reference"  id="ethayarajh2019" >
+            Ethayarajh, K. (2019). How contextual are contextualized word representations? Comparing the geometry of BERT, ELMo, and GPT-2 embeddings. <em>Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)</em>, 55-65.
+            <a href="https://aclanthology.org/D19-1006/" target="_blank" rel="noopener noreferrer">https://aclanthology.org/D19-1006/</a>
+        </p>
+    </div>
+</section>
 
       </div>
     <footer class="post__footer">
