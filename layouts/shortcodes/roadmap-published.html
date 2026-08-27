@@ -6,6 +6,8 @@
 {{ $category := . }}
 {{ $categoryPosts := where $posts "Params.categories" "intersect" (slice $category.name) }}
 
+{{ $categoryPosts = where $categoryPosts "Params.disposition" "ne" "in-progress" }}
+
 {{ if $categoryPosts }}
 
 <h3>
