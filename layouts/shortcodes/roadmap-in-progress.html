@@ -1,0 +1,12 @@
+{{ $sections := .Site.Params.mainSections | default (slice "posts") }}
+{{ $pages := where .Site.RegularPages "Type" "in" $sections }}
+{{ $pages = where $pages "Params.disposition" "eq" "in-progress" }}
+
+<ul>
+    {{ range $pages.ByDate.Reverse }}
+        <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>.
+            {{ with .Params.subtitle }}{{ . }}{{ end }}
+        </li>
+    {{ end }}
+</ul>

@@ -17,7 +17,7 @@
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="What&#39;s Next: The Signal & Syntax Roadmap">
   <meta property="og:description" content="If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, get in touch.
-◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch. Building a decoder-only Transformer from first principles, including token and positional embeddings, scaled dot-product attention, multi-head attention, feed-forward networks, residual connections, causal masking, training, and autoregressive generation. The implementation uses a character-level Shakespeare model to connect the mathematics of Transformer architecture directly to working PyTorch code. Drafted; in pre-publication review.">
+◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Published AI and the Mathematics of LanguageThe mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -27,15 +27,15 @@
 		
   <meta itemprop="name" content="What&#39;s Next: The Signal & Syntax Roadmap">
   <meta itemprop="description" content="If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, get in touch.
-◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch. Building a decoder-only Transformer from first principles, including token and positional embeddings, scaled dot-product attention, multi-head attention, feed-forward networks, residual connections, causal masking, training, and autoregressive generation. The implementation uses a character-level Shakespeare model to connect the mathematics of Transformer architecture directly to working PyTorch code. Drafted; in pre-publication review.">
+◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Published AI and the Mathematics of LanguageThe mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
   <meta itemprop="datePublished" content="2026-08-26T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-08-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1185">
+  <meta itemprop="wordCount" content="1012">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="What&#39;s Next: The Signal & Syntax Roadmap">
   <meta name="twitter:description" content="If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, get in touch.
-◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch. Building a decoder-only Transformer from first principles, including token and positional embeddings, scaled dot-product attention, multi-head attention, feed-forward networks, residual connections, causal masking, training, and autoregressive generation. The implementation uses a character-level Shakespeare model to connect the mathematics of Transformer architecture directly to working PyTorch code. Drafted; in pre-publication review.">
+◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Published AI and the Mathematics of LanguageThe mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -180,28 +180,73 @@
 
 <hr>
 <h2 id="in-progress">In Progress</h2>
-<p><strong>Implementing a Minimal Transformer in PyTorch.</strong> Building a decoder-only Transformer from first principles, including token and positional embeddings, scaled dot-product attention, multi-head attention, feed-forward networks, residual connections, causal masking, training, and autoregressive generation. The implementation uses a character-level Shakespeare model to connect the mathematics of Transformer architecture directly to working PyTorch code. Drafted; in pre-publication review.</p>
-<p><strong>Inside Attention (three-part sub-series within AI and the Mathematics of Language).</strong> A dedicated arc on the attention mechanism, split across three posts because a single post could not do the material justice.</p>
+
+
+
+
 <ul>
-<li>
-<p><em>Part 2: Masking and the Function Class.</em> Causal vs. bidirectional masking, why the decoder-only architecture won, and how the choice of mask constrains the function class the model can learn. Outlined.</p>
-</li>
-<li>
-<p><em>Part 3: The Production Stack.</em> The KV cache problem, multi-query and grouped-query attention, sliding window attention, and Flash Attention. The engineering layer that exists because the textbook formula does not survive scale. Outlined.</p>
-</li>
+    
+        <li>
+            <a href="/posts/minimal-transformer/">Implementing a Minimal Transformer in PyTorch</a>.
+            Building the core machinery of a language model from embeddings and attention to training and generation
+        </li>
+    
 </ul>
 <hr>
 <h2 id="planned">Planned</h2>
-<p>These are the topics I intend to write next, in roughly the order I plan to tackle them. Ordering may shift as the material teaches me things.</p>
-<p><strong>The Cooperative Witness Problem.</strong> A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.</p>
-<p><strong>Pre-training vs. Post-training.</strong> The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.</p>
-<p><strong>Softmax and Cross-Entropy Loss.</strong> A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.</p>
-<p><strong>The Feedforward Sublayer.</strong> A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.</p>
-<p><strong>In-Context Learning.</strong> How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.</p>
-<p><strong>Reasoning Models and Test-Time Compute.</strong> The class of models that spend additional compute at inference time to improve their answers, and why this changes what &ldquo;capability&rdquo; means.</p>
-<p><strong>Scaling Laws and Emergence.</strong> The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.</p>
-<p><strong>A Mechanistic Interpretability Primer.</strong> An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.</p>
-<p>Shorter topics also flagged for eventual treatment: Mixture of Experts, quantization, advanced decoding strategies, and the specific engineering of the KV cache (which may end up as part of Inside Attention Part 3 rather than a standalone post).</p>
+<ul>
+    
+    
+    <li>
+        <strong>The Cooperative Witness Problem</strong>.
+        A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.
+    </li>
+    
+    
+    <li>
+        <strong>Pre-training vs. Post-training</strong>.
+        The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.
+    </li>
+    
+    
+    <li>
+        <strong>Softmax and Cross-Entropy Loss</strong>.
+        A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.
+    </li>
+    
+    
+    <li>
+        <strong>The Feedforward Sublayer</strong>.
+        A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.
+    </li>
+    
+    
+    <li>
+        <strong>In-Context Learning</strong>.
+        How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.
+    </li>
+    
+    
+    <li>
+        <strong>Reasoning Models and Test-Time Compute</strong>.
+        The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.
+    </li>
+    
+    
+    <li>
+        <strong>Scaling Laws and Emergence</strong>.
+        The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.
+    </li>
+    
+    
+    <li>
+        <strong>A Mechanistic Interpretability Primer</strong>.
+        An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.
+    </li>
+    
+</ul>
+
+
 <hr>
 <h2 id="published">Published</h2>
 
@@ -289,6 +334,11 @@
 <p>Real-world problems explored through mathematics, modeling, simulation, and code. These posts use specific problems as a way to develop broader techniques for reasoning about complex systems.</p>
 
 <ul>
+    
+    <li>
+        <a href="/posts/minimal-transformer/">Implementing a Minimal Transformer in PyTorch</a>.
+        Building the core machinery of a language model from embeddings and attention to training and generation
+    </li>
     
     <li>
         <a href="/posts/edmund-fitzgerald/">The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments</a>.

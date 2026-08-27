@@ -6,8 +6,15 @@
     <description>Recent content in Applied Modeling and Simulation on Signal &amp; Syntax</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Nov 2025 06:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 01 Apr 2026 06:00:00 -0700</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/applied-modeling-and-simulation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Implementing a Minimal Transformer in PyTorch</title>
+      <link>http://localhost:1313/posts/minimal-transformer/</link>
+      <pubDate>Wed, 01 Apr 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/minimal-transformer/</guid>
+      <description>&lt;p&gt;In 2017, Vaswani et al. published &amp;ldquo;Attention Is All You Need,&amp;rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&amp;rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&amp;rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Wreck of the Edmund Fitzgerald: Modeling Decomposition in Extreme Environments</title>
       <link>http://localhost:1313/posts/edmund-fitzgerald/</link>

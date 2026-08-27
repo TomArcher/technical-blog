@@ -5,6 +5,7 @@
 
     {{ $sections := .Site.Params.mainSections | default (slice "posts") }}
     {{ $pages := where .Site.RegularPages "Type" "in" $sections }}
+    {{ $pages = where $pages "Params.disposition" "ne" "in-progress" }}
 
     {{ $pinned := where $pages "Params.pinned" true }}
     {{ $regular := where $pages "Params.pinned" "ne" true }}

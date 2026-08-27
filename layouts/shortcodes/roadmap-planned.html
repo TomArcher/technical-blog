@@ -1,0 +1,10 @@
+<ul>
+    {{ range .Site.Data.planned }}
+    {{ $post := . }}
+    <li>
+        <strong>{{ $post.title }}</strong>.
+        {{ with $post.description }}{{ . }}{{ end }}
+    </li>
+    {{ end }}
+</ul>
+

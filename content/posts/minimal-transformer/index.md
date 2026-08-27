@@ -2,11 +2,12 @@
 title = "Implementing a Minimal Transformer in PyTorch"
 subtitle = "Building the core machinery of a language model from embeddings and attention to training and generation"
 date = "2026-04-01T06:00:00-07:00"
-draft = true
+draft = false
 categories = ["Applied Modeling and Simulation"]
 tags = ["AI", "Attention Mechanisms", "LLM", "NLP", "Python", "Transformers",]
 author = "Tom Archer"
 listThumb = "transformer.jpeg"
+disposition="in-progress"
 
 hero = "transformer.jpeg"
 heroAlt = "Diagram of a Transformer block showing the flow from token embeddings through multi-head attention, add & norm, feed-forward, and add & norm to output logits"

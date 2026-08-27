@@ -23,8 +23,8 @@
 		
   <meta itemprop="name" content="Posts">
   <meta itemprop="description" content="Tom Archer&#39;s technical blog">
-  <meta itemprop="datePublished" content="2026-08-25T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-08-25T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2026-08-26T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-08-26T00:00:00+00:00">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Posts">
@@ -129,7 +129,7 @@
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/posts/roadmap/" rel="bookmark">
-			Start Here: The Signal &amp; Syntax Roadmap
+			What&#39;s Next: The Signal &amp; Syntax Roadmap
 			</a>
 		</h2>
 		
@@ -147,7 +147,22 @@
 
 <hr>
 <h2 id="in-progress">In Progress</h2>
-<p><strong>Implementing a Minimal Transformer in PyTorch.</strong> Building a decoder-only Transformer from first principles, including token and positional embeddings, scaled dot-product attention, multi-head attention, feed-forward networks, residual connections, causal masking, training, and autoregressive generation. The implementation uses a character-level Shakespeare model to connect the mathematics of Transformer architecture directly to working PyTorch code. Drafted; in pre-publication review.</p>
+
+
+
+
+<ul>
+    
+        <li>
+            <a href="/posts/minimal-transformer/">Implementing a Minimal Transformer in PyTorch</a>.
+            Building the core machinery of a language model from embeddings and attention to training and generation
+        </li>
+    
+</ul>
+<hr>
+<h2 id="planned">Planned</h2>
+<p>These are the topics I intend to write next, in roughly the order I plan to tackle them. Ordering may shift as the
+material teaches me things.</p>
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/roadmap/">Read more…</a>
@@ -172,20 +187,17 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/discrete-math-in-large-language-models/" rel="bookmark">
-			The Discrete Mathematics Hiding Inside LLMs
+			<a href="/posts/minimal-transformer/" rel="bookmark">
+			Implementing a Minimal Transformer in PyTorch
 			</a>
 		</h2>
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<p>A recent <a href="https://www.linkedin.com/posts/activity-7435689322504167424-_v46" target="_blank" rel="noopener noreferrer">
-  LinkedIn post
-</a>
- from Michael Palmer described how <a class="glossary-term" href="/glossary/#discrete-mathematics" data-definition="The branch of mathematics concerned with distinct, countable structures such as sets, logic, graphs, integers, and combinatorial objects.">discrete mathematics</a> is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, <a class="glossary-term" href="/glossary/#gradient-descent" data-definition="An optimization method that iteratively adjusts model parameters in the direction that reduces a loss function.">gradient descent</a>, and probability distributions. If you&rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&rsquo;d expect.</p>
+		<p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
 	</div>
 	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/posts/discrete-math-in-large-language-models/">Read more…</a>
+		<a class="list__footer-readmore btn" href="/posts/minimal-transformer/">Read more…</a>
 	</div>
 </article>
 </main>
