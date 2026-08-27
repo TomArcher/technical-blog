@@ -5,7 +5,7 @@
 <ul>
     {{ range $pages.ByDate.Reverse }}
         <li>
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>.
+            <strong>{{ .Title }}</strong>.
             {{ with .Params.subtitle }}{{ . }}{{ end }}
         </li>
     {{ end }}
