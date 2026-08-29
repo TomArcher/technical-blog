@@ -21,8 +21,8 @@ googleAnalytics = "G-7ZV2PMS61P"
 
   # Short bio (first paragraph)
   bio = """
-  I build platforms that frontier AI labs run on: training infrastructure, evaluation systems, internal tooling, model serving. The systems the researchers use, not the ones the customers see.
-  
+  I research and write about the systems that frontier AI labs depend on: training infrastructure, evaluation systems, internal tooling, and model serving. My focus is on understanding how these systems work, why they're designed the way they are, and the engineering tradeoffs behind them.
+
   For forty years I've built platforms, not applications. Every time I've been asked to ship a product, the product has turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine that outlives the original feature request.
   
   The pattern shows across my career: Forms Express at AT&T, a four-layer dynamic runtime shipped for under $500K against a $2M consulting bid. VeriSign's first-ever customer self-service mobile activation system, which won the 2003 SUPERQuest Award. TAG at Microsoft, a production LLM orchestration platform that shipped nearly 100 Terraform articles by parsing XML templates, routing prompts to Azure OpenAI, and composing results with browser-driven Azure portal capture. Along the way: C++ MVP, 9 technology books, 100+ articles for .NET Programming Tips & Techniques, and helping run CodeGuru, the largest Windows developer community of its era.
