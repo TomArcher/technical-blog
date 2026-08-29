@@ -21,24 +21,13 @@ googleAnalytics = "G-7ZV2PMS61P"
 
   # Short bio (first paragraph)
   bio = """
-  For forty years I've built platforms, not applications. Every time I've been asked to ship a product, the product has
-  turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine
-  that outlives the feature request it started from.
-
-  At AT&T I architected Forms Express, a four-layer dynamic runtime that let non-programmers create schema-agnostic
-  insurance applications. At Auto Parts International I built a state-machine platform that drove an entire distribution
-  system off data-queue records. At VeriSign, my team shipped the first-ever customer self-service mobile device
-  activation system, winning the 2003 SUPERQuest Award. Along the way I was a C++ MVP, authored or co-authored nine
-  technology books, wrote 100+ articles for *.NET Programming Tips & Techniques*, and helped run
-  [CodeGuru](http://codeguru.com) (the largest Windows developer community of its era).
-
-  At Microsoft, I architected and built TAG (Templatized Article Generator), a production LLM orchestration platform
-  that drives Azure Terraform documentation. TAG introduces a template layer where HTML-like tags encode prompt
-  structures that get concatenated with code samples at runtime and routed to generative models, with results
-  injected back into the output. Nearly 100 articles have shipped through the system.
-
-  This blog is where I work through the mathematics and engineering underneath the models: from gradient descent
-  to inference-time behavior, from tokenization to training infrastructure.
+  I build platforms that frontier AI labs run on: training infrastructure, evaluation systems, internal tooling, model serving. The systems the researchers use, not the ones the customers see.
+  
+  For forty years I've built platforms, not applications. Every time I've been asked to ship a product, the product has turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine that outlives the original feature request.
+  
+  The pattern shows across my career: Forms Express at AT&T, a four-layer dynamic runtime shipped for under $500K against a $2M consulting bid. VeriSign's first-ever customer self-service mobile activation system, which won the 2003 SUPERQuest Award. TAG at Microsoft, a production LLM orchestration platform that shipped nearly 100 Terraform articles by parsing XML templates, routing prompts to Azure OpenAI, and composing results with browser-driven Azure portal capture. Along the way: C++ MVP, 9 technology books, 100+ articles for .NET Programming Tips & Techniques, and helping run CodeGuru, the largest Windows developer community of its era.
+  
+  After 21 years at Microsoft, I'm now full-time on what's next: completing my Master's in Computer Science and publishing at Signal & Syntax, a technical blog where I work through the mathematics and engineering underneath the models: from gradient descent to inference-time behavior, from tokenization to training infrastructure.
 
   Connect with me on [LinkedIn](https://www.linkedin.com/in/tom-archer-dev/).
   """

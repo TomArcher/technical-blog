@@ -15,7 +15,6 @@ subtitle = "Exploring how large language models interpret code and what they mis
 learningPaths = [
     "AI for Software Engineers"
 ]
-
 categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "LLM", "probability", "tokenization",]
 
