@@ -17,7 +17,7 @@
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="What&#39;s Next: The Signal & Syntax Roadmap">
   <meta property="og:description" content="If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, get in touch.
-◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Published AI and the Mathematics of LanguageThe mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
+◐ In Progress○ Planned✓ PublishedIn ProgressImplementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned (not ordered)The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Context Compression: What Does &#39;Lossless&#39; Really Mean?.As context windows fill, AI systems increasingly rely on summarization and compression to preserve what matters. But if a system must decide what to discard before it knows what will matter later, how “lossless” can that compression really be? An examination of what context compression preserves, what it inevitably risks losing, and why the distinction matters for long-running AI systems.Published(22 Posts)AI and the Mathematics of Language(9 Posts)The mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -27,15 +27,15 @@
 		
   <meta itemprop="name" content="What&#39;s Next: The Signal & Syntax Roadmap">
   <meta itemprop="description" content="If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, get in touch.
-◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Published AI and the Mathematics of LanguageThe mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
+◐ In Progress○ Planned✓ PublishedIn ProgressImplementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned (not ordered)The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Context Compression: What Does &#39;Lossless&#39; Really Mean?.As context windows fill, AI systems increasingly rely on summarization and compression to preserve what matters. But if a system must decide what to discard before it knows what will matter later, how “lossless” can that compression really be? An examination of what context compression preserves, what it inevitably risks losing, and why the distinction matters for long-running AI systems.Published(22 Posts)AI and the Mathematics of Language(9 Posts)The mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
   <meta itemprop="datePublished" content="2026-08-26T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-08-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="990">
+  <meta itemprop="wordCount" content="1069">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="What&#39;s Next: The Signal & Syntax Roadmap">
   <meta name="twitter:description" content="If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, get in touch.
-◐ In Progress○ Planned✓ PublishedIn Progress Implementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Published AI and the Mathematics of LanguageThe mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
+◐ In Progress○ Planned✓ PublishedIn ProgressImplementing a Minimal Transformer in PyTorch.Building the core machinery of a language model from embeddings and attention to training and generationPlanned (not ordered)The Cooperative Witness Problem.A piece on the ways language models tend to accept and continue user premises rather than push back on them, and the training dynamics that produce that tendency. Follows naturally from Part 2 of Inside Attention, which sets up the function-class framing this piece depends on.Pre-training vs. Post-training.The distinction between the compute-heavy foundation training phase and the alignment phase that shapes model behavior (supervised fine-tuning, RLHF, DPO, Constitutional AI). One of the highest-confusion topics for readers new to the field and a natural companion to the cooperative witness piece.Softmax and Cross-Entropy Loss.A focused post on the connective tissue between probability and learning. Softmax as the operation that turns real numbers into distributions; cross-entropy as the loss that measures how well those distributions match the truth. Short, foundational, unlocks the probability layer.The Feedforward Sublayer.A standalone post on the FFN sublayer inside each transformer block: what it does, why it is often much larger than the attention sublayer, and what interpretability research has shown about the concepts stored there.In-Context Learning.How models adapt to patterns within a single prompt without parameter updates, and why induction heads (covered in Inside Attention Part 1) are part but not all of the mechanistic story.Reasoning Models and Test-Time Compute.The class of models that spend additional compute at inference time to improve their answers, and why this changes what &#39;capability&#39; means.Scaling Laws and Emergence.The empirical relationships between compute, data, parameters, and capability, and where the sharp transitions in behavior come from.A Mechanistic Interpretability Primer.An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.Context Compression: What Does &#39;Lossless&#39; Really Mean?.As context windows fill, AI systems increasingly rely on summarization and compression to preserve what matters. But if a system must decide what to discard before it knows what will matter later, how “lossless” can that compression really be? An examination of what context compression preserves, what it inevitably risks losing, and why the distinction matters for long-running AI systems.Published(22 Posts)AI and the Mathematics of Language(9 Posts)The mathematics, mechanisms, and engineering behind large language models. These posts work from first principles to explore how models represent language, learn patterns, use attention and context, and generate output.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -129,16 +129,23 @@
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">What&#39;s Next: The Signal &amp; Syntax Roadmap</h1>
-        <p class="post-subtitle">Want to know what&#39;s coming? Explore our roadmap to see what we&#39;re building, what&#39;s queued up, and what&#39;s already live.</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2026-08-26T00:00:00Z">
-              <strong>August 26, 2026</strong>
-            </time></div>
+  <header class="post__header">
+    <h1 class="post__title">What&#39;s Next: The Signal &amp; Syntax Roadmap</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Want to know what&#39;s coming? Explore our roadmap to see what we&#39;re building, what&#39;s queued up, and what&#39;s already live.</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2026-08-26T00:00:00Z">
+        <strong>Aug 26, 2026</strong>
+    </time>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Froadmap%2F&amp;text=What%27s&#43;Next%3A&#43;The&#43;Signal&#43;%26&#43;Syntax&#43;Roadmap" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Froadmap%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -162,13 +169,18 @@
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
-    <div class="content post__content clearfix"><p>If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
+    <div class="content post__content clearfix">
+
+      
+
+
+<p>If there is a topic in the planned list you want to see sooner, or a topic missing that you think belongs here, <a href="https://www.linkedin.com/in/tom-archer-dev/" target="_blank" rel="noopener noreferrer">
   get in touch
 </a>
 .</p>
@@ -179,7 +191,8 @@
 </div>
 
 <hr>
-<h2 id="in-progress">In Progress</h2>
+<h2>In Progress</h2>
+
 
 
 
@@ -193,7 +206,8 @@
     
 </ul>
 <hr>
-<h2 id="planned">Planned</h2>
+<h2>Planned (not ordered)</h2>
+
 <ul>
     
     
@@ -244,15 +258,25 @@
         An introduction to the research program of reverse-engineering trained transformers, at the level of concrete circuits and features rather than high-level intuitions.
     </li>
     
+    
+    <li>
+        <strong>Context Compression: What Does &#39;Lossless&#39; Really Mean?</strong>.
+        As context windows fill, AI systems increasingly rely on summarization and compression to preserve what matters. But if a system must decide what to discard before it knows what will matter later, how “lossless” can that compression really be? An examination of what context compression preserves, what it inevitably risks losing, and why the distinction matters for long-running AI systems.
+    </li>
+    
 </ul>
 
 
 <hr>
-<h2 id="published">Published</h2>
 
 
 
 
+
+<h2>
+    Published
+    (22 Posts)
+</h2>
 
 
 
@@ -264,6 +288,8 @@
 <h3>
     <a href="/categories/ai-and-the-mathematics-of-language/">
         AI and the Mathematics of Language
+        
+        (9 Posts)
     </a>
 </h3>
 
@@ -327,11 +353,11 @@
 
 
 
-
-
 <h3>
     <a href="/categories/applied-modeling-and-simulation/">
         Applied Modeling and Simulation
+        
+        (8 Posts)
     </a>
 </h3>
 
@@ -390,11 +416,11 @@
 
 
 
-
-
 <h3>
     <a href="/categories/essays-and-perspectives/">
         Essays and Perspectives
+        
+        (2 Posts)
     </a>
 </h3>
 
@@ -423,11 +449,11 @@
 
 
 
-
-
 <h3>
     <a href="/categories/python-techniques-and-tooling/">
         Python Techniques and Tooling
+        
+        (3 Posts)
     </a>
 </h3>
 
@@ -543,6 +569,43 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/ai-for-software-engineers/">
+                    AI for Software Engineers
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-llms-learn-and-acquire-capabilities/">
+                    How LLMs Learn and Acquire Capabilities
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/understanding-model-behavior/">
+                    Understanding Model Behavior
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

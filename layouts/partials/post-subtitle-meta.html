@@ -1,0 +1,42 @@
+{{ $page := . }}
+
+{{ with $page.Params.subtitle }}
+<div class="post-subtitle">{{ . }}</div>
+{{ end }}
+
+<div class="post-meta">
+    {{- $d := $page.Date -}}
+
+    {{- if not $d.IsZero }}
+    <time datetime="{{ $d.Format " 2006-01-02T15:04:05Z07:00" }}">
+        <strong>{{ $d.Format "Jan 2, 2006" }}</strong>
+    </time>
+    {{- end }}
+
+    {{- with $page.Params.learningPaths }}
+    &nbsp;•&nbsp;
+    <strong>Learning {{ if gt (len .) 1 }}Paths{{ else }}Path{{ end }}:</strong>&nbsp;
+    {{- range $i, $path := . }}
+    {{- if $i }} &middot; {{ end }}
+    <a href="{{ (printf "/learningpaths/%s/" ($path | urlize)) | relURL }}">
+        {{ $path }}
+    </a>
+    {{- end }}
+    {{- end }}
+
+    {{- with $page.Params.categories }}
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    {{- range $i, $cat := . }}
+    {{- if $i }} &middot; {{ end }}
+    <a href="{{ (printf "/categories/%s/" ($cat | urlize)) | relURL }}" rel="category">{{ $cat }}</a>
+    {{- end }}
+    {{- end }}
+
+    {{- with $page.Params.tags }}
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    {{- range $i, $tag := . }}
+    {{- if $i }} &middot; {{ end }}
+    <a href="{{ (printf "/tags/%s/" ($tag | urlize)) | relURL }}" rel="tag">#{{ $tag }}</a>
+    {{- end }}
+    {{- end }}
+</div>

@@ -47,11 +47,6 @@ Writing standard:
 
 <!--more-->
 
-<!--
-Do NOT add "What You'll Learn" by default. This category should feel like an
-essay, not a lesson. A short contextual note/callout is fine when warranted.
--->
-
 [OPTIONAL PERSONAL/HISTORICAL CONTEXT OR SHORT BRIDGE INTO THE ARGUMENT.]
 
 ---

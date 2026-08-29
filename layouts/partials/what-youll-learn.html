@@ -1,0 +1,32 @@
+{{ $page := .page }}
+{{ $compact := default false .compact }}
+
+{{ with $page.Params.whatYoullLearn }}
+
+{{ if $compact }}
+<div class="post-learning">
+    <div class="post-learning-title">What You'll Learn</div>
+    <ul class="post-learning-list">
+        {{ range . }}
+        <li>{{ . | markdownify }}</li>
+        {{ end }}
+    </ul>
+</div>
+
+{{ else }}
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
+        After reading this post, you'll be able to explain:
+    </div>
+
+    <ul>
+        {{ range . }}
+        <li>{{ . | markdownify }}</li>
+        {{ end }}
+    </ul>
+</aside>
+{{ end }}
+
+{{ end }}

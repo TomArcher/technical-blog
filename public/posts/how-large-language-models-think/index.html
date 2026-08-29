@@ -135,30 +135,39 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">How Large Language Models (LLMs) Think: Turning Meaning into Math</h1>
-        <p class="post-subtitle">Exploring how large language models use linear algebra to create geometric meaning</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-10-07T06:00:00-07:00">
-              <strong>October 7, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/embeddings/"
-                 rel="tag">#embeddings</a>, <a class="meta__link"
-                 href="/tags/geometry/"
-                 rel="tag">#geometry</a>, <a class="meta__link"
-                 href="/tags/linear-algebra/"
-                 rel="tag">#linear algebra</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">How Large Language Models (LLMs) Think: Turning Meaning into Math</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Exploring how large language models use linear algebra to create geometric meaning</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-10-07T06:00:00-07:00">
+        <strong>Oct 7, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Paths:</strong>&nbsp;
+    <a href="/learningpaths/how-large-language-models-work/">
+        How Large Language Models Work
+    </a> &middot; 
+    <a href="/learningpaths/inside-the-transformer/">
+        Inside the Transformer
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/ai-and-the-mathematics-of-language/" rel="category">AI and the Mathematics of Language</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/embeddings/" rel="tag">#embeddings</a> &middot; 
+    <a href="/tags/geometry/" rel="tag">#geometry</a> &middot; 
+    <a href="/tags/linear-algebra/" rel="tag">#linear algebra</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-think%2F&amp;text=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Think%3A&#43;Turning&#43;Meaning&#43;into&#43;Math" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-think%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -182,9 +191,9 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -216,22 +225,39 @@ Each word, phrase, and code token becomes a vector — a list of real-valued coo
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>How an LLM turns words and tokens into numerical vectors it can process</li>
-          <li>How distance and direction in embedding space can represent relationships in meaning</li>
-          <li>Why linear algebra and geometry are two ways of describing the same internal structure</li>
-          <li>How matrix operations transform information as it moves through a model</li>
-          <li>Why high-dimensional spaces can represent many subtle features of language at once</li>
-          <li>How probability guides a model from its current context toward the next token</li>
-      </ul>
-    </aside><p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+    <ul>
+        
+        <li>How an LLM turns words and tokens into numerical vectors it can process</li>
+        
+        <li>How distance and direction in embedding space can represent relationships in meaning</li>
+        
+        <li>Why linear algebra and geometry are two ways of describing the same internal structure</li>
+        
+        <li>How matrix operations transform information as it moves through a model</li>
+        
+        <li>Why high-dimensional spaces can represent many subtle features of language at once</li>
+        
+        <li>How probability guides a model from its current context toward the next token</li>
+        
+    </ul>
+</aside>
+
+
+<p>When you enter a sentence into a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -523,6 +549,43 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/ai-for-software-engineers/">
+                    AI for Software Engineers
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-llms-learn-and-acquire-capabilities/">
+                    How LLMs Learn and Acquire Capabilities
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/understanding-model-behavior/">
+                    Understanding Model Behavior
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

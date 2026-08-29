@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI for Software Engineers on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/learningpaths/ai-for-software-engineers/</link>
+    <description>Recent content in AI for Software Engineers on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Nov 2025 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/learningpaths/ai-for-software-engineers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</title>
+      <link>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</link>
+      <pubDate>Mon, 10 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</guid>
+      <description>&lt;p&gt;When you have a long conversation with a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;large language model&lt;/a&gt; (LLM) such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, it feels like the model remembers everything you&amp;rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &amp;ldquo;know&amp;rdquo; what you talked about pages ago.&lt;/p&gt;&#xA;&lt;p&gt;But here&amp;rsquo;s the uncomfortable truth: the model doesn&amp;rsquo;t remember anything. It&amp;rsquo;s not storing your conversation in memory the way a database would. Instead, it&amp;rsquo;s &lt;strong&gt;rereading the entire conversation from the beginning every single time you send a message.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</title>
+      <link>http://localhost:1313/posts/how-large-language-models-read-code/</link>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-read-code/</guid>
+      <description>&lt;p&gt;Developers are accustomed to thinking about code in terms of &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#syntax-semantics&#34; data-definition=&#34;Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.&#34;&gt;syntax and semantics&lt;/a&gt;, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;Large Language Model (LLM)&lt;/a&gt;, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

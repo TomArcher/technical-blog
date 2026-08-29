@@ -135,30 +135,39 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</h1>
-        <p class="post-subtitle">Exploring why longer context doesn&#39;t mean better memory and what happens when conversations grow</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-11-10T06:00:00-07:00">
-              <strong>November 10, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/attention-mechanisms/"
-                 rel="tag">#attention mechanisms</a>, <a class="meta__link"
-                 href="/tags/context-windows/"
-                 rel="tag">#context windows</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/transformers/"
-                 rel="tag">#transformers</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Exploring why longer context doesn&#39;t mean better memory and what happens when conversations grow</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-11-10T06:00:00-07:00">
+        <strong>Nov 10, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Paths:</strong>&nbsp;
+    <a href="/learningpaths/ai-for-software-engineers/">
+        AI for Software Engineers
+    </a> &middot; 
+    <a href="/learningpaths/how-large-language-models-work/">
+        How Large Language Models Work
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/ai-and-the-mathematics-of-language/" rel="category">AI and the Mathematics of Language</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/attention-mechanisms/" rel="tag">#attention mechanisms</a> &middot; 
+    <a href="/tags/context-windows/" rel="tag">#context windows</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a> &middot; 
+    <a href="/tags/transformers/" rel="tag">#transformers</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-handle-context-windows%2F&amp;text=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Handle&#43;Context&#43;Windows%3A&#43;The&#43;Memory&#43;That&#43;Isn%27t&#43;Memory" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-handle-context-windows%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -182,9 +191,9 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -216,22 +225,39 @@ But here’s the uncomfortable truth: the model doesn’t remember anything. It�
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>Why an LLM&rsquo;s context window is not the same thing as memory</li>
-          <li>How chat applications create continuity even though the underlying model is stateless</li>
-          <li>How attention lets earlier parts of a conversation influence the next token</li>
-          <li>Why longer conversations become increasingly expensive for a transformer to process</li>
-          <li>Why information can become harder to use even while it remains inside the context window</li>
-          <li>How truncation, summarization, retrieval, and KV caching help manage long conversations</li>
-      </ul>
-    </aside><p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+    <ul>
+        
+        <li>Why an LLM&rsquo;s context window is not the same thing as memory</li>
+        
+        <li>How chat applications create continuity even though the underlying model is stateless</li>
+        
+        <li>How attention lets earlier parts of a conversation influence the next token</li>
+        
+        <li>Why longer conversations become increasingly expensive for a transformer to process</li>
+        
+        <li>Why information can become harder to use even while it remains inside the context window</li>
+        
+        <li>How truncation, summarization, retrieval, and KV caching help manage long conversations</li>
+        
+    </ul>
+</aside>
+
+
+<p>When you have a long conversation with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model</a> (LLM) such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -425,7 +451,7 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 <h3 id="2-summarization"><strong>2. Summarization</strong></h3>
 <p>Some systems automatically summarize older portions of the conversation and replace them with condensed versions in what gets sent to the API.</p>
 <p><strong>Problem:</strong> Summarization is lossy. Nuance, specific examples, and precise wording disappear. The model is now reasoning over <em>a summary of your conversation</em> rather than your actual words.</p>
-<h3 id="3-hahahugoshortcode9s12hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
+<h3 id="3-hahahugoshortcode103s12hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
 <p>The application stores the full conversation in an external database and retrieves relevant chunks to include in the API call.</p>
 <p><strong>Problem:</strong> Retrieval is imperfect. The system has to guess which past messages are relevant. It might retrieve the wrong context or miss critical information.</p>
 <hr>
@@ -828,6 +854,43 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/ai-for-software-engineers/">
+                    AI for Software Engineers
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-llms-learn-and-acquire-capabilities/">
+                    How LLMs Learn and Acquire Capabilities
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/understanding-model-behavior/">
+                    Understanding Model Behavior
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

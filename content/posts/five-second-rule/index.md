@@ -1,11 +1,15 @@
 +++
-title = "The Five-Second Rule Explored with Math & Python"
-subtitle = "Why germs transfer immediately, and how math reveals what really happens after food hits the floor"
+author = "Tom Archer"
+
 date = "2025-09-04T06:00:00-07:00"
 draft = false
+
+title = "The Five-Second Rule Explored with Math & Python"
+subtitle = "Why germs transfer immediately, and how math reveals what really happens after food hits the floor"
+
 categories = ["Applied Modeling and Simulation"]
 tags = ["physics", "probability", "Python"]
-author = "Tom Archer"
+
 listThumb = "five-second-rule-explored.png"
 
 hero = "five-second-rule-explored.png"

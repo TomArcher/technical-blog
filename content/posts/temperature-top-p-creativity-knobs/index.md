@@ -1,11 +1,19 @@
 +++
+author = "Tom Archer"
+
 date = '2025-12-24T12:00:00-08:00'
 draft = false
+
 title = "Temperature and Top-P: The Creativity Knobs"
 subtitle = "How sampling parameters shape AI personality"
+
+learningPaths = [
+    "How Large Language Models Work",
+    "Understanding Model Behavior"
+]
 categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "Anthropic", "LLM", "nucleus sampling", "OpenAI", "probability", "sampling", "softmax", "temperature", "top-p",]
-author = "Tom Archer"
+
 listThumb = "temperature-top-p-creativity-knobs.png"
 
 hero = "temperature-top-p-creativity-knobs.png"

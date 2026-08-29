@@ -133,34 +133,41 @@
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">Inside Attention, Part 1: The Mechanism</h1>
-        <p class="post-subtitle">Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2026-08-22T06:00:00-07:00">
-              <strong>August 22, 2026</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/attention-mechanisms/"
-                 rel="tag">#attention mechanisms</a>, <a class="meta__link"
-                 href="/tags/induction-heads/"
-                 rel="tag">#induction heads</a>, <a class="meta__link"
-                 href="/tags/interpretability/"
-                 rel="tag">#interpretability</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/softmax/"
-                 rel="tag">#softmax</a>, <a class="meta__link"
-                 href="/tags/transformers/"
-                 rel="tag">#transformers</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">Inside Attention, Part 1: The Mechanism</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible.</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2026-08-22T06:00:00-07:00">
+        <strong>Aug 22, 2026</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Paths:</strong>&nbsp;
+    <a href="/learningpaths/how-large-language-models-work/">
+        How Large Language Models Work
+    </a> &middot; 
+    <a href="/learningpaths/inside-the-transformer/">
+        Inside the Transformer
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/ai-and-the-mathematics-of-language/" rel="category">AI and the Mathematics of Language</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/attention-mechanisms/" rel="tag">#attention mechanisms</a> &middot; 
+    <a href="/tags/induction-heads/" rel="tag">#induction heads</a> &middot; 
+    <a href="/tags/interpretability/" rel="tag">#interpretability</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a> &middot; 
+    <a href="/tags/softmax/" rel="tag">#softmax</a> &middot; 
+    <a href="/tags/transformers/" rel="tag">#transformers</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Finside-attention-part-1%2F&amp;text=Inside&#43;Attention%2C&#43;Part&#43;1%3A&#43;The&#43;Mechanism" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Finside-attention-part-1%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -184,9 +191,9 @@
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -218,22 +225,39 @@
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>How queries, keys, and values work together to let tokens exchange information</li>
-          <li>Why attention scores are divided by the square root of the key dimension</li>
-          <li>How scaling prevents softmax from saturating and preserves useful gradient flow</li>
-          <li>Why transformers split attention across multiple heads instead of using one large attention operation</li>
-          <li>What researchers have discovered about the specialized roles learned by attention heads</li>
-          <li>How induction heads learn a match-and-copy algorithm that helps explain in-context learning</li>
-      </ul>
-    </aside><p>The <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformer architecture</a> is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a <a class="glossary-term" href="/glossary/#feedforward-network" data-definition="A neural network component that applies learned transformations independently to each token representation after the attention operation.">feedforward sublayer</a>, wrapped in <a class="glossary-term" href="/glossary/#residual-connection" data-definition="A shortcut connection that adds a layer&#39;s input to its output, helping information and gradients flow through deep neural networks.">residual connections</a> and <a class="glossary-term" href="/glossary/#layer-normalization" data-definition="A normalization technique that stabilizes neural network training by rescaling activations within a layer.">layer normalization</a>. <a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional information</a> is added to the input so the model knows what order the <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a> came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
+    <ul>
+        
+        <li>How queries, keys, and values work together to let tokens exchange information</li>
+        
+        <li>Why attention scores are divided by the square root of the key dimension</li>
+        
+        <li>How scaling prevents softmax from saturating and preserves useful gradient flow</li>
+        
+        <li>Why transformers split attention across multiple heads instead of using one large attention operation</li>
+        
+        <li>What researchers have discovered about the specialized roles learned by attention heads</li>
+        
+        <li>How induction heads learn a match-and-copy algorithm that helps explain in-context learning</li>
+        
+    </ul>
+</aside>
+
+
+<p>The <a class="glossary-term" href="/glossary/#transformer" data-definition="A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.">transformer architecture</a> is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a <a class="glossary-term" href="/glossary/#feedforward-network" data-definition="A neural network component that applies learned transformations independently to each token representation after the attention operation.">feedforward sublayer</a>, wrapped in <a class="glossary-term" href="/glossary/#residual-connection" data-definition="A shortcut connection that adds a layer&#39;s input to its output, helping information and gradients flow through deep neural networks.">residual connections</a> and <a class="glossary-term" href="/glossary/#layer-normalization" data-definition="A normalization technique that stabilizes neural network training by rescaling activations within a layer.">layer normalization</a>. <a class="glossary-term" href="/glossary/#positional-encoding" data-definition="Information added to token representations so a transformer can distinguish token positions and reason about sequence order.">Positional information</a> is added to the input so the model knows what order the <a class="glossary-term" href="/glossary/#token" data-definition="A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.">tokens</a> came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.</p>
 <p>This post is the first of a three-part series on the attention mechanism. Part 1 covers <a class="glossary-term" href="/glossary/#scaled-dot-product-attention" data-definition="An attention mechanism that compares queries with keys using dot products, scales the resulting scores by the square root of the key dimension, applies softmax, and uses the resulting weights to combine values.">scaled dot-product attention</a>, why we divide by \(\sqrt{d_k}\), <a class="glossary-term" href="/glossary/#multi-head-attention" data-definition="An attention architecture that runs multiple independently learned attention heads in parallel and combines their outputs, allowing different relationships to be modeled simultaneously.">multi-head attention</a>, and what interpretability research has revealed about the patterns and circuits attention can learn. Part 2 covers <a class="glossary-term" href="/glossary/#masking" data-definition="A technique that prevents an attention mechanism from considering selected token positions, typically by modifying their attention scores so they receive effectively zero attention weight.">masking</a> and the function class it forces the model into, including how <a class="glossary-term" href="/glossary/#causal-mask" data-definition="An attention mask that prevents a token from attending to future positions in a sequence.">causal masking</a> turns self-attention into the foundation of <a class="glossary-term" href="/glossary/#autoregressive" data-definition="Describes a model that generates a sequence one element at a time, with each prediction conditioned on previously available elements.">autoregressive</a> next-token prediction. Part 3 covers the engineering layer: <a class="glossary-term" href="/glossary/#kv-cache" data-definition="A cache of previously computed key and value vectors that lets a transformer reuse them while generating subsequent tokens.">KV caching</a>, <a class="glossary-term" href="/glossary/#multi-query-attention" data-definition="An attention variant in which multiple query heads share a single set of key and value heads, reducing memory use and inference cost.">multi-query</a> and <a class="glossary-term" href="/glossary/#grouped-query-attention" data-definition="An attention variant in which groups of query heads share key and value heads, providing a compromise between multi-head and multi-query attention.">grouped-query attention</a>, <a class="glossary-term" href="/glossary/#sliding-window-attention" data-definition="An attention pattern that restricts each token to attending to a limited neighborhood of nearby tokens rather than the entire sequence.">sliding window attention</a>, and <a class="glossary-term" href="/glossary/#flash-attention" data-definition="An optimized attention algorithm that reduces memory traffic by computing attention in blocks, enabling faster and more memory-efficient exact attention.">Flash Attention</a>.</p>
 <p>The 2017 paper, <a href="#vaswani2017">
   Attention Is All You Need
@@ -726,6 +750,25 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

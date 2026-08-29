@@ -51,18 +51,6 @@ Writing standard:
 
 <!--more-->
 
-<!-- Learning goals can use the same compact sidebar convention when useful. -->
-<div class="learning-sidebar">
-<strong>What You'll Learn</strong>
-
-After reading this post, you'll be able to explain:
-
-- [PHYSICAL/MATHEMATICAL PRINCIPLE]
-- [MODELING TECHNIQUE]
-- [HOW VARIABLES INTERACT]
-- [WHAT THE SIMULATION PREDICTS]
-</div>
-
 [ONE PARAGRAPH PREVIEW OF THE MODEL AND ITS PAYOFF.]
 
 > **TL;DR:**

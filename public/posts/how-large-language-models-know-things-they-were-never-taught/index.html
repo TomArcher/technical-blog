@@ -135,30 +135,39 @@ Conversely, ask an LLM with web search enabled the same question, and you receiv
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">How Large Language Models (LLMs) Know Things They Were Never Taught</h1>
-        <p class="post-subtitle">Web search, RAG, and the illusion of current knowledge</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2026-02-09T06:00:00-07:00">
-              <strong>February 9, 2026</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/rag/"
-                 rel="tag">#RAG</a>, <a class="meta__link"
-                 href="/tags/web-search/"
-                 rel="tag">#web search</a>, <a class="meta__link"
-                 href="/tags/context-windows/"
-                 rel="tag">#context windows</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">How Large Language Models (LLMs) Know Things They Were Never Taught</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Web search, RAG, and the illusion of current knowledge</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2026-02-09T06:00:00-07:00">
+        <strong>Feb 9, 2026</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Paths:</strong>&nbsp;
+    <a href="/learningpaths/how-large-language-models-work/">
+        How Large Language Models Work
+    </a> &middot; 
+    <a href="/learningpaths/understanding-model-behavior/">
+        Understanding Model Behavior
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/ai-and-the-mathematics-of-language/" rel="category">AI and the Mathematics of Language</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a> &middot; 
+    <a href="/tags/rag/" rel="tag">#RAG</a> &middot; 
+    <a href="/tags/web-search/" rel="tag">#web search</a> &middot; 
+    <a href="/tags/context-windows/" rel="tag">#context windows</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F&amp;text=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Know&#43;Things&#43;They&#43;Were&#43;Never&#43;Taught" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-know-things-they-were-never-taught%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -182,9 +191,9 @@ Conversely, ask an LLM with web search enabled the same question, and you receiv
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -216,22 +225,39 @@ Conversely, ask an LLM with web search enabled the same question, and you receiv
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>Why an LLM can answer questions about events that happened after its training ended</li>
-          <li>How web search gives a model current information without changing its weights</li>
-          <li>How RAG retrieves relevant information from private or specialized document collections</li>
-          <li>Why retrieved information is read during inference rather than learned by the model</li>
-          <li>How tool use lets an LLM work with search engines, code, databases, and external APIs</li>
-          <li>Why retrieval quality, source accuracy, and model reasoning all affect the final answer</li>
-      </ul>
-    </aside><p>When you ask an <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
+    <ul>
+        
+        <li>Why an LLM can answer questions about events that happened after its training ended</li>
+        
+        <li>How web search gives a model current information without changing its weights</li>
+        
+        <li>How RAG retrieves relevant information from private or specialized document collections</li>
+        
+        <li>Why retrieved information is read during inference rather than learned by the model</li>
+        
+        <li>How tool use lets an LLM work with search engines, code, databases, and external APIs</li>
+        
+        <li>Why retrieval quality, source accuracy, and model reasoning all affect the final answer</li>
+        
+    </ul>
+</aside>
+
+
+<p>When you ask an <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">LLM</a> <em>without</em> web search enabled a question like &ldquo;What happened in the news this morning?&rdquo;, the LLM will respond by telling you that it doesn&rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.</p>
 <p>Conversely, ask an LLM <em>with</em> web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.</p>
 <p>Identical question. Same underlying technology. Completely different answers. The difference isn&rsquo;t that one model is smarter or more current than the other. The difference is whether web search was triggered.</p>
 <p>But why does that matter? Both models were trained months ago. Their internal knowledge stopped updating the moment training ended. So how does flipping a switch allow one model to suddenly &ldquo;know&rdquo; what happened this morning? The answer reveals a fundamental distinction most users never consider: the difference between what a model <em>learned</em> and what a model <em>read</em>.</p>
@@ -839,6 +865,43 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/ai-for-software-engineers/">
+                    AI for Software Engineers
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-llms-learn-and-acquire-capabilities/">
+                    How LLMs Learn and Acquire Capabilities
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/understanding-model-behavior/">
+                    Understanding Model Behavior
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

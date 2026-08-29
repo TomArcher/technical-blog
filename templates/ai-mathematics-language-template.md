@@ -39,24 +39,6 @@ Writing standard:
 
 [OPENING PARAGRAPH]
 
-<!--
-WHAT YOU'LL LEARN SIDEBAR:
-Place beside the first substantive introductory paragraph on desktop.
-Keep goals compact enough to remain readable on mobile.
--->
-
-<div class="learning-sidebar">
-<strong>What You'll Learn</strong>
-
-After reading this post, you'll be able to explain:
-
-- [LEARNING GOAL]
-- [LEARNING GOAL]
-- [LEARNING GOAL]
-- [LEARNING GOAL]
-- [OPTIONAL LEARNING GOAL]
-</div>
-
 [INTRODUCTORY CONTEXT / SERIES CONTEXT]
 
 ---

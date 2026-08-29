@@ -142,26 +142,29 @@ Both work fine… until they don’t. Then you’re left maintaining a wall of c
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">Using Python Dispatch Tables for Cleaner Validation</h1>
-        <p class="post-subtitle">Replacing sprawling validation logic with a compact, declarative mapping of rules and results</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-08-22T10:38:20-07:00">
-              <strong>August 22, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/python-techniques-and-tooling/"
-                 rel="category"><em>Python Techniques and Tooling</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/code-organization/"
-                 rel="tag">#code organization</a>, <a class="meta__link"
-                 href="/tags/design-patterns/"
-                 rel="tag">#design patterns</a>, <a class="meta__link"
-                 href="/tags/python/"
-                 rel="tag">#Python</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">Using Python Dispatch Tables for Cleaner Validation</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Replacing sprawling validation logic with a compact, declarative mapping of rules and results</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-08-22T10:38:20-07:00">
+        <strong>Aug 22, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/python-techniques-and-tooling/" rel="category">Python Techniques and Tooling</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/code-organization/" rel="tag">#code organization</a> &middot; 
+    <a href="/tags/design-patterns/" rel="tag">#design patterns</a> &middot; 
+    <a href="/tags/python/" rel="tag">#Python</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fpython-dispatch-maps%2F&amp;text=Using&#43;Python&#43;Dispatch&#43;Tables&#43;for&#43;Cleaner&#43;Validation" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fpython-dispatch-maps%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -185,9 +188,9 @@ Both work fine… until they don’t. Then you’re left maintaining a wall of c
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -219,22 +222,39 @@ Both work fine… until they don’t. Then you’re left maintaining a wall of c
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>Why deeply nested validation logic becomes difficult to read and maintain</li>
-          <li>How guard clauses improve control flow but can still create repetitive validation code</li>
-          <li>What a dispatch table is and how Python dictionaries make the pattern easy to implement</li>
-          <li>How lambda functions can pair validation rules with their corresponding error messages</li>
-          <li>How a single loop can evaluate many validation rules without adding more control flow</li>
-          <li>Why dispatch tables make validation code easier to extend, read, and maintain</li>
-      </ul>
-    </aside><p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
+    <ul>
+        
+        <li>Why deeply nested validation logic becomes difficult to read and maintain</li>
+        
+        <li>How guard clauses improve control flow but can still create repetitive validation code</li>
+        
+        <li>What a dispatch table is and how Python dictionaries make the pattern easy to implement</li>
+        
+        <li>How lambda functions can pair validation rules with their corresponding error messages</li>
+        
+        <li>How a single loop can evaluate many validation rules without adding more control flow</li>
+        
+        <li>Why dispatch tables make validation code easier to extend, read, and maintain</li>
+        
+    </ul>
+</aside>
+
+
+<p>Let&rsquo;s be honest: argument validation code is rarely the proudest part of anyone&rsquo;s repo.</p>
 <p>Most of us start with the usual suspects:</p>
 <p>❌ The dreaded <em>inverted-V</em> tower of <code>if/else</code> statements<br>
 ❌ A graveyard of <a class="glossary-term" href="/glossary/#guard-clause" data-definition="A conditional check placed near the beginning of a function or block that exits early when a required condition is not satisfied.">guard clauses</a> scattered line after line</p>
@@ -485,6 +505,25 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

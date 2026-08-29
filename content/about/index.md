@@ -18,13 +18,24 @@ Signal & Syntax serves that middle altitude. Posts work through the mathematics 
 
 ---
 
+## How the Site Is Organized
+
+Signal & Syntax offers three ways to explore the material:
+
+- **Learning Paths** are ordered reading sequences designed to build understanding step by step. Earlier articles provide concepts and foundations for later ones, so the order matters.
+- **Categories** group articles by broad subject area. There’s no required reading order; browse whatever interests you.
+- **Tags** connect articles around specific concepts, technologies, and techniques, making it easy to follow a topic across categories and learning paths.
+
+---
+
 ## New Here? 
-Start with [How LLMs Read Code](/posts/how-large-language-models-read-code/) for a representative post, or browse the **Categories** and **Tags** in the sidebar.
+
+New to the material? Start with a **Learning Path** for an ordered introduction, or browse **Categories** and **Tags** if you're looking for a particular subject.
 
 ---
 
 ## Roadmap
 
-Signal & Syntax is organized around a growing set of topics that build on one another. Check out the [Roadmap](/roadmap/) to see what's already been published, what's coming next, and how the posts fit together.
+Signal & Syntax is organized around a growing set of topics that build on one another. Check out the [Roadmap](/roadmap/) to see what's in progress, what's planned, and what's already been published.
 
 ---

@@ -1,3 +1,5 @@
+<h2>In Progress</h2>
+
 {{ $sections := .Site.Params.mainSections | default (slice "posts") }}
 {{ $pages := where .Site.RegularPages "Type" "in" $sections }}
 {{ $pages = where $pages "Params.disposition" "eq" "in-progress" }}

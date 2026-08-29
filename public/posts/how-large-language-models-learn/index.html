@@ -132,30 +132,39 @@
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</h1>
-        <p class="post-subtitle">Exploring how gradient descent and partial derivatives teach models to think</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-10-08T06:00:00-07:00">
-              <strong>October 8, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/calculus/"
-                 rel="tag">#calculus</a>, <a class="meta__link"
-                 href="/tags/gradient-descent/"
-                 rel="tag">#gradient descent</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/optimization/"
-                 rel="tag">#optimization</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Exploring how gradient descent and partial derivatives teach models to think</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-10-08T06:00:00-07:00">
+        <strong>Oct 8, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Paths:</strong>&nbsp;
+    <a href="/learningpaths/how-large-language-models-work/">
+        How Large Language Models Work
+    </a> &middot; 
+    <a href="/learningpaths/how-llms-learn-and-acquire-capabilities/">
+        How LLMs Learn and Acquire Capabilities
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/ai-and-the-mathematics-of-language/" rel="category">AI and the Mathematics of Language</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/calculus/" rel="tag">#calculus</a> &middot; 
+    <a href="/tags/gradient-descent/" rel="tag">#gradient descent</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a> &middot; 
+    <a href="/tags/optimization/" rel="tag">#optimization</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-learn%2F&amp;text=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Learn%3A&#43;Calculus&#43;and&#43;the&#43;Search&#43;for&#43;Understanding" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-learn%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -179,9 +188,9 @@
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -213,22 +222,39 @@
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>How derivatives tell a model which direction will reduce its prediction error</li>
-          <li>How gradient descent turns billions of small corrections into learning</li>
-          <li>How backpropagation uses the chain rule to assign error across many layers</li>
-          <li>Why the learning rate controls the balance between fast progress and stable training</li>
-          <li>Why noisy mini-batch updates can help a model generalize instead of memorize</li>
-          <li>How transformers keep gradients stable while learning which patterns deserve attention</li>
-      </ul>
-    </aside><p>When you interact with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+    <ul>
+        
+        <li>How derivatives tell a model which direction will reduce its prediction error</li>
+        
+        <li>How gradient descent turns billions of small corrections into learning</li>
+        
+        <li>How backpropagation uses the chain rule to assign error across many layers</li>
+        
+        <li>Why the learning rate controls the balance between fast progress and stable training</li>
+        
+        <li>Why noisy mini-batch updates can help a model generalize instead of memorize</li>
+        
+        <li>How transformers keep gradients stable while learning which patterns deserve attention</li>
+        
+    </ul>
+</aside>
+
+
+<p>When you interact with a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">large language model (LLM)</a> such as <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
  or <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">
@@ -649,6 +675,43 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/ai-for-software-engineers/">
+                    AI for Software Engineers
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-llms-learn-and-acquire-capabilities/">
+                    How LLMs Learn and Acquire Capabilities
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/understanding-model-behavior/">
+                    Understanding Model Behavior
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

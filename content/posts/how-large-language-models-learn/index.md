@@ -1,15 +1,24 @@
 +++
-date = '2025-10-08T06:00:00-07:00'
 aliases = [
     "/posts/ptow-sympy-vs-numpy/",
     "how-large-language-models-learn",
 ]
+
+author = "Tom Archer"
+
+date = '2025-10-08T06:00:00-07:00'
 draft = false
+
 title = "How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding"
 subtitle = "Exploring how gradient descent and partial derivatives teach models to think"
+
+learningPaths = [
+    "How Large Language Models Work",
+    "How LLMs Learn and Acquire Capabilities"
+]
 categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "calculus", "gradient descent", "LLM", "optimization",]
-author = "Tom Archer"
+
 listThumb = "how-large-language-models-learn3.png"
 
 hero = "how-large-language-models-learn3.png"

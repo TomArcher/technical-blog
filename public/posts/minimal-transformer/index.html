@@ -133,32 +133,37 @@
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">Implementing a Minimal Transformer in PyTorch</h1>
-        <p class="post-subtitle">Building the core machinery of a language model from embeddings and attention to training and generation</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2026-04-01T06:00:00-07:00">
-              <strong>April 1, 2026</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/applied-modeling-and-simulation/"
-                 rel="category"><em>Applied Modeling and Simulation</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/attention-mechanisms/"
-                 rel="tag">#Attention Mechanisms</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/nlp/"
-                 rel="tag">#NLP</a>, <a class="meta__link"
-                 href="/tags/python/"
-                 rel="tag">#Python</a>, <a class="meta__link"
-                 href="/tags/transformers/"
-                 rel="tag">#Transformers</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">Implementing a Minimal Transformer in PyTorch</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Building the core machinery of a language model from embeddings and attention to training and generation</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2026-04-01T06:00:00-07:00">
+        <strong>Apr 1, 2026</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Path:</strong>&nbsp;
+    <a href="/learningpaths/how-large-language-models-work/">
+        How Large Language Models Work
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/applied-modeling-and-simulation/" rel="category">Applied Modeling and Simulation</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/attention-mechanisms/" rel="tag">#Attention Mechanisms</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a> &middot; 
+    <a href="/tags/nlp/" rel="tag">#NLP</a> &middot; 
+    <a href="/tags/python/" rel="tag">#Python</a> &middot; 
+    <a href="/tags/transformers/" rel="tag">#Transformers</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fminimal-transformer%2F&amp;text=Implementing&#43;a&#43;Minimal&#43;Transformer&#43;in&#43;PyTorch" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fminimal-transformer%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -182,9 +187,9 @@
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -201,22 +206,39 @@
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>How token and positional embeddings turn a sequence of characters into representations a Transformer can process</li>
-          <li>How scaled dot-product attention lets each token decide which earlier tokens matter</li>
-          <li>Why multiple attention heads can learn different relationships within the same sequence</li>
-          <li>How residual connections, layer normalization, and feed-forward networks form a Transformer block</li>
-          <li>How causal masking makes next-token training possible without letting the model see the future</li>
-          <li>How to train a small Transformer in PyTorch and use it to generate new text</li>
-      </ul>
-    </aside><p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
+    <ul>
+        
+        <li>How token and positional embeddings turn a sequence of characters into representations a Transformer can process</li>
+        
+        <li>How scaled dot-product attention lets each token decide which earlier tokens matter</li>
+        
+        <li>Why multiple attention heads can learn different relationships within the same sequence</li>
+        
+        <li>How residual connections, layer normalization, and feed-forward networks form a Transformer block</li>
+        
+        <li>How causal masking makes next-token training possible without letting the model see the future</li>
+        
+        <li>How to train a small Transformer in PyTorch and use it to generate new text</li>
+        
+    </ul>
+</aside>
+
+
+<p>In 2017, Vaswani et al. published &ldquo;Attention Is All You Need,&rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.</p>
 <p>That claim turned out to be correct.</p>
 <p>Most engineers who work <em>with</em> language models never look inside them. They call an API, parse a response, ship a product. There is nothing wrong with that. But if you want to understand <em>why</em> these models behave the way they do — why they track context across long passages, why they can switch tones mid-generation, why they hallucinate — you need to see the machinery. Not read about it. Build it.</p>
 <p>In this post, we implement a minimal Transformer from scratch in PyTorch. No Hugging Face, no pre-built attention layers. We&rsquo;ll cover token and positional embeddings, scaled dot-product attention, multi-head attention, the feed-forward sublayer, layer normalization, residual connections, and a training loop on character-level Shakespeare — the classic proving ground for small language models. The full implementation lands at just under 200 lines.</p>
@@ -1034,6 +1056,25 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

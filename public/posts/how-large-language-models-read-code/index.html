@@ -131,28 +131,35 @@
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</h1>
-        <p class="post-subtitle">Exploring how large language models interpret code and what they miss</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-10-06T09:00:00-07:00">
-              <strong>October 6, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/probability/"
-                 rel="tag">#probability</a>, <a class="meta__link"
-                 href="/tags/tokenization/"
-                 rel="tag">#tokenization</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Exploring how large language models interpret code and what they miss</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-10-06T09:00:00-07:00">
+        <strong>Oct 6, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Path:</strong>&nbsp;
+    <a href="/learningpaths/ai-for-software-engineers/">
+        AI for Software Engineers
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/ai-and-the-mathematics-of-language/" rel="category">AI and the Mathematics of Language</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a> &middot; 
+    <a href="/tags/probability/" rel="tag">#probability</a> &middot; 
+    <a href="/tags/tokenization/" rel="tag">#tokenization</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-read-code%2F&amp;text=How&#43;Large&#43;Language&#43;Models&#43;%28LLMs%29&#43;Read&#43;Code%3A&#43;Seeing&#43;Patterns&#43;Instead&#43;of&#43;Logic" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhow-large-language-models-read-code%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -176,9 +183,9 @@
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -210,22 +217,39 @@
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>How an LLM reads code differently from a compiler or a human developer</li>
-          <li>Why models recognize programming patterns instead of executing the code they see</li>
-          <li>How embeddings let an LLM associate code with similar structures and meanings</li>
-          <li>Why comments, variable names, and familiar coding idioms can change a model&rsquo;s interpretation</li>
-          <li>How statistically likely code can still be logically or operationally wrong</li>
-          <li>Why combining generative AI with compilers and static analysis produces safer coding tools</li>
-      </ul>
-    </aside><p>Developers are accustomed to thinking about code in terms of <a class="glossary-term" href="/glossary/#syntax-semantics" data-definition="Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.">syntax and semantics</a>, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a>, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
+    <ul>
+        
+        <li>How an LLM reads code differently from a compiler or a human developer</li>
+        
+        <li>Why models recognize programming patterns instead of executing the code they see</li>
+        
+        <li>How embeddings let an LLM associate code with similar structures and meanings</li>
+        
+        <li>Why comments, variable names, and familiar coding idioms can change a model&rsquo;s interpretation</li>
+        
+        <li>How statistically likely code can still be logically or operationally wrong</li>
+        
+        <li>Why combining generative AI with compilers and static analysis produces safer coding tools</li>
+        
+    </ul>
+</aside>
+
+
+<p>Developers are accustomed to thinking about code in terms of <a class="glossary-term" href="/glossary/#syntax-semantics" data-definition="Syntax defines the valid structure of expressions in a language, while semantics defines what those expressions mean.">syntax and semantics</a>, the how and the why. Syntax defines what is legal; semantics defines what it means. A compiler enforces syntax with ruthless precision and interprets semantics through symbol tables and execution logic. But a <a class="glossary-term" href="/glossary/#large-language-model" data-definition="A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.">Large Language Model (LLM)</a>, reads code the way a seasoned engineer reads poetry, recognizing rhythm, pattern, and context more than explicit rules.</p>
 <p>The difference may seem subtle, but it has vast consequences. Understanding the gap between human reasoning, compiler verification, and model prediction is key to using generative AI responsibly in programming environments.</p>
 <hr>
 <h2 id="what-is-an-llm">What Is an LLM</h2>
@@ -541,6 +565,43 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/ai-for-software-engineers/">
+                    AI for Software Engineers
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-llms-learn-and-acquire-capabilities/">
+                    How LLMs Learn and Acquire Capabilities
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/understanding-model-behavior/">
+                    Understanding Model Behavior
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

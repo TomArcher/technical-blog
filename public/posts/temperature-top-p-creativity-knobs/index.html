@@ -133,40 +133,44 @@
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">Temperature and Top-P: The Creativity Knobs</h1>
-        <p class="post-subtitle">How sampling parameters shape AI personality</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-12-24T12:00:00-08:00">
-              <strong>December 24, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/ai-and-the-mathematics-of-language/"
-                 rel="category"><em>AI and the Mathematics of Language</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/ai/"
-                 rel="tag">#AI</a>, <a class="meta__link"
-                 href="/tags/anthropic/"
-                 rel="tag">#Anthropic</a>, <a class="meta__link"
-                 href="/tags/llm/"
-                 rel="tag">#LLM</a>, <a class="meta__link"
-                 href="/tags/nucleus-sampling/"
-                 rel="tag">#nucleus sampling</a>, <a class="meta__link"
-                 href="/tags/openai/"
-                 rel="tag">#OpenAI</a>, <a class="meta__link"
-                 href="/tags/probability/"
-                 rel="tag">#probability</a>, <a class="meta__link"
-                 href="/tags/sampling/"
-                 rel="tag">#sampling</a>, <a class="meta__link"
-                 href="/tags/softmax/"
-                 rel="tag">#softmax</a>, <a class="meta__link"
-                 href="/tags/temperature/"
-                 rel="tag">#temperature</a>, <a class="meta__link"
-                 href="/tags/top-p/"
-                 rel="tag">#top-p</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">Temperature and Top-P: The Creativity Knobs</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">How sampling parameters shape AI personality</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-12-24T12:00:00-08:00">
+        <strong>Dec 24, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Paths:</strong>&nbsp;
+    <a href="/learningpaths/how-large-language-models-work/">
+        How Large Language Models Work
+    </a> &middot; 
+    <a href="/learningpaths/understanding-model-behavior/">
+        Understanding Model Behavior
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/ai-and-the-mathematics-of-language/" rel="category">AI and the Mathematics of Language</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/anthropic/" rel="tag">#Anthropic</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a> &middot; 
+    <a href="/tags/nucleus-sampling/" rel="tag">#nucleus sampling</a> &middot; 
+    <a href="/tags/openai/" rel="tag">#OpenAI</a> &middot; 
+    <a href="/tags/probability/" rel="tag">#probability</a> &middot; 
+    <a href="/tags/sampling/" rel="tag">#sampling</a> &middot; 
+    <a href="/tags/softmax/" rel="tag">#softmax</a> &middot; 
+    <a href="/tags/temperature/" rel="tag">#temperature</a> &middot; 
+    <a href="/tags/top-p/" rel="tag">#top-p</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Ftemperature-top-p-creativity-knobs%2F&amp;text=Temperature&#43;and&#43;Top-P%3A&#43;The&#43;Creativity&#43;Knobs" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Ftemperature-top-p-creativity-knobs%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -190,9 +194,9 @@
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -224,22 +228,39 @@
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>How an LLM turns raw token scores into probabilities before choosing what comes next</li>
-          <li>How temperature reshapes a probability distribution to make outputs more predictable or more varied</li>
-          <li>How top-p sampling limits which tokens the model is allowed to consider</li>
-          <li>Why top-p adapts to model confidence differently from a fixed top-k cutoff</li>
-          <li>How temperature and top-p interact when both are applied to the same distribution</li>
-          <li>How to choose sampling settings for factual, structured, professional, and creative tasks</li>
-      </ul>
-    </aside><p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
+    <ul>
+        
+        <li>How an LLM turns raw token scores into probabilities before choosing what comes next</li>
+        
+        <li>How temperature reshapes a probability distribution to make outputs more predictable or more varied</li>
+        
+        <li>How top-p sampling limits which tokens the model is allowed to consider</li>
+        
+        <li>Why top-p adapts to model confidence differently from a fixed top-k cutoff</li>
+        
+        <li>How temperature and top-p interact when both are applied to the same distribution</li>
+        
+        <li>How to choose sampling settings for factual, structured, professional, and creative tasks</li>
+        
+    </ul>
+</aside>
+
+
+<p>Every API call to <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer">
   ChatGPT
 </a>
 , <a href="https://claude.com/platform/api" target="_blank" rel="noopener noreferrer">
@@ -1024,6 +1045,43 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/ai-for-software-engineers/">
+                    AI for Software Engineers
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-llms-learn-and-acquire-capabilities/">
+                    How LLMs Learn and Acquire Capabilities
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/understanding-model-behavior/">
+                    Understanding Model Behavior
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

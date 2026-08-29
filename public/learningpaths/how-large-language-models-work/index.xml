@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How Large Language Models Work on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/learningpaths/how-large-language-models-work/</link>
+    <description>Recent content in How Large Language Models Work on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Aug 2026 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/learningpaths/how-large-language-models-work/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Inside Attention, Part 1: The Mechanism</title>
+      <link>http://localhost:1313/posts/inside-attention-part-1/</link>
+      <pubDate>Sat, 22 Aug 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/inside-attention-part-1/</guid>
+      <description>&lt;p&gt;The &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#transformer&#34; data-definition=&#34;A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.&#34;&gt;transformer architecture&lt;/a&gt; is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#feedforward-network&#34; data-definition=&#34;A neural network component that applies learned transformations independently to each token representation after the attention operation.&#34;&gt;feedforward sublayer&lt;/a&gt;, wrapped in &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#residual-connection&#34; data-definition=&#34;A shortcut connection that adds a layer&amp;#39;s input to its output, helping information and gradients flow through deep neural networks.&#34;&gt;residual connections&lt;/a&gt; and &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#layer-normalization&#34; data-definition=&#34;A normalization technique that stabilizes neural network training by rescaling activations within a layer.&#34;&gt;layer normalization&lt;/a&gt;. &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#positional-encoding&#34; data-definition=&#34;Information added to token representations so a transformer can distinguish token positions and reason about sequence order.&#34;&gt;Positional information&lt;/a&gt; is added to the input so the model knows what order the &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#token&#34; data-definition=&#34;A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.&#34;&gt;tokens&lt;/a&gt; came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Implementing a Minimal Transformer in PyTorch</title>
+      <link>http://localhost:1313/posts/minimal-transformer/</link>
+      <pubDate>Wed, 01 Apr 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/minimal-transformer/</guid>
+      <description>&lt;p&gt;In 2017, Vaswani et al. published &amp;ldquo;Attention Is All You Need,&amp;rdquo; a paper that quietly rearranged the entire landscape of machine learning. It introduced the Transformer architecture — a design that has since become the backbone of every major language model you&amp;rsquo;ve heard of: GPT, BERT, Claude, Gemini, and dozens of others. The paper&amp;rsquo;s title was a provocation. Attention mechanisms already existed. The claim was that you could throw out recurrence entirely and let attention carry the whole load.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Discrete Mathematics Hiding Inside LLMs</title>
+      <link>http://localhost:1313/posts/discrete-math-in-large-language-models/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/discrete-math-in-large-language-models/</guid>
+      <description>&lt;p&gt;A recent &lt;a href=&#34;https://www.linkedin.com/posts/activity-7435689322504167424-_v46&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  LinkedIn post&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; from Michael Palmer described how &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#discrete-mathematics&#34; data-definition=&#34;The branch of mathematics concerned with distinct, countable structures such as sets, logic, graphs, integers, and combinatorial objects.&#34;&gt;discrete mathematics&lt;/a&gt; is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#gradient-descent&#34; data-definition=&#34;An optimization method that iteratively adjusts model parameters in the direction that reduces a loss function.&#34;&gt;gradient descent&lt;/a&gt;, and probability distributions. If you&amp;rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&amp;rsquo;d expect.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Know Things They Were Never Taught</title>
+      <link>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</link>
+      <pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</guid>
+      <description>&lt;p&gt;When you ask an &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;LLM&lt;/a&gt; &lt;em&gt;without&lt;/em&gt; web search enabled a question like &amp;ldquo;What happened in the news this morning?&amp;rdquo;, the LLM will respond by telling you that it doesn&amp;rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.&lt;/p&gt;&#xA;&lt;p&gt;Conversely, ask an LLM &lt;em&gt;with&lt;/em&gt; web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Temperature and Top-P: The Creativity Knobs</title>
+      <link>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</guid>
+      <description>&lt;p&gt;Every API call to &lt;a href=&#34;https://openai.com/api/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, &lt;a href=&#34;https://claude.com/platform/api&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, or any other &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;LLM&lt;/a&gt; includes two parameters most people either ignore or tweak randomly: &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#temperature&#34; data-definition=&#34;A sampling parameter that rescales a model&amp;#39;s logits before softmax, controlling how concentrated or spread out the resulting token probabilities are.&#34;&gt;temperature&lt;/a&gt; and &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#top-p&#34; data-definition=&#34;A sampling parameter that restricts token selection to the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold.&#34;&gt;top-p&lt;/a&gt;. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</title>
+      <link>http://localhost:1313/posts/how-large-language-models-tokenize-text/</link>
+      <pubDate>Tue, 11 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-tokenize-text/</guid>
+      <description>&lt;p&gt;When you type &amp;ldquo;I love programming&amp;rdquo; into ChatGPT, you might assume the model reads three words. It doesn&amp;rsquo;t. It reads somewhere between three and seven tokens, depending on how the text is split.&lt;/p&gt;&#xA;&lt;p&gt;When you ask Claude to count the letters in the word &amp;ldquo;strawberry,&amp;rdquo; it often gets it wrong. The reason is simple. Claude never saw the word &amp;ldquo;strawberry&amp;rdquo; as a complete unit. It saw tokens like &lt;code&gt;&amp;quot;str&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;aw&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;berry&amp;quot;&lt;/code&gt; and tried to reason about letters it couldn&amp;rsquo;t directly access.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</title>
+      <link>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</link>
+      <pubDate>Mon, 10 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-handle-context-windows/</guid>
+      <description>&lt;p&gt;When you have a long conversation with a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;large language model&lt;/a&gt; (LLM) such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, it feels like the model remembers everything you&amp;rsquo;ve discussed. It references earlier points, maintains consistent context, and seems to &amp;ldquo;know&amp;rdquo; what you talked about pages ago.&lt;/p&gt;&#xA;&lt;p&gt;But here&amp;rsquo;s the uncomfortable truth: the model doesn&amp;rsquo;t remember anything. It&amp;rsquo;s not storing your conversation in memory the way a database would. Instead, it&amp;rsquo;s &lt;strong&gt;rereading the entire conversation from the beginning every single time you send a message.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Learn: Calculus and the Search for Understanding</title>
+      <link>http://localhost:1313/posts/how-large-language-models-learn/</link>
+      <pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-learn/</guid>
+      <description>&lt;p&gt;When you interact with a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;large language model (LLM)&lt;/a&gt; such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, the model seems to respond instantly relative to the question&amp;rsquo;s degree of difficulty. What&amp;rsquo;s easy to forget is that every word it predicts comes from a long history of learning where billions of gradient steps have slowly sculpted its understanding of language.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Think: Turning Meaning into Math</title>
+      <link>http://localhost:1313/posts/how-large-language-models-think/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-think/</guid>
+      <description>&lt;p&gt;When you enter a sentence into a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;Large Language Model (LLM)&lt;/a&gt; such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, the model does not process words as language. It represents them as numbers.&lt;/p&gt;&#xA;&lt;p&gt;Each word, phrase, and code &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#token&#34; data-definition=&#34;A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.&#34;&gt;token&lt;/a&gt; becomes a vector — a list of real-valued coordinates within a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#high-dimensional-space&#34; data-definition=&#34;A mathematical space containing many independent dimensions, allowing complex objects and relationships to be represented as vectors.&#34;&gt;high-dimensional space&lt;/a&gt;. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

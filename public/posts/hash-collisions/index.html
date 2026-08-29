@@ -132,30 +132,31 @@
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</h1>
-        <p class="post-subtitle">The mathematical certainty of hash collisions, the near-impossibility of meaningful ones, and what it means for modern cryptography</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-11-17T06:00:00-07:00">
-              <strong>November 17, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/essays-and-perspectives/"
-                 rel="category"><em>Essays and Perspectives</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/blockchain/"
-                 rel="tag">#blockchain</a>, <a class="meta__link"
-                 href="/tags/cryptography/"
-                 rel="tag">#cryptography</a>, <a class="meta__link"
-                 href="/tags/hashing/"
-                 rel="tag">#hashing</a>, <a class="meta__link"
-                 href="/tags/passwords/"
-                 rel="tag">#passwords</a>, <a class="meta__link"
-                 href="/tags/security/"
-                 rel="tag">#security</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">The mathematical certainty of hash collisions, the near-impossibility of meaningful ones, and what it means for modern cryptography</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-11-17T06:00:00-07:00">
+        <strong>Nov 17, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/essays-and-perspectives/" rel="category">Essays and Perspectives</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/blockchain/" rel="tag">#blockchain</a> &middot; 
+    <a href="/tags/cryptography/" rel="tag">#cryptography</a> &middot; 
+    <a href="/tags/hashing/" rel="tag">#hashing</a> &middot; 
+    <a href="/tags/passwords/" rel="tag">#passwords</a> &middot; 
+    <a href="/tags/security/" rel="tag">#security</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhash-collisions%2F&amp;text=Hash&#43;Collisions%3A&#43;Why&#43;Your&#43;%27Unique%27&#43;Fingerprints&#43;Aren%27t&#43;%28And&#43;Why&#43;That%27s&#43;Usually&#43;OK%29" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fhash-collisions%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -179,9 +180,9 @@
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -213,22 +214,39 @@
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>Why hash collisions are mathematically inevitable even with strong algorithms</li>
-          <li>Why a possible collision is very different from a meaningful security threat</li>
-          <li>How MD5 and SHA-1 went from trusted standards to broken algorithms</li>
-          <li>Why modern password storage needs more than a fast hash and a salt</li>
-          <li>When hash collisions matter for security and when they are harmless</li>
-          <li>How crypto-agility helps systems survive when today&rsquo;s algorithms eventually fail</li>
-      </ul>
-    </aside><p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
+    <ul>
+        
+        <li>Why hash collisions are mathematically inevitable even with strong algorithms</li>
+        
+        <li>Why a possible collision is very different from a meaningful security threat</li>
+        
+        <li>How MD5 and SHA-1 went from trusted standards to broken algorithms</li>
+        
+        <li>Why modern password storage needs more than a fast hash and a salt</li>
+        
+        <li>When hash collisions matter for security and when they are harmless</li>
+        
+        <li>How crypto-agility helps systems survive when today&rsquo;s algorithms eventually fail</li>
+        
+    </ul>
+</aside>
+
+
+<p>In 2017, Google researchers generated two different PDF files with identical SHA-1 hashes, finally proving what cryptographers had warned about for years: <a class="glossary-term" href="/glossary/#hash-function" data-definition="A function that transforms input data of arbitrary size into a fixed-size value called a hash or digest.">hash functions</a> don&rsquo;t create truly unique fingerprints (<a href="#stevens2017">
   Stevens et al., 2017
 </a>
 ). This &ldquo;SHAttered&rdquo; attack required 9 quintillion SHA-1 computations, which is the equivalent to 6,500 years of single-CPU computation. The attack cost approximately $45,000 in cloud computing resources, making it accessible to well-funded adversaries but not casual attackers.</p>
@@ -238,7 +256,7 @@
 </div>
 <p>Twenty years ago, I wrote about hash collisions when the biggest concern was spyware-removal applications getting false positives. Today, MD5 can be cracked on a laptop, simple salting is woefully inadequate, and billions of dollars in cryptocurrency depend on hash <a class="glossary-term" href="/glossary/#collision-resistance" data-definition="A property of a cryptographic hash function that makes it computationally infeasible to find two different inputs that produce the same hash.">collision resistance</a>. The landscape has shifted dramatically, with hash functions now underpinning everything from secure communications to digital currencies. But the fundamental questions remain: How unique are hash codes really? And when does it matter?</p>
 <hr>
-<h2 id="the-hahahugoshortcode8s4hbhb-in-action">The <a class="glossary-term" href="/glossary/#pigeonhole-principle" data-definition="A mathematical principle stating that if more objects are placed into fewer containers, at least one container must contain more than one object.">Pigeonhole Principle</a> in Action</h2>
+<h2 id="the-hahahugoshortcode11s4hbhb-in-action">The <a class="glossary-term" href="/glossary/#pigeonhole-principle" data-definition="A mathematical principle stating that if more objects are placed into fewer containers, at least one container must contain more than one object.">Pigeonhole Principle</a> in Action</h2>
 <p>Hash algorithms generate fixed-length outputs regardless of input size. SHA-256 always produces 256 bits (32 bytes), whether you&rsquo;re hashing a single character or an entire library. SHA-3-512 always produces 512 bits. This creates an inherent mathematical constraint that&rsquo;s easy to visualize but hard to grasp in practice.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> hashlib
 </span></span><span style="display:flex;"><span>
@@ -999,6 +1017,25 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

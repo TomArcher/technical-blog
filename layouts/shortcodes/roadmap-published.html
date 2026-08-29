@@ -1,18 +1,25 @@
 {{ $posts := where .Site.RegularPages "Section" "posts" }}
 {{ $posts = where $posts "Params.pinned" "ne" true }}
+{{ $posts = where $posts "Params.disposition" "ne" "in-progress" }}
+
+{{ $count := len $posts }}
+<h2>
+    Published
+    ({{ $count }} {{ if eq $count 1 }}Post{{ else }}Posts{{ end }})
+</h2>
 
 {{ range .Site.Data.categories }}
 
 {{ $category := . }}
 {{ $categoryPosts := where $posts "Params.categories" "intersect" (slice $category.name) }}
 
-{{ $categoryPosts = where $categoryPosts "Params.disposition" "ne" "in-progress" }}
-
 {{ if $categoryPosts }}
 
 <h3>
     <a href="/categories/{{ $category.slug }}/">
         {{ $category.name }}
+        {{ $count := len $categoryPosts }}
+        ({{ $count }} {{ if eq $count 1 }}Post{{ else }}Posts{{ end }})
     </a>
 </h3>
 

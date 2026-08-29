@@ -1,15 +1,24 @@
 +++
-date = '2025-10-07T06:00:00-07:00'
 aliases = [
     "/posts/how-ai-turns-meaning-into-math/",
     "how-large-language-models-think",
 ]
+
+author = "Tom Archer"
+
+date = '2025-10-07T06:00:00-07:00'
 draft = false
+
 title = "How Large Language Models (LLMs) Think: Turning Meaning into Math"
 subtitle = "Exploring how large language models use linear algebra to create geometric meaning"
+
+learningPaths = [
+    "How Large Language Models Work",
+    "Inside the Transformer"
+]
 categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "embeddings", "geometry", "linear algebra", "LLM",]
-author = "Tom Archer"
+
 listThumb = "how-large-language-models-read-code-thumb.png"
 
 hero = "how-large-language-models-read-code.png"

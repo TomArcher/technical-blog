@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Understanding Model Behavior on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/learningpaths/understanding-model-behavior/</link>
+    <description>Recent content in Understanding Model Behavior on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Feb 2026 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/learningpaths/understanding-model-behavior/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Large Language Models (LLMs) Know Things They Were Never Taught</title>
+      <link>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</link>
+      <pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-know-things-they-were-never-taught/</guid>
+      <description>&lt;p&gt;When you ask an &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;LLM&lt;/a&gt; &lt;em&gt;without&lt;/em&gt; web search enabled a question like &amp;ldquo;What happened in the news this morning?&amp;rdquo;, the LLM will respond by telling you that it doesn&amp;rsquo;t have access to current events and suggest you check a more current news source such as Reuters or Google News.&lt;/p&gt;&#xA;&lt;p&gt;Conversely, ask an LLM &lt;em&gt;with&lt;/em&gt; web search enabled the same question, and you receive a detailed rundown of breaking stories, political controversies, and sports news from the past 24 hours.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Temperature and Top-P: The Creativity Knobs</title>
+      <link>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</link>
+      <pubDate>Wed, 24 Dec 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/posts/temperature-top-p-creativity-knobs/</guid>
+      <description>&lt;p&gt;Every API call to &lt;a href=&#34;https://openai.com/api/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, &lt;a href=&#34;https://claude.com/platform/api&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, or any other &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;LLM&lt;/a&gt; includes two parameters most people either ignore or tweak randomly: &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#temperature&#34; data-definition=&#34;A sampling parameter that rescales a model&amp;#39;s logits before softmax, controlling how concentrated or spread out the resulting token probabilities are.&#34;&gt;temperature&lt;/a&gt; and &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#top-p&#34; data-definition=&#34;A sampling parameter that restricts token selection to the smallest set of highest-probability tokens whose cumulative probability reaches a specified threshold.&#34;&gt;top-p&lt;/a&gt;. The defaults work fine for casual use, so why bother understanding them? Because these two numbers fundamentally control how your model thinks.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,11 +1,19 @@
 +++
+author = "Tom Archer"
+
 date = '2026-08-22T06:00:00-07:00'
 draft = false
+
 title = "Inside Attention, Part 1: The Mechanism"
 subtitle = "Attention is the engine. The rest of the transformer architecture stabilizes it, organizes it, and makes deep training possible."
+
+learningPaths = [
+    "How Large Language Models Work",
+    "Inside the Transformer"
+]
 categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "attention mechanisms", "induction heads", "interpretability", "LLM", "softmax", "transformers"]
-author = "Tom Archer"
+
 listThumb = "inside-attention-part-1-thumb.png"
 
 hero = "transformer-architecture.png"

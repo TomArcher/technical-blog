@@ -1,11 +1,19 @@
 +++
+author = "Tom Archer"
+
 date = '2026-02-09T06:00:00-07:00'
 draft = false
+
 title = "How Large Language Models (LLMs) Know Things They Were Never Taught"
 subtitle = "Web search, RAG, and the illusion of current knowledge"
+
+learningPaths = [
+    "How Large Language Models Work",
+    "Understanding Model Behavior"
+]
 categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "LLM", "RAG", "web search", "context windows"]
-author = "Tom Archer"
+
 listThumb = "how-large-language-models-know-things-they-were-never-taught-thumb.png"
 
 hero = "how-large-language-models-know-things-they-were-never-taught.png"

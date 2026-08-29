@@ -1,71 +1,21 @@
 {{ define "main" }}
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">{{ .Title }}</h1>
 
-      {{- with .Params.subtitle }}
-        <p class="post-subtitle">{{ . }}</p>
-      {{- end }}
+  <header class="post__header">
+    <h1 class="post__title">{{ .Title }}</h1>
 
-      <div class="post__meta meta">
-        {{- $d := .Date -}}
-        {{- if not $d.IsZero -}}
-          <p class="meta__line">
-            <time datetime="{{ $d.Format "2006-01-02T15:04:05Z07:00" }}">
-              <strong>{{ $d.Format "January 2, 2006" }}</strong>
-            </time>
-        {{- end -}}
+    {{ partial "post-subtitle-meta.html" . }}
 
-        {{- $cats := .Params.categories -}}
-        {{- with $cats -}}
-            &nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;
-            {{- range $i, $cat := . -}}
-              {{- if $i }}, {{ end -}}
-              <a class="meta__link"
-                 href="{{ (site.GetPage (printf "/categories/%s" ($cat | urlize))).RelPermalink }}"
-                 rel="category"><em>{{ $cat }}</em></a>
-            {{- end -}}
-        {{- end -}}
+    {{ partial "share.html" . }}
+  </header>
 
-        {{- $tags := .Params.tags -}}
-        {{- with $tags -}}
-            &nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;
-            {{- range $i, $tag := . -}}
-              {{- if $i }}, {{ end -}}
-              <a class="meta__link"
-                 href="{{ (site.GetPage (printf "/tags/%s" ($tag | urlize))).RelPermalink }}"
-                 rel="tag">#{{ $tag }}</a>
-            {{- end -}}
-          </p>
-        {{- end -}}
-      </div>
-
-      {{ partial "share.html" . }}  {{/* ONE share row near the top */}}
-
-    </header>
 
     {{ partial "post_hero.html" . }}
 
     <div class="content post__content clearfix">
 
-    {{- with .Params.whatYoullLearn }}
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
-
-      <div class="what-youll-learn__intro">
-        After reading this post, you'll be able to explain:
-      </div>
-
-      <ul>
-        {{- range . }}
-          <li>{{ . | markdownify }}</li>
-        {{- end }}
-      </ul>
-    </aside>
-    {{- end }}
+      {{ partial "what-youll-learn.html" (dict "page" .) }}
 
       {{- partial "post_toc.html" . -}}
 

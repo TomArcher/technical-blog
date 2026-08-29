@@ -23,13 +23,22 @@
     <loc>http://localhost:1313/categories/</loc>
     <lastmod>2026-08-22T06:00:00-07:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/learningpaths/how-large-language-models-work/</loc>
+    <lastmod>2026-08-22T06:00:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/induction-heads/</loc>
     <lastmod>2026-08-22T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/inside-attention-part-1/</loc>
     <lastmod>2026-08-22T06:00:00-07:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/learningpaths/inside-the-transformer/</loc>
+    <lastmod>2026-08-22T06:00:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/interpretability/</loc>
+    <lastmod>2026-08-22T06:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/learningpaths/</loc>
     <lastmod>2026-08-22T06:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/llm/</loc>
@@ -259,5 +268,7 @@
     <loc>http://localhost:1313/bio/</loc>
   </url><url>
     <loc>http://localhost:1313/glossary/</loc>
+  </url><url>
+    <loc>http://localhost:1313/learningpaths/how-llms-learn-and-acquire-capabilities/</loc>
   </url>
 </urlset>

@@ -134,28 +134,30 @@ One day, the controller asked me if I could code a system that took, as input, t
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</h1>
-        <p class="post-subtitle">Using Python, heuristics, and 3D visualization to tackle a real-world optimization problem</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-08-20T09:00:00-07:00">
-              <strong>August 20, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/applied-modeling-and-simulation/"
-                 rel="category"><em>Applied Modeling and Simulation</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/algorithms/"
-                 rel="tag">#algorithms</a>, <a class="meta__link"
-                 href="/tags/geometry/"
-                 rel="tag">#geometry</a>, <a class="meta__link"
-                 href="/tags/optimization/"
-                 rel="tag">#optimization</a>, <a class="meta__link"
-                 href="/tags/python/"
-                 rel="tag">#Python</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">From Ice Shows to Algorithms: Cracking the Truck-Packing Problem</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Using Python, heuristics, and 3D visualization to tackle a real-world optimization problem</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-08-20T09:00:00-07:00">
+        <strong>Aug 20, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/applied-modeling-and-simulation/" rel="category">Applied Modeling and Simulation</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/algorithms/" rel="tag">#algorithms</a> &middot; 
+    <a href="/tags/geometry/" rel="tag">#geometry</a> &middot; 
+    <a href="/tags/optimization/" rel="tag">#optimization</a> &middot; 
+    <a href="/tags/python/" rel="tag">#Python</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fthree-d-packing%2F&amp;text=From&#43;Ice&#43;Shows&#43;to&#43;Algorithms%3A&#43;Cracking&#43;the&#43;Truck-Packing&#43;Problem" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fthree-d-packing%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -179,9 +181,9 @@ One day, the controller asked me if I could code a system that took, as input, t
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -213,22 +215,39 @@ One day, the controller asked me if I could code a system that took, as input, t
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>Why loading a truck efficiently is a difficult 3D optimization problem</li>
-          <li>Why NP-hard problems usually require practical heuristics instead of perfect solutions</li>
-          <li>How box dimensions, orientation, weight, and truck boundaries become constraints in a packing model</li>
-          <li>How a greedy Python algorithm can build a workable packing plan</li>
-          <li>How 3D visualization helps reveal overlaps, wasted space, and placement mistakes</li>
-          <li>How more advanced techniques can improve packing efficiency when simple heuristics are not enough</li>
-      </ul>
-    </aside><p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
+    <ul>
+        
+        <li>Why loading a truck efficiently is a difficult 3D optimization problem</li>
+        
+        <li>Why NP-hard problems usually require practical heuristics instead of perfect solutions</li>
+        
+        <li>How box dimensions, orientation, weight, and truck boundaries become constraints in a packing model</li>
+        
+        <li>How a greedy Python algorithm can build a workable packing plan</li>
+        
+        <li>How 3D visualization helps reveal overlaps, wasted space, and placement mistakes</li>
+        
+        <li>How more advanced techniques can improve packing efficiency when simple heuristics are not enough</li>
+        
+    </ul>
+</aside>
+
+
+<p>My first full-time programming job was for <strong>Holiday on Ice</strong>, an international ice show. While I focused mainly on back office systems such as accounting, itinerary, and box office reporting, I knew that one of the biggest technical challenges faced by the show&rsquo;s crew was efficiently loading trucks for the next city.</p>
 <p>One day, the controller asked me if I could code a system that took, as input, the trucks&rsquo; <strong>3D dimensions</strong> and the <strong>3D dimensions (and weight)</strong> of every object to be packed. Back in the <strong>Turbo Pascal</strong> era, exploring 3D packing was painful. Today, with <strong>Python</strong> and <strong>AI-assisted scaffolding</strong>, it&rsquo;s surprisingly approachable.</p>
 <p>This same problem shows up anywhere people need to fit things into finite 3D spaces:</p>
 <ul>
@@ -730,6 +749,25 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

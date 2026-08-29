@@ -777,3 +777,58 @@ pre:hover .copy-button {
   border: 0;
   border-top: 1px solid #ddd;
 }
+
+/* ============================================================
+   Learning paths
+   ============================================================ */
+
+.learning-path-step {
+  margin-top: 2rem;
+}
+
+/* Step label above each article */
+.learning-path-step__number {
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid #b7472a;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Status used for planned and in-progress entries */
+.learning-path-status {
+  display: inline-block;
+  margin: 0.25rem 0 0.5rem;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Planned entries intentionally lighter than real articles */
+.learning-path-planned {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #b7472a;
+  background: #f7f7f7;
+}
+
+.learning-path-planned__title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.learning-path-planned p:last-child {
+  margin-bottom: 0;
+}
+
+/* Path metadata beneath the description */
+.learning-path-level {
+  margin-top: 0.75rem;
+}
+
+/* Give the path introduction some separation from Step 1 */
+.taxonomy-header {
+  margin-bottom: 2rem;
+}

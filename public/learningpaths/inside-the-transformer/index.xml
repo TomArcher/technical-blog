@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Inside the Transformer on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/learningpaths/inside-the-transformer/</link>
+    <description>Recent content in Inside the Transformer on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Aug 2026 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/learningpaths/inside-the-transformer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Inside Attention, Part 1: The Mechanism</title>
+      <link>http://localhost:1313/posts/inside-attention-part-1/</link>
+      <pubDate>Sat, 22 Aug 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/inside-attention-part-1/</guid>
+      <description>&lt;p&gt;The &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#transformer&#34; data-definition=&#34;A neural network architecture built around attention mechanisms for processing relationships among elements of a sequence.&#34;&gt;transformer architecture&lt;/a&gt; is composed of many repeating transformer layers, or blocks. Each block contains an attention sublayer followed by a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#feedforward-network&#34; data-definition=&#34;A neural network component that applies learned transformations independently to each token representation after the attention operation.&#34;&gt;feedforward sublayer&lt;/a&gt;, wrapped in &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#residual-connection&#34; data-definition=&#34;A shortcut connection that adds a layer&amp;#39;s input to its output, helping information and gradients flow through deep neural networks.&#34;&gt;residual connections&lt;/a&gt; and &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#layer-normalization&#34; data-definition=&#34;A normalization technique that stabilizes neural network training by rescaling activations within a layer.&#34;&gt;layer normalization&lt;/a&gt;. &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#positional-encoding&#34; data-definition=&#34;Information added to token representations so a transformer can distinguish token positions and reason about sequence order.&#34;&gt;Positional information&lt;/a&gt; is added to the input so the model knows what order the &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#token&#34; data-definition=&#34;A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.&#34;&gt;tokens&lt;/a&gt; came in. The attention sublayer sets the table for the feedforward sublayer: it does the work of looking at other tokens and deciding what information to absorb from them. Get attention wrong and the rest of the architecture has nothing useful to operate on.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Discrete Mathematics Hiding Inside LLMs</title>
+      <link>http://localhost:1313/posts/discrete-math-in-large-language-models/</link>
+      <pubDate>Tue, 31 Mar 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/discrete-math-in-large-language-models/</guid>
+      <description>&lt;p&gt;A recent &lt;a href=&#34;https://www.linkedin.com/posts/activity-7435689322504167424-_v46&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  LinkedIn post&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; from Michael Palmer described how &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#discrete-mathematics&#34; data-definition=&#34;The branch of mathematics concerned with distinct, countable structures such as sets, logic, graphs, integers, and combinatorial objects.&#34;&gt;discrete mathematics&lt;/a&gt; is the foundation for how computers reason about problems. That thread got me thinking about just how many discrete math concepts show up inside systems that seem purely statistical. LLMs are often described in terms of neural networks, &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#gradient-descent&#34; data-definition=&#34;An optimization method that iteratively adjusts model parameters in the direction that reduces a loss function.&#34;&gt;gradient descent&lt;/a&gt;, and probability distributions. If you&amp;rsquo;ve taken discrete mathematics and wondered what it has to do with modern AI, the answer is: more than you&amp;rsquo;d expect.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How Large Language Models (LLMs) Think: Turning Meaning into Math</title>
+      <link>http://localhost:1313/posts/how-large-language-models-think/</link>
+      <pubDate>Tue, 07 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/posts/how-large-language-models-think/</guid>
+      <description>&lt;p&gt;When you enter a sentence into a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#large-language-model&#34; data-definition=&#34;A neural network trained on large amounts of text to model language and generate or interpret sequences of tokens.&#34;&gt;Large Language Model (LLM)&lt;/a&gt; such as &lt;a href=&#34;https://chatgpt.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  ChatGPT&#xD;&#xA;&lt;/a&gt;&#xD;&#xA; or &lt;a href=&#34;https://claude.ai/new&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xD;&#xA;  Claude&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;, the model does not process words as language. It represents them as numbers.&lt;/p&gt;&#xA;&lt;p&gt;Each word, phrase, and code &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#token&#34; data-definition=&#34;A unit of text processed by a language model, such as a word, part of a word, punctuation mark, or other character sequence.&#34;&gt;token&lt;/a&gt; becomes a vector — a list of real-valued coordinates within a &lt;a class=&#34;glossary-term&#34; href=&#34;http://localhost:1313/glossary/#high-dimensional-space&#34; data-definition=&#34;A mathematical space containing many independent dimensions, allowing complex objects and relationships to be represented as vectors.&#34;&gt;high-dimensional space&lt;/a&gt;. Relationships between meanings are captured not by grammar or logic but by geometry. The closer two vectors lie, the more similar their semantic roles appear to the model.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

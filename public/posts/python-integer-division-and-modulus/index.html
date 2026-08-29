@@ -136,26 +136,29 @@ When you need to parse a number, the first instinct is often to convert it to a 
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">Numeric Parsing in Python with Integer Division and Modulus</h1>
-        <p class="post-subtitle">Using // and % to split fixed-width numeric data without converting it to strings</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-09-17T13:00:00-07:00">
-              <strong>September 17, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/python-techniques-and-tooling/"
-                 rel="category"><em>Python Techniques and Tooling</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/data-parsing/"
-                 rel="tag">#data parsing</a>, <a class="meta__link"
-                 href="/tags/numerical-methods/"
-                 rel="tag">#numerical methods</a>, <a class="meta__link"
-                 href="/tags/python/"
-                 rel="tag">#Python</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">Numeric Parsing in Python with Integer Division and Modulus</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">Using // and % to split fixed-width numeric data without converting it to strings</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-09-17T13:00:00-07:00">
+        <strong>Sep 17, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/python-techniques-and-tooling/" rel="category">Python Techniques and Tooling</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/data-parsing/" rel="tag">#data parsing</a> &middot; 
+    <a href="/tags/numerical-methods/" rel="tag">#numerical methods</a> &middot; 
+    <a href="/tags/python/" rel="tag">#Python</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fpython-integer-division-and-modulus%2F&amp;text=Numeric&#43;Parsing&#43;in&#43;Python&#43;with&#43;Integer&#43;Division&#43;and&#43;Modulus" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fpython-integer-division-and-modulus%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -179,9 +182,9 @@ When you need to parse a number, the first instinct is often to convert it to a 
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -213,22 +216,39 @@ When you need to parse a number, the first instinct is often to convert it to a 
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>When numeric parsing is a better choice than converting numbers to strings</li>
-          <li>How integer division removes digits from the right side of a number</li>
-          <li>How modulus extracts the rightmost digits from a number</li>
-          <li>How to split fixed-width numeric codes into meaningful fields</li>
-          <li>How // and % naturally break timestamps into hours, minutes, seconds, and milliseconds</li>
-          <li>How to process individual digits numerically for algorithms such as checksums</li>
-      </ul>
-    </aside><p>numbers with // and % for speed and clarity.&quot;</p>
+    <ul>
+        
+        <li>When numeric parsing is a better choice than converting numbers to strings</li>
+        
+        <li>How integer division removes digits from the right side of a number</li>
+        
+        <li>How modulus extracts the rightmost digits from a number</li>
+        
+        <li>How to split fixed-width numeric codes into meaningful fields</li>
+        
+        <li>How // and % naturally break timestamps into hours, minutes, seconds, and milliseconds</li>
+        
+        <li>How to process individual digits numerically for algorithms such as checksums</li>
+        
+    </ul>
+</aside>
+
+
+<p>numbers with // and % for speed and clarity.&quot;</p>
 <blockquote>
 <p>}}</p></blockquote>
 <p>When you need to parse a number, the first instinct is often to convert it to a string and slice it. That works well for data that comes from people — like phone numbers, credit cards, or postal codes — where formatting and leading zeros matter. But when you are working with raw numeric data that is guaranteed to be fixed-width and free of formatting, numeric parsing with <a class="glossary-term" href="/glossary/#integer-division" data-definition="Division that produces an integer quotient by discarding the fractional or remainder portion of the result.">integer division</a> (<code>//</code>) and <a class="glossary-term" href="/glossary/#modulus" data-definition="An arithmetic operation that returns the remainder after one integer is divided by another.">modulus</a> (<code>%</code>) is the better option.</p>
@@ -459,6 +479,25 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

@@ -1,15 +1,24 @@
 +++
-date = '2025-10-06T09:00:00-07:00'
 aliases = [
     "/posts/how-ai-reads-code/",
     "how-large-language-models-read-code",
 ]
+
+author = "Tom Archer"
+
+date = '2025-10-06T09:00:00-07:00'
 draft = false
+
 title = "How Large Language Models (LLMs) Read Code: Seeing Patterns Instead of Logic"
 subtitle = "Exploring how large language models interpret code and what they miss"
+
+learningPaths = [
+    "AI for Software Engineers"
+]
+
 categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "LLM", "probability", "tokenization",]
-author = "Tom Archer"
+
 listThumb = "how-large-language-models-read-code.png"
 
 hero = "how-large-language-models-read-code.png"

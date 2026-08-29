@@ -1,0 +1,14 @@
+<div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            {{ range .Site.Taxonomies.learningPaths.Alphabetical }}
+            <li class="widget__item">
+                <a class="widget__link" href="{{ .Page.RelPermalink }}">
+                    {{ .Page.LinkTitle }}
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</div>

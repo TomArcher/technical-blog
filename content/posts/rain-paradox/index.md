@@ -1,11 +1,15 @@
 +++
-title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
-subtitle = "Using physics, Python, and simulation to settle a deceptively simple question"
+author = "Tom Archer"
+
 date = '2025-08-18T09:00:00-07:00'
 draft = false
+
+title = "Should You Walk or Run in the Rain? The Puzzle That Sparked a Passion"
+subtitle = "Using physics, Python, and simulation to settle a deceptively simple question"
+
 categories = ["Applied Modeling and Simulation",]
 tags = ["physics", "probability", "Python",]
-author = "Tom Archer"
+
 listThumb = "rain-paradox.png"
 
 hero = "rain-paradox.png"

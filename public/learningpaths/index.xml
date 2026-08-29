@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Learningpaths on Signal &amp; Syntax</title>
+    <link>http://localhost:1313/learningpaths/</link>
+    <description>Recent content in Learningpaths on Signal &amp; Syntax</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Aug 2026 06:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/learningpaths/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Large Language Models Work</title>
+      <link>http://localhost:1313/learningpaths/how-large-language-models-work/</link>
+      <pubDate>Sat, 22 Aug 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/learningpaths/how-large-language-models-work/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Inside the Transformer</title>
+      <link>http://localhost:1313/learningpaths/inside-the-transformer/</link>
+      <pubDate>Sat, 22 Aug 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/learningpaths/inside-the-transformer/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Understanding Model Behavior</title>
+      <link>http://localhost:1313/learningpaths/understanding-model-behavior/</link>
+      <pubDate>Mon, 09 Feb 2026 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/learningpaths/understanding-model-behavior/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI for Software Engineers</title>
+      <link>http://localhost:1313/learningpaths/ai-for-software-engineers/</link>
+      <pubDate>Mon, 10 Nov 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/learningpaths/ai-for-software-engineers/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>How LLMs Learn and Acquire Capabilities</title>
+      <link>http://localhost:1313/learningpaths/how-llms-learn-and-acquire-capabilities/</link>
+      <pubDate>Wed, 08 Oct 2025 06:00:00 -0700</pubDate>
+      <guid>http://localhost:1313/learningpaths/how-llms-learn-and-acquire-capabilities/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

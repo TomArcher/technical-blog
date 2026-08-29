@@ -1,11 +1,18 @@
 +++
+author = "Tom Archer"
+
 date = '2025-11-11T06:00:00-07:00'
 draft = false
+
 title = "How Large Language Models (LLMs) Tokenize Text: Why Words Aren't What You Think"
 subtitle = "Understanding how LLMs break language into pieces—and why it matters more than you realize"
+
+learningPaths = [
+    "How Large Language Models Work",
+]
 categories = ["AI and the Mathematics of Language"]
 tags = ["AI", "tokenization", "LLM", "transformers", "NLP"]
-author = "Tom Archer"
+
 listThumb = "how-large-language-models-tokenize-text.png"
 
 hero = "how-large-language-models-tokenize-text.png"
@@ -16,7 +23,7 @@ heroCaption = "LLMs read tokens. Not words. A distinction with a technical—and
 whatYoullLearn = [
     "Why language models break text into tokens instead of reading whole words",
     "How subword tokenization balances vocabulary size with the amount of text a model must process",
-    "How Byte Pair Encoding learns useful token boundaries from patterns in training data",
+    "How Byte Pair Encoding (BPE) learns useful token boundaries from patterns in training data",
     "Why the same sentence can use very different numbers of tokens across languages, code, and rare words",
     "How tokenization can cause surprising failures in spelling, letter counting, and unusual inputs",
     "Why token counts affect context limits, processing efficiency, and the cost of using an LLM"
@@ -64,7 +71,6 @@ When you type "I love programming" into ChatGPT, you might assume the model read
 When you ask Claude to count the letters in the word "strawberry," it often gets it wrong. The reason is simple. Claude never saw the word "strawberry" as a complete unit. It saw tokens like `"str"`, `"aw"`, `"berry"` and tried to reason about letters it couldn't directly access.
 
 And when early GPT-3 users discovered that typing "SolidGoldMagikarp" caused the model to behave erratically - generating nonsense, refusing requests, or producing bizarre outputs - the culprit wasn't the model's training. It was a **{{< term "glitch-token" "glitch token" >}}**: a tokenization artifact that never appeared in training data, leaving the model with no learned representation for how to handle it ([Rumbelow & Watkins, 2023](#rumbelow2023)).
-
 
 This post explores how tokenization works, why it's not as simple as splitting on spaces, and what happens when tokenization goes wrong. If you're following my series on how LLMs work, this is the foundation that makes everything else possible—because before a model can [read](/posts/how-large-language-models-read-code), [think](/posts/how-large-language-models-think), or [learn](/posts/how-large-language-models-learn), it has to break language into pieces it can process.
 
@@ -144,7 +150,7 @@ Worse, the model has to learn that `"c-a-t"` forms a semantic unit, that `"p-r-o
 
 ## {{< term "subword-tokenization" "Subword Tokenization" >}}: The Goldilocks Solution
 
-Modern LLMs use **subword tokenization**: splitting text into units that are bigger than characters but smaller than words. The most common approach is **{{< term "byte-pair-encoding" "Byte Pair Encoding (BPE)" >}}**, originally developed for data compression ([Gage, 1994](#gage1994)) and later adapted for neural machine translation ([Sennrich et al., 2016](#sennrich2016)).
+Modern LLMs use **subword tokenization**: splitting text into units that are multiple characters but shorter than words. The most common approach is **{{< term "byte-pair-encoding" "Byte Pair Encoding (BPE)" >}}**, originally developed for data compression ([Gage, 1994](#gage1994)) and later adapted for neural machine translation ([Sennrich et al., 2016](#sennrich2016)).
 
 ### **How BPE Works**
 

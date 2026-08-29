@@ -48,6 +48,7 @@ googleAnalytics = "G-7ZV2PMS61P"
 
 [taxonomies]
   category = "categories"
+  learningPath = "learningPaths"
   tag = "tags"
 
 [menu]
@@ -79,7 +80,7 @@ googleAnalytics = "G-7ZV2PMS61P"
   home   = "right"
   list   = "right"
   single = "right"
-  widgets = ["bio", "disclaimer", "social", "categories", "taglist"]
+  widgets = ["bio", "disclaimer", "social", "learningpaths", "categories", "taglist"]
 
 [markup]
   [markup.goldmark]

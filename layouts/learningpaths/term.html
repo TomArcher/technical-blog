@@ -1,0 +1,109 @@
+{{ define "main" }}
+
+<main class="main" role="main">
+  <div class="posts-list">
+
+    <header class="taxonomy-header">
+      <h1>{{ .Title }}</h1>
+
+      {{ with .Params.description }}
+      <p class="taxonomy-description">{{ . }}</p>
+      {{ end }}
+
+      {{ with .Params.level }}
+      <p class="learning-path-level">
+        <strong>Level:</strong> {{ . }}
+      </p>
+      {{ end }}
+    </header>
+
+    {{ range $index, $step := .Params.steps }}
+
+    <div class="learning-path-step">
+
+      <div class="learning-path-step__number">
+        Step {{ add $index 1 }}
+        {{ if $step.capstone }}
+        · Capstone
+        {{ end }}
+      </div>
+
+        {{ if $step.page }}
+
+        {{ $page := site.GetPage $step.page }}
+
+        {{ if $page }}
+
+        {{ if eq $page.Params.disposition "in-progress" }}
+
+        <article class="learning-path-planned">
+          <h2 class="learning-path-planned__title">
+            {{ $page.Title }}
+          </h2>
+
+          <div class="learning-path-status">
+            ◐ In Progress
+          </div>
+
+          {{ with $page.Params.subtitle }}
+          <p>
+            {{ . }}
+          </p>
+          {{ end }}
+        </article>
+
+        {{ else }}
+
+        {{ partial "post-list-item.html" $page }}
+
+        {{ end }}
+
+        {{ else }}
+
+        <p>
+          <strong>Page not found:</strong> {{ $step.page }}
+        </p>
+
+        {{ end }}
+
+      {{ else if $step.planned }}
+
+      {{ $matches := where site.Data.planned "key" $step.planned }}
+
+      {{ if gt (len $matches) 0 }}
+
+      {{ $planned := index $matches 0 }}
+
+      <article class="learning-path-planned">
+        <h2 class="learning-path-planned__title">
+          {{ $planned.title }}
+        </h2>
+
+        <div class="learning-path-status">
+          ○ Planned
+        </div>
+
+        <p>
+          {{ $planned.description }}
+        </p>
+      </article>
+
+      {{ else }}
+
+      <p>
+        <strong>Planned article not found:</strong>
+        {{ $step.planned }}
+      </p>
+
+      {{ end }}
+
+      {{ end }}
+
+    </div>
+
+    {{ end }}
+
+  </div>
+</main>
+
+{{ end }}

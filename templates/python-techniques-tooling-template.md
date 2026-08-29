@@ -43,17 +43,6 @@ Writing standard:
 
 <!--more-->
 
-<div class="learning-sidebar">
-<strong>What You'll Learn</strong>
-
-After reading this post, you'll be able to:
-
-- [USE THE CORE FEATURE]
-- [KNOW WHEN TO USE IT]
-- [COMPARE IT WITH THE MAIN ALTERNATIVE]
-- [APPLY IT TO A REALISTIC PROBLEM]
-</div>
-
 ## [CORE FEATURE 1]
 
 [ONE-PARAGRAPH EXPLANATION.]

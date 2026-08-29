@@ -134,28 +134,30 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 			
 <main class="main" role="main">
   <article class="post">
-    <header class="post__header">
-      <h1 class="post__title">The Meeting Diet: An Optimization Approach to Your Calendar</h1>
-        <p class="post-subtitle">How optimization can help you decide which meetings deserve your limited time and energy</p>
 
-      <div class="post__meta meta"><p class="meta__line">
-            <time datetime="2025-08-28T05:00:00-07:00">
-              <strong>August 28, 2025</strong>
-            </time>&nbsp;•&nbsp;
-            <strong>Category:</strong>&nbsp;<a class="meta__link"
-                 href="/categories/applied-modeling-and-simulation/"
-                 rel="category"><em>Applied Modeling and Simulation</em></a>&nbsp;•&nbsp;
-            <strong>Tags:</strong>&nbsp;<a class="meta__link"
-                 href="/tags/optimization/"
-                 rel="tag">#optimization</a>, <a class="meta__link"
-                 href="/tags/productivity/"
-                 rel="tag">#productivity</a>, <a class="meta__link"
-                 href="/tags/python/"
-                 rel="tag">#Python</a>, <a class="meta__link"
-                 href="/tags/scheduling/"
-                 rel="tag">#scheduling</a></p></div>
+  <header class="post__header">
+    <h1 class="post__title">The Meeting Diet: An Optimization Approach to Your Calendar</h1>
 
-      <div class="share">
+    
+
+
+<div class="post-subtitle">How optimization can help you decide which meetings deserve your limited time and energy</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-08-28T05:00:00-07:00">
+        <strong>Aug 28, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/applied-modeling-and-simulation/" rel="category">Applied Modeling and Simulation</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/optimization/" rel="tag">#optimization</a> &middot; 
+    <a href="/tags/productivity/" rel="tag">#productivity</a> &middot; 
+    <a href="/tags/python/" rel="tag">#Python</a> &middot; 
+    <a href="/tags/scheduling/" rel="tag">#scheduling</a>
+</div>
+
+    <div class="share">
   <span class="share__label">Share:</span>
   <a class="share__btn" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fmeeting-diet%2F&amp;text=The&#43;Meeting&#43;Diet%3A&#43;An&#43;Optimization&#43;Approach&#43;to&#43;Your&#43;Calendar" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
   <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fposts%2Fmeeting-diet%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
@@ -179,9 +181,9 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
     } catch (_) {}
   });
 })();
-</script>  
+</script>
+  </header>
 
-    </header>
 
     
 
@@ -213,22 +215,39 @@ The good news: math can help. By modeling your schedule as a 0/1 knapsack proble
 
 
     <div class="content post__content clearfix">
-      <aside class="what-youll-learn">
-      <div class="what-youll-learn__title">What You'll Learn</div>
 
-      <div class="what-youll-learn__intro">
+      
+
+
+
+
+
+<aside class="what-youll-learn">
+    <div class="what-youll-learn__title">What You'll Learn</div>
+
+    <div class="what-youll-learn__intro">
         After reading this post, you'll be able to explain:
-      </div>
+    </div>
 
-      <ul>
-          <li>How to turn meeting choices into a mathematical optimization problem</li>
-          <li>How time and mental energy can be modeled as separate constraints</li>
-          <li>How a 0/1 knapsack model chooses the most valuable combination of meetings</li>
-          <li>How Python and PuLP can solve a meeting schedule automatically</li>
-          <li>How AI can scaffold optimization code when you give it the right mathematical structure</li>
-          <li>How simulation and visualization can reveal which meetings are worth attending</li>
-      </ul>
-    </aside><p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
+    <ul>
+        
+        <li>How to turn meeting choices into a mathematical optimization problem</li>
+        
+        <li>How time and mental energy can be modeled as separate constraints</li>
+        
+        <li>How a 0/1 knapsack model chooses the most valuable combination of meetings</li>
+        
+        <li>How Python and PuLP can solve a meeting schedule automatically</li>
+        
+        <li>How AI can scaffold optimization code when you give it the right mathematical structure</li>
+        
+        <li>How simulation and visualization can reveal which meetings are worth attending</li>
+        
+    </ul>
+</aside>
+
+
+<p>Every week your calendar fills with more meeting invites than you can reasonably handle. Which ones are worth the time and energy, and which should you politely decline? What if there was a way to <em>quantify</em> that choice?</p>
 <p><strong>The good news: math can help.</strong> By modeling your schedule as a <strong><a class="glossary-term" href="/glossary/#multidimensional-knapsack" data-definition="A generalization of the knapsack problem in which each item consumes multiple limited resources and the goal is to maximize total value without exceeding any resource constraint.">0/1 knapsack problem with two constraints</a></strong> (<a href="#kellerer2004">
   Kellerer et al., 2004
 </a>
@@ -698,6 +717,25 @@ to inference-time behavior, from tokenization to training infrastructure.</p>
         </a>
       </li></ul>
   </div>
+</div><div class="widget-learningpaths widget">
+    <h4 class="widget__title">Learning Paths</h4>
+    <div class="widget__content">
+        <ul class="widget__list">
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/how-large-language-models-work/">
+                    How Large Language Models Work
+                </a>
+            </li>
+            
+            <li class="widget__item">
+                <a class="widget__link" href="/learningpaths/inside-the-transformer/">
+                    Inside the Transformer
+                </a>
+            </li>
+            
+        </ul>
+    </div>
 </div>
 <div class="widget-categories widget">
 	<h4 class="widget__title">Categories</h4>

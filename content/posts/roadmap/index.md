@@ -13,19 +13,13 @@ If there is a topic in the planned list you want to see sooner, or a topic missi
 
 ---
 
-## In Progress
-
 {{< roadmap-in-progress >}}
 
 ---
 
-## Planned
-
 {{< roadmap-planned >}}
 
 ---
-
-## Published
 
 {{< roadmap-published >}}
 
