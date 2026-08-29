@@ -21,13 +21,13 @@ googleAnalytics = "G-7ZV2PMS61P"
 
   # Short bio (first paragraph)
   bio = """
-  I research and write about the systems that frontier AI labs depend on: training infrastructure, evaluation systems, internal tooling, and model serving. My focus is on understanding how these systems work, why they're designed the way they are, and the engineering tradeoffs behind them.
+  My focus is the engineering beneath modern AI systems. After several years of building applications with AI through APIs, my interests have moved below that abstraction layer: understanding how models are architected, trained, evaluated, and served, why they're designed the way they are, and the engineering tradeoffs behind those decisions.
 
-  For forty years I've built platforms, not applications. Every time I've been asked to ship a product, the product has turned out to be a system for generating products: a metaprogramming layer, a runtime, a configuration-driven engine that outlives the original feature request.
-  
-  The pattern shows across my career: Forms Express at AT&T, a four-layer dynamic runtime shipped for under $500K against a $2M consulting bid. VeriSign's first-ever customer self-service mobile activation system, which won the 2003 SUPERQuest Award. TAG at Microsoft, a production LLM orchestration platform that shipped nearly 100 Terraform articles by parsing XML templates, routing prompts to Azure OpenAI, and composing results with browser-driven Azure portal capture. Along the way: C++ MVP, 9 technology books, 100+ articles for .NET Programming Tips & Techniques, and helping run CodeGuru, the largest Windows developer community of its era.
-  
-  After 21 years at Microsoft, I'm now full-time on what's next: completing my Master's in Computer Science and publishing at Signal & Syntax, a technical blog where I work through the mathematics and engineering underneath the models: from gradient descent to inference-time behavior, from tokenization to training infrastructure.
+  That direction follows a pattern across my forty-year career as a software developer. I've primarily built applications, but I've repeatedly found myself pushing beyond the application itself and building the systems, abstractions, and tooling behind it: metaprogramming layers, dynamic runtimes, configuration-driven engines, and automation platforms designed to outlive the original feature request.
+
+  The pattern shows across my career: Forms Express at AT&T, a four-layer dynamic runtime shipped for under $500K against a $2M consulting bid; VeriSign's first-ever customer self-service mobile activation system, which won the 2003 SUPERQuest Award; and TAG at Microsoft, a production LLM orchestration platform that shipped nearly 100 Terraform articles by parsing XML templates, routing prompts to Azure OpenAI, and composing results with browser-driven Azure portal capture. Along the way: C++ MVP, nine technology books, 100+ articles for .NET Programming Tips & Techniques, and helping run CodeGuru, the largest Windows developer community of its era.
+
+  After 21 years at Microsoft, I'm now full-time on what's next: completing my Master's in Computer Science and publishing at Signal & Syntax, where I research and write about the mathematics and engineering underneath modern AI. I use mathematical models, experiments, and small implementations to explore everything from gradient descent and attention to inference-time behavior and training infrastructure; not just how to use these systems through an API, but how the machinery beneath that API actually works.
 
   Connect with me on [LinkedIn](https://www.linkedin.com/in/tom-archer-dev/).
   """
