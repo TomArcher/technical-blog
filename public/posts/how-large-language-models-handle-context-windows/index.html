@@ -451,7 +451,7 @@ PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 <h3 id="2-summarization"><strong>2. Summarization</strong></h3>
 <p>Some systems automatically summarize older portions of the conversation and replace them with condensed versions in what gets sent to the API.</p>
 <p><strong>Problem:</strong> Summarization is lossy. Nuance, specific examples, and precise wording disappear. The model is now reasoning over <em>a summary of your conversation</em> rather than your actual words.</p>
-<h3 id="3-hahahugoshortcode299s12hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
+<h3 id="3-hahahugoshortcode14s12hbhb"><strong>3. <a class="glossary-term" href="/glossary/#retrieval-augmented-generation" data-definition="A technique that retrieves relevant information from an external source and supplies it as context to a generative model.">Retrieval-Augmented Generation (RAG)</a></strong></h3>
 <p>The application stores the full conversation in an external database and retrieves relevant chunks to include in the API call.</p>
 <p><strong>Problem:</strong> Retrieval is imperfect. The system has to guess which past messages are relevant. It might retrieve the wrong context or miss critical information.</p>
 <hr>

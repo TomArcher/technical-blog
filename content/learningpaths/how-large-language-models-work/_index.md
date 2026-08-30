@@ -1,6 +1,7 @@
 +++
 title = "How Large Language Models Work"
-description = "How does an LLM work from input to output?"
+subtitle = "How does an LLM work from input to output?"
+description = "Follow the major stages of an LLM from the moment text enters the system to the generation of a response. This path builds from tokenization and mathematical representations through learning, attention, context, and inference, with each article adding another piece to an end-to-end mental model of how an LLM works."
 level = "Foundational → Capstone"
 
 [[steps]]

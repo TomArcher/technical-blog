@@ -22,7 +22,10 @@ Signal & Syntax serves that middle altitude. Posts work through the mathematics 
 
 Signal & Syntax offers three ways to explore the material:
 
-- **Learning Paths** are ordered reading sequences designed to build understanding step by step. Earlier articles provide concepts and foundations for later ones, so the order matters.
+- **Learning Paths** are ordered reading sequences designed to build
+understanding step by step. Earlier articles establish concepts and foundations
+that later articles build on.
+
 - **Categories** group articles by broad subject area. There’s no required reading order; browse whatever interests you.
 - **Tags** connect articles around specific concepts, technologies, and techniques, making it easy to follow a topic across categories and learning paths.
 

@@ -1,6 +1,7 @@
 +++
 title = "AI for Software Engineers"
-description = "What do I need to know to engineer systems with LLMs?"
+subtitle = "What do I need to know to engineer systems with LLMs?"
+description = "Build the mental models needed to design software around LLMs rather than treating the model as an ordinary API. This path focuses on how models interpret code, the constraints imposed by context windows, techniques for managing context, in-context learning, and inference-time reasoning—concepts that directly affect the reliability, cost, and architecture of production AI systems."
 level = "Foundational → Advanced"
 
 [[steps]]

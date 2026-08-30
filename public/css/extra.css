@@ -828,6 +828,13 @@ pre:hover .copy-button {
   margin-top: 0.75rem;
 }
 
+/* Path metadata beneath the description */
+.learning-path-subtitle {
+  margin-top: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 /* Give the path introduction some separation from Step 1 */
 .taxonomy-header {
   margin-bottom: 2rem;

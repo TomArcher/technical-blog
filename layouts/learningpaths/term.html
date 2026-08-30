@@ -4,10 +4,16 @@
   <div class="posts-list">
 
     <header class="taxonomy-header">
-      <h1>{{ .Title }}</h1>
+      <h1>Learning Path: {{ .Title }}</h1>
+
+      {{ with .Params.subtitle }}
+      <p class="learning-path-subtitle">
+        {{ . }}
+      </p>
+      {{ end }}
 
       {{ with .Params.description }}
-      <p class="taxonomy-description">{{ . }}</p>
+        <p class="taxonomy-description">{{ . }}</p>
       {{ end }}
 
       {{ with .Params.level }}
@@ -17,12 +23,13 @@
       {{ end }}
     </header>
 
+    {{ $stepCount := len .Params.steps }}
     {{ range $index, $step := .Params.steps }}
 
     <div class="learning-path-step">
 
       <div class="learning-path-step__number">
-        Step {{ add $index 1 }}
+        Step {{ add $index 1 }} of {{ $stepCount }}
         {{ if $step.capstone }}
         · Capstone
         {{ end }}

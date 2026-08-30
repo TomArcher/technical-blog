@@ -1,6 +1,7 @@
 +++
 title = "How LLMs Learn and Acquire Capabilities"
-description = "Where do model capabilities come from?"
+subtitle = "Where do model capabilities come from?"
+description = "Trace how a model goes from untrained parameters to capabilities that emerge during training and inference. This path connects gradient descent and loss functions to pre-training, post-training, scaling, in-context learning, and test-time compute, showing the different ways modern models acquire or express capabilities."
 level = "Foundational → Advanced"
 
 [[steps]]
