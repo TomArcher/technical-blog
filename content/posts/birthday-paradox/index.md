@@ -42,13 +42,6 @@ citation = "Knuth, D. E. (1998). *The art of computer programming, Volume 3: Sor
 
 +++
 
-{{< lightbox
-    src="birthday-paradox.png"
-    alt="Multiple database servers with overlapping ID bubbles showing collision zones"
-    label="Open full-size birthday paradox"
-    caption="With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs."
->}}
-
 You generate a {{< term "uuid-v4" "UUID" >}}. It's 128 bits total, with 122 bits of randomness ([Davis et al., 2024](#rfc9562)). That's 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?
 
 As I like to say, *common sense and intuition are the enemies of science*. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you'd need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?

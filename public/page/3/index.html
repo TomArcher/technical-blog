@@ -132,12 +132,78 @@
 
     
     
-    
 
     
 
     
+
+    <div class="pagination--top">
+      <nav class="pagination" aria-label="Pagination">
     
+
+    
+    <a class="pagination__item pagination__prev" href="/page/2/">«</a>
+    
+
+    
+    
+    <a class="pagination__item" href="/">
+        1
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/2/">
+        2
+    </a>
+    
+    
+    
+    <span class="pagination__item pagination__item--current">
+        3
+    </span>
+    
+    
+    
+    <a class="pagination__item" href="/page/4/">
+        4
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/5/">
+        5
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/6/">
+        6
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/7/">
+        7
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/8/">
+        8
+    </a>
+    
+    
+
+    
+    <a class="pagination__item pagination__next" href="/page/4/">»</a>
+    
+</nav>
+    </div>
+
+    
+      
+
 
 
 
@@ -148,93 +214,7 @@
 
 
 <article class="post post--has-title-thumb">
-    <header class="post-header">
 
-        
-        <a class="post-title-thumb" href="/posts/birthday-paradox/">
-            <img src="/posts/birthday-paradox/birthday-paradox.png" alt="" loading="lazy">
-        </a>
-        
-
-        <div class="post-header-text">
-            <h2 class="post-title">
-                
-                <a href="/posts/birthday-paradox/">The Birthday Paradox in Production: When Random IDs Collide</a>
-            </h2>
-
-                
-
-
-<div class="post-subtitle">Why collision risk grows faster than intuition suggests, and what that means for IDs, hashes, and distributed systems</div>
-
-
-<div class="post-meta">
-    <time datetime=" 2025-11-28T06:00:00-07:00">
-        <strong>Nov 28, 2025</strong>
-    </time>
-    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
-    <a href="/categories/applied-modeling-and-simulation/" rel="category">Applied Modeling and Simulation</a>
-    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
-    <a href="/tags/cryptography/" rel="tag">#cryptography</a> &middot; 
-    <a href="/tags/databases/" rel="tag">#databases</a> &middot; 
-    <a href="/tags/distributed-systems/" rel="tag">#distributed-systems</a> &middot; 
-    <a href="/tags/probability/" rel="tag">#probability</a> &middot; 
-    <a href="/tags/python/" rel="tag">#Python</a>
-</div>
-
-        </div>
-    </header>
-
-    
-
-
-
-
-
-<div class="post-learning">
-    <div class="post-learning-title">What You'll Learn</div>
-    <ul class="post-learning-list">
-        
-        <li>Why collisions happen long before an ID space is full</li>
-        
-        <li>Why collision risk grows much faster than intuition suggests</li>
-        
-        <li>How the birthday paradox applies to computer systems</li>
-        
-        <li>How to calculate the probability of an ID collision</li>
-        
-        <li>Why the square root of the ID space determines the danger zone</li>
-        
-        <li>How 32-bit, 64-bit, and UUID v4 IDs compare</li>
-        
-        <li>How generation rate changes the time until collisions become likely</li>
-        
-        <li>How to choose an acceptable collision risk for a real system</li>
-        
-        <li>How Monte Carlo simulation can validate collision calculations</li>
-        
-        <li>How to predict when an ID strategy needs to be replaced</li>
-        
-    </ul>
-</div>
-
-
-
-
-
-</article>
-    
-    
-
-
-
-
-
-
-
-
-
-<article class="post post--has-title-thumb">
     <header class="post-header">
 
         
@@ -249,7 +229,7 @@
                 <a href="/posts/hash-collisions/">Hash Collisions: Why Your &#39;Unique&#39; Fingerprints Aren&#39;t (And Why That&#39;s Usually OK)</a>
             </h2>
 
-                
+            
 
 
 <div class="post-subtitle">The mathematical certainty of hash collisions, the near-impossibility of meaningful ones, and what it means for modern cryptography</div>
@@ -270,6 +250,7 @@
 </div>
 
         </div>
+
     </header>
 
     
@@ -303,7 +284,8 @@
 
 </article>
     
-    
+      
+
 
 
 
@@ -314,6 +296,7 @@
 
 
 <article class="post post--has-title-thumb">
+
     <header class="post-header">
 
         
@@ -328,7 +311,7 @@
                 <a href="/posts/how-large-language-models-tokenize-text/">How Large Language Models (LLMs) Tokenize Text: Why Words Aren&#39;t What You Think</a>
             </h2>
 
-                
+            
 
 
 <div class="post-subtitle">Understanding how LLMs break language into pieces—and why it matters more than you realize</div>
@@ -354,6 +337,7 @@
 </div>
 
         </div>
+
     </header>
 
     
@@ -387,13 +371,158 @@
 
 </article>
     
+      
+
+
+
+
+
+
+
+
+
+
+<article class="post post--has-title-thumb">
+
+    <header class="post-header">
+
+        
+        <a class="post-title-thumb" href="/posts/how-large-language-models-handle-context-windows/">
+            <img src="/posts/how-large-language-models-handle-context-windows/how-llms-handle-context-windows.png" alt="" loading="lazy">
+        </a>
+        
+
+        <div class="post-header-text">
+            <h2 class="post-title">
+                
+                <a href="/posts/how-large-language-models-handle-context-windows/">How Large Language Models (LLMs) Handle Context Windows: The Memory That Isn&#39;t Memory</a>
+            </h2>
+
+            
+
+
+<div class="post-subtitle">Exploring why longer context doesn&#39;t mean better memory and what happens when conversations grow</div>
+
+
+<div class="post-meta">
+    <time datetime=" 2025-11-10T06:00:00-07:00">
+        <strong>Nov 10, 2025</strong>
+    </time>
+    &nbsp;•&nbsp;
+    <strong>Learning Paths:</strong>&nbsp;
+    <a href="/learningpaths/ai-for-software-engineers/">
+        AI for Software Engineers
+    </a> &middot; 
+    <a href="/learningpaths/how-large-language-models-work/">
+        How Large Language Models Work
+    </a>
+    &nbsp;•&nbsp;<strong>Category:</strong>&nbsp;
+    <a href="/categories/ai-and-the-mathematics-of-language/" rel="category">AI and the Mathematics of Language</a>
+    &nbsp;•&nbsp;<strong>Tags:</strong>&nbsp;
+    <a href="/tags/ai/" rel="tag">#AI</a> &middot; 
+    <a href="/tags/attention-mechanisms/" rel="tag">#attention mechanisms</a> &middot; 
+    <a href="/tags/context-windows/" rel="tag">#context windows</a> &middot; 
+    <a href="/tags/llm/" rel="tag">#LLM</a> &middot; 
+    <a href="/tags/transformers/" rel="tag">#transformers</a>
+</div>
+
+        </div>
+
+    </header>
 
     
-<div class="pagination">
-	<a class="pagination__item pagination__item--prev btn" href="/page/2/">«</a>
-	<span class="pagination__item pagination__item--current">3/8</span>
-	<a class="pagination__item pagination__item--next btn" href="/page/4/">»</a>
+
+
+
+
+
+<div class="post-learning">
+    <div class="post-learning-title">What You'll Learn</div>
+    <ul class="post-learning-list">
+        
+        <li>Why an LLM&rsquo;s context window is not the same thing as memory</li>
+        
+        <li>How chat applications create continuity even though the underlying model is stateless</li>
+        
+        <li>How attention lets earlier parts of a conversation influence the next token</li>
+        
+        <li>Why longer conversations become increasingly expensive for a transformer to process</li>
+        
+        <li>Why information can become harder to use even while it remains inside the context window</li>
+        
+        <li>How truncation, summarization, retrieval, and KV caching help manage long conversations</li>
+        
+    </ul>
 </div>
+
+
+
+
+
+</article>
+    
+
+    <nav class="pagination" aria-label="Pagination">
+    
+
+    
+    <a class="pagination__item pagination__prev" href="/page/2/">«</a>
+    
+
+    
+    
+    <a class="pagination__item" href="/">
+        1
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/2/">
+        2
+    </a>
+    
+    
+    
+    <span class="pagination__item pagination__item--current">
+        3
+    </span>
+    
+    
+    
+    <a class="pagination__item" href="/page/4/">
+        4
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/5/">
+        5
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/6/">
+        6
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/7/">
+        7
+    </a>
+    
+    
+    
+    <a class="pagination__item" href="/page/8/">
+        8
+    </a>
+    
+    
+
+    
+    <a class="pagination__item pagination__next" href="/page/4/">»</a>
+    
+</nav>
 
   </div>
 </main>

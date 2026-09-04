@@ -1,0 +1,23 @@
+<nav class="pagination" aria-label="Pagination">
+    {{ $paginator := .Paginator }}
+
+    {{ with $paginator.Prev }}
+    <a class="pagination__item pagination__prev" href="{{ .URL }}">«</a>
+    {{ end }}
+
+    {{ range $paginator.Pagers }}
+    {{ if eq .PageNumber $paginator.PageNumber }}
+    <span class="pagination__item pagination__item--current">
+        {{ .PageNumber }}
+    </span>
+    {{ else }}
+    <a class="pagination__item" href="{{ .URL }}">
+        {{ .PageNumber }}
+    </a>
+    {{ end }}
+    {{ end }}
+
+    {{ with $paginator.Next }}
+    <a class="pagination__item pagination__next" href="{{ .URL }}">»</a>
+    {{ end }}
+</nav>

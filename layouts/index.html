@@ -9,12 +9,21 @@
 
     {{ $pinned := where $pages "Params.pinned" true }}
     {{ $regular := where $pages "Params.pinned" "ne" true }}
-    {{ $pages = union $pinned $regular }}
 
-    {{ $p := .Paginate $pages }}
+    {{ $p := .Paginate $regular }}
 
-    {{ range $p.Pages }}
-    {{ partial "post-list-item.html" . }}
+    {{ if eq $p.PageNumber 1 }}
+      {{ range $index, $page := $pinned }}
+        {{ partial "post-list-item.html" (dict "page" $page "index" $index) }}
+      {{ end }}
+    {{ end }}
+
+    <div class="pagination--top">
+      {{ partial "pagination.html" . }}
+    </div>
+
+    {{ range $index, $page := $p.Pages }}
+      {{ partial "post-list-item.html" (dict "page" $page "index" $index) }}
     {{ end }}
 
     {{ partial "pagination.html" . }}

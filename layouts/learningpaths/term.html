@@ -61,7 +61,7 @@
 
         {{ else }}
 
-        {{ partial "post-list-item.html" $page }}
+        {{ partial "post-list-item.html" (dict "page" $page "index" $index) }}
 
         {{ end }}
 

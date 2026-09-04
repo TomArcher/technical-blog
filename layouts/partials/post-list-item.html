@@ -1,4 +1,5 @@
-{{ $page := . }}
+{{ $page := .page }}
+{{ $index := .index }}
 {{ $thumb := "" }}
 
 {{ with $page.Params.listThumb }}
@@ -14,28 +15,30 @@
 {{ end }}
 {{ end }}
 
-<article class="post{{ if $thumb }} post--has-title-thumb{{ end }}{{ if .Params.pinned }} post--pinned{{ end }}">
+<article class="post{{ if $thumb }} post--has-title-thumb{{ end }}{{ if $page.Params.pinned }} post--pinned{{ end }}">
+
     <header class="post-header">
 
         {{ if $thumb }}
-        <a class="post-title-thumb" href="{{ .RelPermalink }}">
+        <a class="post-title-thumb" href="{{ $page.RelPermalink }}">
             <img src="{{ $thumb }}" alt="" loading="lazy">
         </a>
         {{ end }}
 
         <div class="post-header-text">
             <h2 class="post-title">
-                {{ if .Params.pinned }}
+                {{ if $page.Params.pinned }}
                 <span class="pinned-icon" title="Pinned post">📌</span>
                 {{ end }}
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
             </h2>
 
-                {{ partial "post-subtitle-meta.html" . }}
+            {{ partial "post-subtitle-meta.html" $page }}
 
         </div>
+
     </header>
 
-    {{ partial "what-youll-learn.html" (dict "page" . "compact" true) }}
+    {{ partial "what-youll-learn.html" (dict "page" $page "compact" true) }}
 
 </article>

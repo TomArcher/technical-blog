@@ -839,3 +839,30 @@ pre:hover .copy-button {
 .taxonomy-header {
   margin-bottom: 2rem;
 }
+
+.latest-articles-title {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.75rem;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 1.5rem;
+}
+
+.pagination__item {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+}
+
+.pagination__item--current {
+  font-weight: bold;
+}
+
+.pagination--top {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}

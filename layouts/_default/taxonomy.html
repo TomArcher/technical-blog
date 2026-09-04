@@ -19,8 +19,12 @@
 
     {{ $p := .Paginate $pages }}
 
-    {{ range $p.Pages }}
-    {{ partial "post-list-item.html" . }}
+    <div class="pagination--top">
+      {{ partial "pagination.html" . }}
+    </div>
+
+    {{ range $index, $page := $p.Pages }}
+      {{ partial "post-list-item.html" (dict "page" $page "index" $index) }}
     {{ end }}
 
     {{ partial "pagination.html" . }}
