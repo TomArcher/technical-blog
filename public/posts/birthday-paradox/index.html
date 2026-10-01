@@ -13,10 +13,12 @@
 	<title>The Birthday Paradox in Production: When Random IDs Collide - Signal &amp; Syntax</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
+	<link rel="canonical" href="http://localhost:1313/posts/birthday-paradox/">
 		<meta property="og:url" content="http://localhost:1313/posts/birthday-paradox/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="The Birthday Paradox in Production: When Random IDs Collide">
-  <meta property="og:description" content="With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.You generate a UUID. It’s 128 bits total, with 122 bits of randomness (Davis et al., 2024). That’s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?">
+  <meta property="og:description" content="You generate a UUID. It’s 128 bits total, with 122 bits of randomness (Davis et al., 2024). That’s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?
+As I like to say, common sense and intuition are the enemies of science. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you’d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -30,15 +32,17 @@
 
 		
   <meta itemprop="name" content="The Birthday Paradox in Production: When Random IDs Collide">
-  <meta itemprop="description" content="With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.You generate a UUID. It’s 128 bits total, with 122 bits of randomness (Davis et al., 2024). That’s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?">
+  <meta itemprop="description" content="You generate a UUID. It’s 128 bits total, with 122 bits of randomness (Davis et al., 2024). That’s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?
+As I like to say, common sense and intuition are the enemies of science. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you’d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?">
   <meta itemprop="datePublished" content="2025-11-28T06:00:00-07:00">
   <meta itemprop="dateModified" content="2025-11-28T06:00:00-07:00">
-  <meta itemprop="wordCount" content="3571">
+  <meta itemprop="wordCount" content="3551">
   <meta itemprop="keywords" content="Cryptography,Databases,Distributed-Systems,Probability,Python">
 		
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="The Birthday Paradox in Production: When Random IDs Collide">
-  <meta name="twitter:description" content="With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.You generate a UUID. It’s 128 bits total, with 122 bits of randomness (Davis et al., 2024). That’s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?">
+  <meta name="twitter:description" content="You generate a UUID. It’s 128 bits total, with 122 bits of randomness (Davis et al., 2024). That’s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?
+As I like to say, common sense and intuition are the enemies of science. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you’d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -249,26 +253,6 @@
     </ul>
 </aside>
 
-
-
-
-
-
-<figure style="margin: 0 20px 10px 20px; text-align: center;">
-
-    <a href="/posts/birthday-paradox/birthday-paradox.png" class="lightbox-trigger" aria-label="Open full-size image">
-
-        <img src="/posts/birthday-paradox/birthday-paradox.png" alt="">
-
-    </a>
-
-    
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
-    </figcaption>
-    
-
-</figure>
 
 <p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness (<a href="#rfc9562">
   Davis et al., 2024

@@ -13,6 +13,7 @@
 	<title>Posts - Signal &amp; Syntax</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
+	<link rel="canonical" href="http://localhost:1313/posts/">
 		<meta property="og:url" content="http://localhost:1313/posts/">
   <meta property="og:site_name" content="Signal & Syntax">
   <meta property="og:title" content="Posts">
@@ -154,26 +155,11 @@
 		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<figure style="margin: 0 20px 10px 20px; text-align: center;">
-
-    <a href="/posts/birthday-paradox/birthday-paradox.png" class="lightbox-trigger" aria-label="Open full-size image">
-
-        <img src="/posts/birthday-paradox/birthday-paradox.png" alt="">
-
-    </a>
-
-    
-    <figcaption style="font-size: 0.9em; color: #555; margin-top: 5px;">
-        <em>With just 23 random selections from 365 options, you have a 50% chance of collision. Now imagine billions of UUIDs.</em>
-    </figcaption>
-    
-
-</figure>
-
-<p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness (<a href="#rfc9562">
+		<p>You generate a <a class="glossary-term" href="/glossary/#uuid-v4" data-definition="A 128-bit UUID format in which 122 bits are randomly generated, providing an extremely large space of possible identifiers.">UUID</a>. It&rsquo;s 128 bits total, with 122 bits of randomness (<a href="#rfc9562">
   Davis et al., 2024
 </a>
 ). That&rsquo;s 340 undecillion possible values. Collision-proof, right? Your system generates a million IDs per second. Still safe? What about a billion?</p>
+<p>As I like to say, <em>common sense and intuition are the enemies of science</em>. Common sense tells you that with 340,000,000,000,000,000,000,000,000,000,000,000,000 possible values, you&rsquo;d need to generate at least trillions before worrying about duplicates. Maybe fill 1% of the space? 10%?</p>
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/posts/birthday-paradox/">Read more…</a>
